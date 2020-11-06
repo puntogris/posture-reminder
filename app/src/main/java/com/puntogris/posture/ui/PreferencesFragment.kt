@@ -3,16 +3,16 @@ package com.puntogris.posture.ui
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.DialogFragment
 import androidx.preference.Preference
-
 import androidx.preference.PreferenceFragmentCompat
 import com.puntogris.posture.R
+import com.puntogris.posture.TimePickerPreference
+import com.puntogris.posture.TimePreferenceDialogFragmentCompat
 
 class PreferencesFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
-
 
     }
 
@@ -26,5 +26,13 @@ class PreferencesFragment : PreferenceFragmentCompat() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    override fun onDisplayPreferenceDialog(preference: Preference) {
+        if (preference is TimePickerPreference) {
+            val dialogFragment: DialogFragment = TimePreferenceDialogFragmentCompat.newInstance(preference.key)
+            dialogFragment.setTargetFragment(this, 0)
+            dialogFragment.show(parentFragmentManager, null)
+        } else super.onDisplayPreferenceDialog(preference)
+    }
 
 }
+

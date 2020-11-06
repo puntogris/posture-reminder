@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <SwitchPreference
         android:defaultValue="true"
@@ -10,4 +8,21 @@
         android:title="Muestra de notificaciones"
         android:summaryOff="Notificaciones desactivadas"
         android:summaryOn="Notificaciones Activadas"/>
+
+    <ListPreference
+        android:defaultValue="60"
+        android:entries="@array/timeInterval"
+        android:entryValues="@array/timeIntervalValues"
+        android:key="time_interval_for_alarm"
+        android:title="Intervalo de repeticion alarma" />
+
+
+    <com.puntogris.posture.TimePickerPreference
+        android:key="pref_start_notification_time"
+        android:title="Hora de inicio de notificaciones"/>
+
+    <com.puntogris.posture.TimePickerPreference
+        android:key="pref_end_notification_time"
+        android:title="Hora de finalizacion de notificaciones"/>
+
 </PreferenceScreen>
