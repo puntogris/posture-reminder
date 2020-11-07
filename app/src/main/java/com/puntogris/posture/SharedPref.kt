@@ -1,4 +1,4 @@
-package com.puntogris.posture.di
+package com.puntogris.posture
 
 import android.content.Context
 import androidx.preference.PreferenceManager
@@ -9,20 +9,27 @@ class SharedPref @Inject constructor(@ActivityContext private val context:Contex
 
     private val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
     private val defaultAppStatus = true
-    private val defaultTimePeriodForAlarm = setOf("12","12")
+    // 720 are minutes after midnight, so 12am
+    private val defaultStartTimePeriodForAlarm = 720
+    // 0 are minutes after midnight, so 12pm
+    private val defaultEndTimePeriodForAlarm = 0
     private val defaultIntervalForRepeatingAlarm = "60"
 
     private fun getAppStatus() = sharedPref.getBoolean("app_status", defaultAppStatus)
 
     fun appStatusText() = if (getAppStatus()) "Stop" else "Start"
 
+    fun appStatusSummaryText()= if(getAppStatus()) "The alarm is on" else "The alarm is off"
+
+
     fun changeAppStatus(): String{
         val isAlarmActive = getAppStatus()
         sharedPref.edit().putBoolean("app_status", !isAlarmActive).apply()
         if (isAlarmActive) alarm.end()
         else alarm.start(
-                getTimeIntervalForRepeatingAlarm()!!.toInt(),
-                getTimePeriodForAlarm() as MutableSet<String>)
+                getTimeIntervalForRepeatingAlarm()!!.toLong(),
+                getStartTimePeriodForAlarm(),
+                getEndTimePeriodForAlarm())
 
         return appStatusText()
     }
@@ -31,8 +38,12 @@ class SharedPref @Inject constructor(@ActivityContext private val context:Contex
     private fun getTimeIntervalForRepeatingAlarm() =
         sharedPref.getString("time_interval_for_alarm", defaultIntervalForRepeatingAlarm)
 
-    // set of initial and final time in which to trigger the alarm
-    private fun getTimePeriodForAlarm()=
-        sharedPref.getStringSet("time_period_for_alarm", defaultTimePeriodForAlarm)
+    // time to start the alarm
+    private fun getStartTimePeriodForAlarm()=
+        sharedPref.getInt("pref_start_notification_time", defaultStartTimePeriodForAlarm)
+
+    // time to end the alarm
+    private fun getEndTimePeriodForAlarm()=
+            sharedPref.getInt("pref_end_notification_time", defaultEndTimePeriodForAlarm)
 
 }

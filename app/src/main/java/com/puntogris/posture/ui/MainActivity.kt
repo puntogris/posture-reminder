@@ -1,4 +1,4 @@
-package com.puntogris.posture
+package com.puntogris.posture.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.onNavDestinationSelected
+import com.puntogris.posture.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

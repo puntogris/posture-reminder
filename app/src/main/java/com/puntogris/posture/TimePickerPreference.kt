@@ -3,6 +3,7 @@ package com.puntogris.posture
 import android.content.Context
 import android.util.AttributeSet
 import androidx.preference.DialogPreference
+import com.puntogris.posture.utils.Utils
 
 class TimePickerPreference(context: Context?, attrs: AttributeSet?) : DialogPreference(context, attrs) {
 

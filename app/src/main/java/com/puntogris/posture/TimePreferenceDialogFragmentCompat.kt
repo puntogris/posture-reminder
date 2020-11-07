@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TimePicker
 import androidx.preference.PreferenceDialogFragmentCompat
+import com.puntogris.posture.utils.*
 
 @Suppress("DEPRECATION")
 class TimePreferenceDialogFragmentCompat : PreferenceDialogFragmentCompat() {
@@ -19,8 +20,8 @@ class TimePreferenceDialogFragmentCompat : PreferenceDialogFragmentCompat() {
     override fun onBindDialogView(view: View?) {
         super.onBindDialogView(view)
         val minutesAfterMidnight = (preference as TimePickerPreference).getPersistedMinutesFromMidnight()
-        val hours = minutesAfterMidnight / 60
-        val minutes = minutesAfterMidnight % 60
+        val hours = minutesAfterMidnight.getHours()
+        val minutes = minutesAfterMidnight.getMinutes()
 
         timepicker.apply {
             setIs24HourView(true)

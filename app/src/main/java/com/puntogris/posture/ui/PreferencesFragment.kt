@@ -13,7 +13,6 @@ import com.puntogris.posture.TimePreferenceDialogFragmentCompat
 class PreferencesFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,11 +27,12 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 
     override fun onDisplayPreferenceDialog(preference: Preference) {
         if (preference is TimePickerPreference) {
-            val dialogFragment: DialogFragment = TimePreferenceDialogFragmentCompat.newInstance(preference.key)
-            dialogFragment.setTargetFragment(this, 0)
-            dialogFragment.show(parentFragmentManager, null)
+            TimePreferenceDialogFragmentCompat.newInstance(preference.key).let {
+                it.setTargetFragment(this, 0)
+                it.show(parentFragmentManager, null)
+            }
         } else super.onDisplayPreferenceDialog(preference)
-    }
 
+    }
 }
 

@@ -1,4 +1,4 @@
-package com.puntogris.posture
+package com.puntogris.posture.utils
 
 object Utils {
 
@@ -12,3 +12,4 @@ object Utils {
         return String.format("%02d:%02d", hour, minute)
     }
 }
+
