@@ -15,16 +15,6 @@ class PreferencesFragment : PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.preferences, rootKey)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        setHasOptionsMenu(true)
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        menu.findItem(R.id.mainFragment).isVisible = true
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
     override fun onDisplayPreferenceDialog(preference: Preference) {
         if (preference is TimePickerPreference) {
             TimePreferenceDialogFragmentCompat.newInstance(preference.key).let {

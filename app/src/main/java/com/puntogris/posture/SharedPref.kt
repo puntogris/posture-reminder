@@ -2,18 +2,21 @@ package com.puntogris.posture
 
 import android.content.Context
 import androidx.preference.PreferenceManager
+import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Inject
 
 class SharedPref @Inject constructor(@ActivityContext private val context:Context, private val alarm: Alarm) {
 
     private val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-    private val defaultAppStatus = true
+    private val defaultAppStatus = false
     // 720 are minutes after midnight, so 12am
     private val defaultStartTimePeriodForAlarm = 720
     // 0 are minutes after midnight, so 12pm
     private val defaultEndTimePeriodForAlarm = 0
     private val defaultIntervalForRepeatingAlarm = "60"
+    private val defaultShowNotificationStatus = true
+
 
     private fun getAppStatus() = sharedPref.getBoolean("app_status", defaultAppStatus)
 
@@ -45,5 +48,9 @@ class SharedPref @Inject constructor(@ActivityContext private val context:Contex
     // time to end the alarm
     private fun getEndTimePeriodForAlarm()=
             sharedPref.getInt("pref_end_notification_time", defaultEndTimePeriodForAlarm)
+
+    fun showNotificationStatus()=
+        sharedPref.getBoolean("pref_show_notifications", defaultShowNotificationStatus)
+
 
 }

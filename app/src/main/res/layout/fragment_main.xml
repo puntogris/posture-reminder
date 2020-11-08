@@ -9,6 +9,7 @@
             type="com.puntogris.posture.ui.MainFragment" />
     </data>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,7 +33,6 @@
             android:id="@+id/enableSummaryTextview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
             android:textColor="@color/grey"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"

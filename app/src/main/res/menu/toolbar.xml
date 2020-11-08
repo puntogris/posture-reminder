@@ -9,10 +9,4 @@
         android:id="@+id/preferencesFragment"
         android:title="Settings" />
 
-    <item
-        app:showAsAction="always"
-        android:icon="@drawable/ic_baseline_close_24"
-        android:visible="false"
-        android:id="@+id/mainFragment"
-        android:title="Close Settings" />
 </menu>

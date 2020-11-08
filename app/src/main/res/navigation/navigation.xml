@@ -6,9 +6,13 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.puntogris.posture.ui.MainFragment"
-        android:label="MainFragment" />
+        android:label="Posture Reminder" >
+        <action
+            android:id="@+id/action_mainFragment_to_preferencesFragment"
+            app:destination="@id/preferencesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/preferencesFragment"
         android:name="com.puntogris.posture.ui.PreferencesFragment"
-        android:label="PreferencesFragment" />
+        android:label="Settings" />
 </navigation>

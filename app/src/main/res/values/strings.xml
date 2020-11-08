@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">posture</string>
+    <string name="app_name">Posture Reminder</string>
     <string-array name="timeInterval">
         <item>15 mins</item>
         <item>30 mins</item>
@@ -9,7 +9,7 @@
         <item>4 hours</item>
     </string-array>
     <string-array name="timeIntervalValues">
-        <item>2</item>
+        <item>1</item>
         <item>30</item>
         <item>60</item>
         <item>120</item>

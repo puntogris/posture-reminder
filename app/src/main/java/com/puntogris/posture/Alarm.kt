@@ -10,11 +10,29 @@ import dagger.hilt.android.qualifiers.ActivityContext
 import java.util.*
 import javax.inject.Inject
 
-class Alarm @Inject constructor(@ActivityContext private val context:Context) {
+class Alarm @Inject constructor(@ActivityContext private val context: Context) {
 
     private val intent = Intent(context, ReminderBroadcast::class.java)
     private val pendingIntent= PendingIntent.getBroadcast(context, 0, intent, 0)
+
     private val alarmManager: AlarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+    fun startDailyAlarm(startTimePeriod: Int){
+        val periodHour = startTimePeriod.getHours()
+        val periodMin = startTimePeriod.getMinutes()
+
+        val calendar: Calendar = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, periodHour)
+            set(Calendar.MINUTE, periodMin)
+        }
+        alarmManager.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            AlarmManager.INTERVAL_DAY,
+            pendingIntent
+        )
+    }
 
     fun start(intervalInMins: Long, startTimePeriod: Int, endTimePeriod: Int){
         val periodHour = startTimePeriod.getHours()
@@ -26,10 +44,11 @@ class Alarm @Inject constructor(@ActivityContext private val context:Context) {
             set(Calendar.MINUTE, periodMin)
         }
         alarmManager.setRepeating(
-                AlarmManager.RTC_WAKEUP,
-                calendar.timeInMillis,
-                1000 * 60 * intervalInMins,
-                pendingIntent )
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            1000 * 60 * intervalInMins,
+            pendingIntent
+        )
     }
 
     fun end(){
