@@ -1,31 +1,58 @@
 package com.puntogris.posture
 
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.preference.PreferenceManager
+import com.puntogris.posture.utils.millisToMinutes
+import com.puntogris.posture.utils.setMidnight
+import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
+import javax.inject.Inject
+import kotlin.time.hours
 
-class ReminderBroadcast: BroadcastReceiver() {
+@AndroidEntryPoint
+class ReminderBroadcast: HiltBroadcastReceiver() {
 
-    override fun onReceive(context: Context?, intent: Intent?) {
-        //1 activar una alarma diaria siempre, osea que
-        //2 activo otra alarma que suena
-        val notificationsEnabled = PreferenceManager.getDefaultSharedPreferences(context)
-            .getBoolean("pref_show_notifications", true)
+    @Inject
+    lateinit var sharedPref: SharedPref
 
-        if (notificationsEnabled) {
-            val builder = NotificationCompat.Builder(context!!, "postureNotification")
+    @Inject
+    lateinit var alarm: Alarm
+
+    override fun onReceive(context: Context, intent: Intent) {
+        super.onReceive(context, intent)
+
+        if (intent.action == "DAILY_ALARM_TRIGGERED"){
+            val intervalTime = sharedPref.getTimeIntervalForRepeatingAlarm()
+            alarm.startRepeatingAlarm(intervalTime!!.toInt())
+        }
+        else if(intent.action == "REPEATING_ALARM_TRIGGERED") {
+            val now = Calendar.getInstance()
+            val midnight = Calendar.getInstance().apply {
+                setMidnight()
+            }
+
+            val currentMinutesSinceMidnight= (now.timeInMillis - midnight.timeInMillis).millisToMinutes()
+            if(currentMinutesSinceMidnight <= sharedPref.getEndTimePeriodForAlarm()){
+               deliverNotification(context)
+            }else alarm.cancelRepeatingAlarm()
+        }
+    }
+
+    private fun deliverNotification(context: Context){
+        if (sharedPref.showNotificationStatus()) {
+            val builder = NotificationCompat.Builder(context, "postureNotification")
                 .setSmallIcon(R.drawable.ic_baseline_notifications_24)
                 .setContentTitle("Posture Notification")
                 .setContentText("Time to fix that back posture!")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
             with(NotificationManagerCompat.from(context)) {
-                // notificationId is a unique int for each notification that you must define
                 notify(100, builder.build())
             }
         }
     }
+
+
 }
