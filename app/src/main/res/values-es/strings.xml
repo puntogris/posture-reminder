@@ -23,12 +23,4 @@
         <item>3 horas</item>
         <item>4 horas</item>
     </string-array>
-    <string-array name="timeIntervalValues">
-        <item>1</item>
-        <item>30</item>
-        <item>60</item>
-        <item>120</item>
-        <item>180</item>
-        <item>240</item>
-    </string-array>
 </resources>

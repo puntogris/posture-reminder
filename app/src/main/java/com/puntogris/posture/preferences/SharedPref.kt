@@ -1,7 +1,9 @@
-package com.puntogris.posture
+package com.puntogris.posture.preferences
 
 import android.content.Context
 import androidx.preference.PreferenceManager
+import com.puntogris.posture.Alarm
+import com.puntogris.posture.R
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -19,9 +21,13 @@ class SharedPref @Inject constructor(@ApplicationContext private val context:Con
 
     private fun getAppStatus() = sharedPref.getBoolean("app_status", defaultAppStatus)
 
-    fun appStatusText() = if (getAppStatus()) context.getString(R.string.stop_alarm) else context.getString(R.string.start_alarm)
+    fun appStatusText() = if (getAppStatus()) context.getString(R.string.stop_alarm) else context.getString(
+        R.string.start_alarm
+    )
 
-    fun appStatusSummaryText()= if(getAppStatus()) context.getString(R.string.alarm_on) else context.getString(R.string.alarm_off)
+    fun appStatusSummaryText()= if(getAppStatus()) context.getString(R.string.alarm_on) else context.getString(
+        R.string.alarm_off
+    )
 
     fun changeAppStatus(): String{
         val isAlarmActive = getAppStatus()

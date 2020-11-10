@@ -1,12 +1,13 @@
-package com.puntogris.posture
+package com.puntogris.posture.preferences
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.TimePicker
 import androidx.preference.PreferenceDialogFragmentCompat
-import com.puntogris.posture.utils.*
+import com.puntogris.posture.utils.Utils
+import com.puntogris.posture.utils.getHours
+import com.puntogris.posture.utils.getMinutes
 
 @Suppress("DEPRECATION")
 class TimePreferenceDialogFragmentCompat : PreferenceDialogFragmentCompat() {

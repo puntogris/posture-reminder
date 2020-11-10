@@ -1,4 +1,4 @@
-package com.puntogris.posture
+package com.puntogris.posture.di
 
 import android.content.BroadcastReceiver
 import android.content.Context

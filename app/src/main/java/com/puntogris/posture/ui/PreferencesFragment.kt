@@ -1,14 +1,11 @@
 package com.puntogris.posture.ui
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import androidx.fragment.app.DialogFragment
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.puntogris.posture.R
-import com.puntogris.posture.TimePickerPreference
-import com.puntogris.posture.TimePreferenceDialogFragmentCompat
+import com.puntogris.posture.preferences.TimePickerPreference
+import com.puntogris.posture.preferences.TimePreferenceDialogFragmentCompat
 
 class PreferencesFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

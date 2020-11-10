@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <SwitchPreference
+    <com.puntogris.posture.preferences.CustomSwitchPref
         android:defaultValue="true"
         android:icon="@drawable/ic_baseline_notifications_24"
         android:key="pref_show_notifications"
@@ -10,7 +10,7 @@
         android:summaryOff="@string/notifications_summary_off"
         android:summaryOn="@string/notifications_summary_on"/>
 
-    <ListPreference
+    <com.puntogris.posture.preferences.CustomListPref
         android:icon="@drawable/ic_baseline_alarm_24"
         app:useSimpleSummaryProvider="true"
         android:defaultValue="60"
@@ -19,13 +19,12 @@
         android:key="time_interval_for_alarm"
         android:title="@string/time_interval_alarm" />
 
-
-    <com.puntogris.posture.TimePickerPreference
+    <com.puntogris.posture.preferences.TimePickerPreference
         android:icon="@drawable/ic_baseline_alarm_on_24"
         android:key="pref_start_notification_time"
         android:title="@string/start_alarm_time"/>
 
-    <com.puntogris.posture.TimePickerPreference
+    <com.puntogris.posture.preferences.TimePickerPreference
         android:icon="@drawable/ic_baseline_alarm_off_24"
         android:key="pref_end_notification_time"
         android:title="@string/end_alarm_time"/>

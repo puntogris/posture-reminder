@@ -4,12 +4,13 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.puntogris.posture.di.HiltBroadcastReceiver
+import com.puntogris.posture.preferences.SharedPref
 import com.puntogris.posture.utils.millisToMinutes
 import com.puntogris.posture.utils.setMidnight
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import javax.inject.Inject
-import kotlin.time.hours
 
 @AndroidEntryPoint
 class ReminderBroadcast: HiltBroadcastReceiver() {
@@ -22,7 +23,6 @@ class ReminderBroadcast: HiltBroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
-
         if (intent.action == "DAILY_ALARM_TRIGGERED"){
             val intervalTime = sharedPref.getTimeIntervalForRepeatingAlarm()
             alarm.startRepeatingAlarm(intervalTime!!.toInt())

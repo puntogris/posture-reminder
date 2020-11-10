@@ -26,14 +26,14 @@ class Alarm @Inject constructor(@ApplicationContext private val context: Context
             context,
             100,
             dailyAlarmIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+            0
     )
 
     private val pendingIntentRepeatingAlarm = PendingIntent.getBroadcast(
             context,
             200,
             repeatingAlarmIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+            0
     )
 
     fun startDailyAlarm(startTimePeriod: Int){

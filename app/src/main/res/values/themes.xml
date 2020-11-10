@@ -4,7 +4,7 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/purple_500</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/purple_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
@@ -13,14 +13,8 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:colorBackground">@color/purple_500</item>
-        <item name="android:textColorPrimary">@color/white</item>
-        <item name="android:textColorSecondary">@color/grey</item>
 
     </style>
 
-    <style name="Theme.Posture.TimePickerStyle" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        <item name="android:backgroundTint">@color/blue</item>
-        <item name="android:background">@color/blue</item>
-        <item name="android:numbersBackgroundColor">@color/blue</item>
-    </style>
+
 </resources>

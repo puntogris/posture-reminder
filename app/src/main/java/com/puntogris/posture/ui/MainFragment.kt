@@ -10,7 +10,7 @@ import androidx.databinding.DataBindingUtil.inflate
 import androidx.fragment.app.Fragment
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentMainBinding
-import com.puntogris.posture.SharedPref
+import com.puntogris.posture.preferences.SharedPref
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
