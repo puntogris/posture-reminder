@@ -8,7 +8,7 @@ Used in this project:</br>
   * Broadcast Receiver
 
 ## Screenshots
-![N|Solid](https://github.com/puntogris/posture-reminder/blob/master/screenshots/1.webp)
-![N|Solid](https://github.com/puntogris/posture-reminder/blob/master/screenshots/2.webp)
-![N|Solid](https://github.com/puntogris/posture-reminder/blob/master/screenshots/3.webp)
+![N|Solid](https://raw.githubusercontent.com/puntogris/posture-reminder/main/screenshots/1.webp)
+![N|Solid](https://raw.githubusercontent.com/puntogris/posture-reminder/main/screenshots/2.webp)
+![N|Solid](https://raw.githubusercontent.com/puntogris/posture-reminder/main/screenshots/3.webp)
 
