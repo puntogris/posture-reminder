@@ -9,16 +9,14 @@
             type="com.puntogris.posture.ui.MainFragment" />
     </data>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/Theme.Posture"
         android:onClick="@{() -> mainFragment.changeAppStatusPref()}"
         tools:context=".ui.MainFragment">
-
         <TextView
             android:id="@+id/enableTextView"
+            android:layout_marginBottom="?actionBarSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
@@ -32,7 +30,7 @@
         <TextView
             android:id="@+id/enableSummaryTextview"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:textColor="@color/grey"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -41,21 +39,5 @@
             app:layout_constraintTop_toBottomOf="@+id/enableTextView"
             app:layout_constraintVertical_bias="0.050000012" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            android:theme="@style/MyTimePickerDialogStyle"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="19dp" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button"
-            app:layout_constraintTop_toBottomOf="@+id/button"
-            tools:layout_editor_absoluteX="41dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -6,25 +6,28 @@
         android:defaultValue="true"
         android:icon="@drawable/ic_baseline_notifications_24"
         android:key="pref_show_notifications"
-        android:title="Muestra de notificaciones"
-        android:summaryOff="Notificaciones desactivadas"
-        android:summaryOn="Notificaciones Activadas"/>
+        android:title="@string/notifications"
+        android:summaryOff="@string/notifications_summary_off"
+        android:summaryOn="@string/notifications_summary_on"/>
 
     <ListPreference
+        android:icon="@drawable/ic_baseline_alarm_24"
         app:useSimpleSummaryProvider="true"
         android:defaultValue="60"
         android:entries="@array/timeInterval"
         android:entryValues="@array/timeIntervalValues"
         android:key="time_interval_for_alarm"
-        android:title="Intervalo de repeticion alarma" />
+        android:title="@string/time_interval_alarm" />
 
 
     <com.puntogris.posture.TimePickerPreference
+        android:icon="@drawable/ic_baseline_alarm_on_24"
         android:key="pref_start_notification_time"
-        android:title="Hora de inicio de notificaciones"/>
+        android:title="@string/start_alarm_time"/>
 
     <com.puntogris.posture.TimePickerPreference
+        android:icon="@drawable/ic_baseline_alarm_off_24"
         android:key="pref_end_notification_time"
-        android:title="Hora de finalizacion de notificaciones"/>
+        android:title="@string/end_alarm_time"/>
 
 </PreferenceScreen>

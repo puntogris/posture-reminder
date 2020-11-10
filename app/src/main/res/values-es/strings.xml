@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Recordatorio de Postura</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="notifications_summary_off">Notificaciones desactivadas</string>
+    <string name="notifications_summary_on">Notificaciones activadas</string>
+    <string name="stop_alarm">Desactivar</string>
+    <string name="start_alarm">Activar</string>
+    <string name="alarm_off">La alarma esta desactivada</string>
+    <string name="alarm_on">La alarma esta activada</string>
+    <string name="posture_notification_title">Notificacion de Postura</string>
+    <string name="settings">Configuracion</string>
+    <string name="posture_notification_text">Es hora de corregir la postura!</string>
+    <string name="end_alarm_time">Cancelar alarma a esta hora</string>
+    <string name="start_alarm_time">Empezar alarma a esta hora</string>
+    <string name="time_interval_alarm">Intervalo de tiempo para la alarma</string>
+
+    <string-array name="timeInterval">
+        <item>15 minutos</item>
+        <item>30 minutos</item>
+        <item>1 hora</item>
+        <item>2 horas</item>
+        <item>3 horas</item>
+        <item>4 horas</item>
+    </string-array>
+    <string-array name="timeIntervalValues">
+        <item>1</item>
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+        <item>180</item>
+        <item>240</item>
+    </string-array>
+</resources>

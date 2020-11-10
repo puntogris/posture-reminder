@@ -19,10 +19,9 @@ class SharedPref @Inject constructor(@ApplicationContext private val context:Con
 
     private fun getAppStatus() = sharedPref.getBoolean("app_status", defaultAppStatus)
 
-    fun appStatusText() = if (getAppStatus()) "Stop" else "Start"
+    fun appStatusText() = if (getAppStatus()) context.getString(R.string.stop_alarm) else context.getString(R.string.start_alarm)
 
-    fun appStatusSummaryText()= if(getAppStatus()) "The alarm is on" else "The alarm is off"
-
+    fun appStatusSummaryText()= if(getAppStatus()) context.getString(R.string.alarm_on) else context.getString(R.string.alarm_off)
 
     fun changeAppStatus(): String{
         val isAlarmActive = getAppStatus()

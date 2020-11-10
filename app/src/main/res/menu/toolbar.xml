@@ -7,6 +7,6 @@
         android:icon="@drawable/ic_baseline_settings_24"
         android:visible="false"
         android:id="@+id/preferencesFragment"
-        android:title="Settings" />
+        android:title="@string/settings" />
 
 </menu>
