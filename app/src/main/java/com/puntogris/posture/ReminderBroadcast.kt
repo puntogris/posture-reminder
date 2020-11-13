@@ -43,7 +43,7 @@ class ReminderBroadcast: HiltBroadcastReceiver() {
     private fun deliverNotification(context: Context){
         if (sharedPref.showNotificationStatus()) {
             val builder = NotificationCompat.Builder(context, "postureNotification")
-                .setSmallIcon(R.drawable.ic_baseline_notifications_24)
+                .setSmallIcon(R.drawable.ic_notifications_24px)
                 .setContentTitle(context.getString(R.string.posture_notification_title))
                 .setContentText(context.getString(R.string.posture_notification_text))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)

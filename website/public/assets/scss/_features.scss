@@ -1,0 +1,236 @@
+/*===========================
+      04.Features css 
+===========================*/
+
+.features-area {      
+      padding-top: 120px;
+      position: relative;
+      z-index: 5;
+      overflow: hidden;
+
+      &::before{
+            position: absolute;
+            content: '';
+            background-color: #f4f1f9;
+            width: 100%;
+            height: 80%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+      }
+}
+
+.features-wrapper{
+      padding-top: 18px;
+}
+
+.single-features{
+      background-color: $white;
+      @include box-shadow (0px 10px 30px 0px rgba(0, 0, 0, 0.05));
+      padding: 60px 60px 23px;
+      position: relative;
+      margin-top: 30px;
+      margin-bottom: 65px;
+      border-radius: 5px;
+      @include transition(0.3s);
+      position: relative;
+      z-index: 5;   
+      
+      @media #{$lg}{
+            padding: 60px 30px 28px; 
+      }
+      @media #{$xs}{
+            padding: 60px 30px 28px; 
+      }
+
+      &::before{
+            position: absolute;
+            content: '';
+            bottom: -170px;
+            right: -170px;
+            width: 0;
+            height: 0;
+            border-bottom: 170px solid rgba($white, 0.2);
+            border-left: 170px solid transparent;
+            z-index: -1;
+            opacity: 0;
+            visibility: hidden;
+            @include transition(0.3s);
+      }
+
+      & .features-number{
+            font-size: 90px;
+            line-height: 80px;
+            color: $heading-color;
+            opacity: 0.05;
+            position: absolute;
+            top: 50px;
+            right: 60px;
+            font-weight: 300;
+            @include transition(0.3s);
+      }
+      & .features-icon{
+            & i{
+                  font-size: 64px;
+                  line-height: 60px;
+                  @include transition(0.3s);
+            }
+      }
+      & .features-content{
+            & .features-title{
+                  & a{
+                        font-size: 22px;
+                        line-height: 34px;
+                        font-weight: 800;
+                        color: $heading-color;
+                        @include transition(0.3s);
+                        margin-top: 32px;
+                  }
+            }
+            & p{
+                  margin-top: 37px;
+                  @include transition(0.3s);
+            }
+      }
+      & .features-btn{
+            position: relative;
+            bottom: -70px;
+            display: inline-block;
+            background-color: $white;
+            padding: 14px;
+            @include transform(rotate(45deg));
+            border-radius: 5px;
+
+            & a{
+                  width: 60px;
+                  height: 60px;
+                  line-height: 60px;
+                  background-color: #5dd8d3;
+                  color: $white;
+                  text-align: center;
+                  font-size: 22px;                  
+                  border-radius: 5px;
+                  @include box-shadow (0px -25px 30px 0px rgba(0, 0, 0, 0.05));
+                  @include transition(0.3s);
+
+                  & i{
+                        @include transform(rotate(-45deg));
+                  }
+            }
+      }
+
+      &.features-1{
+            & .features-icon{
+                  & i{
+                        color: #5dd8d3;
+                  }
+            }
+            & .features-btn{      
+                  & a{
+                        background-color: #5dd8d3;
+                  }
+            }
+
+            &:hover{
+                  background-color: #5dd8d3;
+
+                  & .features-icon{
+                        & i{
+                              color: $white;
+                        }
+                  }
+                  & .features-content{
+                        & .features-title{
+                              & a{
+                                    color: $white;
+                              }
+                        }
+                        & p{
+                              color: rgba($white, 0.8);
+                        }
+                  }
+            }
+      }
+      &.features-2{
+            & .features-icon{
+                  & i{
+                        color: #9364d4;
+                  }
+            }
+            & .features-btn{      
+                  & a{
+                        background-color: #9364d4;
+                  }
+            }
+
+            &:hover{
+                  background-color: #9364d4;
+
+                  & .features-icon{
+                        & i{
+                              color: $white;
+                        }
+                  }
+                  & .features-content{
+                        & .features-title{
+                              & a{
+                                    color: $white;
+                              }
+                        }
+                        & p{
+                              color: rgba($white, 0.8);
+                        }
+                  }
+            }
+      }
+      &.features-3{
+            & .features-icon{
+                  & i{
+                        color: #ee539b;
+                  }
+            }
+            & .features-btn{      
+                  & a{
+                        background-color: #ee539b;
+                  }
+            }
+
+            &:hover{
+                  background-color: #ee539b;
+
+                  & .features-icon{
+                        & i{
+                              color: $white;
+                        }
+                  }
+                  & .features-content{
+                        & .features-title{
+                              & a{
+                                    color: $white;
+                              }
+                        }
+                        & p{
+                              color: rgba($white, 0.8);
+                        }
+                  }
+            }
+      }
+
+      &:hover{
+
+            &::before{
+                  bottom: 0;
+                  right: 0;
+                  opacity: 1;
+                  visibility: visible;
+            }
+      }
+}
+
+
+
+
+
+
+
+

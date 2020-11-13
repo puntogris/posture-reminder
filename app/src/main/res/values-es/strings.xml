@@ -6,14 +6,14 @@
     <string name="notifications_summary_on">Notificaciones activadas</string>
     <string name="stop_alarm">Desactivar</string>
     <string name="start_alarm">Activar</string>
-    <string name="alarm_off">La alarma esta desactivada</string>
-    <string name="alarm_on">La alarma esta activada</string>
+    <string name="alarm_off">La app esta desactivada</string>
+    <string name="alarm_on">La app esta activada</string>
     <string name="posture_notification_title">Notificacion de Postura</string>
     <string name="settings">Configuracion</string>
     <string name="posture_notification_text">Es hora de corregir la postura!</string>
-    <string name="end_alarm_time">Cancelar alarma a esta hora</string>
-    <string name="start_alarm_time">Empezar alarma a esta hora</string>
-    <string name="time_interval_alarm">Intervalo de tiempo para la alarma</string>
+    <string name="end_alarm_time">Cancelar notificaciones a esta hora</string>
+    <string name="start_alarm_time">Empezar notificaciones a esta hora</string>
+    <string name="time_interval_alarm">Intervalo de tiempo para las notificaciones</string>
 
     <string-array name="timeInterval">
         <item>15 minutos</item>
@@ -23,4 +23,5 @@
         <item>3 horas</item>
         <item>4 horas</item>
     </string-array>
+    <string name="about">Acerca de</string>
 </resources>

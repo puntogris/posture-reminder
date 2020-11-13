@@ -1,0 +1,239 @@
+
+
+/*===========================
+        01.COMMON css 
+===========================*/
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+ body {
+	font-family: $font-1;
+	font-weight: normal;
+	font-style: normal;
+	color: $body-color;
+	overflow-X: hidden;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    @include box-sizing (border-box);
+}
+
+img {
+	max-width: 100%;
+}
+
+a:focus,
+input:focus,
+textarea:focus,
+button:focus {
+	text-decoration: none;
+	outline: none;
+}
+
+a:focus,
+a:hover{
+	text-decoration: none;
+}
+
+i,
+span,
+a{
+    display: inline-block;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: $font-1;
+	font-weight: 700;
+	color: $heading-color;
+	margin: 0px;
+}
+
+h1 {
+	font-size: 48px;
+}
+h2 {
+	font-size: 36px;
+}
+h3 {
+	font-size: 28px;
+}
+h4 {
+	font-size: 22px;
+}
+h5 {
+	font-size: 18px;
+}
+h6 {
+	font-size: 16px;
+}
+
+ul,ol {
+	margin: 0px;
+	padding: 0px;
+    list-style-type: none;
+}
+
+p {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+	color: $body-color;
+	margin: 0px;
+}
+
+.bg_cover{
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
+
+.custom-container{
+	@media #{$desktop}{
+		max-width: 1590px;
+	}
+}
+
+
+// others common css here
+
+
+
+/*===== All Button Style =====*/
+
+.main-btn {
+	display: inline-block;
+	font-weight: 700;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	@include user-select(none);
+	border: 0;
+	padding: 0 30px;
+	font-size: 14px;
+	height: 54px;
+	line-height: 54px;
+	border-radius: 4px;
+    color: $heading-color;
+    cursor: pointer;
+    z-index: 5;
+    @include transition(0.4s);
+	background-color: $white;
+	@include box-shadow (0px 10px 30px 0px rgba(0, 0, 0, 0.05));
+	position: relative;
+	z-index: 5;
+	overflow: hidden;
+
+	&::before{
+        position: absolute;
+        content: '';
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        padding: 50%;
+        border-radius: 50%;
+        background-color: $theme-color;
+        z-index: -1;
+        @include transform(translate3d(-50%, -50%, 0) scale(0));
+        @include transition(0.4s);
+    }
+    
+    &:hover{
+        color: $white;
+		
+		&::before{
+            @include transform(translate3d(-50%, -50%, 0) scale(1.5));
+        }
+	}
+	
+	&.main-btn-2{
+		color: $white;
+		background-color: $theme-color;
+
+		&::before{
+			background-color: $heading-color;
+		}
+		
+		&:hover{
+			color: $white;
+			
+			&::before{
+				@include transform(translate3d(-50%, -50%, 0) scale(1.5));
+			}
+		}
+	}
+}
+
+/*===== All Slick Slide Outline Style =====*/
+
+.slick-slide {
+	outline: 0; 
+}  
+
+/*===== All Section Title Style =====*/
+
+.section-title{
+	& .sub-title{
+		font-weight: 600;
+		color: $body-color;
+		font-size: 16px;
+		position: relative;
+		padding-top: 35px;
+
+		&::before{
+			position: absolute;
+			content: '';
+			width: 15px;
+			height: 15px;
+			background-color: $theme-color;
+			@include transform(rotate(45deg) translateX(0));
+			left: 2px;
+			top: 3px;
+		}
+	}
+	& .title{
+		font-size: 46px;
+		font-weight: 800;
+		color: $heading-color;
+		margin-top: 5px;
+		letter-spacing: -2px;
+
+		@media #{$lg}{
+			font-size: 40px;
+		}
+		@media #{$xs}{
+			font-size: 30px;
+			letter-spacing: 0;
+		}
+	}
+
+	&.text-center{
+		& .sub-title{
+			&::before{
+				left: 50%;
+				@include transform(rotate(45deg) translateX(-50%));
+				top: 9px;
+			}
+		}
+	}
+}

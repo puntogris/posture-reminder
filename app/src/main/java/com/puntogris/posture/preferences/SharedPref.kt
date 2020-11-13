@@ -53,5 +53,4 @@ class SharedPref @Inject constructor(@ApplicationContext private val context:Con
     fun showNotificationStatus()=
         sharedPref.getBoolean("pref_show_notifications", defaultShowNotificationStatus)
 
-
 }

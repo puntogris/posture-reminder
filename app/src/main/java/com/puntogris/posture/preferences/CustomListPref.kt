@@ -8,6 +8,7 @@ import androidx.preference.PreferenceViewHolder
 import com.puntogris.posture.R
 
 class CustomListPref(context: Context, attributeSet: AttributeSet): ListPreference(context, attributeSet) {
+
     @Suppress("DEPRECATION")
     override fun onBindViewHolder(holder: PreferenceViewHolder?) {
         super.onBindViewHolder(holder)

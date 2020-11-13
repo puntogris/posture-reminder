@@ -1,0 +1,183 @@
+/*===========================
+    06.Discover css 
+===========================*/
+
+.discover-area {
+    padding-top: 120px;
+    padding-bottom: 120px;
+    position: relative;
+
+    & .discover-shape{
+        position: absolute;
+
+        &.shape-1{
+            width: 368px;
+            top: -80px;
+            left: 0;
+
+            @media #{$lg}{
+                width: 220px;
+            }
+            @media #{$md}{
+                width: 268px;
+            }
+            @media #{$xs}{
+                width: 120px;
+            }
+
+            & img{
+                width: 100%;
+            }
+        }
+    }
+}
+
+.discover-content-wrapper{
+    & .discover-items{
+        max-width: 570px;
+
+        & .single-item{
+            margin-top: 45px;
+
+            & .item-icon{
+                & i{
+                    font-size: 64px;
+                    line-height: 60px;
+                }
+            }
+            & .item-text{
+                padding-top: 20px;
+
+                & .title{
+                    font-size: 20px;
+                }
+            }
+
+            &.item-1{
+                & .item-icon{
+                    & i{
+                        color: $theme-color;
+                    }
+                }
+            }
+            &.item-2{
+                & .item-icon{
+                    & i{
+                        color: #5dd8d3;
+                    }
+                }
+            }
+            &.item-3{
+                & .item-icon{
+                    & i{
+                        color: #ee539b;
+                    }
+                }
+            }
+        }
+    }
+
+    & .discover-content{
+        margin-top: 50px;
+
+        & p{
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 34px;
+
+            @media #{$lg}{
+                font-size: 16px;
+                line-height: 28px;
+            }
+
+            @media #{$xs}{
+                font-size: 16px;
+                line-height: 28px;
+            }
+        }
+
+        & .main-btn{
+            padding: 0 50px;
+            margin-top: 52px;
+            height: 70px;
+            line-height: 70px;
+    
+            @media #{$lg}{
+                height: 50px;
+                line-height: 50px;
+            }
+            @media #{$md}{
+                height: 50px;
+                line-height: 50px;
+            }
+            @media #{$xs}{
+                height: 45px;
+                line-height: 45px;
+                padding: 0 30px;
+            }
+        }
+    }
+}
+
+
+.discover-image{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-left: 70px;
+
+    @media #{$md}{
+        width: 720px;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+        position: relative;
+    }
+    @media #{$xs}{
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+        position: relative;
+    }
+
+    @media #{$sm}{
+        width: 540px;
+    }
+
+    & .image{
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;  
+        @include box-shadow (0px 0px 60px 0px rgba(5, 5, 6, 0.1));
+        overflow: hidden;
+
+        & img{
+            width: 100%;
+        }
+    }
+}
+
+
+  
+
+
+
+
+
+
+
+

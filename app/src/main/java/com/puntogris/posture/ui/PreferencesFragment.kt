@@ -1,8 +1,12 @@
 package com.puntogris.posture.ui
 
 import android.os.Bundle
-import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.preference.*
+import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.R
 import com.puntogris.posture.preferences.TimePickerPreference
 import com.puntogris.posture.preferences.TimePreferenceDialogFragmentCompat
@@ -22,4 +26,3 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 
     }
 }
-

@@ -1,0 +1,174 @@
+/*===========================
+          11.FAQ's css 
+===========================*/
+
+.faq-area {
+      padding-top: 70px;
+      padding-bottom: 120px;
+      position: relative;
+      z-index: 5;
+
+      & .faq-shape{
+            position: absolute;
+
+            &.shape-1{
+                  right: 7%;
+                  bottom: -12%;
+
+                  @media #{$lg}{
+                        width: 180px;
+                        bottom: -10%;
+                  }
+                  @media #{$md}{
+                        width: 180px;
+                        bottom: -3%;
+                  }
+                  @media #{$xs}{
+                        width: 70px;
+                        bottom: -2%;
+                  }
+            }
+      }
+}
+
+
+.faq-content-left{
+      padding-right: 30px;
+
+      & p{
+            margin-top: 38px;
+            font-size: 18px;
+            line-height: 34px;
+
+            @media #{$lg}{
+                  font-size: 16px;
+                  line-height: 28px;
+            }
+
+            @media #{$xs}{
+                  font-size: 16px;
+                  line-height: 28px;
+            }
+      }
+      & img{
+            margin-top: 40px;
+            border-radius: 4px;
+            width: 100%;
+      }
+}
+
+    
+.faq-accordion{
+      & .accordion{
+            @include box-shadow (0px 10px 60px 0px rgba(0, 0, 0, 0.07));
+            background-color: $white;
+
+            & .card{
+                  border: 0;
+                  border-bottom: 1px solid #d7dbe7;
+                  
+                  &:last-child{
+                        border-bottom: 0;
+                  }
+
+                  & .card-header{
+                        margin-bottom: 0;
+                        padding: 35px 40px;
+                        border: 0;
+                        background: none;
+
+                        @media #{$lg}{
+                              padding: 25px 30px;
+                        }
+                        @media #{$xs}{
+                              padding: 25px 30px;
+                        }
+
+                        & a{
+                              font-size: 18px;
+                              font-weight: 600;
+                              color: $theme-color;
+                              padding-right: 20px;
+                              position: relative;
+                              display: block;
+
+                              @media #{$lg}{
+                                    font-size: 16px;
+                              }
+                              @media #{$xs}{
+                                    font-size: 16px;
+                              }
+
+                              &::before{
+                                    position: absolute;
+                                    content: '';
+                                    width: 16px;
+                                    height: 2px;
+                                    background-color: $heading-color;
+                                    top: 50%;
+                                    right: 0;                                  
+                                    @include transform(translateY(-50%));
+                                    @include transition(0.3s);
+                              }
+                              &::after{
+                                    position: absolute;
+                                    content: '';
+                                    width: 2px;
+                                    height: 0px;
+                                    background-color: $heading-color;
+                                    top: 50%;
+                                    right: 6px;                                 
+                                    @include transform(translateY(-50%));
+                                    @include transition(0.3s);
+                              }
+
+                              &.collapsed{
+                                    color: $heading-color;
+
+                                    &::before{
+                                          background-color: $theme-color;
+                                    }
+                                    &::after{
+                                          background-color: $theme-color;
+                                          height: 16px;
+                                    }
+                              }
+                        }
+                  }
+                  & .card-body{
+                        border: 0;
+                        padding: 35px 40px;
+                        padding-top: 0;
+
+                        @media #{$lg}{
+                              padding: 25px 30px;
+                        }
+                        @media #{$xs}{
+                              padding: 25px 30px;
+                        }
+                        
+                        & p{
+                              font-size: 18px;
+                              line-height: 34px;
+
+                              @media #{$lg}{
+                                    font-size: 16px;
+                                    line-height: 28px;
+                              }
+                              @media #{$xs}{
+                                    font-size: 16px;
+                                    line-height: 28px;
+                              }
+                        }
+                  }
+            }
+      }
+}
+
+
+
+
+
+
+
+

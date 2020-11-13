@@ -1,0 +1,217 @@
+/*===========================
+        12.Blog css 
+===========================*/
+
+.blog-area {
+      padding-top: 120px;
+      padding-bottom: 120px;
+      background-color: $gray;
+      position: relative;
+      overflow: hidden;
+
+      & .blog-shape{
+            position: absolute;
+            
+            &.shape-1{
+                width: 488px;
+                height: 488px;
+                background-color: $white;
+                border-radius: 50px;
+                @include transform(rotate(45deg));
+                top: -25%;
+                left: 3%;
+    
+                @media #{$lg}{
+                    width: 388px;
+                    height: 388px;
+                }
+                @media #{$md}{
+                    width: 320px;
+                    height: 320px;
+                    top: 0;
+                }
+                @media #{$xs}{
+                    width: 188px;
+                    height: 188px;
+                    top: -2%;
+                }
+            }
+      }
+}
+
+
+.single-blog{
+      & .blog-image{
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+
+            & a{
+                  display: block;
+
+                  & img{
+                        width: 100%;
+                        border-radius: 5px;
+                        @include transition(0.3s);
+                  }
+            }
+            & .date{
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  font-size: 12px;
+                  font-weight: 700;
+                  color: $white;
+                  padding: 0 22px;
+                  line-height: 35px;
+                  border-top-left-radius: 4px;
+                  border-bottom-right-radius: 4px;
+            }
+      }
+      & .blog-content{
+            padding-top: 25px;
+
+            & .meta{
+                  & li{
+                        display: inline-block;
+                        position: relative;
+
+                        & + li{
+                              margin-left: 30px;
+
+                              &::before{
+                                    position: absolute;
+                                    content: '';
+                                    width: 4px;
+                                    height: 4px;
+                                    border-radius: 50%;
+                                    background-color: $theme-color;
+                                    bottom: 4px;
+                                    left: -18px;
+                              }
+                        }
+
+                        & a{
+                              font-size: 14px;
+                              font-weight: 700;
+                              color: $theme-color;
+                              @include transition(0.3s);
+
+                              &:hover{
+                                    color: $heading-color;
+                              }
+                        }
+                  }
+            }
+            & .blog-title{
+                  & a{
+                        font-size: 24px;
+                        font-weight: 700;
+                        color: $heading-color;
+                        margin-top: 5px;
+                        @include transition(0.3s);
+
+                        @media #{$xs}{
+                              font-size: 20px;
+                        }
+                  }
+            }
+            & p{
+                  font-size: 18px;
+                  line-height: 30px;
+                  margin-top: 40px;
+
+                  @media #{$lg}{
+                        font-size: 16px;
+                        line-height: 28px;
+                  }
+                  @media #{$xs}{
+                        font-size: 16px;
+                        line-height: 28px;
+                  }
+            }
+      }
+
+      &:hover{
+            & .blog-image{
+                  & a{      
+                        & img{
+                              @include transform(scale(1.1));
+                        }
+                  }
+            }
+      }
+}
+
+
+.blog-wrapper{
+      & .blog-col{
+            &:nth-child(3n+1){
+                  & .single-blog{
+                        & .blog-image{
+                              & .date{
+                                    background-color: #5dd8d3;
+                              }
+                        }
+                        & .blog-content{
+                              & .blog-title{
+                                    & a{
+                                          &:hover{
+                                                color: #5dd8d3;
+                                          }
+                                    }
+                              }
+                        }
+                  }
+            }
+
+            &:nth-child(3n+2){
+                  & .single-blog{
+                        & .blog-image{
+                              & .date{
+                                    background-color: #9364d4;
+                              }
+                        }
+                        & .blog-content{
+                              & .blog-title{
+                                    & a{
+                                          &:hover{
+                                                color: #9364d4;
+                                          }
+                                    }
+                              }
+                        }
+                  }
+            }
+
+            &:nth-child(3n+3){
+                  & .single-blog{
+                        & .blog-image{
+                              & .date{
+                                    background-color: #ee539b;
+                              }
+                        }
+                        & .blog-content{
+                              & .blog-title{
+                                    & a{
+                                          &:hover{
+                                                color: #ee539b;
+                                          }
+                                    }
+                              }
+                        }
+                  }
+            }
+      }
+}
+
+
+
+.blog-list-area{
+      padding-top: 65px;
+      padding-bottom: 115px;
+}
+
+
+
+

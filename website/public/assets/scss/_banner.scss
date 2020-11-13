@@ -1,0 +1,270 @@
+/*===========================
+       03.Banner css 
+===========================*/
+
+
+.banner-area {
+    position: relative;
+    z-index: 5;
+    padding-top: 180px;
+    padding-bottom: 110px;
+    overflow: hidden;
+
+    & .banner-shape-1 {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 68%;
+        z-index: -1;
+
+        @media #{$desktop} {
+            width: 63%;
+        }
+
+        @media #{$lg} {
+            width: 75%;
+        }
+
+        & img {
+            width: 100%;
+        }
+
+        & .line{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: auto;
+            z-index: 1;
+        }
+    }
+    & .banner-shape-2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 30%;
+        z-index: -1;
+
+        & img {
+            width: 100%;
+        }
+    }
+    & .banner-shape-3 {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        z-index: -1;
+        @include transform(translateY(-50%));
+
+        @media #{$xs}{
+            width: 150px;
+        }
+    }
+}
+
+.banner-content-wrapper {    
+    padding-bottom: 30px;
+
+    & .banner-content {
+        margin-top: 50px;
+
+        & .title {
+            font-size: 60px;
+            font-weight: 800;
+            color: $heading-color;
+
+            @media #{$lg}{
+                font-size: 50px;
+            }
+            @media #{$xs}{
+                font-size: 30px;
+            }
+            @media #{$sm}{
+                font-size: 48px;
+            }
+        }
+
+        & p {
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 34px;
+            margin-top: 35px;
+
+            @media #{$xs}{
+                font-size: 16px;
+                line-height: 28px;
+            }
+        }
+
+        & .download-btn {
+            padding-top: 40px;
+
+            & li {
+                margin-top: 10px;
+                display: inline-block;
+                margin-right: 18px;
+
+                &:last-child{
+                    margin-right: 0;
+                }
+
+                & a {
+                    padding-left: 70px;
+                    padding-right: 40px;
+                    padding-top: 17px;
+                    padding-bottom: 17px;
+                    position: relative;
+                    border-radius: 5px;
+                    @include transition(0.3s);
+
+                    @media #{$lg}{
+                        padding-top: 10px;
+                        padding-bottom: 10px;
+                        padding-left: 60px;
+                        padding-right: 30px;
+                    }
+                    @media #{$xs}{
+                        padding-top: 10px;
+                        padding-bottom: 10px;
+                        padding-left: 60px;
+                        padding-right: 30px;
+                    }
+
+                    & i {
+                        font-size: 28px;
+                        color: $white;
+                        position: absolute;
+                        top: 50%;
+                        left: 40px;
+                        @include transform(translateY(-50%));
+
+                        @media #{$lg}{
+                            left: 30px;
+                            font-size: 24px;
+                        }
+                        @media #{$xs}{
+                            left: 30px;
+                            font-size: 24px;
+                        }
+                    }
+
+                    & .text-1 {
+                        font-size: 14px;
+                        font-weight: 500;
+                        color: $white;
+                        display: block;
+                    }
+
+                    & .text-2 {
+                        font-size: 18px;
+                        font-weight: 700;
+                        color: $white;
+                        display: block;
+                    }
+
+                    &.google-play {
+                        background-color: $theme-color;
+
+                        &:hover{
+                            background-color: #666e82;
+                        }
+                    }
+                    &.apple-store {
+                        background-color: #666e82;
+
+                        &:hover{
+                            background-color: $theme-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    & .banner-image{
+        margin-top: 50px;
+
+        & .image{
+            @include transform(rotate(15deg));
+            @include animation(ImgBounce1 2s ease-in-out infinite alternate);
+        }
+    }
+    
+}
+
+@-webkit-keyframes ImgBounce1 {
+	0% {
+		@include transform(translateY(0) rotate(15deg));
+	}
+
+	100% {
+        @include transform(translateY(-20px) rotate(15deg));
+	}
+}
+
+@keyframes ImgBounce {
+	0% {
+		@include transform(translateY(0) rotate(15deg));
+	}
+
+	100% {
+        @include transform(translateY(-20px) rotate(15deg));
+	}
+}
+
+.banner-counter{
+    padding-top: 40px;
+
+    & .counter-title{
+        & .title{
+            font-size: 16px;
+            font-weight: 600;
+            color: $body-color;
+        }
+    }
+
+    & .counter-wrapper{
+        padding-top: 40px;
+    }
+
+    & .single-counter{
+        margin-top: 30px;
+
+        & .count-content{
+            font-size: 16px;
+            font-weight: 600;
+            color: $body-color;
+            display: block;
+
+            @media #{$lg}{
+                font-size: 14px;
+            }
+            @media #{$xs}{
+                font-size: 14px;
+            }
+
+            & .count{
+                font-size: 60px;
+                line-height: 60px;
+                font-weight: 700;
+                color: $heading-color;
+
+                @media #{$lg}{
+                    font-size: 40px;
+                    line-height: 40px;
+                }
+                @media #{$md}{
+                    font-size: 40px;
+                    line-height: 40px;
+                }
+                @media #{$xs}{
+                    font-size: 40px;
+                    line-height: 40px;
+                }
+            }
+            & span{
+                color: $theme-color;
+            }
+        }
+    }
+}
+

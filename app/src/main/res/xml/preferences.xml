@@ -4,7 +4,7 @@
 
     <com.puntogris.posture.preferences.CustomSwitchPref
         android:defaultValue="true"
-        android:icon="@drawable/ic_baseline_notifications_24"
+        android:icon="@drawable/ic_notifications_24px"
         android:key="pref_show_notifications"
         android:title="@string/notifications"
         android:summaryOff="@string/notifications_summary_off"
@@ -28,5 +28,10 @@
         android:icon="@drawable/ic_baseline_alarm_off_24"
         android:key="pref_end_notification_time"
         android:title="@string/end_alarm_time"/>
+
+    <com.puntogris.posture.preferences.CustomPref
+        android:title="@string/about"
+        android:icon="@drawable/ic_info_24px"
+        android:summary="@string/app_version"/>
 
 </PreferenceScreen>
