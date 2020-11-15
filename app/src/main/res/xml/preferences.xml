@@ -16,7 +16,7 @@
         android:defaultValue="60"
         android:entries="@array/timeInterval"
         android:entryValues="@array/timeIntervalValues"
-        android:key="time_interval_for_alarm"
+        android:key="time_interval_for_notifications"
         android:title="@string/time_interval_alarm" />
 
     <com.puntogris.posture.preferences.TimePickerPreference
@@ -30,7 +30,15 @@
         android:title="@string/end_alarm_time"/>
 
     <com.puntogris.posture.preferences.CustomPref
+        android:key="bug_report"
+        android:icon="@drawable/ic_outline_report_24"
+        android:title="@string/bug_report_title_pref"
+        android:summary="@string/bug_report_summary_pref"/>
+
+    <com.puntogris.posture.preferences.CustomPref
         android:title="@string/about"
+        app:defaultValue="false"
+        android:key="panda_animation"
         android:icon="@drawable/ic_info_24px"
         android:summary="@string/app_version"/>
 

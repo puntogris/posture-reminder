@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -14,8 +15,8 @@ android {
         applicationId "com.puntogris.posture"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 4
-        versionName "1.0"
+        versionCode 5
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -68,6 +69,11 @@ dependencies {
 
     //Lottie
     implementation "com.airbnb.android:lottie:3.5.0"
+
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:26.1.0')
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
 
 }

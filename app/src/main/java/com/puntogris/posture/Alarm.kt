@@ -4,6 +4,9 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import com.puntogris.posture.utils.Constants.DAILY_ALARM_TRIGGERED
+import com.puntogris.posture.utils.Constants.REPEATING_ALARM_TRIGGERED
+import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.getHours
 import com.puntogris.posture.utils.getMinutes
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -15,11 +18,11 @@ class Alarm @Inject constructor(@ApplicationContext private val context: Context
     private val alarmManager: AlarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
     private val dailyAlarmIntent = Intent(context, ReminderBroadcast::class.java).apply {
-        action = "DAILY_ALARM_TRIGGERED"
+        action = DAILY_ALARM_TRIGGERED
     }
 
     private val repeatingAlarmIntent = Intent(context, ReminderBroadcast::class.java).apply {
-        action = "REPEATING_ALARM_TRIGGERED"
+        action = REPEATING_ALARM_TRIGGERED
     }
 
     private val pendingIntentDailyAlarm = PendingIntent.getBroadcast(

@@ -11,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.google.firebase.firestore.FirebaseFirestore
 import com.puntogris.posture.R
 import dagger.hilt.android.AndroidEntryPoint
 
