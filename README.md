@@ -1,5 +1,5 @@
 # posture reminder
-App where it will send you a notification to remind you to fix your posture, you can set a time period of the day to receive them and the time interval between alarms.
+App that will send you a notification to remind you to fix your posture, you can set a time period of the day to receive them and the time interval between alarms.
 
 Used in this project:</br>
   * Kotlin
