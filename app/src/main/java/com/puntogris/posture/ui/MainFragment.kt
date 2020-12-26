@@ -5,7 +5,9 @@ import android.view.*
 import androidx.fragment.app.activityViewModels
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentMainBinding
+import com.puntogris.posture.utils.Utils.minutesFromMidnightToHourlyTime
 import com.puntogris.posture.utils.createNotificationChannel
+import com.puntogris.posture.utils.createSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,4 +32,18 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    fun activate(){
+        if (viewModel.isAppActive()) {
+            viewModel.cancelAlarms()
+            createSnackBar(getString(R.string.alarms_off_toast))
+        }
+        else {
+            viewModel.startAlarm()
+            createSnackBar(getString(
+                R.string.notifications_set_toast,
+                minutesFromMidnightToHourlyTime(viewModel.reminder.value!!.startTime),
+                minutesFromMidnightToHourlyTime(viewModel.reminder.value!!.endTime)
+            ))
+        }
+    }
 }

@@ -57,11 +57,6 @@ class Alarm @Inject constructor(@ApplicationContext private val context: Context
                 AlarmManager.INTERVAL_DAY,
                 pendingIntentDailyAlarm
         )
-
-        Toast.makeText(context, context.getString(
-                R.string.notifications_set_toast,
-                minutesFromMidnightToHourlyTime(reminderConfig.startTime),
-                minutesFromMidnightToHourlyTime(reminderConfig.endTime)),Toast.LENGTH_SHORT).show()
     }
 
     fun cancelAlarms(){

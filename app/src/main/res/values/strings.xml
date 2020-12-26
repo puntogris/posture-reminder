@@ -19,7 +19,7 @@
     <string name="bug_report_summary_pref">Send us feedback or report a problem</string>
     <string name="cancel">Cancel</string>
     <string name="bug_report_sended_toast">The report has been sent successfully. Thanks for helping!</string>
-    <string name="notifications_set_toast">Notifications set from %1$s to %2$s</string>
+    <string name="notifications_set_toast">Notifications set from %1$s to %2$s.</string>
     <string name="remember_to_reset_toast">Remember to reset the app in the main screen so the new changes apply.</string>
     <string name="panda_unlocked_message">Panda unlocked! Go back to the main screen to enjoy his cuteness!</string>
     <string name="report_message_tittle">What do you want to tell us?</string>
@@ -55,4 +55,6 @@
         <item>180</item>
         <item>240</item>
     </integer-array>
+    <string name="send_button">Send</string>
+    <string name="alarms_off_toast">Se cancelaron las alarmas.</string>
 </resources>

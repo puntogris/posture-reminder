@@ -69,6 +69,22 @@ class MainViewModel @ViewModelInject constructor(
         }
     }
 
+    fun isAppActive() = _reminder.value.isActive
+
+    fun startAlarm(){
+        viewModelScope.launch {
+            reminderDao.updateReminderStatus(!_reminder.value.isActive)
+        }
+    }
+
+    fun cancelAlarms(){
+        alarm.cancelAlarms()
+        viewModelScope.launch {
+            reminderDao.updateReminderStatus(!_reminder.value.isActive)
+        }
+    }
+
+
     fun enablePandaAnimation(){
         viewModelScope.launch {
             reminderDao.enablePandaAnimation()

@@ -28,7 +28,7 @@ object Utils {
     }
 
     fun getSavedOptionsArray(savedList: List<Int>?, daysList: Array<String>):Array<Option> =
-        daysList.mapIndexed { index, s ->
+        daysList.mapIndexed { index, _ ->
             if (!savedList.isNullOrEmpty() && savedList.contains(index)){
                 Option(daysList[index]).select()
             } else
