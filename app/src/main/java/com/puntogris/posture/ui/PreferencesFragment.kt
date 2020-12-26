@@ -17,10 +17,10 @@ import com.puntogris.posture.utils.Constants.PANDA_ANIMATION_PREFERENCE
 import com.puntogris.posture.utils.Constants.START_TIME_PREFERENCE
 import com.puntogris.posture.utils.Constants.TIME_INTERVAL_PREFERENCE
 import com.puntogris.posture.utils.Utils.getSavedOptionsArray
-import com.puntogris.posture.utils.Utils.millisFromMidnightToHourlyTime
+import com.puntogris.posture.utils.Utils.minutesFromMidnightToHourlyTime
 import com.puntogris.posture.utils.createSnackBar
-import com.puntogris.posture.utils.getHours
-import com.puntogris.posture.utils.getMinutes
+import com.puntogris.posture.utils.millisToMinutes
+
 import com.puntogris.posture.utils.preference
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,9 +34,9 @@ class PreferencesFragment: PreferenceFragmentCompat() {
 
         lifecycleScope.launchWhenStarted {
             viewModel.reminder.observe(viewLifecycleOwner, {
-                preference(START_TIME_PREFERENCE)?.summary = millisFromMidnightToHourlyTime(it.startTime)
-                preference(END_TIME_PREFERENCE)?.summary = millisFromMidnightToHourlyTime(it.endTime)
-                preference(TIME_INTERVAL_PREFERENCE)?.summary = it.timeInterval.toString()
+                preference(START_TIME_PREFERENCE)?.summary = minutesFromMidnightToHourlyTime(it.startTime)
+                preference(END_TIME_PREFERENCE)?.summary = minutesFromMidnightToHourlyTime(it.endTime)
+                preference(TIME_INTERVAL_PREFERENCE)?.summary = it.timeIntervalSummary()
                 preference(ALARM_DAYS_PREFERENCE)?.summary = it.alarmDaysSummary(alarmDaysString)
             })
         }
@@ -50,7 +50,7 @@ class PreferencesFragment: PreferenceFragmentCompat() {
         preference(BUG_REPORT_PREFERENCE)?.setOnPreferenceClickListener {
             InputSheet().build(requireContext()) {
                 title(this@PreferencesFragment.getString(R.string.bug_report_title_pref))
-                content("Dejanos tu reporte o una sugerencia para mejorar la aplicacion.")
+                content(this@PreferencesFragment.getString(R.string.bug_report_summary_pref))
                 with(InputEditText {
                     required()
                     label(this@PreferencesFragment.getString(R.string.report_message_tittle))
@@ -67,8 +67,7 @@ class PreferencesFragment: PreferenceFragmentCompat() {
             ClockTimeSheet().build(requireContext()) {
                 title(this@PreferencesFragment.getString(R.string.start_time_title))
                 onPositive(this@PreferencesFragment.getString(R.string.save_button)) { clockTimeInMillis ->
-                 
-                    viewModel.saveStartTime(clockTimeInMillis + 3600000)
+                    viewModel.saveStartTime(clockTimeInMillis.millisToMinutes() +60)
                 }
             }.show(parentFragmentManager, "")
             true
@@ -78,7 +77,7 @@ class PreferencesFragment: PreferenceFragmentCompat() {
             ClockTimeSheet().build(requireContext()) {
                 title(this@PreferencesFragment.getString(R.string.end_time_title))
                 onPositive(this@PreferencesFragment.getString(R.string.save_button)) { clockTimeInMillis ->
-                    viewModel.saveEndTime(clockTimeInMillis+ 3600000)
+                    viewModel.saveEndTime(clockTimeInMillis.millisToMinutes() +60)
                 }
             }.show(parentFragmentManager, "")
             true
@@ -95,7 +94,7 @@ class PreferencesFragment: PreferenceFragmentCompat() {
                     selected(0)
                 })
                 onPositive(this@PreferencesFragment.getString(R.string.save_button)){
-                    viewModel.saveTimeInterval((valueList[it["0"] as Int]).toLong())
+                    viewModel.saveTimeInterval((valueList[it["0"] as Int]))
                 }
             }.show(parentFragmentManager, "")
             true

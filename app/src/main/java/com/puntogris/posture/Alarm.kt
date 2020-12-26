@@ -9,7 +9,7 @@ import com.puntogris.posture.model.ReminderConfig
 import com.puntogris.posture.utils.Constants.DAILY_ALARM_TRIGGERED
 import com.puntogris.posture.utils.Constants.REPEATING_ALARM_TRIGGERED
 import com.puntogris.posture.utils.Utils.getTriggerTime
-import com.puntogris.posture.utils.Utils.millisFromMidnightToHourlyTime
+import com.puntogris.posture.utils.Utils.minutesFromMidnightToHourlyTime
 import com.puntogris.posture.utils.getHours
 import com.puntogris.posture.utils.getMinutes
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -59,9 +59,9 @@ class Alarm @Inject constructor(@ApplicationContext private val context: Context
         )
 
         Toast.makeText(context, context.getString(
-            R.string.notifications_set_toast,
-            millisFromMidnightToHourlyTime(reminderConfig.startTime),
-            millisFromMidnightToHourlyTime(reminderConfig.endTime)),Toast.LENGTH_SHORT).show()
+                R.string.notifications_set_toast,
+                minutesFromMidnightToHourlyTime(reminderConfig.startTime),
+                minutesFromMidnightToHourlyTime(reminderConfig.endTime)),Toast.LENGTH_SHORT).show()
     }
 
     fun cancelAlarms(){
@@ -69,10 +69,10 @@ class Alarm @Inject constructor(@ApplicationContext private val context: Context
         alarmManager.cancel(pendingIntentRepeatingAlarm)
     }
 
-    fun startRepeatingAlarm(interval: Long){
+    fun startRepeatingAlarm(intervalInMinutes: Int){
         alarmManager.setExact(
                 AlarmManager.RTC_WAKEUP,
-                getTriggerTime(interval),
+                getTriggerTime(intervalInMinutes),
                 pendingIntentRepeatingAlarm
         )
     }

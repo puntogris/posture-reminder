@@ -7,8 +7,8 @@ import java.util.*
 
 object Utils {
 
-    fun millisFromMidnightToHourlyTime(milliseconds: Long) =
-         String.format("%02d:%02d", milliseconds.getHours(), milliseconds.getMinutes())
+    fun minutesFromMidnightToHourlyTime(minutes: Int) =
+         String.format("%02d:%02d", minutes.getHours(), minutes.getMinutes())
 
 
     fun minutesSinceMidnight(): Int{
@@ -19,8 +19,8 @@ object Utils {
         return (now.timeInMillis - midnight.timeInMillis).millisToMinutes()
     }
 
-    fun getTriggerTime(interval: Long) =
-        Calendar.getInstance().timeInMillis + interval
+    fun getTriggerTime(interval: Int) =
+        Calendar.getInstance().timeInMillis + interval.minutesToMillis()
 
     fun getNotificationsPref(context: Context): Boolean{
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)

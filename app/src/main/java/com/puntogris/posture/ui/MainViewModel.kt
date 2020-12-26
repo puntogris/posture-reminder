@@ -36,19 +36,19 @@ class MainViewModel @ViewModelInject constructor(
         }
     }
 
-    fun saveStartTime(time: Long){
+    fun saveStartTime(time:Int){
         viewModelScope.launch {
             reminderDao.updateStartTime(time)
         }
     }
 
-    fun saveEndTime(time: Long){
+    fun saveEndTime(time:Int){
         viewModelScope.launch {
             reminderDao.updateEndTime(time)
         }
     }
 
-    fun saveTimeInterval(interval :Long){
+    fun saveTimeInterval(interval:Int){
         viewModelScope.launch {
             reminderDao.updateTimeInterval(interval)
         }

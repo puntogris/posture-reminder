@@ -20,13 +20,13 @@ interface ReminderDao {
     fun getReminderConfig(): ReminderConfig?
 
     @Query("UPDATE reminderconfig SET startTime = :startTime WHERE id = 1")
-    suspend fun updateStartTime(startTime: Long)
+    suspend fun updateStartTime(startTime: Int)
 
     @Query("UPDATE reminderconfig SET endTime = :endTime WHERE id = 1")
-    suspend fun updateEndTime(endTime: Long)
+    suspend fun updateEndTime(endTime: Int)
 
     @Query("UPDATE reminderconfig SET timeInterval = :timeInterval WHERE id = 1")
-    suspend fun updateTimeInterval(timeInterval: Long)
+    suspend fun updateTimeInterval(timeInterval: Int)
 
     @Query("UPDATE reminderconfig SET isActive = :isActive WHERE id = 1")
     suspend fun updateReminderStatus(isActive: Boolean)

@@ -8,6 +8,8 @@ import com.puntogris.posture.data.Converters
 import com.puntogris.posture.utils.Constants.DEFAULT_END_TIME_PERIOD
 import com.puntogris.posture.utils.Constants.DEFAULT_INTERVAL_REPEATING
 import com.puntogris.posture.utils.Constants.DEFAULT_START_TIME_PERIOD
+import com.puntogris.posture.utils.getHours
+import com.puntogris.posture.utils.millisToMinutes
 
 @Entity
 class ReminderConfig(
@@ -19,13 +21,13 @@ class ReminderConfig(
     val isActive: Boolean = false,
 
     @ColumnInfo
-    val timeInterval: Long = DEFAULT_INTERVAL_REPEATING,
+    val timeInterval: Int = DEFAULT_INTERVAL_REPEATING,
 
     @ColumnInfo
-    val startTime: Long = DEFAULT_START_TIME_PERIOD,
+    val startTime: Int = DEFAULT_START_TIME_PERIOD,
 
     @ColumnInfo
-    val endTime: Long = DEFAULT_END_TIME_PERIOD,
+    val endTime: Int = DEFAULT_END_TIME_PERIOD,
 
     @ColumnInfo
     val showPanda: Boolean = false,
@@ -38,4 +40,10 @@ class ReminderConfig(
     fun alarmDaysSummary(daysList: Array<String>) =
         alarmDays.mapIndexed { index, _ -> daysList[index].subSequence(0,3) }.joinToString(", ")
 
+    fun timeIntervalSummary() =
+        when{
+            timeInterval < 60 -> "$timeInterval mins."
+            timeInterval == 60 -> "1 h."
+            else -> "${timeInterval.getHours()} hs."
+        }
 }

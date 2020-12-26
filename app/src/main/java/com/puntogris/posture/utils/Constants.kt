@@ -2,10 +2,10 @@ package com.puntogris.posture.utils
 
 object Constants {
     // 720 are minutes after midnight, so 12am
-    const val DEFAULT_START_TIME_PERIOD = 720L
+    const val DEFAULT_START_TIME_PERIOD = 720
     // 0 are minutes after midnight, so 12pm
-    const val DEFAULT_END_TIME_PERIOD = 0L
-    const val DEFAULT_INTERVAL_REPEATING = 60L
+    const val DEFAULT_END_TIME_PERIOD = 0
+    const val DEFAULT_INTERVAL_REPEATING = 60 //minutes
     const val DEFAULT_SHOW_NOTIFICATIONS_PREF_VALUE = true
     const val DAILY_ALARM_TRIGGERED = "DAILY_ALARM_TRIGGERED"
     const val REPEATING_ALARM_TRIGGERED = "REPEATING_ALARM_TRIGGERED"

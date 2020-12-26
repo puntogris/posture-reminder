@@ -51,7 +51,7 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
         }
     }
 
-    private fun deliverNotificationAndSetNewAlarm(context: Context, timeInterval:Long){
+    private fun deliverNotificationAndSetNewAlarm(context: Context, timeInterval:Int){
         val showNotifications = getNotificationsPref(context)
         if (showNotifications) {
             val builder = NotificationCompat.Builder(context, POSTURE_NOTIFICATION_ID)

@@ -20,9 +20,9 @@ import com.puntogris.posture.model.ReminderConfig
 import java.util.*
 import kotlin.collections.ArrayList
 
-fun Long.getHours() = (this / 60 / 1000 / 60).toInt()
+fun Int.getHours() = this / 60
 
-fun Long.getMinutes() = ((this / 60 / 1000) % 60).toInt()
+fun Int.getMinutes() = this % 60
 
 fun Long.millisToMinutes() = (this / 1000 / 60).toInt()
 
