@@ -24,6 +24,7 @@ import com.puntogris.posture.utils.millisToMinutes
 
 import com.puntogris.posture.utils.preference
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -58,8 +59,9 @@ class PreferencesFragment: PreferenceFragmentCompat() {
                     required()
                     label(this@PreferencesFragment.getString(R.string.report_message_tittle))
                     hint(this@PreferencesFragment.getString(R.string.bug_report_dialog_hint))
-                    resultListener { value ->
+                    onPositive {
                         viewModel.sendReport(value.toString())
+                        createSnackBar(getString(R.string.report_sended_toast))
                     }
                 })
             }.show(parentFragmentManager, "")
@@ -70,7 +72,7 @@ class PreferencesFragment: PreferenceFragmentCompat() {
             ClockTimeSheet().build(requireContext()) {
                 title(this@PreferencesFragment.getString(R.string.start_time_title))
                 onPositive(this@PreferencesFragment.getString(R.string.save_button)) { clockTimeInMillis ->
-                    viewModel.viewModelScope.launch {
+                    lifecycleScope.launch {
                         viewModel.saveStartTime(clockTimeInMillis.millisToMinutes() + 60)
                         refreshAlarmsAndShowSnackBar()
                     }
@@ -130,6 +132,10 @@ class PreferencesFragment: PreferenceFragmentCompat() {
             }.show(parentFragmentManager, "")
             true
         }
+    }
+    fun test(){
+        viewModel.sendReport("a")
+
     }
 
     private fun refreshAlarmsAndShowSnackBar(){

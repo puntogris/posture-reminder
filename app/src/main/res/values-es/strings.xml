@@ -50,5 +50,7 @@
     <string name="send_button">Enviar</string>
     <string name="alarms_off_toast">Se cancelaron las alarmas.</string>
     <string name="new_config_saved_toast">Se actualizo la alarma con la nueva configuracion.</string>
+    <string name="report_sended_toast">Se envio correctamente. Gracias por tu ayudarnos a mejorar la app.</string>
+    <string name="report_error_toast">Ocurrio un error. Verifique su conexion ntente nuevamente.</string>
 
 </resources>

@@ -79,7 +79,7 @@ class MainViewModel @ViewModelInject constructor(
         }
     }
 
-    fun sendReport(message: String){
+    fun sendReport(message: String) {
         repository.sendReportToFirestore(message)
     }
 
