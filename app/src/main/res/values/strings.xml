@@ -56,5 +56,6 @@
         <item>240</item>
     </integer-array>
     <string name="send_button">Send</string>
-    <string name="alarms_off_toast">Se cancelaron las alarmas.</string>
+    <string name="alarms_off_toast">The alarm has been desactivated.</string>
+    <string name="new_config_saved_toast">The alarm has been updated with the new configuration.</string>
 </resources>

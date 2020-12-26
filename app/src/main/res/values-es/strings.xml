@@ -48,5 +48,7 @@
     <string name="alarm_days_title">Dias habilitados</string>
     <string name="time_interval_title">Intervalo de tiempo</string>
     <string name="send_button">Enviar</string>
+    <string name="alarms_off_toast">Se cancelaron las alarmas.</string>
+    <string name="new_config_saved_toast">Se actualizo la alarma con la nueva configuracion.</string>
 
 </resources>

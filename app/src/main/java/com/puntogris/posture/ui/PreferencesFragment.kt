@@ -3,6 +3,7 @@ package com.puntogris.posture.ui
 import android.os.Bundle
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.preference.PreferenceFragmentCompat
 import com.maxkeppeler.bottomsheets.input.InputSheet
 import com.maxkeppeler.bottomsheets.input.type.InputEditText
@@ -23,11 +24,13 @@ import com.puntogris.posture.utils.millisToMinutes
 
 import com.puntogris.posture.utils.preference
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class PreferencesFragment: PreferenceFragmentCompat() {
 
     private val viewModel: MainViewModel by activityViewModels()
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
         val alarmDaysString = resources.getStringArray(R.array.alarmDays)
@@ -67,7 +70,10 @@ class PreferencesFragment: PreferenceFragmentCompat() {
             ClockTimeSheet().build(requireContext()) {
                 title(this@PreferencesFragment.getString(R.string.start_time_title))
                 onPositive(this@PreferencesFragment.getString(R.string.save_button)) { clockTimeInMillis ->
-                    viewModel.saveStartTime(clockTimeInMillis.millisToMinutes() +60)
+                    viewModel.viewModelScope.launch {
+                        viewModel.saveStartTime(clockTimeInMillis.millisToMinutes() + 60)
+                        refreshAlarmsAndShowSnackBar()
+                    }
                 }
             }.show(parentFragmentManager, "")
             true
@@ -77,7 +83,10 @@ class PreferencesFragment: PreferenceFragmentCompat() {
             ClockTimeSheet().build(requireContext()) {
                 title(this@PreferencesFragment.getString(R.string.end_time_title))
                 onPositive(this@PreferencesFragment.getString(R.string.save_button)) { clockTimeInMillis ->
-                    viewModel.saveEndTime(clockTimeInMillis.millisToMinutes() +60)
+                    lifecycleScope.launch {
+                        viewModel.saveEndTime(clockTimeInMillis.millisToMinutes() +60)
+                        refreshAlarmsAndShowSnackBar()
+                    }
                 }
             }.show(parentFragmentManager, "")
             true
@@ -94,7 +103,10 @@ class PreferencesFragment: PreferenceFragmentCompat() {
                     selected(0)
                 })
                 onPositive(this@PreferencesFragment.getString(R.string.save_button)){
-                    viewModel.saveTimeInterval((valueList[it["0"] as Int]))
+                    lifecycleScope.launch {
+                        viewModel.saveTimeInterval(valueList[it["0"] as Int])
+                        refreshAlarmsAndShowSnackBar()
+                    }
                 }
             }.show(parentFragmentManager, "")
             true
@@ -110,10 +122,18 @@ class PreferencesFragment: PreferenceFragmentCompat() {
                 with(*options)
                 onPositiveMultiple(this@PreferencesFragment.getString(R.string.save_button))
                 { selectedIndices , _ ->
-                    viewModel.saveAlarmDays()
+                    lifecycleScope.launch {
+                        viewModel.saveAlarmDays()
+                        refreshAlarmsAndShowSnackBar()
+                    }
                 }
             }.show(parentFragmentManager, "")
             true
         }
+    }
+
+    private fun refreshAlarmsAndShowSnackBar(){
+        if(viewModel.isAppActive()) viewModel.refreshAlarms()
+        createSnackBar(getString(R.string.new_config_saved_toast))
     }
 }

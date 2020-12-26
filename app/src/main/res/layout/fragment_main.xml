@@ -17,7 +17,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:onClick="@{() -> mainFragment.activate()}"
+        android:onClick="@{() -> mainFragment.onScreenClicked()}"
         tools:context=".ui.MainFragment">
 
         <TextView

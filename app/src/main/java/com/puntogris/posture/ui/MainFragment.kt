@@ -32,7 +32,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    fun activate(){
+    fun onScreenClicked(){
         if (viewModel.isAppActive()) {
             viewModel.cancelAlarms()
             createSnackBar(getString(R.string.alarms_off_toast))

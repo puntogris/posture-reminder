@@ -36,54 +36,42 @@ class MainViewModel @ViewModelInject constructor(
         }
     }
 
-    fun saveStartTime(time:Int){
-        viewModelScope.launch {
-            reminderDao.updateStartTime(time)
-        }
+    suspend fun saveStartTime(time:Int){
+        reminderDao.updateStartTime(time)
     }
 
-    fun saveEndTime(time:Int){
-        viewModelScope.launch {
-            reminderDao.updateEndTime(time)
-        }
+    suspend fun saveEndTime(time:Int){
+        reminderDao.updateEndTime(time)
     }
 
-    fun saveTimeInterval(interval:Int){
-        viewModelScope.launch {
-            reminderDao.updateTimeInterval(interval)
-        }
+    suspend fun saveTimeInterval(interval:Int){
+        reminderDao.updateTimeInterval(interval)
     }
 
-    fun saveAlarmDays(){
-        viewModelScope.launch {
-            reminderDao.updateAlarmDays(arrayListOf(0,1,2,3,4,5))
-        }
-    }
-
-    fun changeAppStatus(){
-        viewModelScope.launch {
-            val currentStatus = _reminder.value.isActive
-            if (currentStatus) alarm.cancelAlarms()
-            else alarm.startDailyAlarm(_reminder.value)
-            reminderDao.updateReminderStatus(!currentStatus)
-        }
+    suspend fun saveAlarmDays(){
+        reminderDao.updateAlarmDays(arrayListOf(0,1,2,3,4,5))
     }
 
     fun isAppActive() = _reminder.value.isActive
 
     fun startAlarm(){
         viewModelScope.launch {
+            alarm.startDailyAlarm(_reminder.value)
             reminderDao.updateReminderStatus(!_reminder.value.isActive)
         }
     }
 
     fun cancelAlarms(){
-        alarm.cancelAlarms()
         viewModelScope.launch {
+            alarm.cancelAlarms()
             reminderDao.updateReminderStatus(!_reminder.value.isActive)
         }
     }
 
+    fun refreshAlarms(){
+        alarm.cancelAlarms()
+        alarm.startDailyAlarm(_reminder.value)
+    }
 
     fun enablePandaAnimation(){
         viewModelScope.launch {
