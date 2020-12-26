@@ -4,9 +4,12 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.widget.Toast
+import com.puntogris.posture.model.ReminderConfig
 import com.puntogris.posture.utils.Constants.DAILY_ALARM_TRIGGERED
 import com.puntogris.posture.utils.Constants.REPEATING_ALARM_TRIGGERED
-import com.puntogris.posture.utils.Utils
+import com.puntogris.posture.utils.Utils.getTriggerTime
+import com.puntogris.posture.utils.Utils.millisFromMidnightToHourlyTime
 import com.puntogris.posture.utils.getHours
 import com.puntogris.posture.utils.getMinutes
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -39,21 +42,26 @@ class Alarm @Inject constructor(@ApplicationContext private val context: Context
             0
     )
 
-    fun startDailyAlarm(startTimePeriod: Int){
-        val periodHour = startTimePeriod.getHours()
-        val periodMin = startTimePeriod.getMinutes()
+    fun startDailyAlarm(reminderConfig: ReminderConfig){
+        val periodHour = reminderConfig.startTime.getHours()
+        val periodMin = reminderConfig.endTime.getMinutes()
 
         val calendar: Calendar = Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
             set(Calendar.HOUR_OF_DAY, periodHour)
             set(Calendar.MINUTE, periodMin)
         }
-        alarmManager.setRepeating(
+        alarmManager.setInexactRepeating(
                 AlarmManager.RTC_WAKEUP,
                 calendar.timeInMillis,
                 AlarmManager.INTERVAL_DAY,
                 pendingIntentDailyAlarm
         )
+
+        Toast.makeText(context, context.getString(
+            R.string.notifications_set_toast,
+            millisFromMidnightToHourlyTime(reminderConfig.startTime),
+            millisFromMidnightToHourlyTime(reminderConfig.endTime)),Toast.LENGTH_SHORT).show()
     }
 
     fun cancelAlarms(){
@@ -61,11 +69,10 @@ class Alarm @Inject constructor(@ApplicationContext private val context: Context
         alarmManager.cancel(pendingIntentRepeatingAlarm)
     }
 
-    fun startRepeatingAlarm(intervalInMinutes: Int){
-        alarmManager.setRepeating(
+    fun startRepeatingAlarm(interval: Long){
+        alarmManager.setExact(
                 AlarmManager.RTC_WAKEUP,
-                System.currentTimeMillis(),
-                intervalInMinutes * 60 * 1000.toLong(),
+                getTriggerTime(interval),
                 pendingIntentRepeatingAlarm
         )
     }

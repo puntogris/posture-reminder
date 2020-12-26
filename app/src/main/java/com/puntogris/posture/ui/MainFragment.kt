@@ -2,31 +2,22 @@ package com.puntogris.posture.ui
 
 import android.os.Bundle
 import android.view.*
-import androidx.databinding.DataBindingUtil.inflate
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentMainBinding
-import com.puntogris.posture.preferences.SharedPref
-import com.puntogris.posture.utils.Utils
+import com.puntogris.posture.utils.createNotificationChannel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainFragment : Fragment() {
-    private lateinit var binding: FragmentMainBinding
-    @Inject lateinit var sharedPref: SharedPref
+class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
-    override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        binding = inflate(inflater, R.layout.fragment_main, container, false)
+    private val viewModel: MainViewModel by activityViewModels()
+
+    override fun initializeViews() {
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.mainFragment = this
-        checkAppStatus()
-        Utils.createNotificationChannel(requireActivity())
-
-
-        return binding.root
+        createNotificationChannel()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,16 +28,6 @@ class MainFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.findItem(R.id.preferencesFragment).isVisible = true
         super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    private fun checkAppStatus(){
-        binding.enableTextView.text = sharedPref.appStatusText()
-        binding.enableSummaryTextview.text = sharedPref.appStatusSummaryText()
-    }
-
-    fun changeAppStatusPref(){
-        binding.enableTextView.text = sharedPref.changeAppStatus()
-        binding.enableSummaryTextview.text = sharedPref.appStatusSummaryText()
     }
 
 }

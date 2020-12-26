@@ -4,61 +4,56 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.puntogris.posture.data.ReminderDao
 import com.puntogris.posture.di.HiltBroadcastReceiver
-import com.puntogris.posture.preferences.SharedPref
 import com.puntogris.posture.utils.Constants.DAILY_ALARM_TRIGGERED
 import com.puntogris.posture.utils.Constants.POSTURE_NOTIFICATION_ID
 import com.puntogris.posture.utils.Constants.REPEATING_ALARM_TRIGGERED
-import com.puntogris.posture.utils.Utils
-import com.puntogris.posture.utils.millisToMinutes
-import com.puntogris.posture.utils.setMidnight
+import com.puntogris.posture.utils.Utils.getNotificationsPref
+import com.puntogris.posture.utils.Utils.minutesSinceMidnight
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ReminderBroadcast: HiltBroadcastReceiver() {
+class ReminderBroadcast : HiltBroadcastReceiver() {
 
-    @Inject
-    lateinit var sharedPref: SharedPref
-
-    @Inject
-    lateinit var alarm: Alarm
+    @Inject lateinit var alarm: Alarm
+    @Inject lateinit var reminderDao: ReminderDao
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
-
         if (intent.action == DAILY_ALARM_TRIGGERED){
-            val intervalTime = sharedPref.getTimeIntervalForNotifications()
-            alarm.startRepeatingAlarm(intervalTime!!.toInt())
+            GlobalScope.launch {
+                reminderDao.getReminderConfig()?.let {
+                    alarm.startRepeatingAlarm(it.timeInterval)
+                }
+            }
         }
         else if(intent.action == REPEATING_ALARM_TRIGGERED) {
-            val now = Calendar.getInstance()
-            val midnight = Calendar.getInstance().apply {
-                setMidnight()
-            }
-            val startTime = sharedPref.getStartTimePeriodForNotifications()
-            val endTime = sharedPref.getEndTimePeriodForNotifications()
-
-            val currentMinutesSinceMidnight= (now.timeInMillis - midnight.timeInMillis).millisToMinutes()
-
-            //check if alarm goes beyond 0 am
-            if (startTime < endTime){
-                if(currentMinutesSinceMidnight <= sharedPref.getEndTimePeriodForNotifications()){
-                    deliverNotification(context)
-                }else alarm.cancelRepeatingAlarm()
-            }else{
-                if (currentMinutesSinceMidnight in (endTime + 1) until startTime){
-                    alarm.cancelRepeatingAlarm()
-                }else{
-                    deliverNotification(context)
+            GlobalScope.launch {
+                val currentMinutesSinceMidnight = minutesSinceMidnight()
+                reminderDao.getReminderConfig()?.apply {
+                    if (alarmPastMidnight()){
+                        if(currentMinutesSinceMidnight <= endTime){
+                            deliverNotificationAndSetNewAlarm(context, timeInterval)
+                        }else alarm.cancelRepeatingAlarm()
+                    }else{
+                        if (currentMinutesSinceMidnight in (endTime + 1) until startTime){
+                            alarm.cancelRepeatingAlarm()
+                        }else{
+                            deliverNotificationAndSetNewAlarm(context, timeInterval, )
+                        }
+                    }
                 }
             }
         }
     }
 
-    private fun deliverNotification(context: Context){
-        if (sharedPref.showNotificationStatus()) {
+    private fun deliverNotificationAndSetNewAlarm(context: Context, timeInterval:Long){
+        val showNotifications = getNotificationsPref(context)
+        if (showNotifications) {
             val builder = NotificationCompat.Builder(context, POSTURE_NOTIFICATION_ID)
                 .setSmallIcon(R.drawable.ic_notifications_24px)
                 .setContentTitle(context.getString(R.string.posture_notification_title))
@@ -69,7 +64,6 @@ class ReminderBroadcast: HiltBroadcastReceiver() {
                 notify(100, builder.build())
             }
         }
+        alarm.startRepeatingAlarm(timeInterval)
     }
-
-
 }

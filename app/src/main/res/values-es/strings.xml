@@ -14,20 +14,39 @@
     <string name="end_alarm_time">Cancelar notificaciones a esta hora</string>
     <string name="start_alarm_time">Empezar notificaciones a esta hora</string>
     <string name="time_interval_alarm">Intervalo de tiempo para las notificaciones</string>
+    <string name="about">Acerca de</string>
+    <string name="bug_report_title_pref">Problemas y consejos</string>
+    <string name="bug_report_summary_pref">Reporta un problema o envianos tus consejos</string>
+    <string name="cancel">Cancelar</string>
+    <string name="bug_report_sended_toast">Se envio satisfactioriamente el reporte, Gracias por tu ayuda!</string>
+    <string name="notifications_set_toast">Notificaciones activadas desde las %1$s hasta las %2$s</string>
+    <string name="remember_to_reset_toast">Recuerda resetear la app en la pantalla principal así se aplican los nuevos cambios.</string>
+
+    <string-array name="alarmDays">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miercoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+        <item>Sabado</item>
+        <item>Domingo</item>
+    </string-array>
 
     <string-array name="timeInterval">
-        <item>15 minutos</item>
         <item>30 minutos</item>
         <item>1 hora</item>
         <item>2 horas</item>
         <item>3 horas</item>
         <item>4 horas</item>
     </string-array>
-    <string name="about">Acerca de</string>
-    <string name="bug_report_title_pref">Problemas y consejos</string>
-    <string name="bug_report_summary_pref">Reporta un problema o envianos tus consejos</string>
-    <string name="cancel">Cancelar</string>
-    <string name="ok" translatable="false">Enviar</string>
-    <string name="bug_report_dialog_hint">Que nos queres contar?</string>
-    <string name="bug_report_sended_toast">Se envio satisfactioriamente el reporte, Gracias por tu ayuda!</string>
+    <string name="panda_unlocked_message">Panda desbloqueado! Volve a la pantalla de inicio para disfrutar de su ternura!</string>
+    <string name="report_message_tittle">Que nos queres contar?</string>
+    <string name="start_time_title">Hora de inicio</string>
+    <string name="end_time_title">Hora de finalizacion</string>
+    <string name="save_button">Guardar</string>
+    <string name="bug_report_dialog_hint">Mensaje..</string>
+    <string name="alarm_days_title">Dias habilitados</string>
+    <string name="time_interval_title">Intervalo de tiempo</string>
+    <string name="send_button">Enviar</string>
+
 </resources>

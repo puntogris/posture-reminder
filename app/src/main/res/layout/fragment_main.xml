@@ -9,13 +9,17 @@
         <variable
             name="mainFragment"
             type="com.puntogris.posture.ui.MainFragment" />
+        <variable
+            name="viewModel"
+            type="com.puntogris.posture.ui.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:onClick="@{() -> mainFragment.changeAppStatusPref()}"
+        android:onClick="@{() -> viewModel.changeAppStatus()}"
         tools:context=".ui.MainFragment">
+
         <TextView
             android:id="@+id/enableTextView"
             android:layout_marginBottom="?actionBarSize"
@@ -23,7 +27,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="30sp"
-            android:text=""
+            reminderStatus="@{viewModel.reminder}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:textColor="@color/grey"
+            reminderSummaryStatus="@{viewModel.reminder}"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,8 +56,8 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:lottie_autoPlay="true"
-            android:visibility="@{mainFragment.sharedPref.showPandaAnimation ? View.VISIBLE : View.GONE}"
             app:lottie_loop="true"
+            android:visibility="@{viewModel.reminder.showPanda ? View.VISIBLE : View.GONE}"
             app:lottie_rawRes="@raw/panda" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

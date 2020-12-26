@@ -10,23 +10,25 @@
         android:summaryOff="@string/notifications_summary_off"
         android:summaryOn="@string/notifications_summary_on"/>
 
-    <com.puntogris.posture.preferences.CustomListPref
+    <com.puntogris.posture.preferences.CustomPref
         android:icon="@drawable/ic_baseline_alarm_24"
-        app:useSimpleSummaryProvider="true"
-        android:defaultValue="60"
-        android:entries="@array/timeInterval"
-        android:entryValues="@array/timeIntervalValues"
         android:key="time_interval_for_notifications"
         android:title="@string/time_interval_alarm" />
 
-    <com.puntogris.posture.preferences.TimePickerPreference
+    <com.puntogris.posture.preferences.CustomPref
+        android:key="alarm_days_notification"
+        android:icon="@drawable/ic_outline_calendar_today_24"
+        android:title="Dias habilitados para las notificaciones"
+        />
+
+    <com.puntogris.posture.preferences.CustomPref
         android:icon="@drawable/ic_baseline_alarm_on_24"
-        android:key="pref_start_notification_time"
+        android:key="start_notification_time"
         android:title="@string/start_alarm_time"/>
 
-    <com.puntogris.posture.preferences.TimePickerPreference
+    <com.puntogris.posture.preferences.CustomPref
         android:icon="@drawable/ic_baseline_alarm_off_24"
-        android:key="pref_end_notification_time"
+        android:key="end_notification_time"
         android:title="@string/end_alarm_time"/>
 
     <com.puntogris.posture.preferences.CustomPref
@@ -34,6 +36,7 @@
         android:icon="@drawable/ic_outline_report_24"
         android:title="@string/bug_report_title_pref"
         android:summary="@string/bug_report_summary_pref"/>
+
 
     <com.puntogris.posture.preferences.CustomPref
         android:title="@string/about"

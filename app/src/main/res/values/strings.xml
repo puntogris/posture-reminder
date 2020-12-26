@@ -13,29 +13,46 @@
     <string name="alarm_off">The app is off</string>
     <string name="stop_alarm">Stop</string>
     <string name="start_alarm">Start</string>
-    <string name="app_version" translatable="false">Version 1.0.2</string>
+    <string name="app_version" translatable="false">Version 1.0.4</string>
     <string name="about">About</string>
     <string name="bug_report_title_pref">Feedback and problems</string>
     <string name="bug_report_summary_pref">Send us feedback or report a problem</string>
-    <string name="bug_report_dialog_hint">What do you want to tell us?</string>
     <string name="cancel">Cancel</string>
-    <string name="ok">Send</string>
     <string name="bug_report_sended_toast">The report has been sent successfully. Thanks for helping!</string>
+    <string name="notifications_set_toast">Notifications set from %1$s to %2$s</string>
+    <string name="remember_to_reset_toast">Remember to reset the app in the main screen so the new changes apply.</string>
+    <string name="panda_unlocked_message">Panda unlocked! Go back to the main screen to enjoy his cuteness!</string>
+    <string name="report_message_tittle">What do you want to tell us?</string>
+    <string name="end_time_title">Ending time</string>
+    <string name="save_button">Save</string>
+    <string name="start_time_title">Starting time</string>
+    <string name="bug_report_dialog_hint">Message..</string>
+    <string name="alarm_days_title">Days enabled</string>
+    <string name="time_interval_title">Time interval</string>
+
+    <string-array name="alarmDays">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
 
     <string-array name="timeInterval">
-        <item>15 minutes</item>
         <item>30 minutes</item>
         <item>1 hour</item>
         <item>2 hours</item>
         <item>3 hours</item>
         <item>4 hours</item>
     </string-array>
-    <string-array name="timeIntervalValues">
-        <item>15</item>
-        <item>30</item>
+
+    <integer-array name="timeIntervalValues">
+        <item>1</item>
         <item>60</item>
         <item>120</item>
         <item>180</item>
         <item>240</item>
-    </string-array>
+    </integer-array>
 </resources>
