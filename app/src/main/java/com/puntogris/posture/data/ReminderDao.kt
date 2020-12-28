@@ -3,6 +3,8 @@ package com.puntogris.posture.data
 import androidx.room.*
 import com.puntogris.posture.model.ReminderConfig
 import kotlinx.coroutines.flow.Flow
+import java.lang.reflect.Array
+import kotlin.collections.ArrayList
 
 @Dao
 interface ReminderDao {
@@ -14,10 +16,10 @@ interface ReminderDao {
     suspend fun update(reminderConfig: ReminderConfig)
 
     @Query("SELECT * FROM reminderconfig WHERE id = 1")
-    fun getReminderConfigFlow(): Flow<ReminderConfig?>
+    fun getReminderConfigFlow(): Flow<ReminderConfig>
 
     @Query("SELECT * FROM reminderconfig WHERE id = 1")
-    fun getReminderConfig(): ReminderConfig?
+    fun getReminderConfig(): ReminderConfig
 
     @Query("UPDATE reminderconfig SET startTime = :startTime WHERE id = 1")
     suspend fun updateStartTime(startTime: Int)
@@ -31,9 +33,8 @@ interface ReminderDao {
     @Query("UPDATE reminderconfig SET isActive = :isActive WHERE id = 1")
     suspend fun updateReminderStatus(isActive: Boolean)
 
-    @TypeConverters(Converters::class)
     @Query("UPDATE reminderconfig SET alarmDays = :days WHERE id = 1")
-    suspend fun updateAlarmDays(days: List<Int>)
+    suspend fun updateAlarmDays(days: String)
 
     @Query("UPDATE reminderconfig SET showPanda = 1 WHERE id = 1")
     suspend fun enablePandaAnimation()

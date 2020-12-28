@@ -30,6 +30,7 @@ class ReminderModule {
                 ReminderDatabase::class.java,
                 "reminder_table"
             )
+                .createFromAsset("databases/reminder_config.db")
             .build()
     }
 

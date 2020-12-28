@@ -3,7 +3,6 @@ package com.puntogris.posture.ui
 import android.os.Bundle
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import androidx.preference.PreferenceFragmentCompat
 import com.maxkeppeler.bottomsheets.input.InputSheet
 import com.maxkeppeler.bottomsheets.input.type.InputEditText
@@ -24,7 +23,6 @@ import com.puntogris.posture.utils.millisToMinutes
 
 import com.puntogris.posture.utils.preference
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -125,17 +123,13 @@ class PreferencesFragment: PreferenceFragmentCompat() {
                 onPositiveMultiple(this@PreferencesFragment.getString(R.string.save_button))
                 { selectedIndices , _ ->
                     lifecycleScope.launch {
-                        viewModel.saveAlarmDays()
+                        viewModel.saveAlarmDays(selectedIndices)
                         refreshAlarmsAndShowSnackBar()
                     }
                 }
             }.show(parentFragmentManager, "")
             true
         }
-    }
-    fun test(){
-        viewModel.sendReport("a")
-
     }
 
     private fun refreshAlarmsAndShowSnackBar(){

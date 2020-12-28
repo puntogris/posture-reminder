@@ -28,15 +28,6 @@ fun Long.millisToMinutes() = (this / 1000 / 60).toInt()
 
 fun Int.minutesToMillis() = this * 1000 * 60
 
-fun Calendar.setMidnight(){
-    this.apply {
-        set(Calendar.HOUR_OF_DAY, 0)
-        set(Calendar.MINUTE, 0)
-        set(Calendar.SECOND, 0)
-        set(Calendar.MILLISECOND, 0)
-    }
-}
-
 fun Fragment.createNotificationChannel(){
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         val name = "notification posture"
