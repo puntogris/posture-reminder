@@ -17,5 +17,7 @@ object Constants {
     const val PANDA_ANIMATION_PREFERENCE = "panda_animation"
     const val BUG_REPORT_PREFERENCE = "bug_report"
     const val ALARM_DAYS_PREFERENCE= "alarm_days_notification"
+    const val REPORT_FIELD_FIRESTORE = "report"
+    const val REPORT_FIELD_TIMESTAMP = "timestamp"
 
 }

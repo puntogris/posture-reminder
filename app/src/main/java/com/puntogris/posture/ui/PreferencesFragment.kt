@@ -1,6 +1,7 @@
 package com.puntogris.posture.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceFragmentCompat
@@ -23,7 +24,10 @@ import com.puntogris.posture.utils.millisToMinutes
 
 import com.puntogris.posture.utils.preference
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 @AndroidEntryPoint
 class PreferencesFragment: PreferenceFragmentCompat() {
@@ -57,9 +61,9 @@ class PreferencesFragment: PreferenceFragmentCompat() {
                     required()
                     label(this@PreferencesFragment.getString(R.string.report_message_tittle))
                     hint(this@PreferencesFragment.getString(R.string.bug_report_dialog_hint))
-                    onPositive {
+                    onPositive(this@PreferencesFragment.getString(R.string.send_button)) {
                         viewModel.sendReport(value.toString())
-                        createSnackBar(getString(R.string.report_sended_toast))
+                        this@PreferencesFragment.createSnackBar(this@PreferencesFragment.getString(R.string.report_sended_toast))
                     }
                 })
             }.show(parentFragmentManager, "")
@@ -131,6 +135,8 @@ class PreferencesFragment: PreferenceFragmentCompat() {
             true
         }
     }
+
+    fun test(){}
 
     private fun refreshAlarmsAndShowSnackBar(){
         if(viewModel.isAppActive()) viewModel.refreshAlarms()

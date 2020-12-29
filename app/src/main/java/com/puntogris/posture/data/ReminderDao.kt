@@ -1,5 +1,6 @@
 package com.puntogris.posture.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.puntogris.posture.model.ReminderConfig
 import kotlinx.coroutines.flow.Flow
@@ -16,7 +17,7 @@ interface ReminderDao {
     suspend fun update(reminderConfig: ReminderConfig)
 
     @Query("SELECT * FROM reminderconfig WHERE id = 1")
-    fun getReminderConfigFlow(): Flow<ReminderConfig>
+    fun getReminderConfigLiveData(): LiveData<ReminderConfig>
 
     @Query("SELECT * FROM reminderconfig WHERE id = 1")
     fun getReminderConfig(): ReminderConfig

@@ -7,10 +7,7 @@ import com.puntogris.posture.data.ReminderDao
 import com.puntogris.posture.data.Repository
 import com.puntogris.posture.model.ReminderConfig
 import com.puntogris.posture.utils.Utils.fromArrayList
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-
 
 class MainViewModel @ViewModelInject constructor(
     private val reminderDao: ReminderDao,
@@ -18,26 +15,18 @@ class MainViewModel @ViewModelInject constructor(
     private val alarm: Alarm
     ): ViewModel() {
 
-    private val _reminder = MutableStateFlow(ReminderConfig())
-    val reminder:LiveData<ReminderConfig> = _reminder.asLiveData()
+    private val _reminder = reminderDao.getReminderConfigLiveData()
+    val reminder: LiveData<ReminderConfig> = _reminder
 
-    init {
-        viewModelScope.launch {
-            reminderDao.getReminderConfigFlow().collect {
-                _reminder.emit(it)
-            }
-        }
-    }
-
-    suspend fun saveStartTime(time:Int){
+    suspend fun saveStartTime(time: Int){
         reminderDao.updateStartTime(time)
     }
 
-    suspend fun saveEndTime(time:Int){
+    suspend fun saveEndTime(time: Int){
         reminderDao.updateEndTime(time)
     }
 
-    suspend fun saveTimeInterval(interval:Int){
+    suspend fun saveTimeInterval(interval: Int){
         reminderDao.updateTimeInterval(interval)
     }
 
@@ -46,25 +35,25 @@ class MainViewModel @ViewModelInject constructor(
         reminderDao.updateAlarmDays(days)
     }
 
-    fun isAppActive() = _reminder.value.isActive
+    fun isAppActive() = reminder.value!!.isActive
 
     fun startAlarm(){
         viewModelScope.launch {
-            alarm.startDailyAlarm(_reminder.value)
-            reminderDao.updateReminderStatus(!_reminder.value.isActive)
+            alarm.startDailyAlarm(reminder.value!!)
+            reminderDao.updateReminderStatus(!reminder.value!!.isActive)
         }
     }
 
     fun cancelAlarms(){
         viewModelScope.launch {
             alarm.cancelAlarms()
-            reminderDao.updateReminderStatus(!_reminder.value.isActive)
+            reminderDao.updateReminderStatus(!reminder.value!!.isActive)
         }
     }
 
     fun refreshAlarms(){
         alarm.cancelAlarms()
-        alarm.startDailyAlarm(_reminder.value)
+        alarm.startDailyAlarm(reminder.value!!)
     }
 
     fun enablePandaAnimation(){
