@@ -5,13 +5,12 @@ import android.view.*
 import androidx.fragment.app.activityViewModels
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentMainBinding
+import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.Utils.minutesFromMidnightToHourlyTime
-import com.puntogris.posture.utils.createNotificationChannel
-import com.puntogris.posture.utils.createSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
+class MainFragment: BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
 
     private val viewModel: MainViewModel by activityViewModels()
 
@@ -19,9 +18,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         binding.mainFragment = this
-        createNotificationChannel()
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)

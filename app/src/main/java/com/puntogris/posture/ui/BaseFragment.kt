@@ -11,14 +11,19 @@ import androidx.fragment.app.Fragment
 
 abstract class BaseFragment<T: ViewDataBinding>(@LayoutRes val layout: Int): Fragment() {
 
-    protected lateinit var binding : T
+    private var _binding : T? = null
+    val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, layout, container, false)
+        _binding = DataBindingUtil.inflate(inflater, layout, container, false)
         initializeViews()
         return binding.root
     }
 
     open fun initializeViews() {}
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

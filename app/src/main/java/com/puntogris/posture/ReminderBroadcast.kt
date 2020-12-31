@@ -10,17 +10,15 @@ import com.puntogris.posture.utils.Constants.DAILY_ALARM_TRIGGERED
 import com.puntogris.posture.utils.Constants.POSTURE_NOTIFICATION_ID
 import com.puntogris.posture.utils.Constants.REPEATING_ALARM_TRIGGERED
 import com.puntogris.posture.utils.Utils.dayOfTheWeek
-import com.puntogris.posture.utils.Utils.fromString
 import com.puntogris.posture.utils.Utils.getNotificationsPref
 import com.puntogris.posture.utils.Utils.minutesSinceMidnight
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ReminderBroadcast : HiltBroadcastReceiver() {
+class ReminderBroadcast: HiltBroadcastReceiver() {
 
     @Inject lateinit var alarm: Alarm
     @Inject lateinit var reminderDao: ReminderDao
@@ -30,25 +28,24 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
         if (intent.action == DAILY_ALARM_TRIGGERED){
             GlobalScope.launch {
                 reminderDao.getReminderConfig().apply {
-                    val days = fromString(alarmDays)
-                    if (dayOfTheWeek() in days) alarm.startRepeatingAlarm(timeInterval)
+                    if (dayOfTheWeek() in alarmDays) alarm.startRepeatingAlarm(timeInterval)
                 }
             }
         }
         else if(intent.action == REPEATING_ALARM_TRIGGERED) {
             GlobalScope.launch {
-                val currentMinutesSinceMidnight = minutesSinceMidnight()
+                val minutesSinceMidnight = minutesSinceMidnight()
                 reminderDao.getReminderConfig().apply {
-                    if (alarmPastMidnight()){
-                        if(currentMinutesSinceMidnight <= endTime){
+                    if (alarmNotPastMidnight()){
+                        if(minutesSinceMidnight <= endTime)
                             deliverNotificationAndSetNewAlarm(context, timeInterval)
-                        }else alarm.cancelRepeatingAlarm()
-                    }else{
-                        if (currentMinutesSinceMidnight in (endTime + 1) until startTime){
+                        else
                             alarm.cancelRepeatingAlarm()
-                        }else{
+                    }else{
+                        if (alarmPastMidnightAndOutOfRange(minutesSinceMidnight))
+                            alarm.cancelRepeatingAlarm()
+                        else
                             deliverNotificationAndSetNewAlarm(context, timeInterval)
-                        }
                     }
                 }
             }

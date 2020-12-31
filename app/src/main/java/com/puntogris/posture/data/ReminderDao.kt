@@ -35,7 +35,7 @@ interface ReminderDao {
     suspend fun updateReminderStatus(isActive: Boolean)
 
     @Query("UPDATE reminderconfig SET alarmDays = :days WHERE id = 1")
-    suspend fun updateAlarmDays(days: String)
+    suspend fun updateAlarmDays(days: List<Int>)
 
     @Query("UPDATE reminderconfig SET showPanda = 1 WHERE id = 1")
     suspend fun enablePandaAnimation()

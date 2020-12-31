@@ -30,7 +30,7 @@
     <string name="alarm_days_title">Days enabled</string>
     <string name="time_interval_title">Time interval</string>
     <string name="send_button">Send</string>
-    <string name="alarms_off_toast">The alarm has been desactivated.</string>
+    <string name="alarms_off_toast">The alarm has been deactivated.</string>
     <string name="new_config_saved_toast">The alarm has been updated with the new configuration.</string>
 
     <string-array name="alarmDays">
@@ -52,12 +52,12 @@
     </string-array>
 
     <integer-array name="timeIntervalValues">
-        <item>1</item>
+        <item>30</item>
         <item>60</item>
         <item>120</item>
         <item>180</item>
         <item>240</item>
     </integer-array>
     <string name="report_sended_toast">Sent successfully. Thanks for helping us improve our app.</string>
-    <string name="report_error_toast">An error curred. Check your connection and try again.</string>
+    <string name="report_error_toast">An error occurred. Check your connection and try again.</string>
 </resources>

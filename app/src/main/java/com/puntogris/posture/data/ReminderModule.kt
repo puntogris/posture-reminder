@@ -1,11 +1,7 @@
-package com.puntogris.posture.di
+package com.puntogris.posture.data
 
 import android.content.Context
-import androidx.room.Database
 import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.puntogris.posture.data.ReminderDao
-import com.puntogris.posture.model.ReminderConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

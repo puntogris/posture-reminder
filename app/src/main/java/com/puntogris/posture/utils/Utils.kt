@@ -5,10 +5,10 @@ import androidx.preference.PreferenceManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.maxkeppeler.bottomsheets.options.Option
+import com.puntogris.posture.utils.Constants.DEFAULT_SHOW_NOTIFICATIONS_PREF_VALUE
 import java.util.*
 
 object Utils {
-    private val gson = Gson()
 
     fun minutesFromMidnightToHourlyTime(minutes: Int) =
          String.format("%02d:%02d", minutes.getHours(), minutes.getMinutes())
@@ -29,27 +29,16 @@ object Utils {
 
     fun getNotificationsPref(context: Context): Boolean{
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-        return sharedPref.getBoolean("pref_show_notifications", Constants.DEFAULT_SHOW_NOTIFICATIONS_PREF_VALUE)
+        return sharedPref.getBoolean("pref_show_notifications", DEFAULT_SHOW_NOTIFICATIONS_PREF_VALUE)
     }
 
-    fun getSavedOptionsArray(savedListString: String?, daysList: Array<String>):Array<Option> {
-        val savedList = fromString(savedListString)
+    fun getSavedOptionsArray(savedList: List<Int>?, daysList: Array<String>):Array<Option> {
         return daysList.mapIndexed { index, _ ->
             if (!savedList.isNullOrEmpty() && savedList.contains(index)){
                 Option(daysList[index]).select()
             } else
                 Option(daysList[index])
         }.toTypedArray()
-    }
-
-    fun fromString(value: String?): List<Int> {
-        val type = object: TypeToken<List<Int>>() {}.type
-        return gson.fromJson(value, type)
-    }
-
-    fun fromArrayList(list: List<Int>): String {
-        val type = object: TypeToken<List<Int>>() {}.type
-        return gson.toJson(list, type)
     }
 
     fun dayOfTheWeek(): Int{

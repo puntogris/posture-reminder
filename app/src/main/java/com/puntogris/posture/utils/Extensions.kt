@@ -1,5 +1,6 @@
 package com.puntogris.posture.utils
 
+import android.app.Activity
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -28,7 +29,7 @@ fun Long.millisToMinutes() = (this / 1000 / 60).toInt()
 
 fun Int.minutesToMillis() = this * 1000 * 60
 
-fun Fragment.createNotificationChannel(){
+fun Activity.createNotificationChannel(){
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         val name = "notification posture"
         val descriptionText = "channel for posture notification"
@@ -37,7 +38,7 @@ fun Fragment.createNotificationChannel(){
             description = descriptionText
         }
         val notificationManager: NotificationManager =
-            requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)
     }
 }

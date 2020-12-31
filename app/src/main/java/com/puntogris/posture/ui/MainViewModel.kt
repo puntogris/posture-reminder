@@ -6,7 +6,7 @@ import com.puntogris.posture.Alarm
 import com.puntogris.posture.data.ReminderDao
 import com.puntogris.posture.data.Repository
 import com.puntogris.posture.model.ReminderConfig
-import com.puntogris.posture.utils.Utils.fromArrayList
+import com.puntogris.posture.model.RepoResult
 import kotlinx.coroutines.launch
 
 class MainViewModel @ViewModelInject constructor(
@@ -31,8 +31,7 @@ class MainViewModel @ViewModelInject constructor(
     }
 
     suspend fun saveAlarmDays(alarmDays: List<Int>){
-        val days = fromArrayList(alarmDays)
-        reminderDao.updateAlarmDays(days)
+        reminderDao.updateAlarmDays(alarmDays)
     }
 
     fun isAppActive() = reminder.value!!.isActive
@@ -62,8 +61,8 @@ class MainViewModel @ViewModelInject constructor(
         }
     }
 
-    fun sendReport(message: String) {
-        repository.sendReportToFirestore(message)
-    }
+    suspend fun sendReport(message: String) =
+            repository.sendReportToFirestore(message)
+
 
 }

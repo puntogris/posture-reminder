@@ -18,6 +18,6 @@ object Constants {
     const val BUG_REPORT_PREFERENCE = "bug_report"
     const val ALARM_DAYS_PREFERENCE= "alarm_days_notification"
     const val REPORT_FIELD_FIRESTORE = "report"
-    const val REPORT_FIELD_TIMESTAMP = "timestamp"
+    const val TIMESTAMP_FIELD_FIRESTORE = "timestamp"
 
 }

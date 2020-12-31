@@ -4,7 +4,6 @@ import androidx.room.*
 import com.puntogris.posture.utils.Constants.DEFAULT_END_TIME_PERIOD
 import com.puntogris.posture.utils.Constants.DEFAULT_INTERVAL_REPEATING
 import com.puntogris.posture.utils.Constants.DEFAULT_START_TIME_PERIOD
-import com.puntogris.posture.utils.Utils.fromString
 import com.puntogris.posture.utils.getHours
 import org.jetbrains.annotations.NotNull
 
@@ -30,12 +29,14 @@ data class ReminderConfig(
     val showPanda: Boolean = false,
 
     @ColumnInfo
-    val alarmDays: String = "[0,1,2,3,4,5]"
+    val alarmDays: List<Int> = listOf(0,1,2,3,4,5,6)
 ){
-    fun alarmPastMidnight() = startTime < endTime
+    fun alarmNotPastMidnight() = startTime < endTime
 
     fun alarmDaysSummary(daysList: Array<String>) =
-            fromString(alarmDays).mapIndexed { index, _ -> daysList[index].subSequence(0,3) }.joinToString(", ")
+         alarmDays.joinToString(", ") {
+            daysList[it].subSequence(0, 3)
+         }
 
     fun timeIntervalSummary() =
         when{
@@ -43,4 +44,8 @@ data class ReminderConfig(
             timeInterval == 60 -> "1 h."
             else -> "${timeInterval.getHours()} hs."
         }
+
+    fun alarmPastMidnightAndOutOfRange(minutesSinceMidnight: Int) =
+       minutesSinceMidnight in (endTime + 1) until startTime
+
 }
