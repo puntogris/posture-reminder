@@ -1,4 +1,4 @@
-package com.puntogris.posture.data
+package com.puntogris.posture.ui
 
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentAnnouncementBinding

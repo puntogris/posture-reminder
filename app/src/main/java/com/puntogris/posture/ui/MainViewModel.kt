@@ -3,16 +3,16 @@ package com.puntogris.posture.ui
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.puntogris.posture.Alarm
-import com.puntogris.posture.data.ReminderDao
-import com.puntogris.posture.data.Repository
+import com.puntogris.posture.data.local.ReminderDao
+import com.puntogris.posture.data.remote.Repository
 import com.puntogris.posture.model.ReminderConfig
 import com.puntogris.posture.model.Report
 import kotlinx.coroutines.launch
 
 class MainViewModel @ViewModelInject constructor(
-    private val reminderDao: ReminderDao,
-    private val repository: Repository,
-    private val alarm: Alarm
+        private val reminderDao: ReminderDao,
+        private val repository: Repository,
+        private val alarm: Alarm
     ): ViewModel() {
 
     private val _reminder = reminderDao.getReminderConfigLiveData()
@@ -38,8 +38,10 @@ class MainViewModel @ViewModelInject constructor(
 
     fun startAlarm(){
         viewModelScope.launch {
-            alarm.startDailyAlarm(reminder.value!!)
-            reminderDao.updateReminderStatus(!reminder.value!!.isActive)
+            reminder.value?.let {
+                alarm.startDailyAlarm(it)
+                reminderDao.updateReminderStatus(it.isActive)
+            }
         }
     }
 

@@ -17,6 +17,6 @@
         android:label="@string/settings" />
     <fragment
         android:id="@+id/announcementFragment"
-        android:name="com.puntogris.posture.data.AnnouncementFragment"
+        android:name="com.puntogris.posture.ui.AnnouncementFragment"
         android:label="" />
 </navigation>

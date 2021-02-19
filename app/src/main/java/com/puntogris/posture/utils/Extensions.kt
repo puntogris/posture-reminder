@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
 import android.opengl.Visibility
 import android.os.Build
 import android.view.View
@@ -17,6 +18,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
+import com.puntogris.posture.ReminderBroadcast
 import com.puntogris.posture.model.ReminderConfig
 
 fun View.gone() {
@@ -57,15 +59,6 @@ fun Fragment.createSnackBar(message: String){
 fun AppCompatActivity.getNavController() =
         (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController
 
-@BindingAdapter("reminderSummaryStatus")
-fun TextView.setReminderSummaryStatus(reminder: ReminderConfig?){
-    if(reminder != null) text = if (reminder.isActive) context.getString(R.string.alarm_on) else context.getString(R.string.alarm_off)
-}
-
-@BindingAdapter("reminderStatus")
-fun TextView.setReminderStatus(reminder: ReminderConfig?){
-    if(reminder != null) text = if (reminder.isActive) context.getString(R.string.stop_alarm) else context.getString(R.string.start_alarm)
-}
 
 fun PreferenceFragmentCompat.preference(key:String)=
     findPreference<Preference>(key)
@@ -75,4 +68,15 @@ fun View.playShakeAnimation(){
         .ofFloat(this,"translationX", 0f, 25f, -25f, 25f, -25f,15f, -15f, 6f, -6f, 0f)
         .setDuration(Constants.SHAKE_ANIMATION_DURATION)
         .start()
+}
+
+
+@BindingAdapter("reminderSummaryStatus")
+fun TextView.setReminderSummaryStatus(reminder: ReminderConfig?){
+    if(reminder != null) text = if (reminder.isActive) context.getString(R.string.alarm_on) else context.getString(R.string.alarm_off)
+}
+
+@BindingAdapter("reminderStatus")
+fun TextView.setReminderStatus(reminder: ReminderConfig?){
+    if(reminder != null) text = if (reminder.isActive) context.getString(R.string.stop_alarm) else context.getString(R.string.start_alarm)
 }

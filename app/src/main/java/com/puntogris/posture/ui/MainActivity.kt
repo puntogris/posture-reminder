@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         setupNavigation()
         createNotificationChannel()
     }
+
     private fun setupNavigation(){
         navController = getNavController()
         appBarConfiguration = AppBarConfiguration(navController.graph)

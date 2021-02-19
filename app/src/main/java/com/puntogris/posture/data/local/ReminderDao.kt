@@ -1,4 +1,4 @@
-package com.puntogris.posture.data
+package com.puntogris.posture.data.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

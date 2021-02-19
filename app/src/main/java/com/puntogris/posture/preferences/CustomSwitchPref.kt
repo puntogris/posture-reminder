@@ -17,11 +17,9 @@ class CustomSwitchPref (context: Context, attributeSet: AttributeSet): SwitchPre
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             title?.setTextColor(context.getColor(R.color.white))
             summary?.setTextColor(context.getColor(R.color.grey))
-
         }else{
             title?.setTextColor(context.resources.getColor(R.color.white))
             summary?.setTextColor(context.resources.getColor(R.color.grey))
         }
     }
-
 }

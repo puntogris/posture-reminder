@@ -4,13 +4,13 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.puntogris.posture.data.ReminderDao
+import com.puntogris.posture.data.local.ReminderDao
 import com.puntogris.posture.di.HiltBroadcastReceiver
 import com.puntogris.posture.utils.Constants.DAILY_ALARM_TRIGGERED
 import com.puntogris.posture.utils.Constants.POSTURE_NOTIFICATION_ID
 import com.puntogris.posture.utils.Constants.REPEATING_ALARM_TRIGGERED
+import com.puntogris.posture.utils.SharedPref
 import com.puntogris.posture.utils.Utils.dayOfTheWeek
-import com.puntogris.posture.utils.Utils.getNotificationsPref
 import com.puntogris.posture.utils.Utils.minutesSinceMidnight
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.GlobalScope
@@ -22,6 +22,7 @@ class ReminderBroadcast: HiltBroadcastReceiver() {
 
     @Inject lateinit var alarm: Alarm
     @Inject lateinit var reminderDao: ReminderDao
+    @Inject lateinit var sharedPref: SharedPref
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
@@ -53,8 +54,7 @@ class ReminderBroadcast: HiltBroadcastReceiver() {
     }
 
     private fun deliverNotificationAndSetNewAlarm(context: Context, timeInterval: Int){
-        val showNotifications = getNotificationsPref(context)
-        if (showNotifications) {
+        if (sharedPref.getNotificationsPref()) {
             val builder = NotificationCompat.Builder(context, POSTURE_NOTIFICATION_ID)
                 .setSmallIcon(R.drawable.ic_notifications_24px)
                 .setContentTitle(context.getString(R.string.posture_notification_title))

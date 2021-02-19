@@ -1,4 +1,4 @@
-package com.puntogris.posture.data
+package com.puntogris.posture.data.remote
 
 import com.puntogris.posture.model.Report
 import com.puntogris.posture.utils.RepoResult

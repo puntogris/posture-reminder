@@ -60,8 +60,10 @@ class Alarm @Inject constructor(@ApplicationContext private val context: Context
     }
 
     fun cancelAlarms(){
-        alarmManager.cancel(pendingIntentDailyAlarm)
-        alarmManager.cancel(pendingIntentRepeatingAlarm)
+        alarmManager.apply {
+            cancel(pendingIntentDailyAlarm)
+            cancel(pendingIntentRepeatingAlarm)
+        }
     }
 
     fun startRepeatingAlarm(intervalInMinutes: Int){

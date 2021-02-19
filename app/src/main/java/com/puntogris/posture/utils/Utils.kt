@@ -1,9 +1,6 @@
 package com.puntogris.posture.utils
 
-import android.content.Context
-import androidx.preference.PreferenceManager
 import com.maxkeppeler.sheets.options.Option
-import com.puntogris.posture.utils.Constants.DEFAULT_SHOW_NOTIFICATIONS_PREF_VALUE
 import java.util.*
 
 object Utils {
@@ -22,13 +19,7 @@ object Utils {
         return (now.timeInMillis - midnight.timeInMillis).millisToMinutes()
     }
 
-    fun getTriggerTime(interval: Int) =
-        Calendar.getInstance().timeInMillis + interval.minutesToMillis()
-
-    fun getNotificationsPref(context: Context): Boolean{
-        val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-        return sharedPref.getBoolean("pref_show_notifications", DEFAULT_SHOW_NOTIFICATIONS_PREF_VALUE)
-    }
+    fun getTriggerTime(interval: Int) = Calendar.getInstance().timeInMillis + interval.minutesToMillis()
 
     fun getSavedOptionsArray(savedList: List<Int>?, daysList: Array<String>):Array<Option> {
         return daysList.mapIndexed { index, _ ->
