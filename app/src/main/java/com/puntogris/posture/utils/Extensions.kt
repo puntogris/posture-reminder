@@ -1,9 +1,11 @@
 package com.puntogris.posture.utils
 
+import android.animation.ObjectAnimator
 import android.app.Activity
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.opengl.Visibility
 import android.os.Build
 import android.view.View
 import android.widget.TextView
@@ -14,12 +16,16 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.snackbar.Snackbar
-import com.maxkeppeler.bottomsheets.options.Option
-
 import com.puntogris.posture.R
 import com.puntogris.posture.model.ReminderConfig
-import java.util.*
-import kotlin.collections.ArrayList
+
+fun View.gone() {
+    visibility = View.GONE
+}
+
+fun View.visible() {
+    visibility = View.VISIBLE
+}
 
 fun Int.getHours() = this / 60
 
@@ -63,3 +69,10 @@ fun TextView.setReminderStatus(reminder: ReminderConfig?){
 
 fun PreferenceFragmentCompat.preference(key:String)=
     findPreference<Preference>(key)
+
+fun View.playShakeAnimation(){
+    ObjectAnimator
+        .ofFloat(this,"translationX", 0f, 25f, -25f, 25f, -25f,15f, -15f, 6f, -6f, 0f)
+        .setDuration(Constants.SHAKE_ANIMATION_DURATION)
+        .start()
+}

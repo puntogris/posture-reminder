@@ -18,7 +18,7 @@
     <com.puntogris.posture.preferences.CustomPref
         android:key="alarm_days_notification"
         android:icon="@drawable/ic_outline_calendar_today_24"
-        android:title="Dias habilitados para las notificaciones"
+        android:title="@string/alarm_days_pref_tittle"
         />
 
     <com.puntogris.posture.preferences.CustomPref

@@ -13,7 +13,7 @@
     <string name="alarm_off">The app is off</string>
     <string name="stop_alarm">Stop</string>
     <string name="start_alarm">Start</string>
-    <string name="app_version" translatable="false">Version 1.0.4</string>
+    <string name="app_version" translatable="false">Version 1.2.0</string>
     <string name="about">About</string>
     <string name="bug_report_title_pref">Feedback and problems</string>
     <string name="bug_report_summary_pref">Send us feedback or report a problem</string>
@@ -32,6 +32,35 @@
     <string name="send_button">Send</string>
     <string name="alarms_off_toast">The alarm has been deactivated.</string>
     <string name="new_config_saved_toast">The alarm has been updated with the new configuration.</string>
+    <string name="report_sended_toast">Sent successfully. Thanks for helping us improve our app.</string>
+    <string name="report_error_toast">An error occurred. Check your connection and try again.</string>
+    <string name="alarm_days_pref_tittle">Days enabled for notifications</string>
+    <string name="bug_report_email_title">How can we reach you?</string>
+    <string name="email">E-mail</string>
+    <string name="time_interval_pref_title">Set the time interval</string>
+    <string name="time_hint">Time</string>
+    <string name="time_interval_cant_be_zero">The time interval can\'t be 0.</string>
+    <string name="error_occurred">An error occurred. Please try again.</string>
+    <string name="bug_report_name_title">What is your human name?</string>
+    <string name="name_hint">Name</string>
+    <string name="announcement_content">First of all, i would like to thanks everyone that sent me a suggestion or bug report, lets improve our app together!</string>
+    <string name="announcement_title">Update - Version 1.2.0</string>
+    <string name="coming_soon">Coming soon</string>
+    <string name="announcement_1">*Added email and name fields into the bug/ suggestion box so i can ask you a bit more about the bugs or ideas you guys gave me.</string>
+    <string name="announcement_2">*Changed the background so it doesn\'t feel so plain.</string>
+    <string name="announcement_3">*Now the time intervals are fully customizable.</string>
+    <string name="announcement_4">*Ability to have different profiles so it\'s faster to change the settings.</string>
+    <string name="announcement_5">*There will be an option to enable the display of a short exercise to improve the posture and relax your muscles when clicking the notification.</string>
+    <string name="by_me" translatable="false">- Puntogris</string>
+    <string name="announcement_6">*Changed the color of the notifications toggle to make more clear when its on/off.</string>
+    <string name="announcement_7">*Reduced the app size significantly ( 40% ~).</string>
+    <string name="new_announcement_title">New update installed!</string>
+    <string name="announcement_message">Thanks to everyone for helping improve our app.\nClick here to see the last changes made.</string>
+    <string name="minutes">Minutes</string>
+    <string name="hours">Hours</string>
+    <string name="time_unit_title">What time unit would you like to use?</string>
+    <string name="close_card_content_des">Close card</string>
+    <string name="background_image_content_descr">Background image</string>
 
     <string-array name="alarmDays">
         <item>Monday</item>
@@ -42,22 +71,4 @@
         <item>Saturday</item>
         <item>Sunday</item>
     </string-array>
-
-    <string-array name="timeInterval">
-        <item>30 minutes</item>
-        <item>1 hour</item>
-        <item>2 hours</item>
-        <item>3 hours</item>
-        <item>4 hours</item>
-    </string-array>
-
-    <integer-array name="timeIntervalValues">
-        <item>30</item>
-        <item>60</item>
-        <item>120</item>
-        <item>180</item>
-        <item>240</item>
-    </integer-array>
-    <string name="report_sended_toast">Sent successfully. Thanks for helping us improve our app.</string>
-    <string name="report_error_toast">An error occurred. Check your connection and try again.</string>
 </resources>

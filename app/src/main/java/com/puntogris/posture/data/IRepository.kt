@@ -1,7 +1,8 @@
 package com.puntogris.posture.data
 
-import com.puntogris.posture.model.RepoResult
+import com.puntogris.posture.model.Report
+import com.puntogris.posture.utils.RepoResult
 
 interface IRepository {
-    suspend fun sendReportToFirestore(message: String): RepoResult
+    suspend fun sendReportToFirestore(report: Report): RepoResult
 }

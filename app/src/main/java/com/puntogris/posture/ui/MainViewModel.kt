@@ -6,7 +6,7 @@ import com.puntogris.posture.Alarm
 import com.puntogris.posture.data.ReminderDao
 import com.puntogris.posture.data.Repository
 import com.puntogris.posture.model.ReminderConfig
-import com.puntogris.posture.model.RepoResult
+import com.puntogris.posture.model.Report
 import kotlinx.coroutines.launch
 
 class MainViewModel @ViewModelInject constructor(
@@ -61,8 +61,5 @@ class MainViewModel @ViewModelInject constructor(
         }
     }
 
-    suspend fun sendReport(message: String) =
-            repository.sendReportToFirestore(message)
-
-
+    suspend fun sendReport(report:Report) = repository.sendReportToFirestore(report)
 }

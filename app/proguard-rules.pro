@@ -20,3 +20,4 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 -keepattributes LineNumberTable,SourceFile
+-keep class com.google.android.material.snackbar.** { *; }

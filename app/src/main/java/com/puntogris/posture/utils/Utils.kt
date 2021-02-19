@@ -2,9 +2,7 @@ package com.puntogris.posture.utils
 
 import android.content.Context
 import androidx.preference.PreferenceManager
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.maxkeppeler.bottomsheets.options.Option
+import com.maxkeppeler.sheets.options.Option
 import com.puntogris.posture.utils.Constants.DEFAULT_SHOW_NOTIFICATIONS_PREF_VALUE
 import java.util.*
 

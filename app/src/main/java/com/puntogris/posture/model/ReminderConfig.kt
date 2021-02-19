@@ -38,12 +38,13 @@ data class ReminderConfig(
             daysList[it].subSequence(0, 3)
          }
 
-    fun timeIntervalSummary() =
-        when{
-            timeInterval < 60 -> "$timeInterval mins."
-            timeInterval == 60 -> "1 h."
-            else -> "${timeInterval.getHours()} hs."
+    fun timeIntervalSummary(): String{
+        return if (timeInterval < 60){
+            "$timeInterval m."
+        }else{
+            "${timeInterval/60} h. ${timeInterval % 60} m."
         }
+    }
 
     fun alarmPastMidnightAndOutOfRange(minutesSinceMidnight: Int) =
        minutesSinceMidnight in (endTime + 1) until startTime

@@ -15,4 +15,8 @@
         android:id="@+id/preferencesFragment"
         android:name="com.puntogris.posture.ui.PreferencesFragment"
         android:label="@string/settings" />
+    <fragment
+        android:id="@+id/announcementFragment"
+        android:name="com.puntogris.posture.data.AnnouncementFragment"
+        android:label="" />
 </navigation>

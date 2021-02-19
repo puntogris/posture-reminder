@@ -21,6 +21,46 @@
     <string name="bug_report_sended_toast">Se envio satisfactioriamente el reporte, Gracias por tu ayuda!</string>
     <string name="notifications_set_toast">Se activaron las notificaciones desde las %1$s hasta las %2$s.</string>
     <string name="remember_to_reset_toast">Recuerda resetear la app en la pantalla principal así se aplican los nuevos cambios.</string>
+    <string name="panda_unlocked_message">Panda desbloqueado! Volve a la pantalla de inicio para disfrutar de su ternura!</string>
+    <string name="report_message_tittle">Que nos queres contar?</string>
+    <string name="start_time_title">Hora de inicio</string>
+    <string name="end_time_title">Hora de finalizacion</string>
+    <string name="save_button">Guardar</string>
+    <string name="bug_report_dialog_hint">Mensaje..</string>
+    <string name="alarm_days_title">Días habilitados</string>
+    <string name="time_interval_title">Intervalo de tiempo</string>
+    <string name="send_button">Enviar</string>
+    <string name="alarms_off_toast">Se cancelaron las alarmas.</string>
+    <string name="new_config_saved_toast">Se actualizo la alarma con la nueva configuracion.</string>
+    <string name="report_sended_toast">Se envio correctamente. Gracias por tu ayudarnos a mejorar la app.</string>
+    <string name="report_error_toast">Ocurrio un error. Verifique su conexion ntente nuevamente.</string>
+    <string name="alarm_days_pref_tittle">Días habilitados para las notificaciones</string>
+    <string name="bug_report_email_title">Donde te podemos encontrar?</string>
+    <string name="email">E-mail</string>
+    <string name="time_interval_pref_title">Indica el intervalo de tiempo</string>
+    <string name="time_hint">Tiempo</string>
+    <string name="time_interval_cant_be_zero">El intervalo de tiempo no puede ser 0.</string>
+    <string name="error_occurred">Ocurrio un error. Intenta nuevamente.</string>
+    <string name="bug_report_name_title">Cual es tu nombre terricola?</string>
+    <string name="name_hint">Nombre</string>
+    <string name="coming_soon">Proximamente</string>
+    <string name="announcement_title">Actualizacion - Version 1.2.0</string>
+    <string name="announcement_content">Antes que nada, me gustaría agradecerles a todas las personas que me enviaron un reporte o sugerencia, mejoremos la app juntos!</string>
+    <string name="announcement_5">*Se agregara una opcion para habilitar la muestra de un ejercicio para mejorar la postura y relajar los musculos al hacerle click a la notificacion.</string>
+    <string name="announcement_4">*Habilidad de tener varios perfiles configurados para hacer cambios en la configuracion rapidamente.</string>
+    <string name="announcement_3">*Ahora los intervalos de tiempo son completamente personalizables.</string>
+    <string name="announcement_2">*Se cambio el fondo para que no se sienta muy aburrido el inicio.</string>
+    <string name="announcement_1">*Nuevos campos de email y nombre en el envio de los reportes/ sugerencias así los puedo contactar y preguntar mas en detalle sobre sus ideas o problemas.</string>
+    <string name="announcement_6">*Cambio de color a la perilla de notificaciones para hacerlo mas claro cuando esta prendida/ apagada.</string>
+    <string name="announcement_7">*Se redujo el tamaño de la app significativamente ( 40% ~).</string>
+    <string name="new_announcement_title">Nueva actualizacion instalada!</string>
+    <string name="announcement_message">Gracias a todos por su ayuda a mejorar la app.\nClick para ver los últimos cambios hechos.</string>
+    <string name="minutes">Minutos</string>
+    <string name="hours">Horas</string>
+    <string name="time_unit_title">Que tipo de unidad de tiempo queres usar?</string>
+    <string name="close_card_content_des">Cerrar tarjeta</string>
+    <string name="background_image_content_descr">Imagen de fondo</string>
+
 
     <string-array name="alarmDays">
         <item>Lunes</item>
@@ -31,26 +71,5 @@
         <item>Sabado</item>
         <item>Domingo</item>
     </string-array>
-
-    <string-array name="timeInterval">
-        <item>30 minutos</item>
-        <item>1 hora</item>
-        <item>2 horas</item>
-        <item>3 horas</item>
-        <item>4 horas</item>
-    </string-array>
-    <string name="panda_unlocked_message">Panda desbloqueado! Volve a la pantalla de inicio para disfrutar de su ternura!</string>
-    <string name="report_message_tittle">Que nos queres contar?</string>
-    <string name="start_time_title">Hora de inicio</string>
-    <string name="end_time_title">Hora de finalizacion</string>
-    <string name="save_button">Guardar</string>
-    <string name="bug_report_dialog_hint">Mensaje..</string>
-    <string name="alarm_days_title">Dias habilitados</string>
-    <string name="time_interval_title">Intervalo de tiempo</string>
-    <string name="send_button">Enviar</string>
-    <string name="alarms_off_toast">Se cancelaron las alarmas.</string>
-    <string name="new_config_saved_toast">Se actualizo la alarma con la nueva configuracion.</string>
-    <string name="report_sended_toast">Se envio correctamente. Gracias por tu ayudarnos a mejorar la app.</string>
-    <string name="report_error_toast">Ocurrio un error. Verifique su conexion ntente nuevamente.</string>
 
 </resources>

@@ -14,11 +14,10 @@ android {
         applicationId "com.puntogris.posture"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 9
-        versionName "1.1.0"
+        versionCode 18
+        versionName "1.2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -45,9 +44,10 @@ android {
 dependencies {
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -76,12 +76,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
 
     //BottomSheet
-    def bottom_sheet_version = "1.1.0"
-    implementation "com.maxkeppeler.bottomsheets:core:$bottom_sheet_version"
-    implementation "com.maxkeppeler.bottomsheets:time_clock:$bottom_sheet_version"
-    implementation "com.maxkeppeler.bottomsheets:input:$bottom_sheet_version"
-    implementation "com.maxkeppeler.bottomsheets:time:$bottom_sheet_version"
-    implementation "com.maxkeppeler.bottomsheets:options:$bottom_sheet_version"
+    def bottom_sheet_version = "2.1.3"
+    implementation "com.maxkeppeler.sheets:core:$bottom_sheet_version"
+    implementation "com.maxkeppeler.sheets:time-clock:$bottom_sheet_version"
+    implementation "com.maxkeppeler.sheets:input:$bottom_sheet_version"
+    implementation "com.maxkeppeler.sheets:time:$bottom_sheet_version"
+    implementation "com.maxkeppeler.sheets:options:$bottom_sheet_version"
 
     //Room
     def room_version = "2.3.0-alpha04"
