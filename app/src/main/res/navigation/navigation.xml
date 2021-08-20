@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.puntogris.posture.ui.main.MainFragment" />
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.puntogris.posture.ui.account.AccountFragment"/>
+    <dialog
+        android:id="@+id/newReminderBottomSheet"
+        android:name="com.puntogris.posture.ui.reminders.new_edit.NewReminderBottomSheet">
+        <argument
+            android:name="reminder"
+            app:argType="com.puntogris.posture.model.Reminder"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_newReminderBottomSheet_to_vibrationSelectorDialog"
+            app:destination="@id/vibrationSelectorDialog" />
+        <action
+            android:id="@+id/action_newReminderBottomSheet_to_soundSelectorDialog"
+            app:destination="@id/soundSelectorDialog" />
+    </dialog>
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.puntogris.posture.ui.welcome.WelcomeFragment">
+        <action
+            android:id="@+id/action_welcomeFragment_to_batteryOptimizationFragment"
+            app:destination="@id/batteryOptimizationFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/settingsBottomSheet"
+        android:name="com.puntogris.posture.ui.settings.SettingsBottomSheet"
+        android:label="" >
+        <action
+            android:id="@+id/action_settingsBottomSheet_to_dialogName"
+            app:destination="@id/editUserNameDialog" />
+        <action
+            android:id="@+id/action_settingsBottomSheet_to_ticketBottomSheet"
+            app:destination="@id/ticketBottomSheet" />
+    </dialog>
+    <dialog
+        android:id="@+id/editUserNameDialog"
+        android:name="com.puntogris.posture.ui.settings.EditUserNameDialog" >
+        <argument
+            android:name="username"
+            app:argType="string" />
+    </dialog>
+    <dialog
+        android:id="@+id/selectThemeDialog"
+        android:name="com.puntogris.posture.ui.settings.SelectThemeDialog"/>
+    <dialog
+        android:id="@+id/manageRemindersBottomSheet"
+        android:name="com.puntogris.posture.ui.reminders.manage.ManageRemindersBottomSheet" >
+        <action
+            android:id="@+id/action_manageRemindersBottomSheet_to_newReminderBottomSheet"
+            app:destination="@id/newReminderBottomSheet" />
+    </dialog>
+    <fragment
+        android:id="@+id/batteryOptimizationFragment"
+        android:name="com.puntogris.posture.ui.welcome.BatteryOptimizationFragment">
+        <action
+            android:id="@+id/action_batteryOptimizationFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/vibrationSelectorDialog"
+        android:name="com.puntogris.posture.ui.reminders.new_edit.VibrationSelectorDialog" >
+        <argument
+            android:name="savedPosition"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </dialog>
+    <dialog
+        android:id="@+id/soundSelectorDialog"
+        android:name="com.puntogris.posture.ui.reminders.new_edit.SoundSelectorDialog">
+        <argument
+            android:name="savedSound"
+            app:argType="string"
+            android:defaultValue=" " />
+    </dialog>
+    <dialog
+        android:id="@+id/whatsNewDialog"
+        android:name="com.puntogris.posture.ui.main.WhatsNewDialog" />
+    <fragment
+        android:id="@+id/portalFragment"
+        android:name="com.puntogris.posture.ui.portal.PortalFragment">
+        <action
+            android:id="@+id/action_portalFragment_to_rankingsFragment"
+            app:destination="@id/rankingsFragment" />
+        <action
+            android:id="@+id/action_portalFragment_to_exerciseBottomSheet"
+            app:destination="@id/exerciseBottomSheet" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.puntogris.posture.ui.login.LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_synAccountFragment"
+            app:destination="@id/synAccountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rankingsFragment"
+        android:name="com.puntogris.posture.ui.rankings.RankingsFragment"/>
+    <dialog
+        android:id="@+id/ticketBottomSheet"
+        android:name="com.puntogris.posture.ui.ticket.TicketBottomSheet"
+        android:label="TicketBottomSheet" />
+    <fragment
+        android:id="@+id/synAccountFragment"
+        android:name="com.puntogris.posture.ui.sync.SynAccountFragment" >
+        <argument
+            android:name="userPrivateData"
+            app:argType="com.puntogris.posture.model.UserPrivateData" />
+        <action
+            android:id="@+id/action_synAccountFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/exerciseBottomSheet"
+        android:name="com.puntogris.posture.ui.exercise.ExerciseBottomSheet" >
+        <argument
+            android:name="exercise"
+            app:argType="com.puntogris.posture.model.Exercise" />
+        <action
+            android:id="@+id/action_exerciseBottomSheet_to_exerciseCompletedDialog"
+            app:destination="@id/exerciseCompletedDialog" />
+    </dialog>
+    <dialog
+        android:id="@+id/exerciseCompletedDialog"
+        android:name="com.puntogris.posture.ui.exercise.ExerciseCompletedDialog" />
+</navigation>

@@ -1,0 +1,227 @@
+<resources>
+    <!-- App -->
+    <string name="app_name">Posture Reminder</string>
+
+    <!-- Navigation -->
+    <string name="home_label">Home</string>
+    <string name="account_label">Account</string>
+    <string name="create_reminder_label">New reminder</string>
+    <string name="portal_label">Portal</string>
+    <string name="rankings_label">Rankings</string>
+    <string name="ticket_label">Ticket</string>
+    <string name="settings_label">Settings</string>
+    <string name="reminders_label">Reminders</string>
+
+    <!-- Actions -->
+    <string name="action_done">Done</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_undo">Undo</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_save">Save</string>
+    <string name="action_send">Send</string>
+    <string name="action_finish">Finish</string>
+    <string name="action_disable">Disable</string>
+    <string name="action_continue">Continue</string>
+    <string name="action_close_keyboard">Close keyboard</string>
+    <string name="action_start">Start</string>
+    <string name="action_select">Select</string>
+
+    <!-- Login -->
+    <string name="login_button">tap para enter</string>
+    <string name="help_login_problems">Problems with login?</string>
+
+    <!-- Welcome -->
+    <string name="welcome_pager_title1">Live to the limit!</string>
+    <string name="welcome_pager_title2">Say goodbye to back pain!</string>
+    <string name="welcome_pager_title3">Enjoy reading a good book!</string>
+
+    <!-- Home -->
+    <string name="alarm_on">The app is on</string>
+    <string name="alarm_off">The app is off</string>
+    <string name="stop_alarm">Stop</string>
+    <string name="start_alarm">Start</string>
+    <string name="snack_alarms_off">The alarm has been deactivated.</string>
+    <string name="snack_new_config_saved">The alarm has been updated with the new configuration.</string>
+
+    <!-- What's new dialog-->
+    <string name="updated_version">Updated to v%1$s</string>
+    <string name="whats_new">What\'s new</string>
+
+    <!-- Battery optimization -->
+    <string name="battery_optimization_step_one_light"><![CDATA[<font color=\'#C0C0C4\'>1 - Search </font><b><font color=\'#ffffff\'>Posture Reminder</font></b><font color=\'#C0C0C4\'> from the list</font>]]></string>
+    <string name="battery_optimization_step_two_light"><![CDATA[<font color=\'#C0C0C4\'>2 - Select </font><b><font color=\'#ffffff\'> not optimize</font></b><font color=\'#C0C0C4\'> the battery</font>]]></string>
+    <string name="battery_optimization_step_one_dark"><![CDATA[<font color=\'#757575\'>1 - Search </font><b><font color=\'#000000\'>Posture Reminder</font></b><font color=\'#757575\'> from the list</font>]]></string>
+    <string name="battery_optimization_step_two_dark"><![CDATA[<font color=\'#757575\'>2 - Select </font><b><font color=\'#000000\'> not optimize </font></b><font color=\'#757575\'> the battery</font>]]></string>
+
+    <!-- Ticket -->
+    <string name="snack_send_ticket_success">Sent successfully. Thanks for helping us improve our app.</string>
+    <string name="ticket_type">Ticket type</string>
+    <string name="send_ticket_alert">*I will be in touch shortly.\nYou can also reach me at :\npuntogrishelp@gmail.com</string>
+
+    <!-- Reminder -->
+    <string name="snack_delete_reminder_success">Reminder deleted successfully</string>
+    <string name="reminder_name">Reminder name</string>
+    <string name="days">Days</string>
+    <string name="start_time">Start at</string>
+    <string name="end_time">End at</string>
+    <string name="sound">Sound</string>
+    <string name="vibration">Vibration</string>
+    <string name="color_picker_title">Reminder color</string>
+    <string name="vibration_picker_title">Vibration pattern</string>
+    <string name="sound_tone_item_none">None</string>
+    <string name="sound_picker_title">Sound picker</string>
+    <string name="snack_create_reminder_success">Reminder created successfully</string>
+    <string name="snack_create_reminder_error">An error occurred creating the reminder</string>
+    <string name="interval">Interval</string>
+
+    <!-- Reminder pickers -->
+    <string name="end_time_title">Ending time</string>
+    <string name="start_time_title">Starting time</string>
+    <string name="alarm_days_title">Days enabled</string>
+    <string name="time_interval_title">Time interval</string>
+    <string name="time_hint">Time</string>
+    <string name="minutes">Minutes</string>
+    <string name="hours">Hours</string>
+    <string name="time_unit_title">What time unit would you like to use?</string>
+    <string name="snack_time_interval_cant_be_zero">The time interval can\'t be 0.</string>
+    <string name="time_interval_subtitle">Set the time interval</string>
+    <string name="reminder_name_hint">Name of the reminder</string>
+
+    <!-- Sync -->
+    <string name="account_sync_in_progress">Synchronizing account</string>
+    <string name="account_sync_success">Synchronized correctly</string>
+    <string name="account_sync_error">Synchronization failed</string>
+
+    <!--Settings Screen-->
+    <string name="snack_remember_to_refresh_app">Remember to reset the app in the main screen so the new changes apply.</string>
+    <string name="snack_panda_unlocked">Panda unlocked! Go back to the main screen to enjoy his cuteness!</string>
+    <string name="change_name_title">Change the name</string>
+    <string name="change_name_subtitle">Enter the new name to change</string>
+    <string name="snack_edit_username_success">Name updated successfully</string>
+
+    <!-- Notifications -->
+    <string name="snack_notifications_set">Notifications set from %1$s to %2$s.</string>
+    <string name="posture_notification_title">Posture Notification</string>
+    <string name="posture_notification_text">Time to fix your posture!</string>
+    <string name="notifications">Notifications</string>
+
+    <!-- Other -->
+    <string name="snack_configuration_updated">Settings updated successfully</string>
+    <string name="name">Name</string>
+    <string name="disabled">Disabled</string>
+    <string name="enabled">Enabled</string>
+    <string name="experience">Experience</string>
+    <string name="exercises">Exercise</string>
+    <string name="snack_connection_error">An error occurred. Check your connection and try again.</string>
+    <string name="snack_general_error">An error occurred. Please try again.</string>
+    <string name="see_global_rankings">See global rankings</string>
+
+    <!-- Exercises -->
+    <string name="in_progress">In progress</string>
+    <string name="finished">Completed</string>
+    <string name="steps">Steps</string>
+    <string name="duration">Duration</string>
+    <string name="description">Description</string>
+    <string name="exercise">Exercise</string>
+    <string name="completed_exercise_title">Congratulations!</string>
+    <string name="completed_exercise_message">You finished the exercise and as a reward you will be given %1$d experience!</string>
+
+    <!-- Brugger -->
+    <string name="brugger_exercise_title">Bruegger’s Relief Position</string>
+    <string name="brugger_exercise_summary">This stretch can help reverse the forward position.</string>
+    <string-array name="brugger_exercise_steps">
+        <item>This can be done sitting or standing. This is good to do if you can’t get up from your chair.</item>
+        <item>Back your chair away from your desk and scoot your hips to the edge of the chair.</item>
+        <item>While sitting upright, bring your hands down to your sides with your palms facing forward.</item>
+        <item>Extend your wrists and reach your fingers back, opening up the entire front of your chest and arm.</item>
+        <item>Your shoulder blades will slightly pinch together.</item>
+        <item>You should feel a stretch down your arm from your chest, forearms to hands.</item>
+        <item>Hold this position for a few seconds.</item>
+        <item>Back off this position.</item>
+        <item>Repeat at least 5 times.</item>
+    </string-array>
+
+    <!-- Chin tuck -->
+    <string name="chin_tuck_exercise_title">Chin Tucks</string>
+    <string name="chin_tuck_exercise_summary">Classic exercise to get out of a forward head position.</string>
+    <string-array name="chin_tuck_exercise_steps">
+        <item>This can be done while standing OR sitting</item>
+        <item>Perform a chin tuck by keeping your chin parallel to the floor and drawing your head backwards.</item>
+        <item>This turns on the muscles in the front of your neck, so you might feel a sensation there.</item>
+        <item>You might also feel stretching in the back of the neck and at the base of the skull which is okay.</item>
+        <item>Do not push through pain.</item>
+        <item>Repeat at least 5 times.</item>
+    </string-array>
+
+    <!-- Back extensions -->
+    <string name="back_extensions_exercise_title">Back Extensions</string>
+    <string name="back_extension_exercise_summary">This exercise can help open up and EXTEND our body.</string>
+    <string-array name="back_extension_exercise_steps">
+        <item>This should be done in standing.</item>
+        <item>Place your fists or hands on your belt line.</item>
+        <item>Extend back, by gently pushing your hips forward and extending your back.</item>
+        <item>You might feel some pressure in the back, but you should not feel pain.</item>
+        <item>Repeat at least 5 times.</item>
+    </string-array>
+
+    <!-- Side bend -->
+    <string name="side_bend_exercise_title">Side Bends</string>
+    <string name="side_bend_exercise_summary">Laterals movements to break a stiff position.</string>
+    <string-array name="side_bend_exercise_steps">
+        <item>This exercise is done while standing</item>
+        <item>Place your arms and hands relaxed at your sides.</item>
+        <item>By leaning your trunk to one side, slide your hand down towards your knee.</item>
+        <item>You should feel a stretch on the opposite side of your trunk.</item>
+        <item>Alternate side bending right and side bending left.</item>
+        <item>Perform this at least 5 times to each side (10 times total).</item>
+    </string-array>
+
+    <!-- Binding -->
+    <string name="exercise_duration_seconds">%1$d secs.</string>
+
+    <!-- Content description -->
+    <string name="background_image_content_description">Background image</string>
+    <string name="close_screen_content_description">Close screen</string>
+    <string name="logo_content_description">App logo</string>
+    <string name="edit_content_description">Edit alarm</string>
+    <string name="medal_content_description">Ranking medal</string>
+    <string name="color_picker_content_description">Pick color</string>
+    <string name="open_picker_content_description">Open alarm</string>
+    <string name="image_content_description">Image</string>
+
+    <!-- Arrays -->
+    <string-array name="ticket_types">
+        <item>Problem</item>
+        <item>Feedback</item>
+    </string-array>
+
+    <string-array name="alarmDays">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+
+    <string-array name="vibrationPatterns">
+        <item>Disabled</item>
+        <item>Normal</item>
+        <item>Stairs</item>
+        <item>Fast</item>
+    </string-array>
+
+    <string-array name="theme_names">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>Defined by system</item>
+    </string-array>
+
+    <integer-array name="theme_values">
+        <item>1</item>
+        <item>2</item>
+        <item>-1</item>
+    </integer-array>
+
+</resources>

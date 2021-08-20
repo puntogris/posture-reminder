@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="fragment"
+            type="com.puntogris.posture.ui.main.MainFragment" />
+        <variable
+            name="viewModel"
+            type="com.puntogris.posture.ui.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        tools:context=".ui.main.MainFragment">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/dayLogsCardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="?colorPrimary"
+            app:cardCornerRadius="7dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutTitle"
+            tools:layout_height="140dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                    android:id="@+id/dots_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|top"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="50dp"
+                    app:dotsColor="@color/grey"
+                    app:dotsCornerRadius="8dp"
+                    app:dotsSize="8dp"
+                    app:dotsSpacing="4dp"
+                    app:dotsWidthFactor="2.5"
+                    app:layout_constraintBottom_toTopOf="@+id/startButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:progressMode="true"
+                    app:selectedDotColor="@color/white" />
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/layoutTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/home_label"
+            style="@style/Theme.Posture.MediumTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:adjustViewBounds="true"
+            android:id="@+id/panda_animation"
+            android:layout_width="wrap_content"
+            android:layout_height="140dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:scaleType="fitXY"
+            app:lottie_rawRes="@raw/panda" />
+
+        <Button
+            android:id="@+id/circleButton"
+            style="@style/Theme.Posture.ReminderButton"
+            android:layout_width="320dp"
+            android:layout_height="150dp"
+            android:onClick="@{()-> fragment.onToggleReminderClicked()}"
+            android:layout_marginBottom="?actionBarSize"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dayLogsCardView" />
+
+        <TextView
+            android:id="@+id/enableTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            style="@style/Theme.Posture.TextLight"
+            reminderStatus="@{viewModel.reminder}"
+            android:textSize="30sp"
+            android:elevation="10dp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/circleButton"
+            app:layout_constraintEnd_toEndOf="@+id/circleButton"
+            app:layout_constraintStart_toStartOf="@+id/circleButton"
+            app:layout_constraintTop_toTopOf="@+id/circleButton"
+            app:layout_constraintVertical_bias="0.39"
+            tools:text="Start" />
+
+        <TextView
+            android:id="@+id/enableSummaryTextview"
+            reminderSummaryStatus="@{viewModel.reminder}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_dark"
+            android:elevation="10dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/enableTextView"
+            app:layout_constraintStart_toStartOf="@+id/enableTextView"
+            app:layout_constraintTop_toBottomOf="@+id/enableTextView"
+            tools:text="The app is off" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

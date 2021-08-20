@@ -1,0 +1,23 @@
+{
+  "name": "posture-reminder",
+  "version": "0.0.1",
+  "description": "android app",
+  "main": "index.js",
+  "authors": {
+    "name": "Joaquin",
+    "email": "puntogrishelp@gmail.com"
+  },
+  "repository": "/posture-reminder",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.8.2",
+    "vuepress": "^1.5.3"
+  },
+  "dependencies": {
+    "firebase": "^8.9.1"
+  }
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#B39DDB</color>
+    <color name="purple_300">#BA68C8</color>
+    <color name="purple_400">#7E57C2</color>
+
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="grey">#D6D6D6</color>
+    <color name="gray_dark">#BBBBBB</color>
+
+    <color name="pink_200">#fc98b5</color>
+    <color name="blue_a500">#3D5AFE</color>
+
+    <color name="nightBackground">#2B2B39</color>
+    <color name="dayBackground">@color/white</color>
+
+    <color name="colorPrimary">#7D4FFF</color>
+    <color name="colorPrimaryDark">#926EFA</color>
+    <color name="material_grey_600">#ff757575</color>
+
+
+    <color name="card1">#EF5350</color>
+    <color name="card2">#66BB6A</color>
+    <color name="card3">#AB47BC</color>
+    <color name="card4">#FFEE58</color>
+    <color name="card5">#42A5F5</color>
+
+    <color name="grey_3">#f7f7f7</color>
+    <color name="grey_5">#f2f2f2</color>
+    <color name="grey_10">#e6e6e6</color>
+    <color name="grey_20">#cccccc</color>
+    <color name="grey_40">#999999</color>
+    <color name="grey_60">#666666</color>
+
+</resources>
