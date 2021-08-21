@@ -5,5 +5,5 @@ import com.puntogris.posture.model.SimpleResult
 
 interface ISyncRepository {
     suspend fun syncFirestoreAccountWithRoom(userPrivateData: UserPrivateData): SimpleResult
-    suspend fun syncFirestoreWithRoomUserPublicProfile()
+    suspend fun syncUserExperienceInFirestoreWithRoom()
 }

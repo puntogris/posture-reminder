@@ -27,7 +27,6 @@ class AccountFragment : BaseFragmentOptions<FragmentAccountBinding>(R.layout.fra
 
         observeActiveReminderAndHandleResult()
         setupBarChart()
-
     }
 
     private fun observeActiveReminderAndHandleResult(){
@@ -42,7 +41,6 @@ class AccountFragment : BaseFragmentOptions<FragmentAccountBinding>(R.layout.fra
     }
 
     private fun showActiveReminderUi(reminder: Reminder){
-        println(reminder)
         binding.apply {
             activeReminder.reminder = reminder
             activeReminder.root.visible()

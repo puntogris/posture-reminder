@@ -20,7 +20,7 @@ class UploadWorker @AssistedInject constructor(
 
     override suspend fun doWork(): Result = withContext(Dispatchers.IO){
          try {
-             syncRepository.syncFirestoreWithRoomUserPublicProfile()
+             syncRepository.syncUserExperienceInFirestoreWithRoom()
              Result.success()
         }catch (e:Exception){
             Result.failure()

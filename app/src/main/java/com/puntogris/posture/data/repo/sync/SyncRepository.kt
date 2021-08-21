@@ -37,23 +37,25 @@ class SyncRepository @Inject constructor(
             insertNewUserIntoRoomAndFirestore(user)
             UserAccount.New
         } else {
-            insertUserIntoRoom(user)
+            checkForLatestDataAndInsertUser(user)
             UserAccount.Registered
         }
     }
 
+    private suspend fun checkForLatestDataAndInsertUser(user: UserPrivateData){
+        val roomUser = userDao.getUser()
+        if (roomUser.id == roomUser.id && roomUser.experience > user.experience) return
+        else userDao.insert(user)
+    }
+
     private suspend fun insertNewUserIntoRoomAndFirestore(user: UserPrivateData) {
+        userDao.insert(user)
         val userPublicProfileRef = firestoreUser.getUserPublicProfileRef()
         val userPrivateDataRef = firestoreUser.getUserPrivateDataRef()
-        insertUserIntoRoom(user)
         firestoreUser.runBatch().apply {
             set(userPrivateDataRef, user)
             set(userPublicProfileRef, getPublicProfileFromUserPrivateData(user))
         }.commit().await()
-    }
-
-    private suspend fun insertUserIntoRoom(user: UserPrivateData){
-        userDao.insert(user)
     }
 
     private fun getPublicProfileFromUserPrivateData(user: UserPrivateData): UserPublicProfile {
@@ -70,9 +72,12 @@ class SyncRepository @Inject constructor(
         reminderDao.insertRemindersIfNotInRoom(reminders)
     }
 
-    override suspend fun syncFirestoreWithRoomUserPublicProfile() {
+    override suspend fun syncUserExperienceInFirestoreWithRoom() {
         val roomUser = userDao.getUser()
-        firestoreUser.getUserPublicProfileRef().update("experience", roomUser.experience).await()
+        firestoreUser.runBatch().apply {
+            update(firestoreUser.getUserPublicProfileRef(),"experience", roomUser.experience)
+            update(firestoreUser.getUserPrivateDataRef(),"experience", roomUser.experience)
+        }.commit().await()
     }
 
 }
