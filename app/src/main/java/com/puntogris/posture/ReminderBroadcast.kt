@@ -35,31 +35,31 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
         super.onReceive(context, intent)
 
         when (intent.action) {
-            DAILY_ALARM_TRIGGERED -> goAsync {
-                val reminder = reminderDao.getActiveReminder()
-                if (dayOfTheWeek() in reminder.alarmDays) alarm.startRepeatingAlarm(reminder.timeInterval)
-
-                reminderDao.getActiveReminder().apply {
-                    if (dayOfTheWeek() in alarmDays) alarm.startRepeatingAlarm(timeInterval)
-                }
+//            DAILY_ALARM_TRIGGERED -> goAsync {
+//                val reminder = reminderDao.getActiveReminder()
+//                if (dayOfTheWeek() in reminder.alarmDays) alarm.startRepeatingAlarm(reminder.timeInterval)
+//
+//                reminderDao.getActiveReminder().apply {
+//                    if (dayOfTheWeek() in alarmDays) alarm.startRepeatingAlarm(timeInterval)
+//                }
             }
-            REPEATING_ALARM_TRIGGERED -> goAsync {
-                val minutesSinceMidnight = minutesSinceMidnight()
-                reminderDao.getActiveReminder().apply {
-                    if (alarmNotPastMidnight()) {
-                        if (minutesSinceMidnight <= endTime)
-                            deliverNotificationAndSetNewAlarm(context, timeInterval)
-                        else
-                            alarm.cancelRepeatingAlarm()
-                    } else {
-                        if (alarmPastMidnightAndOutOfRange(minutesSinceMidnight))
-                            alarm.cancelRepeatingAlarm()
-                        else
-                            deliverNotificationAndSetNewAlarm(context, timeInterval)
-                    }
-                }
-            }
-        }
+//            REPEATING_ALARM_TRIGGERED -> goAsync {
+//                val minutesSinceMidnight = minutesSinceMidnight()
+//                reminderDao.getActiveReminder().apply {
+//                    if (alarmNotPastMidnight()) {
+//                        if (minutesSinceMidnight <= endTime)
+//                            deliverNotificationAndSetNewAlarm(context, timeInterval)
+//                        else
+//                            alarm.cancelRepeatingAlarm()
+//                    } else {
+//                        if (alarmPastMidnightAndOutOfRange(minutesSinceMidnight))
+//                            alarm.cancelRepeatingAlarm()
+//                        else
+//                            deliverNotificationAndSetNewAlarm(context, timeInterval)
+//                    }
+//                }
+//            }
+//        }
     }
 
     private fun phoneIsInNormalMode(context: Context): Boolean {
@@ -67,28 +67,28 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
         return audioManager.ringerMode == AudioManager.RINGER_MODE_NORMAL
     }
 
-    private fun deliverNotificationAndSetNewAlarm(context: Context, timeInterval: Int) {
-        goAsync {
-            val reminder = reminderDao.getActiveReminder()
-
-            val builder = NotificationCompat.Builder(context, POSTURE_NOTIFICATION_ID)
-                .setSmallIcon(R.drawable.ic_notifications_24px)
-                .setContentTitle(context.getString(R.string.posture_notification_title))
-                .setContentText(context.getString(R.string.posture_notification_text))
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-
-            reminder.let {
-                if (it.soundUri.isNotBlank() && phoneIsInNormalMode(context)) builder.setSound(
-                    Uri.parse(it.soundUri)
-                )
-                if (it.vibrationPattern != 0) builder.setVibrate(vibrationPatterns[it.vibrationPattern])
-            }
-
-            with(NotificationManagerCompat.from(context)) {
-                notify(100, builder.build())
-            }
-
-            alarm.startRepeatingAlarm(timeInterval)
-        }
-    }
+  //  private fun deliverNotificationAndSetNewAlarm(context: Context, timeInterval: Int) {
+ //       goAsync {
+//            val reminder = reminderDao.getActiveReminder()
+//
+//            val builder = NotificationCompat.Builder(context, POSTURE_NOTIFICATION_ID)
+//                .setSmallIcon(R.drawable.ic_notifications_24px)
+//                .setContentTitle(context.getString(R.string.posture_notification_title))
+//                .setContentText(context.getString(R.string.posture_notification_text))
+//                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+//
+//            reminder.let {
+//                if (it.soundUri.isNotBlank() && phoneIsInNormalMode(context)) builder.setSound(
+//                    Uri.parse(it.soundUri)
+//                )
+//                if (it.vibrationPattern != 0) builder.setVibrate(vibrationPatterns[it.vibrationPattern])
+//            }
+//
+//            with(NotificationManagerCompat.from(context)) {
+//                notify(100, builder.build())
+//            }
+//
+//            alarm.startRepeatingAlarm(timeInterval)
+ //       }
+ //   }
 }

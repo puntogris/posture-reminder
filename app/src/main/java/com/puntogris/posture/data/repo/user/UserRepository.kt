@@ -31,5 +31,9 @@ class UserRepository @Inject constructor(
         }
     }
 
+    override suspend fun updateActiveReminderUserRoom(reminderId: String) {
+        userDao.updateCurrentUserReminder(reminderId)
+    }
+
 
 }

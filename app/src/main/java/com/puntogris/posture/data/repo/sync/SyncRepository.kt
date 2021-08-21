@@ -37,7 +37,7 @@ class SyncRepository @Inject constructor(
             insertNewUserIntoRoomAndFirestore(user)
             UserAccount.New
         } else {
-            insertRegisteredUserIntoRoom(user)
+            insertUserIntoRoom(user)
             UserAccount.Registered
         }
     }
@@ -45,21 +45,20 @@ class SyncRepository @Inject constructor(
     private suspend fun insertNewUserIntoRoomAndFirestore(user: UserPrivateData) {
         val userPublicProfileRef = firestoreUser.getUserPublicProfileRef()
         val userPrivateDataRef = firestoreUser.getUserPrivateDataRef()
-
+        insertUserIntoRoom(user)
         firestoreUser.runBatch().apply {
             set(userPrivateDataRef, user)
             set(userPublicProfileRef, getPublicProfileFromUserPrivateData(user))
         }.commit().await()
     }
 
-    private suspend fun insertRegisteredUserIntoRoom(user: UserPrivateData){
+    private suspend fun insertUserIntoRoom(user: UserPrivateData){
         userDao.insert(user)
-
     }
 
     private fun getPublicProfileFromUserPrivateData(user: UserPrivateData): UserPublicProfile {
         return UserPublicProfile(
-            name = user.name,
+            username = user.username,
             country = user.country,
             id = user.id
         )

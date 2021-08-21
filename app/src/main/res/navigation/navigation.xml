@@ -8,7 +8,11 @@
         android:name="com.puntogris.posture.ui.main.MainFragment" />
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.puntogris.posture.ui.account.AccountFragment"/>
+        android:name="com.puntogris.posture.ui.account.AccountFragment">
+        <action
+            android:id="@+id/action_accountFragment_to_newReminderBottomSheet"
+            app:destination="@id/newReminderBottomSheet" />
+    </fragment>
     <dialog
         android:id="@+id/newReminderBottomSheet"
         android:name="com.puntogris.posture.ui.reminders.new_edit.NewReminderBottomSheet">

@@ -22,7 +22,6 @@ android {
         versionName "2.0.0-a1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.release
     }
 
     buildTypes {

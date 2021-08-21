@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="reminder"
+            type="com.puntogris.posture.model.Reminder" />
+        <variable
+            name="fragment"
+            type="com.puntogris.posture.ui.account.AccountFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        style="@style/Theme.Posture.Layout"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        tools:background="@color/white">
+
+        <TextView
+            android:id="@+id/textView33"
+            style="@style/Theme.Posture.RegularTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:text="@{reminder.name}"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/selectReminder"
+            style="@style/Theme.Posture.Button"
+            android:layout_width="match_parent"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="24dp"
+            android:text="Seleccionar otro"
+            android:onClick="@{()->fragment.onNavigateToRemindersClicked()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView41"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/editReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:foreground="?actionBarItemBackground"
+            android:padding="8dp"
+            android:onClick="@{()-> fragment.onNavigateToEditReminder(reminder)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_edit_24"
+            android:contentDescription="@string/edit_content_description" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="5dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/round_corners_background"
+            android:backgroundTint="@{reminder.color}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            style="@style/Theme.Posture.TextMedium"
+            android:text="@string/interval"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@+id/textView41"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <TextView
+            android:id="@+id/textView41"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{reminder.timeIntervalSummary()}"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/textView43"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView40" />
+
+        <TextView
+            android:id="@+id/textView42"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Theme.Posture.TextMedium"
+            android:text="@string/start_time"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@+id/textView43"
+            app:layout_constraintTop_toTopOf="@+id/textView40" />
+
+        <TextView
+            android:id="@+id/textView43"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            minutesToHourlyTime="@{reminder.startTime}"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/textView45"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView41"
+            app:layout_constraintTop_toBottomOf="@+id/textView42" />
+
+        <TextView
+            android:id="@+id/textView44"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Theme.Posture.TextMedium"
+            android:text="@string/end_time"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@+id/textView45"
+            app:layout_constraintTop_toTopOf="@+id/textView42" />
+
+        <TextView
+            android:id="@+id/textView45"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            minutesToHourlyTime="@{reminder.endTime}"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/textView47"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView43"
+            app:layout_constraintTop_toBottomOf="@+id/textView44" />
+
+        <TextView
+            android:id="@+id/textView46"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Theme.Posture.TextMedium"
+            android:text="@string/days"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@+id/textView47"
+            app:layout_constraintTop_toTopOf="@+id/textView44" />
+
+        <TextView
+            android:id="@+id/textView47"
+            daysSummary="@{reminder}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView45"
+            app:layout_constraintTop_toBottomOf="@+id/textView46" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

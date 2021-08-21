@@ -9,4 +9,5 @@ interface IUserRepository {
     fun getUserFlowRoom(): Flow<UserPrivateData>
     fun getUserLiveDataRoom(): LiveData<UserPrivateData>
     suspend fun updateUsernameInRoomAndFirestore(name: String): SimpleResult
+    suspend fun updateActiveReminderUserRoom(reminderId: String)
 }

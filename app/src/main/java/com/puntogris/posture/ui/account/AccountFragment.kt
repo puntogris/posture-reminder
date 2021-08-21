@@ -6,8 +6,11 @@ import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentAccountBinding
 import com.puntogris.posture.model.DayLog
+import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.utils.getDayStringFormatted
+import com.puntogris.posture.utils.gone
+import com.puntogris.posture.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import org.threeten.bp.LocalDate
@@ -18,15 +21,43 @@ class AccountFragment : BaseFragmentOptions<FragmentAccountBinding>(R.layout.fra
     private val viewModel: AccountViewModel by viewModels()
 
     override fun initializeViews() {
+        binding.fragment = this
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        binding.selectReminder.itemName.text = "Recordatorio activo"
-        binding.selectReminder.itemDescription.text = "Recordatorio1"
-        binding.selectReminder.layout.setOnClickListener {
-            findNavController().navigate(R.id.manageRemindersBottomSheet)
-        }
+        observeActiveReminderAndHandleResult()
+        setupBarChart()
 
+    }
+
+    private fun observeActiveReminderAndHandleResult(){
+        viewModel.getActiveReminder().observe(viewLifecycleOwner){
+            handleResultActiveReminder(it)
+        }
+    }
+
+    private fun handleResultActiveReminder(reminder: Reminder?){
+        if (reminder != null) showActiveReminderUi(reminder)
+        else showNoActiveReminderFoundUi()
+    }
+
+    private fun showActiveReminderUi(reminder: Reminder){
+        println(reminder)
+        binding.apply {
+            activeReminder.reminder = reminder
+            activeReminder.root.visible()
+            binding.reminderNotFoundGroup.gone()
+        }
+    }
+
+    private fun showNoActiveReminderFoundUi(){
+        binding.apply {
+            activeReminder.root.gone()
+            reminderNotFoundGroup.visible()
+        }
+    }
+
+    private fun setupBarChart(){
         lifecycleScope.launch {
             val data = viewModel.getWeekData()
             val barSet = lastWeekLabels(data)
@@ -47,5 +78,14 @@ class AccountFragment : BaseFragmentOptions<FragmentAccountBinding>(R.layout.fra
             labels.add(dayString to value)
         }
         return labels
+    }
+
+    fun onNavigateToRemindersClicked(){
+        findNavController().navigate(R.id.manageRemindersBottomSheet)
+    }
+
+    fun onNavigateToEditReminder(reminder: Reminder){
+        val action = AccountFragmentDirections.actionAccountFragmentToNewReminderBottomSheet(reminder)
+        findNavController().navigate(action)
     }
 }

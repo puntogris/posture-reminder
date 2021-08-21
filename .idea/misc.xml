@@ -54,6 +54,7 @@
         <entry key="app/src/main/res/font/lato_bold.xml" value="0.3807291666666667" />
         <entry key="app/src/main/res/font/open_sans_bold.xml" value="0.3807291666666667" />
         <entry key="app/src/main/res/layout/a.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/active_reminder.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25925925925925924" />
         <entry key="app/src/main/res/layout/bottom_sheet_exercise.xml" value="0.347949080622348" />
         <entry key="app/src/main/res/layout/bottom_sheet_managae_reminders.xml" value="0.35052083333333334" />

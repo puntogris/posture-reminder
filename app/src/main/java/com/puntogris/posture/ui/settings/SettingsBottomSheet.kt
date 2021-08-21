@@ -42,7 +42,7 @@ class SettingsBottomSheet : BaseBottomSheetFragment<BottomSheetSettingsBinding>(
     private fun setUserName(){
         lifecycleScope.launch {
             viewModel.getUserFlow().collect {
-                settingsAdapter.updateUserName(it.name)
+                settingsAdapter.updateUserName(it.username)
             }
         }
     }
@@ -81,7 +81,7 @@ class SettingsBottomSheet : BaseBottomSheetFragment<BottomSheetSettingsBinding>(
 
     private fun onNameClicked(){
         lifecycleScope.launch {
-            val name = viewModel.getUserFlow().first().name
+            val name = viewModel.getUserFlow().first().username
             val action = SettingsBottomSheetDirections.actionSettingsBottomSheetToDialogName(name)
             findNavController().navigate(action)
         }

@@ -21,7 +21,7 @@ data class UserPrivateData(
     val id: String,
 
     @ColumnInfo
-    val name: String,
+    val username: String,
 
     @ColumnInfo
     val country: String = "",

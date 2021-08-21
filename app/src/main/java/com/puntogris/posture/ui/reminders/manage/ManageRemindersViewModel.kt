@@ -4,13 +4,15 @@ import androidx.lifecycle.ViewModel
 import com.puntogris.posture.data.local.ReminderDao
 import com.puntogris.posture.data.local.UserDao
 import com.puntogris.posture.data.repo.reminder.ReminderRepository
+import com.puntogris.posture.data.repo.user.UserRepository
 import com.puntogris.posture.model.Reminder
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class ManageRemindersViewModel @Inject constructor(
-    private val reminderRepository: ReminderRepository
+    private val reminderRepository: ReminderRepository,
+    private val userRepository: UserRepository
 ): ViewModel() {
 
     fun getAllReminders() = reminderRepository.getAllRemindersFromRoomLiveData()
@@ -19,5 +21,5 @@ class ManageRemindersViewModel @Inject constructor(
 
     suspend fun insertReminder(reminder: Reminder) = reminderRepository.insertReminder(reminder)
 
-    suspend fun updateCurrentReminder(reminderId: String) = reminderRepository.updateCurrentReminder(reminderId)
+    suspend fun updateCurrentReminder(reminderId: String) = userRepository.updateActiveReminderUserRoom(reminderId)
 }

@@ -54,8 +54,8 @@ fun TextView.setMinutesToHourlyTime(minutes: Int){
 }
 
 @BindingAdapter("daysSummary")
-fun TextView.setDaysSummary(reminder: Reminder){
-    text = reminder.alarmDaysSummary(resources.getStringArray(R.array.alarmDays))
+fun TextView.setDaysSummary(reminder: Reminder?){
+    text = reminder?.alarmDaysSummary(resources.getStringArray(R.array.alarmDays))
 }
 
 @BindingAdapter("reminderColor")

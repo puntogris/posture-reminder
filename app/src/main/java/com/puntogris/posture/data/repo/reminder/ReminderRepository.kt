@@ -46,8 +46,7 @@ class ReminderRepository @Inject constructor(
         return ref
     }
 
-    override suspend fun updateCurrentReminder(reminderId: String) {
+    override fun getActiveReminderLiveData() = reminderDao.getActiveReminderLiveData()
 
-    }
 
 }

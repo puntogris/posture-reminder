@@ -18,7 +18,11 @@ interface ReminderDao {
 
     @RewriteQueriesToDropUnusedColumns
     @Query("SELECT * FROM reminder r INNER JOIN UserPrivateData u ON currentReminderId = r.id")
-    fun getActiveReminder(): Reminder
+    suspend fun getActiveReminder(): Reminder
+
+    @RewriteQueriesToDropUnusedColumns
+    @Query("SELECT * FROM reminder r INNER JOIN UserPrivateData u ON currentReminderId = r.id")
+    fun getActiveReminderLiveData(): LiveData<Reminder?>
 
     @Query("SELECT * FROM reminder")
     fun getAllRemindersLiveData(): LiveData<List<Reminder>>

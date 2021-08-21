@@ -26,6 +26,6 @@ interface UserDao {
     @Query("UPDATE UserPrivateData SET currentReminderId = :reminderId WHERE roomId = 1")
     suspend fun updateCurrentUserReminder(reminderId: String)
 
-    @Query("UPDATE UserPrivateData SET name = :name WHERE roomId = 1")
+    @Query("UPDATE UserPrivateData SET username = :name WHERE roomId = 1")
     suspend fun updateUsername(name: String)
 }

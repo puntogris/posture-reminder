@@ -7,7 +7,15 @@
         <variable
             name="viewModel"
             type="com.puntogris.posture.ui.account.AccountViewModel" />
+        <variable
+            name="fragment"
+            type="com.puntogris.posture.ui.account.AccountFragment" />
     </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -47,7 +55,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_gravity="end"
-                    android:text="@{viewModel.user.name}"
+                    android:text="@{viewModel.user.username}"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -83,10 +91,15 @@
         </com.google.android.material.card.MaterialCardView>
 
         <include
-            android:id="@+id/selectReminder"
-            layout="@layout/settings_item_text"
+            app:fragment="@{fragment}"
+            android:id="@+id/active_reminder"
+            layout="@layout/active_reminder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView50" />
 
         <View
@@ -192,9 +205,39 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/reminders_label"
+            android:text="Recordatorio activo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider5" />
 
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="32dp"
+            android:text="No encontramos un recordatorio activo en tu cuenta, te invitamos a crear uno nuevo y seleccionarlo."
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView50" />
+
+        <Button
+            android:id="@+id/button3"
+            style="@style/Theme.Posture.Button"
+            android:layout_width="match_parent"
+            android:text="Ver mis recordatorios"
+            android:onClick="@{()->fragment.onNavigateToRemindersClicked()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/reminderNotFoundGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="button3,textView6" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>
