@@ -30,7 +30,7 @@ class ReminderRepository @Inject constructor(
 
     override suspend fun insertReminder(reminder: Reminder): SimpleResult = withContext(Dispatchers.IO){
         try {
-            val reminderRef = fillIdsAndCreateDocRef(reminder)
+            val reminderRef = getReminderRef(reminder)
             reminderDao.insert(reminder)
             reminderRef.set(reminder).await()
             SimpleResult.Success
@@ -39,10 +39,17 @@ class ReminderRepository @Inject constructor(
         }
     }
 
-    private fun fillIdsAndCreateDocRef(reminder: Reminder): DocumentReference{
+    private fun getReminderRef(reminder: Reminder): DocumentReference{
+        return if (reminder.id.isBlank()) getDocumentRefForNewReminder(reminder)
+        else reminderFirestore.getReminderDocumentRefWithId(reminder.id)
+    }
+
+    private fun getDocumentRefForNewReminder(reminder: Reminder): DocumentReference{
         val ref = reminderFirestore.getNewReminderDocumentRef()
-        reminder.id = ref.id
-        reminder.uid = reminderFirestore.getCurrentUserId()
+        reminder.apply {
+            id = ref.id
+            uid = reminderFirestore.getCurrentUserId()
+        }
         return ref
     }
 
