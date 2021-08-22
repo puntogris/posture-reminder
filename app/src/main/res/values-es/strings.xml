@@ -74,6 +74,12 @@
     <string name="snack_create_reminder_error">Error al crear el recordatorio</string>
     <string name="interval">Intervalo</string>
     <string name="snack_active_reminder_not_found">No se encontro un recodatorio activo.</string>
+    <string name="name_required">Nombre*</string>
+    <string name="interval_required">Intervalo*</string>
+    <string name="days_required">Días*</string>
+    <string name="start_time_required">Inciar*</string>
+    <string name="end_time_required">Finalizar*</string>
+    <string name="snack_reminder_not_valid">Complete todos los datos requeridos, marcados con un \' * \'</string>
 
     <!-- Reminder pickers -->
     <string name="end_time_title">Hora de finalizacion</string>

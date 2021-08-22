@@ -25,6 +25,7 @@ import com.puntogris.posture.utils.Constants.INTERVAL_KEY
 import com.puntogris.posture.utils.Constants.SOUND_PICKER_KEY
 import com.puntogris.posture.utils.Constants.TIME_UNIT_KEY
 import com.puntogris.posture.utils.Constants.VIBRATION_PICKER_KEY
+import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -61,6 +62,12 @@ class NewReminderBottomSheet : BaseBottomSheetFragment<BottomSheetNewReminderBin
         }
     }
 
+    private fun subscribeUi(adapter: ReminderItemAdapter) {
+        viewModel.reminder.observe(viewLifecycleOwner) {
+            adapter.updateConfigData(it)
+        }
+    }
+
     private fun setFragmentResultListeners(){
         setFragmentResultListener(VIBRATION_PICKER_KEY){ _, bundle ->
             viewModel.saveReminderVibrationPattern(bundle.getInt(DATA_KEY))
@@ -70,28 +77,25 @@ class NewReminderBottomSheet : BaseBottomSheetFragment<BottomSheetNewReminderBin
         }
     }
 
-    private fun subscribeUi(adapter: ReminderItemAdapter) {
-        viewModel.reminder.observe(viewLifecycleOwner) {
-            adapter.updateConfigData(it)
-        }
-    }
 
     fun onSaveReminder() {
-        lifecycleScope.launch {
-            val result = viewModel.saveReminder()
-            handleResultOfSavingReminder(result)
+        if (viewModel.isReminderValid()){
+            lifecycleScope.launch {
+                handleResultOfSavingReminder(viewModel.saveReminder())
+            }
+        }else{
+            showSnackBar(R.string.snack_reminder_not_valid)
         }
     }
 
     private fun handleResultOfSavingReminder(result: SimpleResult){
         when(result){
             SimpleResult.Failure -> {
-             //   dismiss()
                 showSnackBar(R.string.snack_create_reminder_error)
             }
             SimpleResult.Success -> {
-          //      dismiss()
-                showSnackBar(R.string.snack_create_reminder_success)
+                dismiss()
+                UiInterface.showSnackBar(getString(R.string.snack_create_reminder_success))
             }
         }
     }

@@ -68,4 +68,12 @@ data class Reminder(
     fun alarmPastMidnightAndOutOfRange(minutesSinceMidnight: Int) =
        minutesSinceMidnight in (endTime + 1) until startTime
 
+    fun isValid():Boolean{
+        return (name.isNotBlank() &&
+                timeInterval != 0 &&
+                startTime != 0 &&
+                endTime != 0 &&
+                alarmDays.isNotEmpty()
+                )
+    }
 }

@@ -59,4 +59,6 @@ class NewReminderViewModel @Inject constructor(
             }
         }
     }
+
+    fun isReminderValid() = reminder.value!!.isValid()
 }

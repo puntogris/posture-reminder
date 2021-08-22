@@ -38,5 +38,9 @@ object Constants {
     const val PANDA_ANIMATION = "pref_panda_animation"
     const val REMINDER_STATE_KEY = "reminder_state_key"
 
+    //Work manager
+    const val SYNC_ACCOUNT_WORKER = "sync_account_worker"
+    const val REMINDER_ID_WORKER_DATA = "upload_reminder_worker"
+
 
 }

@@ -9,6 +9,7 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.*
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.puntogris.posture.utils.Constants
+import com.puntogris.posture.utils.Constants.SYNC_ACCOUNT_WORKER
 import dagger.hilt.android.HiltAndroidApp
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -27,11 +28,11 @@ class App: Application(), Configuration.Provider{
     }
 
     private fun setupSyncAccountWorkManager(){
-        val syncWork = PeriodicWorkRequestBuilder<UploadWorker>(5, TimeUnit.HOURS)
+        val syncWork = PeriodicWorkRequestBuilder<SyncAccountWorker>(5, TimeUnit.HOURS)
             .setConstraints(Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build())
             .build()
 
-        WorkManager.getInstance(this).enqueueUniquePeriodicWork("upload_work", ExistingPeriodicWorkPolicy.KEEP, syncWork)
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(SYNC_ACCOUNT_WORKER, ExistingPeriodicWorkPolicy.KEEP, syncWork)
     }
 
     private fun createNotificationChannel() {

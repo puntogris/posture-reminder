@@ -74,6 +74,12 @@
     <string name="snack_create_reminder_error">An error occurred creating the reminder</string>
     <string name="interval">Interval</string>
     <string name="snack_active_reminder_not_found">No active reminder found.</string>
+    <string name="name_required">Name*</string>
+    <string name="interval_required">Interval*</string>
+    <string name="days_required">Days*</string>
+    <string name="start_time_required">Start at*</string>
+    <string name="end_time_required">End at*</string>
+    <string name="snack_reminder_not_valid">Fill in all the required data, marked with a \' * \'</string>
 
     <!-- Reminder pickers -->
     <string name="end_time_title">Ending time</string>
