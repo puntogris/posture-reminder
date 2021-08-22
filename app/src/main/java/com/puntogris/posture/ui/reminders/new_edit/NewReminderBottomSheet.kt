@@ -86,11 +86,12 @@ class NewReminderBottomSheet : BaseBottomSheetFragment<BottomSheetNewReminderBin
     private fun handleResultOfSavingReminder(result: SimpleResult){
         when(result){
             SimpleResult.Failure -> {
+             //   dismiss()
                 showSnackBar(R.string.snack_create_reminder_error)
             }
             SimpleResult.Success -> {
+          //      dismiss()
                 showSnackBar(R.string.snack_create_reminder_success)
-                findNavController().navigateUp()
             }
         }
     }

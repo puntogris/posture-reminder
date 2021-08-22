@@ -1,19 +1,28 @@
 package com.puntogris.posture.data.repo.reminder
 
+import android.content.Context
+import androidx.work.*
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.puntogris.posture.ReminderWorker
+import com.puntogris.posture.UploadWorker
 import com.puntogris.posture.data.local.ReminderDao
 import com.puntogris.posture.data.remote.FirebaseReminderDataSource
 import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.model.SimpleResult
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.lang.Exception
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class ReminderRepository @Inject constructor(
     private val reminderFirestore: FirebaseReminderDataSource,
-    private val reminderDao: ReminderDao
+    private val reminderDao: ReminderDao,
+    @ApplicationContext private val context: Context
 ): IReminderRepository {
 
     override fun getAllRemindersFromRoomLiveData() = reminderDao.getAllRemindersLiveData()
@@ -30,32 +39,40 @@ class ReminderRepository @Inject constructor(
 
     override suspend fun insertReminder(reminder: Reminder): SimpleResult = withContext(Dispatchers.IO){
         try {
-            val reminderRef = getReminderRef(reminder)
+            if (reminder.id.isBlank()) fillIdsIfNewReminder(reminder)
             reminderDao.insert(reminder)
-            reminderRef.set(reminder).await()
+            registerFirestoreUploadReminder(reminder.id)
             SimpleResult.Success
         }catch (e:Exception){
             SimpleResult.Failure
         }
     }
 
-    private fun getReminderRef(reminder: Reminder): DocumentReference{
-        return if (reminder.id.isBlank()) getDocumentRefForNewReminder(reminder)
-        else reminderFirestore.getReminderDocumentRefWithId(reminder.id)
-    }
-
-    private fun getDocumentRefForNewReminder(reminder: Reminder): DocumentReference{
+    private fun fillIdsIfNewReminder(reminder: Reminder){
         val ref = reminderFirestore.getNewReminderDocumentRef()
         reminder.apply {
             id = ref.id
             uid = reminderFirestore.getCurrentUserId()
         }
-        return ref
+    }
+
+    private fun registerFirestoreUploadReminder(reminderId: String){
+        val uploadReminder = OneTimeWorkRequestBuilder<ReminderWorker>()
+            .setInputData(Data.Builder().putString("reminderId", reminderId).build())
+            .setConstraints(Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build())
+            .build()
+        WorkManager.getInstance(context).enqueue(uploadReminder)
     }
 
     override fun getActiveReminderLiveData() = reminderDao.getActiveReminderLiveData()
 
     override suspend fun getActiveReminder() = reminderDao.getActiveReminder()
+
+    override suspend fun insertReminderIntoFirestoreFromRoom(reminderId: String){
+        reminderDao.getReminderWithId(reminderId)?.let {
+            reminderFirestore.getReminderDocumentRefWithId(reminderId).set(it).await()
+        }
+    }
 
 
 }

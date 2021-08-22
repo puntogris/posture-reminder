@@ -7,7 +7,9 @@ import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetExerciseBinding
 import com.puntogris.posture.ui.base.BaseBottomSheetFragment
 import com.puntogris.posture.utils.Constants.PROGRESS_BAR_SMOOTH_OFFSET
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ExerciseBottomSheet: BaseBottomSheetFragment<BottomSheetExerciseBinding>(R.layout.bottom_sheet_exercise,true) {
 
     private val args: ExerciseBottomSheetArgs by navArgs()

@@ -16,6 +16,9 @@ interface ReminderDao {
     @Delete
     suspend fun delete(reminder: Reminder)
 
+    @Query("SELECT * FROM reminder WHERE id = :reminderId")
+    suspend fun getReminderWithId(reminderId: String): Reminder?
+
     @RewriteQueriesToDropUnusedColumns
     @Query("SELECT * FROM reminder r INNER JOIN UserPrivateData u ON currentReminderId = r.id")
     suspend fun getActiveReminder(): Reminder?
