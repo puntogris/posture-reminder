@@ -11,6 +11,7 @@ class ReminderNameViewHolder(private val binding: ReminderNameVhBinding): Recycl
 
     fun bind(reminderItem: ReminderUi.Name, clickListener: (ReminderUi)-> Unit){
         binding.item = reminderItem
+        if (reminderItem.value.isNotBlank()) binding.itemEditText.setText(reminderItem.value)
         binding.itemEditText.addTextChangedListener {
             reminderItem.value = it.toString()
             clickListener(reminderItem)

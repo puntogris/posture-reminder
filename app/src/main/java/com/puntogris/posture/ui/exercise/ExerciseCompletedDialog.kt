@@ -18,7 +18,7 @@ class ExerciseCompletedDialog: DialogFragment()  {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         lifecycleScope.launch {
-            viewModel.updateDayLog()
+            viewModel.updateDayLogWithReward()
         }
         return MaterialAlertDialogBuilder(requireContext(), R.style.MaterialAlertDialog_rounded)
             .setTitle(R.string.completed_exercise_title)

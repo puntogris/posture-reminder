@@ -19,7 +19,6 @@ class NewReminderViewModel @Inject constructor(
 
     suspend fun saveReminder() = reminderRepository.insertReminder(_reminder.value!!)
 
-
     fun updateReminder(reminder: Reminder) {
         _reminder.value = reminder
     }

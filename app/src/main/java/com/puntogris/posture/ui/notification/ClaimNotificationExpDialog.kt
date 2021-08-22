@@ -21,7 +21,7 @@ class ClaimNotificationExpDialog: DialogFragment(){
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         lifecycleScope.launch {
-            viewModel.updateUserExp(EXPERIENCE_PER_NOTIFICATION)
+            viewModel.updateDayLogWithReward()
         }
 
         return MaterialAlertDialogBuilder(requireContext(), R.style.MaterialAlertDialog_rounded)

@@ -50,9 +50,9 @@ class ExerciseViewModel @Inject constructor(
         super.onCleared()
     }
 
-    suspend fun updateDayLog(){
+    suspend fun updateDayLogWithReward(){
         val log = DayLog(expGained = EXPERIENCE_PER_EXERCISE, exercises = 1)
-        userRepository.updateUserExperienceRoom(log)
+        userRepository.updateRoomDayLogAndUser(log)
     }
 
 }

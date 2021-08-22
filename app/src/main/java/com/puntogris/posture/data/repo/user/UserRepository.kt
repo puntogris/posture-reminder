@@ -41,7 +41,7 @@ class UserRepository @Inject constructor(
         userDao.updateCurrentUserReminder(reminderId)
     }
 
-    override suspend fun updateUserExperienceRoom(dayLog: DayLog)= withContext(Dispatchers.IO){
+    override suspend fun updateRoomDayLogAndUser(dayLog: DayLog)= withContext(Dispatchers.IO){
         try {
             appDatabase.withTransaction {
                 userDao.updateUserExperience(dayLog.expGained)
@@ -52,6 +52,4 @@ class UserRepository @Inject constructor(
             SimpleResult.Failure
         }
     }
-
-
 }
