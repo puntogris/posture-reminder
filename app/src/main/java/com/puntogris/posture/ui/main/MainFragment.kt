@@ -1,12 +1,16 @@
 package com.puntogris.posture.ui.main
 
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentMainBinding
+import com.puntogris.posture.model.AlarmStatus
 import com.puntogris.posture.ui.MainViewModel
 import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.utils.*
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainFragment: BaseFragmentOptions<FragmentMainBinding>(R.layout.fragment_main) {
@@ -21,6 +25,7 @@ class MainFragment: BaseFragmentOptions<FragmentMainBinding>(R.layout.fragment_m
             it.pandaAnimation.setPadding(0, 0, -100, -110)
         }
         setupPager()
+        observeCurrentReminderState()
     }
 
     private fun setupPager(){
@@ -39,21 +44,36 @@ class MainFragment: BaseFragmentOptions<FragmentMainBinding>(R.layout.fragment_m
         }
     }
 
+    private fun observeCurrentReminderState(){
+        lifecycleScope.launch {
+            viewModel.alarmStatus.collect {
+                handleAlarmStatusResult(it)
+            }
+        }
+    }
+
+    private fun handleAlarmStatusResult(result: AlarmStatus){
+        when(result){
+            is AlarmStatus.Activated -> {
+                UiInterface.showSnackBar(
+                    getString(R.string.snack_notifications_set,
+                        Utils.minutesFromMidnightToHourlyTime(result.reminder.startTime),
+                        Utils.minutesFromMidnightToHourlyTime(result.reminder.endTime)
+                    ))
+            }
+            AlarmStatus.Canceled -> {
+                UiInterface.showSnackBar(getString(R.string.snack_alarms_off))
+            }
+            AlarmStatus.NoConfigured -> {
+                UiInterface.showSnackBar(getString(R.string.snack_active_reminder_not_found))
+            }
+        }
+    }
+
     fun onToggleReminderClicked(){
-//        if (viewModel.isAppActive()) {
-//            viewModel.cancelAlarms()
-//            createSnackBar(getString(R.string.alarms_off_toast))
-//        }
-//        else {
-//            viewModel.startAlarm()
-//            createSnackBar(getString(
-//                R.string.notifications_set_toast,
-//                minutesFromMidnightToHourlyTime(viewModel.reminder.value!!.startTime),
-//                minutesFromMidnightToHourlyTime(viewModel.reminder.value!!.endTime)
-//            ))
-//        }
-      //  binding.enableSummaryTextview.playShakeAnimation()
-     //   binding.enableTextView.playShakeAnimation()
+        lifecycleScope.launch {
+            viewModel.toggleAlarm()
+        }
     }
 
     override fun onDestroyView() {

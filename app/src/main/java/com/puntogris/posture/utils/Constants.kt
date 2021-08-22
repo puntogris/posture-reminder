@@ -35,7 +35,7 @@ object Constants {
     const val LAST_VERSION_CODE = "last_version_code"
     const val APP_THEME = "pref_app_theme"
     const val PANDA_ANIMATION = "pref_panda_animation"
-
+    const val REMINDER_STATE_KEY = "reminder_state_key"
 
 
 }

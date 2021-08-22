@@ -9,4 +9,5 @@ interface IReminderRepository {
     suspend fun deleteReminder(reminder: Reminder): SimpleResult
     suspend fun insertReminder(reminder: Reminder): SimpleResult
     fun getActiveReminderLiveData(): LiveData<Reminder?>
+    suspend fun getActiveReminder(): Reminder?
 }

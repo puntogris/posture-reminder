@@ -5,10 +5,12 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import com.puntogris.posture.BuildConfig
+import com.puntogris.posture.model.AlarmStatus
 import com.puntogris.posture.utils.Constants.APP_PREFERENCES_NAME
 import com.puntogris.posture.utils.Constants.APP_THEME
 import com.puntogris.posture.utils.Constants.LAST_VERSION_CODE
 import com.puntogris.posture.utils.Constants.PANDA_ANIMATION
+import com.puntogris.posture.utils.Constants.REMINDER_STATE_KEY
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -33,11 +35,6 @@ class DataStore @Inject constructor(@ApplicationContext private val context: Con
         if (value == -1) 2 else value - 1
     }
 
-
-    fun appThemeFlow2() = context.dataStore.data.map {
-        it[intPreferencesKey(APP_THEME)] ?: 2
-    }
-
     suspend fun setAppTheme(value: Int) = context.dataStore.edit {
         it[intPreferencesKey(APP_THEME)] = value
     }
@@ -48,19 +45,19 @@ class DataStore @Inject constructor(@ApplicationContext private val context: Con
         }
     }
 
-    fun currentReminderState() = context.dataStore.data.map {
-        it[booleanPreferencesKey("a")] ?: false
+    fun alarmStatus() = context.dataStore.data.map {
+        it[booleanPreferencesKey(REMINDER_STATE_KEY)] ?: false
     }
 
-    suspend fun setCurrentReminderState(value: Boolean){
+    suspend fun isCurrentReminderStateActive(value: Boolean){
         context.dataStore.edit {
-            it[booleanPreferencesKey("a")] = value
+            it[booleanPreferencesKey(REMINDER_STATE_KEY)] = value
         }
     }
 
-    suspend fun toggleIsCurrentReminderState(){
+    suspend fun toggleCurrentReminderState(){
         context.dataStore.edit {
-            it[booleanPreferencesKey("a")] = !(it[booleanPreferencesKey("a")] ?: false)
+            it[booleanPreferencesKey(REMINDER_STATE_KEY)] = !(it[booleanPreferencesKey(REMINDER_STATE_KEY)] ?: false)
         }
     }
 

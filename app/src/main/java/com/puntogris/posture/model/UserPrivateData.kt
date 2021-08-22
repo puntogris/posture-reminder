@@ -36,7 +36,7 @@ data class UserPrivateData(
     val creationDate: Timestamp = Timestamp.now(),
 
     @ColumnInfo
-    @get:Exclude var experience: Int = 0,
+    var experience: Int = 0,
 
     @ColumnInfo
     val currentReminderId: String = ""

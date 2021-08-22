@@ -134,7 +134,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         }
     }
 
-    override fun showSnackBar(message: Int,
+    override fun showSnackBar(message: String,
                               duration: Int,
                               actionText: Int,
                               actionListener: View.OnClickListener?){

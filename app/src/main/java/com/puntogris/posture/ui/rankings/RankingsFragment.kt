@@ -36,7 +36,7 @@ class RankingsFragment : BaseFragmentOptions<FragmentRankingsBinding>(R.layout.f
 
     private fun handleResultFromFetchRankings(result: RepoResult<List<UserPublicProfile>>) {
         when (result) {
-            is RepoResult.Error -> UiInterface.showSnackBar(R.string.snack_connection_error)
+            is RepoResult.Error -> UiInterface.showSnackBar(getString(R.string.snack_connection_error))
             is RepoResult.Success -> rankingsAdapter.submitList(result.data)
         }
     }

@@ -6,7 +6,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
 
 interface UiInterfaceListener {
-    fun showSnackBar(@StringRes message: Int,
+    fun showSnackBar(message: String,
                      duration: Int = Snackbar.LENGTH_LONG,
                      actionText: Int = R.string.action_undo,
                      actionListener: View.OnClickListener? = null)

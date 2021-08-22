@@ -1,13 +1,15 @@
 package com.puntogris.posture
 
+import android.app.AlarmManager.ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED
 import android.content.Context
 import android.content.Intent
 import android.media.AudioManager
 import android.net.Uri
+import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.work.ForegroundInfo
 import com.puntogris.posture.data.local.ReminderDao
+import com.puntogris.posture.data.repo.reminder.ReminderRepository
 import com.puntogris.posture.utils.Constants.DAILY_ALARM_TRIGGERED
 import com.puntogris.posture.utils.Constants.POSTURE_NOTIFICATION_ID
 import com.puntogris.posture.utils.Constants.REPEATING_ALARM_TRIGGERED
@@ -26,40 +28,47 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
 
     @Inject
     lateinit var alarm: Alarm
+
     @Inject
-    lateinit var reminderDao: ReminderDao
-    @Inject
-    lateinit var dataStore: DataStore
+    lateinit var reminderRepository: ReminderRepository
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
 
         when (intent.action) {
-//            DAILY_ALARM_TRIGGERED -> goAsync {
-//                val reminder = reminderDao.getActiveReminder()
-//                if (dayOfTheWeek() in reminder.alarmDays) alarm.startRepeatingAlarm(reminder.timeInterval)
-//
-//                reminderDao.getActiveReminder().apply {
-//                    if (dayOfTheWeek() in alarmDays) alarm.startRepeatingAlarm(timeInterval)
-//                }
+            DAILY_ALARM_TRIGGERED -> goAsync {
+                reminderRepository.getActiveReminder()?.apply {
+                    if (dayOfTheWeek() in alarmDays) alarm.startRepeatingAlarm(timeInterval)
+                }
             }
-//            REPEATING_ALARM_TRIGGERED -> goAsync {
-//                val minutesSinceMidnight = minutesSinceMidnight()
-//                reminderDao.getActiveReminder().apply {
-//                    if (alarmNotPastMidnight()) {
-//                        if (minutesSinceMidnight <= endTime)
-//                            deliverNotificationAndSetNewAlarm(context, timeInterval)
-//                        else
-//                            alarm.cancelRepeatingAlarm()
-//                    } else {
-//                        if (alarmPastMidnightAndOutOfRange(minutesSinceMidnight))
-//                            alarm.cancelRepeatingAlarm()
-//                        else
-//                            deliverNotificationAndSetNewAlarm(context, timeInterval)
-//                    }
-//                }
-//            }
-//        }
+            REPEATING_ALARM_TRIGGERED -> goAsync {
+                val minutesSinceMidnight = minutesSinceMidnight()
+                reminderRepository.getActiveReminder()?.apply {
+                    if (alarmNotPastMidnight()) {
+                        if (minutesSinceMidnight <= endTime)
+                            deliverNotificationAndSetNewAlarm(context, timeInterval)
+                        else
+                            alarm.cancelRepeatingAlarm()
+                    } else {
+                        if (alarmPastMidnightAndOutOfRange(minutesSinceMidnight))
+                            alarm.cancelRepeatingAlarm()
+                        else
+                            deliverNotificationAndSetNewAlarm(context, timeInterval)
+                    }
+                }
+            }
+            ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    if (alarm.canScheduleExactAlarms()){
+                        goAsync {
+                            reminderRepository.getActiveReminder()?.let {
+                                alarm.startDailyAlarm(it)
+                            }
+                        }
+                    }else alarm.cancelAlarms()
+                }
+            }
+        }
     }
 
     private fun phoneIsInNormalMode(context: Context): Boolean {
@@ -67,28 +76,27 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
         return audioManager.ringerMode == AudioManager.RINGER_MODE_NORMAL
     }
 
-  //  private fun deliverNotificationAndSetNewAlarm(context: Context, timeInterval: Int) {
- //       goAsync {
-//            val reminder = reminderDao.getActiveReminder()
-//
-//            val builder = NotificationCompat.Builder(context, POSTURE_NOTIFICATION_ID)
-//                .setSmallIcon(R.drawable.ic_notifications_24px)
-//                .setContentTitle(context.getString(R.string.posture_notification_title))
-//                .setContentText(context.getString(R.string.posture_notification_text))
-//                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-//
-//            reminder.let {
-//                if (it.soundUri.isNotBlank() && phoneIsInNormalMode(context)) builder.setSound(
-//                    Uri.parse(it.soundUri)
-//                )
-//                if (it.vibrationPattern != 0) builder.setVibrate(vibrationPatterns[it.vibrationPattern])
-//            }
-//
-//            with(NotificationManagerCompat.from(context)) {
-//                notify(100, builder.build())
-//            }
-//
-//            alarm.startRepeatingAlarm(timeInterval)
- //       }
- //   }
+    private fun deliverNotificationAndSetNewAlarm(context: Context, timeInterval: Int) {
+        goAsync {
+            val reminder = reminderRepository.getActiveReminder()
+
+            val builder = NotificationCompat.Builder(context, POSTURE_NOTIFICATION_ID)
+                .setSmallIcon(R.drawable.ic_notifications_24px)
+                .setContentTitle(context.getString(R.string.posture_notification_title))
+                .setContentText(context.getString(R.string.posture_notification_text))
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+            reminder?.let {
+                if (it.soundUri.isNotBlank() && phoneIsInNormalMode(context))
+                    builder.setSound(Uri.parse(it.soundUri))
+                if (it.vibrationPattern != 0) builder.setVibrate(vibrationPatterns[it.vibrationPattern])
+            }
+
+            with(NotificationManagerCompat.from(context)) {
+                notify(100, builder.build())
+            }
+
+            alarm.startRepeatingAlarm(timeInterval)
+        }
+    }
 }

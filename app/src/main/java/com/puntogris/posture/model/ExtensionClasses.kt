@@ -1,5 +1,6 @@
 package com.puntogris.posture.model
 
+import com.puntogris.posture.Alarm
 import java.lang.Exception
 
 sealed class SimpleResult{
@@ -34,4 +35,10 @@ sealed class UserAccount{
 sealed class RepoResult<out T : Any> {
     data class Success<out T : Any>(val data: T) : RepoResult<T>()
     data class Error(val exception: Exception) : RepoResult<Nothing>()
+}
+
+sealed class AlarmStatus{
+    class Activated(val reminder: Reminder): AlarmStatus()
+    object Canceled: AlarmStatus()
+    object NoConfigured: AlarmStatus()
 }
