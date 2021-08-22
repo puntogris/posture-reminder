@@ -57,7 +57,7 @@ ext{
     tabIndicatorVersion = "4.2"
     fragmentKtxVersion = "1.4.0-alpha06"
     roomVersion = "2.4.0-alpha04"
-    workManagerVersion = "2.5.0"
+    workManagerVersion = "2.7.0-alpha05"
 }
 
 dependencies {
@@ -144,5 +144,6 @@ dependencies {
 
     //Work manager Kotlin + coroutines
     implementation "androidx.work:work-runtime-ktx:$workManagerVersion"
+
 
 }

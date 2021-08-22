@@ -1,13 +1,17 @@
 package com.puntogris.posture.ui.main
 
 import android.app.Activity
+import android.app.AlarmManager
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.core.content.PermissionChecker
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.puntogris.posture.R
@@ -20,18 +24,14 @@ import com.puntogris.posture.utils.Constants.PACKAGE_URI_NAME
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.util.jar.Manifest
 
 @AndroidEntryPoint
 class MainFragment: BaseFragmentOptions<FragmentMainBinding>(R.layout.fragment_main) {
 
     private val viewModel: MainViewModel by activityViewModels()
 
-    private val requestPermissionLauncher: ActivityResultLauncher<Intent> by lazy {
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
-            if (result.resultCode == Activity.RESULT_OK) viewModel.toggleAlarm()
-            else UiInterface.showSnackBar(getString(R.string.snack_permission_required))
-        }
-    }
+    lateinit var requestPermissionLauncher: ActivityResultLauncher<Intent>
 
     override fun initializeViews() {
         binding.let {
@@ -42,6 +42,7 @@ class MainFragment: BaseFragmentOptions<FragmentMainBinding>(R.layout.fragment_m
         }
         setupPager()
         observeCurrentReminderState()
+        initAlarmPermissionLauncherIfSdkS()
     }
 
     private fun setupPager(){
@@ -87,7 +88,9 @@ class MainFragment: BaseFragmentOptions<FragmentMainBinding>(R.layout.fragment_m
     }
 
     fun onToggleReminderClicked(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) showSnackWithPermissionAction()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !viewModel.canScheduleExactAlarms()) {
+            showSnackWithPermissionAction()
+        }
         else viewModel.toggleAlarm()
     }
 
@@ -106,6 +109,15 @@ class MainFragment: BaseFragmentOptions<FragmentMainBinding>(R.layout.fragment_m
         requestPermissionLauncher.launch(Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).also {
             it.data = Uri.parse(PACKAGE_URI_NAME)
         })
+    }
+
+    private fun initAlarmPermissionLauncherIfSdkS(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
+            requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+                if (result.resultCode == Activity.RESULT_OK) viewModel.toggleAlarm()
+                else UiInterface.showSnackBar(getString(R.string.snack_permission_required))
+            }
+        }
     }
 
     override fun onDestroyView() {

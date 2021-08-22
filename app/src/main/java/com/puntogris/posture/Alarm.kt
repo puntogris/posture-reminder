@@ -40,7 +40,6 @@ class Alarm @Inject constructor(@ApplicationContext private val context: Context
             200,
             repeatingAlarmIntent,
             PendingIntent.FLAG_IMMUTABLE
-
     )
 
     fun startDailyAlarm(reminder: Reminder){

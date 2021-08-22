@@ -84,7 +84,6 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
                 .setDestination(R.id.claimNotificationExpDialog)
                 .createPendingIntent()
 
-
             val builder = NotificationCompat.Builder(context, POSTURE_NOTIFICATION_ID)
                 .setSmallIcon(R.drawable.ic_app_logo)
                 .setContentTitle(context.getString(R.string.posture_notification_title))

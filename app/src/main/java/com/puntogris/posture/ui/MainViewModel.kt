@@ -1,5 +1,7 @@
 package com.puntogris.posture.ui
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
 import com.puntogris.posture.Alarm
 import com.puntogris.posture.data.repo.day_logs.DayLogsRepository
@@ -50,5 +52,8 @@ class MainViewModel @Inject constructor(
     }
 
     fun getLastTwoDaysHistory() = dayLogsRepository.getLastTwoDaysLogsLiveData()
+
+    @RequiresApi(Build.VERSION_CODES.S)
+    fun canScheduleExactAlarms() = alarm.canScheduleExactAlarms()
 
 }
