@@ -85,9 +85,6 @@ fun Fragment.isIgnoringBatteryOptimizations(): Boolean{
 
 fun <T> MutableLiveData<T>.setField(transform: T.() -> Unit) { this.value = this.value?.apply(transform) }
 
-fun LocalDate.getEpochTimestamp() =
-    atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli() / 1000
-
 fun ViewPager2.setPageFadeTransformer(){
     setPageTransformer { page, position ->
         page.alpha = when {
@@ -155,10 +152,6 @@ fun BottomSheetDialogFragment.showSnackBar(
 fun Context.hideKeyboard(view: View) {
     val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
     inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
-}
-
-fun Activity.hideKeyboard() {
-    hideKeyboard(currentFocus ?: View(this))
 }
 
 fun Fragment.hideKeyboard() {

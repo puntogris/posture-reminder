@@ -69,7 +69,7 @@ class AccountFragment : BaseFragmentOptions<FragmentAccountBinding>(R.layout.fra
 
         for (i in 6 downTo 0L){
             val day = today.minusDays(i)
-            val dayString = if (i == 0L) "Hoy" else day.getDayStringFormatted()
+            val dayString = if (i == 0L) getString(R.string.today) else day.getDayStringFormatted()
 
             val roomEntry = data.singleOrNull{ it.date == day.toString()}
             val value = roomEntry?.expGained?.toFloat() ?: 0F

@@ -9,12 +9,10 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.NavDeepLinkBuilder
-import com.puntogris.posture.data.local.ReminderDao
 import com.puntogris.posture.data.repo.reminder.ReminderRepository
 import com.puntogris.posture.utils.Constants.DAILY_ALARM_TRIGGERED
 import com.puntogris.posture.utils.Constants.POSTURE_NOTIFICATION_ID
 import com.puntogris.posture.utils.Constants.REPEATING_ALARM_TRIGGERED
-import com.puntogris.posture.utils.DataStore
 import com.puntogris.posture.utils.Utils.dayOfTheWeek
 import com.puntogris.posture.utils.Utils.minutesSinceMidnight
 import com.puntogris.posture.utils.Utils.vibrationPatterns
@@ -93,7 +91,7 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
                 .setContentText(context.getString(R.string.posture_notification_text))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(claimExpIntent)
-                .addAction(R.drawable.ic_baseline_home_24, "Reclama tu exp", claimExpIntent)
+                .addAction(R.drawable.ic_baseline_home_24, context.getString(R.string.claim_exp_notification_action_title), claimExpIntent)
 
             reminder?.let {
                 if (it.soundUri.isNotBlank() && phoneIsInNormalMode(context))

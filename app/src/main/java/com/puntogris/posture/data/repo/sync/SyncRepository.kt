@@ -5,6 +5,7 @@ import com.puntogris.posture.data.local.UserDao
 import com.puntogris.posture.data.remote.FirebaseReminderDataSource
 import com.puntogris.posture.data.remote.FirebaseUserDataSource
 import com.puntogris.posture.model.*
+import com.puntogris.posture.utils.Constants.EXPERIENCE_FIELD
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -30,21 +31,20 @@ class SyncRepository @Inject constructor(
             }
         }
 
-
     private suspend fun checkIfUserIsNewAndCreateIfNot(user: UserPrivateData): UserAccount {
         val userDocument = firestoreUser.getUserPrivateDataRef().get().await()
         return if (!userDocument.exists()) {
             insertNewUserIntoRoomAndFirestore(user)
             UserAccount.New
         } else {
-            checkForLatestDataAndInsertUser(user)
+            checkForLatestDataAndInsertUser(userDocument.toObject(UserPrivateData::class.java)!!)
             UserAccount.Registered
         }
     }
 
     private suspend fun checkForLatestDataAndInsertUser(user: UserPrivateData){
         val roomUser = userDao.getUser()
-        if (roomUser.id == roomUser.id && roomUser.experience > user.experience) return
+        if (roomUser != null && roomUser.id == roomUser.id && roomUser.experience > user.experience) return
         else userDao.insert(user)
     }
 
@@ -74,10 +74,12 @@ class SyncRepository @Inject constructor(
 
     override suspend fun syncUserExperienceInFirestoreWithRoom() {
         val roomUser = userDao.getUser()
-        firestoreUser.runBatch().apply {
-            update(firestoreUser.getUserPublicProfileRef(),"experience", roomUser.experience)
-            update(firestoreUser.getUserPrivateDataRef(),"experience", roomUser.experience)
-        }.commit().await()
+        roomUser?.let {
+            firestoreUser.runBatch().apply {
+                update(firestoreUser.getUserPublicProfileRef(),EXPERIENCE_FIELD, it.experience)
+                update(firestoreUser.getUserPrivateDataRef(),EXPERIENCE_FIELD, it.experience)
+            }.commit().await()
+        }
     }
 
 }

@@ -10,6 +10,7 @@ import com.puntogris.posture.model.RepoResult
 import com.puntogris.posture.model.UserPublicProfile
 import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.ui.rankings.RankingsAdapter
+import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.gone
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -46,7 +47,7 @@ class PortalFragment : BaseFragmentOptions<FragmentPortalBinding>(R.layout.fragm
     private fun handleResultFromFetchRankings(result: RepoResult<List<UserPublicProfile>>){
         when(result){
             is RepoResult.Error -> {
-                //show snack or change ui to show error
+                UiInterface.showSnackBar(getString(R.string.snack_connection_error))
             }
             is RepoResult.Success -> {
                 binding.shimmerViewContainer.apply {

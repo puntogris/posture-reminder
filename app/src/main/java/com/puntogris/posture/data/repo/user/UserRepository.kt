@@ -8,6 +8,7 @@ import com.puntogris.posture.data.remote.FirebaseReminderDataSource
 import com.puntogris.posture.data.remote.FirebaseUserDataSource
 import com.puntogris.posture.model.DayLog
 import com.puntogris.posture.model.SimpleResult
+import com.puntogris.posture.utils.Constants.USER_NAME_FIELD
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -27,8 +28,8 @@ class UserRepository @Inject constructor(
     override suspend fun updateUsernameInRoomAndFirestore(name: String): SimpleResult = withContext(Dispatchers.IO){
         try {
             firebaseUser.runBatch().apply {
-                update(firebaseUser.getUserPrivateDataRef(), "name", name)
-                update(firebaseUser.getUserPublicProfileRef(), "name", name)
+                update(firebaseUser.getUserPrivateDataRef(), USER_NAME_FIELD, name)
+                update(firebaseUser.getUserPublicProfileRef(), USER_NAME_FIELD, name)
             }.commit().await()
             userDao.updateUsername(name)
             SimpleResult.Success

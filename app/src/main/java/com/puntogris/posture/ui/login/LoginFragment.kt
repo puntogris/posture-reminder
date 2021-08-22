@@ -14,6 +14,7 @@ import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentLoginBinding
 import com.puntogris.posture.model.LoginResult
 import com.puntogris.posture.ui.base.BaseFragment
+import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.gone
 import com.puntogris.posture.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,8 +34,10 @@ class LoginFragment :BaseFragment<FragmentLoginBinding>(R.layout.fragment_login)
 
     private fun registerActivityResultLauncher(){
         loginActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-            if (it.resultCode == Activity.RESULT_OK) handleLoginActivityResult(it.data)
-            // else mostrar snack diciendo que no se encontro uan cuenta o que hay problemas de conexcion
+            if (it.resultCode == Activity.RESULT_OK)
+                handleLoginActivityResult(it.data)
+            else if (it.resultCode == Activity.RESULT_CANCELED)
+                UiInterface.showSnackBar(getString(R.string.snack_fail_login))
         }
     }
 
@@ -44,7 +47,7 @@ class LoginFragment :BaseFragment<FragmentLoginBinding>(R.layout.fragment_login)
             val account = task.getResult(ApiException::class.java)!!
             authUserIntoFirebase(account.idToken!!)
         } catch (e: ApiException) {
-            // Google Sign In failed, update UI appropriately
+            UiInterface.showSnackBar(getString(R.string.snack_fail_login))
         }
     }
 
@@ -59,6 +62,7 @@ class LoginFragment :BaseFragment<FragmentLoginBinding>(R.layout.fragment_login)
     private fun handleAuthUserIntoFirebaseResult(result: LoginResult){
         when (result) {
             is LoginResult.Error -> {
+                UiInterface.showSnackBar(getString(R.string.snack_fail_login))
                 binding.progressBar.gone()
             }
             LoginResult.InProgress -> {

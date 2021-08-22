@@ -8,6 +8,7 @@ import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentSynAccountBinding
 import com.puntogris.posture.model.SimpleResult
 import com.puntogris.posture.ui.base.BaseFragment
+import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.playAnimationOnce
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -44,6 +45,13 @@ class SynAccountFragment : BaseFragment<FragmentSynAccountBinding>(R.layout.frag
         binding.apply {
             animationView.playAnimationOnce(R.raw.error)
             title.text = getString(R.string.account_sync_error)
+            continueButton.text = getString(R.string.action_exit)
+            continueButton.isEnabled = true
+            continueButton.setOnClickListener {
+                viewModel.logOut()
+                findNavController().navigateUp()
+                UiInterface.showSnackBar(getString(R.string.snack_connection_error))
+            }
         }
     }
 

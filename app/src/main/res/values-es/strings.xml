@@ -11,6 +11,7 @@
     <string name="ticket_label">Ticket</string>
     <string name="settings_label">Configuracion</string>
     <string name="reminders_label">Recordatorios</string>
+    <string name="battery_optimization_label">Optimizacion de bateria</string>
 
     <!-- Actions -->
     <string name="action_done">Listo</string>
@@ -25,10 +26,13 @@
     <string name="action_close_keyboard">Cerrar teclado</string>
     <string name="action_start">Empezar</string>
     <string name="action_select">Seleccionar</string>
+    <string name="action_exit">Salir</string>
+    <string name="action_give_permission">Dar permiso</string>
 
     <!-- Login -->
     <string name="login_button">tap para entrar</string>
     <string name="help_login_problems">Problemas para ingresar?</string>
+    <string name="snack_fail_login">Login cancelado, error de conexión o no se encontro una cuenta de google en tu celular.</string>
 
     <!-- Welcome -->
     <string name="welcome_pager_title1">Vivi al máximo!</string>
@@ -52,6 +56,11 @@
     <string name="battery_optimization_step_two_light"><![CDATA[<font color=\'#C0C0C4\'>2 - Selecciona </font><b><font color=\'#ffffff\'> no optimizar</font></b><font color=\'#C0C0C4\'> la bateria</font>]]></string>
     <string name="battery_optimization_step_one_dark"><![CDATA[<font color=\'#757575\'>1 - Busca </font><b><font color=\'#000000\'>Recordatorio de Postura</font></b><font color=\'#757575\'> en el listado</font>]]></string>
     <string name="battery_optimization_step_two_dark"><![CDATA[<font color=\'#757575\'>2 - Selecciona </font><b><font color=\'#000000\'> no optimizar</font></b><font color=\'#757575\'> la bateria</font>]]></string>
+    <string name="all_in_order">Todo en orden</string>
+    <string name="require_action">Requiere acción</string>
+    <string name="status">Estado:</string>
+    <string name="battery_optimization_alert2">* Esto no es obligatorio, pero puede que no todas las notificaciones sean ejecutadas.</string>
+    <string name="battery_optimization_alert1">Para un mejor funcionamiento de la aplicacion te pedimos que desactives la optimizacion de bateria en respecto a nuestra aplicacion.\n\nNo te preocupes no gastaremos mucha bateria.</string>
 
     <!-- Ticket -->
     <string name="snack_send_ticket_success">Enviado correctamente. Gracias por ayudarnos a mejorara nuestra app.</string>
@@ -80,6 +89,10 @@
     <string name="start_time_required">Inciar*</string>
     <string name="end_time_required">Finalizar*</string>
     <string name="snack_reminder_not_valid">Complete todos los datos requeridos, marcados con un \' * \'</string>
+    <string name="create_reminder_interval_summary">Seleccione el intervalo</string>
+    <string name="create_reminder_days_summary">Seleccione los días</string>
+    <string name="create_reminder_start_summary">Seleccione el inicio</string>
+    <string name="create_reminder_end_summary">Seleccione la finalizacion</string>
 
     <!-- Reminder pickers -->
     <string name="end_time_title">Hora de finalizacion</string>
@@ -114,6 +127,7 @@
     <string name="claim_experience_title">Felicitaciones!</string>
     <string name="claim_experience_message">Agregaste %1$d de experiencia a tu cuenta!</string>
     <string name="claim_experience_exercise_message">Haz un ejercicio y duplica tu experienca ganada! No te tomara mas de unos minutos!</string>
+    <string name="claim_exp_notification_action_title">Reclama tu exp</string>
 
     <!-- Other -->
     <string name="snack_configuration_updated">Ajustes actualizados</string>
@@ -125,6 +139,9 @@
     <string name="snack_connection_error">Ocurrio un error. Verifique su conexion ntente nuevamente.</string>
     <string name="snack_general_error">Ocurrio un error. Intenta nuevamente.</string>
     <string name="see_global_rankings">Ver ranking global</string>
+    <string name="today">Hoy</string>
+    <string name="snack_permission_required">Este permiso es necesario para poder realizar esta acción.</string>
+    <string name="snack_action_require_permission">Esta acción requiere permisos especiales.</string>
 
     <!-- Exercises -->
     <string name="in_progress">En progreso</string>

@@ -11,4 +11,9 @@ class Ticket (
     var message:String = "",
     val timestamp: Timestamp = Timestamp.now(),
     var type: String = ""
-)
+){
+    companion object{
+        const val PROBLEM_TYPE =  "PROBLEM"
+        const val SUGGESTION_TYPE = "SUGGESTION"
+    }
+}

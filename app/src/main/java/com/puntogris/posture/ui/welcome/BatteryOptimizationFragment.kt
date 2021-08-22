@@ -38,7 +38,7 @@ class BatteryOptimizationFragment : BaseFragment<FragmentBatteryOptimizationBind
     private fun checkPowerStatus(){
         if (isIgnoringBatteryOptimizations()){
             binding.apply {
-                powerManagerState.text = "Todo en orden"
+                powerManagerState.text = getString(R.string.all_in_order)
                 powerStateImage.setImageResource(R.drawable.ic_baseline_check_circle_24)
                 requireOptimizationGroup.gone()
             }

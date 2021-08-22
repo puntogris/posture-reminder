@@ -15,10 +15,10 @@ class ReminderItemAdapter(private val context: Context, private val clickListene
     private val items = listOf(
         ReminderUi.Color(R.color.grey),
         ReminderUi.Name(),
-        ReminderUi.Item.Interval(ItemData(R.string.interval_required, "Seleccione el intervalo")),
-        ReminderUi.Item.Days(ItemData(R.string.days_required, "Seleccione los dias")),
-        ReminderUi.Item.Start(ItemData(R.string.start_time_required, "Seleccione el inicio")),
-        ReminderUi.Item.End(ItemData(R.string.end_time_required, "Seleccione la finalizacion")),
+        ReminderUi.Item.Interval(ItemData(R.string.interval_required, context.getString(R.string.create_reminder_interval_summary))),
+        ReminderUi.Item.Days(ItemData(R.string.days_required, context.getString(R.string.create_reminder_days_summary))),
+        ReminderUi.Item.Start(ItemData(R.string.start_time_required, context.getString(R.string.create_reminder_start_summary))),
+        ReminderUi.Item.End(ItemData(R.string.end_time_required, context.getString(R.string.create_reminder_end_summary))),
         ReminderUi.Item.Sound(ItemData(R.string.sound, context.getString(R.string.disabled))),
         ReminderUi.Item.Vibration(ItemData(R.string.vibration, context.getString(R.string.disabled)))
     )

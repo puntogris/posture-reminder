@@ -11,6 +11,7 @@
     <string name="ticket_label">Ticket</string>
     <string name="settings_label">Settings</string>
     <string name="reminders_label">Reminders</string>
+    <string name="battery_optimization_label">Battery optimization</string>
 
     <!-- Actions -->
     <string name="action_done">Done</string>
@@ -25,10 +26,13 @@
     <string name="action_close_keyboard">Close keyboard</string>
     <string name="action_start">Start</string>
     <string name="action_select">Select</string>
+    <string name="action_exit">Exit</string>
+    <string name="action_give_permission">Give permission</string>
 
     <!-- Login -->
     <string name="login_button">tap para enter</string>
     <string name="help_login_problems">Problems with login?</string>
+    <string name="snack_fail_login">Login canceled, connection error or a google account was not found on your cell phone.</string>
 
     <!-- Welcome -->
     <string name="welcome_pager_title1">Live to the limit!</string>
@@ -52,6 +56,11 @@
     <string name="battery_optimization_step_two_light"><![CDATA[<font color=\'#C0C0C4\'>2 - Select </font><b><font color=\'#ffffff\'> not optimize</font></b><font color=\'#C0C0C4\'> the battery</font>]]></string>
     <string name="battery_optimization_step_one_dark"><![CDATA[<font color=\'#757575\'>1 - Search </font><b><font color=\'#000000\'>Posture Reminder</font></b><font color=\'#757575\'> from the list</font>]]></string>
     <string name="battery_optimization_step_two_dark"><![CDATA[<font color=\'#757575\'>2 - Select </font><b><font color=\'#000000\'> not optimize </font></b><font color=\'#757575\'> the battery</font>]]></string>
+    <string name="all_in_order">all in order</string>
+    <string name="require_action">Requires action</string>
+    <string name="status">Status:</string>
+    <string name="battery_optimization_alert2">* This is not mandatory, but not all notifications may be executed.</string>
+    <string name="battery_optimization_alert1">For a better functioning of the application we ask you to disable the battery optimization in relation to our application.\n\nDon\'t worry, we will not use a lot of battery.</string>
 
     <!-- Ticket -->
     <string name="snack_send_ticket_success">Sent successfully. Thanks for helping us improve our app.</string>
@@ -80,6 +89,10 @@
     <string name="start_time_required">Start at*</string>
     <string name="end_time_required">End at*</string>
     <string name="snack_reminder_not_valid">Fill in all the required data, marked with a \' * \'</string>
+    <string name="create_reminder_interval_summary">Select the interval</string>
+    <string name="create_reminder_days_summary">Select the days</string>
+    <string name="create_reminder_start_summary">Select the start time</string>
+    <string name="create_reminder_end_summary">Select the end time</string>
 
     <!-- Reminder pickers -->
     <string name="end_time_title">Ending time</string>
@@ -114,6 +127,7 @@
     <string name="claim_experience_title">Congratulations!</string>
     <string name="claim_experience_message">You have added %1$d experience to your account!</string>
     <string name="claim_experience_exercise_message">Do an exercise and double your experience gained! It won\'t take you more than a few minutes!</string>
+    <string name="claim_exp_notification_action_title">Claim your exp</string>
 
     <!-- Other -->
     <string name="snack_configuration_updated">Settings updated successfully</string>
@@ -125,6 +139,9 @@
     <string name="snack_connection_error">An error occurred. Check your connection and try again.</string>
     <string name="snack_general_error">An error occurred. Please try again.</string>
     <string name="see_global_rankings">See global rankings</string>
+    <string name="today">Now</string>
+    <string name="snack_permission_required">This permission is necessary to be able to carry out this action.</string>
+    <string name="snack_action_require_permission">This action requires special permissions.</string>
 
     <!-- Exercises -->
     <string name="in_progress">In progress</string>

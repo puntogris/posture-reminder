@@ -16,7 +16,7 @@ object Constants {
     const val PROGRESS_BAR_SMOOTH_OFFSET = 20
     const val EXPERIENCE_PER_EXERCISE = 10
     const val EXPERIENCE_PER_NOTIFICATION = 10
-
+    const val PACKAGE_URI_NAME = "package:com.puntogris.posture"
 
     //Notification channel
     const val CHANNEL_NAME = "notification posture"
@@ -42,5 +42,11 @@ object Constants {
     const val SYNC_ACCOUNT_WORKER = "sync_account_worker"
     const val REMINDER_ID_WORKER_DATA = "upload_reminder_worker"
 
-
+    //Firestore
+    const val EXPERIENCE_FIELD = "experience"
+    const val PUBLIC_PROFILE_COL_GROUP = "public_profile"
+    const val USERS_COLLECTION = "users"
+    const val REMINDERS_COLLECTION = "reminders"
+    const val PUBLIC_PROFILE_DOC = "profile"
+    const val USER_NAME_FIELD = "name"
 }

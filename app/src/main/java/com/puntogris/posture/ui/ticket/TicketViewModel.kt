@@ -20,6 +20,6 @@ class TicketViewModel @Inject constructor(
     }
 
     fun updateTicketType(type: Int){
-        ticket.type = if (type == 0) "PROBLEM" else "SUGGESTION"
+        ticket.type = if (type == 0) Ticket.PROBLEM_TYPE else Ticket.SUGGESTION_TYPE
     }
 }
