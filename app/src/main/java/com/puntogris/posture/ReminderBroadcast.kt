@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.navigation.NavDeepLinkBuilder
 import com.puntogris.posture.data.local.ReminderDao
 import com.puntogris.posture.data.repo.reminder.ReminderRepository
 import com.puntogris.posture.utils.Constants.DAILY_ALARM_TRIGGERED
@@ -80,11 +81,19 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
         goAsync {
             val reminder = reminderRepository.getActiveReminder()
 
+            val claimExpIntent = NavDeepLinkBuilder(context)
+                .setGraph(R.navigation.navigation)
+                .setDestination(R.id.claimNotificationExpDialog)
+                .createPendingIntent()
+
+
             val builder = NotificationCompat.Builder(context, POSTURE_NOTIFICATION_ID)
-                .setSmallIcon(R.drawable.ic_notifications_24px)
+                .setSmallIcon(R.drawable.ic_app_logo)
                 .setContentTitle(context.getString(R.string.posture_notification_title))
                 .setContentText(context.getString(R.string.posture_notification_text))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(claimExpIntent)
+                .addAction(R.drawable.ic_baseline_home_24, "Reclama tu exp", claimExpIntent)
 
             reminder?.let {
                 if (it.soundUri.isNotBlank() && phoneIsInNormalMode(context))

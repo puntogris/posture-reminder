@@ -65,6 +65,7 @@
         <entry key="app/src/main/res/layout/bug_report_dialog.xml" value="0.23697916666666666" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/day_history_main_pager_item.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/dialog_claim_experience.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/dialog_completed_exercise.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/dialog_edit_username.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/dialog_name.xml" value="0.35052083333333334" />

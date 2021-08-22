@@ -4,13 +4,18 @@ import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.puntogris.posture.data.repo.user.UserRepository
+import com.puntogris.posture.model.DayLog
+import com.puntogris.posture.utils.Constants.EXPERIENCE_PER_EXERCISE
 import com.puntogris.posture.utils.Constants.PROGRESS_BAR_SMOOTH_OFFSET
 import com.puntogris.posture.utils.toMillis
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ExerciseViewModel @Inject constructor(): ViewModel() {
+class ExerciseViewModel @Inject constructor(
+    private val userRepository: UserRepository
+): ViewModel() {
     private var durationTimer: CountDownTimer? = null
 
     private val _exerciseDurationTimer = MutableLiveData<Int>()
@@ -43,6 +48,11 @@ class ExerciseViewModel @Inject constructor(): ViewModel() {
     override fun onCleared() {
         durationTimer?.cancel()
         super.onCleared()
+    }
+
+    suspend fun updateDayLog(){
+        val log = DayLog(expGained = EXPERIENCE_PER_EXERCISE, exercises = 1)
+        userRepository.updateUserExperienceRoom(log)
     }
 
 }

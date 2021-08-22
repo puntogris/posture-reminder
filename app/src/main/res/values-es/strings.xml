@@ -105,6 +105,9 @@
     <string name="posture_notification_title">Notificacion de Postura</string>
     <string name="posture_notification_text">Es hora de corregir la postura!</string>
     <string name="notifications">Notifications</string>
+    <string name="claim_experience_title">Felicitaciones!</string>
+    <string name="claim_experience_message">Agregaste %1$d de experiencia a tu cuenta!</string>
+    <string name="claim_experience_exercise_message">Haz un ejercicio y duplica tu experienca ganada! No te tomara mas de unos minutos!</string>
 
     <!-- Other -->
     <string name="snack_configuration_updated">Ajustes actualizados</string>

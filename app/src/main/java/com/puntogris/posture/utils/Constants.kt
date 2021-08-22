@@ -15,6 +15,7 @@ object Constants {
     const val ROOM_DATABASE_NAME = "posture_reminder_database"
     const val PROGRESS_BAR_SMOOTH_OFFSET = 20
     const val EXPERIENCE_PER_EXERCISE = 10
+    const val EXPERIENCE_PER_NOTIFICATION = 10
 
 
     //Notification channel

@@ -31,9 +31,9 @@ interface DayLogsDao {
             insert(dayLog)
         }else{
             lastEntry.apply {
-                exercises = dayLog.exercises
-                expGained = dayLog.expGained
-                notifications = dayLog.notifications
+                exercises += dayLog.exercises
+                expGained += dayLog.expGained
+                notifications += dayLog.notifications
             }
             update(lastEntry)
         }

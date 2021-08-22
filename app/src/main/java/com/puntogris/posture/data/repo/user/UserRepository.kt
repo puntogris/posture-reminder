@@ -1,8 +1,12 @@
 package com.puntogris.posture.data.repo.user
 
+import androidx.room.withTransaction
+import com.puntogris.posture.data.local.AppDatabase
+import com.puntogris.posture.data.local.DayLogsDao
 import com.puntogris.posture.data.local.UserDao
 import com.puntogris.posture.data.remote.FirebaseReminderDataSource
 import com.puntogris.posture.data.remote.FirebaseUserDataSource
+import com.puntogris.posture.model.DayLog
 import com.puntogris.posture.model.SimpleResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
@@ -11,6 +15,8 @@ import javax.inject.Inject
 
 class UserRepository @Inject constructor(
     private val userDao: UserDao,
+    private val dayLogsDao: DayLogsDao,
+    private val appDatabase: AppDatabase,
     private val firebaseUser: FirebaseUserDataSource
 ): IUserRepository {
 
@@ -33,6 +39,18 @@ class UserRepository @Inject constructor(
 
     override suspend fun updateActiveReminderUserRoom(reminderId: String) {
         userDao.updateCurrentUserReminder(reminderId)
+    }
+
+    override suspend fun updateUserExperienceRoom(dayLog: DayLog)= withContext(Dispatchers.IO){
+        try {
+            appDatabase.withTransaction {
+                userDao.updateUserExperience(dayLog.expGained)
+                dayLogsDao.insertOrUpdate(dayLog)
+            }
+            SimpleResult.Success
+        }catch (e:Exception){
+            SimpleResult.Failure
+        }
     }
 
 

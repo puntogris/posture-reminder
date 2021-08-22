@@ -2,6 +2,7 @@ package com.puntogris.posture.ui.main
 
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentMainBinding
 import com.puntogris.posture.model.AlarmStatus

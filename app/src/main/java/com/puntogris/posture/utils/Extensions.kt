@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.PowerManager
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -127,9 +128,11 @@ fun BroadcastReceiver.goAsync(
     coroutineScope.launch {
         try {
             block()
-        } finally {
+        } catch (e:Exception){
+            Log.d("Async block in Broadcast Receiver", e.message.toString())
+        }finally {
             // Always call finish(), even if the coroutineScope was cancelled
-            result.finish()
+            result?.finish()
         }
     }
 }
