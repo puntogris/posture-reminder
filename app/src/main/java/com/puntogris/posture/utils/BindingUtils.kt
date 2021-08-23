@@ -1,5 +1,6 @@
 package com.puntogris.posture.utils
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.view.View
 import android.widget.ImageView
@@ -34,7 +35,6 @@ fun ImageView.setImageFromRes(@DrawableRes image: Int){
     setImageDrawable(ContextCompat.getDrawable(context, image))
 }
 
-
 @BindingAdapter("exerciseDuration")
 fun TextView.setExerciseDuration(duration: Int){
     text = context.getString(R.string.exercise_duration_seconds, duration)
@@ -67,23 +67,26 @@ fun TextView.setDayMonth(date: String){
 
 @BindingAdapter("pagerDay")
 fun TextView.setPagerDay(position: Int){
-    text = if (position == 0) "Hoy" else "Ayer"
+    text = context.getString(
+        if (position == 0) R.string.today_pager
+        else R.string.yesterday_pager
+    )
 }
 
 @BindingAdapter("accountLevelTitle")
 fun TextView.setAccountLevelTitle(exp: Int){
-    text = if (exp < 100 )"Nivel 1" else "Nivel ${(exp / 100)}"
+    text = context.getString(R.string.account_level_title, exp.getLevel())
 }
 
 @BindingAdapter("accountBadgeLevel")
 fun TextView.setAccountBadgeLevel(exp: Int){
-    val string =  when(exp / 100){
-        0 -> R.string.level_1_title
-        1 -> R.string.level_2_title
-        2 -> R.string.level_3_title
-        3 -> R.string.level_4_title
-        4 -> R.string.level_5_title
-        5 -> R.string.level_6_title
+    val string =  when(exp.getLevel()){
+        1 -> R.string.level_1_title
+        2 -> R.string.level_2_title
+        3 -> R.string.level_3_title
+        4 -> R.string.level_4_title
+        5 -> R.string.level_5_title
+        6 -> R.string.level_6_title
         else -> R.string.level_7_title
     }
     text = context.getString(string)
@@ -91,13 +94,14 @@ fun TextView.setAccountBadgeLevel(exp: Int){
 
 @BindingAdapter("expForNextLevel")
 fun TextView.setExpForNextLevel(exp: Int){
-    val level = if (exp < 100) 1 else (exp / 100)
-    text = "+${100 - (exp - (exp / 100) * 100)} para lvl ${level + 1}"
+    val nextLevel = exp.getLevel().inc()
+    text = context.getString(R.string.experience_for_level_x, exp.expForNextLevel(), nextLevel)
 }
 
+@SuppressLint("SetTextI18n")
 @BindingAdapter("expFromTotalLevel")
 fun TextView.setExpFromTotalLevel(exp: Int){
-    text = "${exp - (exp / 100) * 100} / 100"
+    text = "${exp.expForCompleteLevel()} / 100"
 }
 
 @BindingAdapter("donutChartProgress")
@@ -110,7 +114,7 @@ fun DonutChartView.setDonutChartProgress(exp: Int){
 
 @BindingAdapter("donutLevel")
 fun TextView.setDonutLevel(exp: Int){
-    text = if (exp < 100 )"Lvl. 1" else "Lvl. ${(exp / 100)}"
+    text = context.getString(R.string.account_donut_level, exp.getLevel())
 }
 
 @BindingAdapter("rankingLevel")

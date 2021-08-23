@@ -95,7 +95,6 @@ fun ViewPager2.setPageFadeTransformer(){
     }
 }
 
-
 fun String.capitalizeFirstChar() =
     replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
 
@@ -148,7 +147,6 @@ fun BottomSheetDialogFragment.showSnackBar(
     }
 }
 
-
 fun Context.hideKeyboard(view: View) {
     val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
     inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
@@ -168,3 +166,9 @@ inline val Fragment.UiInterface: UiInterfaceListener
     get() = (requireActivity() as UiInterfaceListener)
 
 fun Int.toMillis() = (this * 1000).toLong()
+
+fun Int.getLevel() = (this / 100) + 1
+
+fun Int.expForNextLevel() = 100 - this % 100
+
+fun Int.expForCompleteLevel() = this % 100

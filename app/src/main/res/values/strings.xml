@@ -46,6 +46,8 @@
     <string name="start_alarm">Start</string>
     <string name="snack_alarms_off">The alarm has been deactivated.</string>
     <string name="snack_new_config_saved">The alarm has been updated with the new configuration.</string>
+    <string name="today_pager">Today</string>
+    <string name="yesterday_pager">Yesterday</string>
 
     <!-- What's new dialog-->
     <string name="updated_version">Updated to v%1$s</string>
@@ -93,6 +95,7 @@
     <string name="create_reminder_days_summary">Select the days</string>
     <string name="create_reminder_start_summary">Select the start time</string>
     <string name="create_reminder_end_summary">Select the end time</string>
+    <string name="select_another_reminder">Select another</string>
 
     <!-- Reminder pickers -->
     <string name="end_time_title">Ending time</string>
@@ -130,13 +133,18 @@
     <string name="claim_exp_notification_action_title">Claim your exp</string>
 
     <!-- Account -->
-    <string name="level_1_title">String back</string>
-    <string name="level_2_title">Paper back</string>
-    <string name="level_3_title">Bronze back</string>
-    <string name="level_4_title">Silver back</string>
-    <string name="level_5_title">Gold back</string>
-    <string name="level_6_title">Sapphire back</string>
-    <string name="level_7_title">Diamond back</string>
+    <string name="level_1_title">Back of string</string>
+    <string name="level_2_title">Back of paper</string>
+    <string name="level_3_title">Back of bronze</string>
+    <string name="level_4_title">Back of silver</string>
+    <string name="level_5_title">Back of gold</string>
+    <string name="level_6_title">Back of sapphire</string>
+    <string name="level_7_title">Back of diamond</string>
+    <string name="account_exp_last_week_title">Last 7 days</string>
+    <string name="account_exp_title">Exp</string>
+    <string name="active_reminder">Active reminder</string>
+    <string name="see_all_reminders">See my reminders</string>
+    <string name="no_reminders_found_alert">We did not find an active reminder in your account, we invite you to create a new one and select it.</string>
 
     <!-- Other -->
     <string name="snack_configuration_updated">Settings updated successfully</string>
@@ -151,6 +159,7 @@
     <string name="today">Now</string>
     <string name="snack_permission_required">This permission is necessary to be able to carry out this action.</string>
     <string name="snack_action_require_permission">This action requires special permissions.</string>
+    <string name="message">Message</string>
 
     <!-- Exercises -->
     <string name="in_progress">In progress</string>
@@ -214,6 +223,9 @@
 
     <!-- Binding -->
     <string name="exercise_duration_seconds">%1$d secs.</string>
+    <string name="account_level_title">Level %1$d</string>
+    <string name="experience_for_level_x">+%1$d exp for lvl. %2$d</string>
+    <string name="account_donut_level" translatable="false">Lvl. %1$d</string>
 
     <!-- Content description -->
     <string name="background_image_content_description">Background image</string>

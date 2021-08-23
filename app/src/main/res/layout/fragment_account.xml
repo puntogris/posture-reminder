@@ -149,7 +149,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Ultimos 7 dias"
+            android:text="@string/account_exp_last_week_title"
             app:layout_constraintStart_toStartOf="@+id/barChart"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
@@ -158,7 +158,7 @@
             style="@style/Theme.Posture.RegularTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Exp"
+            android:text="@string/account_exp_title"
             app:layout_constraintStart_toStartOf="@+id/donutChart"
             app:layout_constraintTop_toTopOf="@+id/textView19" />
 
@@ -205,7 +205,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Recordatorio activo"
+            android:text="@string/active_reminder"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider5" />
 
@@ -215,7 +215,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="32dp"
-            android:text="No encontramos un recordatorio activo en tu cuenta, te invitamos a crear uno nuevo y seleccionarlo."
+            android:text="@string/no_reminders_found_alert"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -225,7 +225,7 @@
             android:id="@+id/button3"
             style="@style/Theme.Posture.Button"
             android:layout_width="match_parent"
-            android:text="Ver mis recordatorios"
+            android:text="@string/see_all_reminders"
             android:onClick="@{()->fragment.onNavigateToRemindersClicked()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

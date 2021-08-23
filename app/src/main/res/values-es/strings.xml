@@ -46,6 +46,8 @@
     <string name="start_alarm">Activar</string>
     <string name="snack_alarms_off">Se cancelaron las alarmas.</string>
     <string name="snack_new_config_saved">Se actualizo la alarma con la nueva configuracion.</string>
+    <string name="today_pager">Hoy</string>
+    <string name="yesterday_pager">Ayer</string>
 
     <!-- What's new dialog-->
     <string name="updated_version">Actualizado a v%1$s</string>
@@ -93,6 +95,7 @@
     <string name="create_reminder_days_summary">Seleccione los días</string>
     <string name="create_reminder_start_summary">Seleccione el inicio</string>
     <string name="create_reminder_end_summary">Seleccione la finalizacion</string>
+    <string name="select_another_reminder">Seleccionar otro</string>
 
     <!-- Reminder pickers -->
     <string name="end_time_title">Hora de finalizacion</string>
@@ -137,6 +140,11 @@
     <string name="level_5_title">Espalda de oro</string>
     <string name="level_6_title">Espalda de safiro</string>
     <string name="level_7_title">Espalda de diamante</string>
+    <string name="account_exp_last_week_title">Últimos 7 días</string>
+    <string name="account_exp_title">Exp</string>
+    <string name="active_reminder">Recordatorio activo</string>
+    <string name="see_all_reminders">Ver mis recordatorios</string>
+    <string name="no_reminders_found_alert">No encontramos un recordatorio activo en tu cuenta, te invitamos a crear uno nuevo y seleccionarlo.</string>
 
     <!-- Other -->
     <string name="snack_configuration_updated">Ajustes actualizados</string>
@@ -151,6 +159,7 @@
     <string name="today">Hoy</string>
     <string name="snack_permission_required">Este permiso es necesario para poder realizar esta acción.</string>
     <string name="snack_action_require_permission">Esta acción requiere permisos especiales.</string>
+    <string name="message">Mensaje</string>
 
     <!-- Exercises -->
     <string name="in_progress">En progreso</string>
@@ -214,6 +223,8 @@
 
     <!-- Binding -->
     <string name="exercise_duration_seconds">%1$d segs.</string>
+    <string name="account_level_title">Nivel %1$d</string>
+    <string name="experience_for_level_x">+%1$d exp para lvl. %2$d</string>
 
     <!-- Content description -->
     <string name="background_image_content_description">Imagen de fondo</string>
