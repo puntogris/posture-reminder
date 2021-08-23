@@ -4,17 +4,21 @@ import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.puntogris.posture.data.repo.day_logs.DayLogsRepository
 import com.puntogris.posture.data.repo.user.UserRepository
 import com.puntogris.posture.model.DayLog
+import com.puntogris.posture.model.RewardExp
 import com.puntogris.posture.utils.Constants.EXPERIENCE_PER_EXERCISE
 import com.puntogris.posture.utils.Constants.PROGRESS_BAR_SMOOTH_OFFSET
 import com.puntogris.posture.utils.toMillis
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class ExerciseViewModel @Inject constructor(
-    private val userRepository: UserRepository
+    private val logsRepository: DayLogsRepository
 ): ViewModel() {
     private var durationTimer: CountDownTimer? = null
 
@@ -50,9 +54,9 @@ class ExerciseViewModel @Inject constructor(
         super.onCleared()
     }
 
-    suspend fun updateDayLogWithReward(){
+    suspend fun updateDayLogWithReward(): RewardExp{
         val log = DayLog(expGained = EXPERIENCE_PER_EXERCISE, exercises = 1)
-        userRepository.updateRoomDayLogAndUser(log)
+        return logsRepository.updateRoomDayLogAndUser(log)
     }
 
 }

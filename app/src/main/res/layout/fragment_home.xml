@@ -20,6 +20,17 @@
         android:clipChildren="false"
         tools:context=".ui.home.HomeFragment">
 
+        <TextView
+            android:id="@+id/layoutTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/home_label"
+            style="@style/Theme.Posture.MediumTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/dayLogsCardView"
             android:layout_width="match_parent"
@@ -37,25 +48,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-<!--                <com.tbuonomo.viewpagerdotsindicator.DotsIndicator-->
-<!--                    android:id="@+id/dots_indicator"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="end|top"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:layout_marginEnd="8dp"-->
-<!--                    android:layout_marginBottom="50dp"-->
-<!--                    app:dotsColor="@color/grey"-->
-<!--                    app:dotsCornerRadius="8dp"-->
-<!--                    app:dotsSize="8dp"-->
-<!--                    app:dotsSpacing="4dp"-->
-<!--                    app:dotsWidthFactor="2.5"-->
-<!--                    app:layout_constraintBottom_toTopOf="@+id/startButton"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:progressMode="true"-->
-<!--                    app:selectedDotColor="@color/white" />-->
-
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/pager"
                     android:layout_width="match_parent"
@@ -72,38 +64,14 @@
             </FrameLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <TextView
-            android:id="@+id/layoutTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="@string/home_label"
-            style="@style/Theme.Posture.MediumTitle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:adjustViewBounds="true"
-            android:id="@+id/panda_animation"
-            android:layout_width="wrap_content"
-            android:layout_height="140dp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            android:scaleType="fitXY"
-            app:lottie_rawRes="@raw/panda" />
-
         <Button
             android:id="@+id/circleButton"
             style="@style/Theme.Posture.ReminderButton"
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:onClick="@{()-> fragment.onToggleReminderClicked()}"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginBottom="?actionBarSize"
+            android:onClick="@{()-> fragment.onToggleReminderClicked()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -138,6 +106,21 @@
             app:layout_constraintStart_toStartOf="@+id/enableTextView"
             app:layout_constraintTop_toBottomOf="@+id/enableTextView"
             tools:text="The app is off" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:adjustViewBounds="true"
+            android:id="@+id/panda_animation"
+            android:layout_width="wrap_content"
+            android:layout_height="140dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            android:scaleType="fitXY"
+            app:lottie_rawRes="@raw/panda" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

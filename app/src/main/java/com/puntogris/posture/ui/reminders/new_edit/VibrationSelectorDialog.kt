@@ -13,9 +13,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.posture.R
+import com.puntogris.posture.data.local.LocalDataSource
 import com.puntogris.posture.utils.Constants.DATA_KEY
 import com.puntogris.posture.utils.Constants.VIBRATION_PICKER_KEY
-import com.puntogris.posture.utils.Utils.vibrationPatterns
 
 class VibrationSelectorDialog : DialogFragment() {
 
@@ -38,7 +38,7 @@ class VibrationSelectorDialog : DialogFragment() {
             .setSingleChoiceItems(R.array.vibrationPatterns, args.savedPosition) { _, position ->
 
                 if (position != 0) {
-                    val pattern = vibrationPatterns[position]
+                    val pattern = LocalDataSource().vibrationPatterns[position]
                     vibrator?.let {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
                             it.vibrate(VibrationEffect.createWaveform(pattern, -1))

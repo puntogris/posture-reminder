@@ -42,12 +42,5 @@ object Utils {
                 }
     }
 
-    val vibrationPatterns = listOf(
-        longArrayOf(),
-        longArrayOf(500, 400, 500, 400),
-        longArrayOf(500, 400, 500, 300, 500, 200, 500, 100),
-        longArrayOf(200, 500, 200, 500)
-    )
-
 }
 

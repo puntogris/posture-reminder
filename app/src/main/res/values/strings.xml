@@ -136,7 +136,7 @@
     <string name="ticker_feedback">Ticket /Feedback</string>
     <string name="human">Human</string>
     <string name="create_ticket">Create a ticket</string>
-    <string name="got_to_website">Ir a la pagina</string>
+    <string name="got_to_website">Visit website</string>
     <string name="see_the_code">See the code</string>
     <string name="rate_the_app">Rate the app</string>
     <string name="read_the_faq">Read the F.A.Q.</string>
@@ -150,6 +150,9 @@
     <string name="claim_experience_message">You have added %1$d experience to your account!</string>
     <string name="claim_experience_exercise_message">Do an exercise and double your experience gained! It won\'t take you more than a few minutes!</string>
     <string name="claim_exp_notification_action_title">Claim your exp</string>
+    <string name="claim_experience_error_summary">Send us a ticket or find us at puntogrishelp@gmail.com and tell us your problem.</string>
+    <string name="claim_experience_exp_limit_summary">You reached the daily experience limit!</string>
+    <string name="claim_experience_exp_limit_message">You will not be able to earn more exp for today but we invite you to do an exercise, your back will thank you!</string>
 
     <!-- Account -->
     <string name="level_1_title">Back of string</string>
@@ -179,6 +182,7 @@
     <string name="snack_permission_required">This permission is necessary to be able to carry out this action.</string>
     <string name="snack_action_require_permission">This action requires special permissions.</string>
     <string name="message">Message</string>
+    <string name="an_error_occurred">An error occurred</string>
 
     <!-- Exercises -->
     <string name="in_progress">In progress</string>
@@ -189,6 +193,7 @@
     <string name="exercise">Exercise</string>
     <string name="completed_exercise_title">Congratulations!</string>
     <string name="completed_exercise_message">You finished the exercise and as a reward you will be given %1$d experience!</string>
+    <string name="exercise_complete_dialog_exp_limit_message">You have reached the daily experience limit! Excellent work, keep it up and you will reach the top of the ranking!</string>
 
     <!-- Brugger -->
     <string name="brugger_exercise_title">Bruegger’s Relief Position</string>

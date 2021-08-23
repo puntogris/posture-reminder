@@ -16,10 +16,12 @@ class ExerciseBottomSheet: BaseBottomSheetFragment<BottomSheetExerciseBinding>(R
     private val viewModel: ExerciseViewModel by viewModels()
 
     override fun initializeViews() {
-        binding.bottomSheet = this
-        binding.exercise = args.exercise
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        binding.let {
+            it.bottomSheet = this
+            it.exercise = args.exercise
+            it.viewModel = viewModel
+            it.lifecycleOwner = viewLifecycleOwner
+        }
 
         setupRecyclerViewAdapter()
     }

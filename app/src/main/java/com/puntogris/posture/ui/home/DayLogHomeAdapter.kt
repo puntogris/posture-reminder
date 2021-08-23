@@ -7,7 +7,7 @@ import com.puntogris.posture.model.DayLog
 
 class DayLogHomeAdapter: RecyclerView.Adapter<DayLogHomeViewHolder>(){
 
-    private var items = listOf(DayLog(),DayLog())
+    private var items = listOf(DayLog(), DayLog())
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DayLogHomeViewHolder {
         return DayLogHomeViewHolder.from(parent)
@@ -21,8 +21,9 @@ class DayLogHomeAdapter: RecyclerView.Adapter<DayLogHomeViewHolder>(){
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateList(list: List<DayLog>){
-        if (list.isNotEmpty()) {
-            items = list
+        if (list.isNotEmpty()){
+            if (list.size == 1) items = listOf(list.first(), DayLog())
+            else if(list.size == 2) items = list
             notifyDataSetChanged()
         }
     }

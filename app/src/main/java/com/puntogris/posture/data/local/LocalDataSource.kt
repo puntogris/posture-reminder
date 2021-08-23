@@ -8,7 +8,7 @@ class LocalDataSource {
     val exercisesList = listOf(
         Exercise(R.string.brugger_exercise_title,
             R.string.brugger_exercise_summary,
-            60,
+            1,
             R.color.card1,
             R.drawable.ic_brugger_exercise,
             R.array.brugger_exercise_steps
@@ -35,6 +35,13 @@ class LocalDataSource {
             R.drawable.ic_side_bend_exercise,
             R.array.side_bend_exercise_steps
         )
+    )
+
+    val vibrationPatterns = listOf(
+        longArrayOf(),
+        longArrayOf(500, 400, 500, 400),
+        longArrayOf(500, 400, 500, 300, 500, 200, 500, 100),
+        longArrayOf(200, 500, 200, 500)
     )
 
 }

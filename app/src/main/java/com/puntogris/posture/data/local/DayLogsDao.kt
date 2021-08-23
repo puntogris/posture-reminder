@@ -3,6 +3,7 @@ package com.puntogris.posture.data.local
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.puntogris.posture.model.DayLog
+import com.puntogris.posture.model.RewardExp
 import org.threeten.bp.LocalDate
 
 @Dao
@@ -23,19 +24,7 @@ interface DayLogsDao {
     @Query("SELECT * from DayLog WHERE date >= (SELECT date('now', '-7 day')) ORDER BY date DESC LIMIT 7")
     suspend fun getWeekEntries(): List<DayLog>
 
-    @Transaction
-    suspend fun insertOrUpdate(dayLog: DayLog){
-        val today = LocalDate.now().toString()
-        val lastEntry = getLastEntry()
-        if (lastEntry == null || lastEntry.date != today){
-            insert(dayLog)
-        }else{
-            lastEntry.apply {
-                exercises += dayLog.exercises
-                expGained += dayLog.expGained
-                notifications += dayLog.notifications
-            }
-            update(lastEntry)
-        }
-    }
+    @Query("SELECT * from DayLog WHERE date == date('now')")
+    suspend fun getTodayLog(): DayLog?
+
 }

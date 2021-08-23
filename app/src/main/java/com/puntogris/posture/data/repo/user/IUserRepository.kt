@@ -11,5 +11,4 @@ interface IUserRepository {
     fun getUserLiveDataRoom(): LiveData<UserPrivateData>
     suspend fun updateUsernameInRoomAndFirestore(name: String): SimpleResult
     suspend fun updateActiveReminderUserRoom(reminderId: String)
-    suspend fun updateRoomDayLogAndUser(dayLog: DayLog): SimpleResult
 }

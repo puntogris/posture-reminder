@@ -39,3 +39,9 @@ sealed class AlarmStatus{
     object Canceled: AlarmStatus()
     object NoConfigured: AlarmStatus()
 }
+
+sealed class RewardExp(){
+    object Success: RewardExp()
+    object Error: RewardExp()
+    object ExpLimit: RewardExp()
+}

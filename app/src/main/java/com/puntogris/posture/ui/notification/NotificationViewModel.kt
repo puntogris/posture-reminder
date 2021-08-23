@@ -1,19 +1,21 @@
 package com.puntogris.posture.ui.notification
 
 import androidx.lifecycle.ViewModel
+import com.puntogris.posture.data.repo.day_logs.DayLogsRepository
 import com.puntogris.posture.data.repo.user.UserRepository
 import com.puntogris.posture.model.DayLog
+import com.puntogris.posture.model.RewardExp
 import com.puntogris.posture.utils.Constants.EXPERIENCE_PER_NOTIFICATION
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class NotificationViewModel @Inject constructor(
-    private val userRepository: UserRepository
+    private val logsRepository: DayLogsRepository
 ): ViewModel() {
 
-    suspend fun updateDayLogWithReward() {
+    suspend fun updateDayLogWithReward():RewardExp {
         val log = DayLog(expGained = EXPERIENCE_PER_NOTIFICATION, notifications = 1)
-        userRepository.updateRoomDayLogAndUser(log)
+        return logsRepository.updateRoomDayLogAndUser(log)
     }
 }

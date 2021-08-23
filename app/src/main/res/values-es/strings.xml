@@ -148,6 +148,9 @@
     <string name="claim_experience_message">Agregaste %1$d de experiencia a tu cuenta!</string>
     <string name="claim_experience_exercise_message">Haz un ejercicio y duplica tu experienca ganada! No te tomara mas de unos minutos!</string>
     <string name="claim_exp_notification_action_title">Reclama tu exp</string>
+    <string name="claim_experience_error_summary">Mandanos un ticket o encontranos en puntogrishelp@gmail.com y contanos tu problema.</string>
+    <string name="claim_experience_exp_limit_summary">Alcanzaste el limite de experienca diario!</string>
+    <string name="claim_experience_exp_limit_message">Ya no podras ganar mas exp por hoy pero te invitamos a que hagas un ejercicio, tu espalda te lo agradecera!</string>
 
     <!-- Account -->
     <string name="level_1_title">Espalda de hilo</string>
@@ -177,6 +180,7 @@
     <string name="snack_permission_required">Este permiso es necesario para poder realizar esta acción.</string>
     <string name="snack_action_require_permission">Esta acción requiere permisos especiales.</string>
     <string name="message">Mensaje</string>
+    <string name="an_error_occurred">Ocurrio un error</string>
 
     <!-- Exercises -->
     <string name="in_progress">En progreso</string>
@@ -187,6 +191,7 @@
     <string name="exercise">Ejercicio</string>
     <string name="completed_exercise_title">Felicitaciones!</string>
     <string name="completed_exercise_message">Terminaste el ejercicio y se te sumara %1$d de experciencia!</string>
+    <string name="exercise_complete_dialog_exp_limit_message">Llegaste al limited de experiencia diaria! Excelente trabajo, sigue así y alcanzaras a la cima del ranking!</string>
 
     <!-- Brugger -->
     <string name="brugger_exercise_title">Ejercicio de Bruegger</string>
