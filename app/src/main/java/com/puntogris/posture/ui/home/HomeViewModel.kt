@@ -2,11 +2,11 @@ package com.puntogris.posture.ui.home
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.*
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.puntogris.posture.Alarm
-import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.data.repo.day_logs.DayLogsRepository
-import com.puntogris.posture.data.repo.main.MainRepository
 import com.puntogris.posture.data.repo.reminder.ReminderRepository
 import com.puntogris.posture.model.AlarmStatus
 import com.puntogris.posture.utils.DataStore

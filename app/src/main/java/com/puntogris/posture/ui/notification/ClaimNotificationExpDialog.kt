@@ -11,9 +11,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.posture.R
 import com.puntogris.posture.data.local.LocalDataSource
 import com.puntogris.posture.databinding.DialogClaimExperienceBinding
-import com.puntogris.posture.databinding.DialogCompletedExerciseBinding
 import com.puntogris.posture.model.RewardExp
-import com.puntogris.posture.utils.Constants
 import com.puntogris.posture.utils.Constants.EXPERIENCE_PER_NOTIFICATION
 import com.puntogris.posture.utils.playAnimationOnce
 import dagger.hilt.android.AndroidEntryPoint

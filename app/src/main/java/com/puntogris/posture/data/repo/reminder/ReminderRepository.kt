@@ -1,7 +1,9 @@
 package com.puntogris.posture.data.repo.reminder
 
 import android.content.Context
+import android.os.Build
 import androidx.work.*
+import com.puntogris.posture.Notifications
 import com.puntogris.posture.UploadReminderWorker
 import com.puntogris.posture.data.local.ReminderDao
 import com.puntogris.posture.data.remote.FirebaseReminderDataSource
@@ -18,6 +20,7 @@ import javax.inject.Inject
 class ReminderRepository @Inject constructor(
     private val reminderFirestore: FirebaseReminderDataSource,
     private val reminderDao: ReminderDao,
+    private val notifications: Notifications,
     @ApplicationContext private val context: Context
 ): IReminderRepository {
 
@@ -25,6 +28,9 @@ class ReminderRepository @Inject constructor(
 
     override suspend fun deleteReminder(reminder: Reminder) :SimpleResult = withContext(Dispatchers.IO){
         try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                notifications.removeNotificationChannelWithId(reminder.id)
+            }
             reminderDao.delete(reminder)
             reminderFirestore.getReminderDocumentRefWithId(reminder.id).delete().await()
             SimpleResult.Success
@@ -35,6 +41,9 @@ class ReminderRepository @Inject constructor(
 
     override suspend fun insertReminder(reminder: Reminder): SimpleResult = withContext(Dispatchers.IO){
         try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                notifications.createChannelForReminderSdkO(reminder)
+            }
             if (reminder.id.isBlank()) fillIdsIfNewReminder(reminder)
             reminderDao.insert(reminder)
             registerFirestoreUploadReminder(reminder.id)

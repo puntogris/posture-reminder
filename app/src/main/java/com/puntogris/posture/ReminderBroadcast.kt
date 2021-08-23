@@ -3,16 +3,10 @@ package com.puntogris.posture
 import android.app.AlarmManager.ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED
 import android.content.Context
 import android.content.Intent
-import android.media.AudioManager
-import android.net.Uri
 import android.os.Build
-import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.navigation.NavDeepLinkBuilder
-import com.puntogris.posture.data.local.LocalDataSource
 import com.puntogris.posture.data.repo.reminder.ReminderRepository
 import com.puntogris.posture.utils.Constants.DAILY_ALARM_TRIGGERED
-import com.puntogris.posture.utils.Constants.POSTURE_NOTIFICATION_ID
 import com.puntogris.posture.utils.Constants.REPEATING_ALARM_TRIGGERED
 import com.puntogris.posture.utils.Utils.dayOfTheWeek
 import com.puntogris.posture.utils.Utils.minutesSinceMidnight
@@ -30,6 +24,9 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
 
     @Inject
     lateinit var reminderRepository: ReminderRepository
+
+    @Inject
+    lateinit var notifications: Notifications
 
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
@@ -80,40 +77,21 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
     }
 
     private fun deliverNotificationAndSetNewAlarm(context: Context, timeInterval: Int) {
-
-        val claimExpIntent = NavDeepLinkBuilder(context)
-            .setGraph(R.navigation.navigation)
-            .setDestination(R.id.claimNotificationExpDialog)
-            .createPendingIntent()
-
-        val builder = NotificationCompat.Builder(context, POSTURE_NOTIFICATION_ID)
-            .setSmallIcon(R.drawable.ic_app_logo)
-            .setContentTitle(context.getString(R.string.posture_notification_title))
-            .setContentText(context.getString(R.string.posture_notification_text))
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-            .setContentIntent(claimExpIntent)
-            .addAction(R.drawable.ic_baseline_home_24, context.getString(R.string.claim_exp_notification_action_title), claimExpIntent)
-
         goAsync {
             reminderRepository.getActiveReminder()?.let {
-                if (it.soundUri.isNotBlank() && phoneIsInNormalMode(context)) {
-                    builder.setSound(Uri.parse(it.soundUri))
-                }
-                if (it.vibrationPattern != 0) {
-                    builder.setVibrate(LocalDataSource().vibrationPatterns[it.vibrationPattern])
-                }
-            }
+                val nb = notifications.getNotificationBuilderWithReminder(it)
 
-            with(NotificationManagerCompat.from(context)) {
-                notify(100, builder.build())
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    notifications.createChannelForReminderSdkO(it)
+                }
+
+                with(NotificationManagerCompat.from(context)) {
+                    notify(it.id.hashCode(), nb.build())
+                }
             }
         }
 
         alarm.startRepeatingAlarm(timeInterval)
     }
 
-    private fun phoneIsInNormalMode(context: Context): Boolean {
-        val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        return audioManager.ringerMode == AudioManager.RINGER_MODE_NORMAL
-    }
 }

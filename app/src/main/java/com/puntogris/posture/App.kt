@@ -4,11 +4,17 @@ import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.graphics.Color
+import android.media.AudioAttributes
 import android.os.Build
+import android.provider.Settings
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.*
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.puntogris.posture.utils.Constants
+import com.puntogris.posture.utils.Constants.CHANNEL_DESCRIPTION
+import com.puntogris.posture.utils.Constants.CHANNEL_NAME
+import com.puntogris.posture.utils.Constants.POSTURE_NOTIFICATION_ID
 import com.puntogris.posture.utils.Constants.SYNC_ACCOUNT_WORKER
 import dagger.hilt.android.HiltAndroidApp
 import java.util.concurrent.TimeUnit
@@ -20,11 +26,15 @@ class App: Application(), Configuration.Provider{
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
 
+    @Inject
+    lateinit var notifications: Notifications
+
     override fun onCreate() {
         super.onCreate()
         AndroidThreeTen.init(this)
-        createNotificationChannel()
         setupSyncAccountWorkManager()
+        removeDeprecatedNotificationChannels()
+        println(notifications.asd())
     }
 
     private fun setupSyncAccountWorkManager(){
@@ -32,20 +42,15 @@ class App: Application(), Configuration.Provider{
             .setConstraints(Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build())
             .build()
 
-        WorkManager.getInstance(this).enqueueUniquePeriodicWork(SYNC_ACCOUNT_WORKER, ExistingPeriodicWorkPolicy.KEEP, syncWork)
+        WorkManager
+            .getInstance(this)
+            .enqueueUniquePeriodicWork(SYNC_ACCOUNT_WORKER, ExistingPeriodicWorkPolicy.KEEP, syncWork)
     }
 
-    private fun createNotificationChannel() {
+    private fun removeDeprecatedNotificationChannels(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel(
-                Constants.POSTURE_NOTIFICATION_ID,
-                Constants.CHANNEL_NAME,
-                NotificationManager.IMPORTANCE_DEFAULT
-            ).also {
-                it.description = Constants.CHANNEL_DESCRIPTION
-                (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
-                    .createNotificationChannel(it)
-            }
+            notifications.removeDeprecatedChannels()
+
         }
     }
 

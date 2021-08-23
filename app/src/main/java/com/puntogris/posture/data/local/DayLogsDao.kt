@@ -3,8 +3,6 @@ package com.puntogris.posture.data.local
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.puntogris.posture.model.DayLog
-import com.puntogris.posture.model.RewardExp
-import org.threeten.bp.LocalDate
 
 @Dao
 interface DayLogsDao {

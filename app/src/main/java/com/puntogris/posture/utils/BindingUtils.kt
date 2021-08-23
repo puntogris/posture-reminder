@@ -11,15 +11,12 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
 import androidx.databinding.BindingAdapter
 import com.db.williamchart.view.DonutChartView
-import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.puntogris.posture.R
-import com.puntogris.posture.model.DayLog
 import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.utils.Constants.EXPERIENCE_PER_LEVEL
 import com.puntogris.posture.utils.Constants.PROGRESS_BAR_SMOOTH_OFFSET
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
-import java.lang.Exception
 
 @BindingAdapter("reminderSummaryStatus")
 fun TextView.setReminderSummaryStatus(isActive: Boolean){

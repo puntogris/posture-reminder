@@ -2,7 +2,6 @@ package com.puntogris.posture.ui.notification
 
 import androidx.lifecycle.ViewModel
 import com.puntogris.posture.data.repo.day_logs.DayLogsRepository
-import com.puntogris.posture.data.repo.user.UserRepository
 import com.puntogris.posture.model.DayLog
 import com.puntogris.posture.model.RewardExp
 import com.puntogris.posture.utils.Constants.EXPERIENCE_PER_NOTIFICATION

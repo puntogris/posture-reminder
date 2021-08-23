@@ -1,7 +1,6 @@
 package com.puntogris.posture.data.repo.user
 
 import androidx.lifecycle.LiveData
-import com.puntogris.posture.model.DayLog
 import com.puntogris.posture.model.SimpleResult
 import com.puntogris.posture.model.UserPrivateData
 import kotlinx.coroutines.flow.Flow

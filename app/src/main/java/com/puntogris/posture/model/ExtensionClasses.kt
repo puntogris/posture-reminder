@@ -40,7 +40,7 @@ sealed class AlarmStatus{
     object NoConfigured: AlarmStatus()
 }
 
-sealed class RewardExp(){
+sealed class RewardExp {
     object Success: RewardExp()
     object Error: RewardExp()
     object ExpLimit: RewardExp()
