@@ -115,12 +115,31 @@
     <string name="account_sync_success">Synchronized correctly</string>
     <string name="account_sync_error">Synchronization failed</string>
 
-    <!--Settings Screen-->
+    <!-- Settings -->
     <string name="snack_remember_to_refresh_app">Remember to reset the app in the main screen so the new changes apply.</string>
     <string name="snack_panda_unlocked">Panda unlocked! Go back to the main screen to enjoy his cuteness!</string>
     <string name="change_name_title">Change the name</string>
     <string name="change_name_subtitle">Enter the new name to change</string>
     <string name="snack_edit_username_success">Name updated successfully</string>
+    <string name="help">Help</string>
+    <string name="contact">Contact</string>
+    <string name="about_us">App</string>
+    <string name="theme">Theme</string>
+    <string name="close">Log out</string>
+    <string name="questions">Questions</string>
+    <string name="website" translatable="false">Website</string>
+    <string name="github" translatable="false">Github</string>
+    <string name="version">Version</string>
+    <string name="version_name">Version %1$s</string>
+    <string name="rate_us">Rate us</string>
+    <string name="battery_optimization">Battery optimiz.</string>
+    <string name="ticker_feedback">Ticket /Feedback</string>
+    <string name="human">Human</string>
+    <string name="create_ticket">Create a ticket</string>
+    <string name="got_to_website">Ir a la pagina</string>
+    <string name="see_the_code">See the code</string>
+    <string name="rate_the_app">Rate the app</string>
+    <string name="read_the_faq">Read the F.A.Q.</string>
 
     <!-- Notifications -->
     <string name="snack_notifications_set">Notifications set from %1$s to %2$s.</string>

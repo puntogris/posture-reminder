@@ -1,17 +1,13 @@
 package com.puntogris.posture.ui.main
 
 import android.app.Activity
-import android.app.AlarmManager
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
-import androidx.core.content.PermissionChecker
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.puntogris.posture.R
@@ -24,14 +20,13 @@ import com.puntogris.posture.utils.Constants.PACKAGE_URI_NAME
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.util.jar.Manifest
 
 @AndroidEntryPoint
 class MainFragment: BaseFragmentOptions<FragmentMainBinding>(R.layout.fragment_main) {
 
     private val viewModel: MainViewModel by activityViewModels()
 
-    lateinit var requestPermissionLauncher: ActivityResultLauncher<Intent>
+    private lateinit var requestPermissionLauncher: ActivityResultLauncher<Intent>
 
     override fun initializeViews() {
         binding.let {

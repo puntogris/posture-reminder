@@ -1,10 +1,7 @@
 package com.puntogris.posture.data.local
 
-import android.content.Context
 import com.puntogris.posture.R
 import com.puntogris.posture.model.Exercise
-import com.puntogris.posture.model.ItemData
-import com.puntogris.posture.model.ReminderUi
 
 class LocalDataSource {
 

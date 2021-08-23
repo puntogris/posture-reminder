@@ -57,18 +57,12 @@ fun AppCompatActivity.getNavController() = getNavHostFragment().navController
 fun AppCompatActivity.getNavHostFragment() =
     (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment)
 
-fun PreferenceFragmentCompat.preference(key:String ) = findPreference<Preference>(key)
-
 fun View.playShakeAnimation(){
     ObjectAnimator
         .ofFloat(this,"translationX", 0f, 25f, -25f, 25f, -25f,15f, -15f, 6f, -6f, 0f)
         .setDuration(Constants.SHAKE_ANIMATION_DURATION)
         .start()
 }
-
-fun Activity.isDarkThemeOn() =
-    (resources.configuration.uiMode and
-            Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES)
 
 fun Fragment.isDarkThemeOn() =
     (resources.configuration.uiMode and

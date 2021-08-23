@@ -1,6 +1,6 @@
 package com.puntogris.posture.model
 
-class SettingItem(val code: SettingUi? = null, val title: String = "", var summary: String= "")
+class SettingItem(val code: SettingUi? = null, val title: Int, var summary: String= "")
 
 enum class SettingUi{
     Name,

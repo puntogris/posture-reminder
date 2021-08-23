@@ -1,8 +1,5 @@
 package com.puntogris.posture.model
 
-import com.puntogris.posture.Alarm
-import java.lang.Exception
-
 sealed class SimpleResult{
     object Success: SimpleResult()
     object Failure: SimpleResult()

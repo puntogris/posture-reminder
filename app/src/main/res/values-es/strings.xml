@@ -115,12 +115,29 @@
     <string name="account_sync_success">Sincronizado correctamente</string>
     <string name="account_sync_error">Error al sincronizar</string>
 
-    <!--Settings Screen-->
+    <!-- Settings -->
     <string name="snack_remember_to_refresh_app">Remember to reset the app in the main screen so the new changes apply.</string>
     <string name="snack_panda_unlocked">Panda unlocked! Go back to the main screen to enjoy his cuteness!</string>
     <string name="change_name_title">Cambiar el nombre</string>
     <string name="change_name_subtitle">Ingresa el nuevo nombre para cambiar</string>
     <string name="snack_edit_username_success">Nombre cambiado correctamente</string>
+    <string name="help">Ayuda</string>
+    <string name="contact">Contacto</string>
+    <string name="about_us">App</string>
+    <string name="theme">Tema</string>
+    <string name="close">Cerrar</string>
+    <string name="questions">Preguntas</string>
+    <string name="version">Versión</string>
+    <string name="version_name">Versión %1$s</string>
+    <string name="rate_us">Calificanos</string>
+    <string name="battery_optimization">Optimiz. bateria</string>
+    <string name="ticker_feedback">Ticket /Feedback</string>
+    <string name="human">Terricola</string>
+    <string name="create_ticket">Crea un ticket</string>
+    <string name="got_to_website">Ir a la página</string>
+    <string name="see_the_code">Ver el codigo</string>
+    <string name="rate_the_app">Puntua la app</string>
+    <string name="read_the_faq">Lee las F.A.Q.</string>
 
     <!-- Notifications -->
     <string name="snack_notifications_set">Se activaron las notificaciones desde las %1$s hasta las %2$s.</string>

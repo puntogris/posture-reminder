@@ -9,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.posture.R
 import com.puntogris.posture.data.local.LocalDataSource
-import com.puntogris.posture.utils.Constants
 import com.puntogris.posture.utils.Constants.EXPERIENCE_PER_NOTIFICATION
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

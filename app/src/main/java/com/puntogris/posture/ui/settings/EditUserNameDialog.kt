@@ -12,14 +12,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.DialogEditUsernameBinding
 import com.puntogris.posture.model.SimpleResult
-import com.puntogris.posture.utils.Constants
 import com.puntogris.posture.utils.Constants.DATA_KEY
 import com.puntogris.posture.utils.Constants.EDIT_NAME_KEY
-import com.puntogris.posture.utils.capitalizeWords
 import com.puntogris.posture.utils.gone
 import com.puntogris.posture.utils.visible
 import dagger.hilt.android.AndroidEntryPoint

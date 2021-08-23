@@ -2,7 +2,6 @@ package com.puntogris.posture.ui.portal
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.puntogris.posture.R
 import com.puntogris.posture.data.local.LocalDataSource
 import com.puntogris.posture.model.Exercise
 

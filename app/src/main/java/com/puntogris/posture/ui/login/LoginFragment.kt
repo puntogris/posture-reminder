@@ -16,6 +16,7 @@ import com.puntogris.posture.model.LoginResult
 import com.puntogris.posture.ui.base.BaseFragment
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.gone
+import com.puntogris.posture.utils.playShakeAnimation
 import com.puntogris.posture.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -77,17 +78,9 @@ class LoginFragment :BaseFragment<FragmentLoginBinding>(R.layout.fragment_login)
     }
 
     fun startLoginWithGoogle() {
-        playShakeAnimation()
+        binding.loginButton.playShakeAnimation()
         val intent = viewModel.getGoogleSignInIntent()
         loginActivityResultLauncher.launch(intent)
     }
 
-    private fun playShakeAnimation(){
-        ObjectAnimator
-            .ofFloat(binding.loginButton,
-                "translationX",
-                0f, 25f, -25f, 25f, -25f,15f, -15f, 6f, -6f, 0f)
-            .setDuration(800L)
-            .start()
-    }
 }

@@ -32,7 +32,7 @@ class SettingsBottomSheet : BaseBottomSheetFragment<BottomSheetSettingsBinding>(
     }
 
     private fun setupRecyclerViewAdapter(){
-        settingsAdapter = SettingsAdapter{ onSettingClicked(it) }
+        settingsAdapter = SettingsAdapter(requireContext()){ onSettingClicked(it) }
         binding.recyclerView.adapter = settingsAdapter
         setBatteryOptimizationSummary()
         setThemeName()
