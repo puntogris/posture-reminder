@@ -60,9 +60,11 @@ fun ImageView.setReminderColor(color:Int){
 }
 
 @BindingAdapter("dayMonth")
-fun TextView.setDayMonth(date: String){
-    val dateNow = LocalDate.parse(date)
-    text = dateNow.format(DateTimeFormatter.ofPattern("d MMM"))
+fun TextView.setDayMonth(position: Int){
+    var date = LocalDate.now()
+    if (position == 1) date = date.minusDays(1)
+
+    text = date.format(DateTimeFormatter.ofPattern("d MMM"))
 }
 
 @BindingAdapter("pagerDay")

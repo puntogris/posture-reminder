@@ -1,9 +1,6 @@
 package com.puntogris.posture.ui.main
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.data.repo.main.MainRepository
 import com.puntogris.posture.utils.DataStore
@@ -13,9 +10,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val  dataStore: DataStore,
-    private val mainRepository: MainRepository
-):ViewModel() {
+    private val mainRepository: MainRepository,
+    private val dataStore: DataStore,
+    ): ViewModel() {
+
+    private val _appVersionStatus = MutableLiveData<Boolean>()
+    val appVersionStatus: LiveData<Boolean>
+        get() = _appVersionStatus
 
     init {
         viewModelScope.launch {
@@ -26,9 +27,6 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private val _appVersionStatus = MutableLiveData<Boolean>()
-    val appVersionStatus: LiveData<Boolean>
-        get() = _appVersionStatus
-
     fun isUserLoggedIn() = mainRepository.isUserLoggedIn()
+
 }

@@ -7,7 +7,7 @@
         android:id="@+id/newReminder"
         android:visible="false"
         android:icon="@drawable/ic_baseline_add_24"
-        android:title="Add" />
+        android:title="@string/create_reminder_label" />
 
     <item
         android:id="@+id/settings"

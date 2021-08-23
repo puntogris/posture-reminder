@@ -1,10 +1,12 @@
-package com.puntogris.posture.ui
+package com.puntogris.posture.ui.home
 
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
 import com.puntogris.posture.Alarm
+import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.data.repo.day_logs.DayLogsRepository
+import com.puntogris.posture.data.repo.main.MainRepository
 import com.puntogris.posture.data.repo.reminder.ReminderRepository
 import com.puntogris.posture.model.AlarmStatus
 import com.puntogris.posture.utils.DataStore
@@ -15,12 +17,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class HomeViewModel @Inject constructor(
     private val alarm: Alarm,
-    private val dayLogsRepository: DayLogsRepository,
     private val dataStore: DataStore,
+    private val dayLogsRepository: DayLogsRepository,
     private val reminderRepository: ReminderRepository
-    ): ViewModel() {
+):ViewModel() {
 
     val reminder = dataStore.alarmStatus().asLiveData()
 

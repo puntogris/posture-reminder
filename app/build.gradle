@@ -26,8 +26,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
-            shrinkResources false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -139,11 +139,7 @@ dependencies {
     //Shimmer fb effect
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
-    implementation 'com.github.EhsanMashhadi:CountryPicker:0.4.0'
-
-
     //Work manager Kotlin + coroutines
     implementation "androidx.work:work-runtime-ktx:$workManagerVersion"
-
 
 }

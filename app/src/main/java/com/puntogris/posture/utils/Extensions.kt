@@ -102,7 +102,8 @@ fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null){
         }
 
     }catch (e:Exception){
-       UiInterface.showSnackBar(getString(R.string.snack_general_error))
+        if (this is BottomSheetDialogFragment) showSnackBar(R.string.snack_general_error)
+        else UiInterface.showSnackBar(getString(R.string.snack_general_error))
     }
 }
 

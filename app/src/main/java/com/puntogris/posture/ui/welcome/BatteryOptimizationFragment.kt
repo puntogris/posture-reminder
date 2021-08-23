@@ -50,7 +50,7 @@ class BatteryOptimizationFragment : BaseFragment<FragmentBatteryOptimizationBind
     }
 
     fun onFinalizeButtonClicked(){
-        findNavController().navigate(R.id.action_batteryOptimizationFragment_to_mainFragment)
+        findNavController().navigate(R.id.action_batteryOptimizationFragment_to_homeFragment)
     }
 
     override fun onResume() {

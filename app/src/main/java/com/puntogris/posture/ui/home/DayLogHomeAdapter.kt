@@ -1,19 +1,19 @@
-package com.puntogris.posture.ui.main
+package com.puntogris.posture.ui.home
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.model.DayLog
 
-class DayHistoryMainPagerAdapter: RecyclerView.Adapter<DayHistoryMainViewHolder>(){
+class DayLogHomeAdapter: RecyclerView.Adapter<DayLogHomeViewHolder>(){
 
-    private var items = listOf(DayLog())
+    private var items = listOf(DayLog(),DayLog())
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DayHistoryMainViewHolder {
-        return DayHistoryMainViewHolder.from(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DayLogHomeViewHolder {
+        return DayLogHomeViewHolder.from(parent)
     }
 
-    override fun onBindViewHolder(holder: DayHistoryMainViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DayLogHomeViewHolder, position: Int) {
         holder.bind(items[position], position)
     }
 

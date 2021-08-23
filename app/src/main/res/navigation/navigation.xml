@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
  <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.puntogris.posture.ui.main.MainFragment" />
+        android:id="@+id/homeFragment"
+        android:name="com.puntogris.posture.ui.home.HomeFragment" />
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.puntogris.posture.ui.account.AccountFragment">
@@ -67,8 +67,8 @@
         android:id="@+id/batteryOptimizationFragment"
         android:name="com.puntogris.posture.ui.welcome.BatteryOptimizationFragment">
         <action
-            android:id="@+id/action_batteryOptimizationFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            android:id="@+id/action_batteryOptimizationFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <dialog
         android:id="@+id/vibrationSelectorDialog"

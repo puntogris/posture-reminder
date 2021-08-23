@@ -62,7 +62,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         navController.graph = navController.navInflater.inflate(R.navigation.navigation)
             .apply {
                 startDestination =
-                    if (viewModel.isUserLoggedIn()) R.id.mainFragment
+                    if (viewModel.isUserLoggedIn()) R.id.homeFragment
                     else R.id.loginFragment
             }
     }
@@ -84,7 +84,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private fun getAppBarConfiguration(): AppBarConfiguration{
         return AppBarConfiguration(
             setOf(
-                R.id.mainFragment,
+                R.id.homeFragment,
                 R.id.accountFragment,
                 R.id.newReminderBottomSheet,
                 R.id.welcomeFragment,
