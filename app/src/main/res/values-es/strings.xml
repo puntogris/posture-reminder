@@ -129,6 +129,15 @@
     <string name="claim_experience_exercise_message">Haz un ejercicio y duplica tu experienca ganada! No te tomara mas de unos minutos!</string>
     <string name="claim_exp_notification_action_title">Reclama tu exp</string>
 
+    <!-- Account -->
+    <string name="level_1_title">Espalda de hilo</string>
+    <string name="level_2_title">Espalda de papel</string>
+    <string name="level_3_title">Espalda de bronce</string>
+    <string name="level_4_title">Espalda de plata</string>
+    <string name="level_5_title">Espalda de oro</string>
+    <string name="level_6_title">Espalda de safiro</string>
+    <string name="level_7_title">Espalda de diamante</string>
+
     <!-- Other -->
     <string name="snack_configuration_updated">Ajustes actualizados</string>
     <string name="name">Nombre</string>
@@ -154,53 +163,53 @@
     <string name="completed_exercise_message">Terminaste el ejercicio y se te sumara %1$d de experciencia!</string>
 
     <!-- Brugger -->
-    <string name="brugger_exercise_title">Bruegger’s Relief Position</string>
-    <string name="brugger_exercise_summary">This stretch can help reverse the forward position.</string>
+    <string name="brugger_exercise_title">Ejercicio de Bruegger</string>
+    <string name="brugger_exercise_summary">Ayuda a revertir una posicion redondeada hacia adelante.</string>
     <string-array name="brugger_exercise_steps">
-        <item>This can be done sitting or standing. This is good to do if you can’t get up from your chair.</item>
-        <item>Back your chair away from your desk and scoot your hips to the edge of the chair.</item>
-        <item>While sitting upright, bring your hands down to your sides with your palms facing forward.</item>
-        <item>Extend your wrists and reach your fingers back, opening up the entire front of your chest and arm.</item>
-        <item>Your shoulder blades will slightly pinch together.</item>
-        <item>You should feel a stretch down your arm from your chest, forearms to hands.</item>
-        <item>Hold this position for a few seconds.</item>
-        <item>Back off this position.</item>
-        <item>Repeat at least 5 times.</item>
+        <item>Esto se puede hacer sentado o de pie. Es buen ejercicio en caso de que no puedas levantarse de la silla.</item>
+        <item>Aleje la silla de su escritorio y mueva las caderas hacia el borde de la silla.</item>
+        <item>Mientras está sentado en posición vertical, baje las manos a los lados con las palmas hacia adelante.</item>
+        <item>Extiende tus muñecas y extiende tus dedos hacia atrás, abriendo todo el frente de tu pecho y brazo.</item>
+        <item>Los omóplatos se pellizcarán ligeramente.</item>
+        <item>Debería sentir un estiramiento por el brazo desde el pecho, los antebrazos hasta las manos.</item>
+        <item>Mantenga esta posición durante unos segundos.</item>
+        <item>Retrocede en esta posición.</item>
+        <item>Repita al menos 5 veces.</item>
     </string-array>
 
     <!-- Chin tuck -->
-    <string name="chin_tuck_exercise_title">Chin Tucks</string>
-    <string name="chin_tuck_exercise_summary">Classic exercise to get out of a forward head position.</string>
+    <string name="chin_tuck_exercise_title">Pliegues de barbilla</string>
+    <string name="chin_tuck_exercise_summary">Ejercicio clásico para salir de una posición de cabeza adelantada.</string>
     <string-array name="chin_tuck_exercise_steps">
-        <item>This can be done while standing OR sitting</item>
-        <item>Perform a chin tuck by keeping your chin parallel to the floor and drawing your head backwards.</item>
-        <item>This turns on the muscles in the front of your neck, so you might feel a sensation there.</item>
-        <item>You might also feel stretching in the back of the neck and at the base of the skull which is okay.</item>
-        <item>Do not push through pain.</item>
-        <item>Repeat at least 5 times.</item>
+        <item>Esto se puede hacer estando de pie o sentado</item>
+        <item>Realice una flexión de la barbilla manteniendo la barbilla paralela al suelo y llevando la cabeza hacia atrás.</item>
+        <item>Esto activa los músculos de la parte delantera del cuello, por lo que es posible que sienta una sensación allí.</item>
+        <item>También puede sentir un estiramiento en la parte posterior del cuello y en la base del cráneo, lo cual está bien.</item>
+        <item>No empujes a través del dolor.</item>
+        <item>Repite al menos 5 veces.</item>
     </string-array>
 
     <!-- Back extensions -->
-    <string name="back_extensions_exercise_title">Back Extensions</string>
-    <string name="back_extension_exercise_summary">This exercise can help open up and EXTEND our body.</string>
+    <string name="back_extensions_exercise_title">Extensiones de espalda</string>
+    <string name="back_extension_exercise_summary">Este ejercicio puede ayudar a abrir y extender nuestro cuerpo.</string>
     <string-array name="back_extension_exercise_steps">
-        <item>This should be done in standing.</item>
-        <item>Place your fists or hands on your belt line.</item>
-        <item>Extend back, by gently pushing your hips forward and extending your back.</item>
-        <item>You might feel some pressure in the back, but you should not feel pain.</item>
-        <item>Repeat at least 5 times.</item>
+        <item>Esto debe hacerse de pie.</item>
+        <item>Coloque los puños o las manos en la línea del cinturón.</item>
+        <item>Extienda la espalda, empujando suavemente las caderas hacia adelante y extendiendo la espalda.</item>
+        <item>Es posible que sienta algo de presión en la espalda, pero no debería sentir dolor.</item>
+        <item>Repite al menos 5 veces.</item>
     </string-array>
 
     <!-- Side bend -->
-    <string name="side_bend_exercise_title">Side Bends</string>
-    <string name="side_bend_exercise_summary">Laterals movements to break a stiff position.</string>
+    <string name="side_bend_exercise_title">Estiramientos laterales</string>
+    <string name="side_bend_exercise_summary">Movimientos laterales para romper una posición rígida.</string>
     <string-array name="side_bend_exercise_steps">
-        <item>This exercise is done while standing</item>
-        <item>Place your arms and hands relaxed at your sides.</item>
-        <item>By leaning your trunk to one side, slide your hand down towards your knee.</item>
-        <item>You should feel a stretch on the opposite side of your trunk.</item>
-        <item>Alternate side bending right and side bending left.</item>
-        <item>Perform this at least 5 times to each side (10 times total).</item>
+        <item>Este ejercicio se realiza estando de pie</item>
+        <item>Coloque sus brazos y manos relajados a los lados.</item>
+        <item>Al inclinar el tronco hacia un lado, deslice la mano hacia la rodilla.</item>
+        <item>Debería sentir un estiramiento en el lado opuesto de su tronco.</item>
+        <item>Doblado lateral alternativo hacia la derecha y hacia la izquierda.</item>
+        <item>Realice esto al menos 5 veces a cada lado (10 veces en total).</item>
     </string-array>
 
     <!-- Binding -->

@@ -23,9 +23,6 @@ data class Reminder(
     var name: String = "",
 
     @ColumnInfo
-    val isActive: Boolean = false,
-
-    @ColumnInfo
     var timeInterval: Int = 0,
 
     @ColumnInfo

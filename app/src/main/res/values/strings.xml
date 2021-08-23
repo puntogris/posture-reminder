@@ -129,6 +129,15 @@
     <string name="claim_experience_exercise_message">Do an exercise and double your experience gained! It won\'t take you more than a few minutes!</string>
     <string name="claim_exp_notification_action_title">Claim your exp</string>
 
+    <!-- Account -->
+    <string name="level_1_title">String back</string>
+    <string name="level_2_title">Paper back</string>
+    <string name="level_3_title">Bronze back</string>
+    <string name="level_4_title">Silver back</string>
+    <string name="level_5_title">Gold back</string>
+    <string name="level_6_title">Sapphire back</string>
+    <string name="level_7_title">Diamond back</string>
+
     <!-- Other -->
     <string name="snack_configuration_updated">Settings updated successfully</string>
     <string name="name">Name</string>
@@ -155,7 +164,7 @@
 
     <!-- Brugger -->
     <string name="brugger_exercise_title">Bruegger’s Relief Position</string>
-    <string name="brugger_exercise_summary">This stretch can help reverse the forward position.</string>
+    <string name="brugger_exercise_summary">This stretch can help reverse a rounded forward position.</string>
     <string-array name="brugger_exercise_steps">
         <item>This can be done sitting or standing. This is good to do if you can’t get up from your chair.</item>
         <item>Back your chair away from your desk and scoot your hips to the edge of the chair.</item>

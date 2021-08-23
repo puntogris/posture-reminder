@@ -40,6 +40,7 @@
                 android:id="@+id/textView27"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:textSize="13sp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
@@ -62,11 +63,11 @@
 
             <View
                 android:id="@+id/view2"
-                android:layout_width="5dp"
-                android:background="@drawable/round_corners_background"
-                android:layout_height="50dp"
                 backgroundColorTintView="@{exercise.color}"
-                android:layout_marginStart="16dp"
+                android:layout_width="5dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/round_corners_background"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
