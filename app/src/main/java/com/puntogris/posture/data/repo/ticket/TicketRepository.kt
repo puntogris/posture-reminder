@@ -5,7 +5,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.puntogris.posture.model.SimpleResult
 import com.puntogris.posture.model.Ticket
-import com.puntogris.posture.utils.Constants.TICKET_COLLECTION_NAME
+import com.puntogris.posture.utils.Constants.TICKET_COLLECTION
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -29,7 +29,7 @@ class TicketRepository @Inject constructor(): ITicketRepository {
 
     private suspend fun sendTicketToFirestore(ticket: Ticket): SimpleResult = withContext(Dispatchers.IO){
         try {
-            firestore.collection(TICKET_COLLECTION_NAME).add(ticket).await()
+            firestore.collection(TICKET_COLLECTION).add(ticket).await()
             SimpleResult.Success
         }catch (e: Exception){ SimpleResult.Failure }
     }

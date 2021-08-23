@@ -18,8 +18,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.NavHostFragment
-import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -31,7 +29,6 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.threeten.bp.LocalDate
-import org.threeten.bp.ZoneId
 import org.threeten.bp.format.DateTimeFormatter
 import java.util.*
 import kotlin.math.abs
@@ -105,7 +102,7 @@ fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null){
         }
 
     }catch (e:Exception){
-       //snack erro
+       UiInterface.showSnackBar(getString(R.string.snack_general_error))
     }
 }
 

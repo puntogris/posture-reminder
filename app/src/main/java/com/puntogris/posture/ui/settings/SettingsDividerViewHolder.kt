@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.databinding.SettingsDividerVhBinding
-import com.puntogris.posture.databinding.SettingsItemTextBinding
 import com.puntogris.posture.model.SettingItem
 
 class SettingsDividerViewHolder(private val binding: SettingsDividerVhBinding): RecyclerView.ViewHolder(binding.root) {

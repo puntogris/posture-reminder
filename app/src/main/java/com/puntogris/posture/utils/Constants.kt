@@ -1,26 +1,25 @@
 package com.puntogris.posture.utils
 
 object Constants {
-    // 720 are minutes after midnight, so 12am
-    const val DEFAULT_START_TIME_PERIOD = 720
-    // 0 are minutes after midnight, so 12pm
-    const val DEFAULT_END_TIME_PERIOD = 0
-    const val DEFAULT_INTERVAL_REPEATING = 60 //minutes
-    const val DEFAULT_SHOW_NOTIFICATIONS_PREF_VALUE = true
+
+    //Experience
+    const val EXPERIENCE_PER_EXERCISE = 10
+    const val EXPERIENCE_PER_NOTIFICATION = 10
+
+    //Room
+    const val ROOM_DATABASE_NAME = "posture_reminder_database"
+
+    //Other
+    const val SHAKE_ANIMATION_DURATION = 800L
+    const val PROGRESS_BAR_SMOOTH_OFFSET = 20
+    const val PACKAGE_URI_NAME = "package:com.puntogris.posture"
+
+    //Notifications
+    const val CHANNEL_NAME = "notification posture"
+    const val CHANNEL_DESCRIPTION = "channel for posture notification"
     const val DAILY_ALARM_TRIGGERED = "DAILY_ALARM_TRIGGERED"
     const val REPEATING_ALARM_TRIGGERED = "REPEATING_ALARM_TRIGGERED"
     const val POSTURE_NOTIFICATION_ID = "postureNotification"
-    const val TICKET_COLLECTION_NAME = "tickets"
-    const val SHAKE_ANIMATION_DURATION = 800L
-    const val ROOM_DATABASE_NAME = "posture_reminder_database"
-    const val PROGRESS_BAR_SMOOTH_OFFSET = 20
-    const val EXPERIENCE_PER_EXERCISE = 10
-    const val EXPERIENCE_PER_NOTIFICATION = 10
-    const val PACKAGE_URI_NAME = "package:com.puntogris.posture"
-
-    //Notification channel
-    const val CHANNEL_NAME = "notification posture"
-    const val CHANNEL_DESCRIPTION = "channel for posture notification"
 
     //Keys
     const val TIME_UNIT_KEY = "time_unit_key"
@@ -49,4 +48,6 @@ object Constants {
     const val REMINDERS_COLLECTION = "reminders"
     const val PUBLIC_PROFILE_DOC = "profile"
     const val USER_NAME_FIELD = "name"
+    const val TICKET_COLLECTION = "tickets"
+
 }

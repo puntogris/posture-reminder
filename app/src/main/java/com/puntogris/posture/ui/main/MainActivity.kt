@@ -4,20 +4,19 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.ui.*
+import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.ActivityMainBinding
 import com.puntogris.posture.ui.base.BaseActivity
 import com.puntogris.posture.utils.*
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
-import androidx.activity.viewModels
-import androidx.annotation.StringRes
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {

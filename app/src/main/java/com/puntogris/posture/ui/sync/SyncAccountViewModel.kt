@@ -3,7 +3,6 @@ package com.puntogris.posture.ui.sync
 import androidx.lifecycle.ViewModel
 import com.puntogris.posture.data.repo.login.LoginRepository
 import com.puntogris.posture.data.repo.sync.SyncRepository
-import com.puntogris.posture.data.repo.user.UserRepository
 import com.puntogris.posture.model.UserPrivateData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

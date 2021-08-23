@@ -1,6 +1,5 @@
 package com.puntogris.posture.ui.login
 
-import android.animation.ObjectAnimator
 import android.app.Activity
 import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher

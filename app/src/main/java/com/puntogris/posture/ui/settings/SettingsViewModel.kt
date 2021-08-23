@@ -2,7 +2,6 @@ package com.puntogris.posture.ui.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.puntogris.posture.data.local.UserDao
 import com.puntogris.posture.data.repo.login.LoginRepository
 import com.puntogris.posture.data.repo.user.UserRepository
 import com.puntogris.posture.utils.DataStore

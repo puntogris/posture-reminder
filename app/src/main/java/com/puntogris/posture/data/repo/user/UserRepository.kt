@@ -4,7 +4,6 @@ import androidx.room.withTransaction
 import com.puntogris.posture.data.local.AppDatabase
 import com.puntogris.posture.data.local.DayLogsDao
 import com.puntogris.posture.data.local.UserDao
-import com.puntogris.posture.data.remote.FirebaseReminderDataSource
 import com.puntogris.posture.data.remote.FirebaseUserDataSource
 import com.puntogris.posture.model.DayLog
 import com.puntogris.posture.model.SimpleResult

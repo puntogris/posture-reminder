@@ -1,10 +1,10 @@
 package com.puntogris.posture.model
 
 import android.os.Parcelable
-import androidx.annotation.ColorRes
 import androidx.annotation.Keep
-import androidx.room.*
-import org.jetbrains.annotations.NotNull
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.puntogris.posture.R
 import kotlinx.parcelize.Parcelize
 
