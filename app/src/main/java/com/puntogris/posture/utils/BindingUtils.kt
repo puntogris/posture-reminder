@@ -15,6 +15,7 @@ import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.puntogris.posture.R
 import com.puntogris.posture.model.DayLog
 import com.puntogris.posture.model.Reminder
+import com.puntogris.posture.utils.Constants.EXPERIENCE_PER_LEVEL
 import com.puntogris.posture.utils.Constants.PROGRESS_BAR_SMOOTH_OFFSET
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
@@ -105,15 +106,15 @@ fun TextView.setExpForNextLevel(exp: Int){
 @SuppressLint("SetTextI18n")
 @BindingAdapter("expFromTotalLevel")
 fun TextView.setExpFromTotalLevel(exp: Int){
-    text = "${exp.expForCompleteLevel()} / 100"
+    text = "${exp.expForCompleteLevel()} / $EXPERIENCE_PER_LEVEL"
 }
 
 @BindingAdapter("donutChartProgress")
 fun DonutChartView.setDonutChartProgress(exp: Int){
+    donutTotal = EXPERIENCE_PER_LEVEL.toFloat()
     donutColors = intArrayOf(getColor(context, R.color.colorPrimaryDark))
     animation.duration = 1000
-    val data = if (exp < 100) exp else exp - (exp / 100) * 100
-    animate(listOf(data.toFloat()))
+    animate(listOf(exp.expForCompleteLevel().toFloat()))
 }
 
 @BindingAdapter("donutLevel")
@@ -123,7 +124,7 @@ fun TextView.setDonutLevel(exp: Int){
 
 @BindingAdapter("rankingLevel")
 fun TextView.setRankingLevel(exp: Int){
-    text = if (exp < 100 )"lvl. 1" else "lvl. ${(exp / 100)}"
+    text = context.getString(R.string.ranking_level, exp.getLevel())
 }
 
 @BindingAdapter("profileRankingNumber")

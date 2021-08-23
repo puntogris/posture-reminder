@@ -117,7 +117,7 @@
 
     <!-- Settings -->
     <string name="snack_remember_to_refresh_app">Remember to reset the app in the main screen so the new changes apply.</string>
-    <string name="snack_panda_unlocked">Panda unlocked! Go back to the main screen to enjoy his cuteness!</string>
+    <string name="snack_panda_unlocked">Panda desbloqueado! Volver a la pantalla de inicio y disfruta de su ternura!</string>
     <string name="change_name_title">Cambiar el nombre</string>
     <string name="change_name_subtitle">Ingresa el nuevo nombre para cambiar</string>
     <string name="snack_edit_username_success">Nombre cambiado correctamente</string>
@@ -246,7 +246,7 @@
     <!-- Binding -->
     <string name="exercise_duration_seconds">%1$d segs.</string>
     <string name="account_level_title">Nivel %1$d</string>
-    <string name="experience_for_level_x">+%1$d exp para lvl. %2$d</string>
+    <string name="experience_for_level_x">+%1$d para lvl. %2$d</string>
 
     <!-- Content description -->
     <string name="background_image_content_description">Imagen de fondo</string>

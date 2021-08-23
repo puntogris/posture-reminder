@@ -24,6 +24,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
 import com.puntogris.posture.ui.main.UiInterfaceListener
+import com.puntogris.posture.utils.Constants.EXPERIENCE_PER_LEVEL
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -58,11 +59,11 @@ fun Int.minutesToMillis() = this * 1000 * 60
 
 fun Int.toMillis() = (this * 1000).toLong()
 
-fun Int.getLevel() = (this / 100) + 1
+fun Int.getLevel() = (this / EXPERIENCE_PER_LEVEL) + 1
 
-fun Int.expForNextLevel() = 100 - this % 100
+fun Int.expForNextLevel() = EXPERIENCE_PER_LEVEL - this % EXPERIENCE_PER_LEVEL
 
-fun Int.expForCompleteLevel() = this % 100
+fun Int.expForCompleteLevel() = this % EXPERIENCE_PER_LEVEL
 
 fun String.capitalizeFirstChar() =
     replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }

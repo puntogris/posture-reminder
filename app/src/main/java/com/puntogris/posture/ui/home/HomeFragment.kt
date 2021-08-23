@@ -10,7 +10,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentHomeBinding
@@ -37,7 +36,6 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
             it.fragment = this
             it.pandaAnimation.setPadding(0, 0, -100, -110)
         }
-        findNavController().navigate(R.id.claimNotificationExpDialog)
         setupPagerAndTabLayout()
         observeCurrentReminderState()
         initAlarmPermissionLauncherIfSdkS()

@@ -103,13 +103,13 @@ class SettingsBottomSheet : BaseBottomSheetFragment<BottomSheetSettingsBinding>(
         showSnackBar(R.string.snack_panda_unlocked)
     }
     private fun onWebsiteClicked(){
-        launchWebBrowserIntent("https://www.postureapp.puntogris.com")
+        launchWebBrowserIntent("https://postureapp.puntogris.com")
     }
     private fun onGithubClicked(){
-        launchWebBrowserIntent("https://www.github.com/puntogris")
+        launchWebBrowserIntent("https://github.com/puntogris/posture-reminder")
     }
     private fun onHelpClicked(){
-        launchWebBrowserIntent("https://www.postureapp.puntogris.com/help")
+        launchWebBrowserIntent("https://postureapp.puntogris.com/help")
     }
     private fun onLogOutClicked(){
         when(viewModel.logOut()){

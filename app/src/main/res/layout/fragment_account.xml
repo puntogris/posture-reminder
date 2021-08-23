@@ -137,7 +137,6 @@
             app:chart_donutBackgroundColor="@color/gray_dark"
             app:chart_donutRoundCorners="true"
             app:chart_donutThickness="10dp"
-            app:chart_donutTotal="100"
             donutChartProgress="@{viewModel.user.experience}"
             app:layout_constraintBottom_toBottomOf="@id/barChart"
             app:layout_constraintRight_toRightOf="parent"
@@ -164,12 +163,16 @@
 
         <TextView
             android:id="@+id/textView34"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             style="@style/Theme.Posture.TextMedium"
             expForNextLevel="@{viewModel.user.experience}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textAlignment="center"
             android:textColor="@color/grey"
             android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/textView20"
             app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
