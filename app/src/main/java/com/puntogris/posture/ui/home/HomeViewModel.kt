@@ -19,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val alarm: Alarm,
-    private val dataStore: DataStore,
+    dataStore: DataStore,
     private val dayLogsRepository: DayLogsRepository,
     private val reminderRepository: ReminderRepository
 ):ViewModel() {
@@ -42,14 +42,12 @@ class HomeViewModel @Inject constructor(
             _alarmStatus.emit(AlarmStatus.NoConfigured)
         }else{
             alarm.startDailyAlarm(activeReminder)
-            dataStore.isCurrentReminderStateActive(true)
             _alarmStatus.emit(AlarmStatus.Activated(activeReminder))
         }
     }
 
     private suspend fun cancelAlarms(){
         alarm.cancelAlarms()
-        dataStore.isCurrentReminderStateActive(false)
         _alarmStatus.emit(AlarmStatus.Canceled)
     }
 

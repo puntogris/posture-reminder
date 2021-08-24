@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.utils.Constants.DAILY_ALARM_TRIGGERED
 import com.puntogris.posture.utils.Constants.REPEATING_ALARM_TRIGGERED
+import com.puntogris.posture.utils.DataStore
 import com.puntogris.posture.utils.Utils.getTriggerTime
 import com.puntogris.posture.utils.getHours
 import com.puntogris.posture.utils.getMinutes
@@ -16,7 +17,10 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.*
 import javax.inject.Inject
 
-class Alarm @Inject constructor(@ApplicationContext private val context: Context) {
+class Alarm @Inject constructor(
+    @ApplicationContext private val context: Context,
+    private val dataStore: DataStore
+    ) {
 
     private val alarmManager: AlarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
@@ -42,7 +46,7 @@ class Alarm @Inject constructor(@ApplicationContext private val context: Context
             PendingIntent.FLAG_IMMUTABLE
     )
 
-    fun startDailyAlarm(reminder: Reminder){
+    suspend fun startDailyAlarm(reminder: Reminder){
         val periodHour = reminder.startTime.getHours()
         val periodMin = reminder.endTime.getMinutes()
 
@@ -57,13 +61,15 @@ class Alarm @Inject constructor(@ApplicationContext private val context: Context
                 AlarmManager.INTERVAL_DAY,
                 pendingIntentDailyAlarm
         )
+        dataStore.isCurrentReminderStateActive(true)
     }
 
-    fun cancelAlarms(){
+    suspend fun cancelAlarms(){
         alarmManager.apply {
             cancel(pendingIntentDailyAlarm)
             cancel(pendingIntentRepeatingAlarm)
         }
+        dataStore.isCurrentReminderStateActive(false)
     }
 
     fun startRepeatingAlarm(intervalInMinutes: Int){
@@ -76,6 +82,12 @@ class Alarm @Inject constructor(@ApplicationContext private val context: Context
 
     fun cancelRepeatingAlarm() {
         alarmManager.cancel(pendingIntentRepeatingAlarm)
+    }
+
+    suspend fun refreshAlarms(reminder: Reminder){
+        cancelAlarms()
+        startDailyAlarm(reminder)
+
     }
 
     @RequiresApi(Build.VERSION_CODES.S)

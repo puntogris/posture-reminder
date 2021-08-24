@@ -159,12 +159,12 @@
     <string name="level_7_title">Espalda de diamante</string>
     <string name="account_exp_last_week_title">Últimos 7 días</string>
     <string name="account_exp_title">Exp</string>
-    <string name="active_reminder">Recordatorio activo</string>
+    <string name="selected_reminder">Recordatorio seleccionado</string>
     <string name="see_all_reminders">Ver mis recordatorios</string>
     <string name="no_reminders_found_alert">No encontramos un recordatorio activo en tu cuenta, te invitamos a crear uno nuevo y seleccionarlo.</string>
 
     <!-- Other -->
-    <string name="snack_configuration_updated">Ajustes actualizados</string>
+    <string name="snack_configuration_updated">Ajustes actualizados. Navega a el inicio para activar el recordatorio.</string>
     <string name="name">Nombre</string>
     <string name="disabled">Desactivado</string>
     <string name="experience">Experiencia</string>

@@ -16,10 +16,8 @@ object Constants {
 
     //Notifications
     const val CHANNEL_NAME = "Posture Reminder Notification"
-    const val CHANNEL_DESCRIPTION = "Posture Reminder Notification"
     const val DAILY_ALARM_TRIGGERED = "DAILY_ALARM_TRIGGERED"
     const val REPEATING_ALARM_TRIGGERED = "REPEATING_ALARM_TRIGGERED"
-    const val POSTURE_NOTIFICATION_ID = "postureNotification"
 
     //Keys
     const val TIME_UNIT_KEY = "time_unit_key"

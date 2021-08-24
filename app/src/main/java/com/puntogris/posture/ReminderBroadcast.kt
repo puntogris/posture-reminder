@@ -65,14 +65,14 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
     }
 
     private fun onExactAlarmPermissionStateChanged(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            if (alarm.canScheduleExactAlarms()){
-                goAsync {
+        goAsync {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                if (alarm.canScheduleExactAlarms()){
                     reminderRepository.getActiveReminder()?.let {
                         alarm.startDailyAlarm(it)
                     }
-                }
-            }else alarm.cancelAlarms()
+                }else alarm.cancelAlarms()
+            }
         }
     }
 

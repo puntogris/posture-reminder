@@ -7,6 +7,7 @@ import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetManageRemindersBinding
 import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.ui.base.BaseBottomSheetFragment
+import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -43,7 +44,7 @@ class ManageRemindersBottomSheet: BaseBottomSheetFragment<BottomSheetManageRemin
         lifecycleScope.launch {
             viewModel.updateCurrentReminder(reminder.reminderId)
             findNavController().navigateUp()
-            showSnackBar(R.string.snack_configuration_updated)
+            requireParentFragment().UiInterface.showSnackBar(getString(R.string.snack_configuration_updated))
         }
     }
 

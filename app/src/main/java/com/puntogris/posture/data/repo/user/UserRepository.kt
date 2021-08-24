@@ -1,5 +1,6 @@
 package com.puntogris.posture.data.repo.user
 
+import com.puntogris.posture.Alarm
 import com.puntogris.posture.data.local.UserDao
 import com.puntogris.posture.data.remote.FirebaseUserDataSource
 import com.puntogris.posture.model.SimpleResult
@@ -11,7 +12,8 @@ import javax.inject.Inject
 
 class UserRepository @Inject constructor(
     private val userDao: UserDao,
-    private val firebaseUser: FirebaseUserDataSource
+    private val firebaseUser: FirebaseUserDataSource,
+    private val alarm: Alarm
 ): IUserRepository {
 
     override fun getUserFlowRoom() = userDao.getUserFlow()
@@ -32,8 +34,8 @@ class UserRepository @Inject constructor(
     }
 
     override suspend fun updateActiveReminderUserRoom(reminderId: String) {
+        alarm.cancelAlarms()
         userDao.updateCurrentUserReminder(reminderId)
     }
-
 
 }

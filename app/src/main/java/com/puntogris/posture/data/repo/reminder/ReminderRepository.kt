@@ -3,6 +3,7 @@ package com.puntogris.posture.data.repo.reminder
 import android.content.Context
 import android.os.Build
 import androidx.work.*
+import com.puntogris.posture.Alarm
 import com.puntogris.posture.Notifications
 import com.puntogris.posture.UploadReminderWorker
 import com.puntogris.posture.data.local.ReminderDao
@@ -21,6 +22,7 @@ class ReminderRepository @Inject constructor(
     private val reminderFirestore: FirebaseReminderDataSource,
     private val reminderDao: ReminderDao,
     private val notifications: Notifications,
+    private val alarm: Alarm,
     @ApplicationContext private val context: Context
 ): IReminderRepository {
 
@@ -46,7 +48,11 @@ class ReminderRepository @Inject constructor(
             }
             if (reminder.reminderId.isBlank()) fillIdsIfNewReminder(reminder)
             reminderDao.insert(reminder)
-            registerFirestoreUploadReminder(reminder.reminderId)
+            registerFirestoreUploadReminderWorker(reminder.reminderId)
+
+            reminderDao.getActiveReminder()?.let {
+                if (it.reminderId == reminder.reminderId) alarm.refreshAlarms(reminder)
+            }
             SimpleResult.Success
         }catch (e:Exception){
             SimpleResult.Failure
@@ -60,7 +66,7 @@ class ReminderRepository @Inject constructor(
         }
     }
 
-    private fun registerFirestoreUploadReminder(reminderId: String){
+    private fun registerFirestoreUploadReminderWorker(reminderId: String){
         val reminderData = Data.Builder().putString(REMINDER_ID_WORKER_DATA, reminderId).build()
         val constraints = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
 

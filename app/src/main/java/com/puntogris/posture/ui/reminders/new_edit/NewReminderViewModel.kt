@@ -1,21 +1,21 @@
 package com.puntogris.posture.ui.reminders.new_edit
 
-import androidx.lifecycle.*
-import com.puntogris.posture.Alarm
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.puntogris.posture.data.repo.reminder.ReminderRepository
 import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.model.SimpleResult
 import com.puntogris.posture.model.ToneItem
-import com.puntogris.posture.utils.*
+import com.puntogris.posture.utils.millisToMinutes
+import com.puntogris.posture.utils.setField
 import dagger.hilt.android.lifecycle.HiltViewModel
-
 import javax.inject.Inject
 
 @HiltViewModel
 class NewReminderViewModel @Inject constructor(
-    private val reminderRepository: ReminderRepository,
-    private val alarm: Alarm
-) : ViewModel() {
+    private val reminderRepository: ReminderRepository
+    ) : ViewModel() {
 
     private var initialReminderCopy : Reminder? = null
 
@@ -75,12 +75,4 @@ class NewReminderViewModel @Inject constructor(
 
     fun isReminderValid() = reminder.value!!.isValid()
 
-    suspend fun refreshAlarms(){
-        reminderRepository.getActiveReminder()?.let {
-            if (it.reminderId == reminder.value?.reminderId) {
-                alarm.cancelAlarms()
-                alarm.startDailyAlarm(it)
-            }
-        }
-    }
 }

@@ -87,13 +87,12 @@ class NewReminderBottomSheet : BaseBottomSheetFragment<BottomSheetNewReminderBin
         }
     }
 
-    private suspend fun handleResultOfSavingReminder(result: SimpleResult){
+    private fun handleResultOfSavingReminder(result: SimpleResult){
         when(result){
             SimpleResult.Failure -> {
                 showSnackBar(R.string.snack_create_reminder_error)
             }
             SimpleResult.Success -> {
-                viewModel.refreshAlarms()
                 dismiss()
                 requireParentFragment().UiInterface.showSnackBar(getString(R.string.snack_create_reminder_success))
             }

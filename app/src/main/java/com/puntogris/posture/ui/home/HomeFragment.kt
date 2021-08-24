@@ -117,8 +117,6 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
         })
     }
 
-
-
     override fun onDestroyView() {
         mediator?.detach()
         mediator = null
