@@ -44,7 +44,7 @@ class SyncRepository @Inject constructor(
 
     private suspend fun checkForLatestDataAndInsertUser(user: UserPrivateData){
         val roomUser = userDao.getUser()
-        if (roomUser != null && roomUser.id == roomUser.id && roomUser.experience > user.experience) return
+        if (roomUser != null && roomUser.uid == roomUser.uid && roomUser.experience > user.experience) return
         else userDao.insert(user)
     }
 
@@ -62,7 +62,7 @@ class SyncRepository @Inject constructor(
         return UserPublicProfile(
             username = user.username,
             country = user.country,
-            id = user.id
+            uid = user.uid
         )
     }
 

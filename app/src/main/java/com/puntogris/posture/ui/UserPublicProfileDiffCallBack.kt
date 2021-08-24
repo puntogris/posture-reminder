@@ -6,7 +6,7 @@ import com.puntogris.posture.model.UserPublicProfile
 class UserPublicProfileDiffCallBack: DiffUtil.ItemCallback<UserPublicProfile>() {
 
     override fun areItemsTheSame(oldItem: UserPublicProfile, newItem: UserPublicProfile): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.uid == newItem.uid
     }
 
     override fun areContentsTheSame(oldItem: UserPublicProfile, newItem: UserPublicProfile): Boolean {

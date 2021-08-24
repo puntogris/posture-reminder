@@ -7,5 +7,5 @@ data class UserPublicProfile(
     var username: String = "",
     var country: String = "",
     var experience: Int = 0,
-    var id: String = ""
+    var uid: String = ""
 )

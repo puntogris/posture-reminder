@@ -26,7 +26,6 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
 
     private val viewModel: HomeViewModel by viewModels()
     private var mediator: TabLayoutMediator? = null
-
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<Intent>
 
     override fun initializeViews() {

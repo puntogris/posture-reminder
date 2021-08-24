@@ -74,7 +74,9 @@ class ReminderRepository @Inject constructor(
 
     override fun getActiveReminderLiveData() = reminderDao.getActiveReminderLiveData()
 
-    override suspend fun getActiveReminder() = reminderDao.getActiveReminder()
+    override suspend fun getActiveReminder() = withContext(Dispatchers.IO) {
+        reminderDao.getActiveReminder()
+    }
 
     override suspend fun insertReminderIntoFirestoreFromRoom(reminderId: String){
         reminderDao.getReminderWithId(reminderId)?.let {

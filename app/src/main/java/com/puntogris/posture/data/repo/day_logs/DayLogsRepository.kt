@@ -22,6 +22,7 @@ class DayLogsRepository @Inject constructor(
 
     override suspend fun updateRoomDayLogAndUser(dayLog: DayLog) = withContext(Dispatchers.IO){
         try {
+
             val todayLog = dayLogsDao.getTodayLog()
             when {
                 todayLog == null -> {

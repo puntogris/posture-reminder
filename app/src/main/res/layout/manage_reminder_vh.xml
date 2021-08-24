@@ -72,7 +72,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/round_corners_background"
-            android:backgroundTint="@{reminder.color}"
+            reminderColor="@{reminder.color}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

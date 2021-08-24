@@ -79,7 +79,7 @@
     <string name="vibration_picker_title">Vibration pattern</string>
     <string name="sound_tone_item_none">None</string>
     <string name="sound_picker_title">Sound picker</string>
-    <string name="snack_create_reminder_success">Reminder created successfully</string>
+    <string name="snack_create_reminder_success">Reminder set correctly</string>
     <string name="snack_create_reminder_error">An error occurred creating the reminder</string>
     <string name="interval">Interval</string>
     <string name="snack_active_reminder_not_found">No active reminder found.</string>

@@ -79,7 +79,7 @@
     <string name="vibration_picker_title">Patron de vibracion</string>
     <string name="sound_tone_item_none">Ninguno</string>
     <string name="sound_picker_title">Elegir sonido</string>
-    <string name="snack_create_reminder_success">Recordatorio creado satisfactoriamente</string>
+    <string name="snack_create_reminder_success">Recordatorio configurado correctamente</string>
     <string name="snack_create_reminder_error">Error al crear el recordatorio</string>
     <string name="interval">Intervalo</string>
     <string name="snack_active_reminder_not_found">No se encontro un recodatorio activo.</string>
@@ -169,7 +169,7 @@
     <string name="disabled">Desactivado</string>
     <string name="experience">Experiencia</string>
     <string name="exercises">Ejercicios</string>
-    <string name="snack_connection_error">Ocurrio un error. Verifique su conexion ntente nuevamente.</string>
+    <string name="snack_connection_error">Ocurrio un error. Verifique su conexion e intente nuevamente.</string>
     <string name="snack_general_error">Ocurrio un error. Intenta nuevamente.</string>
     <string name="see_global_rankings">Ver ranking global</string>
     <string name="today">Hoy</string>

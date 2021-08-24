@@ -18,7 +18,7 @@ data class UserPrivateData(
     @get:Exclude val roomId: Int =  1,
 
     @ColumnInfo
-    val id: String = "",
+    val uid: String = "",
 
     @ColumnInfo
     val username: String = "",

@@ -59,6 +59,15 @@ fun ImageView.setReminderColor(color:Int){
     }
 }
 
+@BindingAdapter("reminderColor")
+fun View.setReminderColor(color:Int){
+    backgroundTintList = try {
+        ColorStateList.valueOf(getColor(context, color))
+    }catch (e:Exception){
+        ColorStateList.valueOf(color)
+    }
+}
+
 @BindingAdapter("dayMonth")
 fun TextView.setDayMonth(position: Int){
     var date = LocalDate.now()

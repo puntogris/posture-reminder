@@ -51,7 +51,7 @@ class NewReminderBottomSheet : BaseBottomSheetFragment<BottomSheetNewReminderBin
 
     private fun checkIfIsNotNewReminder(){
         args.reminder?.let {
-            viewModel.updateReminder(it)
+            viewModel.updateReminder(it.copy())
         }
     }
 
@@ -87,14 +87,15 @@ class NewReminderBottomSheet : BaseBottomSheetFragment<BottomSheetNewReminderBin
         }
     }
 
-    private fun handleResultOfSavingReminder(result: SimpleResult){
+    private suspend fun handleResultOfSavingReminder(result: SimpleResult){
         when(result){
             SimpleResult.Failure -> {
                 showSnackBar(R.string.snack_create_reminder_error)
             }
             SimpleResult.Success -> {
+                viewModel.refreshAlarms()
                 dismiss()
-                UiInterface.showSnackBar(getString(R.string.snack_create_reminder_success))
+                requireParentFragment().UiInterface.showSnackBar(getString(R.string.snack_create_reminder_success))
             }
         }
     }

@@ -1,8 +1,10 @@
 package com.puntogris.posture.ui.reminders.new_edit
 
 import androidx.lifecycle.*
+import com.puntogris.posture.Alarm
 import com.puntogris.posture.data.repo.reminder.ReminderRepository
 import com.puntogris.posture.model.Reminder
+import com.puntogris.posture.model.SimpleResult
 import com.puntogris.posture.model.ToneItem
 import com.puntogris.posture.utils.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,16 +13,27 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NewReminderViewModel @Inject constructor(
-    private val reminderRepository: ReminderRepository
+    private val reminderRepository: ReminderRepository,
+    private val alarm: Alarm
 ) : ViewModel() {
+
+    private var initialReminderCopy : Reminder? = null
 
     private val _reminder = MutableLiveData(Reminder())
     val reminder: LiveData<Reminder> = _reminder
 
-    suspend fun saveReminder() = reminderRepository.insertReminder(_reminder.value!!)
+    suspend fun saveReminder(): SimpleResult{
+        return if (reminderIsEdited()) reminderRepository.insertReminder(_reminder.value!!)
+        else SimpleResult.Success
+    }
 
     fun updateReminder(reminder: Reminder) {
         _reminder.value = reminder
+        initialReminderCopy = reminder.copy()
+    }
+
+    private fun reminderIsEdited() :Boolean{
+        return initialReminderCopy != _reminder.value
     }
 
     fun saveReminderName(text: String) {
@@ -61,4 +74,13 @@ class NewReminderViewModel @Inject constructor(
     }
 
     fun isReminderValid() = reminder.value!!.isValid()
+
+    suspend fun refreshAlarms(){
+        reminderRepository.getActiveReminder()?.let {
+            if (it.reminderId == reminder.value?.reminderId) {
+                alarm.cancelAlarms()
+                alarm.startDailyAlarm(it)
+            }
+        }
+    }
 }

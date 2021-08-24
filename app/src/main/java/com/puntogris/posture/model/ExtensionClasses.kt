@@ -1,5 +1,7 @@
 package com.puntogris.posture.model
 
+import com.puntogris.posture.R
+
 sealed class SimpleResult{
     object Success: SimpleResult()
     object Failure: SimpleResult()
@@ -15,7 +17,7 @@ sealed class ReminderUi{
         class Vibration(itemData: ItemData): Item(itemData)
     }
     class Name(var value: String = ""): ReminderUi()
-    class Color(var color: Int): ReminderUi()
+    class Color(var color: Int = R.color.grey): ReminderUi()
 }
 
 sealed class LoginResult {
