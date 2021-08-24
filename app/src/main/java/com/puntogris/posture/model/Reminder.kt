@@ -14,7 +14,7 @@ import kotlinx.parcelize.Parcelize
 data class Reminder(
 
     @PrimaryKey(autoGenerate = false)
-    var id: String = "",
+    var reminderId: String = "",
 
     @ColumnInfo
     var uid: String = "",

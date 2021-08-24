@@ -8,13 +8,11 @@ import android.media.AudioAttributes
 import android.media.AudioManager
 import android.net.Uri
 import android.os.Build
-import android.provider.Settings
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.navigation.NavDeepLinkBuilder
 import com.puntogris.posture.data.local.LocalDataSource
 import com.puntogris.posture.model.Reminder
-import com.puntogris.posture.utils.Constants
 import com.puntogris.posture.utils.Constants.CHANNEL_NAME
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -30,7 +28,7 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
     @RequiresApi(Build.VERSION_CODES.O)
     fun createChannelForReminderSdkO(reminder: Reminder){
 
-        NotificationChannel(reminder.id, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT).also {
+        NotificationChannel(reminder.reminderId, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT).also {
             val audioAttributes = AudioAttributes.Builder()
                 .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                 .setUsage(AudioAttributes.USAGE_NOTIFICATION)
@@ -51,7 +49,6 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
 
             notificationManager.createNotificationChannel(it)
         }
-
     }
 
     fun getNotificationBuilderWithReminder(reminder: Reminder): NotificationCompat.Builder{
@@ -60,7 +57,7 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
             .setDestination(R.id.claimNotificationExpDialog)
             .createPendingIntent()
 
-        val builder = NotificationCompat.Builder(context, reminder.id)
+        val builder = NotificationCompat.Builder(context, reminder.reminderId)
             .setSmallIcon(R.drawable.ic_app_logo)
             .setContentTitle(context.getString(R.string.posture_notification_title))
             .setContentText(context.getString(R.string.posture_notification_text))
@@ -83,15 +80,6 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
     @RequiresApi(Build.VERSION_CODES.O)
     fun removeDeprecatedChannels(){
         deprecatedChannels.forEach(notificationManager::deleteNotificationChannel)
-    }
-
-    fun asd() = notificationManager.notificationChannels
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun cancelAllChannels(){
-        notificationManager.notificationChannels.forEach {
-            notificationManager.deleteNotificationChannel(it.id)
-        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

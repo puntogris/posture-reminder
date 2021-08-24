@@ -144,7 +144,7 @@
     <!-- Notifications -->
     <string name="snack_notifications_set">Notifications set from %1$s to %2$s.</string>
     <string name="posture_notification_title">Posture Notification</string>
-    <string name="posture_notification_text">Time to fix your posture!</string>
+    <string name="posture_notification_text">Time to fix your posture! Click to claim your exp!</string>
     <string name="notifications">Notifications</string>
     <string name="claim_experience_title">Congratulations!</string>
     <string name="claim_experience_message">You have added %1$d experience to your account!</string>

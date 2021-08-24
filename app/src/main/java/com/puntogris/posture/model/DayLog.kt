@@ -11,7 +11,7 @@ import org.threeten.bp.LocalDate
 data class DayLog(
 
     @PrimaryKey(autoGenerate = true)
-    var id: Int = 0,
+    var dayLogId: Int = 0,
 
     @ColumnInfo
     var expGained: Int = 0,

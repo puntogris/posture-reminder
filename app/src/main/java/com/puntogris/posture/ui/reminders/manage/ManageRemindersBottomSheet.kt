@@ -41,7 +41,7 @@ class ManageRemindersBottomSheet: BaseBottomSheetFragment<BottomSheetManageRemin
 
     private fun onSelectReminder(reminder: Reminder){
         lifecycleScope.launch {
-            viewModel.updateCurrentReminder(reminder.id)
+            viewModel.updateCurrentReminder(reminder.reminderId)
             findNavController().navigateUp()
             showSnackBar(R.string.snack_configuration_updated)
         }

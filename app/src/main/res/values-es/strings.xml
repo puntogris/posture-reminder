@@ -142,7 +142,7 @@
     <!-- Notifications -->
     <string name="snack_notifications_set">Se activaron las notificaciones desde las %1$s hasta las %2$s.</string>
     <string name="posture_notification_title">Notificacion de Postura</string>
-    <string name="posture_notification_text">Es hora de corregir la postura!</string>
+    <string name="posture_notification_text">Es hora de corregir la postura! Clik para reclamar tu exp!</string>
     <string name="notifications">Notificaciones</string>
     <string name="claim_experience_title">Felicitaciones!</string>
     <string name="claim_experience_message">Agregaste %1$d de experiencia a tu cuenta!</string>

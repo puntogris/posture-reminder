@@ -86,7 +86,7 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
                 }
 
                 with(NotificationManagerCompat.from(context)) {
-                    notify(it.id.hashCode(), nb.build())
+                    notify(it.reminderId.hashCode(), nb.build())
                 }
             }
         }

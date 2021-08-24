@@ -29,10 +29,10 @@ class ReminderRepository @Inject constructor(
     override suspend fun deleteReminder(reminder: Reminder) :SimpleResult = withContext(Dispatchers.IO){
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                notifications.removeNotificationChannelWithId(reminder.id)
+                notifications.removeNotificationChannelWithId(reminder.reminderId)
             }
             reminderDao.delete(reminder)
-            reminderFirestore.getReminderDocumentRefWithId(reminder.id).delete().await()
+            reminderFirestore.getReminderDocumentRefWithId(reminder.reminderId).delete().await()
             SimpleResult.Success
         }catch (e:Exception){
             SimpleResult.Failure
@@ -44,9 +44,9 @@ class ReminderRepository @Inject constructor(
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 notifications.createChannelForReminderSdkO(reminder)
             }
-            if (reminder.id.isBlank()) fillIdsIfNewReminder(reminder)
+            if (reminder.reminderId.isBlank()) fillIdsIfNewReminder(reminder)
             reminderDao.insert(reminder)
-            registerFirestoreUploadReminder(reminder.id)
+            registerFirestoreUploadReminder(reminder.reminderId)
             SimpleResult.Success
         }catch (e:Exception){
             SimpleResult.Failure
@@ -55,7 +55,7 @@ class ReminderRepository @Inject constructor(
 
     private fun fillIdsIfNewReminder(reminder: Reminder){
         reminder.apply {
-            id = reminderFirestore.getNewReminderDocumentRef().id
+            reminderId = reminderFirestore.getNewReminderDocumentRef().id
             uid = reminderFirestore.getCurrentUserId()
         }
     }

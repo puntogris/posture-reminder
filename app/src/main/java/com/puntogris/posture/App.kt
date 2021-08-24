@@ -1,20 +1,10 @@
 package com.puntogris.posture
 
 import android.app.Application
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context
-import android.graphics.Color
-import android.media.AudioAttributes
 import android.os.Build
-import android.provider.Settings
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.*
 import com.jakewharton.threetenabp.AndroidThreeTen
-import com.puntogris.posture.utils.Constants
-import com.puntogris.posture.utils.Constants.CHANNEL_DESCRIPTION
-import com.puntogris.posture.utils.Constants.CHANNEL_NAME
-import com.puntogris.posture.utils.Constants.POSTURE_NOTIFICATION_ID
 import com.puntogris.posture.utils.Constants.SYNC_ACCOUNT_WORKER
 import dagger.hilt.android.HiltAndroidApp
 import java.util.concurrent.TimeUnit
@@ -34,7 +24,6 @@ class App: Application(), Configuration.Provider{
         AndroidThreeTen.init(this)
         setupSyncAccountWorkManager()
         removeDeprecatedNotificationChannels()
-        println(notifications.asd())
     }
 
     private fun setupSyncAccountWorkManager(){
@@ -50,7 +39,6 @@ class App: Application(), Configuration.Provider{
     private fun removeDeprecatedNotificationChannels(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notifications.removeDeprecatedChannels()
-
         }
     }
 
