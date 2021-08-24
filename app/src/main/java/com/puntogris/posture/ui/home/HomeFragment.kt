@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.posture.R
+import com.puntogris.posture.data.repo.sync.SyncRepository
 import com.puntogris.posture.databinding.FragmentHomeBinding
 import com.puntogris.posture.model.AlarmStatus
 import com.puntogris.posture.ui.base.BaseFragmentOptions
@@ -20,6 +21,7 @@ import com.puntogris.posture.utils.Constants.PACKAGE_URI_NAME
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_home) {
@@ -27,6 +29,8 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
     private val viewModel: HomeViewModel by viewModels()
     private var mediator: TabLayoutMediator? = null
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<Intent>
+
+    @Inject lateinit var syncRepository: SyncRepository
 
     override fun initializeViews() {
         binding.let {
@@ -38,6 +42,10 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
         setupPagerAndTabLayout()
         observeCurrentReminderState()
         initAlarmPermissionLauncherIfSdkS()
+
+        lifecycleScope.launch {
+            syncRepository.syncUserExperienceInFirestoreWithRoom()
+        }
     }
 
     private fun setupPagerAndTabLayout(){

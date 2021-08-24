@@ -20,6 +20,9 @@ import com.puntogris.posture.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.io.IOException
+
+import com.google.firebase.crashlytics.internal.network.HttpResponse
 
 @AndroidEntryPoint
 class LoginFragment :BaseFragment<FragmentLoginBinding>(R.layout.fragment_login) {
@@ -80,6 +83,10 @@ class LoginFragment :BaseFragment<FragmentLoginBinding>(R.layout.fragment_login)
         binding.loginButton.playShakeAnimation()
         val intent = viewModel.getGoogleSignInIntent()
         loginActivityResultLauncher.launch(intent)
+    }
+
+    fun test(){
+
     }
 
 }

@@ -99,11 +99,12 @@ dependencies {
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
     //Firebase
-    implementation platform('com.google.firebase:firebase-bom:28.2.1')
+    implementation platform('com.google.firebase:firebase-bom:28.3.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-firestore-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-functions-ktx'
 
     //BottomSheet
     implementation "com.maxkeppeler.sheets:core:$bottomSheetVersion"

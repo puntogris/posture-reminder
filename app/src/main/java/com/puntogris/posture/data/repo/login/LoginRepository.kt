@@ -5,6 +5,7 @@ import android.content.Intent
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.puntogris.posture.BuildConfig
@@ -16,6 +17,7 @@ import com.puntogris.posture.utils.capitalizeWords
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import java.util.*
 import javax.inject.Inject
 
 class LoginRepository @Inject constructor(
@@ -47,11 +49,14 @@ class LoginRepository @Inject constructor(
     }
 
     private fun getUserPrivateDataFromFirebaseUser(user:FirebaseUser?): UserPrivateData{
+        val date = user?.metadata?.creationTimestamp
+        val timestamp = if (date == null) Timestamp.now() else Timestamp((Date(date)))
         return UserPrivateData(
             username = user?.displayName.toString().capitalizeWords(),
             uid = user?.uid.toString(),
             email = user?.email.toString(),
-            photoUrl = user?.photoUrl.toString()
+            photoUrl = user?.photoUrl.toString(),
+            creationDate = timestamp
         )
     }
 
@@ -59,7 +64,7 @@ class LoginRepository @Inject constructor(
         return getGoogleSignInClient().signInIntent
     }
 
-    override fun signOutUserFromFirebaseAndGoogle():SimpleResult {
+    override fun signOutUserFromFirebaseAndGoogle(): SimpleResult {
         return try {
             loginFirestore.logOutFromFirebase()
             getGoogleSignInClient().signOut()
