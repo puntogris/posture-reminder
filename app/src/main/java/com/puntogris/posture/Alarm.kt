@@ -13,7 +13,6 @@ import com.puntogris.posture.utils.Utils.getTriggerTime
 import com.puntogris.posture.utils.getHours
 import com.puntogris.posture.utils.getMinutes
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.DelicateCoroutinesApi
 import java.util.*
 import javax.inject.Inject
 

@@ -20,8 +20,6 @@
         <item name="sheetsBackgroundColor">#353535</item>
     </style>
 
-    <style name="Theme.Posture.CardView" parent="Widget.MaterialComponents.CardView"/>
-
     <style name="Theme.Posture.Layout">
         <item name="android:background">@color/nightBackground</item>
     </style>

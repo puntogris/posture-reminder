@@ -1,7 +1,6 @@
 package com.puntogris.posture.ui.reminders.manage
 
 import androidx.lifecycle.ViewModel
-import com.puntogris.posture.Notifications
 import com.puntogris.posture.data.repo.reminder.ReminderRepository
 import com.puntogris.posture.data.repo.user.UserRepository
 import com.puntogris.posture.model.Reminder

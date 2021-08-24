@@ -45,7 +45,6 @@
     <string name="stop_alarm">Stop</string>
     <string name="start_alarm">Start</string>
     <string name="snack_alarms_off">The alarm has been deactivated.</string>
-    <string name="snack_new_config_saved">The alarm has been updated with the new configuration.</string>
     <string name="today_pager">Today</string>
     <string name="yesterday_pager">Yesterday</string>
 
@@ -71,7 +70,6 @@
 
     <!-- Reminder -->
     <string name="snack_delete_reminder_success">Reminder deleted successfully</string>
-    <string name="reminder_name">Reminder name</string>
     <string name="days">Days</string>
     <string name="start_time">Start at</string>
     <string name="end_time">End at</string>
@@ -116,7 +114,6 @@
     <string name="account_sync_error">Synchronization failed</string>
 
     <!-- Settings -->
-    <string name="snack_remember_to_refresh_app">Remember to reset the app in the main screen so the new changes apply.</string>
     <string name="snack_panda_unlocked">Panda unlocked! Go back to the main screen to enjoy his cuteness!</string>
     <string name="change_name_title">Change the name</string>
     <string name="change_name_subtitle">Enter the new name to change</string>
@@ -172,7 +169,6 @@
     <string name="snack_configuration_updated">Settings updated successfully</string>
     <string name="name">Name</string>
     <string name="disabled">Disabled</string>
-    <string name="enabled">Enabled</string>
     <string name="experience">Experience</string>
     <string name="exercises">Exercise</string>
     <string name="snack_connection_error">An error occurred. Check your connection and try again.</string>
@@ -253,7 +249,6 @@
     <string name="ranking_level" translatable="false">Lvl. %1$d</string>
 
     <!-- Content description -->
-    <string name="background_image_content_description">Background image</string>
     <string name="close_screen_content_description">Close screen</string>
     <string name="logo_content_description">App logo</string>
     <string name="edit_content_description">Edit alarm</string>

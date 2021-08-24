@@ -78,13 +78,13 @@ class NewReminderBottomSheet : BaseBottomSheetFragment<BottomSheetNewReminderBin
     }
 
     fun onSaveReminder() {
-      //  if (viewModel.isReminderValid()){
+        if (viewModel.isReminderValid()){
             lifecycleScope.launch {
                 handleResultOfSavingReminder(viewModel.saveReminder())
             }
-    //    }else{
-    //        showSnackBar(R.string.snack_reminder_not_valid)
-    //    }
+        }else{
+            showSnackBar(R.string.snack_reminder_not_valid)
+        }
     }
 
     private fun handleResultOfSavingReminder(result: SimpleResult){

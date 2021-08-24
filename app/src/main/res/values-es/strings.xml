@@ -45,7 +45,6 @@
     <string name="stop_alarm">Desactivar</string>
     <string name="start_alarm">Activar</string>
     <string name="snack_alarms_off">Se cancelaron las alarmas.</string>
-    <string name="snack_new_config_saved">Se actualizo la alarma con la nueva configuracion.</string>
     <string name="today_pager">Hoy</string>
     <string name="yesterday_pager">Ayer</string>
 
@@ -71,7 +70,6 @@
 
     <!-- Reminder -->
     <string name="snack_delete_reminder_success">Recordatorio eliminado</string>
-    <string name="reminder_name">Nombre del recordatorio</string>
     <string name="days">Días</string>
     <string name="start_time">Inciar</string>
     <string name="end_time">Finalizar</string>
@@ -116,7 +114,6 @@
     <string name="account_sync_error">Error al sincronizar</string>
 
     <!-- Settings -->
-    <string name="snack_remember_to_refresh_app">Remember to reset the app in the main screen so the new changes apply.</string>
     <string name="snack_panda_unlocked">Panda desbloqueado! Volver a la pantalla de inicio y disfruta de su ternura!</string>
     <string name="change_name_title">Cambiar el nombre</string>
     <string name="change_name_subtitle">Ingresa el nuevo nombre para cambiar</string>
@@ -170,7 +167,6 @@
     <string name="snack_configuration_updated">Ajustes actualizados</string>
     <string name="name">Nombre</string>
     <string name="disabled">Desactivado</string>
-    <string name="enabled">Activado</string>
     <string name="experience">Experiencia</string>
     <string name="exercises">Ejercicios</string>
     <string name="snack_connection_error">Ocurrio un error. Verifique su conexion ntente nuevamente.</string>
@@ -249,7 +245,6 @@
     <string name="experience_for_level_x">+%1$d para lvl. %2$d</string>
 
     <!-- Content description -->
-    <string name="background_image_content_description">Imagen de fondo</string>
     <string name="close_screen_content_description">Cerrar pantalla</string>
     <string name="logo_content_description">App logo</string>
     <string name="edit_content_description">Editar alarma</string>
