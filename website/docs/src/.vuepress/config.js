@@ -28,15 +28,23 @@ module.exports = {
    */
   themeConfig: {
     repo: '',
-    logo: 'logo.png',
+    logo: '/icons/logo.png',
     editLinks: false,
     docsDir: '',
     editLinkText: '',
     lastUpdated: false,
     nav: [
       {
-        text: 'Blog',
-        link: '/blog/',
+        text: 'Home',
+        link: '/index/',
+      },
+      {
+        text: 'Versions',
+        link: '/versions/',
+      },
+      {
+        text: 'Help',
+        link: '/help/'
       },
       {
         text: 'Contact',
@@ -48,23 +56,16 @@ module.exports = {
       }
     ],
     sidebar: {
-      '/blog/': [
-        {
-          title: 'Blog',
-          collapsable: false,
-          children: [
-            ''
-          ]
-        },
+      '/versions/': [
         {
           title: 'Versions',
           collapsable: false,
           children: [
-            'versions',
-            '2.0.0-1a',
+            '',
+            'v2.0.0-a1'
           ]
         }
-      ],
+      ]
     }
   },
 

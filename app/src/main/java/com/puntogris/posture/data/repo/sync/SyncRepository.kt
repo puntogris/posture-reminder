@@ -8,6 +8,7 @@ import com.puntogris.posture.model.*
 import com.puntogris.posture.utils.Constants.EXPERIENCE_FIELD
 import com.puntogris.posture.utils.Constants.MAX_EXPERIENCE_OFFSET
 import com.puntogris.posture.utils.Constants.MAX_EXPERIENCE_PER_DAY
+import com.puntogris.posture.utils.DataStore
 import com.puntogris.posture.utils.toDays
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
@@ -18,7 +19,8 @@ class SyncRepository @Inject constructor(
     private val reminderDao: ReminderDao,
     private val userDao: UserDao,
     private val firestoreUser: FirebaseUserDataSource,
-    private val firestoreReminder: FirebaseReminderDataSource
+    private val firestoreReminder: FirebaseReminderDataSource,
+    private val dataStore: DataStore
 ) : ISyncRepository {
 
     override suspend fun syncFirestoreAccountWithRoom(userPrivateData: UserPrivateData): SimpleResult =
@@ -28,8 +30,10 @@ class SyncRepository @Inject constructor(
                 if (userState is UserAccount.Registered) {
                     syncUserReminders()
                 }
+                dataStore.setLoginCompletedPref(true)
                 SimpleResult.Success
             } catch (e: Exception) {
+                dataStore.setLoginCompletedPref(false)
                 SimpleResult.Failure
             }
         }

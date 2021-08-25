@@ -44,7 +44,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private fun checkAppCurrentVersion(){
         viewModel.appVersionStatus.observe(this){ isNewVersion ->
-            if (isNewVersion && viewModel.isUserLoggedIn()) navController.navigate(R.id.whatsNewDialog)
+            if (isNewVersion) navController.navigate(R.id.whatsNewDialog)
         }
     }
 
@@ -61,9 +61,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private fun setupInitialDestination(){
         navController.graph = navController.navInflater.inflate(R.navigation.navigation)
             .apply {
-                startDestination =
-                    if (viewModel.isUserLoggedIn()) R.id.homeFragment
-                    else R.id.loginFragment
+                runBlocking {
+                    startDestination =
+                        if (viewModel.isUserLoggedIn() && dataStore.isLoginCompleted()) R.id.homeFragment
+                        else R.id.loginFragment
+                }
             }
     }
 
@@ -125,7 +127,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         if (destination.id == R.id.welcomeFragment ||
             destination.id == R.id.synAccountFragment ||
             destination.id == R.id.batteryOptimizationFragment ||
-            destination.id == R.id.loginFragment
+            destination.id == R.id.loginFragment ||
+            destination.id == R.id.whatsNewDialog
         ) {
             binding.bottomNavigation.gone()
         } else {

@@ -61,9 +61,9 @@ class DataStore @Inject constructor(@ApplicationContext private val context: Con
         }
     }
 
-    fun isLoginCompleted() = context.dataStore.data.map {
-        it[booleanPreferencesKey(LOGIN_COMPLETED_KEY)] ?: false
-    }
+    suspend fun isLoginCompleted() =
+        context.dataStore.data.first()[booleanPreferencesKey(LOGIN_COMPLETED_KEY)] ?: false
+
 
     suspend fun setLoginCompletedPref(value: Boolean) = context.dataStore.edit {
         it[booleanPreferencesKey(LOGIN_COMPLETED_KEY)] = value

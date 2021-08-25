@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /logo2.png
+heroImage: icons/logo2.png
 tagline: Open source posture reminder for Android
 footer: Made by Puntogris( Joaquin ) with ❤️
 ---

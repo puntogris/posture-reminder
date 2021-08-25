@@ -113,11 +113,13 @@ class SettingsBottomSheet : BaseBottomSheetFragment<BottomSheetSettingsBinding>(
         launchWebBrowserIntent("https://postureapp.puntogris.com/help")
     }
     private fun onLogOutClicked(){
-        when(viewModel.logOut()){
-            SimpleResult.Failure -> showSnackBar(R.string.snack_general_error)
-            SimpleResult.Success -> {
-                val nav = NavOptions.Builder().setPopUpTo(R.id.navigation, true).build()
-                findNavController().navigate(R.id.loginFragment, null, nav)
+        lifecycleScope.launch {
+            when(viewModel.logOut()){
+                SimpleResult.Failure -> showSnackBar(R.string.snack_general_error)
+                SimpleResult.Success -> {
+                    val nav = NavOptions.Builder().setPopUpTo(R.id.navigation, true).build()
+                    findNavController().navigate(R.id.loginFragment, null, nav)
+                }
             }
         }
     }

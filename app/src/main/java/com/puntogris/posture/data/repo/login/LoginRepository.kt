@@ -13,6 +13,7 @@ import com.puntogris.posture.data.remote.FirebaseLoginDataSource
 import com.puntogris.posture.model.UserPrivateData
 import com.puntogris.posture.model.LoginResult
 import com.puntogris.posture.model.SimpleResult
+import com.puntogris.posture.utils.DataStore
 import com.puntogris.posture.utils.capitalizeWords
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,7 +23,8 @@ import javax.inject.Inject
 
 class LoginRepository @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val loginFirestore: FirebaseLoginDataSource
+    private val loginFirestore: FirebaseLoginDataSource,
+    private val dataStore: DataStore
 ): ILoginRepository {
 
     private fun getGoogleSignInClient(): GoogleSignInClient{
@@ -64,8 +66,9 @@ class LoginRepository @Inject constructor(
         return getGoogleSignInClient().signInIntent
     }
 
-    override fun signOutUserFromFirebaseAndGoogle(): SimpleResult {
+    override suspend fun signOutUserFromFirebaseAndGoogle(): SimpleResult {
         return try {
+            dataStore.setLoginCompletedPref(false)
             loginFirestore.logOutFromFirebase()
             getGoogleSignInClient().signOut()
             SimpleResult.Success

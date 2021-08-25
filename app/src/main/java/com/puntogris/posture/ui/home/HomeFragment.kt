@@ -28,6 +28,7 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
     private var mediator: TabLayoutMediator? = null
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<Intent>
 
+
     override fun initializeViews() {
         binding.let {
             it.viewModel = viewModel
@@ -35,6 +36,7 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
             it.fragment = this
             it.pandaAnimation.setPadding(0, 0, -100, -110)
         }
+
         setupPagerAndTabLayout()
         observeCurrentReminderState()
         initAlarmPermissionLauncherIfSdkS()

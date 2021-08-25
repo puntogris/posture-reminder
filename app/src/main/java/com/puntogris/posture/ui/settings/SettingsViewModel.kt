@@ -29,5 +29,5 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
-    fun logOut() = loginRepository.signOutUserFromFirebaseAndGoogle()
+    suspend fun logOut() = loginRepository.signOutUserFromFirebaseAndGoogle()
 }

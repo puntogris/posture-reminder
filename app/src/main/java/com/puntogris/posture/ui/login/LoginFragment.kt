@@ -13,10 +13,7 @@ import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentLoginBinding
 import com.puntogris.posture.model.LoginResult
 import com.puntogris.posture.ui.base.BaseFragment
-import com.puntogris.posture.utils.UiInterface
-import com.puntogris.posture.utils.gone
-import com.puntogris.posture.utils.playShakeAnimation
-import com.puntogris.posture.utils.visible
+import com.puntogris.posture.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -83,6 +80,10 @@ class LoginFragment :BaseFragment<FragmentLoginBinding>(R.layout.fragment_login)
         binding.loginButton.playShakeAnimation()
         val intent = viewModel.getGoogleSignInIntent()
         loginActivityResultLauncher.launch(intent)
+    }
+
+    fun onLoginProblemsClicked(){
+        launchWebBrowserIntent("https://postureapp.puntogris.com/blog/help.html")
     }
 
 }

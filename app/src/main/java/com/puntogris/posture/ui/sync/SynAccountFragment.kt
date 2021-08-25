@@ -48,9 +48,11 @@ class SynAccountFragment : BaseFragment<FragmentSynAccountBinding>(R.layout.frag
             continueButton.text = getString(R.string.action_exit)
             continueButton.isEnabled = true
             continueButton.setOnClickListener {
-                viewModel.logOut()
-                findNavController().navigateUp()
-                UiInterface.showSnackBar(getString(R.string.snack_connection_error))
+                lifecycleScope.launch {
+                    viewModel.logOut()
+                    findNavController().navigateUp()
+                    UiInterface.showSnackBar(getString(R.string.snack_connection_error))
+                }
             }
         }
     }
