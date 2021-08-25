@@ -10,8 +10,8 @@ import org.threeten.bp.LocalDate
 @Entity
 data class DayLog(
 
-    @PrimaryKey(autoGenerate = true)
-    var dayLogId: Int = 0,
+    @PrimaryKey(autoGenerate = false)
+    var dateId: String = LocalDate.now().toString(),
 
     @ColumnInfo
     var expGained: Int = 0,
@@ -22,6 +22,4 @@ data class DayLog(
     @ColumnInfo
     var exercises: Int = 0,
 
-    @ColumnInfo
-    var date: String = LocalDate.now().toString()
-)
+    )

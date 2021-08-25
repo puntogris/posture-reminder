@@ -11,9 +11,8 @@ footer: Made by Puntogris( Joaquin ) with ❤️
 
 # Screens
 
-![drawing](https://raw.githubusercontent.com/puntogris/posture-reminder/main/screenshots/1.webp)
-![drawing](https://raw.githubusercontent.com/puntogris/posture-reminder/main/screenshots/2.webp)
-![drawing](https://raw.githubusercontent.com/puntogris/posture-reminder/main/screenshots/3.webp)
-
+![drawing](/img/1.png)
+![drawing](/img/2.png)
+![drawing](/img/3.png)
 
 </center>

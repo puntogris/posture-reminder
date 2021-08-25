@@ -13,16 +13,16 @@ interface DayLogsDao {
     @Update
     suspend fun update(dayLog: DayLog)
 
-    @Query("SELECT * from DayLog ORDER BY date DESC LIMIT 1")
+    @Query("SELECT * from DayLog ORDER BY dateId DESC LIMIT 1")
     suspend fun getLastEntry(): DayLog?
 
-    @Query("SELECT * from DayLog WHERE date >= (SELECT date('now', '-2 day')) ORDER BY date DESC LIMIT 2")
+    @Query("SELECT * from DayLog WHERE dateId >= (SELECT date('now', '-2 day')) ORDER BY dateId DESC LIMIT 2")
     fun getLastTwoEntries(): LiveData<List<DayLog>>
 
-    @Query("SELECT * from DayLog WHERE date >= (SELECT date('now', '-7 day')) ORDER BY date DESC LIMIT 7")
+    @Query("SELECT * from DayLog WHERE dateId >= (SELECT date('now', '-7 day')) ORDER BY dateId DESC LIMIT 7")
     suspend fun getWeekEntries(): List<DayLog>
 
-    @Query("SELECT * from DayLog WHERE date == date('now')")
+    @Query("SELECT * from DayLog WHERE dateId == date('now')")
     suspend fun getTodayLog(): DayLog?
 
 }

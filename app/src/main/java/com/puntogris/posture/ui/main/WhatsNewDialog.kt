@@ -15,7 +15,7 @@ class WhatsNewDialog: DialogFragment() {
             .setTitle(getString(R.string.updated_version, BuildConfig.VERSION_NAME))
             .setPositiveButton(android.R.string.ok, null)
             .setNeutralButton(R.string.whats_new) { _, _ ->
-                launchWebBrowserIntent("https://postureapp.puntogris.com/blog/v${BuildConfig.VERSION_NAME}.html")
+                launchWebBrowserIntent("https://postureapp.puntogris.com/versions/v${BuildConfig.VERSION_NAME}.html")
             }
             .create()
     }

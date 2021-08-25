@@ -1,5 +1,7 @@
 package com.puntogris.posture.ui.settings
 
+import android.content.Intent
+import android.net.Uri
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -88,10 +90,19 @@ class SettingsBottomSheet : BaseBottomSheetFragment<BottomSheetSettingsBinding>(
         }
     }
     private fun onRateAppClicked(){
-        launchWebBrowserIntent(
-            "https://play.google.com/store/apps/details?id=com.puntogris.posture",
-            "com.puntogris.posture")
+        try {
+            startActivity(Intent(Intent.ACTION_VIEW,
+                Uri.parse("market://details?id=com.puntogris.posture")))
+        }catch (e:Exception){
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://play.google.com/store/apps/details?id=" + "com.puntogris.posture")
+                )
+            )
+        }
     }
+
     private fun onThemeClicked(){
         findNavController().navigate(R.id.selectThemeDialog)
     }
@@ -110,7 +121,7 @@ class SettingsBottomSheet : BaseBottomSheetFragment<BottomSheetSettingsBinding>(
         launchWebBrowserIntent("https://github.com/puntogris/posture-reminder")
     }
     private fun onHelpClicked(){
-        launchWebBrowserIntent("https://postureapp.puntogris.com/help")
+        launchWebBrowserIntent("https://postureapp.puntogris.com/help/")
     }
     private fun onLogOutClicked(){
         lifecycleScope.launch {

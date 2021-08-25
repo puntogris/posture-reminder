@@ -83,7 +83,7 @@ class LoginFragment :BaseFragment<FragmentLoginBinding>(R.layout.fragment_login)
     }
 
     fun onLoginProblemsClicked(){
-        launchWebBrowserIntent("https://postureapp.puntogris.com/blog/help.html")
+        launchWebBrowserIntent("https://postureapp.puntogris.com/help/")
     }
 
 }
