@@ -35,9 +35,9 @@
     <string name="snack_fail_login">Login cancelado, error de conexión o no se encontro una cuenta de google en tu celular.</string>
 
     <!-- Welcome -->
-    <string name="welcome_pager_title1">Vivi al máximo!</string>
+    <string name="welcome_pager_title1">Llega hasta la cima del ranking!</string>
     <string name="welcome_pager_title2">Adios a los dolores de espalda!</string>
-    <string name="welcome_pager_title3">Aprovechar de leer un buen libro!</string>
+    <string name="welcome_pager_title3">Estamos siempre con vos!</string>
 
     <!-- Home -->
     <string name="alarm_on">La app esta activada</string>

@@ -35,9 +35,9 @@
     <string name="snack_fail_login">Login canceled, connection error or a google account was not found on your cell phone.</string>
 
     <!-- Welcome -->
-    <string name="welcome_pager_title1">Live to the limit!</string>
+    <string name="welcome_pager_title1">Get to the top of the ladder!</string>
     <string name="welcome_pager_title2">Say goodbye to back pain!</string>
-    <string name="welcome_pager_title3">Enjoy reading a good book!</string>
+    <string name="welcome_pager_title3">We are always with you!</string>
 
     <!-- Home -->
     <string name="alarm_on">The app is on</string>

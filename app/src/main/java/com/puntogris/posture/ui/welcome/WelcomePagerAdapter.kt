@@ -5,12 +5,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.R
 import com.puntogris.posture.model.WelcomeItem
 
-class WelcomePagerAdapter: RecyclerView.Adapter<WelcomeItemViewHolder>(){
+class WelcomePagerAdapter(isDarkModeOn: Boolean): RecyclerView.Adapter<WelcomeItemViewHolder>(){
 
     private var items = listOf(
-        WelcomeItem(R.string.welcome_pager_title1, R.drawable.ic_girl_swing),
-        WelcomeItem(R.string.welcome_pager_title2, R.drawable.ic_men_standing),
-        WelcomeItem(R.string.welcome_pager_title3, R.drawable.ic_girl_sitting)
+        WelcomeItem(R.string.welcome_pager_title1,
+            if (isDarkModeOn) R.drawable.ic_girl_swing_dark else R.drawable.ic_girl_swing
+        ),
+        WelcomeItem(R.string.welcome_pager_title2,
+            if (isDarkModeOn) R.drawable.ic_men_standing_dark else R.drawable.ic_men_standing
+        ),
+        WelcomeItem(R.string.welcome_pager_title3,
+            if (isDarkModeOn) R.drawable.ic_girl_sitting_dark else R.drawable.ic_girl_sitting
+        )
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WelcomeItemViewHolder {

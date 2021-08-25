@@ -34,7 +34,7 @@ class DataStore @Inject constructor(@ApplicationContext private val context: Con
     suspend fun appTheme() = context.dataStore.data.first()[intPreferencesKey(APP_THEME)] ?: 2
 
     fun appThemeFlow() = context.dataStore.data.map {
-        val value = it[intPreferencesKey(APP_THEME)] ?: 2
+        val value = it[intPreferencesKey(APP_THEME)] ?: 1
         if (value == -1) 2 else value - 1
     }
 

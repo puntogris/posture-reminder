@@ -4,12 +4,13 @@ import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentWelcomeBinding
 import com.puntogris.posture.ui.base.BaseFragment
+import com.puntogris.posture.utils.isDarkThemeOn
 
 class WelcomeFragment :BaseFragment<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
 
     override fun initializeViews() {
         binding.fragment = this
-        binding.viewPager.adapter = WelcomePagerAdapter()
+        binding.viewPager.adapter = WelcomePagerAdapter(isDarkThemeOn())
         binding.dotsIndicator.setViewPager2(binding.viewPager)
     }
 
