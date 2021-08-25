@@ -136,11 +136,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun showSnackBar(message: String,
                               duration: Int,
                               actionText: Int,
+                              anchorToBottomNav: Boolean,
                               actionListener: View.OnClickListener?){
+
         Snackbar.make(binding.root, message, duration).let {
-            it.anchorView = binding.bottomNavigation
+            if (anchorToBottomNav) it.anchorView = binding.bottomNavigation
             if (actionListener != null) it.setAction(actionText, actionListener)
             it.show()
         }
+
+
     }
 }

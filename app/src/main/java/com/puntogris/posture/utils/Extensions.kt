@@ -65,6 +65,8 @@ fun Int.expForNextLevel() = EXPERIENCE_PER_LEVEL - this % EXPERIENCE_PER_LEVEL
 
 fun Int.expForCompleteLevel() = this % EXPERIENCE_PER_LEVEL
 
+fun Long.toDays() = (this / (1000 * 60 * 60 * 24)).toInt()
+
 fun String.capitalizeFirstChar() =
     replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
 

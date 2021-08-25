@@ -1,17 +1,17 @@
 package com.puntogris.posture.data.repo.sync
 
-import com.google.firebase.functions.ktx.functions
-import com.google.firebase.ktx.Firebase
 import com.puntogris.posture.data.local.ReminderDao
 import com.puntogris.posture.data.local.UserDao
 import com.puntogris.posture.data.remote.FirebaseReminderDataSource
 import com.puntogris.posture.data.remote.FirebaseUserDataSource
 import com.puntogris.posture.model.*
 import com.puntogris.posture.utils.Constants.EXPERIENCE_FIELD
+import com.puntogris.posture.utils.Constants.MAX_EXPERIENCE_OFFSET
+import com.puntogris.posture.utils.Constants.MAX_EXPERIENCE_PER_DAY
+import com.puntogris.posture.utils.toDays
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import java.util.*
 import javax.inject.Inject
 
 class SyncRepository @Inject constructor(
@@ -75,6 +75,7 @@ class SyncRepository @Inject constructor(
         reminderDao.insertRemindersIfNotInRoom(reminders)
     }
 
+    //reformat functions, naming and order
     override suspend fun syncUserExperienceInFirestoreWithRoom() {
         val roomUser = userDao.getUser()
 
@@ -95,10 +96,10 @@ class SyncRepository @Inject constructor(
         val serverTimestampMillis = getDateFromServer()
 
         return if (serverTimestampMillis != null){
-            val daysDiff = ((serverTimestampMillis - creationTimestampMillis) / (1000 * 60 * 60 * 24)).toInt()
+            val daysDiff = (serverTimestampMillis - creationTimestampMillis).toDays()
 
             //2 days worth of exp as offset just in case
-            val maxExpPermitted = daysDiff * 100 + 200
+            val maxExpPermitted = daysDiff * MAX_EXPERIENCE_PER_DAY + MAX_EXPERIENCE_OFFSET
 
             if (user.experience > maxExpPermitted) maxExpPermitted else user.experience
         }else null
@@ -106,11 +107,10 @@ class SyncRepository @Inject constructor(
     }
 
     private suspend fun getDateFromServer(): Long? {
-        val result = Firebase.functions
+        return firestoreUser.functions
             .getHttpsCallable("getServerTimestamp")
-            .call().await()
-
-        return result.data as? Long
+            .call()
+            .await()
+            .data as? Long
     }
-
 }

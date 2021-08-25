@@ -6,6 +6,9 @@ object Constants {
     const val EXPERIENCE_PER_EXERCISE = 10
     const val EXPERIENCE_PER_NOTIFICATION = 10
     const val EXPERIENCE_PER_LEVEL = 1000
+    const val MAX_EXPERIENCE_PER_DAY = 100
+    const val MAX_EXPERIENCE_OFFSET = 200
+
     //Room
     const val ROOM_DATABASE_NAME = "posture_reminder_database"
 

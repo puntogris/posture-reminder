@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentLoginBinding
 import com.puntogris.posture.model.LoginResult
@@ -39,8 +40,9 @@ class LoginFragment :BaseFragment<FragmentLoginBinding>(R.layout.fragment_login)
         loginActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             if (it.resultCode == Activity.RESULT_OK)
                 handleLoginActivityResult(it.data)
-            else if (it.resultCode == Activity.RESULT_CANCELED)
-                UiInterface.showSnackBar(getString(R.string.snack_fail_login))
+            else if (it.resultCode == Activity.RESULT_CANCELED) {
+                UiInterface.showSnackBar(getString(R.string.snack_fail_login), anchorToBottomNav = false)
+            }
         }
     }
 
@@ -50,7 +52,7 @@ class LoginFragment :BaseFragment<FragmentLoginBinding>(R.layout.fragment_login)
             val account = task.getResult(ApiException::class.java)!!
             authUserIntoFirebase(account.idToken!!)
         } catch (e: ApiException) {
-            UiInterface.showSnackBar(getString(R.string.snack_fail_login))
+            UiInterface.showSnackBar(getString(R.string.snack_fail_login), anchorToBottomNav = false)
         }
     }
 
@@ -65,7 +67,7 @@ class LoginFragment :BaseFragment<FragmentLoginBinding>(R.layout.fragment_login)
     private fun handleAuthUserIntoFirebaseResult(result: LoginResult){
         when (result) {
             is LoginResult.Error -> {
-                UiInterface.showSnackBar(getString(R.string.snack_fail_login))
+                UiInterface.showSnackBar(getString(R.string.snack_fail_login), anchorToBottomNav = false)
                 binding.progressBar.gone()
             }
             LoginResult.InProgress -> {
@@ -83,10 +85,6 @@ class LoginFragment :BaseFragment<FragmentLoginBinding>(R.layout.fragment_login)
         binding.loginButton.playShakeAnimation()
         val intent = viewModel.getGoogleSignInIntent()
         loginActivityResultLauncher.launch(intent)
-    }
-
-    fun test(){
-
     }
 
 }
