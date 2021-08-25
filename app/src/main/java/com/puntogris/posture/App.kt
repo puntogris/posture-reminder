@@ -27,7 +27,7 @@ class App: Application(), Configuration.Provider{
     }
 
     private fun setupSyncAccountWorkManager(){
-        val syncWork = PeriodicWorkRequestBuilder<SyncAccountWorker>(15, TimeUnit.MINUTES)
+        val syncWork = PeriodicWorkRequestBuilder<SyncAccountWorker>(5, TimeUnit.HOURS)
             .setConstraints(Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build())
             .build()
 

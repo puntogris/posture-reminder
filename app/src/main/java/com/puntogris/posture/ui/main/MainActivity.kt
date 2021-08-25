@@ -44,7 +44,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private fun checkAppCurrentVersion(){
         viewModel.appVersionStatus.observe(this){ isNewVersion ->
-            if (isNewVersion) navController.navigate(R.id.whatsNewDialog)
+            if (isNewVersion && viewModel.isUserLoggedIn()) navController.navigate(R.id.whatsNewDialog)
         }
     }
 

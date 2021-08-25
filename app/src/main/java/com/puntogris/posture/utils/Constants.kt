@@ -1,5 +1,8 @@
 package com.puntogris.posture.utils
 
+import androidx.annotation.Keep
+
+@Keep
 object Constants {
 
     //Experience
@@ -37,6 +40,7 @@ object Constants {
     const val APP_THEME = "pref_app_theme"
     const val PANDA_ANIMATION = "pref_panda_animation"
     const val REMINDER_STATE_KEY = "reminder_state_key"
+    const val LOGIN_COMPLETED_KEY = "login_completed_key"
 
     //Work manager
     const val SYNC_ACCOUNT_WORKER = "sync_account_worker"

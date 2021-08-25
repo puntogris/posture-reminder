@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
  <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:startDestination="@id/homeFragment">
+    android:id="@+id/navigation"
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -101,7 +102,8 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.puntogris.posture.ui.login.LoginFragment" >
+        android:name="com.puntogris.posture.ui.login.LoginFragment"
+        android:label=" ">
         <action
             android:id="@+id/action_loginFragment_to_synAccountFragment"
             app:destination="@id/synAccountFragment" />

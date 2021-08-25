@@ -9,7 +9,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
-import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentLoginBinding
 import com.puntogris.posture.model.LoginResult
@@ -21,9 +20,6 @@ import com.puntogris.posture.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.io.IOException
-
-import com.google.firebase.crashlytics.internal.network.HttpResponse
 
 @AndroidEntryPoint
 class LoginFragment :BaseFragment<FragmentLoginBinding>(R.layout.fragment_login) {
@@ -38,6 +34,7 @@ class LoginFragment :BaseFragment<FragmentLoginBinding>(R.layout.fragment_login)
 
     private fun registerActivityResultLauncher(){
         loginActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            binding.progressBar.gone()
             if (it.resultCode == Activity.RESULT_OK)
                 handleLoginActivityResult(it.data)
             else if (it.resultCode == Activity.RESULT_CANCELED) {
@@ -82,6 +79,7 @@ class LoginFragment :BaseFragment<FragmentLoginBinding>(R.layout.fragment_login)
     }
 
     fun startLoginWithGoogle() {
+        binding.progressBar.visible()
         binding.loginButton.playShakeAnimation()
         val intent = viewModel.getGoogleSignInIntent()
         loginActivityResultLauncher.launch(intent)

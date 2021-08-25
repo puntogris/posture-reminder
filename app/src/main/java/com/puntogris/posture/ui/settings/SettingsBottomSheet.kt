@@ -3,6 +3,7 @@ package com.puntogris.posture.ui.settings
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetSettingsBinding
@@ -114,7 +115,10 @@ class SettingsBottomSheet : BaseBottomSheetFragment<BottomSheetSettingsBinding>(
     private fun onLogOutClicked(){
         when(viewModel.logOut()){
             SimpleResult.Failure -> showSnackBar(R.string.snack_general_error)
-            SimpleResult.Success -> findNavController().navigate(R.id.loginFragment)
+            SimpleResult.Success -> {
+                val nav = NavOptions.Builder().setPopUpTo(R.id.navigation, true).build()
+                findNavController().navigate(R.id.loginFragment, null, nav)
+            }
         }
     }
 

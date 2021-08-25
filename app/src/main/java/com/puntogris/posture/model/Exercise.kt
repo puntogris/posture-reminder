@@ -1,13 +1,11 @@
 package com.puntogris.posture.model
 
 import android.os.Parcelable
-import androidx.annotation.ArrayRes
-import androidx.annotation.ColorRes
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
+import androidx.annotation.*
 import com.puntogris.posture.R
 import kotlinx.parcelize.Parcelize
 
+@Keep
 @Parcelize
 class Exercise(
     @StringRes val title: Int,
