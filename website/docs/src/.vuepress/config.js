@@ -62,7 +62,8 @@ module.exports = {
           collapsable: false,
           children: [
             '',
-            'v2.0.0-a1'
+            'v2.0.0-a1',
+            'v2.0.0-a2'
           ]
         }
       ]

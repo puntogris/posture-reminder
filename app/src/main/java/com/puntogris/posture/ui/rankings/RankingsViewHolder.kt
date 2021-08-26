@@ -13,6 +13,7 @@ class RankingsViewHolder(private val binding: RankingProfileVhBinding): Recycler
         binding.rankingProfile = rankingProfile
         binding.position = position
         if (isLastItem) binding.divider.gone()
+        if (position > 2) binding.medalImage.gone()
         binding.executePendingBindings()
     }
 
