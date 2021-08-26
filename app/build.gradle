@@ -18,8 +18,8 @@ android {
         applicationId "com.puntogris.posture"
         minSdkVersion 23
         targetSdkVersion 31
-        versionCode 24
-        versionName "2.0.0-a1"
+        versionCode 25
+        versionName "2.0.0-a2"
         resConfigs "en", "es"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

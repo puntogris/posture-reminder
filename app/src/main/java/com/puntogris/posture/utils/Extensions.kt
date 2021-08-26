@@ -16,7 +16,10 @@ import androidx.annotation.RawRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.widget.ViewPager2
 import com.airbnb.lottie.LottieAnimationView
@@ -110,6 +113,17 @@ fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null){
 fun Fragment.isIgnoringBatteryOptimizations(): Boolean{
     val pm = requireContext().getSystemService(PowerManager::class.java)
     return (pm.isIgnoringBatteryOptimizations(requireActivity().packageName))
+}
+
+inline fun Fragment.launchAndRepeatWithViewLifecycle(
+    minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
+    crossinline block: suspend CoroutineScope.() -> Unit
+) {
+    viewLifecycleOwner.lifecycleScope.launch {
+        viewLifecycleOwner.lifecycle.repeatOnLifecycle(minActiveState) {
+            block()
+        }
+    }
 }
 
 fun BottomSheetDialogFragment.showSnackBar(

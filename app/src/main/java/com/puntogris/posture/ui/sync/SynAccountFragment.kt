@@ -1,6 +1,7 @@
 package com.puntogris.posture.ui.sync
 
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -9,6 +10,7 @@ import com.puntogris.posture.databinding.FragmentSynAccountBinding
 import com.puntogris.posture.model.SimpleResult
 import com.puntogris.posture.ui.base.BaseFragment
 import com.puntogris.posture.utils.UiInterface
+import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.playAnimationOnce
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -25,7 +27,7 @@ class SynAccountFragment : BaseFragment<FragmentSynAccountBinding>(R.layout.frag
     }
 
     private fun startAccountSync(){
-        lifecycleScope.launch {
+        launchAndRepeatWithViewLifecycle(Lifecycle.State.CREATED) {
             when(viewModel.synAccountWith(args.userPrivateData)){
                 SimpleResult.Failure -> onSyncAccountFailure()
                 SimpleResult.Success -> onSyncAccountSuccess()

@@ -10,6 +10,7 @@ import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.utils.getDayStringFormatted
 import com.puntogris.posture.utils.gone
+import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -56,7 +57,7 @@ class AccountFragment : BaseFragmentOptions<FragmentAccountBinding>(R.layout.fra
     }
 
     private fun setupBarChart(){
-        lifecycleScope.launch {
+        launchAndRepeatWithViewLifecycle {
             val data = viewModel.getWeekData()
             val barSet = lastWeekLabels(data)
             binding.barChart.animate(barSet)

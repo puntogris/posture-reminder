@@ -8,6 +8,7 @@ import com.puntogris.posture.model.RepoResult
 import com.puntogris.posture.model.UserPublicProfile
 import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.utils.UiInterface
+import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -28,7 +29,7 @@ class RankingsFragment : BaseFragmentOptions<FragmentRankingsBinding>(R.layout.f
     }
 
     private fun fetchRankingsAndFillAdapter() {
-        lifecycleScope.launch {
+        launchAndRepeatWithViewLifecycle {
             val result = viewModel.getAllRankings()
             handleResultFromFetchRankings(result)
         }
