@@ -11,6 +11,7 @@ enum class SettingUi{
     Ticket,
     Website,
     Github,
+    Credits,
     RateApp,
     Version
 }

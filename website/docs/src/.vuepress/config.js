@@ -62,10 +62,19 @@ module.exports = {
           collapsable: false,
           children: [
             '',
-            'v2.0.0-a1',
-            'v2.0.0-a2'
+            'v2.0.0', 
+            'v2.0.0-a2', 
+            'v2.0.0-a1'
           ]
         }
+      ],
+      '/help/':[{
+        'title': 'Help',
+        collapsable: false,
+        children: [
+          ''
+        ]
+      }
       ]
     }
   },

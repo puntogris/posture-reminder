@@ -72,7 +72,6 @@ fun View.setReminderColor(color:Int){
 fun TextView.setDayMonth(position: Int){
     var date = LocalDate.now()
     if (position == 1) date = date.minusDays(1)
-
     text = date.format(DateTimeFormatter.ofPattern("d MMM"))
 }
 
@@ -100,7 +99,7 @@ fun TextView.setAccountBadgeLevel(exp: Int){
         6 -> R.string.level_6_title
         else -> R.string.level_7_title
     }
-    text = context.getString(string)
+    setText(string)
 }
 
 @BindingAdapter("expForNextLevel")
@@ -149,8 +148,11 @@ fun ImageView.setProfileRankingMedal(position: Int){
         1 -> R.drawable.ic_silver_medal
         2 -> R.drawable.ic_bronze_medal
         else -> null
-    }?.let {
-        setImageDrawable(ContextCompat.getDrawable(context, it))
+    }.let {
+        if (it != null) {
+            visible()
+            setImageDrawable(ContextCompat.getDrawable(context, it))
+        }else gone()
     }
 }
 
@@ -166,4 +168,25 @@ fun View.setBackgroundColorTintView(color: Int){
 @BindingAdapter("progressBarSmoothMax")
 fun ProgressBar.setProgressBarSmoothMax(duration: Int){
     max = duration * PROGRESS_BAR_SMOOTH_OFFSET
+}
+
+@BindingAdapter("userRankingName")
+fun TextView.setUserRankingName(name: String){
+    val list = name
+        .split(" ")
+        .filter { it.isNotBlank() }
+        .map { it.replace(" ","") }
+
+    text = if (list.size == 1){
+        list.first().let { if (it.length < 25) it else it.substring(0, 25) + ".." }
+    }else{
+        var newName = ""
+        var i = 0
+
+        while (newName.length < 25 && i < list.size && (newName + list[i]).length < 25){
+            newName += if (newName.isEmpty()) list[i] else " " + list[i]
+            i++
+        }
+        newName
+    }
 }

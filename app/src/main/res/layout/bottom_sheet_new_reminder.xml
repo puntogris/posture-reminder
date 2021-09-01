@@ -13,7 +13,6 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         style="@style/Theme.Posture.Layout"
         android:layout_height="match_parent"

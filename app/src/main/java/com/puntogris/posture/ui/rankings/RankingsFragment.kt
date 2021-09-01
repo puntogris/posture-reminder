@@ -1,7 +1,6 @@
 package com.puntogris.posture.ui.rankings
 
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentRankingsBinding
 import com.puntogris.posture.model.RepoResult
@@ -10,7 +9,6 @@ import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RankingsFragment : BaseFragmentOptions<FragmentRankingsBinding>(R.layout.fragment_rankings) {

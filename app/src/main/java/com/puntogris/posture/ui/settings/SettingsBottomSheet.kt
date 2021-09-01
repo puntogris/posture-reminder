@@ -75,6 +75,7 @@ class SettingsBottomSheet : BaseBottomSheetFragment<BottomSheetSettingsBinding>(
             SettingUi.Version -> onVersionClicked()
             SettingUi.Website -> onWebsiteClicked()
             SettingUi.LogOut -> onLogOutClicked()
+            SettingUi.Credits -> onCreditsClicked()
         }
     }
 
@@ -122,6 +123,9 @@ class SettingsBottomSheet : BaseBottomSheetFragment<BottomSheetSettingsBinding>(
     }
     private fun onHelpClicked(){
         launchWebBrowserIntent("https://postureapp.puntogris.com/help/")
+    }
+    private fun onCreditsClicked(){
+        findNavController().navigate(R.id.creditsBottomSheet)
     }
     private fun onLogOutClicked(){
         lifecycleScope.launch {

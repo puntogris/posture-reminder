@@ -46,9 +46,14 @@ class Alarm @Inject constructor(
             PendingIntent.FLAG_IMMUTABLE
     )
 
+    //todo
+    //cambiar como funcionan las alarmas
     suspend fun startDailyAlarm(reminder: Reminder){
         val periodHour = reminder.startTime.getHours()
         val periodMin = reminder.endTime.getMinutes()
+
+        println(periodHour)
+        println(periodMin)
 
         val calendar: Calendar = Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()

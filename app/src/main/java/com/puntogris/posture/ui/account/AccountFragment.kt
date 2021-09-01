@@ -1,7 +1,6 @@
 package com.puntogris.posture.ui.account
 
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentAccountBinding
@@ -13,7 +12,6 @@ import com.puntogris.posture.utils.gone
 import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import org.threeten.bp.LocalDate
 
 @AndroidEntryPoint

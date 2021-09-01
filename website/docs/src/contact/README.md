@@ -4,7 +4,7 @@
 
 It's in spanish at the moment, but i will translate it to english in the future.
 
-[Visit my webiste!](https://puntogris.com)
+[Visit my website!](https://puntogris.com)
 
 
 ### E-mail 

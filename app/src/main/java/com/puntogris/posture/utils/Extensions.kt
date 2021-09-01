@@ -26,6 +26,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
+import com.puntogris.posture.ui.main.MainActivity
 import com.puntogris.posture.ui.main.UiInterfaceListener
 import com.puntogris.posture.utils.Constants.EXPERIENCE_PER_LEVEL
 import kotlinx.coroutines.CoroutineScope
@@ -107,6 +108,17 @@ fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null){
     }catch (e:Exception){
         if (this is BottomSheetDialogFragment) showSnackBar(R.string.snack_general_error)
         else UiInterface.showSnackBar(getString(R.string.snack_general_error))
+    }
+}
+
+fun Activity.launchWebBrowserIntent(uri: String){
+    try {
+        Intent(Intent.ACTION_VIEW).let {
+            it.data = Uri.parse(uri)
+            startActivity(it)
+        }
+    }catch (e:Exception){
+        (this as MainActivity).showSnackBar(getString(R.string.snack_general_error))
     }
 }
 

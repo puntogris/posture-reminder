@@ -25,7 +25,6 @@ class ClaimNotificationExpDialog: DialogFragment(){
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.dialog_claim_experience, null,false)
-
         lifecycleScope.launch {
             when(viewModel.updateDayLogWithReward()){
                 RewardExp.Error -> {

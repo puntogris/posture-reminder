@@ -18,8 +18,8 @@ android {
         applicationId "com.puntogris.posture"
         minSdkVersion 23
         targetSdkVersion 31
-        versionCode 25
-        versionName "2.0.0-a2"
+        versionCode 26
+        versionName "2.0.0"
         resConfigs "en", "es"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -111,6 +111,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-functions-ktx'
+    implementation 'com.google.firebase:firebase-messaging-ktx'
 
     //BottomSheet
     implementation "com.maxkeppeler.sheets:core:$bottomSheetVersion"

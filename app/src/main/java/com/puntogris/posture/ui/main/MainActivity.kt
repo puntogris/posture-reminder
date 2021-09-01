@@ -1,19 +1,23 @@
 package com.puntogris.posture.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination
+import androidx.navigation.*
 import androidx.navigation.ui.*
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.ActivityMainBinding
 import com.puntogris.posture.ui.base.BaseActivity
 import com.puntogris.posture.utils.*
+import com.puntogris.posture.utils.Constants.CLAIM_NOTIFICATION_EXP_INTENT
+import com.puntogris.posture.utils.Constants.NAVIGATION_DATA
+import com.puntogris.posture.utils.Constants.URI_STRING
+import com.puntogris.posture.utils.Constants.WEBSITE_HTTPS
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -40,6 +44,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun initializeViews() {
         setupNavigation()
         checkAppCurrentVersion()
+        checkIntentForNavigation(intent)
     }
 
     private fun checkAppCurrentVersion(){
@@ -52,7 +57,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         navController = getNavController()
         appBarConfiguration = getAppBarConfiguration()
         navController.addOnDestinationChangedListener(this@MainActivity)
-        //call after navController is set
+
+        // Call after navController is set
         setupInitialDestination()
         setupTopToolbar()
         setupBottomNavigation()
@@ -136,6 +142,20 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         }
     }
 
+    private fun checkIntentForNavigation(intent: Intent?){
+        intent?.extras?.getString(URI_STRING)?.let {
+            if (it.contains(WEBSITE_HTTPS)) launchWebBrowserIntent(it)
+        }
+        intent?.extras?.getString(NAVIGATION_DATA)?.let {
+            if (it == CLAIM_NOTIFICATION_EXP_INTENT) navController.navigate(R.id.claimNotificationExpDialog)
+        }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        checkIntentForNavigation(intent)
+    }
+
     override fun showSnackBar(message: String,
                               duration: Int,
                               actionText: Int,
@@ -147,7 +167,5 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             if (actionListener != null) it.setAction(actionText, actionListener)
             it.show()
         }
-
-
     }
 }

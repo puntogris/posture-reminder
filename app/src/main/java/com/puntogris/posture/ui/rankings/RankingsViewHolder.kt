@@ -10,11 +10,12 @@ import com.puntogris.posture.utils.gone
 class RankingsViewHolder(private val binding: RankingProfileVhBinding): RecyclerView.ViewHolder(binding.root) {
 
     fun bind(rankingProfile: UserPublicProfile, position: Int, isLastItem: Boolean){
-        binding.rankingProfile = rankingProfile
-        binding.position = position
-        if (isLastItem) binding.divider.gone()
-        if (position > 2) binding.medalImage.gone()
-        binding.executePendingBindings()
+        with(binding){
+            this.rankingProfile = rankingProfile
+            this.position = position
+            if (isLastItem) divider.gone()
+            executePendingBindings()
+        }
     }
 
     companion object{

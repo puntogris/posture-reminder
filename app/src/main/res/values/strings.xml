@@ -12,6 +12,8 @@
     <string name="settings_label">Settings</string>
     <string name="reminders_label">Reminders</string>
     <string name="battery_optimization_label">Battery optimization</string>
+    <string name="top_rankings_label" translatable="false">Top 30 rankings</string>
+    <string name="credits_label">Credits</string>
 
     <!-- Actions -->
     <string name="action_done">Done</string>
@@ -137,6 +139,8 @@
     <string name="see_the_code">See the code</string>
     <string name="rate_the_app">Rate the app</string>
     <string name="read_the_faq">Read the F.A.Q.</string>
+    <string name="app_credits">See credits</string>
+    <string name="log_out">Log out from app</string>
 
     <!-- Notifications -->
     <string name="snack_notifications_set">Notifications set from %1$s to %2$s.</string>
@@ -150,6 +154,8 @@
     <string name="claim_experience_error_summary">Send us a ticket or find us at puntogrishelp@gmail.com and tell us your problem.</string>
     <string name="claim_experience_exp_limit_summary">You reached the daily experience limit!</string>
     <string name="claim_experience_exp_limit_message">You will not be able to earn more exp for today but we invite you to do an exercise, your back will thank you!</string>
+    <string name="alarm_channel_name">Posture Reminder</string>
+    <string name="fmc_channel_name">Posture Reminder Server</string>
 
     <!-- Account -->
     <string name="level_1_title">Back of string</string>
@@ -256,6 +262,11 @@
     <string name="color_picker_content_description">Pick color</string>
     <string name="open_picker_content_description">Open alarm</string>
     <string name="image_content_description">Image</string>
+    <string name="open_action_content_description">Open</string>
+
+    <!-- Credits -->
+    <string name="panda_credits">Panda animation by @ucilucil</string>
+    <string name="bottom_nav_icons_credit">Bottom menu icons by Flaticon</string>
 
     <!-- Arrays -->
     <string-array name="ticket_types">

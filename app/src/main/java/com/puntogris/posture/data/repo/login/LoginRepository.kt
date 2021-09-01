@@ -45,7 +45,7 @@ class LoginRepository @Inject constructor(
                 val firestoreUser = getUserPrivateDataFromFirebaseUser(it.user)
                 result.value = LoginResult.Success(firestoreUser)
             }
-            .addOnFailureListener { result.value = LoginResult.Error(it.localizedMessage) }
+            .addOnFailureListener { result.value = LoginResult.Error }
 
         return result
     }

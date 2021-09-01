@@ -145,4 +145,7 @@
             android:id="@+id/action_claimNotificationExpDialog_to_exerciseBottomSheet"
             app:destination="@id/exerciseBottomSheet" />
     </dialog>
+    <dialog
+        android:id="@+id/creditsBottomSheet"
+        android:name="com.puntogris.posture.ui.settings.CreditsBottomSheet"/>
 </navigation>

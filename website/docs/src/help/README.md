@@ -1,7 +1,3 @@
----
-sidebar: auto
----
-
 # Frequently Asked Questions
 
 ## Login
@@ -30,17 +26,15 @@ Every level has 1000 experience and gives you a different badge, at the moment t
 
 Also you will have different perks according to your level. I'm still thiking about this, if you have any ideas let me know.
 
-## Experience gain limit
+### Experience gain limit
 There is a limit of 100 experience per day to avoid exploits.
 
 You still will receive notifications and can do exercises but this will not grant experience.
 
-### Performance
+## Performance
 
-## Why do i need to disable battery optimization?
-In some devices, depends on the brand and model, when the phone has low battery or even at full battery.
-
-Android does't prioritize the notifications, so it will not show them and this is now what we want.
+### Why do i need to disable battery optimization?
+In some devices, depends on the brand and model, when the phone has low battery or even at full battery Android does't prioritize the notifications, so it will not show them and this is now what we want.
 
 ## Android 12 compatibility
 Starting from Android 12, users must provide permission to apps to create alarms, so you will have to give the app access to that.

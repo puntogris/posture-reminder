@@ -11,7 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val mainRepository: MainRepository,
-    private val dataStore: DataStore,
+    private val dataStore: DataStore
     ): ViewModel() {
 
     private val _appVersionStatus = MutableLiveData<Boolean>()

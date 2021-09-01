@@ -12,6 +12,7 @@
     <string name="settings_label">Configuracion</string>
     <string name="reminders_label">Recordatorios</string>
     <string name="battery_optimization_label">Optimizacion de bateria</string>
+    <string name="credits_label">Créditos</string>
 
     <!-- Actions -->
     <string name="action_done">Listo</string>
@@ -135,6 +136,8 @@
     <string name="see_the_code">Ver el codigo</string>
     <string name="rate_the_app">Puntua la app</string>
     <string name="read_the_faq">Lee las F.A.Q.</string>
+    <string name="app_credits">Ver créditos</string>
+    <string name="log_out">Cerrar sesión</string>
 
     <!-- Notifications -->
     <string name="snack_notifications_set">Se activaron las notificaciones desde las %1$s hasta las %2$s.</string>
@@ -148,7 +151,8 @@
     <string name="claim_experience_error_summary">Mandanos un ticket o encontranos en puntogrishelp@gmail.com y contanos tu problema.</string>
     <string name="claim_experience_exp_limit_summary">Alcanzaste el limite de experienca diario!</string>
     <string name="claim_experience_exp_limit_message">Ya no podras ganar mas exp por hoy pero te invitamos a que hagas un ejercicio, tu espalda te lo agradecera!</string>
-
+    <string name="alarm_channel_name">Recordatorio de Postura</string>
+    <string name="fmc_channel_name">Servidor Recordatorio de Postura</string>
     <!-- Account -->
     <string name="level_1_title">Espalda de hilo</string>
     <string name="level_2_title">Espalda de papel</string>
@@ -252,6 +256,11 @@
     <string name="color_picker_content_description">Elegir color</string>
     <string name="open_picker_content_description">Abrir</string>
     <string name="image_content_description">Imagen</string>
+    <string name="open_action_content_description">Abrir</string>
+
+    <!-- Credits -->
+    <string name="panda_credits">Animación del panda por @ucilucil</string>
+    <string name="bottom_nav_icons_credit">Iconos menú inferior por Flaticon</string>
 
     <!-- Arrays -->
     <string-array name="ticket_types">

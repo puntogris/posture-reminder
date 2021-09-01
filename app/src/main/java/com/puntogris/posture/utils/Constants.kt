@@ -21,9 +21,13 @@ object Constants {
     const val PACKAGE_URI_NAME = "package:com.puntogris.posture"
 
     //Notifications
-    const val CHANNEL_NAME = "Posture Reminder Notification"
     const val DAILY_ALARM_TRIGGERED = "DAILY_ALARM_TRIGGERED"
     const val REPEATING_ALARM_TRIGGERED = "REPEATING_ALARM_TRIGGERED"
+    const val FMC_CHANNEL_ID = "fmc_channel"
+    const val URI_STRING = "uriString"
+    const val WEBSITE_HTTPS = "https://"
+    const val CLAIM_NOTIFICATION_EXP_INTENT = "claim_notification_exp_intent"
+    const val NAVIGATION_DATA = "navigation_data"
 
     //Keys
     const val TIME_UNIT_KEY = "time_unit_key"

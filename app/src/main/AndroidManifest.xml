@@ -17,6 +17,7 @@
         android:fullBackupContent="true"
         android:allowBackup="true">
         <activity
+            android:launchMode="singleTask"
             android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
@@ -24,9 +25,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".fcm.FirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <receiver android:name=".ReminderBroadcast"
             android:enabled="true"
             android:exported="false"/>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_app_logo" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

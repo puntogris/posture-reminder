@@ -23,7 +23,7 @@ sealed class ReminderUi{
 sealed class LoginResult {
     object InProgress: LoginResult()
     class Success(val userPrivateData: UserPrivateData): LoginResult()
-    class Error(val errorMsg: String?): LoginResult()
+    object Error : LoginResult()
 }
 
 sealed class UserAccount{

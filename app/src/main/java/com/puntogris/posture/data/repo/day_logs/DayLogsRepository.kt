@@ -22,7 +22,7 @@ class DayLogsRepository @Inject constructor(
 
     override suspend fun updateRoomDayLogAndUser(dayLog: DayLog) = withContext(Dispatchers.IO){
         try {
-
+            println(dayLog)
             val todayLog = dayLogsDao.getTodayLog()
             when {
                 todayLog == null -> {
@@ -36,8 +36,8 @@ class DayLogsRepository @Inject constructor(
                         notifications += dayLog.notifications
                     }
                     appDatabase.withTransaction {
-                        userDao.updateUserExperience(dayLog.expGained)
                         dayLogsDao.update(todayLog)
+                        userDao.updateUserExperience(dayLog.expGained)
                     }
                     RewardExp.Success
                 }

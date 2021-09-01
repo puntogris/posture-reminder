@@ -15,7 +15,7 @@ class SettingsAdapter(private val context: Context,private val clickListener: (S
         SettingItem(SettingUi.Name, R.string.name, context.getString(R.string.human)),
         SettingItem(SettingUi.Theme, R.string.theme),
         SettingItem(SettingUi.BatteryOpt,R.string.battery_optimization),
-        SettingItem(SettingUi.LogOut, R.string.close),
+        SettingItem(SettingUi.LogOut, R.string.close, context.getString(R.string.log_out)),
         SettingItem(title = R.string.help),
         SettingItem(SettingUi.Help, R.string.questions, context.getString(R.string.read_the_faq)),
         SettingItem(SettingUi.Ticket, R.string.ticker_feedback,context.getString(R.string.create_ticket)),
@@ -23,15 +23,14 @@ class SettingsAdapter(private val context: Context,private val clickListener: (S
         SettingItem(SettingUi.Website, R.string.website, context.getString(R.string.got_to_website)),
         SettingItem(SettingUi.Github, R.string.github, context.getString(R.string.see_the_code)),
         SettingItem(title = R.string.about_us),
+        SettingItem(SettingUi.Credits, R.string.credits_label, context.getString(R.string.app_credits)),
         SettingItem(SettingUi.RateApp, R.string.rate_us, context.getString(R.string.rate_the_app)),
         SettingItem(SettingUi.Version, R.string.version,context.getString(R.string.version_name, BuildConfig.VERSION_NAME))
         )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType == 0)
-            SettingsDividerViewHolder.from(parent)
-        else
-            SettingItemViewHolder.from(parent)
+        return if (viewType == 0) SettingsDividerViewHolder.from(parent)
+        else SettingItemViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

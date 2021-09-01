@@ -38,6 +38,7 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
     }
 
     private fun onDailyAlarmTriggered(){
+        println("daily")
         goAsync {
             reminderRepository.getActiveReminder()?.apply {
                 if (dayOfTheWeek() in alarmDays) alarm.startRepeatingAlarm(timeInterval)
@@ -46,6 +47,7 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
     }
 
     private fun onRepeatingAlarmTriggered(context: Context){
+        println("repea")
         goAsync {
             val minutesSinceMidnight = minutesSinceMidnight()
             reminderRepository.getActiveReminder()?.apply {
