@@ -12,10 +12,8 @@ import com.puntogris.posture.utils.Utils.dayOfTheWeek
 import com.puntogris.posture.utils.Utils.minutesSinceMidnight
 import com.puntogris.posture.utils.goAsync
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.*
 import javax.inject.Inject
 
-@DelicateCoroutinesApi
 @AndroidEntryPoint
 class ReminderBroadcast : HiltBroadcastReceiver() {
 
@@ -38,7 +36,6 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
     }
 
     private fun onDailyAlarmTriggered() {
-        println("daily")
         goAsync {
             reminderRepository.getActiveReminder()?.apply {
                 if (dayOfTheWeek() in alarmDays) alarm.startRepeatingAlarm(timeInterval)
@@ -47,7 +44,6 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
     }
 
     private fun onRepeatingAlarmTriggered(context: Context) {
-        println("repea")
         goAsync {
             val msm = minutesSinceMidnight()
             reminderRepository.getActiveReminder()?.apply {

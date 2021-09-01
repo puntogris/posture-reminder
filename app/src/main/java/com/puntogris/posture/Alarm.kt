@@ -19,7 +19,7 @@ import java.util.*
 import javax.inject.Inject
 
 class Alarm @Inject constructor(
-    @ApplicationContext private val context: Context,
+    @ApplicationContext context: Context,
     private val dataStore: DataStore
     ) {
 
@@ -49,7 +49,7 @@ class Alarm @Inject constructor(
 
     suspend fun startDailyAlarm(reminder: Reminder){
         val periodHour = reminder.startTime.getHours()
-        val periodMin = reminder.endTime.getMinutes()
+        val periodMin = reminder.startTime.getMinutes()
 
         val calendar: Calendar = Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
@@ -62,8 +62,7 @@ class Alarm @Inject constructor(
                 AlarmManager.INTERVAL_DAY,
                 pendingIntentDailyAlarm
         )
-
-        if (reminder.isAlarmInRange(Utils.minutesSinceMidnight())){
+        if (reminder.isAlarmPastMidnightAndInRange(Utils.minutesSinceMidnight())){
             startRepeatingAlarm(reminder.timeInterval)
         }
         dataStore.isCurrentReminderStateActive(true)
@@ -92,7 +91,6 @@ class Alarm @Inject constructor(
     suspend fun refreshAlarms(reminder: Reminder){
         cancelAlarms()
         startDailyAlarm(reminder)
-
     }
 
     @RequiresApi(Build.VERSION_CODES.S)
