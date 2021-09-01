@@ -39,7 +39,7 @@ object Utils {
                     Calendar.SATURDAY -> 5
                     Calendar.SUNDAY -> 6
                     else -> 8
-                }
+        }
     }
 
 }

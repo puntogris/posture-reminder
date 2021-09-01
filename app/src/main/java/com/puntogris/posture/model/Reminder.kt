@@ -47,7 +47,12 @@ data class Reminder(
     var soundName: String = ""
 ):Parcelable{
 
-    fun alarmNotPastMidnight() = startTime < endTime
+    private fun isAlarmPastMidnight() = startTime < endTime
+
+    fun isAlarmInRange(minutesSinceMidnight: Int): Boolean{
+        return if (isAlarmPastMidnight()) minutesSinceMidnight in (startTime..endTime)
+        else minutesSinceMidnight !in (endTime..startTime)
+    }
 
     fun alarmDaysSummary(daysList: Array<String>) =
          alarmDays.joinToString(", ") {
@@ -61,9 +66,6 @@ data class Reminder(
             "${timeInterval/60} h. ${timeInterval % 60} m."
         }
     }
-
-    fun alarmPastMidnightAndOutOfRange(minutesSinceMidnight: Int) =
-       minutesSinceMidnight in (endTime + 1) until startTime
 
     fun isValid():Boolean{
         return (name.isNotBlank() &&

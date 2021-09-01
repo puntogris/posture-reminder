@@ -37,7 +37,7 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
         }
     }
 
-    private fun onDailyAlarmTriggered(){
+    private fun onDailyAlarmTriggered() {
         println("daily")
         goAsync {
             reminderRepository.getActiveReminder()?.apply {
@@ -46,34 +46,25 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
         }
     }
 
-    private fun onRepeatingAlarmTriggered(context: Context){
+    private fun onRepeatingAlarmTriggered(context: Context) {
         println("repea")
         goAsync {
-            val minutesSinceMidnight = minutesSinceMidnight()
+            val msm = minutesSinceMidnight()
             reminderRepository.getActiveReminder()?.apply {
-                if (alarmNotPastMidnight()) {
-                    if (minutesSinceMidnight <= endTime)
-                        deliverNotificationAndSetNewAlarm(context, timeInterval)
-                    else
-                        alarm.cancelRepeatingAlarm()
-                } else {
-                    if (alarmPastMidnightAndOutOfRange(minutesSinceMidnight))
-                        alarm.cancelRepeatingAlarm()
-                    else
-                        deliverNotificationAndSetNewAlarm(context, timeInterval)
-                }
+                if (isAlarmInRange(msm)) deliverNotificationAndSetNewAlarm(context, timeInterval)
+                else alarm.cancelRepeatingAlarm()
             }
         }
     }
 
-    private fun onExactAlarmPermissionStateChanged(){
+    private fun onExactAlarmPermissionStateChanged() {
         goAsync {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                if (alarm.canScheduleExactAlarms()){
+                if (alarm.canScheduleExactAlarms()) {
                     reminderRepository.getActiveReminder()?.let {
                         alarm.startDailyAlarm(it)
                     }
-                }else alarm.cancelAlarms()
+                } else alarm.cancelAlarms()
             }
         }
     }

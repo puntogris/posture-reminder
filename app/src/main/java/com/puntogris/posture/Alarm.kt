@@ -10,6 +10,7 @@ import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.utils.Constants.DAILY_ALARM_TRIGGERED
 import com.puntogris.posture.utils.Constants.REPEATING_ALARM_TRIGGERED
 import com.puntogris.posture.utils.DataStore
+import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.Utils.getTriggerTime
 import com.puntogris.posture.utils.getHours
 import com.puntogris.posture.utils.getMinutes
@@ -46,14 +47,9 @@ class Alarm @Inject constructor(
             PendingIntent.FLAG_IMMUTABLE
     )
 
-    //todo
-    //cambiar como funcionan las alarmas
     suspend fun startDailyAlarm(reminder: Reminder){
         val periodHour = reminder.startTime.getHours()
         val periodMin = reminder.endTime.getMinutes()
-
-        println(periodHour)
-        println(periodMin)
 
         val calendar: Calendar = Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
@@ -66,6 +62,10 @@ class Alarm @Inject constructor(
                 AlarmManager.INTERVAL_DAY,
                 pendingIntentDailyAlarm
         )
+
+        if (reminder.isAlarmInRange(Utils.minutesSinceMidnight())){
+            startRepeatingAlarm(reminder.timeInterval)
+        }
         dataStore.isCurrentReminderStateActive(true)
     }
 
