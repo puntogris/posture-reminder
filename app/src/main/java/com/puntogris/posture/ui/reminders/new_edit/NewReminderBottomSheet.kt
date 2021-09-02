@@ -28,6 +28,7 @@ import com.puntogris.posture.utils.Constants.VIBRATION_PICKER_KEY
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.showSnackBar
+import com.puntogris.posture.utils.timeWithZoneOffset
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.*
@@ -189,7 +190,7 @@ class NewReminderBottomSheet : BaseBottomSheetFragment<BottomSheetNewReminderBin
     private fun openTimePicker(code: ReminderUi.Item) {
         ClockTimeSheet().show(requireParentFragment().requireContext()) {
             style(SheetStyle.DIALOG)
-            currentTime(Date().time)
+            currentTime(Date().timeWithZoneOffset)
             title(
                 if (code is ReminderUi.Item.Start) R.string.start_time_title
                 else R.string.end_time_title

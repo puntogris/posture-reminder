@@ -9,7 +9,6 @@ plugins {
     id 'com.google.firebase.crashlytics'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
     id 'com.google.android.gms.oss-licenses-plugin'
-
 }
 
 android {
@@ -49,8 +48,8 @@ android {
     buildFeatures{
         dataBinding true
     }
-
 }
+
 ext{
     lifecycleVersion = "2.4.0-alpha03"
     navigationVersion = "2.3.5"
@@ -70,6 +69,7 @@ ext{
     preferenceVersion = "1.1.1"
     shimmerVersion = "0.5.0"
     licensesVersion = "17.0.0"
+    timberVersion = "5.0.1"
 }
 
 dependencies {
@@ -168,6 +168,6 @@ dependencies {
     implementation "com.google.android.gms:play-services-oss-licenses:$licensesVersion"
 
     //Debug
-    implementation 'com.jakewharton.timber:timber:5.0.1'
+    implementation "com.jakewharton.timber:timber:$timberVersion"
 
 }

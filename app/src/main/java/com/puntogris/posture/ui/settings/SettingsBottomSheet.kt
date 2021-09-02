@@ -3,9 +3,7 @@ package com.puntogris.posture.ui.settings
 import androidx.fragment.app.setFragmentResultListener
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetSettingsBinding
-import com.puntogris.posture.model.SimpleResult
 import com.puntogris.posture.ui.base.BaseBottomSheetFragment
-import com.puntogris.posture.utils.Constants
 import com.puntogris.posture.utils.Constants.DATA_KEY
 import com.puntogris.posture.utils.Constants.EDIT_NAME_KEY
 import com.puntogris.posture.utils.Constants.SEND_TICKET_KEY
