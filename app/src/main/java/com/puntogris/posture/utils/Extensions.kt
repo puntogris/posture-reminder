@@ -207,3 +207,10 @@ inline fun Preference.onClick(crossinline block: () -> Unit){
         true
     }
 }
+
+inline fun PreferenceFragmentCompat.preferenceOnClick(key: String, crossinline block: () -> Unit){
+    findPreference<Preference>(key)?.setOnPreferenceClickListener {
+        block()
+        true
+    }
+}

@@ -5,7 +5,7 @@ import android.os.Build
 import androidx.work.*
 import com.puntogris.posture.Alarm
 import com.puntogris.posture.Notifications
-import com.puntogris.posture.UploadReminderWorker
+import com.puntogris.posture.workers.UploadReminderWorker
 import com.puntogris.posture.data.local.ReminderDao
 import com.puntogris.posture.data.remote.FirebaseReminderDataSource
 import com.puntogris.posture.model.Reminder

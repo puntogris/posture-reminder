@@ -23,6 +23,17 @@
         <item name="preferenceTheme">@style/Theme.Posture.PreferenceScreen</item>
     </style>
 
+    <style name="Theme.Posture.Licenses">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+        <item name="toolbarStyle">@style/Theme.Posture.Licenses.Toolbar</item>
+    </style>
+
+    <style name="Theme.Posture.Licenses.Toolbar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:background">@color/dayBackground</item>
+        <item name="buttonGravity">center_vertical</item>
+    </style>
+
     <style name="Theme.Posture.PreferenceScreen">
         <item name="preferenceStyle">@style/Theme.Posture.Preference</item>
         <item name="preferenceCategoryStyle">@style/Theme.Posture.CategoryPreference</item>

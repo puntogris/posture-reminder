@@ -69,11 +69,6 @@
         app:title="@string/about_us"
         app:iconSpaceReserved="false">
         <Preference
-            android:key="credits_preference_key"
-            app:title="@string/credits_label"
-            app:iconSpaceReserved="false"
-            app:summary="@string/app_credits"/>
-        <Preference
             android:key="rate_app_preference_key"
             app:title="@string/rate_us"
             app:iconSpaceReserved="false"
@@ -84,6 +79,16 @@
             app:title="@string/version"
             app:iconSpaceReserved="false">
         </Preference>
-
+        <Preference
+            android:key="credits_preference_key"
+            app:title="@string/credits_label"
+            app:iconSpaceReserved="false"
+            app:summary="@string/app_credits"/>
+        <Preference
+            android:key="licenses_preference_key"
+            app:title="@string/licenses"
+            android:summary="@string/licenses_pref_summary"
+            app:iconSpaceReserved="false">
+        </Preference>
     </PreferenceCategory>
 </PreferenceScreen>

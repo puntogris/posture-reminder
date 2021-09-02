@@ -1,4 +1,4 @@
-package com.puntogris.posture
+package com.puntogris.posture.workers
 
 import android.content.Context
 import androidx.hilt.work.HiltWorker

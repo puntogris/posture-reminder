@@ -1,22 +1,15 @@
 package com.puntogris.posture.ui.settings
 
 import androidx.fragment.app.setFragmentResultListener
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetSettingsBinding
 import com.puntogris.posture.ui.base.BaseBottomSheetFragment
 import com.puntogris.posture.utils.Constants
 import com.puntogris.posture.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SettingsBottomSheet : BaseBottomSheetFragment<BottomSheetSettingsBinding>(R.layout.bottom_sheet_settings, true) {
-
-    private val viewModel: SettingsViewModel by viewModels()
 
     override fun initializeViews() {
         binding.bottomSheet = this
@@ -29,7 +22,6 @@ class SettingsBottomSheet : BaseBottomSheetFragment<BottomSheetSettingsBinding>(
             .beginTransaction()
             .replace(binding.container.id, PreferencesFragment())
             .commit()
-
     }
 
     private fun setFragmentResultsListener(){
@@ -48,5 +40,6 @@ class SettingsBottomSheet : BaseBottomSheetFragment<BottomSheetSettingsBinding>(
              showSnackBar(snackMessage)
         }
     }
+
 }
 

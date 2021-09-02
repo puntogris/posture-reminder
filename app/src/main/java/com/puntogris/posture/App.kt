@@ -6,6 +6,7 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.*
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.puntogris.posture.utils.Constants.SYNC_ACCOUNT_WORKER
+import com.puntogris.posture.workers.SyncAccountWorker
 import dagger.hilt.android.HiltAndroidApp
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject

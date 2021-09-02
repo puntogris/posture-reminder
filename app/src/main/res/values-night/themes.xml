@@ -21,6 +21,11 @@
         <item name="preferenceTheme">@style/Theme.Posture.PreferenceScreen</item>
     </style>
 
+    <style name="Theme.Posture.Licenses.Toolbar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:background">@color/nightBackground</item>
+        <item name="buttonGravity">center_vertical</item>
+    </style>
+
     <style name="Theme.Posture.Layout">
         <item name="android:background">@color/nightBackground</item>
     </style>

@@ -136,8 +136,11 @@
     <string name="see_the_code">Ver el codigo</string>
     <string name="rate_the_app">Puntua la app</string>
     <string name="read_the_faq">Lee las F.A.Q.</string>
-    <string name="app_credits">Ver créditos</string>
+    <string name="app_credits">Ver los créditos</string>
     <string name="log_out">Cerrar sesión</string>
+    <string name="licenses">Licencias</string>
+    <string name="open_source_licenses">Licencias de codigo abierto</string>
+    <string name="licenses_pref_summary">Ver las licencias</string>
 
     <!-- Notifications -->
     <string name="snack_notifications_set">Se activaron las notificaciones desde las %1$s hasta las %2$s.</string>

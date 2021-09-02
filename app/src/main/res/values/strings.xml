@@ -141,6 +141,9 @@
     <string name="read_the_faq">Read the F.A.Q.</string>
     <string name="app_credits">See credits</string>
     <string name="log_out">Log out from app</string>
+    <string name="licenses">Licenses</string>
+    <string name="open_source_licenses">Open source licenses</string>
+    <string name="licenses_pref_summary">See licenses</string>
 
     <!-- Preferences -->
     <string name="faq_pref_url" translatable="false">https://postureapp.puntogris.com/help/</string>

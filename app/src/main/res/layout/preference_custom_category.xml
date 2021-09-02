@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:orientation="vertical"
-android:layout_width="match_parent"
-android:layout_height="wrap_content">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <View
-        android:id="@+id/divider5"
         android:layout_width="match_parent"
         android:layout_height="8dp"
         style="@style/Theme.Posture.Divider"
@@ -16,9 +15,9 @@ android:layout_height="wrap_content">
         android:id="@android:id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
+        android:textColor="?colorOnSurface"
         style="@style/Theme.Posture.TextMedium"
-        android:text="@{settingItem.title}"
         android:textSize="17sp"/>
 </LinearLayout>

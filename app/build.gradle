@@ -8,6 +8,8 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
     id 'com.google.firebase.crashlytics'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'com.google.android.gms.oss-licenses-plugin'
+
 }
 
 android {
@@ -65,6 +67,8 @@ ext{
     roomVersion = "2.4.0-alpha04"
     workManagerVersion = "2.7.0-alpha02"
     kluentVersion = "1.68"
+    preferenceVersion = "1.1.1"
+    shimmerVersion = "0.5.0"
 }
 
 dependencies {
@@ -151,12 +155,15 @@ dependencies {
     implementation "com.google.android.gms:play-services-auth:$googleSignIn"
 
     //Shimmer fb effect
-    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
 
     //Work manager Kotlin + coroutines
     implementation "androidx.work:work-runtime-ktx:$workManagerVersion"
 
     //Preferences
-    implementation 'androidx.preference:preference-ktx:1.1.1'
+    implementation "androidx.preference:preference-ktx:$preferenceVersion"
+
+    //Open source licenses
+    implementation("com.google.android.gms:play-services-oss-licenses:17.0.0")
 
 }
