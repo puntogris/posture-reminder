@@ -38,7 +38,7 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <receiver android:name=".ReminderBroadcast"
+        <receiver android:name=".alarm.ReminderBroadcast"
             android:enabled="true"
             android:exported="false"/>
         <meta-data

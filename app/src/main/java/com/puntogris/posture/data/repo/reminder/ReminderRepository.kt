@@ -3,8 +3,8 @@ package com.puntogris.posture.data.repo.reminder
 import android.content.Context
 import android.os.Build
 import androidx.work.*
-import com.puntogris.posture.Alarm
-import com.puntogris.posture.Notifications
+import com.puntogris.posture.alarm.Alarm
+import com.puntogris.posture.alarm.Notifications
 import com.puntogris.posture.workers.UploadReminderWorker
 import com.puntogris.posture.data.local.ReminderDao
 import com.puntogris.posture.data.remote.FirebaseReminderDataSource

@@ -1,6 +1,6 @@
 package com.puntogris.posture.data.repo.user
 
-import com.puntogris.posture.Alarm
+import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.data.local.UserDao
 import com.puntogris.posture.data.remote.FirebaseUserDataSource
 import com.puntogris.posture.utils.Constants.USER_NAME_FIELD

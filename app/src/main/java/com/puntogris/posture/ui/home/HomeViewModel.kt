@@ -5,7 +5,7 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.puntogris.posture.Alarm
+import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.data.repo.day_logs.DayLogsRepository
 import com.puntogris.posture.data.repo.reminder.ReminderRepository
 import com.puntogris.posture.model.AlarmStatus

@@ -2,7 +2,7 @@ package com.puntogris.posture.fcm
 
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.puntogris.posture.Notifications
+import com.puntogris.posture.alarm.Notifications
 import com.puntogris.posture.model.FcmNotification
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Exception
