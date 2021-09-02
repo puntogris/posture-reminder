@@ -8,9 +8,10 @@ Used in this project:</br>
   * Broadcast Receiver
   * Hilt
   * Work Manager
-  * Firebase authentication
-  * Firebase firestore
-  * Firebase cloud functions
+  * Firebase Authentication
+  * Firebase Firestore
+  * Firebase Cloud Functions
+  * Firebase Cloud Messaging
   * Vuepress
 
 ## Screenshots
