@@ -1,19 +1,24 @@
 package com.puntogris.posture.ui.settings
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.google.android.material.snackbar.Snackbar
+import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.R
 import com.puntogris.posture.model.SimpleResult
-import com.puntogris.posture.utils.isIgnoringBatteryOptimizations
-import com.puntogris.posture.utils.preference
-import com.puntogris.posture.utils.showSnackBar
+import com.puntogris.posture.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -30,9 +35,12 @@ class PreferencesFragment: PreferenceFragmentCompat() {
                     summary = it.username
                 }
             }
-            setOnPreferenceClickListener {
-                findNavController().navigate(R.id.editUserNameDialog)
-                true
+            onClick {
+                lifecycleScope.launch {
+                    val username = viewModel.getUserFlow().first().username
+                    val action = SettingsBottomSheetDirections.actionSettingsBottomSheetToDialogName(username)
+                    findNavController().navigate(action)
+                }
             }
         }
 
@@ -43,9 +51,8 @@ class PreferencesFragment: PreferenceFragmentCompat() {
                     summary = themeNames[it]
                 }
             }
-            setOnPreferenceClickListener {
+            onClick {
                 findNavController().navigate(R.id.selectThemeDialog)
-                true
             }
         }
 
@@ -54,13 +61,12 @@ class PreferencesFragment: PreferenceFragmentCompat() {
                 if (isIgnoringBatteryOptimizations()) R.string.all_in_order
                 else R.string.require_action
             )
-            setOnPreferenceClickListener {
+            onClick {
                 findNavController().navigate(R.id.batteryOptimizationFragment)
-                true
             }
         }
         preference("log_out_preference_key"){
-            setOnPreferenceClickListener {
+            onClick {
                 lifecycleScope.launch {
                     when(viewModel.logOut()){
                         SimpleResult.Failure -> {
@@ -72,27 +78,44 @@ class PreferencesFragment: PreferenceFragmentCompat() {
                         }
                     }
                 }
-                true
             }
         }
 
         preference("credits_preference_key"){
-            setOnPreferenceClickListener {
+            onClick {
                 findNavController().navigate(R.id.creditsBottomSheet)
-                true
             }
         }
 
         preference("ticket_preference_key"){
-            setOnPreferenceClickListener {
+            onClick {
                 findNavController().navigate(R.id.ticketBottomSheet)
-                true
             }
         }
 
         preference("version_preference_key"){
+            summary = BuildConfig.VERSION_NAME
             viewModel.setPandaAnimationPref(true)
             //showSnackBar(R.string.snack_panda_unlocked)
+        }
+
+        preference("rate_app_preference_key"){
+            onClick {
+               try {
+                   startActivity(
+                       Intent(
+                           Intent.ACTION_VIEW,
+                           Uri.parse("market://details?id=com.puntogris.posture"))
+                   )
+               }catch (e:Exception){
+                   startActivity(
+                       Intent(
+                           Intent.ACTION_VIEW,
+                           Uri.parse("https://play.google.com/store/apps/details?id=" + "com.puntogris.posture")
+                       )
+                   )
+               }
+           }
         }
     }
 }

@@ -14,8 +14,7 @@
         <Preference
             android:key="theme_preference_key"
             app:title="@string/theme"
-            app:iconSpaceReserved="false">
-        </Preference>
+            app:iconSpaceReserved="false"/>
         <Preference
             android:key="battery_preference_key"
             app:title="@string/battery_optimization"
@@ -42,8 +41,7 @@
             android:key="ticket_preference_key"
             app:title="@string/ticker_feedback"
             app:iconSpaceReserved="false"
-            app:summary="@string/create_ticket">
-        </Preference>
+            app:summary="@string/create_ticket"/>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -58,7 +56,6 @@
                 android:data="@string/website_pref_url" />
         </Preference>
         <Preference
-            android:key="credits_preference_key"
             app:title="@string/github"
             app:iconSpaceReserved="false"
             app:summary="@string/see_the_code">
@@ -72,11 +69,12 @@
         app:title="@string/about_us"
         app:iconSpaceReserved="false">
         <Preference
+            android:key="credits_preference_key"
             app:title="@string/credits_label"
             app:iconSpaceReserved="false"
-            app:summary="@string/app_credits">
-        </Preference>
+            app:summary="@string/app_credits"/>
         <Preference
+            android:key="rate_app_preference_key"
             app:title="@string/rate_us"
             app:iconSpaceReserved="false"
             app:summary="@string/rate_the_app">

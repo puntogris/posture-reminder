@@ -154,7 +154,7 @@ fun BottomSheetDialogFragment.showSnackBar(
     }
 }
 
-fun <T> MutableLiveData<T>.setField(transform: T.() -> Unit) { this.value = this.value?.apply(transform) }
+inline fun <T> MutableLiveData<T>.setField(transform: T.() -> Unit) { this.value = this.value?.apply(transform) }
 
 fun ViewPager2.setPageFadeTransformer(){
     setPageTransformer { page, position ->
@@ -195,8 +195,15 @@ fun LottieAnimationView.playAnimationOnce(@RawRes animation: Int){
     playAnimation()
 }
 
-fun PreferenceFragmentCompat.preference(key: String, block: Preference.() -> Unit){
+inline fun PreferenceFragmentCompat.preference(key: String, block: Preference.() -> Unit){
     findPreference<Preference>(key)?.apply {
         block(this)
+    }
+}
+
+inline fun Preference.onClick(crossinline block: () -> Unit){
+    setOnPreferenceClickListener {
+        block()
+        true
     }
 }

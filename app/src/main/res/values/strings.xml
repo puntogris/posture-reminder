@@ -142,6 +142,11 @@
     <string name="app_credits">See credits</string>
     <string name="log_out">Log out from app</string>
 
+    <!-- Preferences -->
+    <string name="faq_pref_url" translatable="false">https://postureapp.puntogris.com/help/</string>
+    <string name="github_pref_url" translatable="false">https://github.com/puntogris/posture-reminder</string>
+    <string name="website_pref_url" translatable="false">https://postureapp.puntogris.com</string>
+
     <!-- Notifications -->
     <string name="snack_notifications_set">Notifications set from %1$s to %2$s.</string>
     <string name="posture_notification_title">Posture Notification</string>
@@ -267,9 +272,6 @@
     <!-- Credits -->
     <string name="panda_credits">Panda animation by @ucilucil</string>
     <string name="bottom_nav_icons_credit">Bottom menu icons by Flaticon</string>
-    <string name="faq_pref_url">https://postureapp.puntogris.com/help/</string>
-    <string name="github_pref_url">https://github.com/puntogris/posture-reminder</string>
-    <string name="website_pref_url">https://postureapp.puntogris.com</string>
 
     <!-- Arrays -->
     <string-array name="ticket_types">
