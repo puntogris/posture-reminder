@@ -8,5 +8,5 @@ Used in this project:</br>
   * Broadcast Receiver
 
 ## Screenshots
-<center><img src="https://postureapp.puntogris.com/img/1.png" width=300><img src="https://postureapp.puntogris.com/img/2.png" width=300><img src="https://postureapp.puntogris.com/img/3.png" width=300></center>
+<img src="https://postureapp.puntogris.com/img/1.png" width=300><img src="https://postureapp.puntogris.com/img/2.png" width=300><img src="https://postureapp.puntogris.com/img/3.png" width=300>
 
