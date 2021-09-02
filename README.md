@@ -7,7 +7,9 @@ Used in this project:</br>
   * Alarm Manager
   * Broadcast Receiver
   * Hilt
+  * Room
   * Work Manager
+  * Data Store
   * Firebase Authentication
   * Firebase Firestore
   * Firebase Cloud Functions
