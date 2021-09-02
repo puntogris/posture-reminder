@@ -6,6 +6,12 @@ Used in this project:</br>
   * MVVM
   * Alarm Manager
   * Broadcast Receiver
+  * Hilt
+  * Work Manager
+  * Firebase authentication
+  * Firebase firestore
+  * Firebase cloud functions
+  * Vuepress
 
 ## Screenshots
 <img src="https://postureapp.puntogris.com/img/1.png" width=300><img src="https://postureapp.puntogris.com/img/2.png" width=300><img src="https://postureapp.puntogris.com/img/3.png" width=300>
