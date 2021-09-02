@@ -139,16 +139,19 @@
     <string name="see_the_code">See the code</string>
     <string name="rate_the_app">Rate the app</string>
     <string name="read_the_faq">Read the F.A.Q.</string>
-    <string name="app_credits">See credits</string>
     <string name="log_out">Log out from app</string>
-    <string name="licenses">Licenses</string>
     <string name="open_source_licenses">Open source licenses</string>
-    <string name="licenses_pref_summary">See licenses</string>
+    <string name="terms_and_conditions">Terms and conditions</string>
+    <string name="privacy_policy">Privacy policy</string>
 
     <!-- Preferences -->
-    <string name="faq_pref_url" translatable="false">https://postureapp.puntogris.com/help/</string>
-    <string name="github_pref_url" translatable="false">https://github.com/puntogris/posture-reminder</string>
-    <string name="website_pref_url" translatable="false">https://postureapp.puntogris.com</string>
+    <string name="pref_faq_url" translatable="false">https://postureapp.puntogris.com/help/</string>
+    <string name="pref_github_url" translatable="false">https://github.com/puntogris/posture-reminder</string>
+    <string name="pref_app_website_url" translatable="false">https://postureapp.puntogris.com</string>
+    <string name="pref_play_store_uri" translatable="false">market://details?id=com.puntogris.posture</string>
+    <string name="pref_play_store_web_url" translatable="false">https://play.google.com/store/apps/details?id=com.puntogris.posture</string>
+    <string name="pref_privacy_policy_url" translatable="false">https://postureapp.puntogris.com/app/terms-and-conditions/</string>
+    <string name="pref_terms_and_conditions_url" translatable="false">https://postureapp.puntogris.com/app/privacy-policy/</string>
 
     <!-- Notifications -->
     <string name="snack_notifications_set">Notifications set from %1$s to %2$s.</string>

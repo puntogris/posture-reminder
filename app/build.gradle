@@ -69,6 +69,7 @@ ext{
     kluentVersion = "1.68"
     preferenceVersion = "1.1.1"
     shimmerVersion = "0.5.0"
+    licensesVersion = "17.0.0"
 }
 
 dependencies {
@@ -164,6 +165,9 @@ dependencies {
     implementation "androidx.preference:preference-ktx:$preferenceVersion"
 
     //Open source licenses
-    implementation("com.google.android.gms:play-services-oss-licenses:17.0.0")
+    implementation "com.google.android.gms:play-services-oss-licenses:$licensesVersion"
+
+    //Debug
+    implementation 'com.jakewharton.timber:timber:5.0.1'
 
 }

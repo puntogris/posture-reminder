@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:text="@string/change_name_title"
             android:layout_gravity="center"
             style="@style/Theme.Posture.TextMedium"

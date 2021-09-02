@@ -3,7 +3,6 @@ package com.puntogris.posture.data.repo.user
 import com.puntogris.posture.Alarm
 import com.puntogris.posture.data.local.UserDao
 import com.puntogris.posture.data.remote.FirebaseUserDataSource
-import com.puntogris.posture.model.SimpleResult
 import com.puntogris.posture.utils.Constants.USER_NAME_FIELD
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
@@ -20,16 +19,16 @@ class UserRepository @Inject constructor(
 
     override fun getUserLiveDataRoom() = userDao.getUserLiveData()
 
-    override suspend fun updateUsernameInRoomAndFirestore(name: String): SimpleResult = withContext(Dispatchers.IO){
+    override suspend fun updateUsernameInRoomAndFirestore(name: String): Boolean = withContext(Dispatchers.IO){
         try {
             firebaseUser.runBatch().apply {
                 update(firebaseUser.getUserPrivateDataRef(), USER_NAME_FIELD, name)
                 update(firebaseUser.getUserPublicProfileRef(), USER_NAME_FIELD, name)
             }.commit().await()
             userDao.updateUsername(name)
-            SimpleResult.Success
+            true
         }catch (e:Exception){
-            SimpleResult.Failure
+            false
         }
     }
 

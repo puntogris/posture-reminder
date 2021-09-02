@@ -8,10 +8,12 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.PowerManager
+import android.text.Editable
 import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.annotation.RawRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
@@ -214,3 +216,6 @@ inline fun PreferenceFragmentCompat.preferenceOnClick(key: String, crossinline b
         true
     }
 }
+
+inline val EditText.data
+    get() = text.toString()

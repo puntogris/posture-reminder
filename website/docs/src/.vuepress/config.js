@@ -75,7 +75,17 @@ module.exports = {
           ''
         ]
       }
-      ]
+      ],
+      '/information/':[{
+        'title': 'Information',
+        collapsable: false,
+        children: [
+          '',
+          'privacy-policy',
+          'terms-and-conditions'
+        ]
+      }
+    ]
     }
   },
 

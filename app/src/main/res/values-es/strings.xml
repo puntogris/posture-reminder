@@ -136,11 +136,10 @@
     <string name="see_the_code">Ver el codigo</string>
     <string name="rate_the_app">Puntua la app</string>
     <string name="read_the_faq">Lee las F.A.Q.</string>
-    <string name="app_credits">Ver los créditos</string>
     <string name="log_out">Cerrar sesión</string>
-    <string name="licenses">Licencias</string>
     <string name="open_source_licenses">Licencias de codigo abierto</string>
-    <string name="licenses_pref_summary">Ver las licencias</string>
+    <string name="terms_and_conditions">Terminos y condiciones</string>
+    <string name="privacy_policy">Politicas de privacidad</string>
 
     <!-- Notifications -->
     <string name="snack_notifications_set">Se activaron las notificaciones desde las %1$s hasta las %2$s.</string>
@@ -156,6 +155,7 @@
     <string name="claim_experience_exp_limit_message">Ya no podras ganar mas exp por hoy pero te invitamos a que hagas un ejercicio, tu espalda te lo agradecera!</string>
     <string name="alarm_channel_name">Recordatorio de Postura</string>
     <string name="fmc_channel_name">Servidor Recordatorio de Postura</string>
+
     <!-- Account -->
     <string name="level_1_title">Espalda de hilo</string>
     <string name="level_2_title">Espalda de papel</string>

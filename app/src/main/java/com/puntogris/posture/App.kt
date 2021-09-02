@@ -8,6 +8,7 @@ import com.jakewharton.threetenabp.AndroidThreeTen
 import com.puntogris.posture.utils.Constants.SYNC_ACCOUNT_WORKER
 import com.puntogris.posture.workers.SyncAccountWorker
 import dagger.hilt.android.HiltAndroidApp
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -25,6 +26,8 @@ class App: Application(), Configuration.Provider{
         AndroidThreeTen.init(this)
         setupSyncAccountWorkManager()
         removeDeprecatedNotificationChannels()
+
+        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
     }
 
     private fun setupSyncAccountWorkManager(){

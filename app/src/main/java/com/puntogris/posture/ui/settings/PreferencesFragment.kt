@@ -1,7 +1,6 @@
 package com.puntogris.posture.ui.settings
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -104,23 +103,17 @@ class PreferencesFragment: PreferenceFragmentCompat() {
 
         preferenceOnClick(RATE_APP_PREF_KEY){
            try {
-               startActivity(
-                   Intent(
-                       Intent.ACTION_VIEW,
-                       Uri.parse("market://details?id=com.puntogris.posture"))
-               )
+               launchWebBrowserIntent(getString(R.string.pref_play_store_uri))
            }catch (e:Exception){
-               startActivity(
-                   Intent(
-                       Intent.ACTION_VIEW,
-                       Uri.parse("https://play.google.com/store/apps/details?id=com.puntogris.posture")
-                   )
-               )
+               launchWebBrowserIntent(getString(R.string.pref_play_store_web_url))
            }
         }
+
         preferenceOnClick(LICENSES_PREF_KEY){
-            OssLicensesMenuActivity.setActivityTitle(getString(R.string.open_source_licenses))
-            startActivity(Intent(requireContext(), OssLicensesMenuActivity::class.java))
+            Intent(requireContext(), OssLicensesMenuActivity::class.java).apply {
+                OssLicensesMenuActivity.setActivityTitle(getString(R.string.open_source_licenses))
+                startActivity(this)
+            }
         }
     }
 }

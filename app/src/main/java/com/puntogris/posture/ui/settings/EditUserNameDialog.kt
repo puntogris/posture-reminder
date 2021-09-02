@@ -14,9 +14,9 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.DialogEditUsernameBinding
-import com.puntogris.posture.model.SimpleResult
 import com.puntogris.posture.utils.Constants.DATA_KEY
 import com.puntogris.posture.utils.Constants.EDIT_NAME_KEY
+import com.puntogris.posture.utils.data
 import com.puntogris.posture.utils.gone
 import com.puntogris.posture.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,19 +50,17 @@ class EditUserNameDialog: DialogFragment(){
     }
 
     private fun onPositiveButtonClicked(){
-        val name = binding.usernameEditText.text.toString()
-        if (name != args.username){
-            showLoadingUi()
-            updateUsernameAndHandleResult(name)
-        } else dismiss()
+        binding.usernameEditText.data.let {
+            if (it != args.username){
+                showLoadingUi()
+                updateUsernameAndHandleResult(it)
+            } else dismiss()
+        }
     }
 
     private fun updateUsernameAndHandleResult(name: String){
         lifecycleScope.launch {
-            val result = when (viewModel.updateUserName(name)) {
-                SimpleResult.Failure -> false
-                SimpleResult.Success -> true
-            }
+            val result = viewModel.updateUserName(name)
             handleEditNameResult(result)
         }
     }

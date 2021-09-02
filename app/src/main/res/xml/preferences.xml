@@ -35,7 +35,7 @@
             app:summary="@string/read_the_faq">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="@string/faq_pref_url" />
+                android:data="@string/pref_faq_url" />
         </Preference>
         <Preference
             android:key="ticket_preference_key"
@@ -53,7 +53,7 @@
             app:summary="@string/got_to_website">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="@string/website_pref_url" />
+                android:data="@string/pref_app_website_url" />
         </Preference>
         <Preference
             app:title="@string/github"
@@ -61,7 +61,7 @@
             app:summary="@string/see_the_code">
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="@string/github_pref_url" />
+                android:data="@string/pref_github_url" />
         </Preference>
     </PreferenceCategory>
 
@@ -82,13 +82,24 @@
         <Preference
             android:key="credits_preference_key"
             app:title="@string/credits_label"
-            app:iconSpaceReserved="false"
-            app:summary="@string/app_credits"/>
+            app:iconSpaceReserved="false"/>
         <Preference
             android:key="licenses_preference_key"
-            app:title="@string/licenses"
-            android:summary="@string/licenses_pref_summary"
+            app:title="@string/open_source_licenses"
+            app:iconSpaceReserved="false"/>
+        <Preference
+            app:title="@string/privacy_policy"
             app:iconSpaceReserved="false">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/pref_privacy_policy_url" />
+        </Preference>
+        <Preference
+            app:title="@string/terms_and_conditions"
+            app:iconSpaceReserved="false">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/pref_terms_and_conditions_url" />
         </Preference>
     </PreferenceCategory>
 </PreferenceScreen>
