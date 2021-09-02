@@ -8,8 +8,5 @@ Used in this project:</br>
   * Broadcast Receiver
 
 ## Screenshots
-![](https://postureapp.puntogris.com/img/1.png | width=300)
-![](https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png | width=100)
-
-![N|Solid](https://raw.githubusercontent.com/puntogris/posture-reminder/main/screenshots/3.webp)
+<img src="https://postureapp.puntogris.com/img/1.png" width=50% height=50%>
 
