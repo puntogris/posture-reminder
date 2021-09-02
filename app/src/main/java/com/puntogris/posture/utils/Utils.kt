@@ -19,6 +19,16 @@ object Utils {
         return (now.timeInMillis - midnight.timeInMillis).millisToMinutes()
     }
 
+    fun getDateFromMinutesSinceMidnight(minutesSinceMidnight: Int): Date{
+        val calendar =  Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, minutesSinceMidnight.getHours())
+            set(Calendar.MINUTE, minutesSinceMidnight.getMinutes())
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
+        return calendar.time
+    }
+
     fun getTriggerTime(interval: Int) = Calendar.getInstance().timeInMillis + interval.minutesToMillis()
 
     fun getSavedOptions(savedList: List<Int>?, daysList: Array<String>): MutableList<Option> {

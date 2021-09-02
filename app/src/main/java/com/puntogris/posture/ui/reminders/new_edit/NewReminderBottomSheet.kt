@@ -27,6 +27,7 @@ import com.puntogris.posture.utils.Constants.TIME_UNIT_KEY
 import com.puntogris.posture.utils.Constants.VIBRATION_PICKER_KEY
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.Utils
+import com.puntogris.posture.utils.Utils.getDateFromMinutesSinceMidnight
 import com.puntogris.posture.utils.showSnackBar
 import com.puntogris.posture.utils.timeWithZoneOffset
 import dagger.hilt.android.AndroidEntryPoint
@@ -190,7 +191,7 @@ class NewReminderBottomSheet : BaseBottomSheetFragment<BottomSheetNewReminderBin
     private fun openTimePicker(code: ReminderUi.Item) {
         ClockTimeSheet().show(requireParentFragment().requireContext()) {
             style(SheetStyle.DIALOG)
-            currentTime(Date().timeWithZoneOffset)
+            currentTime(getDefaultClockTimeInMillis(code))
             title(
                 if (code is ReminderUi.Item.Start) R.string.start_time_title
                 else R.string.end_time_title
@@ -200,5 +201,19 @@ class NewReminderBottomSheet : BaseBottomSheetFragment<BottomSheetNewReminderBin
                 else viewModel.saveEndTime(milliseconds)
             }
         }
+    }
+
+    private fun getDefaultClockTimeInMillis(code: ReminderUi.Item): Long{
+        val isNewReminder = viewModel.reminder.value?.reminderId.isNullOrBlank()
+
+        val date = if (isNewReminder) Date()
+        else getDateFromMinutesSinceMidnight(getReminderTime(code))
+
+        return date.timeWithZoneOffset
+    }
+
+    private fun getReminderTime(code: ReminderUi.Item): Int{
+        return if (code is ReminderUi.Item.Start) viewModel.reminder.value!!.startTime
+        else viewModel.reminder.value!!.endTime
     }
 }
