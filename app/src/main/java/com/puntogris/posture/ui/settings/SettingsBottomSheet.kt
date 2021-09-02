@@ -9,8 +9,6 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetSettingsBinding
-import com.puntogris.posture.model.SettingItem
-import com.puntogris.posture.model.SettingUi
 import com.puntogris.posture.model.SimpleResult
 import com.puntogris.posture.ui.base.BaseBottomSheetFragment
 import com.puntogris.posture.utils.*
@@ -18,7 +16,6 @@ import com.puntogris.posture.utils.Constants.DATA_KEY
 import com.puntogris.posture.utils.Constants.EDIT_NAME_KEY
 import com.puntogris.posture.utils.Constants.SEND_TICKET_KEY
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
@@ -26,70 +23,18 @@ import kotlinx.coroutines.launch
 class SettingsBottomSheet : BaseBottomSheetFragment<BottomSheetSettingsBinding>(R.layout.bottom_sheet_settings, true) {
 
     private val viewModel: SettingsViewModel by viewModels()
-    private lateinit var settingsAdapter: SettingsAdapter
 
     override fun initializeViews() {
         binding.bottomSheet = this
-        setupRecyclerViewAdapter()
+
+        childFragmentManager
+            .beginTransaction()
+            .replace(binding.container.id, PreferencesFragment())
+            .commit()
+
         setFragmentResultsListener()
     }
 
-    private fun setupRecyclerViewAdapter(){
-        settingsAdapter = SettingsAdapter(requireContext()){ onSettingClicked(it) }
-        binding.recyclerView.adapter = settingsAdapter
-        setBatteryOptimizationSummary()
-        setThemeName()
-        setUserName()
-    }
-
-    private fun setUserName(){
-        lifecycleScope.launch {
-            viewModel.getUserFlow().collect {
-                settingsAdapter.updateUserName(it.username)
-            }
-        }
-    }
-
-    private fun setBatteryOptimizationSummary(){
-        settingsAdapter.updateBatteryOptimization(isIgnoringBatteryOptimizations())
-    }
-
-    private fun setThemeName(){
-        val themeNames = resources.getStringArray(R.array.theme_names)
-        lifecycleScope.launch {
-            viewModel.getThemeNamePosition().collect {
-                settingsAdapter.updateThemeName(themeNames[it])
-            }
-        }
-    }
-
-    private fun onSettingClicked(settingItem: SettingItem){
-        when(settingItem.code){
-            SettingUi.BatteryOpt -> onBatteryClicked()
-            SettingUi.Github -> onGithubClicked()
-            SettingUi.Help -> onHelpClicked()
-            SettingUi.Name -> onNameClicked()
-            SettingUi.RateApp -> onRateAppClicked()
-            SettingUi.Theme -> onThemeClicked()
-            SettingUi.Ticket -> onTicketClicked()
-            SettingUi.Version -> onVersionClicked()
-            SettingUi.Website -> onWebsiteClicked()
-            SettingUi.LogOut -> onLogOutClicked()
-            SettingUi.Credits -> onCreditsClicked()
-        }
-    }
-
-    private fun onBatteryClicked(){
-        findNavController().navigate(R.id.batteryOptimizationFragment)
-    }
-
-    private fun onNameClicked(){
-        lifecycleScope.launch {
-            val name = viewModel.getUserFlow().first().username
-            val action = SettingsBottomSheetDirections.actionSettingsBottomSheetToDialogName(name)
-            findNavController().navigate(action)
-        }
-    }
     private fun onRateAppClicked(){
         try {
             startActivity(Intent(Intent.ACTION_VIEW,
@@ -101,41 +46,6 @@ class SettingsBottomSheet : BaseBottomSheetFragment<BottomSheetSettingsBinding>(
                     Uri.parse("https://play.google.com/store/apps/details?id=" + "com.puntogris.posture")
                 )
             )
-        }
-    }
-
-    private fun onThemeClicked(){
-        findNavController().navigate(R.id.selectThemeDialog)
-    }
-    private fun onTicketClicked(){
-        findNavController().navigate(R.id.action_settingsBottomSheet_to_ticketBottomSheet)
-
-    }
-    private fun onVersionClicked(){
-        viewModel.setPandaAnimationPref(true)
-        showSnackBar(R.string.snack_panda_unlocked)
-    }
-    private fun onWebsiteClicked(){
-        launchWebBrowserIntent("https://postureapp.puntogris.com")
-    }
-    private fun onGithubClicked(){
-        launchWebBrowserIntent("https://github.com/puntogris/posture-reminder")
-    }
-    private fun onHelpClicked(){
-        launchWebBrowserIntent("https://postureapp.puntogris.com/help/")
-    }
-    private fun onCreditsClicked(){
-        findNavController().navigate(R.id.creditsBottomSheet)
-    }
-    private fun onLogOutClicked(){
-        lifecycleScope.launch {
-            when(viewModel.logOut()){
-                SimpleResult.Failure -> showSnackBar(R.string.snack_general_error)
-                SimpleResult.Success -> {
-                    val nav = NavOptions.Builder().setPopUpTo(R.id.navigation, true).build()
-                    findNavController().navigate(R.id.loginFragment, null, nav)
-                }
-            }
         }
     }
 

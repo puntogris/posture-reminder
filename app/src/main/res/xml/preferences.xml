@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:title="@string/account_label"
+        app:iconSpaceReserved="false">
+        <Preference
+            android:key="username_preference_key"
+            app:title="@string/name"
+            app:iconSpaceReserved="false"
+            app:summary="@string/human">
+        </Preference>
+        <Preference
+            android:key="theme_preference_key"
+            app:title="@string/theme"
+            app:iconSpaceReserved="false">
+        </Preference>
+        <Preference
+            android:key="battery_preference_key"
+            app:title="@string/battery_optimization"
+            app:iconSpaceReserved="false"/>
+        <Preference
+            android:key="log_out_preference_key"
+            app:title="@string/close"
+            app:iconSpaceReserved="false"
+            app:summary="@string/log_out"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/help"
+        app:iconSpaceReserved="false">
+        <Preference
+            app:title="@string/questions"
+            app:iconSpaceReserved="false"
+            app:summary="@string/read_the_faq">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/faq_pref_url" />
+        </Preference>
+        <Preference
+            android:key="ticket_preference_key"
+            app:title="@string/ticker_feedback"
+            app:iconSpaceReserved="false"
+            app:summary="@string/create_ticket">
+        </Preference>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/contact"
+        app:iconSpaceReserved="false">
+        <Preference
+            app:title="@string/website"
+            app:iconSpaceReserved="false"
+            app:summary="@string/got_to_website">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/website_pref_url" />
+        </Preference>
+        <Preference
+            android:key="credits_preference_key"
+            app:title="@string/github"
+            app:iconSpaceReserved="false"
+            app:summary="@string/see_the_code">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/github_pref_url" />
+        </Preference>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/about_us"
+        app:iconSpaceReserved="false">
+        <Preference
+            app:title="@string/credits_label"
+            app:iconSpaceReserved="false"
+            app:summary="@string/app_credits">
+        </Preference>
+        <Preference
+            app:title="@string/rate_us"
+            app:iconSpaceReserved="false"
+            app:summary="@string/rate_the_app">
+        </Preference>
+        <Preference
+            android:key="version_preference_key"
+            app:title="@string/version"
+            app:iconSpaceReserved="false">
+        </Preference>
+
+    </PreferenceCategory>
+</PreferenceScreen>

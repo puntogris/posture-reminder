@@ -20,6 +20,20 @@
         <item name="sheetsTitleFont">@font/roboto_bold</item>
         <item name="sheetsTitleColor">?colorControlNormal</item>
         <item name="sheetsBackgroundColor">#ffffff</item>
+        <item name="preferenceTheme">@style/Theme.Posture.PreferenceScreen</item>
+    </style>
+
+    <style name="Theme.Posture.PreferenceScreen">
+        <item name="preferenceStyle">@style/Theme.Posture.Preference</item>
+        <item name="preferenceCategoryStyle">@style/Theme.Posture.CategoryPreference</item>
+    </style>
+
+    <style name="Theme.Posture.Preference">
+        <item name="android:layout">@layout/preference_custom_item</item>
+    </style>
+
+    <style name="Theme.Posture.CategoryPreference">
+        <item name="android:layout">@layout/preference_custom_category</item>
     </style>
 
     <style name="MyAlertDialogStyle" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">

@@ -21,6 +21,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -193,3 +195,8 @@ fun LottieAnimationView.playAnimationOnce(@RawRes animation: Int){
     playAnimation()
 }
 
+fun PreferenceFragmentCompat.preference(key: String, block: Preference.() -> Unit){
+    findPreference<Preference>(key)?.apply {
+        block(this)
+    }
+}

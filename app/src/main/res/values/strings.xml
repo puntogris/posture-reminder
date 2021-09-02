@@ -267,6 +267,9 @@
     <!-- Credits -->
     <string name="panda_credits">Panda animation by @ucilucil</string>
     <string name="bottom_nav_icons_credit">Bottom menu icons by Flaticon</string>
+    <string name="faq_pref_url">https://postureapp.puntogris.com/help/</string>
+    <string name="github_pref_url">https://github.com/puntogris/posture-reminder</string>
+    <string name="website_pref_url">https://postureapp.puntogris.com</string>
 
     <!-- Arrays -->
     <string-array name="ticket_types">

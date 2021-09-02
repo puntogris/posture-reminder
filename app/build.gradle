@@ -156,5 +156,7 @@ dependencies {
     //Work manager Kotlin + coroutines
     implementation "androidx.work:work-runtime-ktx:$workManagerVersion"
 
+    //Preferences
+    implementation 'androidx.preference:preference-ktx:1.1.1'
 
 }

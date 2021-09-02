@@ -18,6 +18,7 @@
         <item name="sheetsTitleFont">@font/roboto_medium</item>
         <item name="sheetsTitleColor">?colorControlNormal</item>
         <item name="sheetsBackgroundColor">#353535</item>
+        <item name="preferenceTheme">@style/Theme.Posture.PreferenceScreen</item>
     </style>
 
     <style name="Theme.Posture.Layout">
