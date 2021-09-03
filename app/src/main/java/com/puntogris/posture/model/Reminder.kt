@@ -26,10 +26,10 @@ data class Reminder(
     var timeInterval: Int = 0,
 
     @ColumnInfo
-    var startTime: Int = 0,
+    var startTime: Int = -1,
 
     @ColumnInfo
-    var endTime: Int = 0,
+    var endTime: Int = -1,
 
     @ColumnInfo
     var alarmDays: List<Int> = listOf(),
@@ -73,8 +73,8 @@ data class Reminder(
     fun requiredInfoFilled(): Boolean{
         return (name.isNotBlank() &&
                 timeInterval != 0 &&
-                startTime != 0 &&
-                endTime != 0 &&
+                startTime != -1 &&
+                endTime != -1 &&
                 alarmDays.isNotEmpty()
                 )
     }

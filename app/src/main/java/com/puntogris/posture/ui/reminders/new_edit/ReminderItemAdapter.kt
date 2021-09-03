@@ -59,8 +59,8 @@ class ReminderItemAdapter(private val context: Context, private val clickListene
         if (reminder.name.isNotBlank()) (items[1] as ReminderUi.Name).value = reminder.name
         if (reminder.timeInterval != 0) (items[2] as ReminderUi.Item).itemData.description = reminder.timeIntervalSummary()
         if (reminder.alarmDays.isNotEmpty()) (items[3] as ReminderUi.Item).itemData.description = reminder.alarmDaysSummary(days)
-        if (reminder.startTime != 0) (items[4] as ReminderUi.Item).itemData.description = minutesFromMidnightToHourlyTime(reminder.startTime)
-        if (reminder.endTime != 0) (items[5] as ReminderUi.Item).itemData.description = minutesFromMidnightToHourlyTime(reminder.endTime)
+        if (reminder.startTime != -1) (items[4] as ReminderUi.Item).itemData.description = minutesFromMidnightToHourlyTime(reminder.startTime)
+        if (reminder.endTime != -1) (items[5] as ReminderUi.Item).itemData.description = minutesFromMidnightToHourlyTime(reminder.endTime)
         (items[6] as ReminderUi.Item).itemData.description = if (reminder.soundName.isBlank()) context.getString(R.string.disabled) else reminder.soundName
         (items[7] as ReminderUi.Item).itemData.description = vibrationPatterns[reminder.vibrationPattern]
         notifyDataSetChanged()
