@@ -73,6 +73,6 @@ class NewReminderViewModel @Inject constructor(
         }
     }
 
-    fun isReminderValid() = reminder.value!!.requiredInfoFilled()
+    fun isReminderValid() = reminder.value!!.requiredInfoValid()
 
 }

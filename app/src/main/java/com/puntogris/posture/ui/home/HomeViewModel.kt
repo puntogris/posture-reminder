@@ -25,14 +25,14 @@ class HomeViewModel @Inject constructor(
     private val reminderRepository: ReminderRepository
 ):ViewModel() {
 
-    val reminder = dataStore.alarmStatus().asLiveData()
+    val isAlarmActive = dataStore.alarmStatus().asLiveData()
 
     private val _alarmStatus = MutableSharedFlow<AlarmStatus>()
     val alarmStatus: SharedFlow<AlarmStatus> = _alarmStatus
 
     fun toggleAlarm(){
         viewModelScope.launch {
-            val isReminderActive = reminder.value!!
+            val isReminderActive = isAlarmActive.value!!
             if (isReminderActive) cancelAlarms() else startAlarm()
         }
     }
