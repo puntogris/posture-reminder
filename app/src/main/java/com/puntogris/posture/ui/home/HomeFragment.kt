@@ -31,7 +31,6 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
     private var mediator: TabLayoutMediator? = null
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<Intent>
 
-
     override fun initializeViews() {
         binding.let {
             it.viewModel = viewModel

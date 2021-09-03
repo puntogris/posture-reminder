@@ -28,7 +28,7 @@ class DataStore @Inject constructor(@ApplicationContext private val context: Con
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = APP_PREFERENCES_NAME)
 
     suspend fun lastVersionCode() =
-        context.dataStore.data.first()[intPreferencesKey(LAST_VERSION_CODE)] ?: 5
+        context.dataStore.data.first()[intPreferencesKey(LAST_VERSION_CODE)] ?: BuildConfig.VERSION_CODE
 
     suspend fun updateLastVersionCode() = context.dataStore.edit {
         it[intPreferencesKey(LAST_VERSION_CODE)] = BuildConfig.VERSION_CODE
@@ -50,6 +50,9 @@ class DataStore @Inject constructor(@ApplicationContext private val context: Con
             it[booleanPreferencesKey(PANDA_ANIMATION)] = value
         }
     }
+
+    suspend fun showPandaAnimation() =
+        context.dataStore.data.first()[booleanPreferencesKey(PANDA_ANIMATION)] ?: false
 
     fun alarmStatus() = context.dataStore.data.map {
         it[booleanPreferencesKey(REMINDER_STATE_KEY)] ?: false

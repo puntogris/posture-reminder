@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.data.repo.day_logs.DayLogsRepository
@@ -19,7 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val alarm: Alarm,
-    dataStore: DataStore,
+    private val dataStore: DataStore,
     private val dayLogsRepository: DayLogsRepository,
     private val reminderRepository: ReminderRepository
 ):ViewModel() {
@@ -49,6 +50,10 @@ class HomeViewModel @Inject constructor(
     private suspend fun cancelAlarms(){
         alarm.cancelAlarms()
         _alarmStatus.emit(AlarmStatus.Canceled)
+    }
+
+    val isPandaAnimationEnabled = liveData {
+        emit(dataStore.showPandaAnimation())
     }
 
     fun getLastTwoDaysHistory() = dayLogsRepository.getLastTwoDaysLogsLiveData()
