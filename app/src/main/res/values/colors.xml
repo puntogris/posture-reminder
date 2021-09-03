@@ -14,7 +14,6 @@
     <color name="colorPrimary">#7D4FFF</color>
     <color name="colorPrimaryDark">#926EFA</color>
 
-
     <color name="card1">#EF5350</color>
     <color name="card2">#66BB6A</color>
     <color name="card3">#AB47BC</color>
@@ -22,5 +21,4 @@
 
     <color name="grey_5">#f2f2f2</color>
     <color name="grey_60">#666666</color>
-
 </resources>
