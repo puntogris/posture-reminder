@@ -70,7 +70,7 @@ data class Reminder(
         }
     }
 
-    fun isValid():Boolean{
+    fun requiredInfoFilled(): Boolean{
         return (name.isNotBlank() &&
                 timeInterval != 0 &&
                 startTime != 0 &&

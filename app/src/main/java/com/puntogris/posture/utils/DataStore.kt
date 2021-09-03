@@ -28,7 +28,7 @@ class DataStore @Inject constructor(@ApplicationContext private val context: Con
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = APP_PREFERENCES_NAME)
 
     suspend fun lastVersionCode() =
-        context.dataStore.data.first()[intPreferencesKey(LAST_VERSION_CODE)] ?: BuildConfig.VERSION_CODE
+        context.dataStore.data.first()[intPreferencesKey(LAST_VERSION_CODE)] ?: 5
 
     suspend fun updateLastVersionCode() = context.dataStore.edit {
         it[intPreferencesKey(LAST_VERSION_CODE)] = BuildConfig.VERSION_CODE

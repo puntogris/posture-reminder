@@ -94,7 +94,7 @@ class PreferencesFragment: PreferenceFragmentCompat() {
         }
 
         preference(VERSION_PREF_KEY){
-            summary = BuildConfig.VERSION_NAME
+            summary = BuildConfig.VERSION_NAME + " (${BuildConfig.VERSION_CODE})"
             onClick {
                 viewModel.setPandaAnimationPref(true)
                 (requireParentFragment() as SettingsBottomSheet).showSnackBar(R.string.snack_panda_unlocked)
