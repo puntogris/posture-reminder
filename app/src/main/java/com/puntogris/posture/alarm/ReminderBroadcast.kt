@@ -65,18 +65,16 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
         }
     }
 
-    private fun deliverNotificationAndSetNewAlarm(context: Context, timeInterval: Int) {
-        goAsync {
-            reminderRepository.getActiveReminder()?.let {
-                val nb = notifications.getNotificationBuilderWithReminder(it)
+    private suspend fun deliverNotificationAndSetNewAlarm(context: Context, timeInterval: Int) {
+        reminderRepository.getActiveReminder()?.let {
+            val nb = notifications.getNotificationBuilderWithReminder(it)
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    notifications.createChannelForReminderSdkO(it)
-                }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                notifications.createChannelForReminderSdkO(it)
+            }
 
-                with(NotificationManagerCompat.from(context)) {
-                    notify(it.reminderId.hashCode(), nb.build())
-                }
+            with(NotificationManagerCompat.from(context)) {
+                notify(it.reminderId.hashCode(), nb.build())
             }
         }
 

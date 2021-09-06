@@ -19,7 +19,7 @@ android {
         applicationId "com.puntogris.posture"
         minSdkVersion 23
         targetSdkVersion 31
-        versionCode 32
+        versionCode 33
         versionName "2.0.0"
         resConfigs "en", "es"
 
@@ -33,7 +33,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            minifyEnabled false
+            minifyEnabled true
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
