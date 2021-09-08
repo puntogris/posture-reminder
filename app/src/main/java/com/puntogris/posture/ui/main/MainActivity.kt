@@ -6,7 +6,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.*
 import androidx.navigation.ui.*
@@ -22,7 +21,6 @@ import com.puntogris.posture.utils.Constants.URI_STRING
 import com.puntogris.posture.utils.Constants.WEBSITE_HTTPS
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -31,7 +29,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private val viewModel: MainViewModel by viewModels()
 
-    override fun preInitViews() {
+    override fun preInitializeViews() {
         setTheme(R.style.Theme_Posture)
     }
 

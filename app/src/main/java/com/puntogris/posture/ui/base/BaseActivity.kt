@@ -14,20 +14,18 @@ abstract class BaseActivity<T : ViewDataBinding>(@LayoutRes val layout: Int) :
     NavController.OnDestinationChangedListener,
     UiInterfaceListener
 {
-
     private var _binding: T? = null
     val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        preInitViews()
+        preInitializeViews()
         super.onCreate(savedInstanceState)
         _binding = DataBindingUtil.setContentView(this, layout)
-
         initializeViews()
     }
 
     open fun initializeViews() {}
-    open fun preInitViews() {}
+    open fun preInitializeViews() {}
 
     override fun onDestroy() {
         super.onDestroy()
