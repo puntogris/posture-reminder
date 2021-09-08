@@ -4,8 +4,8 @@ import android.app.AlarmManager.ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHA
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import androidx.core.app.NotificationManagerCompat
 import com.puntogris.posture.data.repo.reminder.ReminderRepository
+import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.utils.Constants.DAILY_ALARM_TRIGGERED
 import com.puntogris.posture.utils.Constants.REPEATING_ALARM_TRIGGERED
 import com.puntogris.posture.utils.Utils.dayOfTheWeek
@@ -45,30 +45,25 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
 
     private fun onRepeatingAlarmTriggered() {
         goAsync {
-            val msm = minutesSinceMidnight()
-            reminderRepository.getActiveReminder()?.apply {
-                if (isAlarmInRange(msm)) deliverNotificationAndSetNewAlarm(timeInterval)
+            reminderRepository.getActiveReminder()?.let {
+                if (it.isAlarmInRange(minutesSinceMidnight())) deliverNotificationAndSetNewAlarm(it)
                 else alarm.cancelRepeatingAlarm()
             }
         }
     }
 
     private fun onExactAlarmPermissionStateChanged() {
-        goAsync {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                if (alarm.canScheduleExactAlarms()) {
-                    reminderRepository.getActiveReminder()?.let {
-                        alarm.startDailyAlarm(it)
-                    }
-                } else alarm.cancelAlarms()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            goAsync {
+                reminderRepository.getActiveReminder()?.let {
+                    alarm.setAlarmOnExactAlarmStateChange(it)
+                }
             }
         }
     }
 
-    private suspend fun deliverNotificationAndSetNewAlarm(timeInterval: Int) {
-        reminderRepository.getActiveReminder()?.let {
-            notifications.buildAndShowNotification(it)
-        }
-        alarm.startRepeatingAlarm(timeInterval)
+    private fun deliverNotificationAndSetNewAlarm(reminder: Reminder) {
+        notifications.buildAndShowNotificationWithReminder(reminder)
+        alarm.startRepeatingAlarm(reminder.timeInterval)
     }
 }

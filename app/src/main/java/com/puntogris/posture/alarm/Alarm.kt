@@ -96,4 +96,9 @@ class Alarm @Inject constructor(
     @RequiresApi(Build.VERSION_CODES.S)
     fun canScheduleExactAlarms() = alarmManager.canScheduleExactAlarms()
 
+    @RequiresApi(Build.VERSION_CODES.S)
+    suspend fun setAlarmOnExactAlarmStateChange(reminder: Reminder){
+        if (canScheduleExactAlarms()) startDailyAlarm(reminder) else cancelAlarms()
+    }
+
 }

@@ -83,7 +83,7 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
             .setAutoCancel(true)
 
         if (reminder.soundUri.isNotBlank()) builder.setSound(Uri.parse(reminder.soundUri))
-        
+
         if (reminder.vibrationPattern != 0) {
             builder.setVibrate(LocalDataSource().vibrationPatterns[reminder.vibrationPattern])
         }
@@ -130,7 +130,7 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
         notificationManager.notify(0, notification)
     }
 
-    fun buildAndShowNotification(reminder: Reminder){
+    fun buildAndShowNotificationWithReminder(reminder: Reminder){
         val nb = getNotificationBuilderWithReminder(reminder)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
