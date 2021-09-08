@@ -13,7 +13,6 @@ import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import com.puntogris.posture.R
 import com.puntogris.posture.data.local.LocalDataSource
 import com.puntogris.posture.model.FcmNotification

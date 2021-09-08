@@ -31,16 +31,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private val viewModel: MainViewModel by viewModels()
 
-    @Inject lateinit var dataStore: DataStore
-
     override fun preInitViews() {
-        applyAppTheme()
-    }
-
-    private fun applyAppTheme(){
         setTheme(R.style.Theme_Posture)
-        val theme = runBlocking { dataStore.appTheme() }
-        AppCompatDelegate.setDefaultNightMode(theme)
     }
 
     override fun initializeViews() {
@@ -71,7 +63,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             .apply {
                 runBlocking {
                     startDestination =
-                        if (viewModel.isUserLoggedIn() && dataStore.isLoginCompleted()) R.id.homeFragment
+                        if (viewModel.isUserLoggedIn()) R.id.homeFragment
                         else R.id.loginFragment
                 }
             }

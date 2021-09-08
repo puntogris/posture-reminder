@@ -15,8 +15,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 import javax.inject.Inject
+import kotlin.Exception
 
 class ReminderRepository @Inject constructor(
     private val reminderFirestore: FirebaseReminderDataSource,
@@ -89,5 +89,4 @@ class ReminderRepository @Inject constructor(
             reminderFirestore.getReminderDocumentRefWithId(reminderId).set(it).await()
         }
     }
-
 }

@@ -15,8 +15,7 @@ class MainViewModel @Inject constructor(
     ): ViewModel() {
 
     private val _appVersionStatus = MutableLiveData<Boolean>()
-    val appVersionStatus: LiveData<Boolean>
-        get() = _appVersionStatus
+    val appVersionStatus: LiveData<Boolean> = _appVersionStatus
 
     init {
         viewModelScope.launch {
@@ -27,6 +26,6 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun isUserLoggedIn() = mainRepository.isUserLoggedIn()
+    suspend fun isUserLoggedIn() = mainRepository.isUserLoggedIn() && dataStore.isLoginCompleted()
 
 }
