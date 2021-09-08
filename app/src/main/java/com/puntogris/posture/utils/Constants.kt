@@ -28,6 +28,7 @@ object Constants {
     const val WEBSITE_HTTPS = "https://"
     const val CLAIM_NOTIFICATION_EXP_INTENT = "claim_notification_exp_intent"
     const val NAVIGATION_DATA = "navigation_data"
+    const val NOTIFICATION_ID = "notification_id"
 
     //Keys
     const val TIME_UNIT_KEY = "time_unit_key"

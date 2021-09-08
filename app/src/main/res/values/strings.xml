@@ -59,7 +59,7 @@
     <string name="battery_optimization_step_two_light"><![CDATA[<font color=\'#C0C0C4\'>2 - Select </font><b><font color=\'#ffffff\'> not optimize</font></b><font color=\'#C0C0C4\'> the battery</font>]]></string>
     <string name="battery_optimization_step_one_dark"><![CDATA[<font color=\'#757575\'>1 - Search </font><b><font color=\'#000000\'>Posture Reminder</font></b><font color=\'#757575\'> from the list</font>]]></string>
     <string name="battery_optimization_step_two_dark"><![CDATA[<font color=\'#757575\'>2 - Select </font><b><font color=\'#000000\'> not optimize </font></b><font color=\'#757575\'> the battery</font>]]></string>
-    <string name="all_in_order">all in order</string>
+    <string name="all_in_order">All in order</string>
     <string name="require_action">Requires action</string>
     <string name="status">Status:</string>
     <string name="battery_optimization_alert2">* This is not mandatory, but not all notifications may be executed.</string>

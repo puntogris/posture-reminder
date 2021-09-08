@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.*
 import androidx.navigation.ui.*
 import com.google.android.material.snackbar.Snackbar
@@ -16,6 +17,7 @@ import com.puntogris.posture.ui.base.BaseActivity
 import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.Constants.CLAIM_NOTIFICATION_EXP_INTENT
 import com.puntogris.posture.utils.Constants.NAVIGATION_DATA
+import com.puntogris.posture.utils.Constants.NOTIFICATION_ID
 import com.puntogris.posture.utils.Constants.URI_STRING
 import com.puntogris.posture.utils.Constants.WEBSITE_HTTPS
 import dagger.hilt.android.AndroidEntryPoint
@@ -143,11 +145,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     }
 
     private fun checkIntentForNavigation(intent: Intent?){
-        intent?.extras?.getString(URI_STRING)?.let {
-            if (it.contains(WEBSITE_HTTPS)) launchWebBrowserIntent(it)
-        }
-        intent?.extras?.getString(NAVIGATION_DATA)?.let {
-            if (it == CLAIM_NOTIFICATION_EXP_INTENT) navController.navigate(R.id.claimNotificationExpDialog)
+        intent?.extras?.apply {
+            getString(URI_STRING)?.let {
+                if (it.contains(WEBSITE_HTTPS)) launchWebBrowserIntent(it)
+            }
+            getString(NAVIGATION_DATA)?.let {
+                if (it == CLAIM_NOTIFICATION_EXP_INTENT) {
+                    navController.navigate(R.id.claimNotificationExpDialog)
+                }
+            }
+            getInt(NOTIFICATION_ID).let {
+                NotificationManagerCompat.from(this@MainActivity).cancel(it)
+            }
         }
     }
 

@@ -21,6 +21,7 @@ import com.puntogris.posture.ui.main.MainActivity
 import com.puntogris.posture.utils.Constants.CLAIM_NOTIFICATION_EXP_INTENT
 import com.puntogris.posture.utils.Constants.FMC_CHANNEL_ID
 import com.puntogris.posture.utils.Constants.NAVIGATION_DATA
+import com.puntogris.posture.utils.Constants.NOTIFICATION_ID
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -62,6 +63,7 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
 
         val intent =  Intent(context, MainActivity::class.java).apply {
             putExtra(NAVIGATION_DATA, CLAIM_NOTIFICATION_EXP_INTENT)
+            putExtra(NOTIFICATION_ID, reminder.reminderId.hashCode())
             flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
         }
 
