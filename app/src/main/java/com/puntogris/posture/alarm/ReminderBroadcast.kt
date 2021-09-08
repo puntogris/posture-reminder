@@ -30,7 +30,7 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
         super.onReceive(context, intent)
         when (intent.action) {
             DAILY_ALARM_TRIGGERED -> onDailyAlarmTriggered()
-            REPEATING_ALARM_TRIGGERED -> onRepeatingAlarmTriggered(context)
+            REPEATING_ALARM_TRIGGERED -> onRepeatingAlarmTriggered()
             ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED -> onExactAlarmPermissionStateChanged()
         }
     }
@@ -43,11 +43,11 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
         }
     }
 
-    private fun onRepeatingAlarmTriggered(context: Context) {
+    private fun onRepeatingAlarmTriggered() {
         goAsync {
             val msm = minutesSinceMidnight()
             reminderRepository.getActiveReminder()?.apply {
-                if (isAlarmInRange(msm)) deliverNotificationAndSetNewAlarm(context, timeInterval)
+                if (isAlarmInRange(msm)) deliverNotificationAndSetNewAlarm(timeInterval)
                 else alarm.cancelRepeatingAlarm()
             }
         }
@@ -65,20 +65,10 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
         }
     }
 
-    private suspend fun deliverNotificationAndSetNewAlarm(context: Context, timeInterval: Int) {
+    private suspend fun deliverNotificationAndSetNewAlarm(timeInterval: Int) {
         reminderRepository.getActiveReminder()?.let {
-            val nb = notifications.getNotificationBuilderWithReminder(it)
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                notifications.createChannelForReminderSdkO(it)
-            }
-
-            with(NotificationManagerCompat.from(context)) {
-                notify(it.reminderId.hashCode(), nb.build())
-            }
+            notifications.buildAndShowNotification(it)
         }
-
         alarm.startRepeatingAlarm(timeInterval)
     }
-
 }
