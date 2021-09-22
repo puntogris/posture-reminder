@@ -36,19 +36,19 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
     @RequiresApi(Build.VERSION_CODES.O)
     fun createChannelForReminderSdkO(reminder: Reminder){
 
-        NotificationChannel(reminder.reminderId, context.getString(R.string.alarm_channel_name), NotificationManager.IMPORTANCE_DEFAULT).apply {
-            val audioAttributes = AudioAttributes.Builder()
-                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                .setUsage(AudioAttributes.USAGE_NOTIFICATION)
-                .build()
+        NotificationChannel(
+            reminder.reminderId,
+            context.getString(R.string.alarm_channel_name),
+            NotificationManager.IMPORTANCE_DEFAULT
+        ).apply {
 
-            description = reminder.name
             enableVibration(true)
             enableLights(true)
+            description = reminder.name
             lightColor = Color.MAGENTA
 
             if (reminder.soundUri.isNotBlank()) {
-                setSound(Uri.parse(reminder.soundUri), audioAttributes)
+                setSound(Uri.parse(reminder.soundUri), getNotificationAudioAttributes())
             }
             if (reminder.vibrationPattern != 0) {
                 vibrationPattern = LocalDataSource().vibrationPatterns[reminder.vibrationPattern]
@@ -56,6 +56,13 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
 
             notificationManager.createNotificationChannel(this)
         }
+    }
+
+    private fun getNotificationAudioAttributes(): AudioAttributes{
+        return AudioAttributes.Builder()
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+            .build()
     }
 
     private fun getNotificationBuilderWithReminder(reminder: Reminder): NotificationCompat.Builder{
@@ -88,6 +95,16 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
         }
 
         return builder
+    }
+
+    fun buildAndShowNotificationWithReminder(reminder: Reminder){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            createChannelForReminderSdkO(reminder)
+        }
+
+        val builder = getNotificationBuilderWithReminder(reminder)
+
+        notificationManager.notify(reminder.reminderId.hashCode(), builder.build())
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -127,15 +144,5 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
             notificationManager.createNotificationChannel(channel)
         }
         notificationManager.notify(0, notification)
-    }
-
-    fun buildAndShowNotificationWithReminder(reminder: Reminder){
-        val nb = getNotificationBuilderWithReminder(reminder)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            createChannelForReminderSdkO(reminder)
-        }
-
-        notificationManager.notify(reminder.reminderId.hashCode(), nb.build())
     }
 }

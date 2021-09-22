@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.data.repo.day_logs.DayLogsRepository
 import com.puntogris.posture.data.repo.reminder.ReminderRepository
+import com.puntogris.posture.data.repo.user.UserRepository
 import com.puntogris.posture.model.AlarmStatus
 import com.puntogris.posture.utils.DataStore
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,7 +23,8 @@ class HomeViewModel @Inject constructor(
     private val alarm: Alarm,
     private val dataStore: DataStore,
     private val dayLogsRepository: DayLogsRepository,
-    private val reminderRepository: ReminderRepository
+    private val reminderRepository: ReminderRepository,
+    private val userRepository: UserRepository
 ):ViewModel() {
 
     val isAlarmActive = dataStore.alarmStatus().asLiveData()
@@ -45,6 +47,11 @@ class HomeViewModel @Inject constructor(
             alarm.startDailyAlarm(activeReminder)
             _alarmStatus.emit(AlarmStatus.Activated(activeReminder))
         }
+    }
+
+    suspend fun setReminderAsCurrentAndStart(reminderId: String){
+        userRepository.updateActiveReminderUserRoom(reminderId)
+        startAlarm()
     }
 
     private suspend fun cancelAlarms(){

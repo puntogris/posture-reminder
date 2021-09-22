@@ -29,6 +29,7 @@
     <string name="action_select">Seleccionar</string>
     <string name="action_exit">Salir</string>
     <string name="action_give_permission">Dar permiso</string>
+    <string name="action_yes">Si</string>
 
     <!-- Login -->
     <string name="login_button">tap para entrar</string>

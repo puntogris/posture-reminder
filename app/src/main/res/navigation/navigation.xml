@@ -6,7 +6,12 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.puntogris.posture.ui.home.HomeFragment" />
+        android:name="com.puntogris.posture.ui.home.HomeFragment" >
+        <argument
+            android:name="reminderId"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.puntogris.posture.ui.account.AccountFragment">
@@ -150,4 +155,7 @@
     <dialog
         android:id="@+id/creditsBottomSheet"
         android:name="com.puntogris.posture.ui.settings.CreditsBottomSheet"/>
+    <action
+        android:id="@+id/action_global_homeFragment"
+        app:destination="@id/homeFragment" />
 </navigation>

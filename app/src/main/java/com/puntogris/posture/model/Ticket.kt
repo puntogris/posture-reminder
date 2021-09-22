@@ -1,5 +1,6 @@
 package com.puntogris.posture.model
 
+import android.os.Build
 import androidx.annotation.Keep
 import com.google.firebase.Timestamp
 import com.puntogris.posture.BuildConfig
@@ -12,7 +13,11 @@ class Ticket (
     var message: String = "",
     val timestamp: Timestamp = Timestamp.now(),
     var type: String = "",
-    val buildCode : Int = BuildConfig.VERSION_CODE
+    val versionCode: Int? = BuildConfig.VERSION_CODE,
+    val device: String? = Build.DEVICE,
+    val deviceModel: String? = Build.MODEL,
+    val androidSdk: Int = Build.VERSION.SDK_INT,
+    val androidRelease: String? = Build.VERSION.RELEASE
 ){
     companion object{
         const val PROBLEM_TYPE =  "PROBLEM"

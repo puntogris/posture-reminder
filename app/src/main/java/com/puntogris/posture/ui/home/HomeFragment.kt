@@ -9,7 +9,10 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentHomeBinding
@@ -18,6 +21,7 @@ import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.utils.Constants.PACKAGE_URI_NAME
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.Utils
+import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.setPageFadeTransformer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -29,6 +33,7 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
     private val viewModel: HomeViewModel by viewModels()
     private var mediator: TabLayoutMediator? = null
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<Intent>
+    private val args: HomeFragmentArgs by navArgs()
 
     override fun initializeViews() {
         binding.let {
@@ -41,6 +46,7 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
         setupPagerAndTabLayout()
         observeCurrentReminderState()
         initAlarmPermissionLauncherIfSdkS()
+        checkIfNeedsToActivateReminder()
     }
 
     private fun setupPagerAndTabLayout(){
@@ -82,7 +88,9 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
                 UiInterface.showSnackBar(getString(R.string.snack_alarms_off))
             }
             AlarmStatus.NoConfigured -> {
-                UiInterface.showSnackBar(getString(R.string.snack_active_reminder_not_found))
+                UiInterface.showSnackBar(getString(R.string.snack_active_reminder_not_found), actionText = R.string.action_select){
+                    findNavController().navigate(R.id.manageRemindersBottomSheet)
+                }
             }
         }
     }
@@ -92,6 +100,14 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
             requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
                 if (result.resultCode == Activity.RESULT_OK) viewModel.toggleAlarm()
                 else UiInterface.showSnackBar(getString(R.string.snack_permission_required))
+            }
+        }
+    }
+
+    private fun checkIfNeedsToActivateReminder(){
+        args.reminderId?.let {
+            launchAndRepeatWithViewLifecycle(Lifecycle.State.CREATED){
+                viewModel.setReminderAsCurrentAndStart(it)
             }
         }
     }

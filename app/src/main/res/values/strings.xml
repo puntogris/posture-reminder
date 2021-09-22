@@ -30,6 +30,7 @@
     <string name="action_select">Select</string>
     <string name="action_exit">Exit</string>
     <string name="action_give_permission">Give permission</string>
+    <string name="action_yes">Yes</string>
 
     <!-- Login -->
     <string name="login_button">tap para enter</string>

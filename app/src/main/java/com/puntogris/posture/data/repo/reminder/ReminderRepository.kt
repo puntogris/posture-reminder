@@ -9,6 +9,8 @@ import com.puntogris.posture.workers.UploadReminderWorker
 import com.puntogris.posture.data.local.ReminderDao
 import com.puntogris.posture.data.remote.FirebaseReminderDataSource
 import com.puntogris.posture.model.Reminder
+import com.puntogris.posture.model.ReminderId
+import com.puntogris.posture.model.Result
 import com.puntogris.posture.model.SimpleResult
 import com.puntogris.posture.utils.Constants.REMINDER_ID_WORKER_DATA
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -41,7 +43,7 @@ class ReminderRepository @Inject constructor(
         }
     }
 
-    override suspend fun insertReminder(reminder: Reminder): SimpleResult = withContext(Dispatchers.IO){
+    override suspend fun insertReminder(reminder: Reminder): Result<ReminderId> = withContext(Dispatchers.IO){
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 notifications.createChannelForReminderSdkO(reminder)
@@ -53,9 +55,9 @@ class ReminderRepository @Inject constructor(
             reminderDao.getActiveReminder()?.let {
                 if (it.reminderId == reminder.reminderId) alarm.refreshAlarms(reminder)
             }
-            SimpleResult.Success
+            Result.Success(ReminderId(reminder.reminderId))
         }catch (e:Exception){
-            SimpleResult.Failure
+            Result.Error(e)
         }
     }
 

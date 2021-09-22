@@ -4,8 +4,11 @@ import android.text.InputType
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.NavigationUI
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.maxkeppeler.sheets.color.ColorSheet
 import com.maxkeppeler.sheets.core.IconButton
@@ -15,11 +18,15 @@ import com.maxkeppeler.sheets.input.type.InputEditText
 import com.maxkeppeler.sheets.input.type.InputRadioButtons
 import com.maxkeppeler.sheets.options.OptionsSheet
 import com.maxkeppeler.sheets.time_clock.ClockTimeSheet
+import com.puntogris.posture.NavigationDirections
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetNewReminderBinding
+import com.puntogris.posture.model.ReminderId
 import com.puntogris.posture.model.ReminderUi
+import com.puntogris.posture.model.Result
 import com.puntogris.posture.model.SimpleResult
 import com.puntogris.posture.ui.base.BaseBottomSheetFragment
+import com.puntogris.posture.ui.reminders.manage.ManageRemindersBottomSheet
 import com.puntogris.posture.utils.Constants.DATA_KEY
 import com.puntogris.posture.utils.Constants.INTERVAL_KEY
 import com.puntogris.posture.utils.Constants.SOUND_PICKER_KEY
@@ -50,6 +57,7 @@ class NewReminderBottomSheet : BaseBottomSheetFragment<BottomSheetNewReminderBin
         checkIfIsNotNewReminder()
         setupReminderRvAdapter()
         setFragmentResultListeners()
+
     }
 
     private fun checkIfIsNotNewReminder(){
@@ -81,7 +89,7 @@ class NewReminderBottomSheet : BaseBottomSheetFragment<BottomSheetNewReminderBin
     }
 
     fun onSaveReminder() {
-        if (viewModel.isReminderValid()){
+        if (!viewModel.isReminderValid()){
             lifecycleScope.launch {
                 handleResultOfSavingReminder(viewModel.saveReminder())
             }
@@ -90,17 +98,18 @@ class NewReminderBottomSheet : BaseBottomSheetFragment<BottomSheetNewReminderBin
         }
     }
 
-    private fun handleResultOfSavingReminder(result: SimpleResult){
+    private fun handleResultOfSavingReminder(result: Result<ReminderId>){
         when(result){
-            SimpleResult.Failure -> {
+            is Result.Error -> {
                 showSnackBar(R.string.snack_create_reminder_error)
             }
-            SimpleResult.Success -> {
+            is Result.Success -> {
                 dismiss()
                 requireParentFragment().UiInterface.showSnackBar(getString(R.string.snack_create_reminder_success))
             }
         }
     }
+
 
     private fun onReminderItemClicked(reminderUi: ReminderUi) {
         when (reminderUi) {
