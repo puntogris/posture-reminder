@@ -52,6 +52,7 @@ object Constants {
     const val THEME_PREF_KEY = "theme_preference_key"
     const val BATTERY_PREF_KEY = "battery_preference_key"
     const val LOG_OUT_PREF_KEY = "log_out_preference_key"
+    const val LOG_IN_PREF_KEY = "log_in_preference_key"
     const val CREDITS_PREF_KEY = "credits_preference_key"
     const val TICKET_PREF_KEY = "ticket_preference_key"
     const val VERSION_PREF_KEY = "version_preference_key"

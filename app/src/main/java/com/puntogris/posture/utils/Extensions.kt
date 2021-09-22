@@ -20,6 +20,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -221,3 +222,8 @@ inline val EditText.data
 
 inline val Date.timeWithZoneOffset
     get() = time + TimeZone.getDefault().getOffset(time)
+
+
+fun Any.notEqualsAny(vararg values: Any): Boolean {
+    return this !in values
+}

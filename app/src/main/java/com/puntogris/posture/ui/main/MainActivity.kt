@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.view.isVisible
 import androidx.navigation.*
 import androidx.navigation.ui.*
 import com.google.android.material.snackbar.Snackbar
@@ -42,8 +43,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         checkIntentForNavigation(intent)
     }
 
-    private fun checkAppCurrentVersion(){
-        viewModel.appVersionStatus.observe(this){ isNewVersion ->
+    private fun checkAppCurrentVersion() {
+        viewModel.appVersionStatus.observe(this) { isNewVersion ->
             if (isNewVersion) navController.navigate(R.id.whatsNewDialog)
         }
     }
@@ -59,7 +60,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         setupBottomNavigation()
     }
 
-    private fun setupInitialDestination(){
+    private fun setupInitialDestination() {
         navController.graph = navController.navInflater.inflate(R.navigation.navigation)
             .apply {
                 runBlocking {
@@ -70,13 +71,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             }
     }
 
-    private fun setupTopToolbar(){
+    private fun setupTopToolbar() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
-    private fun setupBottomNavigation(){
+    private fun setupBottomNavigation() {
         binding.bottomNavigation.apply {
             setupWithNavController(navController)
             //trick to disable reloading the same destination if we are there already
@@ -84,7 +85,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         }
     }
 
-    private fun getAppBarConfiguration(): AppBarConfiguration{
+    private fun getAppBarConfiguration(): AppBarConfiguration {
         return AppBarConfiguration(
             setOf(
                 R.id.homeFragment,
@@ -125,19 +126,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         destination: NavDestination,
         arguments: Bundle?
     ) {
-        if (destination.id == R.id.welcomeFragment ||
-            destination.id == R.id.synAccountFragment ||
-            destination.id == R.id.batteryOptimizationFragment ||
-            destination.id == R.id.loginFragment ||
-            destination.id == R.id.whatsNewDialog
-        ) {
-            binding.bottomNavigation.gone()
-        } else {
-            binding.bottomNavigation.visible()
-        }
+
+        binding.bottomNavigation.isVisible = destination.id.notEqualsAny(
+            R.id.welcomeFragment,
+            R.id.synAccountFragment,
+            R.id.batteryOptimizationFragment,
+            R.id.loginFragment,
+            R.id.whatsNewDialog,
+            R.id.internalLoginFragment
+        )
     }
 
-    private fun checkIntentForNavigation(intent: Intent?){
+    private fun checkIntentForNavigation(intent: Intent?) {
         intent?.extras?.apply {
             getString(URI_STRING)?.let {
                 if (it.contains(WEBSITE_HTTPS)) launchWebBrowserIntent(it)
@@ -158,11 +158,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         checkIntentForNavigation(intent)
     }
 
-    override fun showSnackBar(message: String,
-                              duration: Int,
-                              actionText: Int,
-                              anchorToBottomNav: Boolean,
-                              actionListener: View.OnClickListener?){
+    override fun showSnackBar(
+        message: String,
+        duration: Int,
+        actionText: Int,
+        anchorToBottomNav: Boolean,
+        actionListener: View.OnClickListener?
+    ) {
 
         Snackbar.make(binding.root, message, duration).let {
             if (anchorToBottomNav) it.anchorView = binding.bottomNavigation

@@ -21,7 +21,7 @@ interface UserDao {
     fun getUserLiveData(): LiveData<UserPrivateData>
 
     @Query("SELECT * FROM UserPrivateData WHERE roomId = 1")
-    fun getUserFlow(): Flow<UserPrivateData>
+    fun getUserFlow(): Flow<UserPrivateData?>
 
     @Query("UPDATE UserPrivateData SET currentReminderId = :reminderId WHERE roomId = 1")
     suspend fun updateCurrentUserReminder(reminderId: String)

@@ -21,9 +21,14 @@
             app:iconSpaceReserved="false"/>
         <Preference
             android:key="log_out_preference_key"
-            app:title="@string/close"
+            app:title="@string/log_out"
             app:iconSpaceReserved="false"
-            app:summary="@string/log_out"/>
+            app:summary="@string/log_out_summary"/>
+        <Preference
+            android:key="log_in_preference_key"
+            app:title="@string/log_in"
+            app:iconSpaceReserved="false"
+            app:summary="@string/log_in_summary"/>
     </PreferenceCategory>
 
     <PreferenceCategory

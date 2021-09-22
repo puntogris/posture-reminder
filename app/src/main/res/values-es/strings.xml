@@ -124,7 +124,8 @@
     <string name="contact">Contacto</string>
     <string name="about_us">App</string>
     <string name="theme">Tema</string>
-    <string name="close">Cerrar</string>
+    <string name="log_in">Log in</string>
+    <string name="log_out">Cerrar</string>
     <string name="questions">Preguntas</string>
     <string name="version">Versión</string>
     <string name="version_name">Versión %1$s</string>
@@ -137,7 +138,8 @@
     <string name="see_the_code">Ver el codigo</string>
     <string name="rate_the_app">Puntua la app</string>
     <string name="read_the_faq">Lee las F.A.Q.</string>
-    <string name="log_out">Cerrar sesión</string>
+    <string name="log_out_summary">Cerrar sesión</string>
+    <string name="log_in_summary">Iniciar sesión</string>
     <string name="open_source_licenses">Licencias de codigo abierto</string>
     <string name="terms_and_conditions">Terminos y condiciones</string>
     <string name="privacy_policy">Políticas de privacidad</string>
@@ -185,6 +187,7 @@
     <string name="snack_action_require_permission">Esta acción requiere permisos especiales.</string>
     <string name="message">Mensaje</string>
     <string name="an_error_occurred">Ocurrio un error</string>
+    <string name="snack_action_requires_login">Esta acción requiere login</string>
 
     <!-- Exercises -->
     <string name="in_progress">En progreso</string>

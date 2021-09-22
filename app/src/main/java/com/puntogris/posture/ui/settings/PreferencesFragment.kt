@@ -15,6 +15,7 @@ import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.Constants.BATTERY_PREF_KEY
 import com.puntogris.posture.utils.Constants.CREDITS_PREF_KEY
 import com.puntogris.posture.utils.Constants.LICENSES_PREF_KEY
+import com.puntogris.posture.utils.Constants.LOG_IN_PREF_KEY
 import com.puntogris.posture.utils.Constants.LOG_OUT_PREF_KEY
 import com.puntogris.posture.utils.Constants.RATE_APP_PREF_KEY
 import com.puntogris.posture.utils.Constants.THEME_PREF_KEY
@@ -37,14 +38,25 @@ class PreferencesFragment: PreferenceFragmentCompat() {
         preference(USERNAME_PREF_KEY) {
             lifecycleScope.launch {
                 viewModel.getUserFlow().collect {
-                    summary = it.username
+                    summary = it?.username ?: getString(R.string.human)
                 }
             }
             onClick {
                 lifecycleScope.launch {
-                    val username = viewModel.getUserFlow().first().username
-                    val action = SettingsBottomSheetDirections.actionSettingsBottomSheetToDialogName(username)
-                    findNavController().navigate(action)
+                    val user = viewModel.getUser()
+                    if (user == null) {
+                        (requireParentFragment() as SettingsBottomSheet)
+                            .showSnackBar(
+                                message = R.string.snack_action_requires_login,
+                                actionText = R.string.action_login
+                            ){
+                                findNavController().navigate(R.id.internalLoginFragment)
+                        }
+                    }
+                    else{
+                        val action = SettingsBottomSheetDirections.actionSettingsBottomSheetToDialogName(user.username)
+                        findNavController().navigate(action)
+                    }
                 }
             }
         }
@@ -71,17 +83,27 @@ class PreferencesFragment: PreferenceFragmentCompat() {
             }
         }
 
-        preferenceOnClick(LOG_OUT_PREF_KEY){
-            lifecycleScope.launch {
-                when(viewModel.logOut()){
-                    SimpleResult.Failure -> {
-                        (requireParentFragment() as SettingsBottomSheet).showSnackBar(R.string.snack_general_error)
-                    }
-                    SimpleResult.Success -> {
-                        val nav = NavOptions.Builder().setPopUpTo(R.id.navigation, true).build()
-                        findNavController().navigate(R.id.loginFragment, null, nav)
+        preference(LOG_OUT_PREF_KEY){
+            isVisible = viewModel.isUserLoggedIn()
+            onClick {
+                lifecycleScope.launch {
+                    when(viewModel.logOut()){
+                        SimpleResult.Failure -> {
+                            (requireParentFragment() as SettingsBottomSheet).showSnackBar(R.string.snack_general_error)
+                        }
+                        SimpleResult.Success -> {
+                            val nav = NavOptions.Builder().setPopUpTo(R.id.navigation, true).build()
+                            findNavController().navigate(R.id.loginFragment, null, nav)
+                        }
                     }
                 }
+            }
+        }
+
+        preference(LOG_IN_PREF_KEY){
+            isVisible = !viewModel.isUserLoggedIn()
+            onClick {
+
             }
         }
 

@@ -3,6 +3,7 @@ package com.puntogris.posture.data.repo.user
 import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.data.local.UserDao
 import com.puntogris.posture.data.remote.FirebaseUserDataSource
+import com.puntogris.posture.model.UserPrivateData
 import com.puntogris.posture.utils.Constants.USER_NAME_FIELD
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
@@ -18,6 +19,8 @@ class UserRepository @Inject constructor(
     override fun getUserFlowRoom() = userDao.getUserFlow()
 
     override fun getUserLiveDataRoom() = userDao.getUserLiveData()
+
+    override suspend fun getUserRoom() = userDao.getUser()
 
     override suspend fun updateUsernameInRoomAndFirestore(name: String): Boolean = withContext(Dispatchers.IO){
         try {
@@ -36,5 +39,7 @@ class UserRepository @Inject constructor(
         alarm.cancelAlarms()
         userDao.updateCurrentUserReminder(reminderId)
     }
+
+    override fun isUserLoggedIn() = firebaseUser.getCurrentUser() != null
 
 }

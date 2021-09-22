@@ -5,8 +5,10 @@ import com.puntogris.posture.model.UserPrivateData
 import kotlinx.coroutines.flow.Flow
 
 interface IUserRepository {
-    fun getUserFlowRoom(): Flow<UserPrivateData>
+    fun getUserFlowRoom(): Flow<UserPrivateData?>
     fun getUserLiveDataRoom(): LiveData<UserPrivateData>
+    suspend fun getUserRoom(): UserPrivateData?
     suspend fun updateUsernameInRoomAndFirestore(name: String): Boolean
     suspend fun updateActiveReminderUserRoom(reminderId: String)
+    fun isUserLoggedIn(): Boolean
 }

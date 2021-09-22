@@ -21,6 +21,8 @@ class SettingsViewModel @Inject constructor(
 
     fun getUserFlow() = userRepository.getUserFlowRoom()
 
+    suspend fun getUser() = userRepository.getUserRoom()
+
     fun getThemeNamePosition() = dataStore.appThemeFlow()
 
     fun setPandaAnimationPref(value:Boolean){
@@ -28,6 +30,8 @@ class SettingsViewModel @Inject constructor(
             dataStore.setPandaAnimation(value)
         }
     }
+
+    fun isUserLoggedIn() = userRepository.isUserLoggedIn()
 
     suspend fun logOut() = loginRepository.signOutUserFromFirebaseAndGoogle()
 }

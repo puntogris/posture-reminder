@@ -31,6 +31,7 @@
     <string name="action_exit">Exit</string>
     <string name="action_give_permission">Give permission</string>
     <string name="action_yes">Yes</string>
+    <string name="action_login" translatable="false">Login</string>
 
     <!-- Login -->
     <string name="login_button">tap para enter</string>
@@ -125,7 +126,8 @@
     <string name="contact">Contact</string>
     <string name="about_us">App</string>
     <string name="theme">Theme</string>
-    <string name="close">Log out</string>
+    <string name="log_in">Log in</string>
+    <string name="log_out">Log out</string>
     <string name="questions">Questions</string>
     <string name="website" translatable="false">Website</string>
     <string name="github" translatable="false">Github</string>
@@ -140,7 +142,8 @@
     <string name="see_the_code">See the code</string>
     <string name="rate_the_app">Rate the app</string>
     <string name="read_the_faq">Read the F.A.Q.</string>
-    <string name="log_out">Log out from app</string>
+    <string name="log_out_summary">Log out from app</string>
+    <string name="log_in_summary">Log in to app</string>
     <string name="open_source_licenses">Open source licenses</string>
     <string name="terms_and_conditions">Terms and conditions</string>
     <string name="privacy_policy">Privacy policy</string>
@@ -197,6 +200,7 @@
     <string name="snack_action_require_permission">This action requires special permissions.</string>
     <string name="message">Message</string>
     <string name="an_error_occurred">An error occurred</string>
+    <string name="snack_action_requires_login">This action requires login</string>
 
     <!-- Exercises -->
     <string name="in_progress">In progress</string>

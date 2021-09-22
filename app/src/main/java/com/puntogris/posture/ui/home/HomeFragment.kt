@@ -33,7 +33,6 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
     private val viewModel: HomeViewModel by viewModels()
     private var mediator: TabLayoutMediator? = null
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<Intent>
-    private val args: HomeFragmentArgs by navArgs()
 
     override fun initializeViews() {
         binding.let {
@@ -46,7 +45,6 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
         setupPagerAndTabLayout()
         observeCurrentReminderState()
         initAlarmPermissionLauncherIfSdkS()
-        checkIfNeedsToActivateReminder()
     }
 
     private fun setupPagerAndTabLayout(){
@@ -104,13 +102,6 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
         }
     }
 
-    private fun checkIfNeedsToActivateReminder(){
-        args.reminderId?.let {
-            launchAndRepeatWithViewLifecycle(Lifecycle.State.CREATED){
-                viewModel.setReminderAsCurrentAndStart(it)
-            }
-        }
-    }
 
     fun onToggleReminderClicked(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !viewModel.canScheduleExactAlarms()) {
