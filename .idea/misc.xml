@@ -32,6 +32,7 @@
         <entry key="app/src/main/res/drawable/ic_fi_br_world.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_fi_rr_home.xml" value="0.3605128205128205" />
         <entry key="app/src/main/res/drawable/ic_fi_rr_user.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_fi_sr_incognito.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_fi_sr_world.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_girl_sitting.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_girl_sitting_dark.xml" value="0.36666666666666664" />
@@ -44,11 +45,13 @@
         <entry key="app/src/main/res/drawable/ic_men_standing_dark.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_outline_settings_24.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_react_group_236.xml" value="0.36102564102564105" />
+        <entry key="app/src/main/res/drawable/ic_search.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_side_bend_exercise.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_vector.xml" value="0.11822916666666666" />
         <entry key="app/src/main/res/drawable/ic_vector__1_.xml" value="0.3605128205128205" />
         <entry key="app/src/main/res/drawable/ic_vector__2___1_.xml" value="0.36102564102564105" />
         <entry key="app/src/main/res/drawable/portal_selector_icon.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable/round_border_background.xml" value="0.28541666666666665" />
         <entry key="app/src/main/res/drawable/round_corners_background.xml" value="0.36102564102564105" />
         <entry key="app/src/main/res/drawable/round_corners_dialog.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/selected_dot.xml" value="0.32592592592592595" />
@@ -83,7 +86,7 @@
         <entry key="app/src/main/res/layout/fragment_battery_optimization.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_health.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.35" />
-        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.23489583333333333" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_login_with_email.xml" value="0.23541666666666666" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.2946153846153846" />
         <entry key="app/src/main/res/layout/fragment_new_reminder.xml" value="0.35052083333333334" />

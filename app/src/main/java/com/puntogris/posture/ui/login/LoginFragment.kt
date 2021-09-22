@@ -77,9 +77,12 @@ class LoginFragment :BaseFragment<FragmentLoginBinding>(R.layout.fragment_login)
 
     fun startLoginWithGoogle() {
         binding.progressBar.visible()
-        binding.loginButton.playShakeAnimation()
         val intent = viewModel.getGoogleSignInIntent()
         loginActivityResultLauncher.launch(intent)
+    }
+
+    fun continueAnonymously(){
+
     }
 
     fun onLoginProblemsClicked(){
