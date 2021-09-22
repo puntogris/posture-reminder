@@ -21,7 +21,7 @@ import javax.inject.Inject
 import kotlin.Exception
 
 class ReminderRepository @Inject constructor(
-    private val reminderFirestore: FirebaseReminderDataSource,
+    private val firebase: FirebaseReminderDataSource,
     private val reminderDao: ReminderDao,
     private val notifications: Notifications,
     private val alarm: Alarm,
@@ -30,13 +30,16 @@ class ReminderRepository @Inject constructor(
 
     override fun getAllRemindersFromRoomLiveData() = reminderDao.getAllRemindersLiveData()
 
-    override suspend fun deleteReminder(reminder: Reminder) :SimpleResult = withContext(Dispatchers.IO){
+    override suspend fun deleteReminder(reminder: Reminder): SimpleResult = withContext(Dispatchers.IO){
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 notifications.removeNotificationChannelWithId(reminder.reminderId)
             }
+            if (reminder.uid.isNotBlank()) {
+                firebase.getReminderDocumentRefWithId(reminder.reminderId).delete().await()
+            }
             reminderDao.delete(reminder)
-            reminderFirestore.getReminderDocumentRefWithId(reminder.reminderId).delete().await()
+
             SimpleResult.Success
         }catch (e:Exception){
             SimpleResult.Failure
@@ -50,7 +53,10 @@ class ReminderRepository @Inject constructor(
             }
             if (reminder.reminderId.isBlank()) fillIdsIfNewReminder(reminder)
             reminderDao.insert(reminder)
-            registerFirestoreUploadReminderWorker(reminder.reminderId)
+
+            if (reminder.uid.isNotBlank()){
+                registerFirestoreUploadReminderWorker(reminder.reminderId)
+            }
 
             reminderDao.getActiveReminder()?.let {
                 if (it.reminderId == reminder.reminderId) alarm.refreshAlarms(reminder)
@@ -62,10 +68,8 @@ class ReminderRepository @Inject constructor(
     }
 
     private fun fillIdsIfNewReminder(reminder: Reminder){
-        reminder.apply {
-            reminderId = reminderFirestore.getNewReminderDocumentRef().id
-            uid = reminderFirestore.getCurrentUserId()
-        }
+        reminder.reminderId = firebase.getNewReminderDocumentRef().id
+        if (firebase.currentUser() != null) firebase.getCurrentUserId()
     }
 
     private fun registerFirestoreUploadReminderWorker(reminderId: String){
@@ -88,7 +92,7 @@ class ReminderRepository @Inject constructor(
 
     override suspend fun insertReminderIntoFirestoreFromRoom(reminderId: String){
         reminderDao.getReminderWithId(reminderId)?.let {
-            reminderFirestore.getReminderDocumentRefWithId(reminderId).set(it).await()
+            firebase.getReminderDocumentRefWithId(reminderId).set(it).await()
         }
     }
 }

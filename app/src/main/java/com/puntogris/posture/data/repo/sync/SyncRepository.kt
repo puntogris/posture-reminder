@@ -79,11 +79,10 @@ class SyncRepository @Inject constructor(
         reminderDao.insertRemindersIfNotInRoom(reminders)
     }
 
-    //reformat functions, naming and order
     override suspend fun syncUserExperienceInFirestoreWithRoom() {
-        val roomUser = userDao.getUser()
+        if (firestoreUser.getCurrentUser() == null) return
 
-        roomUser?.let {
+        userDao.getUser()?.let {
             val expAmount = getMaxExpPermitted(it)
 
               if (expAmount != null){
@@ -102,7 +101,6 @@ class SyncRepository @Inject constructor(
         return if (serverTimestampMillis != null){
             val daysDiff = (serverTimestampMillis - creationTimestampMillis).toDays()
 
-            //2 days worth of exp as offset just in case
             val maxExpPermitted = daysDiff * MAX_EXPERIENCE_PER_DAY + MAX_EXPERIENCE_OFFSET
 
             if (user.experience > maxExpPermitted) maxExpPermitted else user.experience

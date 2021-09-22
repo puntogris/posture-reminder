@@ -19,5 +19,4 @@ open class FirebaseDataSource @Inject constructor(){
     fun getCurrentUser() = auth.currentUser
 
     fun runBatch() = firestore.batch()
-
 }

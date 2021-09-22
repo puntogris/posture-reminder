@@ -6,6 +6,8 @@ import javax.inject.Inject
 
 class FirebaseReminderDataSource @Inject constructor() : FirebaseDataSource() {
 
+    fun currentUser() = auth.currentUser
+
     fun getReminderDocumentRefWithId(reminderId: String) =
         firestore.collection(USERS_COLLECTION)
             .document(getCurrentUserId())
