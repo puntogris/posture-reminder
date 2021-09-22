@@ -12,6 +12,7 @@ import android.view.Menu
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import androidx.annotation.IdRes
 import androidx.annotation.RawRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
@@ -20,8 +21,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.viewpager2.widget.ViewPager2
@@ -227,3 +228,5 @@ inline val Date.timeWithZoneOffset
 fun Any.notEqualsAny(vararg values: Any): Boolean {
     return this !in values
 }
+
+fun Fragment.navigateTo(@IdRes id: Int) = findNavController().navigate(id)

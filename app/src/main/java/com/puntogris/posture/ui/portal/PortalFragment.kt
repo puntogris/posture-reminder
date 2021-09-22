@@ -12,6 +12,7 @@ import com.puntogris.posture.ui.rankings.RankingsAdapter
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.gone
 import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
+import com.puntogris.posture.utils.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -65,7 +66,7 @@ class PortalFragment : BaseFragmentOptions<FragmentPortalBinding>(R.layout.fragm
     }
 
     fun navigateToGlobalRanking(){
-        findNavController().navigate(R.id.action_portalFragment_to_rankingsFragment)
+        navigateTo(R.id.action_portalFragment_to_rankingsFragment)
     }
 
 }

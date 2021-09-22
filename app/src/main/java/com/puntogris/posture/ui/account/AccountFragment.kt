@@ -7,10 +7,7 @@ import com.puntogris.posture.databinding.FragmentAccountBinding
 import com.puntogris.posture.model.DayLog
 import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.ui.base.BaseFragmentOptions
-import com.puntogris.posture.utils.getDayStringFormatted
-import com.puntogris.posture.utils.gone
-import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
-import com.puntogris.posture.utils.visible
+import com.puntogris.posture.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import org.threeten.bp.LocalDate
 
@@ -78,7 +75,7 @@ class AccountFragment : BaseFragmentOptions<FragmentAccountBinding>(R.layout.fra
     }
 
     fun onNavigateToRemindersClicked(){
-        findNavController().navigate(R.id.manageRemindersBottomSheet)
+        navigateTo(R.id.manageRemindersBottomSheet)
     }
 
     fun onNavigateToEditReminder(reminder: Reminder){

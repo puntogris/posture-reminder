@@ -11,12 +11,9 @@ import androidx.core.view.isVisible
 import androidx.navigation.*
 import androidx.navigation.ui.*
 import com.google.android.material.snackbar.Snackbar
-import com.puntogris.posture.NavigationDirections
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.ActivityMainBinding
 import com.puntogris.posture.ui.base.BaseActivity
-import com.puntogris.posture.ui.reminders.manage.ManageRemindersBottomSheet
-import com.puntogris.posture.ui.reminders.new_edit.NewReminderBottomSheet
 import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.Constants.CLAIM_NOTIFICATION_EXP_INTENT
 import com.puntogris.posture.utils.Constants.NAVIGATION_DATA

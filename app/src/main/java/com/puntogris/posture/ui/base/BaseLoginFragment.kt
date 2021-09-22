@@ -6,7 +6,6 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -16,8 +15,6 @@ import com.puntogris.posture.model.LoginResult
 import com.puntogris.posture.ui.login.LoginFragmentDirections
 import com.puntogris.posture.ui.login.LoginViewModel
 import com.puntogris.posture.utils.UiInterface
-import com.puntogris.posture.utils.gone
-import com.puntogris.posture.utils.visible
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 

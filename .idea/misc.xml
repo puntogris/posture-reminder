@@ -87,7 +87,7 @@
         <entry key="app/src/main/res/layout/fragment_health.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.35" />
         <entry key="app/src/main/res/layout/fragment_internal_login.xml" value="0.35052083333333334" />
-        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_login_with_email.xml" value="0.23541666666666666" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.2946153846153846" />
         <entry key="app/src/main/res/layout/fragment_new_reminder.xml" value="0.35052083333333334" />

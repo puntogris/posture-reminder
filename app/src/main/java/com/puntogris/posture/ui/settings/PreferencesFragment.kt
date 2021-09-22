@@ -24,7 +24,6 @@ import com.puntogris.posture.utils.Constants.USERNAME_PREF_KEY
 import com.puntogris.posture.utils.Constants.VERSION_PREF_KEY
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -50,7 +49,7 @@ class PreferencesFragment: PreferenceFragmentCompat() {
                                 message = R.string.snack_action_requires_login,
                                 actionText = R.string.action_login
                             ){
-                                findNavController().navigate(R.id.internalLoginFragment)
+                                navigateTo(R.id.internalLoginFragment)
                         }
                     }
                     else{
@@ -69,7 +68,7 @@ class PreferencesFragment: PreferenceFragmentCompat() {
                 }
             }
             onClick {
-                findNavController().navigate(R.id.selectThemeDialog)
+                navigateTo(R.id.selectThemeDialog)
             }
         }
 
@@ -79,7 +78,7 @@ class PreferencesFragment: PreferenceFragmentCompat() {
                 else R.string.require_action
             )
             onClick {
-                findNavController().navigate(R.id.batteryOptimizationFragment)
+                navigateTo(R.id.batteryOptimizationFragment)
             }
         }
 
@@ -103,16 +102,16 @@ class PreferencesFragment: PreferenceFragmentCompat() {
         preference(LOG_IN_PREF_KEY){
             isVisible = !viewModel.isUserLoggedIn()
             onClick {
-
+                navigateTo(R.id.internalLoginFragment)
             }
         }
 
         preferenceOnClick(CREDITS_PREF_KEY){
-            findNavController().navigate(R.id.creditsBottomSheet)
+            navigateTo(R.id.creditsBottomSheet)
         }
 
         preferenceOnClick(TICKET_PREF_KEY){
-            findNavController().navigate(R.id.ticketBottomSheet)
+            navigateTo(R.id.ticketBottomSheet)
         }
 
         preference(VERSION_PREF_KEY){

@@ -1,12 +1,12 @@
 package com.puntogris.posture.ui.exercise
 
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetExerciseBinding
 import com.puntogris.posture.ui.base.BaseBottomSheetFragment
 import com.puntogris.posture.utils.Constants.PROGRESS_BAR_SMOOTH_OFFSET
+import com.puntogris.posture.utils.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -53,7 +53,7 @@ class ExerciseBottomSheet: BaseBottomSheetFragment<BottomSheetExerciseBinding>(R
     }
 
     private fun updateUiAndShowCompletedExerciseDialog(){
-        findNavController().navigate(R.id.exerciseCompletedDialog)
+        navigateTo(R.id.exerciseCompletedDialog)
         binding.startButton.text = getString(R.string.finished)
     }
 

@@ -12,7 +12,6 @@ import com.puntogris.posture.utils.Utils.dayOfTheWeek
 import com.puntogris.posture.utils.Utils.minutesSinceMidnight
 import com.puntogris.posture.utils.goAsync
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.DelicateCoroutinesApi
 import javax.inject.Inject
 
 @AndroidEntryPoint

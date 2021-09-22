@@ -35,6 +35,14 @@
     <string name="login_button">tap para entrar</string>
     <string name="help_login_problems">Problemas para ingresar?</string>
     <string name="snack_fail_login">Login cancelado, error de conexión o no se encontro una cuenta de google en tu celular.</string>
+    <string name="fast_login">Iniciar más rápido</string>
+    <string name="action_continue_anonymously">Continuar de forma anonima</string>
+    <string name="action_login_with_google">Login con google</string>
+    <string name="internal_login_title">Tu aventura empieza ahora</string>
+    <string name="internal_login_subtitle">Login desbloqueara estos increibles beneficios!</string>
+    <string name="login_feature_one">• Se parte de la comunidad</string>
+    <string name="login_feature_two">• Respalda tu informacion en la nube</string>
+    <string name="login_feature_three">• Crea un perfil y escala los rankings</string>
 
     <!-- Welcome -->
     <string name="welcome_pager_title1">Llega hasta la cima del ranking!</string>

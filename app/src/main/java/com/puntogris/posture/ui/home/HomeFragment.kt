@@ -9,10 +9,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentHomeBinding
@@ -21,7 +18,7 @@ import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.utils.Constants.PACKAGE_URI_NAME
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.Utils
-import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
+import com.puntogris.posture.utils.navigateTo
 import com.puntogris.posture.utils.setPageFadeTransformer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -87,7 +84,7 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
             }
             AlarmStatus.NoConfigured -> {
                 UiInterface.showSnackBar(getString(R.string.snack_active_reminder_not_found), actionText = R.string.action_select){
-                    findNavController().navigate(R.id.manageRemindersBottomSheet)
+                    navigateTo(R.id.manageRemindersBottomSheet)
                 }
             }
         }

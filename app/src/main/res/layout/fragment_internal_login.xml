@@ -32,7 +32,7 @@
             android:layout_marginHorizontal="16dp"
 
             android:layout_marginTop="28dp"
-            android:text="Your adventure starts here"
+            android:text="@string/internal_login_title"
             android:textColor="@android:color/white"
             android:textSize="36sp"
             android:textStyle="bold"
@@ -47,11 +47,24 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="24dp"
-            android:text="* Be a part of our community"
+            android:text="@string/login_feature_one"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@+id/textView13"
             tools:layout_editor_absoluteX="32dp" />
+
+        <TextView
+            android:id="@+id/textView60"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/login_feature_two"
+            android:layout_marginHorizontal="16dp"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/texView44" />
 
         <TextView
             android:id="@+id/texView44"
@@ -59,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="24dp"
-            android:text="* Create a profile and climb the ranks"
+            android:text="@string/login_feature_three"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@+id/subtitle_text_view"
@@ -74,7 +87,7 @@
             android:layout_marginEnd="48dp"
             android:layout_marginBottom="16dp"
             android:onClick="@{()-> fragment.onNavigateUp()}"
-            android:text="Continuar anonimo"
+            android:text="@string/action_continue_anonymously"
             app:layout_constraintBottom_toTopOf="@id/login_button" />
 
         <com.google.android.material.button.MaterialButton
@@ -86,7 +99,7 @@
             android:layout_marginEnd="48dp"
             android:layout_marginBottom="24dp"
             android:onClick="@{()-> fragment.startLoginWithGoogle()}"
-            android:text="Login con google"
+            android:text="@string/action_login_with_google"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
@@ -95,25 +108,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="16dp"
-            android:text="Login will unlock these awesome features!"
+            android:text="@string/internal_login_subtitle"
             android:textColor="@android:color/white"
             android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_text_view" />
-
-        <TextView
-            android:id="@+id/textView60"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="* Data back up on the cloud"
-            android:layout_marginHorizontal="16dp"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/texView44" />
 
         <!--        <com.puntogris.recap.ui.widget.ContentLoadingLayout-->
         <!--            android:id="@+id/content_loading_layout"-->

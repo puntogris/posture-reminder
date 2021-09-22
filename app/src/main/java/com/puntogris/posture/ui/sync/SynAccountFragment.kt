@@ -11,6 +11,7 @@ import com.puntogris.posture.model.SimpleResult
 import com.puntogris.posture.ui.base.BaseFragment
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
+import com.puntogris.posture.utils.navigateTo
 import com.puntogris.posture.utils.playAnimationOnce
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -60,7 +61,7 @@ class SynAccountFragment : BaseFragment<FragmentSynAccountBinding>(R.layout.frag
     }
 
     fun onContinueButtonClicked(){
-        findNavController().navigate(R.id.action_synAccountFragment_to_welcomeFragment)
+        navigateTo(R.id.action_synAccountFragment_to_welcomeFragment)
     }
 
 }

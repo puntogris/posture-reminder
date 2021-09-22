@@ -1,10 +1,10 @@
 package com.puntogris.posture.ui.welcome
 
-import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentWelcomeBinding
 import com.puntogris.posture.ui.base.BaseFragment
 import com.puntogris.posture.utils.isDarkThemeOn
+import com.puntogris.posture.utils.navigateTo
 
 class WelcomeFragment :BaseFragment<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
 
@@ -15,7 +15,7 @@ class WelcomeFragment :BaseFragment<FragmentWelcomeBinding>(R.layout.fragment_we
     }
 
     fun onStartButtonClicked(){
-        findNavController().navigate(R.id.action_welcomeFragment_to_batteryOptimizationFragment)
+        navigateTo(R.id.action_welcomeFragment_to_batteryOptimizationFragment)
     }
 
     override fun onDestroyView() {

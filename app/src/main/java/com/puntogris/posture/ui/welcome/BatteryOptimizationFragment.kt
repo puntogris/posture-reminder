@@ -1,15 +1,15 @@
 package com.puntogris.posture.ui.welcome
 
-import androidx.navigation.fragment.findNavController
-import com.puntogris.posture.databinding.FragmentBatteryOptimizationBinding
-import com.puntogris.posture.ui.base.BaseFragment
 import android.content.Intent
 import android.provider.Settings
-import com.puntogris.posture.utils.gone
 import androidx.core.text.HtmlCompat
 import com.puntogris.posture.R
+import com.puntogris.posture.databinding.FragmentBatteryOptimizationBinding
+import com.puntogris.posture.ui.base.BaseFragment
+import com.puntogris.posture.utils.gone
 import com.puntogris.posture.utils.isDarkThemeOn
 import com.puntogris.posture.utils.isIgnoringBatteryOptimizations
+import com.puntogris.posture.utils.navigateTo
 
 class BatteryOptimizationFragment : BaseFragment<FragmentBatteryOptimizationBinding>(R.layout.fragment_battery_optimization) {
 
@@ -50,7 +50,7 @@ class BatteryOptimizationFragment : BaseFragment<FragmentBatteryOptimizationBind
     }
 
     fun onFinalizeButtonClicked(){
-        findNavController().navigate(R.id.action_batteryOptimizationFragment_to_homeFragment)
+        navigateTo(R.id.action_batteryOptimizationFragment_to_homeFragment)
     }
 
     override fun onResume() {

@@ -1,11 +1,13 @@
 package com.puntogris.posture.ui.login
 
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentLoginBinding
 import com.puntogris.posture.ui.base.BaseLoginFragment
-import com.puntogris.posture.utils.*
+import com.puntogris.posture.utils.gone
+import com.puntogris.posture.utils.launchWebBrowserIntent
+import com.puntogris.posture.utils.navigateTo
+import com.puntogris.posture.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,7 +33,7 @@ class LoginFragment: BaseLoginFragment<FragmentLoginBinding>(R.layout.fragment_l
     }
 
     fun continueAnonymously(){
-        findNavController().navigate(R.id.welcomeFragment)
+        navigateTo(R.id.welcomeFragment)
     }
 
     fun onLoginProblemsClicked(){
