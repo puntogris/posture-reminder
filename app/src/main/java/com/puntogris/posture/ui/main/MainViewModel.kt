@@ -3,7 +3,7 @@ package com.puntogris.posture.ui.main
 import androidx.lifecycle.*
 import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.data.repo.main.MainRepository
-import com.puntogris.posture.utils.DataStore
+import com.puntogris.posture.data.local.DataStore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

@@ -7,12 +7,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentSynAccountBinding
-import com.puntogris.posture.model.SimpleResult
+import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.ui.base.BaseFragment
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.navigateTo
-import com.puntogris.posture.utils.playAnimationOnce
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

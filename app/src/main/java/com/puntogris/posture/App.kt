@@ -7,13 +7,10 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.*
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.puntogris.posture.alarm.Notifications
-import com.puntogris.posture.utils.Constants.SYNC_ACCOUNT_WORKER
-import com.puntogris.posture.utils.DataStore
-import com.puntogris.posture.workers.SyncAccountWorker
+import com.puntogris.posture.data.local.DataStore
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltAndroidApp

@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.local
+package com.puntogris.posture.data.local.room
 
 import android.content.Context
 import androidx.room.Room

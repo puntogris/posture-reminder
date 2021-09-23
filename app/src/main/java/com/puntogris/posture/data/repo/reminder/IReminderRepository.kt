@@ -3,8 +3,8 @@ package com.puntogris.posture.data.repo.reminder
 import androidx.lifecycle.LiveData
 import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.model.ReminderId
-import com.puntogris.posture.model.Result
-import com.puntogris.posture.model.SimpleResult
+import com.puntogris.posture.utils.Result
+import com.puntogris.posture.utils.SimpleResult
 
 interface IReminderRepository {
     fun getAllRemindersFromRoomLiveData(): LiveData<List<Reminder>>

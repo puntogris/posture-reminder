@@ -10,7 +10,7 @@ import androidx.preference.PreferenceFragmentCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.R
-import com.puntogris.posture.model.SimpleResult
+import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.Constants.BATTERY_PREF_KEY
 import com.puntogris.posture.utils.Constants.CREDITS_PREF_KEY

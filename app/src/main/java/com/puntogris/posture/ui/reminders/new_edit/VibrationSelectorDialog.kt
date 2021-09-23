@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.posture.R
-import com.puntogris.posture.data.local.LocalDataSource
+import com.puntogris.posture.data.local.room.LocalDataSource
 import com.puntogris.posture.utils.Constants.DATA_KEY
 import com.puntogris.posture.utils.Constants.VIBRATION_PICKER_KEY
 

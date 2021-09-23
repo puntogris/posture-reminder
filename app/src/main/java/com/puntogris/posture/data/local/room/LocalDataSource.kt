@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.local
+package com.puntogris.posture.data.local.room
 
 import com.puntogris.posture.R
 import com.puntogris.posture.model.Exercise

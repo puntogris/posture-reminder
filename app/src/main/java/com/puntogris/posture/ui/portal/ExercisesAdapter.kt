@@ -2,7 +2,7 @@ package com.puntogris.posture.ui.portal
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.puntogris.posture.data.local.LocalDataSource
+import com.puntogris.posture.data.local.room.LocalDataSource
 import com.puntogris.posture.model.Exercise
 
 class ExercisesAdapter(private val clickListener: (Exercise) -> Unit): RecyclerView.Adapter<ExerciseViewHolder>(){

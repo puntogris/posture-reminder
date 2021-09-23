@@ -5,12 +5,11 @@ import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentPortalBinding
 import com.puntogris.posture.model.Exercise
-import com.puntogris.posture.model.RepoResult
+import com.puntogris.posture.utils.RepoResult
 import com.puntogris.posture.model.UserPublicProfile
 import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.ui.rankings.RankingsAdapter
 import com.puntogris.posture.utils.UiInterface
-import com.puntogris.posture.utils.gone
 import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.navigateTo
 import dagger.hilt.android.AndroidEntryPoint

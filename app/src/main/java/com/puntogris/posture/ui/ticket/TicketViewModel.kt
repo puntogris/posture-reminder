@@ -2,7 +2,7 @@ package com.puntogris.posture.ui.ticket
 
 import androidx.lifecycle.ViewModel
 import com.puntogris.posture.data.repo.ticket.TicketRepository
-import com.puntogris.posture.model.SimpleResult
+import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.model.Ticket
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -14,7 +14,7 @@ class TicketViewModel @Inject constructor(
 
     private var ticket = Ticket()
 
-    suspend fun sendTicket(message: String): SimpleResult{
+    suspend fun sendTicket(message: String): SimpleResult {
         ticket.message = message
         return ticketRepository.fillTicketWithUserDataAndSend(ticket)
     }

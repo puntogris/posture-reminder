@@ -1,6 +1,9 @@
-package com.puntogris.posture.model
+package com.puntogris.posture.utils
 
 import com.puntogris.posture.R
+import com.puntogris.posture.model.ItemData
+import com.puntogris.posture.model.Reminder
+import com.puntogris.posture.model.UserPrivateData
 
 sealed class SimpleResult{
     object Success: SimpleResult()
@@ -23,7 +26,7 @@ sealed class ReminderUi{
 sealed class LoginResult {
     object InProgress: LoginResult()
     class Success(val userPrivateData: UserPrivateData): LoginResult()
-    object Error : LoginResult()
+    object Error: LoginResult()
 }
 
 sealed class UserAccount{

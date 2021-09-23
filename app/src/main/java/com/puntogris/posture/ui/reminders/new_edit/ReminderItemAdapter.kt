@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.R
 import com.puntogris.posture.model.ItemData
 import com.puntogris.posture.model.Reminder
-import com.puntogris.posture.model.ReminderUi
+import com.puntogris.posture.utils.ReminderUi
 import com.puntogris.posture.utils.Utils.minutesFromMidnightToHourlyTime
 
 class ReminderItemAdapter(private val context: Context, private val clickListener: (ReminderUi)-> Unit):  RecyclerView.Adapter<RecyclerView.ViewHolder>(){

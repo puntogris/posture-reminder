@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.puntogris.posture.data.repo.reminder.ReminderRepository
 import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.model.ReminderId
-import com.puntogris.posture.model.Result
+import com.puntogris.posture.utils.Result
 import com.puntogris.posture.model.ToneItem
 import com.puntogris.posture.utils.millisToMinutes
 import com.puntogris.posture.utils.setField
@@ -23,7 +23,7 @@ class NewReminderViewModel @Inject constructor(
     private val _reminder = MutableLiveData(Reminder())
     val reminder: LiveData<Reminder> = _reminder
 
-    suspend fun saveReminder(): Result<ReminderId>{
+    suspend fun saveReminder(): Result<ReminderId> {
         return if (reminderIsEdited()) reminderRepository.insertReminder(_reminder.value!!)
         else Result.Success(ReminderId(reminder.value!!.reminderId))
     }

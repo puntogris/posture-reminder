@@ -1,4 +1,4 @@
-package com.puntogris.posture.utils
+package com.puntogris.posture.data.local
 
 import android.content.Context
 import androidx.annotation.Keep

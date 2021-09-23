@@ -14,7 +14,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.puntogris.posture.R
-import com.puntogris.posture.data.local.LocalDataSource
+import com.puntogris.posture.data.local.room.LocalDataSource
 import com.puntogris.posture.model.FcmNotification
 import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.ui.main.MainActivity

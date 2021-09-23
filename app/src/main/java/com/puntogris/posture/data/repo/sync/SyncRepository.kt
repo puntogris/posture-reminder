@@ -2,14 +2,16 @@ package com.puntogris.posture.data.repo.sync
 
 import android.content.Context
 import androidx.work.*
-import com.puntogris.posture.data.local.ReminderDao
-import com.puntogris.posture.data.local.UserDao
+import com.puntogris.posture.data.local.room.ReminderDao
+import com.puntogris.posture.data.local.room.UserDao
 import com.puntogris.posture.data.remote.FirebaseReminderDataSource
 import com.puntogris.posture.data.remote.FirebaseUserDataSource
 import com.puntogris.posture.model.*
 import com.puntogris.posture.utils.Constants
 import com.puntogris.posture.utils.Constants.EXPERIENCE_FIELD
-import com.puntogris.posture.utils.DataStore
+import com.puntogris.posture.data.local.DataStore
+import com.puntogris.posture.utils.SimpleResult
+import com.puntogris.posture.utils.UserAccount
 import com.puntogris.posture.workers.SyncAccountWorker
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
@@ -71,11 +73,11 @@ class SyncRepository @Inject constructor(
     }
 
     private suspend fun syncUserReminders() {
-        syncOnlineRemindersWithLocalDb()
-        syncAndUpdateLocalReminders()
+        insertOnlineRemindersIntoLocalDb()
+        checkForNotSyncedLocalReminders()
     }
 
-    private suspend fun syncOnlineRemindersWithLocalDb(){
+    private suspend fun insertOnlineRemindersIntoLocalDb(){
         val firestoreReminders = firestoreReminder
             .getUserRemindersQuery()
             .get()
@@ -84,8 +86,8 @@ class SyncRepository @Inject constructor(
 
         reminderDao.insertRemindersIfNotInRoom(firestoreReminders)
     }
-    
-    private suspend fun syncAndUpdateLocalReminders(){
+
+    private suspend fun checkForNotSyncedLocalReminders(){
         val roomReminders = reminderDao.getAllEmptyReminders()
 
         if (roomReminders.isNotEmpty()){

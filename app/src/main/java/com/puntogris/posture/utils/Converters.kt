@@ -22,7 +22,6 @@ object Converters {
         return gson.toJson(list, type)
     }
 
-
     @JvmStatic
     @TypeConverter
     fun toTimestamp(dateLong: Long?): Timestamp? = dateLong?.let { Timestamp(Date(dateLong)) }

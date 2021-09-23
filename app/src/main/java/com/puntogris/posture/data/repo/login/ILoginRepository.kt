@@ -1,8 +1,8 @@
 package com.puntogris.posture.data.repo.login
 
 import android.content.Intent
-import com.puntogris.posture.model.LoginResult
-import com.puntogris.posture.model.SimpleResult
+import com.puntogris.posture.utils.LoginResult
+import com.puntogris.posture.utils.SimpleResult
 import kotlinx.coroutines.flow.StateFlow
 
 interface ILoginRepository {

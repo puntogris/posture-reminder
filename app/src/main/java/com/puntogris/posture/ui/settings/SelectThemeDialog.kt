@@ -7,7 +7,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.posture.R
-import com.puntogris.posture.utils.DataStore
+import com.puntogris.posture.data.local.DataStore
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking

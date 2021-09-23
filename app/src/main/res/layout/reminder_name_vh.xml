@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="com.puntogris.posture.model.ReminderUi.Name" />
+            type="com.puntogris.posture.utils.ReminderUi" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="horizontal"

@@ -8,7 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetTicketBinding
-import com.puntogris.posture.model.SimpleResult
+import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.ui.base.BaseBottomSheetFragment
 import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.Constants.DATA_KEY

@@ -1,7 +1,7 @@
 package com.puntogris.posture.data.repo.ticket
 
 import com.puntogris.posture.data.remote.FirebaseDataSource
-import com.puntogris.posture.model.SimpleResult
+import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.model.Ticket
 import com.puntogris.posture.utils.Constants.TICKET_COLLECTION
 import kotlinx.coroutines.Dispatchers

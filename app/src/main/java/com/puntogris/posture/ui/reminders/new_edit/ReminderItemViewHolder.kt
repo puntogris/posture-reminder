@@ -4,8 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.databinding.ReminderItemVhBinding
-import com.puntogris.posture.model.ReminderUi
-import com.puntogris.posture.utils.gone
+import com.puntogris.posture.utils.ReminderUi
 
 class ReminderItemViewHolder(private val binding: ReminderItemVhBinding):RecyclerView.ViewHolder(binding.root) {
 

@@ -1,7 +1,6 @@
 package com.puntogris.posture.data.repo.login
 
 import android.content.Context
-import android.content.Intent
 import androidx.work.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -12,18 +11,15 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.data.remote.FirebaseLoginDataSource
 import com.puntogris.posture.model.UserPrivateData
-import com.puntogris.posture.model.LoginResult
-import com.puntogris.posture.model.SimpleResult
-import com.puntogris.posture.utils.Constants
+import com.puntogris.posture.utils.LoginResult
+import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.Constants.SYNC_ACCOUNT_WORKER
-import com.puntogris.posture.utils.DataStore
+import com.puntogris.posture.data.local.DataStore
 import com.puntogris.posture.utils.capitalizeWords
-import com.puntogris.posture.workers.SyncAccountWorker
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import java.util.*
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class LoginRepository @Inject constructor(

@@ -1,11 +1,11 @@
 package com.puntogris.posture.data.repo.day_logs
 
 import androidx.room.withTransaction
-import com.puntogris.posture.data.local.AppDatabase
-import com.puntogris.posture.data.local.DayLogsDao
-import com.puntogris.posture.data.local.UserDao
+import com.puntogris.posture.data.local.room.AppDatabase
+import com.puntogris.posture.data.local.room.DayLogsDao
+import com.puntogris.posture.data.local.room.UserDao
 import com.puntogris.posture.model.DayLog
-import com.puntogris.posture.model.RewardExp
+import com.puntogris.posture.utils.RewardExp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.databinding.ReminderColorVhBinding
-import com.puntogris.posture.model.ReminderUi
+import com.puntogris.posture.utils.ReminderUi
 
 class ReminderColorViewHolder(private val binding: ReminderColorVhBinding): RecyclerView.ViewHolder(binding.root) {
 

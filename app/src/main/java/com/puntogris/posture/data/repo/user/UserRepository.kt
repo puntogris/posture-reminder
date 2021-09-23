@@ -1,7 +1,7 @@
 package com.puntogris.posture.data.repo.user
 
 import com.puntogris.posture.alarm.Alarm
-import com.puntogris.posture.data.local.UserDao
+import com.puntogris.posture.data.local.room.UserDao
 import com.puntogris.posture.data.remote.FirebaseUserDataSource
 import com.puntogris.posture.utils.Constants.USER_NAME_FIELD
 import kotlinx.coroutines.Dispatchers
