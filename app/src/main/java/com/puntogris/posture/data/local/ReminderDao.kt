@@ -8,7 +8,10 @@ import com.puntogris.posture.model.Reminder
 interface ReminderDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(reminder: Reminder):Long
+    suspend fun insert(reminder: Reminder): Long
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(reminders: List<Reminder>): Long
 
     @Update
     suspend fun update(reminder: Reminder)
@@ -29,6 +32,9 @@ interface ReminderDao {
 
     @Query("SELECT * FROM reminder")
     fun getAllRemindersLiveData(): LiveData<List<Reminder>>
+
+    @Query("SELECT * FROM reminder WHERE uid = ''")
+    suspend fun getAllEmptyReminders(): List<Reminder>
 
     @Query("SELECT reminderId FROM reminder")
     suspend fun getAllRemindersIds(): List<String>

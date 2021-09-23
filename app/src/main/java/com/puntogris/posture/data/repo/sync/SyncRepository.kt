@@ -1,18 +1,21 @@
 package com.puntogris.posture.data.repo.sync
 
+import android.content.Context
+import androidx.work.*
 import com.puntogris.posture.data.local.ReminderDao
 import com.puntogris.posture.data.local.UserDao
 import com.puntogris.posture.data.remote.FirebaseReminderDataSource
 import com.puntogris.posture.data.remote.FirebaseUserDataSource
 import com.puntogris.posture.model.*
+import com.puntogris.posture.utils.Constants
 import com.puntogris.posture.utils.Constants.EXPERIENCE_FIELD
-import com.puntogris.posture.utils.Constants.MAX_EXPERIENCE_OFFSET
-import com.puntogris.posture.utils.Constants.MAX_EXPERIENCE_PER_DAY
 import com.puntogris.posture.utils.DataStore
-import com.puntogris.posture.utils.toDays
+import com.puntogris.posture.workers.SyncAccountWorker
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class SyncRepository @Inject constructor(
@@ -20,7 +23,8 @@ class SyncRepository @Inject constructor(
     private val userDao: UserDao,
     private val firestoreUser: FirebaseUserDataSource,
     private val firestoreReminder: FirebaseReminderDataSource,
-    private val dataStore: DataStore
+    private val dataStore: DataStore,
+    @ApplicationContext private val context: Context
 ) : ISyncRepository {
 
     override suspend fun syncFirestoreAccountWithRoom(userPrivateData: UserPrivateData): SimpleResult =
@@ -30,7 +34,9 @@ class SyncRepository @Inject constructor(
                 if (userState is UserAccount.Registered) {
                     syncUserReminders()
                 }
+                setupSyncAccountWorkManager()
                 dataStore.setLoginCompletedPref(true)
+
                 SimpleResult.Success
             } catch (e: Exception) {
                 dataStore.setLoginCompletedPref(false)
@@ -57,62 +63,73 @@ class SyncRepository @Inject constructor(
 
     private suspend fun insertNewUserIntoRoomAndFirestore(user: UserPrivateData) {
         userDao.insert(user)
-        val userPublicProfileRef = firestoreUser.getUserPublicProfileRef()
-        val userPrivateDataRef = firestoreUser.getUserPrivateDataRef()
+
         firestoreUser.runBatch().apply {
-            set(userPrivateDataRef, user)
-            set(userPublicProfileRef, getPublicProfileFromUserPrivateData(user))
+            set(firestoreUser.getUserPrivateDataRef(), user)
+            set(firestoreUser.getUserPublicProfileRef(), UserPublicProfile.from(user))
         }.commit().await()
     }
 
-    private fun getPublicProfileFromUserPrivateData(user: UserPrivateData): UserPublicProfile {
-        return UserPublicProfile(
-            username = user.username,
-            country = user.country,
-            uid = user.uid
-        )
-    }
-
     private suspend fun syncUserReminders() {
-        val reminders =
-            firestoreReminder.getUserRemindersQuery().get().await().toObjects(Reminder::class.java)
-        reminderDao.insertRemindersIfNotInRoom(reminders)
+        syncOnlineRemindersWithLocalDb()
+        syncAndUpdateLocalReminders()
     }
 
-    override suspend fun syncUserExperienceInFirestoreWithRoom() {
-        if (firestoreUser.getCurrentUser() == null) return
+    private suspend fun syncOnlineRemindersWithLocalDb(){
+        val firestoreReminders = firestoreReminder
+            .getUserRemindersQuery()
+            .get()
+            .await()
+            .toObjects(Reminder::class.java)
 
-        userDao.getUser()?.let {
-            val expAmount = getMaxExpPermitted(it)
+        reminderDao.insertRemindersIfNotInRoom(firestoreReminders)
+    }
+    
+    private suspend fun syncAndUpdateLocalReminders(){
+        val roomReminders = reminderDao.getAllEmptyReminders()
 
-              if (expAmount != null){
-                  firestoreUser.runBatch().apply {
-                      update(firestoreUser.getUserPublicProfileRef(), EXPERIENCE_FIELD, expAmount)
-                      update(firestoreUser.getUserPrivateDataRef(), EXPERIENCE_FIELD, expAmount)
-                  }.commit().await()
-              }
+        if (roomReminders.isNotEmpty()){
+            val uid = firestoreUser.getCurrentUserId()
+            val batch = firestoreReminder.runBatch()
+
+            roomReminders.forEach {
+                it.uid = uid
+                batch.set(firestoreReminder.getReminderDocumentRefWithId(it.reminderId), it)
+            }
+
+            reminderDao.insert(roomReminders)
+            batch.commit().await()
         }
     }
 
-    private suspend fun getMaxExpPermitted(user: UserPrivateData): Int?{
-        val creationTimestampMillis = user.creationDate.toDate().time
-        val serverTimestampMillis = getDateFromServer()
+    override suspend fun syncUserExperienceInFirestoreWithRoom() {
+        userDao.getUser()?.let {
+            val expAmount = it.getMaxExpPermittedWithServerTimestamp(getTimestampFromServer())
 
-        return if (serverTimestampMillis != null){
-            val daysDiff = (serverTimestampMillis - creationTimestampMillis).toDays()
-
-            val maxExpPermitted = daysDiff * MAX_EXPERIENCE_PER_DAY + MAX_EXPERIENCE_OFFSET
-
-            if (user.experience > maxExpPermitted) maxExpPermitted else user.experience
-        }else null
-
+            if (expAmount != null){
+              firestoreUser.runBatch().apply {
+                  update(firestoreUser.getUserPublicProfileRef(), EXPERIENCE_FIELD, expAmount)
+                  update(firestoreUser.getUserPrivateDataRef(), EXPERIENCE_FIELD, expAmount)
+              }.commit().await()
+            }
+        }
     }
 
-    private suspend fun getDateFromServer(): Long? {
+    private suspend fun getTimestampFromServer(): Long? {
         return firestoreUser.functions
             .getHttpsCallable("getServerTimestamp")
             .call()
             .await()
             .data as? Long
+    }
+
+    private fun setupSyncAccountWorkManager(){
+        val syncWork = PeriodicWorkRequestBuilder<SyncAccountWorker>(5, TimeUnit.HOURS)
+            .setConstraints(Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build())
+            .build()
+
+        WorkManager
+            .getInstance(context)
+            .enqueueUniquePeriodicWork(Constants.SYNC_ACCOUNT_WORKER, ExistingPeriodicWorkPolicy.KEEP, syncWork)
     }
 }

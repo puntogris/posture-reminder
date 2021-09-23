@@ -17,45 +17,32 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltAndroidApp
-class App: Application(), Configuration.Provider{
+class App : Application(), Configuration.Provider {
 
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
-
     @Inject
     lateinit var notifications: Notifications
-
     @Inject
     lateinit var dataStore: DataStore
 
     override fun onCreate() {
         super.onCreate()
 
-        applyAppTheme()
         AndroidThreeTen.init(this)
 
-        setupSyncAccountWorkManager()
+        applyAppTheme()
         removeDeprecatedNotificationChannels()
 
         if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
     }
 
-    private fun applyAppTheme(){
+    private fun applyAppTheme() {
         val theme = runBlocking { dataStore.appTheme() }
         AppCompatDelegate.setDefaultNightMode(theme)
     }
 
-    private fun setupSyncAccountWorkManager(){
-        val syncWork = PeriodicWorkRequestBuilder<SyncAccountWorker>(5, TimeUnit.HOURS)
-            .setConstraints(Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build())
-            .build()
-
-        WorkManager
-            .getInstance(this)
-            .enqueueUniquePeriodicWork(SYNC_ACCOUNT_WORKER, ExistingPeriodicWorkPolicy.KEEP, syncWork)
-    }
-
-    private fun removeDeprecatedNotificationChannels(){
+    private fun removeDeprecatedNotificationChannels() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notifications.removeDeprecatedChannels()
         }
