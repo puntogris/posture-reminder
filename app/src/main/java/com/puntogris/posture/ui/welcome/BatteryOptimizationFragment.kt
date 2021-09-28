@@ -36,7 +36,7 @@ class BatteryOptimizationFragment : BaseFragment<FragmentBatteryOptimizationBind
         HtmlCompat.fromHtml(getString(htmlRes), HtmlCompat.FROM_HTML_MODE_LEGACY)
 
     private fun checkPowerStatus(){
-        if (isIgnoringBatteryOptimizations()){
+        if (requireContext().isIgnoringBatteryOptimizations()){
             binding.apply {
                 powerManagerState.text = getString(R.string.all_in_order)
                 powerStateImage.setImageResource(R.drawable.ic_baseline_check_circle_24)

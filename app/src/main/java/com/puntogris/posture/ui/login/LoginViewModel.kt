@@ -13,4 +13,6 @@ class LoginViewModel @Inject constructor(
     fun authUserWithFirebase(idToken: String) = loginRepository.firebaseAuthWithGoogle(idToken)
 
     fun getGoogleSignInIntent() = loginRepository.createGoogleSignInIntent()
+
+    suspend fun registerAnonymousUser() = loginRepository.singInAnonymously()
 }

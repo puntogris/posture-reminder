@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.local
+package com.puntogris.posture.data.datasource.local
 
 import android.content.Context
 import androidx.annotation.Keep
@@ -12,7 +12,7 @@ import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.utils.Constants.APP_PREFERENCES_NAME
 import com.puntogris.posture.utils.Constants.APP_THEME
 import com.puntogris.posture.utils.Constants.LAST_VERSION_CODE
-import com.puntogris.posture.utils.Constants.LOGIN_COMPLETED_KEY
+import com.puntogris.posture.utils.Constants.SHOW_LOGIN_KEY
 import com.puntogris.posture.utils.Constants.PANDA_ANIMATION
 import com.puntogris.posture.utils.Constants.REMINDER_STATE_KEY
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -64,11 +64,11 @@ class DataStore @Inject constructor(@ApplicationContext private val context: Con
         }
     }
 
-    suspend fun isLoginCompleted() =
-        context.dataStore.data.first()[booleanPreferencesKey(LOGIN_COMPLETED_KEY)] ?: false
+    suspend fun showLoginPref() =
+        context.dataStore.data.first()[booleanPreferencesKey(SHOW_LOGIN_KEY)] ?: true
 
 
-    suspend fun setLoginCompletedPref(value: Boolean) = context.dataStore.edit {
-        it[booleanPreferencesKey(LOGIN_COMPLETED_KEY)] = value
+    suspend fun setShowLoginPref(value: Boolean) = context.dataStore.edit {
+        it[booleanPreferencesKey(SHOW_LOGIN_KEY)] = value
     }
 }

@@ -1,4 +1,4 @@
-package com.puntogris.posture.ui
+package com.puntogris.posture.diffcallback
 
 import androidx.recyclerview.widget.DiffUtil
 import com.puntogris.posture.model.UserPublicProfile

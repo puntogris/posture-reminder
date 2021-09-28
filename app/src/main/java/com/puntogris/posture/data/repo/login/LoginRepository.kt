@@ -9,23 +9,28 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.puntogris.posture.BuildConfig
-import com.puntogris.posture.data.remote.FirebaseLoginDataSource
+import com.puntogris.posture.R
+import com.puntogris.posture.data.datasource.remote.FirebaseLoginDataSource
 import com.puntogris.posture.model.UserPrivateData
+import com.puntogris.posture.utils.Constants.SYNC_ACCOUNT_WORKER
+import com.puntogris.posture.data.datasource.local.DataStore
+import com.puntogris.posture.data.datasource.local.room.dao.UserDao
 import com.puntogris.posture.utils.LoginResult
 import com.puntogris.posture.utils.SimpleResult
-import com.puntogris.posture.utils.Constants.SYNC_ACCOUNT_WORKER
-import com.puntogris.posture.data.local.DataStore
 import com.puntogris.posture.utils.capitalizeWords
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.withContext
 import java.util.*
 import javax.inject.Inject
 
 class LoginRepository @Inject constructor(
     @ApplicationContext private val context: Context,
     private val loginFirestore: FirebaseLoginDataSource,
-    private val dataStore: DataStore
+    private val dataStore: DataStore,
+    private val userDao: UserDao
 ): ILoginRepository {
 
     private fun getGoogleSignInClient(): GoogleSignInClient{
@@ -67,10 +72,21 @@ class LoginRepository @Inject constructor(
 
     override suspend fun signOutUserFromFirebaseAndGoogle(): SimpleResult {
         return try {
-            dataStore.setLoginCompletedPref(false)
+            dataStore.setShowLoginPref(true)
             loginFirestore.logOutFromFirebase()
             getGoogleSignInClient().signOut()
             WorkManager.getInstance(context).cancelUniqueWork(SYNC_ACCOUNT_WORKER)
+            SimpleResult.Success
+        }catch (e:Exception){
+            SimpleResult.Failure
+        }
+    }
+
+    override suspend fun singInAnonymously() = withContext(Dispatchers.IO){
+        try {
+            val user = UserPrivateData(username = context.getString(R.string.human))
+            userDao.insert(user)
+            dataStore.setShowLoginPref(false)
             SimpleResult.Success
         }catch (e:Exception){
             SimpleResult.Failure

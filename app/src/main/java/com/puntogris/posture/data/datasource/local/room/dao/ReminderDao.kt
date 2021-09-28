@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.local.room
+package com.puntogris.posture.data.datasource.local.room.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
@@ -11,7 +11,7 @@ interface ReminderDao {
     suspend fun insert(reminder: Reminder): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(reminders: List<Reminder>): Long
+    suspend fun insert(reminders: List<Reminder>)
 
     @Update
     suspend fun update(reminder: Reminder)

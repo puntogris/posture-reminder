@@ -7,7 +7,7 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.*
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.puntogris.posture.alarm.Notifications
-import com.puntogris.posture.data.local.DataStore
+import com.puntogris.posture.data.datasource.local.DataStore
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber

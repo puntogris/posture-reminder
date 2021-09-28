@@ -5,13 +5,17 @@ import com.puntogris.posture.databinding.FragmentWelcomeBinding
 import com.puntogris.posture.ui.base.BaseFragment
 import com.puntogris.posture.utils.isDarkThemeOn
 import com.puntogris.posture.utils.navigateTo
+import dagger.hilt.android.AndroidEntryPoint
 
-class WelcomeFragment :BaseFragment<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
+@AndroidEntryPoint
+class WelcomeFragment: BaseFragment<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
 
     override fun initializeViews() {
-        binding.fragment = this
-        binding.viewPager.adapter = WelcomePagerAdapter(isDarkThemeOn())
-        binding.dotsIndicator.setViewPager2(binding.viewPager)
+        with(binding){
+            fragment = this@WelcomeFragment
+            viewPager.adapter = WelcomePagerAdapter(isDarkThemeOn())
+            dotsIndicator.setViewPager2(viewPager)
+        }
     }
 
     fun onStartButtonClicked(){

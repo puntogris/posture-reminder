@@ -2,14 +2,14 @@ package com.puntogris.posture.data.repo.sync
 
 import android.content.Context
 import androidx.work.*
-import com.puntogris.posture.data.local.room.ReminderDao
-import com.puntogris.posture.data.local.room.UserDao
-import com.puntogris.posture.data.remote.FirebaseReminderDataSource
-import com.puntogris.posture.data.remote.FirebaseUserDataSource
+import com.puntogris.posture.data.datasource.local.room.dao.ReminderDao
+import com.puntogris.posture.data.datasource.local.room.dao.UserDao
+import com.puntogris.posture.data.datasource.remote.FirebaseReminderDataSource
+import com.puntogris.posture.data.datasource.remote.FirebaseUserDataSource
 import com.puntogris.posture.model.*
 import com.puntogris.posture.utils.Constants
 import com.puntogris.posture.utils.Constants.EXPERIENCE_FIELD
-import com.puntogris.posture.data.local.DataStore
+import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.UserAccount
 import com.puntogris.posture.workers.SyncAccountWorker
@@ -37,11 +37,11 @@ class SyncRepository @Inject constructor(
                     syncUserReminders()
                 }
                 setupSyncAccountWorkManager()
-                dataStore.setLoginCompletedPref(true)
+                dataStore.setShowLoginPref(true)
 
                 SimpleResult.Success
             } catch (e: Exception) {
-                dataStore.setLoginCompletedPref(false)
+                dataStore.setShowLoginPref(false)
                 SimpleResult.Failure
             }
         }
@@ -57,7 +57,7 @@ class SyncRepository @Inject constructor(
         }
     }
 
-    private suspend fun checkForLatestDataAndInsertUser(user: UserPrivateData){
+    private suspend fun checkForLatestDataAndInsertUser(user: UserPrivateData) {
         val roomUser = userDao.getUser()
         if (roomUser != null && roomUser.uid == roomUser.uid && roomUser.experience > user.experience) return
         else userDao.insert(user)
@@ -77,7 +77,7 @@ class SyncRepository @Inject constructor(
         checkForNotSyncedLocalReminders()
     }
 
-    private suspend fun insertOnlineRemindersIntoLocalDb(){
+    private suspend fun insertOnlineRemindersIntoLocalDb() {
         val firestoreReminders = firestoreReminder
             .getUserRemindersQuery()
             .get()
@@ -87,10 +87,10 @@ class SyncRepository @Inject constructor(
         reminderDao.insertRemindersIfNotInRoom(firestoreReminders)
     }
 
-    private suspend fun checkForNotSyncedLocalReminders(){
+    private suspend fun checkForNotSyncedLocalReminders() {
         val roomReminders = reminderDao.getAllEmptyReminders()
 
-        if (roomReminders.isNotEmpty()){
+        if (roomReminders.isNotEmpty()) {
             val uid = firestoreUser.getCurrentUserId()
             val batch = firestoreReminder.runBatch()
 
@@ -108,11 +108,11 @@ class SyncRepository @Inject constructor(
         userDao.getUser()?.let {
             val expAmount = it.getMaxExpPermittedWithServerTimestamp(getTimestampFromServer())
 
-            if (expAmount != null){
-              firestoreUser.runBatch().apply {
-                  update(firestoreUser.getUserPublicProfileRef(), EXPERIENCE_FIELD, expAmount)
-                  update(firestoreUser.getUserPrivateDataRef(), EXPERIENCE_FIELD, expAmount)
-              }.commit().await()
+            if (expAmount != null) {
+                firestoreUser.runBatch().apply {
+                    update(firestoreUser.getUserPublicProfileRef(), EXPERIENCE_FIELD, expAmount)
+                    update(firestoreUser.getUserPrivateDataRef(), EXPERIENCE_FIELD, expAmount)
+                }.commit().await()
             }
         }
     }
@@ -125,13 +125,19 @@ class SyncRepository @Inject constructor(
             .data as? Long
     }
 
-    private fun setupSyncAccountWorkManager(){
+    private fun setupSyncAccountWorkManager() {
         val syncWork = PeriodicWorkRequestBuilder<SyncAccountWorker>(5, TimeUnit.HOURS)
-            .setConstraints(Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build())
+            .setConstraints(
+                Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
+            )
             .build()
 
         WorkManager
             .getInstance(context)
-            .enqueueUniquePeriodicWork(Constants.SYNC_ACCOUNT_WORKER, ExistingPeriodicWorkPolicy.KEEP, syncWork)
+            .enqueueUniquePeriodicWork(
+                Constants.SYNC_ACCOUNT_WORKER,
+                ExistingPeriodicWorkPolicy.KEEP,
+                syncWork
+            )
     }
 }

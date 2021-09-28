@@ -60,10 +60,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private fun setupInitialDestination() {
         navController.graph = navController.navInflater.inflate(R.navigation.navigation)
             .apply {
-                runBlocking {
-                    startDestination =
-                        if (viewModel.isUserLoggedIn()) R.id.homeFragment
-                        else R.id.loginFragment
+                startDestination = runBlocking {
+                    if (viewModel.showLogin()) R.id.loginFragment
+                    else R.id.homeFragment
                 }
             }
     }

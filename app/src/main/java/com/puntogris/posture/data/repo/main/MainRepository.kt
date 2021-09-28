@@ -1,6 +1,6 @@
 package com.puntogris.posture.data.repo.main
 
-import com.puntogris.posture.data.remote.FirebaseDataSource
+import com.puntogris.posture.data.datasource.remote.FirebaseDataSource
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(

@@ -2,15 +2,13 @@ package com.puntogris.posture.ui.main
 
 import androidx.lifecycle.*
 import com.puntogris.posture.BuildConfig
-import com.puntogris.posture.data.repo.main.MainRepository
-import com.puntogris.posture.data.local.DataStore
+import com.puntogris.posture.data.datasource.local.DataStore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val mainRepository: MainRepository,
     private val dataStore: DataStore
     ): ViewModel() {
 
@@ -26,6 +24,6 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    suspend fun isUserLoggedIn() = mainRepository.isUserLoggedIn() && dataStore.isLoginCompleted()
+    suspend fun showLogin() = dataStore.showLoginPref()
 
 }

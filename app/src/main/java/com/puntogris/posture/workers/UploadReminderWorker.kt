@@ -16,8 +16,7 @@ class UploadReminderWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParams: WorkerParameters,
     private val reminderRepository: ReminderRepository
-):
-    CoroutineWorker(appContext, workerParams) {
+): CoroutineWorker(appContext, workerParams) {
 
     override suspend fun doWork(): Result = withContext(Dispatchers.IO){
         try {

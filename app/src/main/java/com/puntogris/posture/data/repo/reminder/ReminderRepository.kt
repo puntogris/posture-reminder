@@ -6,12 +6,10 @@ import androidx.work.*
 import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.alarm.Notifications
 import com.puntogris.posture.workers.UploadReminderWorker
-import com.puntogris.posture.data.local.room.ReminderDao
-import com.puntogris.posture.data.remote.FirebaseReminderDataSource
+import com.puntogris.posture.data.datasource.local.room.dao.ReminderDao
+import com.puntogris.posture.data.datasource.remote.FirebaseReminderDataSource
 import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.model.ReminderId
-import com.puntogris.posture.utils.Result
-import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.Constants.REMINDER_ID_WORKER_DATA
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
@@ -19,6 +17,8 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.Exception
+import com.puntogris.posture.utils.Result
+import com.puntogris.posture.utils.SimpleResult
 
 class ReminderRepository @Inject constructor(
     private val firebase: FirebaseReminderDataSource,

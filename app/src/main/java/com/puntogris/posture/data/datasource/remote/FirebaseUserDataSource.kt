@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.remote
+package com.puntogris.posture.data.datasource.remote
 
 import com.puntogris.posture.utils.Constants.PUBLIC_PROFILE_COL_GROUP
 import com.puntogris.posture.utils.Constants.PUBLIC_PROFILE_DOC

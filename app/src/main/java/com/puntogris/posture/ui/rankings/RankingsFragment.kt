@@ -3,9 +3,9 @@ package com.puntogris.posture.ui.rankings
 import androidx.fragment.app.viewModels
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentRankingsBinding
-import com.puntogris.posture.utils.RepoResult
 import com.puntogris.posture.model.UserPublicProfile
 import com.puntogris.posture.ui.base.BaseFragmentOptions
+import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,10 +33,10 @@ class RankingsFragment : BaseFragmentOptions<FragmentRankingsBinding>(R.layout.f
         }
     }
 
-    private fun handleResultFromFetchRankings(result: RepoResult<List<UserPublicProfile>>) {
+    private fun handleResultFromFetchRankings(result: Result<List<UserPublicProfile>>) {
         when (result) {
-            is RepoResult.Error -> UiInterface.showSnackBar(getString(R.string.snack_connection_error))
-            is RepoResult.Success -> rankingsAdapter.submitList(result.data)
+            is Result.Error -> UiInterface.showSnackBar(getString(R.string.snack_connection_error))
+            is Result.Success -> rankingsAdapter.submitList(result.data)
         }
     }
 }

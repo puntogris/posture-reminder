@@ -1,6 +1,5 @@
 package com.puntogris.posture.utils
 
-import android.animation.ObjectAnimator
 import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -49,13 +48,6 @@ fun View.gone() {
 
 fun View.visible() {
     visibility = View.VISIBLE
-}
-
-fun View.playShakeAnimation(){
-    ObjectAnimator
-        .ofFloat(this,"translationX", 0f, 25f, -25f, 25f, -25f,15f, -15f, 6f, -6f, 0f)
-        .setDuration(Constants.SHAKE_ANIMATION_DURATION)
-        .start()
 }
 
 fun Int.getHours() = this / 60
@@ -127,9 +119,9 @@ fun Activity.launchWebBrowserIntent(uri: String){
     }
 }
 
-fun Fragment.isIgnoringBatteryOptimizations(): Boolean{
-    val pm = requireContext().getSystemService(PowerManager::class.java)
-    return (pm.isIgnoringBatteryOptimizations(requireActivity().packageName))
+fun Context.isIgnoringBatteryOptimizations(): Boolean{
+    val pm = getSystemService(PowerManager::class.java)
+    return (pm.isIgnoringBatteryOptimizations(packageName))
 }
 
 inline fun Fragment.launchAndRepeatWithViewLifecycle(

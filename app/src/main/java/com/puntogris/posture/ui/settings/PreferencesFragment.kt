@@ -10,7 +10,6 @@ import androidx.preference.PreferenceFragmentCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.R
-import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.Constants.BATTERY_PREF_KEY
 import com.puntogris.posture.utils.Constants.CREDITS_PREF_KEY
@@ -74,7 +73,7 @@ class PreferencesFragment: PreferenceFragmentCompat() {
 
         preference(BATTERY_PREF_KEY){
             setSummary(
-                if (isIgnoringBatteryOptimizations()) R.string.all_in_order
+                if (requireContext().isIgnoringBatteryOptimizations()) R.string.all_in_order
                 else R.string.require_action
             )
             onClick {

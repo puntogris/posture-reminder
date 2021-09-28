@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.remote
+package com.puntogris.posture.data.datasource.remote
 
 import javax.inject.Inject
 

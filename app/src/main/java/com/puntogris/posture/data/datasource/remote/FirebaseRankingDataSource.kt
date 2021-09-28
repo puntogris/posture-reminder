@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.remote
+package com.puntogris.posture.data.datasource.remote
 
 import com.google.firebase.firestore.Query
 import com.puntogris.posture.utils.Constants.EXPERIENCE_FIELD

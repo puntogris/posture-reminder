@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.remote
+package com.puntogris.posture.data.datasource.remote
 
 import com.puntogris.posture.utils.Constants.REMINDERS_COLLECTION
 import com.puntogris.posture.utils.Constants.USERS_COLLECTION

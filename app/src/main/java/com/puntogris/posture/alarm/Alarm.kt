@@ -9,7 +9,7 @@ import androidx.annotation.RequiresApi
 import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.utils.Constants.DAILY_ALARM_TRIGGERED
 import com.puntogris.posture.utils.Constants.REPEATING_ALARM_TRIGGERED
-import com.puntogris.posture.data.local.DataStore
+import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.Utils.getTriggerTime
 import com.puntogris.posture.utils.getHours

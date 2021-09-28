@@ -5,14 +5,15 @@ import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentPortalBinding
 import com.puntogris.posture.model.Exercise
-import com.puntogris.posture.utils.RepoResult
 import com.puntogris.posture.model.UserPublicProfile
 import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.ui.rankings.RankingsAdapter
 import com.puntogris.posture.utils.UiInterface
+import com.puntogris.posture.utils.gone
 import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
+import com.puntogris.posture.utils.Result
 
 @AndroidEntryPoint
 class PortalFragment : BaseFragmentOptions<FragmentPortalBinding>(R.layout.fragment_portal) {
@@ -43,12 +44,12 @@ class PortalFragment : BaseFragmentOptions<FragmentPortalBinding>(R.layout.fragm
         }
     }
 
-    private fun handleResultFromFetchRankings(result: RepoResult<List<UserPublicProfile>>){
+    private fun handleResultFromFetchRankings(result: Result<List<UserPublicProfile>>){
         when(result){
-            is RepoResult.Error -> {
+            is Result.Error -> {
                 UiInterface.showSnackBar(getString(R.string.snack_connection_error))
             }
-            is RepoResult.Success -> {
+            is Result.Success -> {
                 binding.shimmerViewContainer.apply {
                     hideShimmer()
                     stopShimmer()

@@ -2,6 +2,7 @@ package com.puntogris.posture.ui.reminders.new_edit
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.databinding.ReminderNameVhBinding
 import com.puntogris.posture.utils.ReminderUi

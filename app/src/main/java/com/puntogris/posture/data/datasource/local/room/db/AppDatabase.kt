@@ -1,8 +1,11 @@
-package com.puntogris.posture.data.local.room
+package com.puntogris.posture.data.datasource.local.room.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.puntogris.posture.data.datasource.local.room.dao.DayLogsDao
+import com.puntogris.posture.data.datasource.local.room.dao.ReminderDao
+import com.puntogris.posture.data.datasource.local.room.dao.UserDao
 import com.puntogris.posture.model.DayLog
 import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.model.UserPrivateData

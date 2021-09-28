@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.local.room
+package com.puntogris.posture.data.datasource.local.room.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

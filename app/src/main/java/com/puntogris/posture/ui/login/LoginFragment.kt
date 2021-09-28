@@ -1,14 +1,13 @@
 package com.puntogris.posture.ui.login
 
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentLoginBinding
 import com.puntogris.posture.ui.base.BaseLoginFragment
-import com.puntogris.posture.utils.gone
-import com.puntogris.posture.utils.launchWebBrowserIntent
-import com.puntogris.posture.utils.navigateTo
-import com.puntogris.posture.utils.visible
+import com.puntogris.posture.utils.*
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment: BaseLoginFragment<FragmentLoginBinding>(R.layout.fragment_login) {
@@ -33,7 +32,16 @@ class LoginFragment: BaseLoginFragment<FragmentLoginBinding>(R.layout.fragment_l
     }
 
     fun continueAnonymously(){
-        navigateTo(R.id.welcomeFragment)
+        onLoginStarted()
+        lifecycleScope.launch {
+            when(viewModel.registerAnonymousUser()){
+                SimpleResult.Failure -> {
+                    UiInterface.showSnackBar(getString(R.string.snack_general_error))
+                    onLoginError()
+                }
+                SimpleResult.Success -> navigateTo(R.id.welcomeFragment)
+            }
+        }
     }
 
     fun onLoginProblemsClicked(){

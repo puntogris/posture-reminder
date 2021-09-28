@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.puntogris.posture.data.repo.login.LoginRepository
 import com.puntogris.posture.data.repo.user.UserRepository
-import com.puntogris.posture.data.local.DataStore
+import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.utils.capitalizeWords
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

@@ -16,7 +16,6 @@ object Constants {
     const val ROOM_DATABASE_NAME = "posture_reminder_database"
 
     //Other
-    const val SHAKE_ANIMATION_DURATION = 800L
     const val PROGRESS_BAR_SMOOTH_OFFSET = 20
     const val PACKAGE_URI_NAME = "package:com.puntogris.posture"
 
@@ -45,7 +44,7 @@ object Constants {
     const val APP_THEME = "pref_app_theme"
     const val PANDA_ANIMATION = "pref_panda_animation"
     const val REMINDER_STATE_KEY = "reminder_state_key"
-    const val LOGIN_COMPLETED_KEY = "login_completed_key"
+    const val SHOW_LOGIN_KEY = "show_login_key"
 
     //Pref keys
     const val USERNAME_PREF_KEY = "username_preference_key"

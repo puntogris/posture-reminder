@@ -3,9 +3,11 @@ package com.puntogris.posture.ui.rankings
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.puntogris.posture.model.UserPublicProfile
-import com.puntogris.posture.ui.UserPublicProfileDiffCallBack
+import com.puntogris.posture.diffcallback.UserPublicProfileDiffCallBack
 
-class RankingsAdapter: ListAdapter<UserPublicProfile, RankingsViewHolder>(UserPublicProfileDiffCallBack()){
+class RankingsAdapter: ListAdapter<UserPublicProfile, RankingsViewHolder>(
+    UserPublicProfileDiffCallBack()
+){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RankingsViewHolder {
         return RankingsViewHolder.from(parent)

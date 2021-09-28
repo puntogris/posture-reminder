@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.local.room
+package com.puntogris.posture.data.datasource.local
 
 import com.puntogris.posture.R
 import com.puntogris.posture.model.Exercise
@@ -43,5 +43,4 @@ class LocalDataSource {
         longArrayOf(500, 400, 500, 300, 500, 200, 500, 100),
         longArrayOf(200, 500, 200, 500)
     )
-
 }
