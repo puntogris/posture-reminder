@@ -19,4 +19,6 @@ class SyncAccountViewModel @Inject constructor(
     suspend fun logOut(){
         loginRepository.signOutUserFromFirebaseAndGoogle()
     }
+
+    suspend fun showLogin() = loginRepository.getShowLoginPref()
 }

@@ -237,7 +237,7 @@
     </string-array>
 
     <!-- Chin tuck -->
-    <string name="chin_tuck_exercise_title">Chin Tucks</string>
+    <string name="chin_tuck_exercise_title">Chin Tuck</string>
     <string name="chin_tuck_exercise_summary">Classic exercise to get out of a forward head position.</string>
     <string-array name="chin_tuck_exercise_steps">
         <item>This can be done while standing OR sitting</item>
@@ -249,7 +249,7 @@
     </string-array>
 
     <!-- Back extensions -->
-    <string name="back_extensions_exercise_title">Back Extensions</string>
+    <string name="back_extensions_exercise_title">Back Extension</string>
     <string name="back_extension_exercise_summary">This exercise can help open up and EXTEND our body.</string>
     <string-array name="back_extension_exercise_steps">
         <item>This should be done in standing.</item>

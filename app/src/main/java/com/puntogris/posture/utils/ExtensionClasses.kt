@@ -2,7 +2,6 @@ package com.puntogris.posture.utils
 
 import com.puntogris.posture.R
 import com.puntogris.posture.model.ItemData
-import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.model.UserPrivateData
 
 sealed class LoginResult {
@@ -14,6 +13,16 @@ sealed class LoginResult {
 sealed class SimpleResult{
     object Success: SimpleResult()
     object Failure: SimpleResult()
+
+    companion object Factory{
+        inline fun build(function: () -> Unit): SimpleResult =
+            try {
+                function.invoke()
+                Success
+            } catch (e: Exception) {
+                Failure
+            }
+    }
 }
 
 sealed class UserAccount{
@@ -21,9 +30,18 @@ sealed class UserAccount{
     object Registered: UserAccount()
 }
 
-sealed class Result<out T : Any> {
-    data class Success<out T : Any>(val data: T) : Result<T>()
-    data class Error(val exception: Exception) : Result<Nothing>()
+sealed class Result<out E, out V> {
+    data class Success<out V>(val value: V) : Result<Nothing, V>()
+    data class Error<out E>(val exception: Exception) : Result<E, Nothing>()
+
+    companion object Factory{
+        inline fun <V> build(function: () -> V): Result<Exception, V> =
+            try {
+                Success(function.invoke())
+            } catch (e: java.lang.Exception) {
+                Error(e)
+            }
+    }
 }
 
 sealed class RewardExp {

@@ -42,54 +42,37 @@ class LoginRepository @Inject constructor(
         return GoogleSignIn.getClient(context, gso)
     }
 
-    override fun firebaseAuthWithGoogle(idToken: String): StateFlow<LoginResult> {
-        val result = MutableStateFlow<LoginResult>(LoginResult.InProgress)
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
+    override fun firebaseAuthWithGoogle(idToken: String): StateFlow<LoginResult> =
+        MutableStateFlow<LoginResult>(LoginResult.InProgress).also { flow ->
+            val credential = GoogleAuthProvider.getCredential(idToken, null)
 
-        loginFirestore.auth.signInWithCredential(credential)
-            .addOnSuccessListener {
-                val firestoreUser = getUserPrivateDataFromFirebaseUser(it.user)
-                result.value = LoginResult.Success(firestoreUser)
-            }
-            .addOnFailureListener { result.value = LoginResult.Error }
+            loginFirestore.auth.signInWithCredential(credential)
+                .addOnSuccessListener {
+                    flow.value = LoginResult.Success(UserPrivateData.from(it.user))
+                }
+                .addOnFailureListener {
+                    flow.value = LoginResult.Error
+                }
+        }
 
-        return result
-    }
-
-    private fun getUserPrivateDataFromFirebaseUser(user:FirebaseUser?): UserPrivateData{
-        val date = user?.metadata?.creationTimestamp
-        val timestamp = if (date == null) Timestamp.now() else Timestamp((Date(date)))
-        return UserPrivateData(
-            username = user?.displayName.toString().capitalizeWords(),
-            uid = user?.uid.toString(),
-            email = user?.email.toString(),
-            photoUrl = user?.photoUrl.toString(),
-            creationDate = timestamp
-        )
-    }
 
     override fun createGoogleSignInIntent() = getGoogleSignInClient().signInIntent
 
-    override suspend fun signOutUserFromFirebaseAndGoogle(): SimpleResult {
-        return try {
-            dataStore.setShowLoginPref(true)
-            loginFirestore.logOutFromFirebase()
-            getGoogleSignInClient().signOut()
-            WorkManager.getInstance(context).cancelUniqueWork(SYNC_ACCOUNT_WORKER)
-            SimpleResult.Success
-        }catch (e:Exception){
-            SimpleResult.Failure
-        }
+    override suspend fun signOutUserFromFirebaseAndGoogle() = SimpleResult.build {
+        dataStore.setShowLoginPref(true)
+        loginFirestore.logOutFromFirebase()
+        getGoogleSignInClient().signOut()
+        WorkManager.getInstance(context).cancelUniqueWork(SYNC_ACCOUNT_WORKER)
     }
 
+
     override suspend fun singInAnonymously() = withContext(Dispatchers.IO){
-        try {
+        SimpleResult.build {
             val user = UserPrivateData(username = context.getString(R.string.human))
             userDao.insert(user)
             dataStore.setShowLoginPref(false)
-            SimpleResult.Success
-        }catch (e:Exception){
-            SimpleResult.Failure
         }
     }
+
+    override suspend fun getShowLoginPref() = dataStore.showLoginPref()
 }

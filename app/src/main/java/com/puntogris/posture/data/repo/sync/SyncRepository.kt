@@ -7,9 +7,10 @@ import com.puntogris.posture.data.datasource.local.room.dao.UserDao
 import com.puntogris.posture.data.datasource.remote.FirebaseReminderDataSource
 import com.puntogris.posture.data.datasource.remote.FirebaseUserDataSource
 import com.puntogris.posture.model.*
-import com.puntogris.posture.utils.Constants
 import com.puntogris.posture.utils.Constants.EXPERIENCE_FIELD
 import com.puntogris.posture.data.datasource.local.DataStore
+import com.puntogris.posture.utils.Constants.SERVER_TIMESTAMP_FUNCTION
+import com.puntogris.posture.utils.Constants.SYNC_ACCOUNT_WORKER
 import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.UserAccount
 import com.puntogris.posture.workers.SyncAccountWorker
@@ -31,30 +32,26 @@ class SyncRepository @Inject constructor(
 
     override suspend fun syncFirestoreAccountWithRoom(userPrivateData: UserPrivateData): SimpleResult =
         withContext(Dispatchers.IO) {
-            try {
-                val userState = checkIfUserIsNewAndCreateIfNot(userPrivateData)
-                if (userState is UserAccount.Registered) {
-                    syncUserReminders()
-                }
-                setupSyncAccountWorkManager()
-                dataStore.setShowLoginPref(true)
 
-                SimpleResult.Success
-            } catch (e: Exception) {
+            SimpleResult.build {
+                val user = getOnlineUserPrivateData()
+                if (user != null){
+                    checkForLatestDataAndInsertUser(user)
+                    syncUserReminders()
+                }else {
+                    insertNewUserIntoRoomAndFirestore(userPrivateData)
+                }
                 dataStore.setShowLoginPref(false)
-                SimpleResult.Failure
+                setupSyncAccountWorkManager()
             }
         }
 
-    private suspend fun checkIfUserIsNewAndCreateIfNot(user: UserPrivateData): UserAccount {
-        val userDocument = firestoreUser.getUserPrivateDataRef().get().await()
-        return if (!userDocument.exists()) {
-            insertNewUserIntoRoomAndFirestore(user)
-            UserAccount.New
-        } else {
-            checkForLatestDataAndInsertUser(userDocument.toObject(UserPrivateData::class.java)!!)
-            UserAccount.Registered
-        }
+    private suspend fun getOnlineUserPrivateData(): UserPrivateData?{
+        return firestoreUser
+            .getUserPrivateDataRef()
+            .get()
+            .await()
+            .toObject(UserPrivateData::class.java)
     }
 
     private suspend fun checkForLatestDataAndInsertUser(user: UserPrivateData) {
@@ -119,7 +116,7 @@ class SyncRepository @Inject constructor(
 
     private suspend fun getTimestampFromServer(): Long? {
         return firestoreUser.functions
-            .getHttpsCallable("getServerTimestamp")
+            .getHttpsCallable(SERVER_TIMESTAMP_FUNCTION)
             .call()
             .await()
             .data as? Long
@@ -135,7 +132,7 @@ class SyncRepository @Inject constructor(
         WorkManager
             .getInstance(context)
             .enqueueUniquePeriodicWork(
-                Constants.SYNC_ACCOUNT_WORKER,
+                SYNC_ACCOUNT_WORKER,
                 ExistingPeriodicWorkPolicy.KEEP,
                 syncWork
             )

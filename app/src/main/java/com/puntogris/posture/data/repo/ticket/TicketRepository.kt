@@ -25,9 +25,8 @@ class TicketRepository @Inject constructor(
     }
 
     private suspend fun sendTicketToFirestore(ticket: Ticket): SimpleResult = withContext(Dispatchers.IO){
-        try {
+        SimpleResult.build {
             firebase.firestore.collection(TICKET_COLLECTION).add(ticket).await()
-            SimpleResult.Success
-        }catch (e: Exception){ SimpleResult.Failure }
+        }
     }
 }

@@ -23,7 +23,7 @@ class NewReminderViewModel @Inject constructor(
     private val _reminder = MutableLiveData(Reminder())
     val reminder: LiveData<Reminder> = _reminder
 
-    suspend fun saveReminder(): Result<ReminderId> {
+    suspend fun saveReminder(): Result<Exception, ReminderId> {
         return if (reminderIsEdited()) reminderRepository.insertReminder(_reminder.value!!)
         else Result.Success(ReminderId(reminder.value!!.reminderId))
     }

@@ -103,11 +103,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.puntogris.posture.ui.login.LoginFragment"
-        android:label=" ">
-        <action
-            android:id="@+id/action_loginFragment_to_synAccountFragment"
-            app:destination="@id/synAccountFragment" />
-    </fragment>
+        android:label=" "/>
     <fragment
         android:id="@+id/rankingsFragment"
         android:name="com.puntogris.posture.ui.rankings.RankingsFragment"/>
@@ -156,4 +152,7 @@
     <fragment
         android:id="@+id/internalLoginFragment"
         android:name="com.puntogris.posture.ui.login.InternalLoginFragment"/>
+    <action
+        android:id="@+id/action_global_synAccountFragment"
+        app:destination="@id/synAccountFragment" />
 </navigation>

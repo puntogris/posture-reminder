@@ -10,4 +10,5 @@ interface ILoginRepository {
     fun createGoogleSignInIntent(): Intent
     suspend fun signOutUserFromFirebaseAndGoogle(): SimpleResult
     suspend fun singInAnonymously(): SimpleResult
+    suspend fun getShowLoginPref(): Boolean
 }

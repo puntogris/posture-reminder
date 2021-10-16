@@ -11,6 +11,8 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.puntogris.posture.R
 import com.puntogris.posture.alarm.AlarmStatus
 import com.puntogris.posture.databinding.FragmentHomeBinding
@@ -20,6 +22,7 @@ import com.puntogris.posture.utils.Constants.PACKAGE_URI_NAME
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 @AndroidEntryPoint
 class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_home) {
@@ -39,6 +42,16 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
         setupPagerAndTabLayout()
         observeCurrentReminderState()
         initAlarmPermissionLauncherIfSdkS()
+
+//        lifecycleScope.launch {
+//            try{
+//                val uid = Firebase.firestore.collection("users").whereEqualTo("email","puntogrisdev@gmail.com").get().await()
+//                Firebase.firestore.collection("users").document(uid.first().id).delete().await()
+//            }catch(e: Exception){
+//                println(e.localizedMessage)
+//
+//            }
+//        }
     }
 
     private fun setupPagerAndTabLayout(){

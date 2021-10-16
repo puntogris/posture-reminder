@@ -8,7 +8,7 @@ class FcmNotification(
     val message: String
 ){
     companion object{
-        fun from(remoteMessage: RemoteMessage): FcmNotification{
+        fun from(remoteMessage: RemoteMessage): FcmNotification {
             return FcmNotification(
                 uriString = remoteMessage.data["uriString"].toString(),
                 title = remoteMessage.notification?.title.toString(),

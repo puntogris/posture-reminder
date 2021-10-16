@@ -44,7 +44,7 @@ class PortalFragment : BaseFragmentOptions<FragmentPortalBinding>(R.layout.fragm
         }
     }
 
-    private fun handleResultFromFetchRankings(result: Result<List<UserPublicProfile>>){
+    private fun handleResultFromFetchRankings(result: Result<Exception, List<UserPublicProfile>>){
         when(result){
             is Result.Error -> {
                 UiInterface.showSnackBar(getString(R.string.snack_connection_error))
@@ -55,7 +55,7 @@ class PortalFragment : BaseFragmentOptions<FragmentPortalBinding>(R.layout.fragm
                     stopShimmer()
                     gone()
                 }
-                rankingsAdapter.submitList(result.data)
+                rankingsAdapter.submitList(result.value)
             }
         }
     }

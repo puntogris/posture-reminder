@@ -7,6 +7,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentSynAccountBinding
+import com.puntogris.posture.model.UserPrivateData
 import com.puntogris.posture.ui.base.BaseFragment
 import com.puntogris.posture.utils.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,14 +21,33 @@ class SynAccountFragment : BaseFragment<FragmentSynAccountBinding>(R.layout.frag
 
     override fun initializeViews() {
         binding.fragment = this
-        startAccountSync()
+        startAccountSync(args.userPrivateData)
     }
 
-    private fun startAccountSync(){
+    private fun startAccountSync(userPrivateData: UserPrivateData){
         launchAndRepeatWithViewLifecycle(Lifecycle.State.CREATED) {
-            when(viewModel.synAccountWith(args.userPrivateData)){
+            when(viewModel.synAccountWith(userPrivateData)){
                 SimpleResult.Failure -> onSyncAccountFailure()
                 SimpleResult.Success -> onSyncAccountSuccess()
+            }
+        }
+    }
+
+    private fun onSyncAccountFailure(){
+        binding.apply {
+            animationView.playAnimationOnce(R.raw.error)
+            title.setText(R.string.account_sync_error)
+
+            with(continueButton){
+                setText(R.string.action_exit)
+                isEnabled = true
+                setOnClickListener {
+                    lifecycleScope.launch {
+                        viewModel.logOut()
+                        findNavController().navigateUp()
+                        UiInterface.showSnackBar(getString(R.string.snack_connection_error))
+                    }
+                }
             }
         }
     }
@@ -35,29 +55,16 @@ class SynAccountFragment : BaseFragment<FragmentSynAccountBinding>(R.layout.frag
     private fun onSyncAccountSuccess(){
         binding.apply {
             animationView.playAnimationOnce(R.raw.success)
+            title.setText(R.string.account_sync_success)
             continueButton.isEnabled = true
-            title.text = getString(R.string.account_sync_success)
-        }
-    }
-
-    private fun onSyncAccountFailure(){
-        binding.apply {
-            animationView.playAnimationOnce(R.raw.error)
-            title.text = getString(R.string.account_sync_error)
-            continueButton.text = getString(R.string.action_exit)
-            continueButton.isEnabled = true
-            continueButton.setOnClickListener {
-                lifecycleScope.launch {
-                    viewModel.logOut()
-                    findNavController().navigateUp()
-                    UiInterface.showSnackBar(getString(R.string.snack_connection_error))
-                }
-            }
         }
     }
 
     fun onContinueButtonClicked(){
-        navigateTo(R.id.action_synAccountFragment_to_welcomeFragment)
+        lifecycleScope.launch {
+            if (viewModel.showLogin()) navigateTo(R.id.action_synAccountFragment_to_welcomeFragment)
+            else navigateTo(R.id.homeFragment)
+        }
     }
 
 }

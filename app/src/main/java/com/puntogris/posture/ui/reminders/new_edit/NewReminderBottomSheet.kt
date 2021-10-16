@@ -92,7 +92,7 @@ class NewReminderBottomSheet : BaseBottomSheetFragment<BottomSheetNewReminderBin
         }
     }
 
-    private fun handleResultOfSavingReminder(result: Result<ReminderId>){
+    private fun handleResultOfSavingReminder(result: Result<Exception, ReminderId>){
         when(result){
             is Result.Error -> {
                 showSnackBar(R.string.snack_create_reminder_error)

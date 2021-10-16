@@ -31,7 +31,7 @@ class ReminderRepository @Inject constructor(
     override fun getAllRemindersFromRoomLiveData() = reminderDao.getAllRemindersLiveData()
 
     override suspend fun deleteReminder(reminder: Reminder): SimpleResult = withContext(Dispatchers.IO){
-        try {
+        SimpleResult.build {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 notifications.removeNotificationChannelWithId(reminder.reminderId)
             }
@@ -39,15 +39,11 @@ class ReminderRepository @Inject constructor(
                 firebase.getReminderDocumentRefWithId(reminder.reminderId).delete().await()
             }
             reminderDao.delete(reminder)
-
-            SimpleResult.Success
-        }catch (e:Exception){
-            SimpleResult.Failure
         }
     }
 
-    override suspend fun insertReminder(reminder: Reminder): Result<ReminderId> = withContext(Dispatchers.IO){
-        try {
+    override suspend fun insertReminder(reminder: Reminder): Result<Exception, ReminderId> = withContext(Dispatchers.IO){
+        Result.build {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 notifications.createChannelForReminderSdkO(reminder)
             }
@@ -57,13 +53,10 @@ class ReminderRepository @Inject constructor(
             if (reminder.uid.isNotBlank()){
                 registerFirestoreUploadReminderWorker(reminder.reminderId)
             }
-
             reminderDao.getActiveReminder()?.let {
                 if (it.reminderId == reminder.reminderId) alarm.refreshAlarms(reminder)
             }
-            Result.Success(ReminderId(reminder.reminderId))
-        }catch (e:Exception){
-            Result.Error(e)
+            ReminderId(reminder.reminderId)
         }
     }
 

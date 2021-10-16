@@ -10,7 +10,7 @@ object Constants {
     const val EXPERIENCE_PER_NOTIFICATION = 10
     const val EXPERIENCE_PER_LEVEL = 1000
     const val MAX_EXPERIENCE_PER_DAY = 100
-    const val MAX_EXPERIENCE_OFFSET = 200
+    const val BASE_DATE_MILLIS = 1633126950000 //Friday, 1 October 2021 22:22:30
 
     //Room
     const val ROOM_DATABASE_NAME = "posture_reminder_database"
@@ -70,5 +70,8 @@ object Constants {
     const val PUBLIC_PROFILE_DOC = "profile"
     const val USER_NAME_FIELD = "name"
     const val TICKET_COLLECTION = "tickets"
+
+    //Functions
+    const val SERVER_TIMESTAMP_FUNCTION = "getServerTimestamp"
 
 }

@@ -15,13 +15,13 @@ class SyncAccountWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParams: WorkerParameters,
     private val syncRepository: SyncRepository
-): CoroutineWorker(appContext, workerParams) {
+) : CoroutineWorker(appContext, workerParams) {
 
-    override suspend fun doWork(): Result = withContext(Dispatchers.IO){
-         try {
-             syncRepository.syncUserExperienceInFirestoreWithRoom()
-             Result.success()
-        }catch (e:Exception){
+    override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
+        try {
+            syncRepository.syncUserExperienceInFirestoreWithRoom()
+            Result.success()
+        } catch (e: Exception) {
             Result.failure()
         }
     }

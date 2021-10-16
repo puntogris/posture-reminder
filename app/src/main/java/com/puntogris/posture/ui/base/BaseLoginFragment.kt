@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
+import com.puntogris.posture.NavigationDirections
 import com.puntogris.posture.R
 import com.puntogris.posture.ui.login.LoginFragmentDirections
 import com.puntogris.posture.ui.login.LoginViewModel
@@ -18,16 +19,10 @@ import com.puntogris.posture.utils.UiInterface
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-interface LoginInterface{
-    fun onLoginStarted()
-    fun onLoginError()
-    fun onLoginFinished()
-    val viewModel: LoginViewModel
-}
 abstract class BaseLoginFragment<T: ViewDataBinding>(@LayoutRes override val layout: Int):
-    BaseFragment<T>(layout), LoginInterface {
+    BaseFragment<T>(layout), LoginConfiguration {
 
-    lateinit var loginActivityResultLauncher: ActivityResultLauncher<Intent>
+    private lateinit var loginActivityResultLauncher: ActivityResultLauncher<Intent>
 
     override fun initializeViews() {
         super.initializeViews()
@@ -80,7 +75,7 @@ abstract class BaseLoginFragment<T: ViewDataBinding>(@LayoutRes override val lay
             }
             is LoginResult.Success -> {
                 val action =
-                    LoginFragmentDirections.actionLoginFragmentToSynAccountFragment(result.userPrivateData)
+                    NavigationDirections.actionGlobalSynAccountFragment(result.userPrivateData)
                 findNavController().navigate(action)
             }
         }

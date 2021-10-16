@@ -12,27 +12,21 @@ class RankingsRepository @Inject constructor(
     private val rankingsFirestore: FirebaseRankingDataSource
 ): IRankingsRepository {
 
-    override suspend fun getAllRankingsFirestore(): Result<List<UserPublicProfile>> = withContext(Dispatchers.IO) {
-        try {
-            val result = rankingsFirestore.getRankingsQueryWithLimit()
+    override suspend fun getAllRankingsFirestore(): Result<Exception, List<UserPublicProfile>> = withContext(Dispatchers.IO) {
+        Result.build {
+            rankingsFirestore.getRankingsQueryWithLimit()
                 .get()
                 .await()
                 .toObjects(UserPublicProfile::class.java)
-            Result.Success(result)
-        }catch (e:Exception){
-            Result.Error(e)
         }
     }
 
-    override suspend fun getTopThreeRankingsFirestore(): Result<List<UserPublicProfile>> = withContext(Dispatchers.IO) {
-        try {
-            val result = rankingsFirestore.getRankingsQueryWithLimit(3)
+    override suspend fun getTopThreeRankingsFirestore(): Result<Exception, List<UserPublicProfile>> = withContext(Dispatchers.IO) {
+        Result.build {
+            rankingsFirestore.getRankingsQueryWithLimit(3)
                 .get()
                 .await()
                 .toObjects(UserPublicProfile::class.java)
-            Result.Success(result)
-        }catch (e:Exception){
-            Result.Error(e)
         }
     }
 
