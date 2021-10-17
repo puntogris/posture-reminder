@@ -28,6 +28,9 @@ class VibrationSelectorDialog : DialogFragment() {
 
         vibrator = requireActivity().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?
 
+        val vibrationPatterns = LocalDataSource().vibrationPatterns
+        val patternsTittleList = vibrationPatterns.map { getString(it.title) }.toTypedArray()
+
         return MaterialAlertDialogBuilder(requireContext(), R.style.MaterialAlertDialog_rounded)
             .setTitle(R.string.vibration_picker_title)
             .setPositiveButton(R.string.action_done) { _, _ ->
@@ -35,10 +38,10 @@ class VibrationSelectorDialog : DialogFragment() {
                 findNavController().navigateUp()
             }
             .setNegativeButton(R.string.action_cancel) { _, _ -> dismiss() }
-            .setSingleChoiceItems(R.array.vibrationPatterns, args.savedPosition) { _, position ->
+            .setSingleChoiceItems(patternsTittleList, args.savedPosition) { _, position ->
 
                 if (position != 0) {
-                    val pattern = LocalDataSource().vibrationPatterns[position]
+                    val pattern = vibrationPatterns[position].pattern
                     vibrator?.let {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
                             it.vibrate(VibrationEffect.createWaveform(pattern, -1))

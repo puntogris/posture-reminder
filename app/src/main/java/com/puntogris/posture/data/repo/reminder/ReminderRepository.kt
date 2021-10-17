@@ -44,28 +44,34 @@ class ReminderRepository @Inject constructor(
 
     override suspend fun insertReminder(reminder: Reminder): Result<Exception, ReminderId> = withContext(Dispatchers.IO){
         Result.build {
+
+            if (reminder.reminderId.isBlank()) {
+                fillIdsIfNewReminder(reminder)
+            }
+            if (reminder.uid.isNotBlank()){
+                registerUploadServerReminderWorker(reminder.reminderId)
+            }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 notifications.createChannelForReminderSdkO(reminder)
             }
-            if (reminder.reminderId.isBlank()) fillIdsIfNewReminder(reminder)
-            reminderDao.insert(reminder)
 
-            if (reminder.uid.isNotBlank()){
-                registerFirestoreUploadReminderWorker(reminder.reminderId)
-            }
+            reminderDao.insert(reminder)
             reminderDao.getActiveReminder()?.let {
                 if (it.reminderId == reminder.reminderId) alarm.refreshAlarms(reminder)
             }
+
             ReminderId(reminder.reminderId)
         }
     }
 
     private fun fillIdsIfNewReminder(reminder: Reminder){
         reminder.reminderId = firebase.getNewReminderDocumentRef().id
-        if (firebase.currentUser() != null) firebase.getCurrentUserId()
+        firebase.currentUser()?.let {
+            reminder.uid = it.uid
+        }
     }
 
-    private fun registerFirestoreUploadReminderWorker(reminderId: String){
+    private fun registerUploadServerReminderWorker(reminderId: String){
         val reminderData = Data.Builder().putString(REMINDER_ID_WORKER_DATA, reminderId).build()
         val constraints = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
 
@@ -83,7 +89,7 @@ class ReminderRepository @Inject constructor(
         reminderDao.getActiveReminder()
     }
 
-    override suspend fun insertReminderIntoFirestoreFromRoom(reminderId: String){
+    override suspend fun insertLocalReminderToServer(reminderId: String){
         reminderDao.getReminderWithId(reminderId)?.let {
             firebase.getReminderDocumentRefWithId(reminderId).set(it).await()
         }

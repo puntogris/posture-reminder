@@ -46,18 +46,15 @@ class SoundSelectorDialog: DialogFragment() {
     }
 
     private fun listRingTones(): ArrayList<ToneItem> {
-        val manager = RingtoneManager(requireContext())
-        manager.setType(RingtoneManager.TYPE_NOTIFICATION)
         val toneItems = ArrayList<ToneItem>()
         toneItems.add(ToneItem(getString(R.string.sound_tone_item_none), "/"))
 
+        val manager = RingtoneManager(requireContext())
+        manager.setType(RingtoneManager.TYPE_NOTIFICATION)
+
         manager.cursor?.let {
             while (it.moveToNext()) {
-                val id = it.getString(RingtoneManager.ID_COLUMN_INDEX)
-                val title = it.getString(RingtoneManager.TITLE_COLUMN_INDEX)
-                val uri = it.getString(RingtoneManager.URI_COLUMN_INDEX)
-                val toneItem = ToneItem(title, "$uri/$id")
-                toneItems.add(toneItem)
+                toneItems.add(ToneItem.from(it))
             }
         }
         return toneItems

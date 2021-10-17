@@ -277,6 +277,12 @@
     <string name="panda_credits">Animación del panda por @ucilucil</string>
     <string name="bottom_nav_icons_credit">Iconos menú inferior por Flaticon</string>
 
+    <!-- Vibration Patterns -->
+    <string name="disabled_pattern">Desactivado</string>
+    <string name="normal_pattern">Normal</string>
+    <string name="stairs_pattern">Escalera</string>
+    <string name="fast_pattern">Rápido</string>
+
     <!-- Arrays -->
     <string-array name="ticket_types">
         <item>Problema</item>
@@ -291,13 +297,6 @@
         <item>Viernes</item>
         <item>Sabado</item>
         <item>Doming</item>
-    </string-array>
-
-    <string-array name="vibrationPatterns">
-        <item>Desactivado</item>
-        <item>Normal</item>
-        <item>Escalera</item>
-        <item>Rápido</item>
     </string-array>
 
     <string-array name="theme_names">

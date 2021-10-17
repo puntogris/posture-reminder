@@ -12,5 +12,5 @@ interface IReminderRepository {
     suspend fun insertReminder(reminder: Reminder): Result<Exception, ReminderId>
     fun getActiveReminderLiveData(): LiveData<Reminder?>
     suspend fun getActiveReminder(): Reminder?
-    suspend fun insertReminderIntoFirestoreFromRoom(reminderId: String)
+    suspend fun insertLocalReminderToServer(reminderId: String)
 }

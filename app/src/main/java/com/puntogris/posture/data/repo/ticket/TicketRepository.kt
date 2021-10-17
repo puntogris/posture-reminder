@@ -7,7 +7,6 @@ import com.puntogris.posture.utils.SimpleResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 import javax.inject.Inject
 
 class TicketRepository @Inject constructor(

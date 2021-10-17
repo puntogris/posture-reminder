@@ -1,3 +1,4 @@
 package com.puntogris.posture.model
 
-class ReminderId(val value: String)
+@JvmInline
+value class ReminderId(val value: String)

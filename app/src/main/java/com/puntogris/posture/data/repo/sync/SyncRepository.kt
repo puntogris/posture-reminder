@@ -94,9 +94,9 @@ class SyncRepository @Inject constructor(
             val uid = firestoreUser.getCurrentUserId()
             val batch = firestoreReminder.runBatch()
 
-            localReminders.forEach {
-                it.uid = uid
-                batch.set(firestoreReminder.getReminderDocumentRefWithId(it.reminderId), it)
+            localReminders.forEach { reminder ->
+                reminder.uid = uid
+                batch.set(firestoreReminder.getReminderDocumentRefWithId(reminder.reminderId), reminder)
             }
 
             reminderDao.insert(localReminders)

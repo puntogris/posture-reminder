@@ -9,12 +9,12 @@ import javax.inject.Inject
 import com.puntogris.posture.utils.Result
 
 class RankingsRepository @Inject constructor(
-    private val rankingsFirestore: FirebaseRankingDataSource
+    private val rankingsFirebase: FirebaseRankingDataSource
 ): IRankingsRepository {
 
     override suspend fun getAllRankingsFirestore(): Result<Exception, List<UserPublicProfile>> = withContext(Dispatchers.IO) {
         Result.build {
-            rankingsFirestore.getRankingsQueryWithLimit()
+            rankingsFirebase.getRankingsQueryWithLimit()
                 .get()
                 .await()
                 .toObjects(UserPublicProfile::class.java)
@@ -23,7 +23,7 @@ class RankingsRepository @Inject constructor(
 
     override suspend fun getTopThreeRankingsFirestore(): Result<Exception, List<UserPublicProfile>> = withContext(Dispatchers.IO) {
         Result.build {
-            rankingsFirestore.getRankingsQueryWithLimit(3)
+            rankingsFirebase.getRankingsQueryWithLimit(3)
                 .get()
                 .await()
                 .toObjects(UserPublicProfile::class.java)

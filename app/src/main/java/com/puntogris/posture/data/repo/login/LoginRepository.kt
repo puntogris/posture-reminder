@@ -5,8 +5,6 @@ import androidx.work.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.firebase.Timestamp
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.R
@@ -17,18 +15,16 @@ import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.datasource.local.room.dao.UserDao
 import com.puntogris.posture.utils.LoginResult
 import com.puntogris.posture.utils.SimpleResult
-import com.puntogris.posture.utils.capitalizeWords
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.withContext
-import java.util.*
 import javax.inject.Inject
 
 class LoginRepository @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val loginFirestore: FirebaseLoginDataSource,
+    private val loginFirebase: FirebaseLoginDataSource,
     private val dataStore: DataStore,
     private val userDao: UserDao
 ): ILoginRepository {
@@ -46,7 +42,7 @@ class LoginRepository @Inject constructor(
         MutableStateFlow<LoginResult>(LoginResult.InProgress).also { flow ->
             val credential = GoogleAuthProvider.getCredential(idToken, null)
 
-            loginFirestore.auth.signInWithCredential(credential)
+            loginFirebase.auth.signInWithCredential(credential)
                 .addOnSuccessListener {
                     flow.value = LoginResult.Success(UserPrivateData.from(it.user))
                 }
@@ -58,10 +54,10 @@ class LoginRepository @Inject constructor(
 
     override fun createGoogleSignInIntent() = getGoogleSignInClient().signInIntent
 
-    override suspend fun signOutUserFromFirebaseAndGoogle() = SimpleResult.build {
-        dataStore.setShowLoginPref(true)
-        loginFirestore.logOutFromFirebase()
+    override suspend fun signOutUser() = SimpleResult.build {
+        loginFirebase.signOutFromFirebase()
         getGoogleSignInClient().signOut()
+        dataStore.setShowLoginPref(true)
         WorkManager.getInstance(context).cancelUniqueWork(SYNC_ACCOUNT_WORKER)
     }
 

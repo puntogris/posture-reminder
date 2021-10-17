@@ -33,5 +33,5 @@ class SettingsViewModel @Inject constructor(
 
     fun isUserLoggedIn() = userRepository.isUserLoggedIn()
 
-    suspend fun logOut() = loginRepository.signOutUserFromFirebaseAndGoogle()
+    suspend fun logOut() = loginRepository.signOutUser()
 }

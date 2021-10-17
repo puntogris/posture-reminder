@@ -12,8 +12,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
 import com.puntogris.posture.NavigationDirections
 import com.puntogris.posture.R
-import com.puntogris.posture.ui.login.LoginFragmentDirections
-import com.puntogris.posture.ui.login.LoginViewModel
 import com.puntogris.posture.utils.LoginResult
 import com.puntogris.posture.utils.UiInterface
 import kotlinx.coroutines.flow.collect

@@ -2,6 +2,7 @@ package com.puntogris.posture.data.datasource.local
 
 import com.puntogris.posture.R
 import com.puntogris.posture.model.Exercise
+import com.puntogris.posture.model.VibrationPattern
 
 class LocalDataSource {
 
@@ -38,9 +39,10 @@ class LocalDataSource {
     )
 
     val vibrationPatterns = listOf(
-        longArrayOf(),
-        longArrayOf(500, 400, 500, 400),
-        longArrayOf(500, 400, 500, 300, 500, 200, 500, 100),
-        longArrayOf(200, 500, 200, 500)
+        VibrationPattern(R.string.disabled_pattern, longArrayOf()),
+        VibrationPattern(R.string.normal_pattern, longArrayOf(500, 400, 500, 400)),
+        VibrationPattern(R.string.stairs_pattern, longArrayOf(500, 400, 500, 300, 500, 200, 500, 100)),
+        VibrationPattern(R.string.fast_pattern, longArrayOf(200, 500, 200, 500))
     )
+
 }

@@ -4,7 +4,7 @@ import javax.inject.Inject
 
 class FirebaseLoginDataSource @Inject constructor(): FirebaseDataSource() {
 
-    fun logOutFromFirebase(){
+    fun signOutFromFirebase(){
         auth.signOut()
     }
 }

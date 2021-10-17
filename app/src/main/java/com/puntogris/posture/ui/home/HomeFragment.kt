@@ -11,18 +11,18 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import com.puntogris.posture.R
 import com.puntogris.posture.alarm.AlarmStatus
 import com.puntogris.posture.databinding.FragmentHomeBinding
 import com.puntogris.posture.ui.base.BaseFragmentOptions
-import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.Constants.PACKAGE_URI_NAME
+import com.puntogris.posture.utils.UiInterface
+import com.puntogris.posture.utils.Utils
+import com.puntogris.posture.utils.navigateTo
+import com.puntogris.posture.utils.setPageFadeTransformer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 
 @AndroidEntryPoint
 class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_home) {

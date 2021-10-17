@@ -104,7 +104,6 @@ class NewReminderBottomSheet : BaseBottomSheetFragment<BottomSheetNewReminderBin
         }
     }
 
-
     private fun onReminderItemClicked(reminderUi: ReminderUi) {
         when (reminderUi) {
             is ReminderUi.Color -> openColorPicker()

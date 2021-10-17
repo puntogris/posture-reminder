@@ -17,7 +17,7 @@ class SyncAccountViewModel @Inject constructor(
         syncRepository.syncFirestoreAccountWithRoom(userPrivateData)
 
     suspend fun logOut(){
-        loginRepository.signOutUserFromFirebaseAndGoogle()
+        loginRepository.signOutUser()
     }
 
     suspend fun showLogin() = loginRepository.getShowLoginPref()
