@@ -12,7 +12,6 @@ import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.utils.Constants.SERVER_TIMESTAMP_FUNCTION
 import com.puntogris.posture.utils.Constants.SYNC_ACCOUNT_WORKER
 import com.puntogris.posture.utils.SimpleResult
-import com.puntogris.posture.utils.UserAccount
 import com.puntogris.posture.workers.SyncAccountWorker
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
@@ -32,21 +31,20 @@ class SyncRepository @Inject constructor(
 
     override suspend fun syncFirestoreAccountWithRoom(userPrivateData: UserPrivateData): SimpleResult =
         withContext(Dispatchers.IO) {
-
             SimpleResult.build {
-                val user = getOnlineUserPrivateData()
-                if (user != null){
-                    checkForLatestDataAndInsertUser(user)
+                val serverUser = getUserFromServer()
+                if (serverUser != null) {
+                    compareLatestUserData(serverUser)
                     syncUserReminders()
-                }else {
-                    insertNewUserIntoRoomAndFirestore(userPrivateData)
+                } else {
+                    insertNewUser(userPrivateData)
                 }
                 dataStore.setShowLoginPref(false)
                 setupSyncAccountWorkManager()
             }
         }
 
-    private suspend fun getOnlineUserPrivateData(): UserPrivateData?{
+    private suspend fun getUserFromServer(): UserPrivateData? {
         return firestoreUser
             .getUserPrivateDataRef()
             .get()
@@ -54,13 +52,18 @@ class SyncRepository @Inject constructor(
             .toObject(UserPrivateData::class.java)
     }
 
-    private suspend fun checkForLatestDataAndInsertUser(user: UserPrivateData) {
-        val roomUser = userDao.getUser()
-        if (roomUser != null && roomUser.uid == roomUser.uid && roomUser.experience > user.experience) return
-        else userDao.insert(user)
+    private suspend fun compareLatestUserData(serverUser: UserPrivateData) {
+        val localUser = userDao.getUser()
+        if (
+            localUser == null ||
+            localUser.uid != serverUser.uid ||
+            localUser.experience < serverUser.experience
+        ) {
+            userDao.insert(serverUser)
+        }
     }
 
-    private suspend fun insertNewUserIntoRoomAndFirestore(user: UserPrivateData) {
+    private suspend fun insertNewUser(user: UserPrivateData) {
         userDao.insert(user)
 
         firestoreUser.runBatch().apply {
