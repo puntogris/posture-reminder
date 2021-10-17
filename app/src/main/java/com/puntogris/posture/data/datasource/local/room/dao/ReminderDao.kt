@@ -34,7 +34,7 @@ interface ReminderDao {
     fun getAllRemindersLiveData(): LiveData<List<Reminder>>
 
     @Query("SELECT * FROM reminder WHERE uid = ''")
-    suspend fun getAllEmptyReminders(): List<Reminder>
+    suspend fun getRemindersNotSynced(): List<Reminder>
 
     @Query("SELECT reminderId FROM reminder")
     suspend fun getAllRemindersIds(): List<String>

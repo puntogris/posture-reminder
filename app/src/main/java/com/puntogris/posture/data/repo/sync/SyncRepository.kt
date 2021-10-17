@@ -29,7 +29,7 @@ class SyncRepository @Inject constructor(
     @ApplicationContext private val context: Context
 ) : ISyncRepository {
 
-    override suspend fun syncFirestoreAccountWithRoom(userPrivateData: UserPrivateData): SimpleResult =
+    override suspend fun syncFirestoreAccountWithRoom(loginUser: UserPrivateData): SimpleResult =
         withContext(Dispatchers.IO) {
             SimpleResult.build {
                 val serverUser = getUserFromServer()
@@ -37,7 +37,7 @@ class SyncRepository @Inject constructor(
                     compareLatestUserData(serverUser)
                     syncUserReminders()
                 } else {
-                    insertNewUser(userPrivateData)
+                    insertNewUser(loginUser)
                 }
                 dataStore.setShowLoginPref(false)
                 setupSyncAccountWorkManager()
@@ -73,11 +73,11 @@ class SyncRepository @Inject constructor(
     }
 
     private suspend fun syncUserReminders() {
-        insertOnlineRemindersIntoLocalDb()
-        checkForNotSyncedLocalReminders()
+        insertServerRemindersIntoLocal()
+        insertLocalRemindersIntoServer()
     }
 
-    private suspend fun insertOnlineRemindersIntoLocalDb() {
+    private suspend fun insertServerRemindersIntoLocal() {
         val firestoreReminders = firestoreReminder
             .getUserRemindersQuery()
             .get()
@@ -87,19 +87,19 @@ class SyncRepository @Inject constructor(
         reminderDao.insertRemindersIfNotInRoom(firestoreReminders)
     }
 
-    private suspend fun checkForNotSyncedLocalReminders() {
-        val roomReminders = reminderDao.getAllEmptyReminders()
+    private suspend fun insertLocalRemindersIntoServer() {
+        val localReminders = reminderDao.getRemindersNotSynced()
 
-        if (roomReminders.isNotEmpty()) {
+        if (localReminders.isNotEmpty()) {
             val uid = firestoreUser.getCurrentUserId()
             val batch = firestoreReminder.runBatch()
 
-            roomReminders.forEach {
+            localReminders.forEach {
                 it.uid = uid
                 batch.set(firestoreReminder.getReminderDocumentRefWithId(it.reminderId), it)
             }
 
-            reminderDao.insert(roomReminders)
+            reminderDao.insert(localReminders)
             batch.commit().await()
         }
     }
