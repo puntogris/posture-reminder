@@ -62,4 +62,7 @@ class HomeViewModel @Inject constructor(
     @RequiresApi(Build.VERSION_CODES.S)
     fun canScheduleExactAlarms() = alarm.canScheduleExactAlarms()
 
+    fun getActiveReminder() = reminderRepository.getActiveReminderLiveData()
+
+
 }

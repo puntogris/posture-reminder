@@ -180,6 +180,7 @@
     <string name="selected_reminder">Recordatorio seleccionado</string>
     <string name="see_all_reminders">Ver mis recordatorios</string>
     <string name="no_reminders_found_alert">No encontramos un recordatorio activo en tu cuenta, te invitamos a crear uno nuevo y seleccionarlo.</string>
+    <string name="manage_account_reminders">Administre de forma rapida sus recordatorios, créelos, edítelos y elimínelos.</string>
 
     <!-- Other -->
     <string name="snack_configuration_updated">Ajustes actualizados. Navega a el inicio para activar el recordatorio.</string>

@@ -3,6 +3,7 @@ package com.puntogris.posture.utils
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -11,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
 import androidx.databinding.BindingAdapter
 import com.db.williamchart.view.DonutChartView
+import com.google.android.material.button.MaterialButton
 import com.puntogris.posture.R
 import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.utils.Constants.EXPERIENCE_PER_LEVEL
@@ -189,4 +191,28 @@ fun TextView.setUserRankingName(name: String){
         }
         newName
     }
+}
+
+@BindingAdapter("offToggleButton")
+fun MaterialButton.setOffToggleButton(isReminderActive: Boolean){
+    val (color, text)  =
+        if (isReminderActive) R.color.off to "off"
+        else R.color.grey to null
+
+    setText(text)
+    setBackgroundColor(getColor(context, color))
+}
+
+@BindingAdapter("onToggleButton")
+fun MaterialButton.setOnToggleButton(isReminderActive: Boolean){
+    val (color, text)  =
+        if (isReminderActive) R.color.grey to null
+        else R.color.on to "on"
+    setText(text)
+    setBackgroundColor(getColor(context, color))
+}
+
+@BindingAdapter("toggleSummary")
+fun TextView.setToggleSummary(isReminderActive: Boolean){
+    setText(if (isReminderActive) R.string.alarm_on else R.string.alarm_off)
 }

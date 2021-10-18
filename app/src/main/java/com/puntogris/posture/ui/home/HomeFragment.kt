@@ -10,16 +10,15 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.posture.R
 import com.puntogris.posture.alarm.AlarmStatus
 import com.puntogris.posture.databinding.FragmentHomeBinding
+import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.ui.base.BaseFragmentOptions
+import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.Constants.PACKAGE_URI_NAME
-import com.puntogris.posture.utils.UiInterface
-import com.puntogris.posture.utils.Utils
-import com.puntogris.posture.utils.navigateTo
-import com.puntogris.posture.utils.setPageFadeTransformer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -42,21 +41,26 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
         setupPagerAndTabLayout()
         observeCurrentReminderState()
         initAlarmPermissionLauncherIfSdkS()
+        observeActiveReminderAndHandleResult()
+
+        binding.toggleReminder.buttonToggleGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
+            viewModel.toggleAlarm()
+        }
     }
 
     private fun setupPagerAndTabLayout(){
         val pagerAdapter = DayLogHomeAdapter()
-        subscribeUi(pagerAdapter)
+        subscribePager(pagerAdapter)
 
-        binding.pager.apply {
+        binding.usagePager.pager.apply {
             adapter = pagerAdapter
             setPageFadeTransformer()
         }
-        mediator = TabLayoutMediator(binding.tabLayout, binding.pager) { _, _ -> }
+        mediator = TabLayoutMediator(binding.usagePager.tabLayout, binding.usagePager.pager) { _, _ -> }
         mediator?.attach()
     }
 
-    private fun subscribeUi(adapter: DayLogHomeAdapter){
+    private fun subscribePager(adapter: DayLogHomeAdapter){
         viewModel.getLastTwoDaysHistory().observe(viewLifecycleOwner){
             adapter.updateList(it)
         }
@@ -99,12 +103,41 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
         }
     }
 
-
     fun onToggleReminderClicked(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !viewModel.canScheduleExactAlarms()) {
             showSnackWithPermissionAction()
         }
         else viewModel.toggleAlarm()
+    }
+
+    fun onNavigateToRemindersClicked(){
+        navigateTo(R.id.manageRemindersBottomSheet)
+    }
+
+    private fun observeActiveReminderAndHandleResult(){
+        viewModel.getActiveReminder().observe(viewLifecycleOwner){
+            handleResultActiveReminder(it)
+        }
+    }
+
+    private fun handleResultActiveReminder(reminder: Reminder?){
+        if (reminder != null) showActiveReminderUi(reminder)
+        else showNoActiveReminderFoundUi()
+    }
+
+    private fun showActiveReminderUi(reminder: Reminder){
+        binding.apply {
+            activeReminder.reminder = reminder
+            activeReminder.root.visible()
+            binding.reminderNotFoundGroup.gone()
+        }
+    }
+
+    private fun showNoActiveReminderFoundUi(){
+        binding.apply {
+            activeReminder.root.gone()
+            reminderNotFoundGroup.visible()
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.S)
@@ -124,10 +157,15 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
         })
     }
 
+    fun onNavigateToEditReminder(reminder: Reminder){
+        val action = HomeFragmentDirections.actionHomeFragmentToNewReminderBottomSheet(reminder)
+        findNavController().navigate(action)
+    }
+
     override fun onDestroyView() {
         mediator?.detach()
         mediator = null
-        binding.pager.adapter = null
+        binding.usagePager.pager.adapter = null
         super.onDestroyView()
     }
 }

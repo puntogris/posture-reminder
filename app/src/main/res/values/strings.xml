@@ -193,6 +193,7 @@
     <string name="selected_reminder">Selected reminder</string>
     <string name="see_all_reminders">See my reminders</string>
     <string name="no_reminders_found_alert">We did not find an active reminder in your account, we invite you to create a new one and select it.</string>
+    <string name="manage_account_reminders">Quickly manage your reminders, create, edit and delete them.</string>
 
     <!-- Other -->
     <string name="snack_configuration_updated">Settings updated successfully. Navigate to home to activate the reminder.</string>

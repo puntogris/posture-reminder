@@ -21,34 +21,7 @@ class AccountFragment : BaseFragmentOptions<FragmentAccountBinding>(R.layout.fra
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        observeActiveReminderAndHandleResult()
         setupBarChart()
-    }
-
-    private fun observeActiveReminderAndHandleResult(){
-        viewModel.getActiveReminder().observe(viewLifecycleOwner){
-            handleResultActiveReminder(it)
-        }
-    }
-
-    private fun handleResultActiveReminder(reminder: Reminder?){
-        if (reminder != null) showActiveReminderUi(reminder)
-        else showNoActiveReminderFoundUi()
-    }
-
-    private fun showActiveReminderUi(reminder: Reminder){
-        binding.apply {
-            activeReminder.reminder = reminder
-            activeReminder.root.visible()
-            binding.reminderNotFoundGroup.gone()
-        }
-    }
-
-    private fun showNoActiveReminderFoundUi(){
-        binding.apply {
-            activeReminder.root.gone()
-            reminderNotFoundGroup.visible()
-        }
     }
 
     private fun setupBarChart(){
@@ -78,8 +51,4 @@ class AccountFragment : BaseFragmentOptions<FragmentAccountBinding>(R.layout.fra
         navigateTo(R.id.manageRemindersBottomSheet)
     }
 
-    fun onNavigateToEditReminder(reminder: Reminder){
-        val action = AccountFragmentDirections.actionAccountFragmentToNewReminderBottomSheet(reminder)
-        findNavController().navigate(action)
-    }
 }

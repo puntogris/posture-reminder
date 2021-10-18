@@ -21,7 +21,7 @@
         tools:context=".ui.home.HomeFragment">
 
         <TextView
-            android:id="@+id/layoutTitle"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -30,82 +30,85 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/dayLogsCardView"
+        <include
+            android:id="@+id/usagePager"
+            layout="@layout/home_app_usage_pager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="24dp"
-            android:backgroundTint="?colorPrimary"
-            app:cardCornerRadius="7dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutTitle"
-            tools:layout_height="140dp">
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:layout_height="140dp"/>
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <View
+            android:id="@+id/divider"
+            style="@style/Theme.Posture.Divider"
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/usagePager" />
 
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/pager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/selected_reminder_title"
+            style="@style/Theme.Posture.RegularTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/selected_reminder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabLayout"
-                    android:layout_gravity="end|top"
-                    android:backgroundTint="@android:color/transparent"
-                    app:tabBackground="@drawable/tab_selector"
-                    android:layout_width="25dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_height="30dp"/>
-            </FrameLayout>
-        </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/no_reminders_found_alert"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/selected_reminder_title" />
 
         <Button
-            android:id="@+id/circleButton"
-            style="@style/Theme.Posture.ReminderButton"
+            android:id="@+id/button3"
+            style="@style/Theme.Posture.Button"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginBottom="?actionBarSize"
-            android:onClick="@{()-> fragment.onToggleReminderClicked()}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="24dp"
+            android:onClick="@{()->fragment.onNavigateToRemindersClicked()}"
+            android:text="@string/see_all_reminders"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dayLogsCardView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
-        <TextView
-            android:id="@+id/enableTextView"
-            android:layout_width="wrap_content"
+        <include
+            app:fragment="@{fragment}"
+            android:id="@+id/active_reminder"
+            layout="@layout/active_reminder"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            style="@style/Theme.Posture.TextLight"
-            reminderStatus="@{viewModel.isAlarmActive}"
-            android:textSize="30sp"
-            android:elevation="10dp"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/circleButton"
-            app:layout_constraintEnd_toEndOf="@+id/circleButton"
-            app:layout_constraintStart_toStartOf="@+id/circleButton"
-            app:layout_constraintTop_toTopOf="@+id/circleButton"
-            app:layout_constraintVertical_bias="0.39"
-            tools:text="Start" />
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/selected_reminder_title" />
 
-        <TextView
-            android:id="@+id/enableSummaryTextview"
-            reminderSummaryStatus="@{viewModel.isAlarmActive}"
-            android:layout_width="wrap_content"
+        <include
+            android:id="@+id/toggle_reminder"
+            layout="@layout/toggle_reminder"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/gray_dark"
-            android:elevation="10dp"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/enableTextView"
-            app:layout_constraintStart_toStartOf="@+id/enableTextView"
-            app:layout_constraintTop_toBottomOf="@+id/enableTextView"
-            tools:text="The app is off" />
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/active_reminder"
+            app:viewModel="@{viewModel}" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:adjustViewBounds="true"
@@ -121,6 +124,12 @@
             app:lottie_loop="true"
             android:scaleType="fitXY"
             app:lottie_rawRes="@raw/panda" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/reminderNotFoundGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="button3, textView6" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

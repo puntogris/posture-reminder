@@ -10,13 +10,10 @@ import javax.inject.Inject
 @HiltViewModel
 class AccountViewModel @Inject constructor(
     userRepository: UserRepository,
-    private val dayLogsRepository: DayLogsRepository,
-    private val reminderRepository: ReminderRepository
+    private val dayLogsRepository: DayLogsRepository
 ): ViewModel() {
 
     val user = userRepository.getLocalUserLiveData()
 
     suspend fun getWeekData() = dayLogsRepository.getWeekDayLogs()
-
-    fun getActiveReminder() = reminderRepository.getActiveReminderLiveData()
 }
