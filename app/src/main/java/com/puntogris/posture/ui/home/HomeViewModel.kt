@@ -34,24 +34,18 @@ class HomeViewModel @Inject constructor(
 
     fun toggleAlarm(){
         viewModelScope.launch {
-            val isReminderActive = isAlarmActive.value!!
-            if (isReminderActive) cancelAlarms() else startAlarm()
+            if (isAlarmActive.value!!) cancelAlarms() else startAlarm()
         }
     }
 
     private suspend fun startAlarm(){
         val activeReminder = reminderRepository.getActiveReminder()
         if (activeReminder == null){
-            _alarmStatus.emit(AlarmStatus.NoConfigured)
+            _alarmStatus.emit(AlarmStatus.NotConfigured)
         }else{
             alarm.startDailyAlarm(activeReminder)
             _alarmStatus.emit(AlarmStatus.Activated(activeReminder))
         }
-    }
-
-    suspend fun setReminderAsCurrentAndStart(reminderId: String){
-        userRepository.updateActiveReminderUserRoom(reminderId)
-        startAlarm()
     }
 
     private suspend fun cancelAlarms(){

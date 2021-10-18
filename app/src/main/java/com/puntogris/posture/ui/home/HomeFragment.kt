@@ -42,16 +42,6 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
         setupPagerAndTabLayout()
         observeCurrentReminderState()
         initAlarmPermissionLauncherIfSdkS()
-
-//        lifecycleScope.launch {
-//            try{
-//                val uid = Firebase.firestore.collection("users").whereEqualTo("email","puntogrisdev@gmail.com").get().await()
-//                Firebase.firestore.collection("users").document(uid.first().id).delete().await()
-//            }catch(e: Exception){
-//                println(e.localizedMessage)
-//
-//            }
-//        }
     }
 
     private fun setupPagerAndTabLayout(){
@@ -92,7 +82,7 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
             AlarmStatus.Canceled -> {
                 UiInterface.showSnackBar(getString(R.string.snack_alarms_off))
             }
-            AlarmStatus.NoConfigured -> {
+            AlarmStatus.NotConfigured -> {
                 UiInterface.showSnackBar(getString(R.string.snack_active_reminder_not_found), actionText = R.string.action_select){
                     navigateTo(R.id.manageRemindersBottomSheet)
                 }

@@ -4,6 +4,7 @@ import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.data.datasource.local.room.dao.UserDao
 import com.puntogris.posture.data.datasource.remote.FirebaseUserDataSource
 import com.puntogris.posture.utils.Constants.USER_NAME_FIELD
+import com.puntogris.posture.utils.SimpleResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -15,26 +16,23 @@ class UserRepository @Inject constructor(
     private val alarm: Alarm
 ): IUserRepository {
 
-    override fun getUserFlowRoom() = userDao.getUserFlow()
+    override fun getLocalUserFlow() = userDao.getUserFlow()
 
-    override fun getUserLiveDataRoom() = userDao.getUserLiveData()
+    override fun getLocalUserLiveData() = userDao.getUserLiveData()
 
-    override suspend fun getUserRoom() = userDao.getUser()
+    override suspend fun getLocalUser() = userDao.getUser()
 
-    override suspend fun updateUsernameInRoomAndFirestore(name: String): Boolean = withContext(Dispatchers.IO){
-        try {
+    override suspend fun updateLocalAndServerUsername(name: String): SimpleResult = withContext(Dispatchers.IO){
+        SimpleResult.build {
             firebaseUser.runBatch().apply {
                 update(firebaseUser.getUserPrivateDataRef(), USER_NAME_FIELD, name)
                 update(firebaseUser.getUserPublicProfileRef(), USER_NAME_FIELD, name)
             }.commit().await()
             userDao.updateUsername(name)
-            true
-        }catch (e:Exception){
-            false
         }
     }
 
-    override suspend fun updateActiveReminderUserRoom(reminderId: String) {
+    override suspend fun updateLocalActiveReminder(reminderId: String) {
         alarm.cancelAlarms()
         userDao.updateCurrentUserReminder(reminderId)
     }

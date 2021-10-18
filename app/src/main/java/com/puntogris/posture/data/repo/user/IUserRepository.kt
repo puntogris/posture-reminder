@@ -2,13 +2,14 @@ package com.puntogris.posture.data.repo.user
 
 import androidx.lifecycle.LiveData
 import com.puntogris.posture.model.UserPrivateData
+import com.puntogris.posture.utils.SimpleResult
 import kotlinx.coroutines.flow.Flow
 
 interface IUserRepository {
-    fun getUserFlowRoom(): Flow<UserPrivateData?>
-    fun getUserLiveDataRoom(): LiveData<UserPrivateData>
-    suspend fun getUserRoom(): UserPrivateData?
-    suspend fun updateUsernameInRoomAndFirestore(name: String): Boolean
-    suspend fun updateActiveReminderUserRoom(reminderId: String)
+    fun getLocalUserFlow(): Flow<UserPrivateData?>
+    fun getLocalUserLiveData(): LiveData<UserPrivateData>
+    suspend fun getLocalUser(): UserPrivateData?
+    suspend fun updateLocalAndServerUsername(name: String): SimpleResult
+    suspend fun updateLocalActiveReminder(reminderId: String)
     fun isUserLoggedIn(): Boolean
 }

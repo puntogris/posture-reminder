@@ -30,7 +30,7 @@ interface ReminderDao {
     @Query("SELECT * FROM reminder r INNER JOIN UserPrivateData ON currentReminderId = reminderId")
     fun getActiveReminderLiveData(): LiveData<Reminder?>
 
-    @Query("SELECT * FROM reminder")
+    @Query("SELECT * FROM reminder r INNER JOIN UserPrivateData u ON r.uid = u.uid")
     fun getAllRemindersLiveData(): LiveData<List<Reminder>>
 
     @Query("SELECT * FROM reminder WHERE uid = ''")

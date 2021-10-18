@@ -222,3 +222,5 @@ fun Any.notEqualsAny(vararg values: Any): Boolean {
 }
 
 fun Fragment.navigateTo(@IdRes id: Int) = findNavController().navigate(id)
+
+fun SimpleResult.asBoolean() = this == SimpleResult.Success

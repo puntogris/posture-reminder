@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.R
+import com.puntogris.posture.data.datasource.local.LocalDataSource
 import com.puntogris.posture.model.ItemData
 import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.utils.ReminderUi
@@ -24,7 +25,7 @@ class ReminderItemAdapter(private val context: Context, private val clickListene
     )
 
     private val days = context.resources.getStringArray(R.array.alarmDays)
-    private val vibrationPatterns = context.resources.getStringArray(R.array.vibrationPatterns)
+    private val vibrationPatterns = LocalDataSource().vibrationPatterns.map { it.title }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(viewType) {
@@ -62,7 +63,7 @@ class ReminderItemAdapter(private val context: Context, private val clickListene
         if (reminder.startTime != -1) (items[4] as ReminderUi.Item).itemData.description = minutesFromMidnightToHourlyTime(reminder.startTime)
         if (reminder.endTime != -1) (items[5] as ReminderUi.Item).itemData.description = minutesFromMidnightToHourlyTime(reminder.endTime)
         (items[6] as ReminderUi.Item).itemData.description = if (reminder.soundName.isBlank()) context.getString(R.string.disabled) else reminder.soundName
-        (items[7] as ReminderUi.Item).itemData.description = vibrationPatterns[reminder.vibrationPattern]
+        (items[7] as ReminderUi.Item).itemData.description = context.getString(vibrationPatterns[reminder.vibrationPattern])
         notifyDataSetChanged()
     }
 }

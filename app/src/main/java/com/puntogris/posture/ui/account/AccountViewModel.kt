@@ -14,7 +14,7 @@ class AccountViewModel @Inject constructor(
     private val reminderRepository: ReminderRepository
 ): ViewModel() {
 
-    val user = userRepository.getUserLiveDataRoom()
+    val user = userRepository.getLocalUserLiveData()
 
     suspend fun getWeekData() = dayLogsRepository.getWeekDayLogs()
 

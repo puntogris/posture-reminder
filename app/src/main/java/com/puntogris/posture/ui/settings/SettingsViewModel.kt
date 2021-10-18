@@ -2,9 +2,9 @@ package com.puntogris.posture.ui.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.repo.login.LoginRepository
 import com.puntogris.posture.data.repo.user.UserRepository
-import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.utils.capitalizeWords
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -17,15 +17,16 @@ class SettingsViewModel @Inject constructor(
     private val loginRepository: LoginRepository
     ): ViewModel() {
 
-    suspend fun updateUserName(name: String) = userRepository.updateUsernameInRoomAndFirestore(name.capitalizeWords())
+    suspend fun updateUserName(name: String) =
+        userRepository.updateLocalAndServerUsername(name.capitalizeWords())
 
-    fun getUserFlow() = userRepository.getUserFlowRoom()
+    fun getUserFlow() = userRepository.getLocalUserFlow()
 
-    suspend fun getUser() = userRepository.getUserRoom()
+    suspend fun getUser() = userRepository.getLocalUser()
 
     fun getThemeNamePosition() = dataStore.appThemeFlow()
 
-    fun setPandaAnimationPref(value:Boolean){
+    fun setPandaAnimationPref(value: Boolean){
         viewModelScope.launch {
             dataStore.setPandaAnimation(value)
         }

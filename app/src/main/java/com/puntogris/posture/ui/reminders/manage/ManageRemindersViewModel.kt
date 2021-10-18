@@ -20,6 +20,6 @@ class ManageRemindersViewModel @Inject constructor(
     suspend fun insertReminder(reminder: Reminder) = reminderRepository.insertReminder(reminder)
 
     suspend fun updateCurrentReminder(reminderId: String) {
-        return userRepository.updateActiveReminderUserRoom(reminderId)
+        return userRepository.updateLocalActiveReminder(reminderId)
     }
 }
