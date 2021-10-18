@@ -10,7 +10,6 @@ import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.alarm.AlarmStatus
 import com.puntogris.posture.data.repo.day_logs.DayLogsRepository
 import com.puntogris.posture.data.repo.reminder.ReminderRepository
-import com.puntogris.posture.data.repo.user.UserRepository
 import com.puntogris.posture.data.datasource.local.DataStore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -23,11 +22,12 @@ class HomeViewModel @Inject constructor(
     private val alarm: Alarm,
     private val dataStore: DataStore,
     private val dayLogsRepository: DayLogsRepository,
-    private val reminderRepository: ReminderRepository,
-    private val userRepository: UserRepository
+    private val reminderRepository: ReminderRepository
 ):ViewModel() {
 
-    val isAlarmActive = dataStore.alarmStatus().asLiveData()
+    val isAlarmActive = dataStore.isAlarmActive().asLiveData()
+
+    val activeReminder = reminderRepository.getActiveReminderLiveData()
 
     private val _alarmStatus = MutableSharedFlow<AlarmStatus>()
     val alarmStatus: SharedFlow<AlarmStatus> = _alarmStatus
@@ -61,8 +61,6 @@ class HomeViewModel @Inject constructor(
 
     @RequiresApi(Build.VERSION_CODES.S)
     fun canScheduleExactAlarms() = alarm.canScheduleExactAlarms()
-
-    fun getActiveReminder() = reminderRepository.getActiveReminderLiveData()
 
 
 }

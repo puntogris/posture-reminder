@@ -54,7 +54,7 @@ class DataStore @Inject constructor(@ApplicationContext private val context: Con
     suspend fun showPandaAnimation() =
         context.dataStore.data.first()[booleanPreferencesKey(PANDA_ANIMATION)] ?: false
 
-    fun alarmStatus() = context.dataStore.data.map {
+    fun isAlarmActive() = context.dataStore.data.map {
         it[booleanPreferencesKey(REMINDER_STATE_KEY)] ?: false
     }
 

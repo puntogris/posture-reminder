@@ -50,5 +50,4 @@ class AccountFragment : BaseFragmentOptions<FragmentAccountBinding>(R.layout.fra
     fun onNavigateToRemindersClicked(){
         navigateTo(R.id.manageRemindersBottomSheet)
     }
-
 }

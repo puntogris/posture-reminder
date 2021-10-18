@@ -39,13 +39,9 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
         }
 
         setupPagerAndTabLayout()
-        observeCurrentReminderState()
-        initAlarmPermissionLauncherIfSdkS()
-        observeActiveReminderAndHandleResult()
-
-        binding.toggleReminder.buttonToggleGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
-            viewModel.toggleAlarm()
-        }
+        observeAlarmStatus()
+        registerAlarmPermissionLauncher()
+        subscribeToggleButton()
     }
 
     private fun setupPagerAndTabLayout(){
@@ -66,7 +62,7 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
         }
     }
 
-    private fun observeCurrentReminderState(){
+    private fun observeAlarmStatus(){
         lifecycleScope.launch {
             viewModel.alarmStatus.collect {
                 handleAlarmStatusResult(it)
@@ -94,7 +90,7 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
         }
     }
 
-    private fun initAlarmPermissionLauncherIfSdkS(){
+    private fun registerAlarmPermissionLauncher(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
             requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
                 if (result.resultCode == Activity.RESULT_OK) viewModel.toggleAlarm()
@@ -103,41 +99,19 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
         }
     }
 
-    fun onToggleReminderClicked(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !viewModel.canScheduleExactAlarms()) {
-            showSnackWithPermissionAction()
+    private fun subscribeToggleButton(){
+        binding.toggleReminder.buttonToggleGroup.addOnButtonCheckedListener { _, _, _ ->
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !viewModel.canScheduleExactAlarms()) {
+                showSnackWithPermissionAction()
+            }
+            else {
+                viewModel.toggleAlarm()
+            }
         }
-        else viewModel.toggleAlarm()
     }
 
     fun onNavigateToRemindersClicked(){
         navigateTo(R.id.manageRemindersBottomSheet)
-    }
-
-    private fun observeActiveReminderAndHandleResult(){
-        viewModel.getActiveReminder().observe(viewLifecycleOwner){
-            handleResultActiveReminder(it)
-        }
-    }
-
-    private fun handleResultActiveReminder(reminder: Reminder?){
-        if (reminder != null) showActiveReminderUi(reminder)
-        else showNoActiveReminderFoundUi()
-    }
-
-    private fun showActiveReminderUi(reminder: Reminder){
-        binding.apply {
-            activeReminder.reminder = reminder
-            activeReminder.root.visible()
-            binding.reminderNotFoundGroup.gone()
-        }
-    }
-
-    private fun showNoActiveReminderFoundUi(){
-        binding.apply {
-            activeReminder.root.gone()
-            reminderNotFoundGroup.visible()
-        }
     }
 
     @RequiresApi(Build.VERSION_CODES.S)

@@ -38,6 +38,9 @@ class ReminderRepository @Inject constructor(
             if (reminder.uid.isNotBlank()) {
                 firebase.getReminderDocumentRefWithId(reminder.reminderId).delete().await()
             }
+            if (reminderDao.getActiveReminder() == reminder){
+                alarm.cancelAlarms()
+            }
             reminderDao.delete(reminder)
         }
     }
