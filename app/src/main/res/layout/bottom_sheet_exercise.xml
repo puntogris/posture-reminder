@@ -26,7 +26,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/progressBar"
-
         android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -57,18 +56,18 @@
             android:contentDescription="@string/close_screen_content_description" />
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/exerciseImage"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_marginTop="16dp"
             app:imageResource="@{exercise.image}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView57"
+            app:layout_constraintTop_toBottomOf="@+id/stepsTitle"
             android:contentDescription="@string/image_content_description" />
 
         <TextView
-            android:id="@+id/textView51"
+            android:id="@+id/nameTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -80,37 +79,37 @@
             app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <TextView
-            android:id="@+id/textView52"
+            android:id="@+id/nameSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@{exercise.title}"
-            app:layout_constraintStart_toStartOf="@+id/textView51"
-            app:layout_constraintTop_toBottomOf="@+id/textView51" />
+            app:layout_constraintStart_toStartOf="@+id/nameTitle"
+            app:layout_constraintTop_toBottomOf="@+id/nameTitle" />
 
         <TextView
-            android:id="@+id/textView53"
+            android:id="@+id/descriptionTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             style="@style/Theme.Posture.TextMedium"
             android:text="@string/description"
             android:textSize="13sp"
-            app:layout_constraintStart_toStartOf="@+id/textView52"
-            app:layout_constraintTop_toBottomOf="@+id/textView52" />
+            app:layout_constraintStart_toStartOf="@+id/nameSummary"
+            app:layout_constraintTop_toBottomOf="@+id/nameSummary" />
 
         <TextView
-            android:id="@+id/textView54"
+            android:id="@+id/descriptionSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@{exercise.summary}"
-            app:layout_constraintStart_toStartOf="@+id/textView53"
-            app:layout_constraintTop_toBottomOf="@+id/textView53" />
+            app:layout_constraintStart_toStartOf="@+id/descriptionTitle"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionTitle" />
 
 
         <TextView
-            android:id="@+id/textView55"
+            android:id="@+id/durationTitle"
             style="@style/Theme.Posture.TextMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -118,20 +117,18 @@
             android:text="@string/duration"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView51" />
+            app:layout_constraintTop_toTopOf="@+id/nameTitle" />
 
         <TextView
-            android:id="@+id/textView56"
             exerciseDuration="@{exercise.duration}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            app:layout_constraintStart_toStartOf="@+id/textView55"
-            app:layout_constraintTop_toBottomOf="@+id/textView55" />
-
+            app:layout_constraintStart_toStartOf="@+id/durationTitle"
+            app:layout_constraintTop_toBottomOf="@+id/durationTitle" />
 
         <TextView
-            android:id="@+id/textView57"
+            android:id="@+id/stepsTitle"
             style="@style/Theme.Posture.RegularTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -139,7 +136,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/steps"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView54" />
+            app:layout_constraintTop_toBottomOf="@+id/descriptionSummary" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -149,9 +146,10 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+            app:layout_constraintTop_toBottomOf="@+id/exerciseImage" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.progressindicator.LinearProgressIndicator

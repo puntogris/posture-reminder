@@ -3,6 +3,7 @@ package com.puntogris.posture.ui.home
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asFlow
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.puntogris.posture.alarm.Alarm
@@ -18,11 +19,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val alarm: Alarm,
     dataStore: DataStore,
+    private val alarm: Alarm,
     private val dayLogsRepository: DayLogsRepository,
     private val reminderRepository: ReminderRepository
-):ViewModel() {
+    ):ViewModel() {
 
     val isAlarmActive = dataStore.isAlarmActive().asLiveData()
 
@@ -58,6 +59,5 @@ class HomeViewModel @Inject constructor(
 
     @RequiresApi(Build.VERSION_CODES.S)
     fun canScheduleExactAlarms() = alarm.canScheduleExactAlarms()
-
 
 }

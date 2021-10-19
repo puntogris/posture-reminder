@@ -51,7 +51,6 @@ class LoginRepository @Inject constructor(
                 }
         }
 
-
     override fun createGoogleSignInIntent() = getGoogleSignInClient().signInIntent
 
     override suspend fun signOutUser() = SimpleResult.build {
@@ -60,7 +59,6 @@ class LoginRepository @Inject constructor(
         dataStore.setShowLoginPref(true)
         WorkManager.getInstance(context).cancelUniqueWork(SYNC_ACCOUNT_WORKER)
     }
-
 
     override suspend fun singInAnonymously() = withContext(Dispatchers.IO){
         SimpleResult.build {

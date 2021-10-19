@@ -49,7 +49,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private fun setupNavigation() {
         navController = getNavController()
         appBarConfiguration = getAppBarConfiguration()
-        navController.addOnDestinationChangedListener(this@MainActivity)
+        navController.addOnDestinationChangedListener(this)
 
         // Call after navController is set
         setupInitialDestination()
@@ -133,6 +133,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         )
     }
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        checkIntentForNavigation(intent)
+    }
+
     private fun checkIntentForNavigation(intent: Intent?) {
         intent?.extras?.apply {
             getString(URI_STRING)?.let {
@@ -147,11 +152,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 NotificationManagerCompat.from(this@MainActivity).cancel(it)
             }
         }
-    }
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        checkIntentForNavigation(intent)
     }
 
     override fun showSnackBar(

@@ -22,8 +22,6 @@
     <color name="grey_5">#f2f2f2</color>
     <color name="grey_60">#666666</color>
 
-
-<!--    <color name="grey">#E0E0E0</color>-->
-    <color name="on">#4FA658</color>
-    <color name="off">#CB6B6B</color>
+    <color name="turn_on">#4FA658</color>
+    <color name="turn_off">#CB6B6B</color>
 </resources>

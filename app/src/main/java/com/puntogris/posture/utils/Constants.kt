@@ -68,7 +68,7 @@ object Constants {
     const val USERS_COLLECTION = "users"
     const val REMINDERS_COLLECTION = "reminders"
     const val PUBLIC_PROFILE_DOC = "profile"
-    const val USER_NAME_FIELD = "name"
+    const val USER_NAME_FIELD = "username"
     const val TICKET_COLLECTION = "tickets"
 
     //Functions

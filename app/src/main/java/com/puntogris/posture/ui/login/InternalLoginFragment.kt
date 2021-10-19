@@ -5,6 +5,9 @@ import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentInternalLoginBinding
 import com.puntogris.posture.ui.base.BaseLoginFragment
+import com.puntogris.posture.utils.UiInterface
+import com.puntogris.posture.utils.gone
+import com.puntogris.posture.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,12 +22,15 @@ class InternalLoginFragment:
     }
 
     override fun onLoginStarted() {
-    }
-
-    override fun onLoginError() {
+        binding.progressBar.visible()
     }
 
     override fun onLoginFinished() {
+        binding.progressBar.gone()
+    }
+
+    override fun onLoginError() {
+        binding.progressBar.gone()
     }
 
     fun onNavigateUp(){

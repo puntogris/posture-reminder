@@ -54,7 +54,7 @@
             android:layout_width="150dp"
             toggleButton="@{viewModel.isAlarmActive}"
             android:layout_marginEnd="15dp"
-            app:backgroundTint="@color/on"
+            app:backgroundTint="@color/turn_on"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -100,65 +100,65 @@
             android:layout_height="wrap_content"
             android:text="@{reminder.timeIntervalSummary()}"
             android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView43"
+            app:layout_constraintEnd_toStartOf="@+id/startSummary"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView40" />
 
         <TextView
-            android:id="@+id/textView42"
+            android:id="@+id/startTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Theme.Posture.TextMedium"
             android:text="@string/start_time"
             android:textSize="11sp"
-            app:layout_constraintStart_toStartOf="@+id/textView43"
+            app:layout_constraintStart_toStartOf="@+id/startSummary"
             app:layout_constraintTop_toTopOf="@+id/textView40" />
 
         <TextView
-            android:id="@+id/textView43"
+            android:id="@+id/startSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             minutesToHourlyTime="@{reminder.startTime}"
             android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView45"
+            app:layout_constraintEnd_toStartOf="@+id/endSummary"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textView41"
-            app:layout_constraintTop_toBottomOf="@+id/textView42" />
+            app:layout_constraintTop_toBottomOf="@+id/startTitle" />
 
         <TextView
-            android:id="@+id/textView44"
+            android:id="@+id/endTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Theme.Posture.TextMedium"
             android:text="@string/end_time"
             android:textSize="11sp"
-            app:layout_constraintStart_toStartOf="@+id/textView45"
-            app:layout_constraintTop_toTopOf="@+id/textView42" />
+            app:layout_constraintStart_toStartOf="@+id/endSummary"
+            app:layout_constraintTop_toTopOf="@+id/startTitle" />
 
         <TextView
-            android:id="@+id/textView45"
+            android:id="@+id/endSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             minutesToHourlyTime="@{reminder.endTime}"
             android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView47"
+            app:layout_constraintEnd_toStartOf="@+id/daysSummary"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView43"
-            app:layout_constraintTop_toBottomOf="@+id/textView44" />
+            app:layout_constraintStart_toEndOf="@+id/startSummary"
+            app:layout_constraintTop_toBottomOf="@+id/endTitle" />
 
         <TextView
-            android:id="@+id/textView46"
+            android:id="@+id/daysTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Theme.Posture.TextMedium"
             android:text="@string/days"
             android:textSize="11sp"
-            app:layout_constraintStart_toStartOf="@+id/textView47"
-            app:layout_constraintTop_toTopOf="@+id/textView44" />
+            app:layout_constraintStart_toStartOf="@+id/daysSummary"
+            app:layout_constraintTop_toTopOf="@+id/endTitle" />
 
         <TextView
-            android:id="@+id/textView47"
+            android:id="@+id/daysSummary"
             daysSummary="@{reminder}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -166,8 +166,8 @@
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView45"
-            app:layout_constraintTop_toBottomOf="@+id/textView46" />
+            app:layout_constraintStart_toEndOf="@+id/endSummary"
+            app:layout_constraintTop_toBottomOf="@+id/daysTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

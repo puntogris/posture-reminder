@@ -20,9 +20,7 @@ class SettingsViewModel @Inject constructor(
     suspend fun updateUserName(name: String) =
         userRepository.updateLocalAndServerUsername(name.capitalizeWords())
 
-    fun getUserFlow() = userRepository.getLocalUserFlow()
-
-    suspend fun getUser() = userRepository.getLocalUser()
+    val user = userRepository.getLocalUserLiveData()
 
     fun getThemeNamePosition() = dataStore.appThemeFlow()
 

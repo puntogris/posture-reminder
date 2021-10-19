@@ -9,6 +9,9 @@ import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import com.db.williamchart.view.DonutChartView
 import com.google.android.material.button.MaterialButton
@@ -18,11 +21,6 @@ import com.puntogris.posture.utils.Constants.EXPERIENCE_PER_LEVEL
 import com.puntogris.posture.utils.Constants.PROGRESS_BAR_SMOOTH_OFFSET
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
-
-@BindingAdapter("imageFromRes")
-fun ImageView.setImageFromRes(@DrawableRes image: Int){
-    setImageDrawable(ContextCompat.getDrawable(context, image))
-}
 
 @BindingAdapter("exerciseDuration")
 fun TextView.setExerciseDuration(duration: Int){
@@ -37,15 +35,6 @@ fun TextView.setMinutesToHourlyTime(minutes: Int){
 @BindingAdapter("daysSummary")
 fun TextView.setDaysSummary(reminder: Reminder?){
     text = reminder?.alarmDaysSummary(resources.getStringArray(R.array.alarmDays))
-}
-
-@BindingAdapter("reminderColor")
-fun ImageView.setReminderColor(color:Int){
-    backgroundTintList = try {
-        ColorStateList.valueOf(getColor(context, color))
-    }catch (e:Exception){
-        ColorStateList.valueOf(color)
-    }
 }
 
 @BindingAdapter("reminderColor")
@@ -66,10 +55,7 @@ fun TextView.setDayMonth(position: Int){
 
 @BindingAdapter("pagerDay")
 fun TextView.setPagerDay(position: Int){
-    text = context.getString(
-        if (position == 0) R.string.today_pager
-        else R.string.yesterday_pager
-    )
+    setText(if (position == 0) R.string.today_pager else R.string.yesterday_pager)
 }
 
 @BindingAdapter("accountLevelTitle")
@@ -126,7 +112,7 @@ fun TextView.setProfileRankingNumber(position: Int){
     if (position in 0..2) gone()
     else {
         visible()
-        text = (position + 1).toString()
+        text = position.inc().toString()
     }
 }
 
@@ -141,7 +127,7 @@ fun ImageView.setProfileRankingMedal(position: Int){
         if (it != null) {
             visible()
             setImageDrawable(ContextCompat.getDrawable(context, it))
-        }else gone()
+        } else gone()
     }
 }
 
@@ -182,9 +168,13 @@ fun TextView.setUserRankingName(name: String){
 
 @BindingAdapter("toggleButton")
 fun MaterialButton.setToggleButton(isReminderActive: Boolean){
-    val (color, text)  =
-        if (isReminderActive) R.color.off to R.string.action_on
-        else R.color.on to R.string.action_off
-    setText(text)
+    val (color, text) =
+        if (isReminderActive) {
+            R.color.turn_off to R.string.action_off
+        }
+        else {
+            R.color.turn_on to R.string.action_on
+        }
     setBackgroundColor(getColor(context, color))
+    setText(text)
 }

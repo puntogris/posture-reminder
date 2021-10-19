@@ -7,9 +7,8 @@ import com.puntogris.posture.utils.SimpleResult
 import kotlinx.coroutines.flow.Flow
 
 interface IUserRepository {
-    fun getLocalUserFlow(): Flow<UserPrivateData?>
     fun getLocalUserLiveData(): LiveData<UserPrivateData>
-    suspend fun getLocalUser(): UserPrivateData?
+    suspend fun getLocalUser(): UserPrivateData
     suspend fun updateLocalAndServerUsername(name: String): SimpleResult
     suspend fun updateLocalActiveReminder(reminder: Reminder)
     fun isUserLoggedIn(): Boolean

@@ -15,13 +15,11 @@ interface UserDao {
     suspend fun insert(userPrivateData: UserPrivateData)
 
     @Query("SELECT * FROM UserPrivateData WHERE roomId = 1")
-    suspend fun getUser(): UserPrivateData?
+    suspend fun getUser(): UserPrivateData
 
     @Query("SELECT * FROM UserPrivateData WHERE roomId = 1")
     fun getUserLiveData(): LiveData<UserPrivateData>
 
-    @Query("SELECT * FROM UserPrivateData WHERE roomId = 1")
-    fun getUserFlow(): Flow<UserPrivateData?>
 
     @Query("UPDATE UserPrivateData SET currentReminderId = :reminderId WHERE roomId = 1")
     suspend fun updateCurrentUserReminder(reminderId: String)

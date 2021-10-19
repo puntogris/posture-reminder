@@ -54,11 +54,7 @@ class SyncRepository @Inject constructor(
 
     private suspend fun compareLatestUserData(serverUser: UserPrivateData) {
         val localUser = userDao.getUser()
-        if (
-            localUser == null ||
-            localUser.uid != serverUser.uid ||
-            localUser.experience < serverUser.experience
-        ) {
+        if (localUser.uid != serverUser.uid || localUser.experience < serverUser.experience) {
             userDao.insert(serverUser)
         }
     }

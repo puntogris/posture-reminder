@@ -2,6 +2,7 @@ package com.puntogris.posture.ui.settings
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
@@ -32,32 +33,6 @@ class PreferencesFragment: PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
-
-        preference(USERNAME_PREF_KEY) {
-            lifecycleScope.launch {
-                viewModel.getUserFlow().collect {
-                    summary = it?.username ?: getString(R.string.human)
-                }
-            }
-            onClick {
-                lifecycleScope.launch {
-                    val user = viewModel.getUser()
-                    if (user == null) {
-                        (requireParentFragment() as SettingsBottomSheet)
-                            .showSnackBar(
-                                message = R.string.snack_action_requires_login,
-                                actionText = R.string.action_login
-                            ){
-                                navigateTo(R.id.internalLoginFragment)
-                        }
-                    }
-                    else{
-                        val action = SettingsBottomSheetDirections.actionSettingsBottomSheetToDialogName(user.username)
-                        findNavController().navigate(action)
-                    }
-                }
-            }
-        }
 
         preference(THEME_PREF_KEY){
             val themeNames = resources.getStringArray(R.array.theme_names)
@@ -110,7 +85,12 @@ class PreferencesFragment: PreferenceFragmentCompat() {
         }
 
         preferenceOnClick(TICKET_PREF_KEY){
-            navigateTo(R.id.ticketBottomSheet)
+            if (viewModel.isUserLoggedIn()) {
+                navigateTo(R.id.ticketBottomSheet)
+            }
+            else {
+                showRequireLoginSnack()
+            }
         }
 
         preference(VERSION_PREF_KEY){
@@ -122,11 +102,7 @@ class PreferencesFragment: PreferenceFragmentCompat() {
         }
 
         preferenceOnClick(RATE_APP_PREF_KEY){
-           try {
-               launchWebBrowserIntent(getString(R.string.pref_play_store_uri))
-           }catch (e:Exception){
-               launchWebBrowserIntent(getString(R.string.pref_play_store_web_url))
-           }
+            launchWebBrowserIntent(getString(R.string.pref_play_store_web_url))
         }
 
         preferenceOnClick(LICENSES_PREF_KEY){
@@ -135,5 +111,37 @@ class PreferencesFragment: PreferenceFragmentCompat() {
                 startActivity(this)
             }
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        preference(USERNAME_PREF_KEY) {
+            lifecycleScope.launch {
+                viewModel.user.observe(viewLifecycleOwner){
+                    summary = it.username
+                }
+            }
+            onClick {
+                lifecycleScope.launch {
+                    if (viewModel.isUserLoggedIn()) {
+                        val action = SettingsBottomSheetDirections
+                            .actionSettingsBottomSheetToDialogName(viewModel.user.value!!.username)
+                        findNavController().navigate(action)
+                    }
+                    else showRequireLoginSnack()
+                }
+            }
+        }
+    }
+
+    private fun showRequireLoginSnack(){
+        (requireParentFragment() as SettingsBottomSheet)
+            .showSnackBar(
+                message = R.string.snack_action_requires_login,
+                actionText = R.string.action_login
+            ){
+                navigateTo(R.id.internalLoginFragment)
+            }
     }
 }

@@ -17,7 +17,7 @@ class UserRepository @Inject constructor(
     private val alarm: Alarm
 ): IUserRepository {
 
-    override fun getLocalUserFlow() = userDao.getUserFlow()
+    override fun isUserLoggedIn() = firebaseUser.getCurrentUser() != null
 
     override fun getLocalUserLiveData() = userDao.getUserLiveData()
 
@@ -37,7 +37,4 @@ class UserRepository @Inject constructor(
         userDao.updateCurrentUserReminder(reminder.reminderId)
         alarm.refreshAlarms(reminder)
     }
-
-    override fun isUserLoggedIn() = firebaseUser.getCurrentUser() != null
-
 }
