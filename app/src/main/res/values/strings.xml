@@ -32,6 +32,8 @@
     <string name="action_give_permission">Give permission</string>
     <string name="action_yes">Yes</string>
     <string name="action_login" translatable="false">Login</string>
+    <string name="action_off">turn off</string>
+    <string name="action_on">turn on</string>
 
     <!-- Login -->
     <string name="login_button">tap para enter</string>
@@ -52,8 +54,8 @@
     <string name="welcome_pager_title3">We are always with you!</string>
 
     <!-- Home -->
-    <string name="alarm_on">The app is on</string>
-    <string name="alarm_off">The app is off</string>
+    <string name="alarm_on">The reminder is on</string>
+    <string name="alarm_off">The reminder is off</string>
     <string name="stop_alarm">Stop</string>
     <string name="start_alarm">Start</string>
     <string name="snack_alarms_off">The alarm has been deactivated.</string>

@@ -3,7 +3,6 @@ package com.puntogris.posture.utils
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -19,18 +18,6 @@ import com.puntogris.posture.utils.Constants.EXPERIENCE_PER_LEVEL
 import com.puntogris.posture.utils.Constants.PROGRESS_BAR_SMOOTH_OFFSET
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
-
-@BindingAdapter("reminderSummaryStatus")
-fun TextView.setReminderSummaryStatus(isActive: Boolean){
-    text = if (isActive) context.getString(R.string.alarm_on) else context.getString(
-        R.string.alarm_off)
-}
-
-@BindingAdapter("reminderStatus")
-fun TextView.setReminderStatus(isActive: Boolean){
-    text = if (isActive) context.getString(R.string.stop_alarm) else context.getString(
-        R.string.start_alarm)
-}
 
 @BindingAdapter("imageFromRes")
 fun ImageView.setImageFromRes(@DrawableRes image: Int){
@@ -193,26 +180,11 @@ fun TextView.setUserRankingName(name: String){
     }
 }
 
-@BindingAdapter("offToggleButton")
-fun MaterialButton.setOffToggleButton(isReminderActive: Boolean){
+@BindingAdapter("toggleButton")
+fun MaterialButton.setToggleButton(isReminderActive: Boolean){
     val (color, text)  =
-        if (isReminderActive) R.color.off to "off"
-        else R.color.grey to null
-
+        if (isReminderActive) R.color.off to R.string.action_on
+        else R.color.on to R.string.action_off
     setText(text)
     setBackgroundColor(getColor(context, color))
-}
-
-@BindingAdapter("onToggleButton")
-fun MaterialButton.setOnToggleButton(isReminderActive: Boolean){
-    val (color, text)  =
-        if (isReminderActive) R.color.grey to null
-        else R.color.on to "on"
-    setText(text)
-    setBackgroundColor(getColor(context, color))
-}
-
-@BindingAdapter("toggleSummary")
-fun TextView.setToggleSummary(isReminderActive: Boolean){
-    setText(if (isReminderActive) R.string.alarm_on else R.string.alarm_off)
 }

@@ -89,6 +89,7 @@
 
         <include
             app:fragment="@{fragment}"
+            app:viewModel="@{viewModel}"
             android:id="@+id/active_reminder"
             layout="@layout/active_reminder"
             app:reminder="@{viewModel.activeReminder}"
@@ -99,19 +100,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/selected_reminder_title" />
-
-        <include
-            android:id="@+id/toggle_reminder"
-            layout="@layout/toggle_reminder"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.468"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button3"
-            app:viewModel="@{viewModel}" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:adjustViewBounds="true"
@@ -130,9 +118,9 @@
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/reminderNotFoundGroup"
-            android:visibility="@{viewModel.activeReminder == null ? View.VISIBLE : View.GONE }"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="@{viewModel.activeReminder == null ? View.VISIBLE : View.GONE }"
             app:constraint_referenced_ids="button3, textView6" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.work.*
 import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.alarm.Notifications
+import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.workers.UploadReminderWorker
 import com.puntogris.posture.data.datasource.local.room.dao.ReminderDao
 import com.puntogris.posture.data.datasource.remote.FirebaseReminderDataSource
@@ -19,12 +20,14 @@ import javax.inject.Inject
 import kotlin.Exception
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.SimpleResult
+import kotlinx.coroutines.flow.first
 
 class ReminderRepository @Inject constructor(
     private val firebase: FirebaseReminderDataSource,
     private val reminderDao: ReminderDao,
     private val notifications: Notifications,
     private val alarm: Alarm,
+    private val dataStore: DataStore,
     @ApplicationContext private val context: Context
 ): IReminderRepository {
 
@@ -60,12 +63,16 @@ class ReminderRepository @Inject constructor(
 
             reminderDao.insert(reminder)
             reminderDao.getActiveReminder()?.let {
-                if (it.reminderId == reminder.reminderId) alarm.refreshAlarms(reminder)
+                if (it.reminderId == reminder.reminderId && dataStore.isAlarmActive().first()) {
+                    alarm.refreshAlarms(reminder)
+                }
             }
 
             ReminderId(reminder.reminderId)
         }
     }
+
+
 
     private fun fillIdsIfNewReminder(reminder: Reminder){
         reminder.reminderId = firebase.getNewReminderDocumentRef().id

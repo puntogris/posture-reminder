@@ -100,13 +100,11 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
     }
 
     private fun subscribeToggleButton(){
-        binding.toggleReminder.buttonToggleGroup.addOnButtonCheckedListener { _, _, _ ->
+        binding.activeReminder.materialButton.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !viewModel.canScheduleExactAlarms()) {
                 showSnackWithPermissionAction()
             }
-            else {
-                viewModel.toggleAlarm()
-            }
+            else viewModel.toggleAlarm()
         }
     }
 

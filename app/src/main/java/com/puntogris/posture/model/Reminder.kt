@@ -6,7 +6,10 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.puntogris.posture.R
+import com.puntogris.posture.utils.getHours
+import com.puntogris.posture.utils.getMinutes
 import kotlinx.parcelize.Parcelize
+import java.util.*
 
 @Keep
 @Parcelize
@@ -57,17 +60,13 @@ data class Reminder(
     fun isAlarmPastMidnightAndInRange(minutesSinceMidnight: Int) =
         isAlarmPastMidnight() && isAlarmInRange(minutesSinceMidnight)
 
-    fun alarmDaysSummary(daysList: Array<String>) =
-         alarmDays.joinToString(", ") {
-            daysList[it].first().toString()
-         }
+    fun alarmDaysSummary(daysList: Array<String>) = alarmDays.joinToString(", ") {
+        daysList[it].first().toString()
+    }
 
     fun timeIntervalSummary(): String{
-        return if (timeInterval < 60){
-            "$timeInterval m."
-        }else{
-            "${timeInterval/60} h. ${timeInterval % 60} m."
-        }
+        return if (timeInterval < 60) "$timeInterval m."
+        else "${timeInterval/60} h. ${timeInterval % 60} m."
     }
 
     fun requiredInfoValid(): Boolean{
@@ -77,5 +76,13 @@ data class Reminder(
                 endTime != -1 &&
                 alarmDays.isNotEmpty()
                 )
+    }
+
+    fun triggerTimeAtMillis(): Long{
+        return Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, startTime.getHours())
+            set(Calendar.MINUTE, startTime.getMinutes())
+        }.timeInMillis
     }
 }

@@ -1,13 +1,13 @@
 package com.puntogris.posture.ui.account
 
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentAccountBinding
 import com.puntogris.posture.model.DayLog
-import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.ui.base.BaseFragmentOptions
-import com.puntogris.posture.utils.*
+import com.puntogris.posture.utils.getDayStringFormatted
+import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
+import com.puntogris.posture.utils.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
 import org.threeten.bp.LocalDate
 

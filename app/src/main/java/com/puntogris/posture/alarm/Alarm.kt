@@ -12,10 +12,7 @@ import com.puntogris.posture.utils.Constants.REPEATING_ALARM_TRIGGERED
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.Utils.getTriggerTime
-import com.puntogris.posture.utils.getHours
-import com.puntogris.posture.utils.getMinutes
 import dagger.hilt.android.qualifiers.ApplicationContext
-import java.util.*
 import javax.inject.Inject
 
 class Alarm @Inject constructor(
@@ -23,7 +20,7 @@ class Alarm @Inject constructor(
     private val dataStore: DataStore
     ) {
 
-    private val alarmManager: AlarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+    private val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
     private val dailyAlarmIntent = Intent(context, ReminderBroadcast::class.java).apply {
         action = DAILY_ALARM_TRIGGERED
@@ -48,20 +45,13 @@ class Alarm @Inject constructor(
     )
 
     suspend fun startDailyAlarm(reminder: Reminder){
-        val periodHour = reminder.startTime.getHours()
-        val periodMin = reminder.startTime.getMinutes()
-
-        val calendar: Calendar = Calendar.getInstance().apply {
-            timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, periodHour)
-            set(Calendar.MINUTE, periodMin)
-        }
         alarmManager.setInexactRepeating(
                 AlarmManager.RTC_WAKEUP,
-                calendar.timeInMillis,
+                reminder.triggerTimeAtMillis(),
                 AlarmManager.INTERVAL_DAY,
                 pendingIntentDailyAlarm
         )
+
         if (reminder.isAlarmPastMidnightAndInRange(Utils.minutesSinceMidnight())){
             startRepeatingAlarm(reminder.timeInterval)
         }

@@ -10,6 +10,9 @@
         <variable
             name="fragment"
             type="com.puntogris.posture.ui.home.HomeFragment" />
+        <variable
+            name="viewModel"
+            type="com.puntogris.posture.ui.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,15 +36,27 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/selectReminder"
             style="@style/Theme.Posture.Button"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="15dp"
             android:layout_marginTop="24dp"
             android:onClick="@{()->fragment.onNavigateToRemindersClicked()}"
             android:text="@string/select_another_reminder"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/materialButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView41"
             app:layout_constraintVertical_bias="0.0" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButton"
+            style="@style/Theme.Posture.Button"
+            android:layout_width="150dp"
+            toggleButton="@{viewModel.isAlarmActive}"
+            android:layout_marginEnd="15dp"
+            app:backgroundTint="@color/on"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
             android:id="@+id/editReminder"
