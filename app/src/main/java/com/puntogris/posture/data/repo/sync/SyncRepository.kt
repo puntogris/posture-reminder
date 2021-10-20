@@ -54,7 +54,11 @@ class SyncRepository @Inject constructor(
 
     private suspend fun compareLatestUserData(serverUser: UserPrivateData) {
         val localUser = userDao.getUser()
-        if (localUser.uid != serverUser.uid || localUser.experience < serverUser.experience) {
+        if (
+            localUser == null ||
+            localUser.uid != serverUser.uid ||
+            localUser.experience < serverUser.experience
+        ) {
             userDao.insert(serverUser)
         }
     }
@@ -102,7 +106,7 @@ class SyncRepository @Inject constructor(
 
     override suspend fun syncUserExperienceInFirestoreWithRoom() {
         userDao.getUser()?.let {
-            val expAmount = it.getMaxExpPermittedWithServerTimestamp(getTimestampFromServer())
+            val expAmount = it.calculateMaxExpPermitted(getTimestampFromServer())
 
             if (expAmount != null) {
                 firestoreUser.runBatch().apply {

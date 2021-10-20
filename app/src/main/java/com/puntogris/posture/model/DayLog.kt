@@ -20,6 +20,5 @@ data class DayLog(
     var notifications: Int = 0,
 
     @ColumnInfo
-    var exercises: Int = 0,
-
+    var exercises: Int = 0
     )

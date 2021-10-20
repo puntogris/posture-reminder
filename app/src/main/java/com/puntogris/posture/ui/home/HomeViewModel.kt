@@ -3,7 +3,6 @@ package com.puntogris.posture.ui.home
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asFlow
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.puntogris.posture.alarm.Alarm

@@ -122,6 +122,11 @@
             app:destination="@id/welcomeFragment"
             app:popUpTo="@id/navigation"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_synAccountFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/navigation"
+            app:popUpToInclusive="true" />
     </fragment>
     <dialog
         android:id="@+id/exerciseBottomSheet"

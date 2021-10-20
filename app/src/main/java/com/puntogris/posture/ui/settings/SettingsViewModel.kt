@@ -15,7 +15,8 @@ class SettingsViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val dataStore: DataStore,
     private val loginRepository: LoginRepository
-    ): ViewModel() {
+    ): ViewModel()
+{
 
     suspend fun updateUserName(name: String) =
         userRepository.updateLocalAndServerUsername(name.capitalizeWords())

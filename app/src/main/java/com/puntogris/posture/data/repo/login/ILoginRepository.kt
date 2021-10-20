@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 interface ILoginRepository {
     fun firebaseAuthWithGoogle(idToken: String): StateFlow<LoginResult>
-    fun createGoogleSignInIntent(): Intent
+    fun getGoogleSignInIntent(): Intent
     suspend fun signOutUser(): SimpleResult
     suspend fun singInAnonymously(): SimpleResult
     suspend fun getShowLoginPref(): Boolean

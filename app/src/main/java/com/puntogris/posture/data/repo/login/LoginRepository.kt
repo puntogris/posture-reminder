@@ -2,17 +2,15 @@ package com.puntogris.posture.data.repo.login
 
 import android.content.Context
 import androidx.work.*
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.GoogleAuthProvider
-import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.R
+import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.data.datasource.remote.FirebaseLoginDataSource
 import com.puntogris.posture.model.UserPrivateData
 import com.puntogris.posture.utils.Constants.SYNC_ACCOUNT_WORKER
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.datasource.local.room.dao.UserDao
+import com.puntogris.posture.data.datasource.remote.GoogleSingInDataSource
 import com.puntogris.posture.utils.LoginResult
 import com.puntogris.posture.utils.SimpleResult
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -26,17 +24,10 @@ class LoginRepository @Inject constructor(
     @ApplicationContext private val context: Context,
     private val loginFirebase: FirebaseLoginDataSource,
     private val dataStore: DataStore,
-    private val userDao: UserDao
+    private val userDao: UserDao,
+    private val googleSingIn: GoogleSingInDataSource,
+    private val alarm: Alarm
 ): ILoginRepository {
-
-    private fun getGoogleSignInClient(): GoogleSignInClient{
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .requestIdToken(BuildConfig.GOOGLE_WEB_CLIENT_ID)
-            .build()
-
-        return GoogleSignIn.getClient(context, gso)
-    }
 
     override fun firebaseAuthWithGoogle(idToken: String): StateFlow<LoginResult> =
         MutableStateFlow<LoginResult>(LoginResult.InProgress).also { flow ->
@@ -51,11 +42,12 @@ class LoginRepository @Inject constructor(
                 }
         }
 
-    override fun createGoogleSignInIntent() = getGoogleSignInClient().signInIntent
+    override fun getGoogleSignInIntent() = googleSingIn.createSignIntent()
 
     override suspend fun signOutUser() = SimpleResult.build {
-        loginFirebase.signOutFromFirebase()
-        getGoogleSignInClient().signOut()
+        alarm.cancelAlarms()
+        loginFirebase.signOut()
+        googleSingIn.signOut()
         dataStore.setShowLoginPref(true)
         WorkManager.getInstance(context).cancelUniqueWork(SYNC_ACCOUNT_WORKER)
     }

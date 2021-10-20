@@ -49,7 +49,7 @@ data class UserPrivateData(
 
 ):Parcelable{
 
-    fun getMaxExpPermittedWithServerTimestamp(serverTimestamp: Long?): Int?{
+    fun calculateMaxExpPermitted(serverTimestamp: Long?): Int?{
 
         return if (serverTimestamp != null) {
             val daysDiff = (serverTimestamp - BASE_DATE_MILLIS).toDays()

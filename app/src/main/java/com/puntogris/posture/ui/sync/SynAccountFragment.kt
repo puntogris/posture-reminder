@@ -62,9 +62,10 @@ class SynAccountFragment : BaseFragment<FragmentSynAccountBinding>(R.layout.frag
 
     fun onContinueButtonClicked(){
         lifecycleScope.launch {
-            if (viewModel.showLogin()) navigateTo(R.id.action_synAccountFragment_to_welcomeFragment)
-            else navigateTo(R.id.homeFragment)
+            navigateTo(
+                if (viewModel.showLogin()) R.id.action_synAccountFragment_to_welcomeFragment
+                else R.id.action_synAccountFragment_to_homeFragment
+            )
         }
     }
-
 }

@@ -198,7 +198,7 @@
     <string name="manage_account_reminders">Quickly manage your reminders, create, edit and delete them.</string>
 
     <!-- Other -->
-    <string name="snack_configuration_updated">Settings updated successfully. Navigate to home to activate the reminder.</string>
+    <string name="snack_configuration_updated">Settings updated successfully. Reminder activated.</string>
     <string name="name">Name</string>
     <string name="disabled">Disabled</string>
     <string name="experience">Experience</string>

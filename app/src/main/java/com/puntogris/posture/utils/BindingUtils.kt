@@ -6,12 +6,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import com.db.williamchart.view.DonutChartView
 import com.google.android.material.button.MaterialButton

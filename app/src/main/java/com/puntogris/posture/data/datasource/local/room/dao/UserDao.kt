@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.puntogris.posture.model.UserPrivateData
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
@@ -15,7 +14,7 @@ interface UserDao {
     suspend fun insert(userPrivateData: UserPrivateData)
 
     @Query("SELECT * FROM UserPrivateData WHERE roomId = 1")
-    suspend fun getUser(): UserPrivateData
+    suspend fun getUser(): UserPrivateData?
 
     @Query("SELECT * FROM UserPrivateData WHERE roomId = 1")
     fun getUserLiveData(): LiveData<UserPrivateData>
