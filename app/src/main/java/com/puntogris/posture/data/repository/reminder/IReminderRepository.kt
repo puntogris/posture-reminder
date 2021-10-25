@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.repo.reminder
+package com.puntogris.posture.data.repository.reminder
 
 import androidx.lifecycle.LiveData
 import com.puntogris.posture.utils.Result

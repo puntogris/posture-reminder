@@ -8,8 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.alarm.AlarmStatus
 import com.puntogris.posture.data.datasource.local.DataStore
-import com.puntogris.posture.data.repo.day_logs.DayLogsRepository
-import com.puntogris.posture.data.repo.reminder.ReminderRepository
+import com.puntogris.posture.data.repository.day_logs.DayLogsRepository
+import com.puntogris.posture.data.repository.reminder.ReminderRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow

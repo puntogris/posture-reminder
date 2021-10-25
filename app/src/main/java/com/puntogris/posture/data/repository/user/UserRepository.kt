@@ -1,6 +1,7 @@
-package com.puntogris.posture.data.repo.user
+package com.puntogris.posture.data.repository.user
 
 import com.puntogris.posture.alarm.Alarm
+import com.puntogris.posture.data.DispatcherProvider
 import com.puntogris.posture.data.datasource.local.room.dao.UserDao
 import com.puntogris.posture.data.datasource.remote.FirebaseUserDataSource
 import com.puntogris.posture.model.Reminder
@@ -14,7 +15,8 @@ import javax.inject.Inject
 class UserRepository @Inject constructor(
     private val userDao: UserDao,
     private val firebaseUser: FirebaseUserDataSource,
-    private val alarm: Alarm
+    private val alarm: Alarm,
+    private val dispatchers: DispatcherProvider
 ): IUserRepository {
 
     override fun isUserLoggedIn() = firebaseUser.getCurrentUser() != null
@@ -23,7 +25,7 @@ class UserRepository @Inject constructor(
 
     override suspend fun getLocalUser() = userDao.getUser()
 
-    override suspend fun updateLocalAndServerUsername(name: String) = withContext(Dispatchers.IO){
+    override suspend fun updateLocalAndServerUsername(name: String) = withContext(dispatchers.io){
         SimpleResult.build {
             firebaseUser.runBatch().apply {
                 update(firebaseUser.getUserPrivateDataRef(), USER_NAME_FIELD, name)

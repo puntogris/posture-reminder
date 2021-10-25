@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.repo.user
+package com.puntogris.posture.data.repository.user
 
 import androidx.lifecycle.LiveData
 import com.puntogris.posture.model.Reminder

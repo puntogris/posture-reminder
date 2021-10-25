@@ -1,8 +1,8 @@
 package com.puntogris.posture.ui.reminders.manage
 
 import androidx.lifecycle.ViewModel
-import com.puntogris.posture.data.repo.reminder.ReminderRepository
-import com.puntogris.posture.data.repo.user.UserRepository
+import com.puntogris.posture.data.repository.reminder.ReminderRepository
+import com.puntogris.posture.data.repository.user.UserRepository
 import com.puntogris.posture.model.Reminder
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

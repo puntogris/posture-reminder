@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.repo.main
+package com.puntogris.posture.data.repository.main
 
 interface IMainRepository {
     fun isUserLoggedIn(): Boolean

@@ -3,7 +3,7 @@ package com.puntogris.posture.ui.reminders.new_edit
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.puntogris.posture.data.repo.reminder.ReminderRepository
+import com.puntogris.posture.data.repository.reminder.ReminderRepository
 import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.model.ReminderId
 import com.puntogris.posture.utils.Result

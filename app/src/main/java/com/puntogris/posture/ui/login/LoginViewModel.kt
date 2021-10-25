@@ -1,7 +1,7 @@
 package com.puntogris.posture.ui.login
 
 import androidx.lifecycle.ViewModel
-import com.puntogris.posture.data.repo.login.LoginRepository
+import com.puntogris.posture.data.repository.login.LoginRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

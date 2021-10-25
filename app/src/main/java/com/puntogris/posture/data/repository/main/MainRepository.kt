@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.repo.main
+package com.puntogris.posture.data.repository.main
 
 import com.puntogris.posture.data.datasource.remote.FirebaseDataSource
 import javax.inject.Inject

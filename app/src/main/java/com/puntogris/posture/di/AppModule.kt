@@ -1,7 +1,10 @@
-package com.puntogris.posture.data.datasource.local.room.db
+package com.puntogris.posture.di
 
 import android.content.Context
 import androidx.room.Room
+import com.puntogris.posture.data.DispatcherProvider
+import com.puntogris.posture.data.StandardDispatchers
+import com.puntogris.posture.data.datasource.local.room.db.AppDatabase
 import com.puntogris.posture.utils.Constants.ROOM_DATABASE_NAME
 import dagger.Module
 import dagger.Provides
@@ -12,7 +15,7 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-class AppDatabaseModule {
+class AppModule {
 
     @Provides
     fun providesReminderDao(appDatabase: AppDatabase) = appDatabase.reminderDao()
@@ -33,5 +36,11 @@ class AppDatabaseModule {
                 ROOM_DATABASE_NAME
             )
             .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideDispatcherProvider(): DispatcherProvider {
+        return StandardDispatchers()
     }
 }

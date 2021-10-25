@@ -1,5 +1,6 @@
-package com.puntogris.posture.data.repo.rankings
+package com.puntogris.posture.data.repository.rankings
 
+import com.puntogris.posture.data.DispatcherProvider
 import com.puntogris.posture.data.datasource.remote.FirebaseRankingDataSource
 import com.puntogris.posture.model.UserPublicProfile
 import kotlinx.coroutines.Dispatchers
@@ -9,10 +10,11 @@ import javax.inject.Inject
 import com.puntogris.posture.utils.Result
 
 class RankingsRepository @Inject constructor(
-    private val rankingsFirebase: FirebaseRankingDataSource
+    private val rankingsFirebase: FirebaseRankingDataSource,
+    private val dispatchers: DispatcherProvider
 ): IRankingsRepository {
 
-    override suspend fun getAllRankingsFirestore(): Result<Exception, List<UserPublicProfile>> = withContext(Dispatchers.IO) {
+    override suspend fun getAllRankingsFirestore(): Result<Exception, List<UserPublicProfile>> = withContext(dispatchers.io) {
         Result.build {
             rankingsFirebase.getRankingsQueryWithLimit()
                 .get()
@@ -21,7 +23,7 @@ class RankingsRepository @Inject constructor(
         }
     }
 
-    override suspend fun getTopThreeRankingsFirestore(): Result<Exception, List<UserPublicProfile>> = withContext(Dispatchers.IO) {
+    override suspend fun getTopThreeRankingsFirestore(): Result<Exception, List<UserPublicProfile>> = withContext(dispatchers.io) {
         Result.build {
             rankingsFirebase.getRankingsQueryWithLimit(3)
                 .get()

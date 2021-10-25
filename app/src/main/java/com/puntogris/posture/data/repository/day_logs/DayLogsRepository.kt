@@ -1,6 +1,7 @@
-package com.puntogris.posture.data.repo.day_logs
+package com.puntogris.posture.data.repository.day_logs
 
 import androidx.room.withTransaction
+import com.puntogris.posture.data.DispatcherProvider
 import com.puntogris.posture.data.datasource.local.room.db.AppDatabase
 import com.puntogris.posture.data.datasource.local.room.dao.DayLogsDao
 import com.puntogris.posture.data.datasource.local.room.dao.UserDao
@@ -13,14 +14,15 @@ import javax.inject.Inject
 class DayLogsRepository @Inject constructor(
     private val dayLogsDao: DayLogsDao,
     private val appDatabase: AppDatabase,
-    private val userDao: UserDao
+    private val userDao: UserDao,
+    private val dispatchers: DispatcherProvider
 ): IDayLogsRepository {
 
     override fun getLastTwoDaysLogsLiveData() = dayLogsDao.getLastTwoEntries()
 
     override suspend fun getWeekDayLogs() = dayLogsDao.getWeekEntries()
 
-    override suspend fun updateRoomDayLogAndUser(dayLog: DayLog) = withContext(Dispatchers.IO){
+    override suspend fun updateRoomDayLogAndUser(dayLog: DayLog) = withContext(dispatchers.io){
         try {
             val todayLog = dayLogsDao.getTodayLog()
             when {

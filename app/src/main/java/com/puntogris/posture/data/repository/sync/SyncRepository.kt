@@ -1,7 +1,8 @@
-package com.puntogris.posture.data.repo.sync
+package com.puntogris.posture.data.repository.sync
 
 import android.content.Context
 import androidx.work.*
+import com.puntogris.posture.data.DispatcherProvider
 import com.puntogris.posture.data.datasource.local.room.dao.ReminderDao
 import com.puntogris.posture.data.datasource.local.room.dao.UserDao
 import com.puntogris.posture.data.datasource.remote.FirebaseReminderDataSource
@@ -26,11 +27,12 @@ class SyncRepository @Inject constructor(
     private val firestoreUser: FirebaseUserDataSource,
     private val firestoreReminder: FirebaseReminderDataSource,
     private val dataStore: DataStore,
+    private val dispatchers: DispatcherProvider,
     @ApplicationContext private val context: Context
 ) : ISyncRepository {
 
     override suspend fun syncFirestoreAccountWithRoom(loginUser: UserPrivateData): SimpleResult =
-        withContext(Dispatchers.IO) {
+        withContext(dispatchers.io) {
             SimpleResult.build {
                 val serverUser = getUserFromServer()
                 if (serverUser != null) {

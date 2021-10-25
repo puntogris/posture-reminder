@@ -1,10 +1,11 @@
-package com.puntogris.posture.data.repo.reminder
+package com.puntogris.posture.data.repository.reminder
 
 import android.content.Context
 import android.os.Build
 import androidx.work.*
 import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.alarm.Notifications
+import com.puntogris.posture.data.DispatcherProvider
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.workers.UploadReminderWorker
 import com.puntogris.posture.data.datasource.local.room.dao.ReminderDao
@@ -28,12 +29,13 @@ class ReminderRepository @Inject constructor(
     private val notifications: Notifications,
     private val alarm: Alarm,
     private val dataStore: DataStore,
+    private val dispatchers: DispatcherProvider,
     @ApplicationContext private val context: Context
 ): IReminderRepository {
 
     override fun getAllRemindersFromRoomLiveData() = reminderDao.getAllRemindersLiveData()
 
-    override suspend fun deleteReminder(reminder: Reminder): SimpleResult = withContext(Dispatchers.IO){
+    override suspend fun deleteReminder(reminder: Reminder): SimpleResult = withContext(dispatchers.io){
         SimpleResult.build {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 notifications.removeNotificationChannelWithId(reminder.reminderId)
@@ -48,7 +50,7 @@ class ReminderRepository @Inject constructor(
         }
     }
 
-    override suspend fun insertReminder(reminder: Reminder): Result<Exception, ReminderId> = withContext(Dispatchers.IO){
+    override suspend fun insertReminder(reminder: Reminder): Result<Exception, ReminderId> = withContext(dispatchers.io){
         Result.build {
 
             if (reminder.reminderId.isBlank()) {
@@ -95,7 +97,7 @@ class ReminderRepository @Inject constructor(
 
     override fun getActiveReminderLiveData() = reminderDao.getActiveReminderLiveData()
 
-    override suspend fun getActiveReminder() = withContext(Dispatchers.IO) {
+    override suspend fun getActiveReminder() = withContext(dispatchers.io) {
         reminderDao.getActiveReminder()
     }
 

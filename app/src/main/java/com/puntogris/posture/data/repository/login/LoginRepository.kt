@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.repo.login
+package com.puntogris.posture.data.repository.login
 
 import android.content.Context
 import androidx.work.*
