@@ -20,6 +20,11 @@
             app:title="@string/battery_optimization"
             app:iconSpaceReserved="false"/>
         <Preference
+            android:key="clear_data_preference_key"
+            app:title="@string/clear_data"
+            app:iconSpaceReserved="false"
+            app:summary="@string/clear_data_summary"/>
+        <Preference
             android:key="log_out_preference_key"
             app:title="@string/log_out"
             app:iconSpaceReserved="false"

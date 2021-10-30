@@ -57,6 +57,7 @@ object Constants {
     const val VERSION_PREF_KEY = "version_preference_key"
     const val RATE_APP_PREF_KEY = "rate_app_preference_key"
     const val LICENSES_PREF_KEY = "licenses_preference_key"
+    const val CLEAR_DATA_PREF_KEY = "clear_data_preference_key"
 
     //Work manager
     const val SYNC_ACCOUNT_WORKER = "sync_account_worker"

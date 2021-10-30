@@ -9,10 +9,12 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+import com.maxkeppeler.sheets.info.InfoSheet
 import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.R
 import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.Constants.BATTERY_PREF_KEY
+import com.puntogris.posture.utils.Constants.CLEAR_DATA_PREF_KEY
 import com.puntogris.posture.utils.Constants.CREDITS_PREF_KEY
 import com.puntogris.posture.utils.Constants.LICENSES_PREF_KEY
 import com.puntogris.posture.utils.Constants.LOG_IN_PREF_KEY
@@ -53,6 +55,31 @@ class PreferencesFragment: PreferenceFragmentCompat() {
             )
             onClick {
                 navigateTo(R.id.batteryOptimizationFragment)
+            }
+        }
+
+        preference(CLEAR_DATA_PREF_KEY){
+            isVisible = viewModel.isUserLoggedIn()
+            onClick {
+                InfoSheet().build(requireContext()) {
+                    title("Delete my account")
+                    content("Danger zone!! This will delete your account, erase all your data locally, in the cloud and log you out. This action is irreversible.")
+                    onNegative(R.string.action_cancel)
+                    onPositive(R.string.action_delete) {
+                        lifecycleScope.launch {
+                            when (viewModel.logOut()) {
+                                SimpleResult.Failure -> {
+                                    (requireParentFragment() as SettingsBottomSheet).showSnackBar(R.string.snack_general_error)
+                                }
+                                SimpleResult.Success -> {
+                                    val nav = NavOptions.Builder().setPopUpTo(R.id.navigation, true)
+                                        .build()
+                                    findNavController().navigate(R.id.loginFragment, null, nav)
+                                }
+                            }
+                        }
+                    }
+                }.show(parentFragmentManager, "")
             }
         }
 
