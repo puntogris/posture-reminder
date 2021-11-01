@@ -159,6 +159,7 @@
     <string name="privacy_policy">Privacy policy</string>
     <string name="clear_data">Clear cloud data</string>
     <string name="clear_data_summary">Clear cloud data</string>
+    <string name="snack_account_deleted_success">Account deleted successfully.</string>
 
     <!-- Preferences -->
     <string name="pref_faq_url" translatable="false">https://postureapp.puntogris.com/help/</string>

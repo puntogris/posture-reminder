@@ -47,28 +47,10 @@ class PreferencesFragment: PreferenceFragmentCompat() {
             }
         }
 
-        preference(Keys.CLEAR_DATA_PREF_KEY){
+        preference(Keys.DELETE_ACCOUNT_PREF_KEY){
             isVisible = viewModel.isUserLoggedIn()
             onClick {
-                InfoSheet().build(requireContext()) {
-                    title("Delete my account")
-                    content("Danger zone!! This will delete your account, erase all your data locally, in the cloud and log you out. This action is irreversible.")
-                    onNegative(R.string.action_cancel)
-                    onPositive(R.string.action_delete) {
-                        lifecycleScope.launch {
-                            when (viewModel.logOut()) {
-                                SimpleResult.Failure -> {
-                                    (requireParentFragment() as SettingsBottomSheet).showSnackBar(R.string.snack_general_error)
-                                }
-                                SimpleResult.Success -> {
-                                    val nav = NavOptions.Builder().setPopUpTo(R.id.navigation, true)
-                                        .build()
-                                    findNavController().navigate(R.id.loginFragment, null, nav)
-                                }
-                            }
-                        }
-                    }
-                }.show(parentFragmentManager, "")
+                navigateTo(R.id.deleteAccountFragment)
             }
         }
 

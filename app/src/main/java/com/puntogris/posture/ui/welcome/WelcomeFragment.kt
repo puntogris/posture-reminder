@@ -2,13 +2,13 @@ package com.puntogris.posture.ui.welcome
 
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentWelcomeBinding
-import com.puntogris.posture.ui.base.BaseFragment
+import com.puntogris.posture.ui.base.BaseBindingFragment
 import com.puntogris.posture.utils.isDarkThemeOn
 import com.puntogris.posture.utils.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class WelcomeFragment: BaseFragment<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
+class WelcomeFragment: BaseBindingFragment<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
 
     override fun initializeViews() {
         with(binding){

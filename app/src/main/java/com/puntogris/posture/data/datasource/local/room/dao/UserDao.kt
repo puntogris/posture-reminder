@@ -19,7 +19,6 @@ interface UserDao {
     @Query("SELECT * FROM UserPrivateData WHERE roomId = 1")
     fun getUserLiveData(): LiveData<UserPrivateData>
 
-
     @Query("UPDATE UserPrivateData SET currentReminderId = :reminderId WHERE roomId = 1")
     suspend fun updateCurrentUserReminder(reminderId: String)
 

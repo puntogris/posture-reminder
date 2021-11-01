@@ -9,7 +9,7 @@ import androidx.navigation.NavController
 import com.puntogris.posture.ui.main.UiInterfaceListener
 import com.puntogris.posture.utils.getNavHostFragment
 
-abstract class BaseActivity<T : ViewDataBinding>(@LayoutRes val layout: Int) :
+abstract class BaseBindingActivity<T : ViewDataBinding>(@LayoutRes val layout: Int) :
     AppCompatActivity(),
     NavController.OnDestinationChangedListener,
     UiInterfaceListener

@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 abstract class BaseLoginFragment<T: ViewDataBinding>(@LayoutRes override val layout: Int):
-    BaseFragment<T>(layout), LoginConfiguration {
+    BaseBindingFragment<T>(layout), LoginConfiguration {
 
     private lateinit var loginActivityResultLauncher: ActivityResultLauncher<Intent>
 

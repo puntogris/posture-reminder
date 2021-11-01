@@ -8,7 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetTicketBinding
-import com.puntogris.posture.ui.base.BaseBottomSheetFragment
+import com.puntogris.posture.ui.base.BaseBindingBottomSheetFragment
 import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.Constants.DATA_KEY
 import com.puntogris.posture.utils.Constants.SEND_TICKET_KEY
@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class TicketBottomSheet : BaseBottomSheetFragment<BottomSheetTicketBinding>(R.layout.bottom_sheet_ticket, true) {
+class TicketBottomSheet : BaseBindingBottomSheetFragment<BottomSheetTicketBinding>(R.layout.bottom_sheet_ticket, true) {
 
     private val viewModel: TicketViewModel by viewModels()
 

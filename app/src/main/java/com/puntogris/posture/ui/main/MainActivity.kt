@@ -13,7 +13,7 @@ import androidx.navigation.ui.*
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.ActivityMainBinding
-import com.puntogris.posture.ui.base.BaseActivity
+import com.puntogris.posture.ui.base.BaseBindingActivity
 import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.Constants.CLAIM_NOTIFICATION_EXP_INTENT
 import com.puntogris.posture.utils.Constants.NAVIGATION_DATA
@@ -24,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -129,7 +129,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             R.id.batteryOptimizationFragment,
             R.id.loginFragment,
             R.id.whatsNewDialog,
-            R.id.internalLoginFragment
+            R.id.internalLoginFragment,
+            R.id.deleteAccountFragment
         )
     }
 

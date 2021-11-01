@@ -8,7 +8,7 @@ import androidx.databinding.ViewDataBinding
 import com.puntogris.posture.R
 import com.puntogris.posture.utils.showItem
 
-abstract class BaseFragmentOptions<T: ViewDataBinding>(@LayoutRes override val layout: Int): BaseFragment<T>(layout) {
+abstract class BaseFragmentOptions<T: ViewDataBinding>(@LayoutRes override val layout: Int): BaseBindingFragment<T>(layout) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)

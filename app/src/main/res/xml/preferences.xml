@@ -20,7 +20,7 @@
             app:title="@string/battery_optimization"
             app:iconSpaceReserved="false"/>
         <Preference
-            android:key="clear_data_preference_key"
+            android:key="delete_account_preference_key"
             app:title="@string/clear_data"
             app:iconSpaceReserved="false"
             app:summary="@string/clear_data_summary"/>

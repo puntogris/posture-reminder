@@ -160,4 +160,7 @@
     <action
         android:id="@+id/action_global_synAccountFragment"
         app:destination="@id/synAccountFragment" />
+    <fragment
+        android:id="@+id/deleteAccountFragment"
+        android:name="com.puntogris.posture.ui.account.DeleteAccountFragment"/>
 </navigation>

@@ -4,13 +4,13 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetExerciseBinding
-import com.puntogris.posture.ui.base.BaseBottomSheetFragment
+import com.puntogris.posture.ui.base.BaseBindingBottomSheetFragment
 import com.puntogris.posture.utils.Constants.PROGRESS_BAR_SMOOTH_OFFSET
 import com.puntogris.posture.utils.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ExerciseBottomSheet: BaseBottomSheetFragment<BottomSheetExerciseBinding>(R.layout.bottom_sheet_exercise,true) {
+class ExerciseBottomSheet: BaseBindingBottomSheetFragment<BottomSheetExerciseBinding>(R.layout.bottom_sheet_exercise,true) {
 
     private val args: ExerciseBottomSheetArgs by navArgs()
     private val viewModel: ExerciseViewModel by viewModels()

@@ -37,12 +37,15 @@ import javax.inject.Singleton
 @Module
 class AppModule {
 
+    @Singleton
     @Provides
     fun providesReminderDao(appDatabase: AppDatabase) = appDatabase.reminderDao()
 
+    @Singleton
     @Provides
     fun providesUserDao(appDatabase: AppDatabase) = appDatabase.userDao()
 
+    @Singleton
     @Provides
     fun providesDayHistoryDao(appDatabase: AppDatabase) = appDatabase.dayLogsDao()
 
@@ -65,12 +68,12 @@ class AppModule {
     @Singleton
     @Provides
     fun provideUserRepository(
-        userDao: UserDao,
         firebaseUser: FirebaseUserDataSource,
         alarm: Alarm,
-        dispatchers: DispatcherProvider
+        dispatchers: DispatcherProvider,
+        appDatabase: AppDatabase
     ): UserRepository {
-        return UserRepositoryImpl(userDao, firebaseUser, alarm, dispatchers)
+        return UserRepositoryImpl(firebaseUser, alarm, dispatchers, appDatabase)
     }
 
     @Provides

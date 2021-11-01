@@ -8,13 +8,13 @@ import androidx.navigation.fragment.navArgs
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentSynAccountBinding
 import com.puntogris.posture.model.UserPrivateData
-import com.puntogris.posture.ui.base.BaseFragment
+import com.puntogris.posture.ui.base.BaseBindingFragment
 import com.puntogris.posture.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SynAccountFragment : BaseFragment<FragmentSynAccountBinding>(R.layout.fragment_syn_account) {
+class SynAccountFragment : BaseBindingFragment<FragmentSynAccountBinding>(R.layout.fragment_syn_account) {
 
     private val viewModel: SyncAccountViewModel by viewModels()
     private val args: SynAccountFragmentArgs by navArgs()

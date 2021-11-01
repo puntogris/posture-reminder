@@ -6,7 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetManageRemindersBinding
 import com.puntogris.posture.model.Reminder
-import com.puntogris.posture.ui.base.BaseBottomSheetFragment
+import com.puntogris.posture.ui.base.BaseBindingBottomSheetFragment
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.navigateTo
 import com.puntogris.posture.utils.showSnackBar
@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ManageRemindersBottomSheet: BaseBottomSheetFragment<BottomSheetManageRemindersBinding>(R.layout.bottom_sheet_manage_reminders, false) {
+class ManageRemindersBottomSheet: BaseBindingBottomSheetFragment<BottomSheetManageRemindersBinding>(R.layout.bottom_sheet_manage_reminders, false) {
 
     private val viewModel: ManageRemindersViewModel by viewModels()
 

@@ -11,4 +11,5 @@ interface UserRepository {
     suspend fun updateLocalAndServerUsername(name: String): SimpleResult
     suspend fun updateLocalActiveReminder(reminder: Reminder)
     fun isUserLoggedIn(): Boolean
+    suspend fun deleteUserAccountData(): SimpleResult
 }

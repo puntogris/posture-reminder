@@ -155,6 +155,7 @@
     <string name="privacy_policy">Políticas de privacidad</string>
     <string name="clear_data">Clear cloud data</string>
     <string name="clear_data_summary">Clear cloud data</string>
+    <string name="snack_account_deleted_success">Cuenta eliminada correctamente.</string>
 
     <!-- Notifications -->
     <string name="snack_notifications_set">Se activaron las notificaciones desde las %1$s hasta las %2$s.</string>

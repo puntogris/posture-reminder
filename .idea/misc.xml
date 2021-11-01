@@ -87,6 +87,7 @@
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_announcement.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_battery_optimization.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/fragment_delete_account.xml" value="0.3515625" />
         <entry key="app/src/main/res/layout/fragment_health.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_internal_login.xml" value="0.35052083333333334" />

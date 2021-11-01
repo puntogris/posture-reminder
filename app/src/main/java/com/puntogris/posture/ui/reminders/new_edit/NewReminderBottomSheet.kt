@@ -20,7 +20,7 @@ import com.puntogris.posture.databinding.BottomSheetNewReminderBinding
 import com.puntogris.posture.model.ReminderId
 import com.puntogris.posture.utils.ReminderUi
 import com.puntogris.posture.utils.Result
-import com.puntogris.posture.ui.base.BaseBottomSheetFragment
+import com.puntogris.posture.ui.base.BaseBindingBottomSheetFragment
 import com.puntogris.posture.utils.Constants.DATA_KEY
 import com.puntogris.posture.utils.Constants.INTERVAL_KEY
 import com.puntogris.posture.utils.Constants.SOUND_PICKER_KEY
@@ -36,7 +36,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 @AndroidEntryPoint
-class NewReminderBottomSheet : BaseBottomSheetFragment<BottomSheetNewReminderBinding>(
+class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewReminderBinding>(
     R.layout.bottom_sheet_new_reminder,
     true
 ) {

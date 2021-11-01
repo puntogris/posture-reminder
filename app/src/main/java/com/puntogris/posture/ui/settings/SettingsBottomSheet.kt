@@ -3,7 +3,7 @@ package com.puntogris.posture.ui.settings
 import androidx.fragment.app.setFragmentResultListener
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetSettingsBinding
-import com.puntogris.posture.ui.base.BaseBottomSheetFragment
+import com.puntogris.posture.ui.base.BaseBindingBottomSheetFragment
 import com.puntogris.posture.utils.Constants.DATA_KEY
 import com.puntogris.posture.utils.Constants.EDIT_NAME_KEY
 import com.puntogris.posture.utils.Constants.SEND_TICKET_KEY
@@ -11,7 +11,7 @@ import com.puntogris.posture.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SettingsBottomSheet : BaseBottomSheetFragment<BottomSheetSettingsBinding>(R.layout.bottom_sheet_settings, true) {
+class SettingsBottomSheet : BaseBindingBottomSheetFragment<BottomSheetSettingsBinding>(R.layout.bottom_sheet_settings, true) {
 
     override fun initializeViews() {
         binding.bottomSheet = this

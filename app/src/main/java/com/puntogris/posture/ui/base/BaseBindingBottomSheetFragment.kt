@@ -16,7 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.puntogris.posture.utils.isDarkThemeOn
 
-abstract class BaseBottomSheetFragment<T: ViewDataBinding>(@LayoutRes private val layout: Int, private val isDraggable: Boolean): BottomSheetDialogFragment() {
+abstract class BaseBindingBottomSheetFragment<T: ViewDataBinding>(@LayoutRes private val layout: Int, private val isDraggable: Boolean): BottomSheetDialogFragment() {
 
     private var _binding : T? = null
     val binding get() = _binding!!

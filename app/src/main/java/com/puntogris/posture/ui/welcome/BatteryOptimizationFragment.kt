@@ -5,13 +5,13 @@ import android.provider.Settings
 import androidx.core.text.HtmlCompat
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentBatteryOptimizationBinding
-import com.puntogris.posture.ui.base.BaseFragment
+import com.puntogris.posture.ui.base.BaseBindingFragment
 import com.puntogris.posture.utils.gone
 import com.puntogris.posture.utils.isDarkThemeOn
 import com.puntogris.posture.utils.isIgnoringBatteryOptimizations
 import com.puntogris.posture.utils.navigateTo
 
-class BatteryOptimizationFragment : BaseFragment<FragmentBatteryOptimizationBinding>(R.layout.fragment_battery_optimization) {
+class BatteryOptimizationFragment : BaseBindingFragment<FragmentBatteryOptimizationBinding>(R.layout.fragment_battery_optimization) {
 
     override fun initializeViews() {
         binding.fragment = this
