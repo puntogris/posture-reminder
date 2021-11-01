@@ -9,12 +9,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.puntogris.posture.BuildConfig
-import com.puntogris.posture.utils.Constants.APP_PREFERENCES_NAME
-import com.puntogris.posture.utils.Constants.APP_THEME
-import com.puntogris.posture.utils.Constants.LAST_VERSION_CODE
-import com.puntogris.posture.utils.Constants.SHOW_LOGIN_KEY
-import com.puntogris.posture.utils.Constants.PANDA_ANIMATION
-import com.puntogris.posture.utils.Constants.REMINDER_STATE_KEY
+import com.puntogris.posture.utils.Keys
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -25,51 +20,51 @@ import javax.inject.Singleton
 @Singleton
 class DataStore @Inject constructor(@ApplicationContext private val context: Context) {
 
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = APP_PREFERENCES_NAME)
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = Keys.APP_PREFERENCES_NAME)
 
     suspend fun lastVersionCode() =
-        context.dataStore.data.first()[intPreferencesKey(LAST_VERSION_CODE)] ?: 0
+        context.dataStore.data.first()[intPreferencesKey(Keys.LAST_VERSION_CODE)] ?: 0
 
     suspend fun updateLastVersionCode() = context.dataStore.edit {
-        it[intPreferencesKey(LAST_VERSION_CODE)] = BuildConfig.VERSION_CODE
+        it[intPreferencesKey(Keys.LAST_VERSION_CODE)] = BuildConfig.VERSION_CODE
     }
 
-    suspend fun appTheme() = context.dataStore.data.first()[intPreferencesKey(APP_THEME)] ?: 1
+    suspend fun appTheme() = context.dataStore.data.first()[intPreferencesKey(Keys.APP_THEME)] ?: 1
 
     fun appThemeFlow() = context.dataStore.data.map {
-        val value = it[intPreferencesKey(APP_THEME)] ?: 1
+        val value = it[intPreferencesKey(Keys.APP_THEME)] ?: 1
         if (value == -1) 2 else value - 1
     }
 
     suspend fun setAppTheme(value: Int) = context.dataStore.edit {
-        it[intPreferencesKey(APP_THEME)] = value
+        it[intPreferencesKey(Keys.APP_THEME)] = value
     }
 
     suspend fun setPandaAnimation(value:Boolean){
         context.dataStore.edit {
-            it[booleanPreferencesKey(PANDA_ANIMATION)] = value
+            it[booleanPreferencesKey(Keys.PANDA_ANIMATION)] = value
         }
     }
 
     fun showPandaAnimation() = context.dataStore.data.map {
-        it[booleanPreferencesKey(PANDA_ANIMATION)] ?: false
+        it[booleanPreferencesKey(Keys.PANDA_ANIMATION)] ?: false
     }
 
     fun isAlarmActive() = context.dataStore.data.map {
-        it[booleanPreferencesKey(REMINDER_STATE_KEY)] ?: false
+        it[booleanPreferencesKey(Keys.REMINDER_STATE_KEY)] ?: false
     }
 
     suspend fun isCurrentReminderStateActive(value: Boolean){
         context.dataStore.edit {
-            it[booleanPreferencesKey(REMINDER_STATE_KEY)] = value
+            it[booleanPreferencesKey(Keys.REMINDER_STATE_KEY)] = value
         }
     }
 
     suspend fun showLoginPref() =
-        context.dataStore.data.first()[booleanPreferencesKey(SHOW_LOGIN_KEY)] ?: true
+        context.dataStore.data.first()[booleanPreferencesKey(Keys.SHOW_LOGIN_KEY)] ?: true
 
 
     suspend fun setShowLoginPref(value: Boolean) = context.dataStore.edit {
-        it[booleanPreferencesKey(SHOW_LOGIN_KEY)] = value
+        it[booleanPreferencesKey(Keys.SHOW_LOGIN_KEY)] = value
     }
 }

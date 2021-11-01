@@ -13,17 +13,6 @@ import com.maxkeppeler.sheets.info.InfoSheet
 import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.R
 import com.puntogris.posture.utils.*
-import com.puntogris.posture.utils.Constants.BATTERY_PREF_KEY
-import com.puntogris.posture.utils.Constants.CLEAR_DATA_PREF_KEY
-import com.puntogris.posture.utils.Constants.CREDITS_PREF_KEY
-import com.puntogris.posture.utils.Constants.LICENSES_PREF_KEY
-import com.puntogris.posture.utils.Constants.LOG_IN_PREF_KEY
-import com.puntogris.posture.utils.Constants.LOG_OUT_PREF_KEY
-import com.puntogris.posture.utils.Constants.RATE_APP_PREF_KEY
-import com.puntogris.posture.utils.Constants.THEME_PREF_KEY
-import com.puntogris.posture.utils.Constants.TICKET_PREF_KEY
-import com.puntogris.posture.utils.Constants.USERNAME_PREF_KEY
-import com.puntogris.posture.utils.Constants.VERSION_PREF_KEY
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -36,7 +25,7 @@ class PreferencesFragment: PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
 
-        preference(THEME_PREF_KEY){
+        preference(Keys.THEME_PREF_KEY){
             val themeNames = resources.getStringArray(R.array.theme_names)
             lifecycleScope.launch {
                 viewModel.getThemeNamePosition().collect {
@@ -48,7 +37,7 @@ class PreferencesFragment: PreferenceFragmentCompat() {
             }
         }
 
-        preference(BATTERY_PREF_KEY){
+        preference(Keys.BATTERY_PREF_KEY){
             setSummary(
                 if (requireContext().isIgnoringBatteryOptimizations()) R.string.all_in_order
                 else R.string.require_action
@@ -58,7 +47,7 @@ class PreferencesFragment: PreferenceFragmentCompat() {
             }
         }
 
-        preference(CLEAR_DATA_PREF_KEY){
+        preference(Keys.CLEAR_DATA_PREF_KEY){
             isVisible = viewModel.isUserLoggedIn()
             onClick {
                 InfoSheet().build(requireContext()) {
@@ -83,7 +72,7 @@ class PreferencesFragment: PreferenceFragmentCompat() {
             }
         }
 
-        preference(LOG_OUT_PREF_KEY){
+        preference(Keys.LOG_OUT_PREF_KEY){
             isVisible = viewModel.isUserLoggedIn()
             onClick {
                 lifecycleScope.launch {
@@ -100,18 +89,18 @@ class PreferencesFragment: PreferenceFragmentCompat() {
             }
         }
 
-        preference(LOG_IN_PREF_KEY){
+        preference(Keys.LOG_IN_PREF_KEY){
             isVisible = !viewModel.isUserLoggedIn()
             onClick {
                 navigateTo(R.id.internalLoginFragment)
             }
         }
 
-        preferenceOnClick(CREDITS_PREF_KEY){
+        preferenceOnClick(Keys.CREDITS_PREF_KEY){
             navigateTo(R.id.creditsBottomSheet)
         }
 
-        preferenceOnClick(TICKET_PREF_KEY){
+        preferenceOnClick(Keys.TICKET_PREF_KEY){
             if (viewModel.isUserLoggedIn()) {
                 navigateTo(R.id.ticketBottomSheet)
             }
@@ -120,7 +109,7 @@ class PreferencesFragment: PreferenceFragmentCompat() {
             }
         }
 
-        preference(VERSION_PREF_KEY){
+        preference(Keys.VERSION_PREF_KEY){
             summary = BuildConfig.VERSION_NAME + " ( ${BuildConfig.VERSION_CODE} )"
             onClick {
                 viewModel.setPandaAnimationPref(true)
@@ -128,11 +117,11 @@ class PreferencesFragment: PreferenceFragmentCompat() {
             }
         }
 
-        preferenceOnClick(RATE_APP_PREF_KEY){
+        preferenceOnClick(Keys.RATE_APP_PREF_KEY){
             launchWebBrowserIntent(getString(R.string.pref_play_store_web_url))
         }
 
-        preferenceOnClick(LICENSES_PREF_KEY){
+        preferenceOnClick(Keys.LICENSES_PREF_KEY){
             Intent(requireContext(), OssLicensesMenuActivity::class.java).apply {
                 OssLicensesMenuActivity.setActivityTitle(getString(R.string.open_source_licenses))
                 startActivity(this)
@@ -143,7 +132,7 @@ class PreferencesFragment: PreferenceFragmentCompat() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        preference(USERNAME_PREF_KEY) {
+        preference(Keys.USERNAME_PREF_KEY) {
             lifecycleScope.launch {
                 viewModel.user.observe(viewLifecycleOwner){
                     summary = it.username
