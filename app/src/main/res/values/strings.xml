@@ -34,6 +34,7 @@
     <string name="action_login" translatable="false">Login</string>
     <string name="action_off">Turn off</string>
     <string name="action_on">Turn on</string>
+    <string name="action_delete_account">Delete account</string>
 
     <!-- Login -->
     <string name="help_login_problems">Problems with login?</string>
@@ -170,6 +171,11 @@
     <string name="pref_privacy_policy_url" translatable="false">https://postureapp.puntogris.com/information/privacy-policy.html</string>
     <string name="pref_terms_and_conditions_url" translatable="false">https://postureapp.puntogris.com/information/terms-and-conditions.html</string>
 
+    <!-- Delete account -->
+    <string name="snack_account_email_not_matching">The email doesn\'t match the one in your account.</string>
+    <string name="delete_account_email_required_alert">As a safety precaution we will ask you to type the email you used in your registration or google account in your phone.</string>
+    <string name="delete_account_danger_alert">Danger zone!! This will delete your account, erase all your data locally, in the cloud and log you out. This action is irreversible.</string>
+
     <!-- Notifications -->
     <string name="snack_notifications_set">Notifications set from %1$s to %2$s.</string>
     <string name="posture_notification_title">Posture Notification</string>
@@ -215,6 +221,7 @@
     <string name="message">Message</string>
     <string name="an_error_occurred">An error occurred</string>
     <string name="snack_action_requires_login">This action requires login</string>
+    <string name="email" translatable="false">Email</string>
 
     <!-- Exercises -->
     <string name="in_progress">In progress</string>

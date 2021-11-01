@@ -32,6 +32,7 @@
     <string name="action_yes">Si</string>
     <string name="action_off">Desactivar</string>
     <string name="action_on">Activar</string>
+    <string name="action_delete_account">Eliminar cuenta</string>
 
     <!-- Login -->
     <string name="help_login_problems">Problemas para ingresar?</string>
@@ -156,6 +157,11 @@
     <string name="clear_data">Clear cloud data</string>
     <string name="clear_data_summary">Clear cloud data</string>
     <string name="snack_account_deleted_success">Cuenta eliminada correctamente.</string>
+
+    <!-- Delete account -->
+    <string name="snack_account_email_not_matching">El email no coincide con el que esta en tu cuenta.</string>
+    <string name="delete_account_email_required_alert">Como un mecanismo de precaución te pedimos que ingreses el email que usaste para registrarte o el de la cuenta de google en tu dispositivo.</string>
+    <string name="delete_account_danger_alert">Zona de peligro!! Esto acción eliminara tu cuenta, borrando toda tu informacion local, en la nube y cerrando tu sesión. Esto es irreversible.</string>
 
     <!-- Notifications -->
     <string name="snack_notifications_set">Se activaron las notificaciones desde las %1$s hasta las %2$s.</string>

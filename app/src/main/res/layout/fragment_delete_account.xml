@@ -14,11 +14,10 @@
         android:layout_height="match_parent"
         tools:context=".ui.account.DeleteAccountFragment">
 
-
         <Button
             android:id="@+id/deleteButton"
             android:layout_width="0dp"
-            android:text="Delete account"
+            android:text="@string/action_delete_account"
             android:onClick="@{()-> fragment.onDeleteAccountClicked()}"
             style="@style/Theme.Posture.Button"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -27,15 +26,17 @@
 
         <EditText
             android:id="@+id/emailField"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Email"
+            android:layout_marginHorizontal="60dp"
+            android:textSize="15sp"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email"
             app:layout_constraintBottom_toTopOf="@+id/textView29"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView34" />
+            app:layout_constraintTop_toBottomOf="@+id/textView34"
+            android:autofillHints="emailAddress" />
 
         <TextView
             android:id="@+id/textView20"
@@ -43,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Delete account"
+            android:text="@string/action_delete_account"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginBottom="52dp"
-            android:text="Danger zone!! This will delete your account, erase all your data locally, in the cloud and log you out. This action is irreversible."
+            android:text="@string/delete_account_danger_alert"
             android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/deleteButton"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +70,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginHorizontal="24dp"
             android:textAlignment="center"
-            android:text="As a safety precaution we will ask you to type the email you used in your registration or google account in your phone."
+            android:text="@string/delete_account_email_required_alert"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
