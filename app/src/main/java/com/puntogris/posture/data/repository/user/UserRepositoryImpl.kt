@@ -1,13 +1,10 @@
 package com.puntogris.posture.data.repository.user
 
-import androidx.work.WorkManager
 import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.data.DispatcherProvider
-import com.puntogris.posture.data.datasource.local.room.dao.UserDao
 import com.puntogris.posture.data.datasource.local.room.db.AppDatabase
 import com.puntogris.posture.data.datasource.remote.FirebaseUserDataSource
 import com.puntogris.posture.model.Reminder
-import com.puntogris.posture.utils.Constants
 import com.puntogris.posture.utils.Constants.USER_NAME_FIELD
 import com.puntogris.posture.utils.SimpleResult
 import kotlinx.coroutines.tasks.await

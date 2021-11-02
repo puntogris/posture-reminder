@@ -10,5 +10,5 @@ class RankingsViewModel @Inject constructor(
     private val rankingsRepository: RankingsRepository
 ): ViewModel(){
 
-    suspend fun getAllRankings() = rankingsRepository.getAllRankingsFirestore()
+    suspend fun getAllRankings() = rankingsRepository.getAllRankingsServer()
 }

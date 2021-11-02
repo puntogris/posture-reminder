@@ -25,7 +25,11 @@ class DeleteAccountFragment :
     fun onDeleteAccountClicked() {
         lifecycleScope.launch {
             val user = viewModel.getCurrentUser()
-            if (user != null && user.email == binding.emailField.text.toString()) {
+            if (
+                user != null &&
+                user.email.isNotBlank() &&
+                user.email == binding.emailField.text.toString()
+            ) {
                 showLoadingProgress()
                 deleteAccount()
             } else {
@@ -34,8 +38,8 @@ class DeleteAccountFragment :
         }
     }
 
-    private fun showLoadingProgress(){
-        with(binding){
+    private fun showLoadingProgress() {
+        with(binding) {
             animationView.visible()
             animationView.setAnimation(R.raw.loading)
             animationView.repeatCount = LottieDrawable.INFINITE
@@ -52,7 +56,7 @@ class DeleteAccountFragment :
     }
 
     private fun onDeleteFailure() {
-        with(binding){
+        with(binding) {
             animationView.gone()
             animationView.playAnimationOnce(R.raw.error)
             emailField.visible()

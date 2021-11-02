@@ -7,20 +7,17 @@ import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.alarm.Notifications
 import com.puntogris.posture.data.DispatcherProvider
 import com.puntogris.posture.data.datasource.local.DataStore
-import com.puntogris.posture.workers.UploadReminderWorker
 import com.puntogris.posture.data.datasource.local.room.dao.ReminderDao
 import com.puntogris.posture.data.datasource.remote.FirebaseReminderDataSource
 import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.model.ReminderId
 import com.puntogris.posture.utils.Constants.REMINDER_ID_WORKER_DATA
-import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
-import javax.inject.Inject
-import kotlin.Exception
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.SimpleResult
+import com.puntogris.posture.workers.UploadReminderWorker
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class ReminderRepositoryImpl(
     private val firebase: FirebaseReminderDataSource,
@@ -32,7 +29,7 @@ class ReminderRepositoryImpl(
     private val context: Context
 ): ReminderRepository {
 
-    override fun getAllRemindersFromRoomLiveData() = reminderDao.getAllRemindersLiveData()
+    override fun getAllLocalRemindersLiveData() = reminderDao.getAllRemindersLiveData()
 
     override suspend fun deleteReminder(reminder: Reminder): SimpleResult = withContext(dispatchers.io){
         SimpleResult.build {

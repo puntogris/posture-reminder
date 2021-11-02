@@ -9,7 +9,6 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
-import com.maxkeppeler.sheets.info.InfoSheet
 import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.R
 import com.puntogris.posture.utils.*

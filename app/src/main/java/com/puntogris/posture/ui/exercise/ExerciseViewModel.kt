@@ -53,7 +53,7 @@ class ExerciseViewModel @Inject constructor(
 
     suspend fun updateDayLogWithReward(): RewardExp {
         val log = DayLog(expGained = EXPERIENCE_PER_EXERCISE, exercises = 1)
-        return logsRepository.updateRoomDayLogAndUser(log)
+        return logsRepository.updateLocalDayLogAndUser(log)
     }
 
 }

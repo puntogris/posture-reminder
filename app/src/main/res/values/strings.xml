@@ -158,8 +158,7 @@
     <string name="open_source_licenses">Open source licenses</string>
     <string name="terms_and_conditions">Terms and conditions</string>
     <string name="privacy_policy">Privacy policy</string>
-    <string name="clear_data">Clear cloud data</string>
-    <string name="clear_data_summary">Clear cloud data</string>
+    <string name="delete_account_summary">Delete account from servers.</string>
     <string name="snack_account_deleted_success">Account deleted successfully.</string>
 
     <!-- Preferences -->
@@ -221,7 +220,7 @@
     <string name="message">Message</string>
     <string name="an_error_occurred">An error occurred</string>
     <string name="snack_action_requires_login">This action requires login</string>
-    <string name="email" translatable="false">Email</string>
+    <string name="account_email">Account e-mail</string>
 
     <!-- Exercises -->
     <string name="in_progress">In progress</string>

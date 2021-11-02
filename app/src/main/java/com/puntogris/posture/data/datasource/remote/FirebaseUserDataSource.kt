@@ -5,12 +5,12 @@ import com.puntogris.posture.utils.Constants.PUBLIC_PROFILE_DOC
 import com.puntogris.posture.utils.Constants.USERS_COLLECTION
 import javax.inject.Inject
 
-class FirebaseUserDataSource @Inject constructor(): FirebaseDataSource() {
+class FirebaseUserDataSource @Inject constructor() : FirebaseDataSource() {
 
     fun getUserPrivateDataRef() =
         firestore
-        .collection(USERS_COLLECTION)
-        .document(getCurrentUserId())
+            .collection(USERS_COLLECTION)
+            .document(getCurrentUserId())
 
     fun getUserPublicProfileRef() =
         firestore
@@ -18,7 +18,5 @@ class FirebaseUserDataSource @Inject constructor(): FirebaseDataSource() {
             .document(getCurrentUserId())
             .collection(PUBLIC_PROFILE_COL_GROUP)
             .document(PUBLIC_PROFILE_DOC)
-
-
 
 }

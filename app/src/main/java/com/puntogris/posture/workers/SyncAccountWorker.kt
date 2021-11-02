@@ -19,7 +19,7 @@ class SyncAccountWorker @AssistedInject constructor(
 
     override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
         try {
-            syncRepository.syncUserExperienceInFirestoreWithRoom()
+            syncRepository.syncUserExperienceInServerWithLocalDb()
             Result.success()
         } catch (e: Exception) {
             Result.failure()

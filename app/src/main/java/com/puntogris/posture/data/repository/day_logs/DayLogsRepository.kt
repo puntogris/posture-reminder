@@ -7,5 +7,5 @@ import com.puntogris.posture.utils.RewardExp
 interface DayLogsRepository {
     fun getLastTwoDaysLogsLiveData(): LiveData<List<DayLog>>
     suspend fun getWeekDayLogs(): List<DayLog>
-    suspend fun updateRoomDayLogAndUser(dayLog: DayLog): RewardExp
+    suspend fun updateLocalDayLogAndUser(dayLog: DayLog): RewardExp
 }

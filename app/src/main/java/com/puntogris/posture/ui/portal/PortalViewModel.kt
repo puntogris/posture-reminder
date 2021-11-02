@@ -10,6 +10,6 @@ class PortalViewModel @Inject constructor(
     private val rankingsRepository: RankingsRepository
 ): ViewModel() {
 
-    suspend fun getTopThreeRankings() = rankingsRepository.getTopThreeRankingsFirestore()
+    suspend fun getTopThreeRankings() = rankingsRepository.getTopThreeRankingsServer()
 
 }

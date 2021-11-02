@@ -28,7 +28,7 @@ class SyncRepositoryImpl(
     private val context: Context
 ) : SyncRepository {
 
-    override suspend fun syncFirestoreAccountWithRoom(loginUser: UserPrivateData): SimpleResult =
+    override suspend fun syncSeverAccountWithLocalDb(loginUser: UserPrivateData): SimpleResult =
         withContext(dispatchers.io) {
             SimpleResult.build {
                 val serverUser = getUserFromServer()
@@ -103,7 +103,7 @@ class SyncRepositoryImpl(
         }
     }
 
-    override suspend fun syncUserExperienceInFirestoreWithRoom() {
+    override suspend fun syncUserExperienceInServerWithLocalDb() {
         userDao.getUser()?.let {
             val expAmount = it.calculateMaxExpPermitted(getTimestampFromServer())
 

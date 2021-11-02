@@ -3,8 +3,6 @@ package com.puntogris.posture.data.repository.day_logs
 import androidx.room.withTransaction
 import com.puntogris.posture.data.DispatcherProvider
 import com.puntogris.posture.data.datasource.local.room.db.AppDatabase
-import com.puntogris.posture.data.datasource.local.room.dao.DayLogsDao
-import com.puntogris.posture.data.datasource.local.room.dao.UserDao
 import com.puntogris.posture.model.DayLog
 import com.puntogris.posture.utils.RewardExp
 import kotlinx.coroutines.withContext
@@ -12,13 +10,13 @@ import kotlinx.coroutines.withContext
 class DayLogsRepositoryImpl(
     private val appDatabase: AppDatabase,
     private val dispatchers: DispatcherProvider
-): DayLogsRepository {
+) : DayLogsRepository {
 
     override fun getLastTwoDaysLogsLiveData() = appDatabase.dayLogsDao().getLastTwoEntries()
 
     override suspend fun getWeekDayLogs() = appDatabase.dayLogsDao().getWeekEntries()
 
-    override suspend fun updateRoomDayLogAndUser(dayLog: DayLog) = withContext(dispatchers.io){
+    override suspend fun updateLocalDayLogAndUser(dayLog: DayLog) = withContext(dispatchers.io) {
         try {
             val todayLog = appDatabase.dayLogsDao().getTodayLog()
             when {
@@ -32,23 +30,29 @@ class DayLogsRepositoryImpl(
                         expGained += dayLog.expGained
                         notifications += dayLog.notifications
                     }
-                    appDatabase.withTransaction {
-                        appDatabase.dayLogsDao().update(todayLog)
-                        appDatabase.userDao().updateUserExperience(dayLog.expGained)
+                    appDatabase.apply {
+                        withTransaction {
+                            dayLogsDao().update(todayLog)
+                            userDao().updateUserExperience(dayLog.expGained)
+                        }
                     }
                     RewardExp.Success
                 }
                 else -> RewardExp.ExpLimit
             }
-        }catch (e:Exception){
+        } catch (e: Exception) {
             RewardExp.Error
         }
     }
 
-    private suspend fun insertNewDayLog(dayLog: DayLog){
-        appDatabase.withTransaction {
-            appDatabase.userDao().updateUserExperience(dayLog.expGained)
-            appDatabase.dayLogsDao().insert(dayLog)
+    private suspend fun insertNewDayLog(dayLog: DayLog) {
+        withContext(dispatchers.io) {
+            appDatabase.apply {
+                withTransaction {
+                    userDao().updateUserExperience(dayLog.expGained)
+                    dayLogsDao().insert(dayLog)
+                }
+            }
         }
     }
 

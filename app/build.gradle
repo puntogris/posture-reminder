@@ -19,7 +19,7 @@ android {
         applicationId "com.puntogris.posture"
         minSdkVersion 23
         targetSdkVersion 31
-        versionCode 36
+        versionCode 37
         versionName "2.1.0-a1"
         resConfigs "en", "es"
 

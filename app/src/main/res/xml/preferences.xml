@@ -21,9 +21,9 @@
             app:iconSpaceReserved="false"/>
         <Preference
             android:key="delete_account_preference_key"
-            app:title="@string/clear_data"
+            app:title="@string/action_delete_account"
             app:iconSpaceReserved="false"
-            app:summary="@string/clear_data_summary"/>
+            app:summary="@string/delete_account_summary"/>
         <Preference
             android:key="log_out_preference_key"
             app:title="@string/log_out"

@@ -20,10 +20,10 @@ class TicketRepositoryImpl(
             email = firebaseUser?.email.toString()
             uid = firebaseUser?.uid.toString()
         }
-        return sendTicketToFirestore(ticket)
+        return sendTicketToServer(ticket)
     }
 
-    private suspend fun sendTicketToFirestore(ticket: Ticket): SimpleResult = withContext(dispatchers.io){
+    private suspend fun sendTicketToServer(ticket: Ticket): SimpleResult = withContext(dispatchers.io){
         SimpleResult.build {
             firebase.firestore.collection(TICKET_COLLECTION).add(ticket).await()
         }
