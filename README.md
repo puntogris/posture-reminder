@@ -17,5 +17,5 @@ Used in this project:</br>
   * Vuepress
 
 ## Screenshots
-<img src="https://github.com/puntogris/posture-reminder/blob/main/screenshots/1.png" width=250> <img src="https://github.com/puntogris/posture-reminder/blob/main/screenshots/2.png" width=250><img src="https://github.com/puntogris/posture-reminder/blob/main/screenshots/3.png" width=250>
+<img src="https://github.com/puntogris/posture-reminder/blob/main/screenshots/1.png" width=250> <img src="https://github.com/puntogris/posture-reminder/blob/main/screenshots/2.png" width=250> <img src="https://github.com/puntogris/posture-reminder/blob/main/screenshots/3.png" width=250>
 
