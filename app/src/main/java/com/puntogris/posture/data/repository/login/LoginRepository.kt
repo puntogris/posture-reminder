@@ -3,10 +3,11 @@ package com.puntogris.posture.data.repository.login
 import android.content.Intent
 import com.puntogris.posture.utils.LoginResult
 import com.puntogris.posture.utils.SimpleResult
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 
 interface LoginRepository {
-    fun firebaseAuthWithGoogle(idToken: String): StateFlow<LoginResult>
+    fun firebaseAuthWithGoogle(idToken: String): Flow<LoginResult>
     fun getGoogleSignInIntent(): Intent
     suspend fun signOutUser(): SimpleResult
     suspend fun singInAnonymously(): SimpleResult

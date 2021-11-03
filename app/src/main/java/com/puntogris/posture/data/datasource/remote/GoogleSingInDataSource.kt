@@ -6,6 +6,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.puntogris.posture.BuildConfig
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class GoogleSingInDataSource @Inject constructor(
@@ -21,8 +22,8 @@ class GoogleSingInDataSource @Inject constructor(
         return GoogleSignIn.getClient(context, gso)
     }
 
-    fun signOut(){
-        getGoogleSignInClient().signOut()
+    suspend fun signOut(){
+        getGoogleSignInClient().signOut().await()
     }
 
     fun createSignIntent() = getGoogleSignInClient().signInIntent

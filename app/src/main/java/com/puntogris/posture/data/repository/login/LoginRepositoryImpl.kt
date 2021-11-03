@@ -14,8 +14,11 @@ import com.puntogris.posture.utils.Constants.SYNC_ACCOUNT_WORKER
 import com.puntogris.posture.utils.LoginResult
 import com.puntogris.posture.utils.SimpleResult
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 class LoginRepositoryImpl(
@@ -27,18 +30,16 @@ class LoginRepositoryImpl(
     private val alarm: Alarm
 ) : LoginRepository {
 
-    override fun firebaseAuthWithGoogle(idToken: String): StateFlow<LoginResult> =
-        MutableStateFlow<LoginResult>(LoginResult.InProgress).also { flow ->
+    override fun firebaseAuthWithGoogle(idToken: String): Flow<LoginResult> = flow {
+        try {
+            emit(LoginResult.InProgress)
             val credential = GoogleAuthProvider.getCredential(idToken, null)
-
-            loginFirebase.auth.signInWithCredential(credential)
-                .addOnSuccessListener {
-                    flow.value = LoginResult.Success(UserPrivateData.from(it.user))
-                }
-                .addOnFailureListener {
-                    flow.value = LoginResult.Error
-                }
+            val firebaseUser = loginFirebase.auth.signInWithCredential(credential).await()
+            emit(LoginResult.Success(UserPrivateData.from(firebaseUser.user)))
+        } catch (e: Exception) {
+            emit(LoginResult.Error)
         }
+    }
 
     override fun getGoogleSignInIntent() = googleSingIn.createSignIntent()
 
