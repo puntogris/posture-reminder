@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.repository.rankings
+package com.puntogris.posture.domain.repository
 
 import com.puntogris.posture.model.UserPublicProfile
 import com.puntogris.posture.utils.Result

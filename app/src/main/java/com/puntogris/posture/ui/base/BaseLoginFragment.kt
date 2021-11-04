@@ -1,15 +1,13 @@
 package com.puntogris.posture.ui.base
 
-import android.app.Activity
 import android.content.Intent
+import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.common.api.ApiException
 import com.puntogris.posture.NavigationDirections
 import com.puntogris.posture.R
 import com.puntogris.posture.utils.LoginResult
@@ -30,39 +28,17 @@ abstract class BaseLoginFragment<T: ViewDataBinding>(@LayoutRes override val lay
     private fun registerActivityResultLauncher(){
         loginActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             onLoginFinished()
-            if (it.resultCode == Activity.RESULT_OK)
-                handleLoginActivityResult(it.data)
-            else if (it.resultCode == Activity.RESULT_CANCELED) {
-                UiInterface.showSnackBar(getString(R.string.snack_fail_login), anchorToBottomNav = false)
-            }
+            authGoogleUserIntoServer(it)
         }
     }
 
-    private fun handleLoginActivityResult(intent: Intent?){
-        try {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(intent)
-            val account = task.getResult(ApiException::class.java)!!
-            authUserIntoFirebase(account.idToken!!)
-        } catch (e: ApiException) {
-            UiInterface.showSnackBar(getString(R.string.snack_fail_login), anchorToBottomNav = false)
-        }
-    }
-
-    private fun authUserIntoFirebase(idToken: String){
+    private fun authGoogleUserIntoServer(result: ActivityResult) {
         lifecycleScope.launch {
-            viewModel.authUserWithFirebase(idToken).collect {
-                handleAuthUserIntoFirebaseResult(it)
-            }
+            viewModel.authGoogleUser(result).collect(::handleAuthUserIntoServerResult)
         }
     }
 
-    fun startLoginWithGoogle() {
-        onLoginStarted()
-        val intent = viewModel.getGoogleSignInIntent()
-        loginActivityResultLauncher.launch(intent)
-    }
-
-    private fun handleAuthUserIntoFirebaseResult(result: LoginResult){
+    private fun handleAuthUserIntoServerResult(result: LoginResult){
         when (result) {
             is LoginResult.Error -> {
                 UiInterface.showSnackBar(getString(R.string.snack_fail_login), anchorToBottomNav = false)
@@ -77,5 +53,11 @@ abstract class BaseLoginFragment<T: ViewDataBinding>(@LayoutRes override val lay
                 findNavController().navigate(action)
             }
         }
+    }
+
+    fun startLoginWithGoogle() {
+        onLoginStarted()
+        val intent = viewModel.getGoogleSignInIntent()
+        loginActivityResultLauncher.launch(intent)
     }
 }

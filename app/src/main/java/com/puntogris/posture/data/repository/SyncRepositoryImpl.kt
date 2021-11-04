@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.repository.sync
+package com.puntogris.posture.data.repository
 
 import android.content.Context
 import androidx.work.*
@@ -10,6 +10,7 @@ import com.puntogris.posture.data.datasource.remote.FirebaseUserDataSource
 import com.puntogris.posture.model.*
 import com.puntogris.posture.utils.Constants.EXPERIENCE_FIELD
 import com.puntogris.posture.data.datasource.local.DataStore
+import com.puntogris.posture.domain.repository.SyncRepository
 import com.puntogris.posture.utils.Constants.SERVER_TIMESTAMP_FUNCTION
 import com.puntogris.posture.utils.Constants.SYNC_ACCOUNT_WORKER
 import com.puntogris.posture.utils.SimpleResult

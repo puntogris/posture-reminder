@@ -1,7 +1,8 @@
-package com.puntogris.posture.data.repository.rankings
+package com.puntogris.posture.data.repository
 
 import com.puntogris.posture.data.DispatcherProvider
 import com.puntogris.posture.data.datasource.remote.FirebaseRankingDataSource
+import com.puntogris.posture.domain.repository.RankingsRepository
 import com.puntogris.posture.model.UserPublicProfile
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext

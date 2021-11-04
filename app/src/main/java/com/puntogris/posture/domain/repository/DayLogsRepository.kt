@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.repository.day_logs
+package com.puntogris.posture.domain.repository
 
 import androidx.lifecycle.LiveData
 import com.puntogris.posture.model.DayLog

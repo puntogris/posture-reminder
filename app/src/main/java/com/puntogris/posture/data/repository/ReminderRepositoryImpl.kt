@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.repository.reminder
+package com.puntogris.posture.data.repository
 
 import android.content.Context
 import android.os.Build
@@ -9,6 +9,7 @@ import com.puntogris.posture.data.DispatcherProvider
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.datasource.local.room.dao.ReminderDao
 import com.puntogris.posture.data.datasource.remote.FirebaseReminderDataSource
+import com.puntogris.posture.domain.repository.ReminderRepository
 import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.model.ReminderId
 import com.puntogris.posture.utils.Constants.REMINDER_ID_WORKER_DATA

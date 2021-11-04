@@ -1,9 +1,10 @@
-package com.puntogris.posture.data.repository.user
+package com.puntogris.posture.data.repository
 
 import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.data.DispatcherProvider
 import com.puntogris.posture.data.datasource.local.room.db.AppDatabase
 import com.puntogris.posture.data.datasource.remote.FirebaseUserDataSource
+import com.puntogris.posture.domain.repository.UserRepository
 import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.utils.Constants.USER_NAME_FIELD
 import com.puntogris.posture.utils.SimpleResult

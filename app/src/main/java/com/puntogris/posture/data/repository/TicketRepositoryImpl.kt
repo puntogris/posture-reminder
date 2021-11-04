@@ -1,7 +1,8 @@
-package com.puntogris.posture.data.repository.ticket
+package com.puntogris.posture.data.repository
 
 import com.puntogris.posture.data.DispatcherProvider
 import com.puntogris.posture.data.datasource.remote.FirebaseDataSource
+import com.puntogris.posture.domain.repository.TicketRepository
 import com.puntogris.posture.model.Ticket
 import com.puntogris.posture.utils.Constants.TICKET_COLLECTION
 import com.puntogris.posture.utils.SimpleResult
