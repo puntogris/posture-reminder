@@ -44,7 +44,7 @@ class PortalFragment : BaseFragmentOptions<FragmentPortalBinding>(R.layout.fragm
         }
     }
 
-    private fun handleResultFromFetchRankings(result: Result<Exception, List<UserPublicProfile>>) {
+    private fun handleResultFromFetchRankings(result: Result<List<UserPublicProfile>>) {
         when (result) {
             is Result.Error -> {
                 UiInterface.showSnackBar(getString(R.string.snack_connection_error))

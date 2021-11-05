@@ -13,7 +13,7 @@ class RankingsRepositoryImpl(
     private val dispatchers: DispatcherProvider
 ) : RankingsRepository {
 
-    override suspend fun getAllRankingsServer(): Result<Exception, List<UserPublicProfile>> =
+    override suspend fun getAllRankingsServer(): Result<List<UserPublicProfile>> =
         withContext(dispatchers.io) {
             Result.build {
                 rankingsFirebase.getRankingsQueryWithLimit()
@@ -23,7 +23,7 @@ class RankingsRepositoryImpl(
             }
         }
 
-    override suspend fun getTopThreeRankingsServer(): Result<Exception, List<UserPublicProfile>> =
+    override suspend fun getTopThreeRankingsServer(): Result<List<UserPublicProfile>> =
         withContext(dispatchers.io) {
             Result.build {
                 rankingsFirebase.getRankingsQueryWithLimit(3)

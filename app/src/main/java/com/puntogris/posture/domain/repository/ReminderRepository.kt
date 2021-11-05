@@ -11,7 +11,7 @@ interface ReminderRepository {
 
     suspend fun deleteReminder(reminder: Reminder): SimpleResult
 
-    suspend fun insertReminder(reminder: Reminder): Result<Exception, ReminderId>
+    suspend fun insertReminder(reminder: Reminder): Result<ReminderId>
 
     fun getActiveReminderLiveData(): LiveData<Reminder?>
 

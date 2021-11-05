@@ -48,7 +48,7 @@ class ReminderRepositoryImpl(
             }
         }
 
-    override suspend fun insertReminder(reminder: Reminder): Result<Exception, ReminderId> =
+    override suspend fun insertReminder(reminder: Reminder): Result<ReminderId> =
         withContext(dispatchers.io) {
             Result.build {
 

@@ -33,7 +33,7 @@ class RankingsFragment : BaseFragmentOptions<FragmentRankingsBinding>(R.layout.f
         }
     }
 
-    private fun handleResultFromFetchRankings(result: Result<Exception, List<UserPublicProfile>>) {
+    private fun handleResultFromFetchRankings(result: Result<List<UserPublicProfile>>) {
         when (result) {
             is Result.Error -> UiInterface.showSnackBar(getString(R.string.snack_connection_error))
             is Result.Success -> rankingsAdapter.submitList(result.value)

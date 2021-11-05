@@ -30,12 +30,12 @@ sealed class UserAccount {
     object Registered : UserAccount()
 }
 
-sealed class Result<out E, out V> {
-    data class Success<out V>(val value: V) : Result<Nothing, V>()
-    data class Error<out E>(val exception: Exception) : Result<E, Nothing>()
+sealed class Result<T> {
+    data class Success<T>(val value: T) : Result<T>()
+    data class Error<T>(val exception: Exception) : Result<T>()
 
     companion object Factory {
-        inline fun <V> build(function: () -> V): Result<Exception, V> =
+        inline fun <T> build(function: () -> T): Result<T> =
             try {
                 Success(function.invoke())
             } catch (e: java.lang.Exception) {
