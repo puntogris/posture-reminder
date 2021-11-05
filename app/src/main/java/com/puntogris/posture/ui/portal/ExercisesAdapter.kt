@@ -5,7 +5,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.data.datasource.local.LocalDataSource
 import com.puntogris.posture.model.Exercise
 
-class ExercisesAdapter(private val clickListener: (Exercise) -> Unit): RecyclerView.Adapter<ExerciseViewHolder>(){
+class ExercisesAdapter(private val clickListener: (Exercise) -> Unit) :
+    RecyclerView.Adapter<ExerciseViewHolder>() {
 
     private var items = LocalDataSource().exercisesList
 

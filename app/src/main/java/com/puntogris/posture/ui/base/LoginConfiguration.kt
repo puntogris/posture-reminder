@@ -2,7 +2,7 @@ package com.puntogris.posture.ui.base
 
 import com.puntogris.posture.ui.login.LoginViewModel
 
-interface LoginConfiguration{
+interface LoginConfiguration {
     fun onLoginStarted()
     fun onLoginError()
     fun onLoginFinished()

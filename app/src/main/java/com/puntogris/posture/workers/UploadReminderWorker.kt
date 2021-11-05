@@ -16,9 +16,9 @@ class UploadReminderWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParams: WorkerParameters,
     private val reminderRepository: ReminderRepository
-): CoroutineWorker(appContext, workerParams) {
+) : CoroutineWorker(appContext, workerParams) {
 
-    override suspend fun doWork(): Result = withContext(Dispatchers.IO){
+    override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
         try {
             val reminderId = inputData.getString(REMINDER_ID_WORKER_DATA)
 
@@ -26,7 +26,7 @@ class UploadReminderWorker @AssistedInject constructor(
                 reminderRepository.insertLocalReminderToServer(reminderId)
             }
             Result.success()
-        }catch (e:Exception){
+        } catch (e: Exception) {
             Result.failure()
         }
     }

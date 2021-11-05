@@ -16,9 +16,9 @@ import javax.inject.Inject
 @HiltViewModel
 class NewReminderViewModel @Inject constructor(
     private val reminderRepository: ReminderRepository
-    ) : ViewModel() {
+) : ViewModel() {
 
-    private var initialReminderCopy : Reminder? = null
+    private var initialReminderCopy: Reminder? = null
 
     private val _reminder = MutableLiveData(Reminder())
     val reminder: LiveData<Reminder> = _reminder
@@ -33,7 +33,7 @@ class NewReminderViewModel @Inject constructor(
         initialReminderCopy = reminder.copy()
     }
 
-    private fun reminderIsEdited() :Boolean{
+    private fun reminderIsEdited(): Boolean {
         return initialReminderCopy != _reminder.value
     }
 
@@ -61,11 +61,11 @@ class NewReminderViewModel @Inject constructor(
         _reminder.setField { color = resource }
     }
 
-    fun saveReminderVibrationPattern(position: Int){
+    fun saveReminderVibrationPattern(position: Int) {
         _reminder.setField { vibrationPattern = position }
     }
 
-    fun saveReminderSoundPattern(toneItem: ToneItem?){
+    fun saveReminderSoundPattern(toneItem: ToneItem?) {
         toneItem?.let {
             _reminder.setField {
                 soundUri = it.uri

@@ -48,11 +48,11 @@ data class Reminder(
 
     @ColumnInfo
     var soundName: String = ""
-):Parcelable{
+) : Parcelable {
 
     private fun isAlarmPastMidnight() = startTime > endTime
 
-    fun isAlarmInRange(minutesSinceMidnight: Int): Boolean{
+    fun isAlarmInRange(minutesSinceMidnight: Int): Boolean {
         return if (isAlarmPastMidnight()) minutesSinceMidnight !in (endTime..startTime)
         else minutesSinceMidnight in (startTime..endTime)
     }
@@ -64,12 +64,12 @@ data class Reminder(
         daysList[it].first().toString()
     }
 
-    fun timeIntervalSummary(): String{
+    fun timeIntervalSummary(): String {
         return if (timeInterval < 60) "$timeInterval m."
-        else "${timeInterval/60} h. ${timeInterval % 60} m."
+        else "${timeInterval / 60} h. ${timeInterval % 60} m."
     }
 
-    fun requiredInfoValid(): Boolean{
+    fun requiredInfoValid(): Boolean {
         return (name.isNotBlank() &&
                 timeInterval != 0 &&
                 startTime != -1 &&
@@ -78,7 +78,7 @@ data class Reminder(
                 )
     }
 
-    fun triggerTimeAtMillis(): Long{
+    fun triggerTimeAtMillis(): Long {
         return Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
             set(Calendar.HOUR_OF_DAY, startTime.getHours())

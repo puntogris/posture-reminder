@@ -10,7 +10,7 @@ import javax.inject.Inject
 class AccountViewModel @Inject constructor(
     userRepository: UserRepository,
     private val dayLogsRepository: DayLogsRepository
-): ViewModel() {
+) : ViewModel() {
 
     val user = userRepository.getLocalUserLiveData()
 

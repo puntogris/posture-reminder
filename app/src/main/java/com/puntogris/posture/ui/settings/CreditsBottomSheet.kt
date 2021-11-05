@@ -5,17 +5,18 @@ import com.puntogris.posture.databinding.BottomSheetCreditsBinding
 import com.puntogris.posture.ui.base.BaseBindingBottomSheetFragment
 import com.puntogris.posture.utils.launchWebBrowserIntent
 
-class CreditsBottomSheet: BaseBindingBottomSheetFragment<BottomSheetCreditsBinding>(R.layout.bottom_sheet_credits, true) {
+class CreditsBottomSheet :
+    BaseBindingBottomSheetFragment<BottomSheetCreditsBinding>(R.layout.bottom_sheet_credits, true) {
 
     override fun initializeViews() {
         binding.bottomSheet = this
     }
 
-    fun onUiconsCreditClicked(){
+    fun onUiconsCreditClicked() {
         launchWebBrowserIntent("https://www.flaticon.com/uicons")
     }
 
-    fun onPandaCreditClicked(){
+    fun onPandaCreditClicked() {
         launchWebBrowserIntent("https://lottiefiles.com/ucilucil")
     }
 }

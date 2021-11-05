@@ -8,7 +8,7 @@ import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.R
 import com.puntogris.posture.utils.launchWebBrowserIntent
 
-class WhatsNewDialog: DialogFragment() {
+class WhatsNewDialog : DialogFragment() {
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         return MaterialAlertDialogBuilder(requireContext(), R.style.MyAlertDialogStyle)

@@ -14,4 +14,4 @@ class Exercise(
     @ColorRes val color: Int = R.color.colorPrimary,
     @DrawableRes val image: Int,
     @ArrayRes val steps: Int
-):Parcelable
+) : Parcelable

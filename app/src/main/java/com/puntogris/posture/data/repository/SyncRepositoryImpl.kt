@@ -96,7 +96,10 @@ class SyncRepositoryImpl(
 
             localReminders.forEach { reminder ->
                 reminder.uid = uid
-                batch.set(firestoreReminder.getReminderDocumentRefWithId(reminder.reminderId), reminder)
+                batch.set(
+                    firestoreReminder.getReminderDocumentRefWithId(reminder.reminderId),
+                    reminder
+                )
             }
 
             reminderDao.insert(localReminders)

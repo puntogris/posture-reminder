@@ -5,15 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.databinding.ExerciseStepVhBinding
 
-class ExerciseStepViewHolder(private val binding: ExerciseStepVhBinding): RecyclerView.ViewHolder(binding.root) {
+class ExerciseStepViewHolder(private val binding: ExerciseStepVhBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(step: String, position:Int){
+    fun bind(step: String, position: Int) {
         binding.step = step
         binding.position = position
         binding.executePendingBindings()
     }
 
-    companion object{
+    companion object {
         fun from(parent: ViewGroup): ExerciseStepViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
             val binding = ExerciseStepVhBinding.inflate(layoutInflater, parent, false)

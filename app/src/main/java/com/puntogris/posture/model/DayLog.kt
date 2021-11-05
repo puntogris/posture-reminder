@@ -21,4 +21,4 @@ data class DayLog(
 
     @ColumnInfo
     var exercises: Int = 0
-    )
+)

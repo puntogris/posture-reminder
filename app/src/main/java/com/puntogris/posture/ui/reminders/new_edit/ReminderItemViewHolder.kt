@@ -7,16 +7,21 @@ import com.puntogris.posture.databinding.ReminderItemVhBinding
 import com.puntogris.posture.utils.ReminderUi
 import com.puntogris.posture.utils.gone
 
-class ReminderItemViewHolder(private val binding: ReminderItemVhBinding):RecyclerView.ViewHolder(binding.root) {
+class ReminderItemViewHolder(private val binding: ReminderItemVhBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(reminderItem: ReminderUi.Item, clickListener: (ReminderUi)-> Unit, isLastItem: Boolean){
+    fun bind(
+        reminderItem: ReminderUi.Item,
+        clickListener: (ReminderUi) -> Unit,
+        isLastItem: Boolean
+    ) {
         binding.reminderItem = reminderItem
         binding.root.setOnClickListener { clickListener(reminderItem) }
         if (isLastItem) binding.divider.gone()
         binding.executePendingBindings()
     }
 
-    companion object{
+    companion object {
         fun from(parent: ViewGroup): ReminderItemViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
             val binding = ReminderItemVhBinding.inflate(layoutInflater, parent, false)

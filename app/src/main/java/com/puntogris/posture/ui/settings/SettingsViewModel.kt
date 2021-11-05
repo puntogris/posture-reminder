@@ -15,8 +15,7 @@ class SettingsViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val dataStore: DataStore,
     private val loginRepository: LoginRepository
-    ): ViewModel()
-{
+) : ViewModel() {
 
     suspend fun updateUserName(name: String) =
         userRepository.updateLocalAndServerUsername(name.capitalizeWords())
@@ -25,7 +24,7 @@ class SettingsViewModel @Inject constructor(
 
     fun getThemeNamePosition() = dataStore.appThemeFlow()
 
-    fun setPandaAnimationPref(value: Boolean){
+    fun setPandaAnimationPref(value: Boolean) {
         viewModelScope.launch {
             dataStore.setPandaAnimation(value)
         }

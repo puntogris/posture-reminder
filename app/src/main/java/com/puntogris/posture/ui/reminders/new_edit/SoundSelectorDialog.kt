@@ -17,7 +17,7 @@ import com.puntogris.posture.utils.Constants.DATA_KEY
 import com.puntogris.posture.utils.Constants.SOUND_PICKER_KEY
 import java.util.ArrayList
 
-class SoundSelectorDialog: DialogFragment() {
+class SoundSelectorDialog : DialogFragment() {
 
     private var mediaPlayer: MediaPlayer? = null
     private val args: SoundSelectorDialogArgs by navArgs()
@@ -26,16 +26,16 @@ class SoundSelectorDialog: DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val tones = listRingTones()
         val stringTones = tones.map { it.title }.toTypedArray()
-        val matchLastPosition = listRingTones().indexOfFirst {  it.uri == args.savedSound }
+        val matchLastPosition = listRingTones().indexOfFirst { it.uri == args.savedSound }
         val lastPosition = if (matchLastPosition == -1) 0 else matchLastPosition
 
         return MaterialAlertDialogBuilder(requireContext(), R.style.MaterialAlertDialog_rounded)
             .setTitle(R.string.sound_picker_title)
-            .setPositiveButton(R.string.action_done){ _, _ ->
+            .setPositiveButton(R.string.action_done) { _, _ ->
                 setFragmentResult(SOUND_PICKER_KEY, bundleOf(DATA_KEY to tones[selectedPosition]))
                 findNavController().navigateUp()
             }
-            .setNegativeButton(R.string.action_cancel){ _, _ -> dismiss() }
+            .setNegativeButton(R.string.action_cancel) { _, _ -> dismiss() }
             .setSingleChoiceItems(stringTones, lastPosition) { _, position ->
                 selectedPosition = position
                 mediaPlayer?.stop()

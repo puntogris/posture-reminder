@@ -11,7 +11,10 @@ import com.puntogris.posture.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SettingsBottomSheet : BaseBindingBottomSheetFragment<BottomSheetSettingsBinding>(R.layout.bottom_sheet_settings, true) {
+class SettingsBottomSheet : BaseBindingBottomSheetFragment<BottomSheetSettingsBinding>(
+    R.layout.bottom_sheet_settings,
+    true
+) {
 
     override fun initializeViews() {
         binding.bottomSheet = this
@@ -19,27 +22,27 @@ class SettingsBottomSheet : BaseBindingBottomSheetFragment<BottomSheetSettingsBi
         setFragmentResultsListener()
     }
 
-    private fun createPreferenceScreen(){
+    private fun createPreferenceScreen() {
         childFragmentManager
             .beginTransaction()
             .replace(binding.container.id, PreferencesFragment())
             .commit()
     }
 
-    private fun setFragmentResultsListener(){
-        setFragmentResultListener(SEND_TICKET_KEY){ _, bundle ->
+    private fun setFragmentResultsListener() {
+        setFragmentResultListener(SEND_TICKET_KEY) { _, bundle ->
             val ticketSentSuccessfully = bundle.getBoolean(DATA_KEY)
             val snackMessage =
                 if (ticketSentSuccessfully) R.string.snack_send_ticket_success
                 else R.string.snack_connection_error
-             showSnackBar(snackMessage)
+            showSnackBar(snackMessage)
         }
-        setFragmentResultListener(EDIT_NAME_KEY){ _, bundle ->
+        setFragmentResultListener(EDIT_NAME_KEY) { _, bundle ->
             val editUsernameSuccessfully = bundle.getBoolean(DATA_KEY)
             val snackMessage =
                 if (editUsernameSuccessfully) R.string.snack_edit_username_success
                 else R.string.snack_connection_error
-             showSnackBar(snackMessage)
+            showSnackBar(snackMessage)
         }
     }
 

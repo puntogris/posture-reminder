@@ -10,7 +10,7 @@ import com.puntogris.posture.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class InternalLoginFragment:
+class InternalLoginFragment :
     BaseLoginFragment<FragmentInternalLoginBinding>(R.layout.fragment_internal_login) {
 
     override val viewModel: LoginViewModel by viewModels()
@@ -32,7 +32,7 @@ class InternalLoginFragment:
         binding.progressBar.gone()
     }
 
-    fun onNavigateUp(){
+    fun onNavigateUp() {
         findNavController().navigateUp()
     }
 

@@ -11,7 +11,7 @@ import javax.inject.Inject
 class ManageRemindersViewModel @Inject constructor(
     private val reminderRepository: ReminderRepository,
     private val userRepository: UserRepository
-): ViewModel() {
+) : ViewModel() {
 
     fun getAllReminders() = reminderRepository.getAllLocalRemindersLiveData()
 
@@ -19,6 +19,7 @@ class ManageRemindersViewModel @Inject constructor(
 
     suspend fun insertReminder(reminder: Reminder) = reminderRepository.insertReminder(reminder)
 
-    suspend fun updateCurrentReminder(reminder: Reminder) = userRepository.updateLocalActiveReminder(reminder)
+    suspend fun updateCurrentReminder(reminder: Reminder) =
+        userRepository.updateLocalActiveReminder(reminder)
 
 }

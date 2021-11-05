@@ -18,7 +18,7 @@ import javax.inject.Inject
 class Alarm @Inject constructor(
     @ApplicationContext context: Context,
     private val dataStore: DataStore
-    ) {
+) {
 
     private val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
@@ -31,34 +31,34 @@ class Alarm @Inject constructor(
     }
 
     private val pendingIntentDailyAlarm = PendingIntent.getBroadcast(
-            context,
-            100,
-            dailyAlarmIntent,
-            PendingIntent.FLAG_IMMUTABLE
+        context,
+        100,
+        dailyAlarmIntent,
+        PendingIntent.FLAG_IMMUTABLE
     )
 
     private val pendingIntentRepeatingAlarm = PendingIntent.getBroadcast(
-            context,
-            200,
-            repeatingAlarmIntent,
-            PendingIntent.FLAG_IMMUTABLE
+        context,
+        200,
+        repeatingAlarmIntent,
+        PendingIntent.FLAG_IMMUTABLE
     )
 
-    suspend fun startDailyAlarm(reminder: Reminder){
+    suspend fun startDailyAlarm(reminder: Reminder) {
         alarmManager.setInexactRepeating(
-                AlarmManager.RTC_WAKEUP,
-                reminder.triggerTimeAtMillis(),
-                AlarmManager.INTERVAL_DAY,
-                pendingIntentDailyAlarm
+            AlarmManager.RTC_WAKEUP,
+            reminder.triggerTimeAtMillis(),
+            AlarmManager.INTERVAL_DAY,
+            pendingIntentDailyAlarm
         )
 
-        if (reminder.isAlarmPastMidnightAndInRange(Utils.minutesSinceMidnight())){
+        if (reminder.isAlarmPastMidnightAndInRange(Utils.minutesSinceMidnight())) {
             startRepeatingAlarm(reminder.timeInterval)
         }
         dataStore.isCurrentReminderStateActive(true)
     }
 
-    suspend fun cancelAlarms(){
+    suspend fun cancelAlarms() {
         alarmManager.apply {
             cancel(pendingIntentDailyAlarm)
             cancel(pendingIntentRepeatingAlarm)
@@ -66,11 +66,11 @@ class Alarm @Inject constructor(
         dataStore.isCurrentReminderStateActive(false)
     }
 
-    fun startRepeatingAlarm(intervalInMinutes: Int){
+    fun startRepeatingAlarm(intervalInMinutes: Int) {
         alarmManager.setExact(
-                AlarmManager.RTC_WAKEUP,
-                getTriggerTime(intervalInMinutes),
-                pendingIntentRepeatingAlarm
+            AlarmManager.RTC_WAKEUP,
+            getTriggerTime(intervalInMinutes),
+            pendingIntentRepeatingAlarm
         )
     }
 
@@ -78,7 +78,7 @@ class Alarm @Inject constructor(
         alarmManager.cancel(pendingIntentRepeatingAlarm)
     }
 
-    suspend fun refreshAlarms(reminder: Reminder){
+    suspend fun refreshAlarms(reminder: Reminder) {
         cancelAlarms()
         startDailyAlarm(reminder)
     }
@@ -87,7 +87,7 @@ class Alarm @Inject constructor(
     fun canScheduleExactAlarms() = alarmManager.canScheduleExactAlarms()
 
     @RequiresApi(Build.VERSION_CODES.S)
-    suspend fun setAlarmOnExactAlarmStateChange(reminder: Reminder){
+    suspend fun setAlarmOnExactAlarmStateChange(reminder: Reminder) {
         if (canScheduleExactAlarms()) startDailyAlarm(reminder) else cancelAlarms()
     }
 

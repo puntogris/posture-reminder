@@ -28,61 +28,62 @@ class ReminderRepositoryImpl(
     private val dataStore: DataStore,
     private val dispatchers: DispatcherProvider,
     private val context: Context
-): ReminderRepository {
+) : ReminderRepository {
 
     override fun getAllLocalRemindersLiveData() = reminderDao.getAllRemindersLiveData()
 
-    override suspend fun deleteReminder(reminder: Reminder): SimpleResult = withContext(dispatchers.io){
-        SimpleResult.build {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                notifications.removeNotificationChannelWithId(reminder.reminderId)
-            }
-            if (reminder.uid.isNotBlank()) {
-                firebase.getReminderDocumentRefWithId(reminder.reminderId).delete().await()
-            }
-            if (reminderDao.getActiveReminder() == reminder){
-                alarm.cancelAlarms()
-            }
-            reminderDao.delete(reminder)
-        }
-    }
-
-    override suspend fun insertReminder(reminder: Reminder): Result<Exception, ReminderId> = withContext(dispatchers.io){
-        Result.build {
-
-            if (reminder.reminderId.isBlank()) {
-                fillIdsIfNewReminder(reminder)
-            }
-            if (reminder.uid.isNotBlank()){
-                registerUploadServerReminderWorker(reminder.reminderId)
-            }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                notifications.createChannelForReminderSdkO(reminder)
-            }
-
-            reminderDao.insert(reminder)
-            reminderDao.getActiveReminder()?.let {
-                if (it.reminderId == reminder.reminderId && dataStore.isAlarmActive().first()) {
-                    alarm.refreshAlarms(reminder)
+    override suspend fun deleteReminder(reminder: Reminder): SimpleResult =
+        withContext(dispatchers.io) {
+            SimpleResult.build {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    notifications.removeNotificationChannelWithId(reminder.reminderId)
                 }
+                if (reminder.uid.isNotBlank()) {
+                    firebase.getReminderDocumentRefWithId(reminder.reminderId).delete().await()
+                }
+                if (reminderDao.getActiveReminder() == reminder) {
+                    alarm.cancelAlarms()
+                }
+                reminderDao.delete(reminder)
             }
-
-            ReminderId(reminder.reminderId)
         }
-    }
 
+    override suspend fun insertReminder(reminder: Reminder): Result<Exception, ReminderId> =
+        withContext(dispatchers.io) {
+            Result.build {
 
+                if (reminder.reminderId.isBlank()) {
+                    fillIdsIfNewReminder(reminder)
+                }
+                if (reminder.uid.isNotBlank()) {
+                    registerUploadServerReminderWorker(reminder.reminderId)
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    notifications.createChannelForReminderSdkO(reminder)
+                }
 
-    private fun fillIdsIfNewReminder(reminder: Reminder){
+                reminderDao.insert(reminder)
+                reminderDao.getActiveReminder()?.let {
+                    if (it.reminderId == reminder.reminderId && dataStore.isAlarmActive().first()) {
+                        alarm.refreshAlarms(reminder)
+                    }
+                }
+
+                ReminderId(reminder.reminderId)
+            }
+        }
+
+    private fun fillIdsIfNewReminder(reminder: Reminder) {
         reminder.reminderId = firebase.getNewReminderDocumentRef().id
         firebase.currentUser()?.let {
             reminder.uid = it.uid
         }
     }
 
-    private fun registerUploadServerReminderWorker(reminderId: String){
+    private fun registerUploadServerReminderWorker(reminderId: String) {
         val reminderData = Data.Builder().putString(REMINDER_ID_WORKER_DATA, reminderId).build()
-        val constraints = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
+        val constraints =
+            Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
 
         val uploadReminder = OneTimeWorkRequestBuilder<UploadReminderWorker>()
             .setInputData(reminderData)
@@ -98,7 +99,7 @@ class ReminderRepositoryImpl(
         reminderDao.getActiveReminder()
     }
 
-    override suspend fun insertLocalReminderToServer(reminderId: String){
+    override suspend fun insertLocalReminderToServer(reminderId: String) {
         reminderDao.getReminderWithId(reminderId)?.let {
             firebase.getReminderDocumentRefWithId(reminderId).set(it).await()
         }

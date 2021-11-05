@@ -24,7 +24,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_home) {
+class HomeFragment : BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private val viewModel: HomeViewModel by viewModels()
     private var mediator: TabLayoutMediator? = null
@@ -44,7 +44,7 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
         subscribeToggleButton()
     }
 
-    private fun setupPagerAndTabLayout(){
+    private fun setupPagerAndTabLayout() {
         val pagerAdapter = DayLogHomeAdapter()
         subscribePager(pagerAdapter)
 
@@ -52,17 +52,18 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
             adapter = pagerAdapter
             setPageFadeTransformer()
         }
-        mediator = TabLayoutMediator(binding.usagePager.tabLayout, binding.usagePager.pager) { _, _ -> }
+        mediator =
+            TabLayoutMediator(binding.usagePager.tabLayout, binding.usagePager.pager) { _, _ -> }
         mediator?.attach()
     }
 
-    private fun subscribePager(adapter: DayLogHomeAdapter){
-        viewModel.getLastTwoDaysHistory().observe(viewLifecycleOwner){
+    private fun subscribePager(adapter: DayLogHomeAdapter) {
+        viewModel.getLastTwoDaysHistory().observe(viewLifecycleOwner) {
             adapter.updateList(it)
         }
     }
 
-    private fun observeAlarmStatus(){
+    private fun observeAlarmStatus() {
         lifecycleScope.launch {
             viewModel.alarmStatus.collect {
                 handleAlarmStatusResult(it)
@@ -70,66 +71,72 @@ class HomeFragment: BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_h
         }
     }
 
-    private fun handleAlarmStatusResult(result: AlarmStatus){
-        when(result){
+    private fun handleAlarmStatusResult(result: AlarmStatus) {
+        when (result) {
             is AlarmStatus.Activated -> {
                 UiInterface.showSnackBar(
-                    getString(R.string.snack_notifications_set,
+                    getString(
+                        R.string.snack_notifications_set,
                         Utils.minutesFromMidnightToHourlyTime(result.reminder.startTime),
                         Utils.minutesFromMidnightToHourlyTime(result.reminder.endTime)
-                    ))
+                    )
+                )
             }
             AlarmStatus.Canceled -> {
                 UiInterface.showSnackBar(getString(R.string.snack_alarms_off))
             }
             AlarmStatus.NotConfigured -> {
-                UiInterface.showSnackBar(getString(R.string.snack_active_reminder_not_found), actionText = R.string.action_select){
+                UiInterface.showSnackBar(
+                    getString(R.string.snack_active_reminder_not_found),
+                    actionText = R.string.action_select
+                ) {
                     navigateTo(R.id.manageRemindersBottomSheet)
                 }
             }
         }
     }
 
-    private fun registerAlarmPermissionLauncher(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
-            requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
-                if (result.resultCode == Activity.RESULT_OK) viewModel.toggleAlarm()
-                else UiInterface.showSnackBar(getString(R.string.snack_permission_required))
-            }
+    private fun registerAlarmPermissionLauncher() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            requestPermissionLauncher =
+                registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                    if (result.resultCode == Activity.RESULT_OK) viewModel.toggleAlarm()
+                    else UiInterface.showSnackBar(getString(R.string.snack_permission_required))
+                }
         }
     }
 
-    private fun subscribeToggleButton(){
+    private fun subscribeToggleButton() {
         binding.activeReminder.materialButton.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !viewModel.canScheduleExactAlarms()) {
                 showSnackWithPermissionAction()
-            }
-            else viewModel.toggleAlarm()
+            } else viewModel.toggleAlarm()
         }
     }
 
-    fun onNavigateToRemindersClicked(){
+    fun onNavigateToRemindersClicked() {
         navigateTo(R.id.manageRemindersBottomSheet)
     }
 
     @RequiresApi(Build.VERSION_CODES.S)
-    private fun showSnackWithPermissionAction(){
+    private fun showSnackWithPermissionAction() {
         UiInterface.showSnackBar(
             message = getString(R.string.snack_action_require_permission),
-            actionText = R.string.action_give_permission)
+            actionText = R.string.action_give_permission
+        )
         {
             startAlarmPermissionIntent()
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.S)
-    private fun startAlarmPermissionIntent(){
+    private fun startAlarmPermissionIntent() {
         requestPermissionLauncher.launch(Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).also {
             it.data = Uri.parse(PACKAGE_URI_NAME)
         })
     }
 
-    fun onNavigateToEditReminder(reminder: Reminder){
+    fun onNavigateToEditReminder(reminder: Reminder) {
         val action = HomeFragmentDirections.actionHomeFragmentToNewReminderBottomSheet(reminder)
         findNavController().navigate(action)
     }

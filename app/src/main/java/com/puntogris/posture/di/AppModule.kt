@@ -2,6 +2,10 @@ package com.puntogris.posture.di
 
 import android.content.Context
 import androidx.room.Room
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.alarm.Notifications
 import com.puntogris.posture.data.DispatcherProvider
@@ -148,4 +152,16 @@ class AppModule {
             context, loginFirebase, dataStore, userDao, googleSingIn, alarm
         )
     }
+
+    @Provides
+    @Singleton
+    fun provideGoogleSignInClient(@ApplicationContext context: Context): GoogleSignInClient {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .requestIdToken(BuildConfig.GOOGLE_WEB_CLIENT_ID)
+            .build()
+
+        return GoogleSignIn.getClient(context, gso)
+    }
+
 }

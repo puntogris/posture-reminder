@@ -16,16 +16,17 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ExerciseCompletedDialog: DialogFragment()  {
+class ExerciseCompletedDialog : DialogFragment() {
 
     private val viewModel: ExerciseViewModel by viewModels()
     private lateinit var binding: DialogCompletedExerciseBinding
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        binding = DataBindingUtil.inflate(layoutInflater, R.layout.dialog_completed_exercise, null,false)
+        binding =
+            DataBindingUtil.inflate(layoutInflater, R.layout.dialog_completed_exercise, null, false)
 
         lifecycleScope.launch {
-            when(viewModel.updateDayLogWithReward()){
+            when (viewModel.updateDayLogWithReward()) {
                 RewardExp.Error -> {
                     with(binding) {
                         animationView.playAnimationOnce(R.raw.error)
@@ -37,14 +38,16 @@ class ExerciseCompletedDialog: DialogFragment()  {
                     with(binding) {
                         animationView.setAnimation(R.raw.trophy)
                         title.text = getString(R.string.completed_exercise_title)
-                        message.text = getString(R.string.exercise_complete_dialog_exp_limit_message)
+                        message.text =
+                            getString(R.string.exercise_complete_dialog_exp_limit_message)
                     }
                 }
                 RewardExp.Success -> {
                     with(binding) {
                         animationView.setAnimation(R.raw.congratulations)
                         title.text = getString(R.string.completed_exercise_title)
-                        message.text = getString(R.string.completed_exercise_message, EXPERIENCE_PER_EXERCISE)
+                        message.text =
+                            getString(R.string.completed_exercise_message, EXPERIENCE_PER_EXERCISE)
                     }
                 }
             }

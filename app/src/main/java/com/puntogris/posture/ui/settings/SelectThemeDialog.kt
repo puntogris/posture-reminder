@@ -14,7 +14,7 @@ import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SelectThemeDialog: DialogFragment(){
+class SelectThemeDialog : DialogFragment() {
 
     @Inject
     lateinit var dataStore: DataStore
@@ -28,7 +28,7 @@ class SelectThemeDialog: DialogFragment(){
         }
 
         return MaterialAlertDialogBuilder(requireContext(), R.style.MaterialAlertDialog_rounded)
-            .setSingleChoiceItems(R.array.theme_names, currentPosition){ _, position ->
+            .setSingleChoiceItems(R.array.theme_names, currentPosition) { _, position ->
                 themeValuesArray[position].let {
                     lifecycleScope.launch {
                         dataStore.setAppTheme(it)

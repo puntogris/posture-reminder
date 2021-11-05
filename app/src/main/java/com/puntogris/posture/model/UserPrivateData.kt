@@ -21,7 +21,7 @@ import java.util.*
 data class UserPrivateData(
 
     @PrimaryKey(autoGenerate = false)
-    @get:Exclude val roomId: Int =  1,
+    @get:Exclude val roomId: Int = 1,
 
     @ColumnInfo
     val uid: String = "",
@@ -47,9 +47,9 @@ data class UserPrivateData(
     @ColumnInfo
     val currentReminderId: String = ""
 
-):Parcelable{
+) : Parcelable {
 
-    fun calculateMaxExpPermitted(serverTimestamp: Long?): Int?{
+    fun calculateMaxExpPermitted(serverTimestamp: Long?): Int? {
 
         return if (serverTimestamp != null) {
             val daysDiff = (serverTimestamp - BASE_DATE_MILLIS).toDays()
@@ -60,7 +60,7 @@ data class UserPrivateData(
     }
 
     companion object {
-        fun from(user: FirebaseUser?): UserPrivateData{
+        fun from(user: FirebaseUser?): UserPrivateData {
             val date = user?.metadata?.creationTimestamp
             val timestamp = if (date == null) Timestamp.now() else Timestamp((Date(date)))
 

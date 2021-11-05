@@ -10,7 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class TicketViewModel @Inject constructor(
     private val ticketRepository: TicketRepository
-):ViewModel() {
+) : ViewModel() {
 
     private var ticket = Ticket()
 
@@ -19,7 +19,7 @@ class TicketViewModel @Inject constructor(
         return ticketRepository.fillTicketWithUserDataAndSend(ticket)
     }
 
-    fun updateTicketType(type: Int){
+    fun updateTicketType(type: Int) {
         ticket.type = if (type == 0) Ticket.PROBLEM_TYPE else Ticket.SUGGESTION_TYPE
     }
 }

@@ -16,18 +16,19 @@ import javax.inject.Inject
 @HiltViewModel
 class ExerciseViewModel @Inject constructor(
     private val logsRepository: DayLogsRepository
-): ViewModel() {
+) : ViewModel() {
     private var durationTimer: CountDownTimer? = null
 
     private val _exerciseDurationTimer = MutableLiveData<Int>()
     val exerciseDurationTimer: LiveData<Int> = _exerciseDurationTimer
 
-    fun startExerciseTimerWithDuration(duration: Int){
+    fun startExerciseTimerWithDuration(duration: Int) {
         val durationInMillis = duration.toMillis()
         val countInterval = (1000 / PROGRESS_BAR_SMOOTH_OFFSET).toLong()
-        durationTimer = object: CountDownTimer(durationInMillis, countInterval) {
+        durationTimer = object : CountDownTimer(durationInMillis, countInterval) {
             override fun onTick(millisUntilFinished: Long) {
-                _exerciseDurationTimer.value = calculateProgressBarProgress(duration, millisUntilFinished)
+                _exerciseDurationTimer.value =
+                    calculateProgressBarProgress(duration, millisUntilFinished)
             }
 
             override fun onFinish() {
@@ -37,12 +38,12 @@ class ExerciseViewModel @Inject constructor(
         durationTimer?.start()
     }
 
-    private fun calculateProgressBarProgress(duration: Int, millisUntilFinished: Long): Int{
+    private fun calculateProgressBarProgress(duration: Int, millisUntilFinished: Long): Int {
         val progressBarMax = duration * PROGRESS_BAR_SMOOTH_OFFSET
         return (progressBarMax - (millisUntilFinished * progressBarMax / duration.toMillis())).toInt()
     }
 
-    fun cancelExpirationTimer(){
+    fun cancelExpirationTimer() {
         durationTimer?.cancel()
     }
 

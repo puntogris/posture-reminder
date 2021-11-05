@@ -27,14 +27,15 @@ import javax.inject.Inject
 
 class Notifications @Inject constructor(@ApplicationContext private val context: Context) {
 
-    private val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    private val notificationManager =
+        context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
     private val deprecatedChannels = listOf(
         "postureNotification"
     )
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun createChannelForReminderSdkO(reminder: Reminder){
+    fun createChannelForReminderSdkO(reminder: Reminder) {
 
         NotificationChannel(
             reminder.reminderId,
@@ -51,23 +52,24 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
                 setSound(Uri.parse(reminder.soundUri), getNotificationAudioAttributes())
             }
             if (reminder.vibrationPattern != 0) {
-                vibrationPattern = LocalDataSource().vibrationPatterns[reminder.vibrationPattern].pattern
+                vibrationPattern =
+                    LocalDataSource().vibrationPatterns[reminder.vibrationPattern].pattern
             }
 
             notificationManager.createNotificationChannel(this)
         }
     }
 
-    private fun getNotificationAudioAttributes(): AudioAttributes{
+    private fun getNotificationAudioAttributes(): AudioAttributes {
         return AudioAttributes.Builder()
             .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
             .setUsage(AudioAttributes.USAGE_NOTIFICATION)
             .build()
     }
 
-    private fun getNotificationBuilderWithReminder(reminder: Reminder): NotificationCompat.Builder{
+    private fun getNotificationBuilderWithReminder(reminder: Reminder): NotificationCompat.Builder {
 
-        val intent =  Intent(context, MainActivity::class.java).apply {
+        val intent = Intent(context, MainActivity::class.java).apply {
             putExtra(NAVIGATION_DATA, CLAIM_NOTIFICATION_EXP_INTENT)
             putExtra(NOTIFICATION_ID, reminder.reminderId.hashCode())
             flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
@@ -77,7 +79,8 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
             context,
             0,
             intent,
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
 
         val builder = NotificationCompat.Builder(context, reminder.reminderId)
             .setSmallIcon(R.drawable.ic_app_logo)
@@ -85,7 +88,11 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
             .setContentText(context.getString(R.string.posture_notification_text))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
-            .addAction(R.drawable.ic_baseline_add_24, context.getString(R.string.claim_exp_notification_action_title), pendingIntent)
+            .addAction(
+                R.drawable.ic_baseline_add_24,
+                context.getString(R.string.claim_exp_notification_action_title),
+                pendingIntent
+            )
             .setAutoCancel(true)
 
         if (reminder.soundUri.isNotBlank()) builder.setSound(Uri.parse(reminder.soundUri))
@@ -97,7 +104,7 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
         return builder
     }
 
-    fun buildAndShowNotificationWithReminder(reminder: Reminder){
+    fun buildAndShowNotificationWithReminder(reminder: Reminder) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createChannelForReminderSdkO(reminder)
         }
@@ -108,12 +115,12 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun removeDeprecatedChannels(){
+    fun removeDeprecatedChannels() {
         deprecatedChannels.forEach(notificationManager::deleteNotificationChannel)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun removeNotificationChannelWithId(channelId: String){
+    fun removeNotificationChannelWithId(channelId: String) {
         notificationManager.deleteNotificationChannel(channelId)
     }
 
@@ -133,14 +140,15 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
             .build()
     }
 
-    fun sendFcmNotification(fcmNotification: FcmNotification){
+    fun sendFcmNotification(fcmNotification: FcmNotification) {
         val notification = buildNotificationForFcm(fcmNotification)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
-                notification.channelId, 
+                notification.channelId,
                 context.getString(R.string.fmc_channel_name),
-                NotificationManager.IMPORTANCE_DEFAULT)
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
             notificationManager.createNotificationChannel(channel)
         }
         notificationManager.notify(0, notification)

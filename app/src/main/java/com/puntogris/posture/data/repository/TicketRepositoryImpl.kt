@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 class TicketRepositoryImpl(
     private val firebase: FirebaseDataSource,
     private val dispatchers: DispatcherProvider
-): TicketRepository {
+) : TicketRepository {
 
     override suspend fun fillTicketWithUserDataAndSend(ticket: Ticket): SimpleResult {
         val firebaseUser = firebase.getCurrentUser()
@@ -24,9 +24,10 @@ class TicketRepositoryImpl(
         return sendTicketToServer(ticket)
     }
 
-    private suspend fun sendTicketToServer(ticket: Ticket): SimpleResult = withContext(dispatchers.io){
-        SimpleResult.build {
-            firebase.firestore.collection(TICKET_COLLECTION).add(ticket).await()
+    private suspend fun sendTicketToServer(ticket: Ticket): SimpleResult =
+        withContext(dispatchers.io) {
+            SimpleResult.build {
+                firebase.firestore.collection(TICKET_COLLECTION).add(ticket).await()
+            }
         }
-    }
 }

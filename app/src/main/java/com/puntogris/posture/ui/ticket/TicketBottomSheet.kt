@@ -16,7 +16,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class TicketBottomSheet : BaseBindingBottomSheetFragment<BottomSheetTicketBinding>(R.layout.bottom_sheet_ticket, true) {
+class TicketBottomSheet :
+    BaseBindingBottomSheetFragment<BottomSheetTicketBinding>(R.layout.bottom_sheet_ticket, true) {
 
     private val viewModel: TicketViewModel by viewModels()
 
@@ -25,20 +26,20 @@ class TicketBottomSheet : BaseBindingBottomSheetFragment<BottomSheetTicketBindin
         setupTicketTypeAdapter()
     }
 
-    private fun setupTicketTypeAdapter(){
+    private fun setupTicketTypeAdapter() {
         val items = resources.getStringArray(R.array.ticket_types)
         binding.ticketType.apply {
-            setAdapter(ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1, items))
+            setAdapter(ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, items))
             setOnItemClickListener { _, _, i, _ ->
                 viewModel.updateTicketType(i)
             }
         }
     }
 
-    fun onSendTicketClicked(){
+    fun onSendTicketClicked() {
         showProgressUi()
         lifecycleScope.launch {
-            when(viewModel.sendTicket(binding.messageText.text.toString())){
+            when (viewModel.sendTicket(binding.messageText.text.toString())) {
                 SimpleResult.Failure -> showErrorUi()
                 SimpleResult.Success -> navigateBackAndShowSuccessMessage()
             }
@@ -46,7 +47,7 @@ class TicketBottomSheet : BaseBindingBottomSheetFragment<BottomSheetTicketBindin
         }
     }
 
-    private fun showProgressUi(){
+    private fun showProgressUi() {
         binding.apply {
             sendButton.isEnabled = false
             ticketAlert.gone()
@@ -54,7 +55,7 @@ class TicketBottomSheet : BaseBindingBottomSheetFragment<BottomSheetTicketBindin
         }
     }
 
-    private fun showErrorUi(){
+    private fun showErrorUi() {
         binding.apply {
             sendButton.isEnabled = true
             ticketAlert.visible()
@@ -63,12 +64,12 @@ class TicketBottomSheet : BaseBindingBottomSheetFragment<BottomSheetTicketBindin
         showSnackBar(R.string.snack_general_error)
     }
 
-    private fun navigateBackAndShowSuccessMessage(){
+    private fun navigateBackAndShowSuccessMessage() {
         setFragmentResult(SEND_TICKET_KEY, bundleOf(DATA_KEY to true))
         findNavController().navigateUp()
     }
 
-    fun onHideKeyboardClicked(){
+    fun onHideKeyboardClicked() {
         hideKeyboard()
     }
 }

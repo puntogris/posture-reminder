@@ -40,7 +40,7 @@ class DataStore @Inject constructor(@ApplicationContext private val context: Con
         it[intPreferencesKey(Keys.APP_THEME)] = value
     }
 
-    suspend fun setPandaAnimation(value:Boolean){
+    suspend fun setPandaAnimation(value: Boolean) {
         context.dataStore.edit {
             it[booleanPreferencesKey(Keys.PANDA_ANIMATION)] = value
         }
@@ -54,7 +54,7 @@ class DataStore @Inject constructor(@ApplicationContext private val context: Con
         it[booleanPreferencesKey(Keys.REMINDER_STATE_KEY)] ?: false
     }
 
-    suspend fun isCurrentReminderStateActive(value: Boolean){
+    suspend fun isCurrentReminderStateActive(value: Boolean) {
         context.dataStore.edit {
             it[booleanPreferencesKey(Keys.REMINDER_STATE_KEY)] = value
         }

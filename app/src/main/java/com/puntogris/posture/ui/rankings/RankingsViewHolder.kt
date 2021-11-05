@@ -7,10 +7,11 @@ import com.puntogris.posture.databinding.RankingProfileVhBinding
 import com.puntogris.posture.model.UserPublicProfile
 import com.puntogris.posture.utils.gone
 
-class RankingsViewHolder(private val binding: RankingProfileVhBinding): RecyclerView.ViewHolder(binding.root) {
+class RankingsViewHolder(private val binding: RankingProfileVhBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(rankingProfile: UserPublicProfile, position: Int, isLastItem: Boolean){
-        with(binding){
+    fun bind(rankingProfile: UserPublicProfile, position: Int, isLastItem: Boolean) {
+        with(binding) {
             this.rankingProfile = rankingProfile
             this.position = position
             if (isLastItem) divider.gone()
@@ -18,7 +19,7 @@ class RankingsViewHolder(private val binding: RankingProfileVhBinding): Recycler
         }
     }
 
-    companion object{
+    companion object {
         fun from(parent: ViewGroup): RankingsViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
             val binding = RankingProfileVhBinding.inflate(layoutInflater, parent, false)

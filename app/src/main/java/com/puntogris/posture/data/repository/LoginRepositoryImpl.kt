@@ -40,8 +40,6 @@ class LoginRepositoryImpl(
         }
     }
 
-    override fun getGoogleSignInIntent() = googleSingIn.createSignIntent()
-
     override suspend fun signOutUser() = SimpleResult.build {
         alarm.cancelAlarms()
         loginFirebase.signOut()

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.model.DayLog
 
-class DayLogHomeAdapter: RecyclerView.Adapter<DayLogHomeViewHolder>(){
+class DayLogHomeAdapter : RecyclerView.Adapter<DayLogHomeViewHolder>() {
 
     private var items = listOf(DayLog(), DayLog())
 
@@ -20,10 +20,10 @@ class DayLogHomeAdapter: RecyclerView.Adapter<DayLogHomeViewHolder>(){
     override fun getItemCount() = items.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateList(list: List<DayLog>){
-        if (list.isNotEmpty()){
+    fun updateList(list: List<DayLog>) {
+        if (list.isNotEmpty()) {
             if (list.size == 1) items = listOf(list.first(), DayLog())
-            else if(list.size == 2) items = list
+            else if (list.size == 2) items = list
             notifyDataSetChanged()
         }
     }

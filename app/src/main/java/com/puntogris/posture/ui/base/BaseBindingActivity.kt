@@ -12,8 +12,7 @@ import com.puntogris.posture.utils.getNavHostFragment
 abstract class BaseBindingActivity<T : ViewDataBinding>(@LayoutRes val layout: Int) :
     AppCompatActivity(),
     NavController.OnDestinationChangedListener,
-    UiInterfaceListener
-{
+    UiInterfaceListener {
     private var _binding: T? = null
     val binding get() = _binding!!
 

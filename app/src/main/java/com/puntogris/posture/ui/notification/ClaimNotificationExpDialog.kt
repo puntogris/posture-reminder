@@ -18,15 +18,16 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ClaimNotificationExpDialog: DialogFragment(){
+class ClaimNotificationExpDialog : DialogFragment() {
 
     private val viewModel: NotificationViewModel by viewModels()
     private lateinit var binding: DialogClaimExperienceBinding
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        binding = DataBindingUtil.inflate(layoutInflater, R.layout.dialog_claim_experience, null,false)
+        binding =
+            DataBindingUtil.inflate(layoutInflater, R.layout.dialog_claim_experience, null, false)
         lifecycleScope.launch {
-            when(viewModel.updateDayLogWithReward()){
+            when (viewModel.updateDayLogWithReward()) {
                 RewardExp.Error -> {
                     with(binding) {
                         animationView.playAnimationOnce(R.raw.error)
@@ -47,7 +48,10 @@ class ClaimNotificationExpDialog: DialogFragment(){
                     with(binding) {
                         animationView.setAnimation(R.raw.congratulations)
                         title.setText(R.string.completed_exercise_title)
-                        summary.text = getString(R.string.claim_experience_message, EXPERIENCE_PER_NOTIFICATION)
+                        summary.text = getString(
+                            R.string.claim_experience_message,
+                            EXPERIENCE_PER_NOTIFICATION
+                        )
                         message.setText(R.string.claim_experience_exercise_message)
                     }
                 }
@@ -60,11 +64,11 @@ class ClaimNotificationExpDialog: DialogFragment(){
                 dismiss()
                 navigateToRandomExercise()
             }
-            .setNegativeButton(R.string.action_cancel){_, _ -> dismiss()}
+            .setNegativeButton(R.string.action_cancel) { _, _ -> dismiss() }
             .create()
     }
 
-    private fun navigateToRandomExercise(){
+    private fun navigateToRandomExercise() {
         val exercise = LocalDataSource().exercisesList.random()
         val action = ClaimNotificationExpDialogDirections
             .actionClaimNotificationExpDialogToExerciseBottomSheet(exercise)

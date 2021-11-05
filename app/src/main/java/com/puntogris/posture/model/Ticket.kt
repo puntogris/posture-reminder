@@ -6,7 +6,7 @@ import com.google.firebase.Timestamp
 import com.puntogris.posture.BuildConfig
 
 @Keep
-class Ticket (
+class Ticket(
     var uid: String = "",
     var username: String = "",
     var email: String = "",
@@ -18,9 +18,9 @@ class Ticket (
     val deviceModel: String? = Build.MODEL,
     val androidSdk: Int = Build.VERSION.SDK_INT,
     val androidRelease: String? = Build.VERSION.RELEASE
-){
-    companion object{
-        const val PROBLEM_TYPE =  "PROBLEM"
+) {
+    companion object {
+        const val PROBLEM_TYPE = "PROBLEM"
         const val SUGGESTION_TYPE = "SUGGESTION"
     }
 }

@@ -40,7 +40,7 @@ interface ReminderDao {
     suspend fun getAllRemindersIds(): List<String>
 
     @Transaction
-    suspend fun insertRemindersIfNotInRoom(firestoreReminders: List<Reminder>){
+    suspend fun insertRemindersIfNotInRoom(firestoreReminders: List<Reminder>) {
         val roomRemindersIds = getAllRemindersIds()
         firestoreReminders.forEach {
             if (it.reminderId !in roomRemindersIds) insert(it)

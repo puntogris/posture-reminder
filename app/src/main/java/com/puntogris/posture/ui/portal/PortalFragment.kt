@@ -28,24 +28,24 @@ class PortalFragment : BaseFragmentOptions<FragmentPortalBinding>(R.layout.fragm
         setupExercisesRvAdapter()
     }
 
-    private fun setupExercisesRvAdapter(){
-        binding.exercisesRv.adapter = ExercisesAdapter{ onExerciseClicked(it) }
+    private fun setupExercisesRvAdapter() {
+        binding.exercisesRv.adapter = ExercisesAdapter { onExerciseClicked(it) }
     }
 
-    private fun setupRankingsRvAdapter(){
+    private fun setupRankingsRvAdapter() {
         rankingsAdapter = RankingsAdapter()
         binding.rankingsRv.adapter = rankingsAdapter
     }
 
-    private fun fetchRankingsAndFillAdapter(){
+    private fun fetchRankingsAndFillAdapter() {
         launchAndRepeatWithViewLifecycle {
             val result = viewModel.getTopThreeRankings()
             handleResultFromFetchRankings(result)
         }
     }
 
-    private fun handleResultFromFetchRankings(result: Result<Exception, List<UserPublicProfile>>){
-        when(result){
+    private fun handleResultFromFetchRankings(result: Result<Exception, List<UserPublicProfile>>) {
+        when (result) {
             is Result.Error -> {
                 UiInterface.showSnackBar(getString(R.string.snack_connection_error))
             }
@@ -60,12 +60,12 @@ class PortalFragment : BaseFragmentOptions<FragmentPortalBinding>(R.layout.fragm
         }
     }
 
-    private fun onExerciseClicked(exercise: Exercise){
+    private fun onExerciseClicked(exercise: Exercise) {
         val action = PortalFragmentDirections.actionPortalFragmentToExerciseBottomSheet(exercise)
         findNavController().navigate(action)
     }
 
-    fun navigateToGlobalRanking(){
+    fun navigateToGlobalRanking() {
         navigateTo(R.id.action_portalFragment_to_rankingsFragment)
     }
 

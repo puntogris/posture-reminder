@@ -94,7 +94,7 @@ fun Fragment.isDarkThemeOn() =
     (resources.configuration.uiMode and
             Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES)
 
-fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null){
+fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null) {
     try {
         Intent(Intent.ACTION_VIEW).let {
             it.data = Uri.parse(uri)
@@ -102,24 +102,24 @@ fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null){
             startActivity(it)
         }
 
-    }catch (e:Exception){
+    } catch (e: Exception) {
         if (this is BottomSheetDialogFragment) showSnackBar(R.string.snack_general_error)
         else UiInterface.showSnackBar(getString(R.string.snack_general_error))
     }
 }
 
-fun Activity.launchWebBrowserIntent(uri: String){
+fun Activity.launchWebBrowserIntent(uri: String) {
     try {
         Intent(Intent.ACTION_VIEW).let {
             it.data = Uri.parse(uri)
             startActivity(it)
         }
-    }catch (e:Exception){
+    } catch (e: Exception) {
         (this as MainActivity).showSnackBar(getString(R.string.snack_general_error))
     }
 }
 
-fun Context.isIgnoringBatteryOptimizations(): Boolean{
+fun Context.isIgnoringBatteryOptimizations(): Boolean {
     val pm = getSystemService(PowerManager::class.java)
     return (pm.isIgnoringBatteryOptimizations(packageName))
 }
@@ -141,7 +141,7 @@ fun BottomSheetDialogFragment.showSnackBar(
     anchorView: View? = null,
     actionText: Int = R.string.action_undo,
     actionListener: View.OnClickListener? = null
-){
+) {
     Snackbar.make(dialog?.window!!.decorView, message, duration).let {
         if (anchorView != null) it.anchorView = anchorView
         if (actionListener != null) it.setAction(actionText, actionListener)
@@ -149,9 +149,11 @@ fun BottomSheetDialogFragment.showSnackBar(
     }
 }
 
-inline fun <T> MutableLiveData<T>.setField(transform: T.() -> Unit) { this.value = this.value?.apply(transform) }
+inline fun <T> MutableLiveData<T>.setField(transform: T.() -> Unit) {
+    this.value = this.value?.apply(transform)
+}
 
-fun ViewPager2.setPageFadeTransformer(){
+fun ViewPager2.setPageFadeTransformer() {
     setPageTransformer { page, position ->
         page.alpha = when {
             position <= -1.0F || position >= 1.0F -> 0.0F
@@ -161,9 +163,10 @@ fun ViewPager2.setPageFadeTransformer(){
     }
 }
 
-fun LocalDate.getDayStringFormatted() = format(DateTimeFormatter.ofPattern("EEE ")).replace(".","").capitalizeFirstChar()
+fun LocalDate.getDayStringFormatted() =
+    format(DateTimeFormatter.ofPattern("EEE ")).replace(".", "").capitalizeFirstChar()
 
-fun Menu.showItem(item: Int){
+fun Menu.showItem(item: Int) {
     findItem(item).isVisible = true
 }
 
@@ -176,34 +179,34 @@ fun BroadcastReceiver.goAsync(
     coroutineScope.launch {
         try {
             block()
-        } catch (e:Exception) {
+        } catch (e: Exception) {
             Timber.d(e.message.toString())
-        }finally {
+        } finally {
             result?.finish()
         }
     }
 }
 
-fun LottieAnimationView.playAnimationOnce(@RawRes animation: Int){
+fun LottieAnimationView.playAnimationOnce(@RawRes animation: Int) {
     setAnimation(animation)
     repeatCount = 0
     playAnimation()
 }
 
-inline fun PreferenceFragmentCompat.preference(key: String, block: Preference.() -> Unit){
+inline fun PreferenceFragmentCompat.preference(key: String, block: Preference.() -> Unit) {
     findPreference<Preference>(key)?.apply {
         block(this)
     }
 }
 
-inline fun Preference.onClick(crossinline block: () -> Unit){
+inline fun Preference.onClick(crossinline block: () -> Unit) {
     setOnPreferenceClickListener {
         block()
         true
     }
 }
 
-inline fun PreferenceFragmentCompat.preferenceOnClick(key: String, crossinline block: () -> Unit){
+inline fun PreferenceFragmentCompat.preferenceOnClick(key: String, crossinline block: () -> Unit) {
     findPreference<Preference>(key)?.setOnPreferenceClickListener {
         block()
         true

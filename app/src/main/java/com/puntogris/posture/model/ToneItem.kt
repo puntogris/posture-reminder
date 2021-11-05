@@ -8,10 +8,10 @@ import kotlinx.parcelize.Parcelize
 
 @Keep
 @Parcelize
-data class ToneItem(val title:String, val uri: String):Parcelable{
+data class ToneItem(val title: String, val uri: String) : Parcelable {
 
-    companion object{
-        fun from(cursor: Cursor): ToneItem{
+    companion object {
+        fun from(cursor: Cursor): ToneItem {
             val id = cursor.getString(RingtoneManager.ID_COLUMN_INDEX)
             val title = cursor.getString(RingtoneManager.TITLE_COLUMN_INDEX)
             val uri = cursor.getString(RingtoneManager.URI_COLUMN_INDEX)

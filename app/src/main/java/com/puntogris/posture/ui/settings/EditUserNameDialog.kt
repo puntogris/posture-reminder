@@ -21,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class EditUserNameDialog: DialogFragment(){
+class EditUserNameDialog : DialogFragment() {
 
     private lateinit var binding: DialogEditUsernameBinding
     private val viewModel: SettingsViewModel by viewModels()
@@ -34,10 +34,10 @@ class EditUserNameDialog: DialogFragment(){
         binding.usernameEditText.setText(args.username)
 
         return MaterialAlertDialogBuilder(requireContext(), R.style.MaterialAlertDialog_rounded)
-                .setView(binding.root)
-                .setPositiveButton(R.string.action_done, null)
-                .setNegativeButton(R.string.action_cancel) { _, _ -> dismiss() }
-                .create()
+            .setView(binding.root)
+            .setPositiveButton(R.string.action_done, null)
+            .setNegativeButton(R.string.action_cancel) { _, _ -> dismiss() }
+            .create()
             .also {
                 it.setOnShowListener { _ ->
                     it.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
@@ -47,28 +47,28 @@ class EditUserNameDialog: DialogFragment(){
             }
     }
 
-    private fun onPositiveButtonClicked(){
+    private fun onPositiveButtonClicked() {
         binding.usernameEditText.data.let {
-            if (it != args.username){
+            if (it != args.username) {
                 showLoadingUi()
                 updateUsernameAndHandleResult(it)
             } else dismiss()
         }
     }
 
-    private fun updateUsernameAndHandleResult(name: String){
+    private fun updateUsernameAndHandleResult(name: String) {
         lifecycleScope.launch {
             val result = viewModel.updateUserName(name)
             handleEditNameResult(result)
         }
     }
 
-    private fun handleEditNameResult(result: SimpleResult){
+    private fun handleEditNameResult(result: SimpleResult) {
         setFragmentResult(EDIT_NAME_KEY, bundleOf(DATA_KEY to result.asBoolean()))
         findNavController().navigateUp()
     }
 
-    private fun showLoadingUi(){
+    private fun showLoadingUi() {
         binding.apply {
             progressBar.visible()
             usernameEditText.gone()

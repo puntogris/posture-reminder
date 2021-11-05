@@ -54,13 +54,13 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
 
     }
 
-    private fun checkIfIsNotNewReminder(){
+    private fun checkIfIsNotNewReminder() {
         args.reminder?.let {
             viewModel.updateReminder(it.copy())
         }
     }
 
-    private fun setupReminderRvAdapter(){
+    private fun setupReminderRvAdapter() {
         ReminderItemAdapter(requireContext()) { onReminderItemClicked(it) }.let {
             binding.recyclerView.adapter = it
             subscribeUi(it)
@@ -73,27 +73,27 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
         }
     }
 
-    private fun setFragmentResultListeners(){
-        setFragmentResultListener(VIBRATION_PICKER_KEY){ _, bundle ->
+    private fun setFragmentResultListeners() {
+        setFragmentResultListener(VIBRATION_PICKER_KEY) { _, bundle ->
             viewModel.saveReminderVibrationPattern(bundle.getInt(DATA_KEY))
         }
-        setFragmentResultListener(SOUND_PICKER_KEY){ _, bundle ->
+        setFragmentResultListener(SOUND_PICKER_KEY) { _, bundle ->
             viewModel.saveReminderSoundPattern(bundle.getParcelable(DATA_KEY))
         }
     }
 
     fun onSaveReminder() {
-        if (viewModel.isReminderValid()){
+        if (viewModel.isReminderValid()) {
             lifecycleScope.launch {
                 handleResultOfSavingReminder(viewModel.saveReminder())
             }
-        }else{
+        } else {
             showSnackBar(R.string.snack_reminder_not_valid)
         }
     }
 
-    private fun handleResultOfSavingReminder(result: Result<Exception, ReminderId>){
-        when(result){
+    private fun handleResultOfSavingReminder(result: Result<Exception, ReminderId>) {
+        when (result) {
             is Result.Error -> {
                 showSnackBar(R.string.snack_create_reminder_error)
             }
@@ -117,13 +117,13 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
         }
     }
 
-    private fun onSoundPicker(){
+    private fun onSoundPicker() {
         val action = NewReminderBottomSheetDirections
             .actionNewReminderBottomSheetToSoundSelectorDialog(viewModel.reminder.value!!.soundUri)
         findNavController().navigate(action)
     }
 
-    private fun onVibrationPicker(){
+    private fun onVibrationPicker() {
         val action = NewReminderBottomSheetDirections
             .actionNewReminderBottomSheetToVibrationSelectorDialog(viewModel.reminder.value!!.vibrationPattern)
         findNavController().navigate(action)
@@ -205,7 +205,7 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
         }
     }
 
-    private fun getDefaultClockTimeInMillis(code: ReminderUi.Item): Long{
+    private fun getDefaultClockTimeInMillis(code: ReminderUi.Item): Long {
         val isNewReminder = viewModel.reminder.value?.reminderId.isNullOrBlank()
 
         val date = if (isNewReminder) Date()
@@ -214,7 +214,7 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
         return date.timeWithZoneOffset
     }
 
-    private fun getReminderTime(code: ReminderUi.Item): Int{
+    private fun getReminderTime(code: ReminderUi.Item): Int {
         return if (code is ReminderUi.Item.Start) viewModel.reminder.value!!.startTime
         else viewModel.reminder.value!!.endTime
     }

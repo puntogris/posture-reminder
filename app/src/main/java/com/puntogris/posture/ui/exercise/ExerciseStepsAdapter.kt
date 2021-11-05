@@ -3,7 +3,8 @@ package com.puntogris.posture.ui.exercise
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class ExerciseStepsAdapter(private val steps: Array<String>) : RecyclerView.Adapter<ExerciseStepViewHolder>(){
+class ExerciseStepsAdapter(private val steps: Array<String>) :
+    RecyclerView.Adapter<ExerciseStepViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseStepViewHolder {
         return ExerciseStepViewHolder.from(parent)

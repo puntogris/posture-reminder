@@ -11,7 +11,8 @@ import com.puntogris.posture.utils.isDarkThemeOn
 import com.puntogris.posture.utils.isIgnoringBatteryOptimizations
 import com.puntogris.posture.utils.navigateTo
 
-class BatteryOptimizationFragment : BaseBindingFragment<FragmentBatteryOptimizationBinding>(R.layout.fragment_battery_optimization) {
+class BatteryOptimizationFragment :
+    BaseBindingFragment<FragmentBatteryOptimizationBinding>(R.layout.fragment_battery_optimization) {
 
     override fun initializeViews() {
         binding.fragment = this
@@ -19,7 +20,7 @@ class BatteryOptimizationFragment : BaseBindingFragment<FragmentBatteryOptimizat
         setBatteryOptimizationsStepsUi()
     }
 
-    private fun setBatteryOptimizationsStepsUi(){
+    private fun setBatteryOptimizationsStepsUi() {
         val stepOne =
             if (isDarkThemeOn()) R.string.battery_optimization_step_one_light
             else R.string.battery_optimization_step_one_dark
@@ -35,8 +36,8 @@ class BatteryOptimizationFragment : BaseBindingFragment<FragmentBatteryOptimizat
     private fun htmlToString(htmlRes: Int) =
         HtmlCompat.fromHtml(getString(htmlRes), HtmlCompat.FROM_HTML_MODE_LEGACY)
 
-    private fun checkPowerStatus(){
-        if (requireContext().isIgnoringBatteryOptimizations()){
+    private fun checkPowerStatus() {
+        if (requireContext().isIgnoringBatteryOptimizations()) {
             binding.apply {
                 powerManagerState.text = getString(R.string.all_in_order)
                 powerStateImage.setImageResource(R.drawable.ic_baseline_check_circle_24)
@@ -45,11 +46,11 @@ class BatteryOptimizationFragment : BaseBindingFragment<FragmentBatteryOptimizat
         }
     }
 
-    fun openBatteryOptimization(){
+    fun openBatteryOptimization() {
         startActivity(Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS))
     }
 
-    fun onFinalizeButtonClicked(){
+    fun onFinalizeButtonClicked() {
         navigateTo(R.id.action_batteryOptimizationFragment_to_homeFragment)
     }
 

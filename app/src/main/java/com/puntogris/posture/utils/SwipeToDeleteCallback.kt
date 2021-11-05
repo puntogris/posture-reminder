@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.R
 
-abstract class SwipeToDeleteCallback(context: Context):
+abstract class SwipeToDeleteCallback(context: Context) :
     ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
 
     private val textPaint = TextPaint().also {
@@ -46,5 +46,6 @@ abstract class SwipeToDeleteCallback(context: Context):
     override fun onMove(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,
-        target: RecyclerView.ViewHolder) = false
+        target: RecyclerView.ViewHolder
+    ) = false
 }

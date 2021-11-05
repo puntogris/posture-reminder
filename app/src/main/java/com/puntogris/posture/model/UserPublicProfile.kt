@@ -8,8 +8,8 @@ data class UserPublicProfile(
     var country: String = "",
     var experience: Int = 0,
     var uid: String = ""
-){
-    companion object{
+) {
+    companion object {
         fun from(user: UserPrivateData): UserPublicProfile {
             return UserPublicProfile(
                 username = user.username,

@@ -17,13 +17,13 @@ class FirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         try {
             notifications.sendFcmNotification(FcmNotification.from(remoteMessage))
-        }catch (e:Exception){
+        } catch (e: Exception) {
             //handle error
         }
     }
 
     override fun onNewToken(token: String) {
-       // Log.d(ContentValues.TAG, "Refreshed token: $token")
+        // Log.d(ContentValues.TAG, "Refreshed token: $token")
 
         // If you want to send messages to this application instance or
         // manage this apps subscriptions on the server side, send the

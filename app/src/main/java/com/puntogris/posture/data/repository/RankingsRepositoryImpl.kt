@@ -11,24 +11,26 @@ import com.puntogris.posture.utils.Result
 class RankingsRepositoryImpl(
     private val rankingsFirebase: FirebaseRankingDataSource,
     private val dispatchers: DispatcherProvider
-): RankingsRepository {
+) : RankingsRepository {
 
-    override suspend fun getAllRankingsServer(): Result<Exception, List<UserPublicProfile>> = withContext(dispatchers.io) {
-        Result.build {
-            rankingsFirebase.getRankingsQueryWithLimit()
-                .get()
-                .await()
-                .toObjects(UserPublicProfile::class.java)
+    override suspend fun getAllRankingsServer(): Result<Exception, List<UserPublicProfile>> =
+        withContext(dispatchers.io) {
+            Result.build {
+                rankingsFirebase.getRankingsQueryWithLimit()
+                    .get()
+                    .await()
+                    .toObjects(UserPublicProfile::class.java)
+            }
         }
-    }
 
-    override suspend fun getTopThreeRankingsServer(): Result<Exception, List<UserPublicProfile>> = withContext(dispatchers.io) {
-        Result.build {
-            rankingsFirebase.getRankingsQueryWithLimit(3)
-                .get()
-                .await()
-                .toObjects(UserPublicProfile::class.java)
+    override suspend fun getTopThreeRankingsServer(): Result<Exception, List<UserPublicProfile>> =
+        withContext(dispatchers.io) {
+            Result.build {
+                rankingsFirebase.getRankingsQueryWithLimit(3)
+                    .get()
+                    .await()
+                    .toObjects(UserPublicProfile::class.java)
+            }
         }
-    }
 
 }

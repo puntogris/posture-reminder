@@ -8,7 +8,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PortalViewModel @Inject constructor(
     private val rankingsRepository: RankingsRepository
-): ViewModel() {
+) : ViewModel() {
 
     suspend fun getTopThreeRankings() = rankingsRepository.getTopThreeRankingsServer()
 

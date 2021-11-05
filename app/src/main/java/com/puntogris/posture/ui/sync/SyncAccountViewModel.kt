@@ -11,12 +11,12 @@ import javax.inject.Inject
 class SyncAccountViewModel @Inject constructor(
     private val syncRepository: SyncRepository,
     private val loginRepository: LoginRepository
-):ViewModel() {
+) : ViewModel() {
 
     suspend fun synAccountWith(userPrivateData: UserPrivateData) =
         syncRepository.syncSeverAccountWithLocalDb(userPrivateData)
 
-    suspend fun logOut(){
+    suspend fun logOut() {
         loginRepository.signOutUser()
     }
 

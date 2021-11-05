@@ -10,7 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class LoginFragment: BaseLoginFragment<FragmentLoginBinding>(R.layout.fragment_login) {
+class LoginFragment : BaseLoginFragment<FragmentLoginBinding>(R.layout.fragment_login) {
 
     override val viewModel: LoginViewModel by viewModels()
 
@@ -31,10 +31,10 @@ class LoginFragment: BaseLoginFragment<FragmentLoginBinding>(R.layout.fragment_l
         binding.progressBar.gone()
     }
 
-    fun continueAnonymously(){
+    fun continueAnonymously() {
         onLoginStarted()
         lifecycleScope.launch {
-            when(viewModel.registerAnonymousUser()){
+            when (viewModel.registerAnonymousUser()) {
                 SimpleResult.Failure -> {
                     UiInterface.showSnackBar(getString(R.string.snack_general_error))
                     onLoginError()
@@ -44,7 +44,7 @@ class LoginFragment: BaseLoginFragment<FragmentLoginBinding>(R.layout.fragment_l
         }
     }
 
-    fun onLoginProblemsClicked(){
+    fun onLoginProblemsClicked() {
         launchWebBrowserIntent("https://postureapp.puntogris.com/help/")
     }
 }

@@ -11,7 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class NotificationViewModel @Inject constructor(
     private val logsRepository: DayLogsRepository
-): ViewModel() {
+) : ViewModel() {
 
     suspend fun updateDayLogWithReward(): RewardExp {
         val log = DayLog(expGained = EXPERIENCE_PER_NOTIFICATION, notifications = 1)

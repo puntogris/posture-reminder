@@ -10,7 +10,10 @@ import com.puntogris.posture.utils.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ExerciseBottomSheet: BaseBindingBottomSheetFragment<BottomSheetExerciseBinding>(R.layout.bottom_sheet_exercise,true) {
+class ExerciseBottomSheet : BaseBindingBottomSheetFragment<BottomSheetExerciseBinding>(
+    R.layout.bottom_sheet_exercise,
+    true
+) {
 
     private val args: ExerciseBottomSheetArgs by navArgs()
     private val viewModel: ExerciseViewModel by viewModels()
@@ -26,33 +29,33 @@ class ExerciseBottomSheet: BaseBindingBottomSheetFragment<BottomSheetExerciseBin
         setupRecyclerViewAdapter()
     }
 
-    private fun setupRecyclerViewAdapter(){
+    private fun setupRecyclerViewAdapter() {
         val steps = resources.getStringArray(args.exercise.steps)
         binding.recyclerView.adapter = ExerciseStepsAdapter(steps)
     }
 
-    fun startExercise(){
+    fun startExercise() {
         viewModel.startExerciseTimerWithDuration(args.exercise.duration)
         setCompleteExerciseListener()
         showInProgressUi()
     }
-    
-    private fun showInProgressUi(){
+
+    private fun showInProgressUi() {
         binding.startButton.apply {
             isEnabled = false
             text = context.getString(R.string.in_progress)
         }
     }
 
-    private fun setCompleteExerciseListener(){
-        viewModel.exerciseDurationTimer.observe(viewLifecycleOwner){
+    private fun setCompleteExerciseListener() {
+        viewModel.exerciseDurationTimer.observe(viewLifecycleOwner) {
             if (it == args.exercise.duration * PROGRESS_BAR_SMOOTH_OFFSET) {
                 updateUiAndShowCompletedExerciseDialog()
             }
         }
     }
 
-    private fun updateUiAndShowCompletedExerciseDialog(){
+    private fun updateUiAndShowCompletedExerciseDialog() {
         navigateTo(R.id.exerciseCompletedDialog)
         binding.startButton.text = getString(R.string.finished)
     }

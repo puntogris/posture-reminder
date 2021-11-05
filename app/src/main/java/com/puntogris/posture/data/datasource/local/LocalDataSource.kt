@@ -8,7 +8,8 @@ class LocalDataSource {
 
     val exercisesList by lazy {
         listOf(
-            Exercise(R.string.brugger_exercise_title,
+            Exercise(
+                R.string.brugger_exercise_title,
                 R.string.brugger_exercise_summary,
                 60,
                 R.color.card1,
@@ -22,7 +23,8 @@ class LocalDataSource {
                 R.drawable.ic_back_extension_exercise,
                 R.array.back_extension_exercise_steps
             ),
-            Exercise(R.string.chin_tuck_exercise_title,
+            Exercise(
+                R.string.chin_tuck_exercise_title,
                 R.string.chin_tuck_exercise_summary,
                 50,
                 R.color.card3,
@@ -40,11 +42,16 @@ class LocalDataSource {
         )
     }
 
-    val vibrationPatterns by lazy { listOf(
-        VibrationPattern(R.string.disabled_pattern, longArrayOf()),
-        VibrationPattern(R.string.normal_pattern, longArrayOf(500, 400, 500, 400)),
-        VibrationPattern(R.string.stairs_pattern, longArrayOf(500, 400, 500, 300, 500, 200, 500, 100)),
-        VibrationPattern(R.string.fast_pattern, longArrayOf(200, 500, 200, 500))
-    ) }
+    val vibrationPatterns by lazy {
+        listOf(
+            VibrationPattern(R.string.disabled_pattern, longArrayOf()),
+            VibrationPattern(R.string.normal_pattern, longArrayOf(500, 400, 500, 400)),
+            VibrationPattern(
+                R.string.stairs_pattern,
+                longArrayOf(500, 400, 500, 300, 500, 200, 500, 100)
+            ),
+            VibrationPattern(R.string.fast_pattern, longArrayOf(200, 500, 200, 500))
+        )
+    }
 
 }

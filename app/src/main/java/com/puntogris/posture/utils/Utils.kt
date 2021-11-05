@@ -6,9 +6,9 @@ import java.util.*
 object Utils {
 
     fun minutesFromMidnightToHourlyTime(minutes: Int) =
-         String.format("%02d:%02d", minutes.getHours(), minutes.getMinutes())
+        String.format("%02d:%02d", minutes.getHours(), minutes.getMinutes())
 
-    fun minutesSinceMidnight(): Int{
+    fun minutesSinceMidnight(): Int {
         val now = Calendar.getInstance()
         val midnight = Calendar.getInstance().apply {
             set(Calendar.HOUR_OF_DAY, 0)
@@ -19,7 +19,7 @@ object Utils {
         return (now.timeInMillis - midnight.timeInMillis).millisToMinutes()
     }
 
-    fun getDateFromMinutesSinceMidnight(minutesSinceMidnight: Int): Date{
+    fun getDateFromMinutesSinceMidnight(minutesSinceMidnight: Int): Date {
         return Calendar.getInstance().apply {
             set(Calendar.HOUR_OF_DAY, minutesSinceMidnight.getHours())
             set(Calendar.MINUTE, minutesSinceMidnight.getMinutes())
@@ -28,7 +28,8 @@ object Utils {
         }.time
     }
 
-    fun getTriggerTime(interval: Int) = Calendar.getInstance().timeInMillis + interval.minutesToMillis()
+    fun getTriggerTime(interval: Int) =
+        Calendar.getInstance().timeInMillis + interval.minutesToMillis()
 
     fun getSavedOptions(savedList: List<Int>?, daysList: Array<String>): MutableList<Option> {
         return daysList.mapIndexed { index, _ ->
@@ -37,7 +38,7 @@ object Utils {
         }.toMutableList()
     }
 
-    fun dayOfTheWeek(): Int{
+    fun dayOfTheWeek(): Int {
         return when (Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) {
             Calendar.MONDAY -> 0
             Calendar.TUESDAY -> 1

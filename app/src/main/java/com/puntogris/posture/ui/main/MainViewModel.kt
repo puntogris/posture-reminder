@@ -10,7 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val dataStore: DataStore
-    ): ViewModel() {
+) : ViewModel() {
 
     private val _appVersionStatus = MutableLiveData<Boolean>()
     val appVersionStatus: LiveData<Boolean> = _appVersionStatus

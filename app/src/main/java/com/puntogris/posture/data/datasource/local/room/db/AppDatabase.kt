@@ -11,11 +11,13 @@ import com.puntogris.posture.model.Reminder
 import com.puntogris.posture.model.UserPrivateData
 import com.puntogris.posture.utils.Converters
 
-@Database(entities = [
-    Reminder::class,
-    UserPrivateData::class,
-    DayLog::class
-                     ], version = 1, exportSchema = false)
+@Database(
+    entities = [
+        Reminder::class,
+        UserPrivateData::class,
+        DayLog::class
+    ], version = 1, exportSchema = false
+)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun reminderDao(): ReminderDao

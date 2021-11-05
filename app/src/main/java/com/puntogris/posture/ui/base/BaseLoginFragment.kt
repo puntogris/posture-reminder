@@ -15,7 +15,7 @@ import com.puntogris.posture.utils.UiInterface
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-abstract class BaseLoginFragment<T: ViewDataBinding>(@LayoutRes override val layout: Int):
+abstract class BaseLoginFragment<T : ViewDataBinding>(@LayoutRes override val layout: Int) :
     BaseBindingFragment<T>(layout), LoginConfiguration {
 
     private lateinit var loginActivityResultLauncher: ActivityResultLauncher<Intent>
@@ -25,11 +25,12 @@ abstract class BaseLoginFragment<T: ViewDataBinding>(@LayoutRes override val lay
         registerActivityResultLauncher()
     }
 
-    private fun registerActivityResultLauncher(){
-        loginActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-            onLoginFinished()
-            authGoogleUserIntoServer(it)
-        }
+    private fun registerActivityResultLauncher() {
+        loginActivityResultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                onLoginFinished()
+                authGoogleUserIntoServer(it)
+            }
     }
 
     private fun authGoogleUserIntoServer(result: ActivityResult) {
@@ -38,10 +39,13 @@ abstract class BaseLoginFragment<T: ViewDataBinding>(@LayoutRes override val lay
         }
     }
 
-    private fun handleAuthUserIntoServerResult(result: LoginResult){
+    private fun handleAuthUserIntoServerResult(result: LoginResult) {
         when (result) {
             is LoginResult.Error -> {
-                UiInterface.showSnackBar(getString(R.string.snack_fail_login), anchorToBottomNav = false)
+                UiInterface.showSnackBar(
+                    getString(R.string.snack_fail_login),
+                    anchorToBottomNav = false
+                )
                 onLoginError()
             }
             LoginResult.InProgress -> {

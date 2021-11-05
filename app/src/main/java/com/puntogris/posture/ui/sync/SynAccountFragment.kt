@@ -14,7 +14,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SynAccountFragment : BaseBindingFragment<FragmentSynAccountBinding>(R.layout.fragment_syn_account) {
+class SynAccountFragment :
+    BaseBindingFragment<FragmentSynAccountBinding>(R.layout.fragment_syn_account) {
 
     private val viewModel: SyncAccountViewModel by viewModels()
     private val args: SynAccountFragmentArgs by navArgs()
@@ -24,21 +25,21 @@ class SynAccountFragment : BaseBindingFragment<FragmentSynAccountBinding>(R.layo
         startAccountSync(args.userPrivateData)
     }
 
-    private fun startAccountSync(userPrivateData: UserPrivateData){
+    private fun startAccountSync(userPrivateData: UserPrivateData) {
         launchAndRepeatWithViewLifecycle(Lifecycle.State.CREATED) {
-            when(viewModel.synAccountWith(userPrivateData)){
+            when (viewModel.synAccountWith(userPrivateData)) {
                 SimpleResult.Failure -> onSyncAccountFailure()
                 SimpleResult.Success -> onSyncAccountSuccess()
             }
         }
     }
 
-    private fun onSyncAccountFailure(){
+    private fun onSyncAccountFailure() {
         binding.apply {
             animationView.playAnimationOnce(R.raw.error)
             title.setText(R.string.account_sync_error)
 
-            with(continueButton){
+            with(continueButton) {
                 setText(R.string.action_exit)
                 isEnabled = true
                 setOnClickListener {
@@ -52,7 +53,7 @@ class SynAccountFragment : BaseBindingFragment<FragmentSynAccountBinding>(R.layo
         }
     }
 
-    private fun onSyncAccountSuccess(){
+    private fun onSyncAccountSuccess() {
         binding.apply {
             animationView.playAnimationOnce(R.raw.success)
             title.setText(R.string.account_sync_success)
@@ -60,7 +61,7 @@ class SynAccountFragment : BaseBindingFragment<FragmentSynAccountBinding>(R.layo
         }
     }
 
-    fun onContinueButtonClicked(){
+    fun onContinueButtonClicked() {
         lifecycleScope.launch {
             navigateTo(
                 if (viewModel.showLogin()) R.id.action_synAccountFragment_to_welcomeFragment

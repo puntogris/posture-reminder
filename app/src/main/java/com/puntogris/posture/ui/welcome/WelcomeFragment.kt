@@ -8,17 +8,17 @@ import com.puntogris.posture.utils.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class WelcomeFragment: BaseBindingFragment<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
+class WelcomeFragment : BaseBindingFragment<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
 
     override fun initializeViews() {
-        with(binding){
+        with(binding) {
             fragment = this@WelcomeFragment
             viewPager.adapter = WelcomePagerAdapter(isDarkThemeOn())
             dotsIndicator.setViewPager2(viewPager)
         }
     }
 
-    fun onStartButtonClicked(){
+    fun onStartButtonClicked() {
         navigateTo(R.id.action_welcomeFragment_to_batteryOptimizationFragment)
     }
 

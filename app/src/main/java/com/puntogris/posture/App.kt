@@ -18,8 +18,10 @@ class App : Application(), Configuration.Provider {
 
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
+
     @Inject
     lateinit var notifications: Notifications
+
     @Inject
     lateinit var dataStore: DataStore
 

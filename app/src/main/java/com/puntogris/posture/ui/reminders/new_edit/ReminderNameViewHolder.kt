@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.databinding.ReminderNameVhBinding
 import com.puntogris.posture.utils.ReminderUi
 
-class ReminderNameViewHolder(private val binding: ReminderNameVhBinding): RecyclerView.ViewHolder(binding.root) {
+class ReminderNameViewHolder(private val binding: ReminderNameVhBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(reminderItem: ReminderUi.Name, clickListener: (ReminderUi)-> Unit){
+    fun bind(reminderItem: ReminderUi.Name, clickListener: (ReminderUi) -> Unit) {
         binding.item = reminderItem
         if (reminderItem.value.isNotBlank()) binding.itemEditText.setText(reminderItem.value)
         binding.itemEditText.addTextChangedListener {
@@ -19,7 +20,7 @@ class ReminderNameViewHolder(private val binding: ReminderNameVhBinding): Recycl
         binding.executePendingBindings()
     }
 
-    companion object{
+    companion object {
         fun from(parent: ViewGroup): ReminderNameViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
             val binding = ReminderNameVhBinding.inflate(layoutInflater, parent, false)

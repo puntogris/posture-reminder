@@ -24,7 +24,7 @@ class AccountFragment : BaseFragmentOptions<FragmentAccountBinding>(R.layout.fra
         setupBarChart()
     }
 
-    private fun setupBarChart(){
+    private fun setupBarChart() {
         launchAndRepeatWithViewLifecycle {
             val data = viewModel.getWeekData()
             val barSet = lastWeekLabels(data)
@@ -32,22 +32,22 @@ class AccountFragment : BaseFragmentOptions<FragmentAccountBinding>(R.layout.fra
         }
     }
 
-    private fun lastWeekLabels(data: List<DayLog>): List<Pair<String, Float>>{
+    private fun lastWeekLabels(data: List<DayLog>): List<Pair<String, Float>> {
         val today = LocalDate.now()
         val labels = mutableListOf<Pair<String, Float>>()
 
-        for (i in 6 downTo 0L){
+        for (i in 6 downTo 0L) {
             val day = today.minusDays(i)
             val dayString = if (i == 0L) getString(R.string.today) else day.getDayStringFormatted()
 
-            val roomEntry = data.singleOrNull{ it.dateId == day.toString()}
+            val roomEntry = data.singleOrNull { it.dateId == day.toString() }
             val value = roomEntry?.expGained?.toFloat() ?: 0F
             labels.add(dayString to value)
         }
         return labels
     }
 
-    fun onNavigateToRemindersClicked(){
+    fun onNavigateToRemindersClicked() {
         navigateTo(R.id.manageRemindersBottomSheet)
     }
 }

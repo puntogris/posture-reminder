@@ -14,7 +14,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ManageRemindersBottomSheet: BaseBindingBottomSheetFragment<BottomSheetManageRemindersBinding>(R.layout.bottom_sheet_manage_reminders, false) {
+class ManageRemindersBottomSheet :
+    BaseBindingBottomSheetFragment<BottomSheetManageRemindersBinding>(
+        R.layout.bottom_sheet_manage_reminders,
+        false
+    ) {
 
     private val viewModel: ManageRemindersViewModel by viewModels()
 
@@ -23,7 +27,7 @@ class ManageRemindersBottomSheet: BaseBindingBottomSheetFragment<BottomSheetMana
         setupRecyclerViewAdapter()
     }
 
-    private fun setupRecyclerViewAdapter(){
+    private fun setupRecyclerViewAdapter() {
         ManageReminderAdapter(
             requireContext(),
             { onSelectReminder(it) },
@@ -35,13 +39,13 @@ class ManageRemindersBottomSheet: BaseBindingBottomSheetFragment<BottomSheetMana
         }
     }
 
-    private fun subscribeUi(adapter: ManageReminderAdapter){
-        viewModel.getAllReminders().observe(viewLifecycleOwner){
+    private fun subscribeUi(adapter: ManageReminderAdapter) {
+        viewModel.getAllReminders().observe(viewLifecycleOwner) {
             adapter.updateList(it)
         }
     }
 
-    private fun onSelectReminder(reminder: Reminder){
+    private fun onSelectReminder(reminder: Reminder) {
         lifecycleScope.launch {
             viewModel.updateCurrentReminder(reminder)
             navigateTo(R.id.homeFragment)
@@ -49,18 +53,19 @@ class ManageRemindersBottomSheet: BaseBindingBottomSheetFragment<BottomSheetMana
         }
     }
 
-    private fun onEditReminder(reminder: Reminder){
+    private fun onEditReminder(reminder: Reminder) {
         val action = ManageRemindersBottomSheetDirections
             .actionManageRemindersBottomSheetToNewReminderBottomSheet(reminder)
         findNavController().navigate(action)
     }
 
-    private fun onDeleteReminder(reminder: Reminder){
+    private fun onDeleteReminder(reminder: Reminder) {
         lifecycleScope.launch {
             viewModel.deleteReminder(reminder)
             showSnackBar(
                 message = R.string.snack_delete_reminder_success,
-                anchorView = binding.floatingActionButton){
+                anchorView = binding.floatingActionButton
+            ) {
                 lifecycleScope.launch {
                     viewModel.insertReminder(reminder)
                 }
@@ -68,7 +73,7 @@ class ManageRemindersBottomSheet: BaseBindingBottomSheetFragment<BottomSheetMana
         }
     }
 
-    fun onNewReminder(){
+    fun onNewReminder() {
         navigateTo(R.id.action_manageRemindersBottomSheet_to_newReminderBottomSheet)
     }
 }
