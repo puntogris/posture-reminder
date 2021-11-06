@@ -3,7 +3,7 @@ package com.puntogris.posture.ui.rankings
 import androidx.fragment.app.viewModels
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentRankingsBinding
-import com.puntogris.posture.model.UserPublicProfile
+import com.puntogris.posture.domain.model.UserPublicProfile
 import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.UiInterface

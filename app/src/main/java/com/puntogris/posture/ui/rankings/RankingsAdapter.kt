@@ -2,8 +2,7 @@ package com.puntogris.posture.ui.rankings
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import com.puntogris.posture.model.UserPublicProfile
-import com.puntogris.posture.diffcallback.UserPublicProfileDiffCallBack
+import com.puntogris.posture.domain.model.UserPublicProfile
 
 class RankingsAdapter : ListAdapter<UserPublicProfile, RankingsViewHolder>(
     UserPublicProfileDiffCallBack()

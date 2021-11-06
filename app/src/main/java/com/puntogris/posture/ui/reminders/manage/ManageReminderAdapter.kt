@@ -5,7 +5,7 @@ import android.content.Context
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.puntogris.posture.model.Reminder
+import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.utils.SwipeToDeleteCallback
 
 class ManageReminderAdapter(

@@ -12,10 +12,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.posture.R
-import com.puntogris.posture.model.ToneItem
-import com.puntogris.posture.utils.Constants.DATA_KEY
-import com.puntogris.posture.utils.Constants.SOUND_PICKER_KEY
-import java.util.ArrayList
+import com.puntogris.posture.domain.model.ToneItem
+import com.puntogris.posture.utils.constants.Constants.DATA_KEY
+import com.puntogris.posture.utils.constants.Constants.SOUND_PICKER_KEY
+import java.util.*
 
 class SoundSelectorDialog : DialogFragment() {
 

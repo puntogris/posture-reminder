@@ -1,6 +1,6 @@
 package com.puntogris.posture
 
-import com.puntogris.posture.model.Reminder
+import com.puntogris.posture.domain.model.Reminder
 import org.amshove.kluent.*
 import org.junit.Test
 

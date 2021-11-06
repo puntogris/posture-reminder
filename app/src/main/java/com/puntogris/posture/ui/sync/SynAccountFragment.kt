@@ -7,7 +7,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentSynAccountBinding
-import com.puntogris.posture.model.UserPrivateData
+import com.puntogris.posture.domain.model.UserPrivateData
 import com.puntogris.posture.ui.base.BaseBindingFragment
 import com.puntogris.posture.utils.*
 import dagger.hilt.android.AndroidEntryPoint

@@ -1,8 +1,8 @@
 package com.puntogris.posture.ui.ticket
 
 import androidx.lifecycle.ViewModel
+import com.puntogris.posture.domain.model.Ticket
 import com.puntogris.posture.domain.repository.TicketRepository
-import com.puntogris.posture.model.Ticket
 import com.puntogris.posture.utils.SimpleResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

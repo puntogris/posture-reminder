@@ -5,7 +5,7 @@ import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.puntogris.posture.domain.repository.ReminderRepository
-import com.puntogris.posture.utils.Constants.REMINDER_ID_WORKER_DATA
+import com.puntogris.posture.utils.constants.Constants.REMINDER_ID_WORKER_DATA
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers

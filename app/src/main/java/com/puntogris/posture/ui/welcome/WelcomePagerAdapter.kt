@@ -3,7 +3,7 @@ package com.puntogris.posture.ui.welcome
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.R
-import com.puntogris.posture.model.WelcomeItem
+import com.puntogris.posture.domain.model.WelcomeItem
 
 class WelcomePagerAdapter(isDarkModeOn: Boolean) : RecyclerView.Adapter<WelcomeItemViewHolder>() {
 

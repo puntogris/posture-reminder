@@ -4,11 +4,11 @@ import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.puntogris.posture.domain.model.DayLog
 import com.puntogris.posture.domain.repository.DayLogsRepository
-import com.puntogris.posture.model.DayLog
-import com.puntogris.posture.utils.Constants.EXPERIENCE_PER_EXERCISE
-import com.puntogris.posture.utils.Constants.PROGRESS_BAR_SMOOTH_OFFSET
 import com.puntogris.posture.utils.RewardExp
+import com.puntogris.posture.utils.constants.Constants.EXPERIENCE_PER_EXERCISE
+import com.puntogris.posture.utils.constants.Constants.PROGRESS_BAR_SMOOTH_OFFSET
 import com.puntogris.posture.utils.toMillis
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

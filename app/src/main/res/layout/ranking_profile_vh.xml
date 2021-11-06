@@ -6,7 +6,7 @@
     <data>
         <variable
             name="rankingProfile"
-            type="com.puntogris.posture.model.UserPublicProfile" />
+            type="com.puntogris.posture.domain.model.UserPublicProfile" />
         <variable
             name="position"
             type="Integer" />

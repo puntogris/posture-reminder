@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.R
 import com.puntogris.posture.data.datasource.local.LocalDataSource
-import com.puntogris.posture.model.ItemData
-import com.puntogris.posture.model.Reminder
+import com.puntogris.posture.domain.model.ItemData
+import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.utils.ReminderUi
 import com.puntogris.posture.utils.Utils.minutesFromMidnightToHourlyTime
 

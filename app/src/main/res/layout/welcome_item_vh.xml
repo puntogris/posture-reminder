@@ -6,7 +6,7 @@
     <data>
         <variable
             name="welcomeItem"
-            type="com.puntogris.posture.model.WelcomeItem" />
+            type="com.puntogris.posture.domain.model.WelcomeItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

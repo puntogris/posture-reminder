@@ -15,8 +15,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.DialogEditUsernameBinding
 import com.puntogris.posture.utils.*
-import com.puntogris.posture.utils.Constants.DATA_KEY
-import com.puntogris.posture.utils.Constants.EDIT_NAME_KEY
+import com.puntogris.posture.utils.constants.Constants.DATA_KEY
+import com.puntogris.posture.utils.constants.Constants.EDIT_NAME_KEY
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

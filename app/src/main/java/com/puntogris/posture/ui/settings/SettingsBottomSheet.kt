@@ -4,9 +4,9 @@ import androidx.fragment.app.setFragmentResultListener
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetSettingsBinding
 import com.puntogris.posture.ui.base.BaseBindingBottomSheetFragment
-import com.puntogris.posture.utils.Constants.DATA_KEY
-import com.puntogris.posture.utils.Constants.EDIT_NAME_KEY
-import com.puntogris.posture.utils.Constants.SEND_TICKET_KEY
+import com.puntogris.posture.utils.constants.Constants.DATA_KEY
+import com.puntogris.posture.utils.constants.Constants.EDIT_NAME_KEY
+import com.puntogris.posture.utils.constants.Constants.SEND_TICKET_KEY
 import com.puntogris.posture.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 

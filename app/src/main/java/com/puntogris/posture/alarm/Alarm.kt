@@ -6,12 +6,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.puntogris.posture.model.Reminder
-import com.puntogris.posture.utils.Constants.DAILY_ALARM_TRIGGERED
-import com.puntogris.posture.utils.Constants.REPEATING_ALARM_TRIGGERED
 import com.puntogris.posture.data.datasource.local.DataStore
+import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.Utils.getTriggerTime
+import com.puntogris.posture.utils.constants.Constants.DAILY_ALARM_TRIGGERED
+import com.puntogris.posture.utils.constants.Constants.REPEATING_ALARM_TRIGGERED
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 

@@ -29,8 +29,8 @@ abstract class BaseBindingBottomSheetFragment<T : ViewDataBinding>(
             window?.let {
                 behavior.isDraggable = isDraggable
                 it.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
-                WindowInsetsControllerCompat(it, it.decorView).isAppearanceLightStatusBars =
-                    !isDarkThemeOn()
+                WindowInsetsControllerCompat(it, it.decorView)
+                    .isAppearanceLightStatusBars = !isDarkThemeOn()
             }
             behavior.skipCollapsed = true
 

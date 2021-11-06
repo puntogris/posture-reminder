@@ -6,14 +6,14 @@ import androidx.work.WorkManager
 import com.puntogris.posture.R
 import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.data.datasource.local.DataStore
-import com.puntogris.posture.data.datasource.local.room.dao.UserDao
+import com.puntogris.posture.data.datasource.local.db.UserDao
 import com.puntogris.posture.data.datasource.remote.FirebaseLoginDataSource
 import com.puntogris.posture.data.datasource.remote.GoogleSingInDataSource
+import com.puntogris.posture.domain.model.UserPrivateData
 import com.puntogris.posture.domain.repository.LoginRepository
-import com.puntogris.posture.model.UserPrivateData
-import com.puntogris.posture.utils.Constants.SYNC_ACCOUNT_WORKER
 import com.puntogris.posture.utils.LoginResult
 import com.puntogris.posture.utils.SimpleResult
+import com.puntogris.posture.utils.constants.Constants.SYNC_ACCOUNT_WORKER
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

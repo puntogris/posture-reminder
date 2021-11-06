@@ -1,10 +1,10 @@
 package com.puntogris.posture.data.repository
 
 import androidx.room.withTransaction
-import com.puntogris.posture.data.DispatcherProvider
-import com.puntogris.posture.data.datasource.local.room.db.AppDatabase
+import com.puntogris.posture.data.datasource.local.db.AppDatabase
+import com.puntogris.posture.domain.model.DayLog
 import com.puntogris.posture.domain.repository.DayLogsRepository
-import com.puntogris.posture.model.DayLog
+import com.puntogris.posture.utils.DispatcherProvider
 import com.puntogris.posture.utils.RewardExp
 import kotlinx.coroutines.withContext
 

@@ -1,9 +1,9 @@
 package com.puntogris.posture.domain.repository
 
 import androidx.lifecycle.LiveData
+import com.puntogris.posture.domain.model.Reminder
+import com.puntogris.posture.domain.model.ReminderId
 import com.puntogris.posture.utils.Result
-import com.puntogris.posture.model.Reminder
-import com.puntogris.posture.model.ReminderId
 import com.puntogris.posture.utils.SimpleResult
 
 interface ReminderRepository {

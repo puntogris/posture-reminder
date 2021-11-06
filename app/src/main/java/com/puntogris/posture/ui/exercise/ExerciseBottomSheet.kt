@@ -5,7 +5,7 @@ import androidx.navigation.fragment.navArgs
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetExerciseBinding
 import com.puntogris.posture.ui.base.BaseBindingBottomSheetFragment
-import com.puntogris.posture.utils.Constants.PROGRESS_BAR_SMOOTH_OFFSET
+import com.puntogris.posture.utils.constants.Constants.PROGRESS_BAR_SMOOTH_OFFSET
 import com.puntogris.posture.utils.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
 

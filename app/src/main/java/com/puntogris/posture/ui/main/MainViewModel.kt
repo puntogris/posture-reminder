@@ -1,6 +1,9 @@
 package com.puntogris.posture.ui.main
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.data.datasource.local.DataStore
 import dagger.hilt.android.lifecycle.HiltViewModel

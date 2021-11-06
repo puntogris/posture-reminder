@@ -1,8 +1,8 @@
 package com.puntogris.posture.data.datasource.remote
 
-import com.puntogris.posture.utils.Constants.PUBLIC_PROFILE_COL_GROUP
-import com.puntogris.posture.utils.Constants.PUBLIC_PROFILE_DOC
-import com.puntogris.posture.utils.Constants.USERS_COLLECTION
+import com.puntogris.posture.utils.constants.Constants.PUBLIC_PROFILE_COL_GROUP
+import com.puntogris.posture.utils.constants.Constants.PUBLIC_PROFILE_DOC
+import com.puntogris.posture.utils.constants.Constants.USERS_COLLECTION
 import javax.inject.Inject
 
 class FirebaseUserDataSource @Inject constructor() : FirebaseDataSource() {

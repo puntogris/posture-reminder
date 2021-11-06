@@ -4,16 +4,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentPortalBinding
-import com.puntogris.posture.model.Exercise
-import com.puntogris.posture.model.UserPublicProfile
+import com.puntogris.posture.domain.model.Exercise
+import com.puntogris.posture.domain.model.UserPublicProfile
 import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.ui.rankings.RankingsAdapter
-import com.puntogris.posture.utils.UiInterface
-import com.puntogris.posture.utils.gone
-import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
-import com.puntogris.posture.utils.navigateTo
+import com.puntogris.posture.utils.*
 import dagger.hilt.android.AndroidEntryPoint
-import com.puntogris.posture.utils.Result
 
 @AndroidEntryPoint
 class PortalFragment : BaseFragmentOptions<FragmentPortalBinding>(R.layout.fragment_portal) {

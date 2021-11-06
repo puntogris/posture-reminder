@@ -31,7 +31,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
 import com.puntogris.posture.ui.main.MainActivity
 import com.puntogris.posture.ui.main.UiInterfaceListener
-import com.puntogris.posture.utils.Constants.EXPERIENCE_PER_LEVEL
+import com.puntogris.posture.utils.constants.Constants.EXPERIENCE_PER_LEVEL
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope

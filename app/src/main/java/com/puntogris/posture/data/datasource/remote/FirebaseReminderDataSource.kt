@@ -1,7 +1,7 @@
 package com.puntogris.posture.data.datasource.remote
 
-import com.puntogris.posture.utils.Constants.REMINDERS_COLLECTION
-import com.puntogris.posture.utils.Constants.USERS_COLLECTION
+import com.puntogris.posture.utils.constants.Constants.REMINDERS_COLLECTION
+import com.puntogris.posture.utils.constants.Constants.USERS_COLLECTION
 import javax.inject.Inject
 
 class FirebaseReminderDataSource @Inject constructor() : FirebaseDataSource() {

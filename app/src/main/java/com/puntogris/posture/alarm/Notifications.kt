@@ -15,13 +15,13 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.puntogris.posture.R
 import com.puntogris.posture.data.datasource.local.LocalDataSource
-import com.puntogris.posture.model.FcmNotification
-import com.puntogris.posture.model.Reminder
+import com.puntogris.posture.domain.model.FcmNotification
+import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.ui.main.MainActivity
-import com.puntogris.posture.utils.Constants.CLAIM_NOTIFICATION_EXP_INTENT
-import com.puntogris.posture.utils.Constants.FMC_CHANNEL_ID
-import com.puntogris.posture.utils.Constants.NAVIGATION_DATA
-import com.puntogris.posture.utils.Constants.NOTIFICATION_ID
+import com.puntogris.posture.utils.constants.Constants.CLAIM_NOTIFICATION_EXP_INTENT
+import com.puntogris.posture.utils.constants.Constants.FMC_CHANNEL_ID
+import com.puntogris.posture.utils.constants.Constants.NAVIGATION_DATA
+import com.puntogris.posture.utils.constants.Constants.NOTIFICATION_ID
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 

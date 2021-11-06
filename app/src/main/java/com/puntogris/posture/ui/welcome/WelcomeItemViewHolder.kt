@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.databinding.WelcomeItemVhBinding
-import com.puntogris.posture.model.WelcomeItem
+import com.puntogris.posture.domain.model.WelcomeItem
 
 class WelcomeItemViewHolder(private val binding: WelcomeItemVhBinding) :
     RecyclerView.ViewHolder(binding.root) {

@@ -14,8 +14,8 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.posture.R
 import com.puntogris.posture.data.datasource.local.LocalDataSource
-import com.puntogris.posture.utils.Constants.DATA_KEY
-import com.puntogris.posture.utils.Constants.VIBRATION_PICKER_KEY
+import com.puntogris.posture.utils.constants.Constants.DATA_KEY
+import com.puntogris.posture.utils.constants.Constants.VIBRATION_PICKER_KEY
 
 class VibrationSelectorDialog : DialogFragment() {
 

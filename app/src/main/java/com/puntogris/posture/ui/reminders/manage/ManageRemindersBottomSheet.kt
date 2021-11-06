@@ -5,7 +5,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetManageRemindersBinding
-import com.puntogris.posture.model.Reminder
+import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.ui.base.BaseBindingBottomSheetFragment
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.navigateTo

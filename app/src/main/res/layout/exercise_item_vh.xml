@@ -6,7 +6,7 @@
     <data>
         <variable
             name="exercise"
-            type="com.puntogris.posture.model.Exercise" />
+            type="com.puntogris.posture.domain.model.Exercise" />
     </data>
 
         <androidx.constraintlayout.widget.ConstraintLayout

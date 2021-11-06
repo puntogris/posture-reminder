@@ -4,12 +4,12 @@ import android.app.AlarmManager.ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHA
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.domain.repository.ReminderRepository
-import com.puntogris.posture.model.Reminder
-import com.puntogris.posture.utils.Constants.DAILY_ALARM_TRIGGERED
-import com.puntogris.posture.utils.Constants.REPEATING_ALARM_TRIGGERED
 import com.puntogris.posture.utils.Utils.dayOfTheWeek
 import com.puntogris.posture.utils.Utils.minutesSinceMidnight
+import com.puntogris.posture.utils.constants.Constants.DAILY_ALARM_TRIGGERED
+import com.puntogris.posture.utils.constants.Constants.REPEATING_ALARM_TRIGGERED
 import com.puntogris.posture.utils.goAsync
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

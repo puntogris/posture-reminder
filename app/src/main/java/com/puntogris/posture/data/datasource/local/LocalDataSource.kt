@@ -1,8 +1,8 @@
 package com.puntogris.posture.data.datasource.local
 
 import com.puntogris.posture.R
-import com.puntogris.posture.model.Exercise
-import com.puntogris.posture.model.VibrationPattern
+import com.puntogris.posture.domain.model.Exercise
+import com.puntogris.posture.domain.model.VibrationPattern
 
 class LocalDataSource {
 

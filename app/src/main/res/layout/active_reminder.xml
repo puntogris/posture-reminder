@@ -6,7 +6,7 @@
     <data>
         <variable
             name="reminder"
-            type="com.puntogris.posture.model.Reminder" />
+            type="com.puntogris.posture.domain.model.Reminder" />
         <variable
             name="fragment"
             type="com.puntogris.posture.ui.home.HomeFragment" />

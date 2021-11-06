@@ -9,7 +9,7 @@
             type="com.puntogris.posture.ui.exercise.ExerciseBottomSheet" />
         <variable
             name="exercise"
-            type="com.puntogris.posture.model.Exercise" />
+            type="com.puntogris.posture.domain.model.Exercise" />
         <variable
             name="viewModel"
             type="com.puntogris.posture.ui.exercise.ExerciseViewModel" />

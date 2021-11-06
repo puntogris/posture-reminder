@@ -6,7 +6,7 @@
     <data>
         <variable
             name="reminder"
-            type="com.puntogris.posture.model.Reminder" />
+            type="com.puntogris.posture.domain.model.Reminder" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

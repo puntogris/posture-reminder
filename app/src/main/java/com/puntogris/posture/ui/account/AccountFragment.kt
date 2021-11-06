@@ -3,7 +3,7 @@ package com.puntogris.posture.ui.account
 import androidx.fragment.app.viewModels
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentAccountBinding
-import com.puntogris.posture.model.DayLog
+import com.puntogris.posture.domain.model.DayLog
 import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.utils.getDayStringFormatted
 import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle

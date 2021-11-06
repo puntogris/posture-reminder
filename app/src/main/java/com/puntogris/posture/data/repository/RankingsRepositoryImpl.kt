@@ -1,12 +1,12 @@
 package com.puntogris.posture.data.repository
 
-import com.puntogris.posture.data.DispatcherProvider
 import com.puntogris.posture.data.datasource.remote.FirebaseRankingDataSource
+import com.puntogris.posture.domain.model.UserPublicProfile
 import com.puntogris.posture.domain.repository.RankingsRepository
-import com.puntogris.posture.model.UserPublicProfile
+import com.puntogris.posture.utils.DispatcherProvider
+import com.puntogris.posture.utils.Result
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import com.puntogris.posture.utils.Result
 
 class RankingsRepositoryImpl(
     private val rankingsFirebase: FirebaseRankingDataSource,

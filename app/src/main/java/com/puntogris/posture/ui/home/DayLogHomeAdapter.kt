@@ -3,7 +3,7 @@ package com.puntogris.posture.ui.home
 import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.puntogris.posture.model.DayLog
+import com.puntogris.posture.domain.model.DayLog
 
 class DayLogHomeAdapter : RecyclerView.Adapter<DayLogHomeViewHolder>() {
 

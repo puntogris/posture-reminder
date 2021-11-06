@@ -1,6 +1,6 @@
 package com.puntogris.posture.alarm
 
-import com.puntogris.posture.model.Reminder
+import com.puntogris.posture.domain.model.Reminder
 
 sealed class AlarmStatus {
     class Activated(val reminder: Reminder) : AlarmStatus()

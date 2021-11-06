@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.databinding.DayLogHomePagerItemBinding
-import com.puntogris.posture.model.DayLog
+import com.puntogris.posture.domain.model.DayLog
 
 class DayLogHomeViewHolder(private val binding: DayLogHomePagerItemBinding) :
     RecyclerView.ViewHolder(binding.root) {

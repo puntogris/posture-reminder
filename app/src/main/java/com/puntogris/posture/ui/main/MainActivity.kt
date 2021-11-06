@@ -15,11 +15,11 @@ import com.puntogris.posture.R
 import com.puntogris.posture.databinding.ActivityMainBinding
 import com.puntogris.posture.ui.base.BaseBindingActivity
 import com.puntogris.posture.utils.*
-import com.puntogris.posture.utils.Constants.CLAIM_NOTIFICATION_EXP_INTENT
-import com.puntogris.posture.utils.Constants.NAVIGATION_DATA
-import com.puntogris.posture.utils.Constants.NOTIFICATION_ID
-import com.puntogris.posture.utils.Constants.URI_STRING
-import com.puntogris.posture.utils.Constants.WEBSITE_HTTPS
+import com.puntogris.posture.utils.constants.Constants.CLAIM_NOTIFICATION_EXP_INTENT
+import com.puntogris.posture.utils.constants.Constants.NAVIGATION_DATA
+import com.puntogris.posture.utils.constants.Constants.NOTIFICATION_ID
+import com.puntogris.posture.utils.constants.Constants.URI_STRING
+import com.puntogris.posture.utils.constants.Constants.WEBSITE_HTTPS
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 

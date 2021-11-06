@@ -1,8 +1,8 @@
 package com.puntogris.posture.data.datasource.remote
 
 import com.google.firebase.firestore.Query
-import com.puntogris.posture.utils.Constants.EXPERIENCE_FIELD
-import com.puntogris.posture.utils.Constants.PUBLIC_PROFILE_COL_GROUP
+import com.puntogris.posture.utils.constants.Constants.EXPERIENCE_FIELD
+import com.puntogris.posture.utils.constants.Constants.PUBLIC_PROFILE_COL_GROUP
 import javax.inject.Inject
 
 class FirebaseRankingDataSource @Inject constructor() : FirebaseDataSource() {

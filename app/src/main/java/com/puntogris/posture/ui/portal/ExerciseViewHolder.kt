@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.databinding.ExerciseItemVhBinding
-import com.puntogris.posture.model.Exercise
+import com.puntogris.posture.domain.model.Exercise
 
 class ExerciseViewHolder(private val binding: ExerciseItemVhBinding) :
     RecyclerView.ViewHolder(binding.root) {

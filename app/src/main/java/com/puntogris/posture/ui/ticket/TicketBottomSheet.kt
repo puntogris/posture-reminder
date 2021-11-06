@@ -10,8 +10,8 @@ import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetTicketBinding
 import com.puntogris.posture.ui.base.BaseBindingBottomSheetFragment
 import com.puntogris.posture.utils.*
-import com.puntogris.posture.utils.Constants.DATA_KEY
-import com.puntogris.posture.utils.Constants.SEND_TICKET_KEY
+import com.puntogris.posture.utils.constants.Constants.DATA_KEY
+import com.puntogris.posture.utils.constants.Constants.SEND_TICKET_KEY
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
