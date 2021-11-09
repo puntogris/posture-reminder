@@ -17,7 +17,7 @@ import com.puntogris.posture.utils.constants.Converters
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun reminderDao(): ReminderDao
-    abstract fun userDao(): UserDao
-    abstract fun dayLogsDao(): DayLogsDao
+    abstract val reminderDao: ReminderDao
+    abstract val userDao: UserDao
+    abstract val dayLogsDao: DayLogsDao
 }

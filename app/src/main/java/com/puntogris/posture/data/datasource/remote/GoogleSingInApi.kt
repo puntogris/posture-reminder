@@ -8,10 +8,10 @@ import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-class GoogleSingInDataSource @Inject constructor(private val googleSignInClient: GoogleSignInClient) {
+class GoogleSingInApi @Inject constructor(private val client: GoogleSignInClient) {
 
     suspend fun signOut() {
-        googleSignInClient.signOut().await()
+        client.signOut().await()
     }
 
     suspend fun getCredentialWithIntent(intent: Intent): AuthCredential {

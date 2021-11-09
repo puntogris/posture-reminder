@@ -1,6 +1,6 @@
 package com.puntogris.posture.data.repository
 
-import com.puntogris.posture.data.datasource.remote.FirebaseDataSource
+import com.puntogris.posture.data.datasource.remote.FirebaseClients
 import com.puntogris.posture.domain.model.Ticket
 import com.puntogris.posture.domain.repository.TicketRepository
 import com.puntogris.posture.utils.DispatcherProvider
@@ -10,7 +10,7 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 class TicketRepositoryImpl(
-    private val firebase: FirebaseDataSource,
+    private val firebase: FirebaseClients,
     private val dispatchers: DispatcherProvider
 ) : TicketRepository {
 

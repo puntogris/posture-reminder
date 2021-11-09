@@ -2,10 +2,8 @@ package com.puntogris.posture.domain.repository
 
 import com.puntogris.posture.domain.model.UserPublicProfile
 import com.puntogris.posture.utils.Result
+import kotlinx.coroutines.flow.Flow
 
 interface RankingsRepository {
-
-    suspend fun getAllRankingsServer(): Result<List<UserPublicProfile>>
-
-    suspend fun getTopThreeRankingsServer(): Result<List<UserPublicProfile>>
+    fun getRankingsWithLimit(limit: Long): Flow<Result<List<UserPublicProfile>>>
 }

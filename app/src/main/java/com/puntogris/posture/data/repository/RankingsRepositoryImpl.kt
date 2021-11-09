@@ -1,36 +1,37 @@
 package com.puntogris.posture.data.repository
 
-import com.puntogris.posture.data.datasource.remote.FirebaseRankingDataSource
+import com.google.firebase.firestore.Query
+import com.puntogris.posture.data.datasource.remote.FirebaseClients
 import com.puntogris.posture.domain.model.UserPublicProfile
 import com.puntogris.posture.domain.repository.RankingsRepository
 import com.puntogris.posture.utils.DispatcherProvider
 import com.puntogris.posture.utils.Result
+import com.puntogris.posture.utils.constants.Constants
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.isActive
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 class RankingsRepositoryImpl(
-    private val rankingsFirebase: FirebaseRankingDataSource,
+    private val firebase: FirebaseClients,
     private val dispatchers: DispatcherProvider
 ) : RankingsRepository {
 
-    override suspend fun getAllRankingsServer(): Result<List<UserPublicProfile>> =
-        withContext(dispatchers.io) {
-            Result.build {
-                rankingsFirebase.getRankingsQueryWithLimit()
+    override fun getRankingsWithLimit(limit: Long) = flow<Result<List<UserPublicProfile>>> {
+        withContext(dispatchers.io){
+            try{
+                val result = firebase.firestore
+                    .collectionGroup(Constants.PUBLIC_PROFILE_COL_GROUP)
+                    .orderBy(Constants.EXPERIENCE_FIELD, Query.Direction.DESCENDING)
+                    .limit(limit)
                     .get()
                     .await()
                     .toObjects(UserPublicProfile::class.java)
+
+                emit(Result.Success(result))
+            }catch(e: Exception){
+                emit(Result.Error(e))
             }
         }
-
-    override suspend fun getTopThreeRankingsServer(): Result<List<UserPublicProfile>> =
-        withContext(dispatchers.io) {
-            Result.build {
-                rankingsFirebase.getRankingsQueryWithLimit(3)
-                    .get()
-                    .await()
-                    .toObjects(UserPublicProfile::class.java)
-            }
-        }
-
+    }
 }

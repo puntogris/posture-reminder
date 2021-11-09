@@ -5,26 +5,24 @@ import com.lyft.kronos.KronosClock
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.datasource.local.db.ReminderDao
 import com.puntogris.posture.data.datasource.local.db.UserDao
-import com.puntogris.posture.data.datasource.remote.FirebaseReminderDataSource
-import com.puntogris.posture.data.datasource.remote.FirebaseUserDataSource
-import com.puntogris.posture.domain.model.Reminder
+import com.puntogris.posture.data.datasource.remote.FirebaseClients
+import com.puntogris.posture.data.datasource.remote.ReminderServerApi
+import com.puntogris.posture.data.datasource.remote.UserServerApi
 import com.puntogris.posture.domain.model.UserPrivateData
-import com.puntogris.posture.domain.model.UserPublicProfile
 import com.puntogris.posture.domain.repository.SyncRepository
 import com.puntogris.posture.utils.DispatcherProvider
 import com.puntogris.posture.utils.SimpleResult
-import com.puntogris.posture.utils.constants.Constants.EXPERIENCE_FIELD
 import com.puntogris.posture.utils.constants.Constants.SYNC_ACCOUNT_WORKER
 import com.puntogris.posture.workers.SyncAccountWorker
-import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.util.concurrent.TimeUnit
 
 class SyncRepositoryImpl(
+    private val firebaseClients: FirebaseClients,
     private val reminderDao: ReminderDao,
     private val userDao: UserDao,
-    private val firestoreUser: FirebaseUserDataSource,
-    private val firestoreReminder: FirebaseReminderDataSource,
+    private val userServerApi: UserServerApi,
+    private val reminderServerApi: ReminderServerApi,
     private val dataStore: DataStore,
     private val dispatchers: DispatcherProvider,
     private val workManager: WorkManager,
@@ -47,11 +45,7 @@ class SyncRepositoryImpl(
         }
 
     private suspend fun getUserFromServer(): UserPrivateData? {
-        return firestoreUser
-            .getUserPrivateDataRef()
-            .get()
-            .await()
-            .toObject(UserPrivateData::class.java)
+        return userServerApi.getUser()
     }
 
     private suspend fun compareLatestUserData(serverUser: UserPrivateData) {
@@ -67,11 +61,7 @@ class SyncRepositoryImpl(
 
     private suspend fun insertNewUser(user: UserPrivateData) {
         userDao.insert(user)
-
-        firestoreUser.runBatch().apply {
-            set(firestoreUser.getUserPrivateDataRef(), user)
-            set(firestoreUser.getUserPublicProfileRef(), UserPublicProfile.from(user))
-        }.commit().await()
+        userServerApi.createUser(user)
     }
 
     private suspend fun syncUserReminders() {
@@ -80,32 +70,19 @@ class SyncRepositoryImpl(
     }
 
     private suspend fun insertServerRemindersIntoLocal() {
-        val firestoreReminders = firestoreReminder
-            .getUserRemindersQuery()
-            .get()
-            .await()
-            .toObjects(Reminder::class.java)
-
-        reminderDao.insertRemindersIfNotInRoom(firestoreReminders)
+        val reminders = reminderServerApi.getReminders()
+        reminderDao.insertRemindersIfNotInRoom(reminders)
     }
 
     private suspend fun insertLocalRemindersIntoServer() {
         val localReminders = reminderDao.getRemindersNotSynced()
 
         if (localReminders.isNotEmpty()) {
-            val uid = firestoreUser.getCurrentUserId()
-            val batch = firestoreReminder.runBatch()
+            val uid = requireNotNull(firebaseClients.currentUid)
 
-            localReminders.forEach { reminder ->
-                reminder.uid = uid
-                batch.set(
-                    firestoreReminder.getReminderDocumentRefWithId(reminder.reminderId),
-                    reminder
-                )
-            }
-
+            localReminders.forEach { it.uid = uid }
+            reminderServerApi.saveReminders(localReminders)
             reminderDao.insert(localReminders)
-            batch.commit().await()
         }
     }
 
@@ -113,11 +90,7 @@ class SyncRepositoryImpl(
         userDao.getUser()?.let {
             val serverTime = kronosClock.getCurrentNtpTimeMs() ?: return
             val expAmount = it.calculateMaxExpPermitted(serverTime)
-
-            firestoreUser.runBatch().apply {
-                update(firestoreUser.getUserPublicProfileRef(), EXPERIENCE_FIELD, expAmount)
-                update(firestoreUser.getUserPrivateDataRef(), EXPERIENCE_FIELD, expAmount)
-            }.commit().await()
+            userServerApi.updateExperience(expAmount)
         }
     }
 

@@ -10,6 +10,7 @@ import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.ui.rankings.RankingsAdapter
 import com.puntogris.posture.utils.*
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class PortalFragment : BaseFragmentOptions<FragmentPortalBinding>(R.layout.fragment_portal) {
@@ -35,12 +36,13 @@ class PortalFragment : BaseFragmentOptions<FragmentPortalBinding>(R.layout.fragm
 
     private fun fetchRankingsAndFillAdapter() {
         launchAndRepeatWithViewLifecycle {
-            val result = viewModel.getTopThreeRankings()
-            handleResultFromFetchRankings(result)
+            viewModel.rankings.collect {
+                handleRankingsResult(it)
+            }
         }
     }
 
-    private fun handleResultFromFetchRankings(result: Result<List<UserPublicProfile>>) {
+    private fun handleRankingsResult(result: Result<List<UserPublicProfile>>) {
         when (result) {
             is Result.Error -> {
                 UiInterface.showSnackBar(getString(R.string.snack_connection_error))
@@ -64,5 +66,4 @@ class PortalFragment : BaseFragmentOptions<FragmentPortalBinding>(R.layout.fragm
     fun navigateToGlobalRanking() {
         navigateTo(R.id.action_portalFragment_to_rankingsFragment)
     }
-
 }

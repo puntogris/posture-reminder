@@ -11,10 +11,7 @@ import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.datasource.local.db.AppDatabase
 import com.puntogris.posture.data.datasource.local.db.ReminderDao
 import com.puntogris.posture.data.datasource.local.db.UserDao
-import com.puntogris.posture.data.datasource.remote.FirebaseDataSource
-import com.puntogris.posture.data.datasource.remote.FirebaseRankingDataSource
-import com.puntogris.posture.data.datasource.remote.FirebaseReminderDataSource
-import com.puntogris.posture.data.datasource.remote.FirebaseUserDataSource
+import com.puntogris.posture.data.datasource.remote.*
 import com.puntogris.posture.data.repository.*
 import com.puntogris.posture.domain.repository.*
 import com.puntogris.posture.utils.DispatcherProvider
@@ -33,15 +30,15 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun providesReminderDao(appDatabase: AppDatabase) = appDatabase.reminderDao()
+    fun providesReminderDao(appDatabase: AppDatabase) = appDatabase.reminderDao
 
     @Singleton
     @Provides
-    fun providesUserDao(appDatabase: AppDatabase) = appDatabase.userDao()
+    fun providesUserDao(appDatabase: AppDatabase) = appDatabase.userDao
 
     @Singleton
     @Provides
-    fun providesDayHistoryDao(appDatabase: AppDatabase) = appDatabase.dayLogsDao()
+    fun providesDayHistoryDao(appDatabase: AppDatabase) = appDatabase.dayLogsDao
 
     @Provides
     @Singleton
@@ -62,17 +59,18 @@ class AppModule {
     @Singleton
     @Provides
     fun provideUserRepository(
-        firebaseUser: FirebaseUserDataSource,
+        firebaseClients: FirebaseClients,
+        userServerApi: UserServerApi,
         alarm: Alarm,
         dispatchers: DispatcherProvider,
         appDatabase: AppDatabase
     ): UserRepository {
-        return UserRepositoryImpl(firebaseUser, alarm, dispatchers, appDatabase)
+        return UserRepositoryImpl(firebaseClients, userServerApi, alarm, dispatchers, appDatabase)
     }
 
     @Provides
     fun provideTicketRepository(
-        firebase: FirebaseDataSource,
+        firebase: FirebaseClients,
         dispatchers: DispatcherProvider
     ): TicketRepository {
         return TicketRepositoryImpl(firebase, dispatchers)
@@ -81,24 +79,26 @@ class AppModule {
     @Singleton
     @Provides
     fun provideRankingRepository(
-        rankingsFirebase: FirebaseRankingDataSource,
+        firebaseClients: FirebaseClients,
         dispatchers: DispatcherProvider
     ): RankingsRepository {
-        return RankingsRepositoryImpl(rankingsFirebase, dispatchers)
+        return RankingsRepositoryImpl(firebaseClients, dispatchers)
     }
 
     @Provides
     fun provideSyncRepository(
+        firebaseClients: FirebaseClients,
         reminderDao: ReminderDao,
         userDao: UserDao,
-        firestoreUser: FirebaseUserDataSource,
-        firestoreReminder: FirebaseReminderDataSource,
+        firestoreUser: FirebaseUserApi,
+        firestoreReminder: FirebaseReminderApi,
         dataStore: DataStore,
         dispatchers: DispatcherProvider,
         workManager: WorkManager,
         kronosClock: KronosClock
     ): SyncRepository {
         return SyncRepositoryImpl(
+            firebaseClients,
             reminderDao,
             userDao,
             firestoreUser,
@@ -113,7 +113,8 @@ class AppModule {
     @Singleton
     @Provides
     fun provideReminderRepository(
-        firebase: FirebaseReminderDataSource,
+        firebaseClients: FirebaseClients,
+        firebase: FirebaseReminderApi,
         reminderDao: ReminderDao,
         notifications: Notifications,
         alarm: Alarm,
@@ -122,7 +123,14 @@ class AppModule {
         workManager: WorkManager,
     ): ReminderRepository {
         return ReminderRepositoryImpl(
-            firebase, reminderDao, notifications, alarm, dataStore, dispatchers, workManager
+            firebaseClients,
+            firebase,
+            reminderDao,
+            notifications,
+            alarm,
+            dataStore,
+            dispatchers,
+            workManager
         )
     }
 
@@ -144,8 +152,19 @@ class AppModule {
     }
 
     @Provides
-    fun provideWorkManager(@ApplicationContext context: Context): WorkManager{
+    fun provideWorkManager(@ApplicationContext context: Context): WorkManager {
         return WorkManager.getInstance(context)
     }
 
+    @Provides
+    @Singleton
+    fun provideReminderServerApi(firebaseClients: FirebaseClients): ReminderServerApi {
+        return FirebaseReminderApi(firebaseClients)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserServerApi(firebaseClients: FirebaseClients): UserServerApi {
+        return FirebaseUserApi(firebaseClients)
+    }
 }

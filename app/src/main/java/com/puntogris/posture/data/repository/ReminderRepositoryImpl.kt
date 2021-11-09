@@ -1,17 +1,19 @@
 package com.puntogris.posture.data.repository
 
-import android.content.Context
 import android.os.Build
 import androidx.work.*
 import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.alarm.Notifications
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.datasource.local.db.ReminderDao
-import com.puntogris.posture.data.datasource.remote.FirebaseReminderDataSource
+import com.puntogris.posture.data.datasource.remote.FirebaseClients
+import com.puntogris.posture.data.datasource.remote.FirebaseReminderApi
+import com.puntogris.posture.data.datasource.remote.ReminderServerApi
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.domain.model.ReminderId
 import com.puntogris.posture.domain.repository.ReminderRepository
 import com.puntogris.posture.utils.DispatcherProvider
+import com.puntogris.posture.utils.IDGenerator
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.constants.Constants.REMINDER_ID_WORKER_DATA
@@ -21,7 +23,8 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 class ReminderRepositoryImpl(
-    private val firebase: FirebaseReminderDataSource,
+    private val firebase: FirebaseClients,
+    private val reminderServerApi: ReminderServerApi,
     private val reminderDao: ReminderDao,
     private val notifications: Notifications,
     private val alarm: Alarm,
@@ -39,7 +42,7 @@ class ReminderRepositoryImpl(
                     notifications.removeNotificationChannelWithId(reminder.reminderId)
                 }
                 if (reminder.uid.isNotBlank()) {
-                    firebase.getReminderDocumentRefWithId(reminder.reminderId).delete().await()
+                    reminderServerApi.deleteReminder(reminder.reminderId)
                 }
                 if (reminderDao.getActiveReminder() == reminder) {
                     alarm.cancelAlarms()
@@ -74,9 +77,9 @@ class ReminderRepositoryImpl(
         }
 
     private fun fillIdsIfNewReminder(reminder: Reminder) {
-        reminder.reminderId = firebase.getNewReminderDocumentRef().id
-        firebase.currentUser()?.let {
-            reminder.uid = it.uid
+        reminder.reminderId = IDGenerator.randomID()
+        firebase.currentUid?.let {
+            reminder.uid = it
         }
     }
 
@@ -101,7 +104,7 @@ class ReminderRepositoryImpl(
 
     override suspend fun insertLocalReminderToServer(reminderId: String) {
         reminderDao.getReminderWithId(reminderId)?.let {
-            firebase.getReminderDocumentRefWithId(reminderId).set(it).await()
+            reminderServerApi.saveReminder(it)
         }
     }
 }

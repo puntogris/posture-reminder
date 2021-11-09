@@ -116,7 +116,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
         preference(Keys.USERNAME_PREF_KEY) {
             lifecycleScope.launch {
                 viewModel.user.observe(viewLifecycleOwner) {
-                    summary = it.username
+                    summary = if (it.username.isBlank()) getString(R.string.human) else it.username
                 }
             }
             onClick {

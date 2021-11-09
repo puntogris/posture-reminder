@@ -3,40 +3,37 @@ package com.puntogris.posture.ui.rankings
 import androidx.fragment.app.viewModels
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentRankingsBinding
-import com.puntogris.posture.domain.model.UserPublicProfile
 import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class RankingsFragment : BaseFragmentOptions<FragmentRankingsBinding>(R.layout.fragment_rankings) {
 
     private val viewModel: RankingsViewModel by viewModels()
-    private lateinit var rankingsAdapter: RankingsAdapter
 
     override fun initializeViews() {
-        setupRecyclerViewAdapter()
-        fetchRankingsAndFillAdapter()
-    }
-
-    private fun setupRecyclerViewAdapter() {
-        rankingsAdapter = RankingsAdapter()
-        binding.recyclerView.adapter = rankingsAdapter
-    }
-
-    private fun fetchRankingsAndFillAdapter() {
-        launchAndRepeatWithViewLifecycle {
-            val result = viewModel.getAllRankings()
-            handleResultFromFetchRankings(result)
+        RankingsAdapter().let {
+            binding.recyclerView.adapter = it
+            subscribeUi(it)
         }
     }
 
-    private fun handleResultFromFetchRankings(result: Result<List<UserPublicProfile>>) {
-        when (result) {
-            is Result.Error -> UiInterface.showSnackBar(getString(R.string.snack_connection_error))
-            is Result.Success -> rankingsAdapter.submitList(result.value)
+    private fun subscribeUi(adapter: RankingsAdapter) {
+        launchAndRepeatWithViewLifecycle {
+            viewModel.rankings.collect {
+                when (it) {
+                    is Result.Error -> {
+                        UiInterface.showSnackBar(getString(R.string.snack_connection_error))
+                    }
+                    is Result.Success -> {
+                        adapter.submitList(it.value)
+                    }
+                }
+            }
         }
     }
 }

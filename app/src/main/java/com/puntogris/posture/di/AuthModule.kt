@@ -9,12 +9,10 @@ import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.datasource.local.db.UserDao
-import com.puntogris.posture.data.datasource.remote.FirebaseLoginDataSource
-import com.puntogris.posture.data.datasource.remote.GoogleSingInDataSource
-import com.puntogris.posture.data.repository.LoginRepositoryImpl
-import com.puntogris.posture.domain.repository.LoginRepository
+import com.puntogris.posture.data.datasource.remote.*
+import com.puntogris.posture.data.repository.AuthRepositoryImpl
+import com.puntogris.posture.domain.repository.AuthRepository
 import com.puntogris.posture.utils.DispatcherProvider
-import com.puntogris.posture.utils.StandardDispatchers
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,23 +38,27 @@ class AuthModule {
     @Provides
     fun provideLoginRepository(
         workManager: WorkManager,
-        loginFirebase: FirebaseLoginDataSource,
+        authServerApi: AuthServerApi,
         dataStore: DataStore,
         userDao: UserDao,
-        googleSingIn: GoogleSingInDataSource,
+        googleSingInApi: GoogleSingInApi,
         alarm: Alarm,
-        @ApplicationContext context: Context,
         dispatcherProvider: DispatcherProvider
-    ): LoginRepository {
-        return LoginRepositoryImpl(
+    ): AuthRepository {
+        return AuthRepositoryImpl(
             workManager,
-            loginFirebase,
+            authServerApi,
             dataStore,
             userDao,
-            googleSingIn,
+            googleSingInApi,
             alarm,
-            context,
             dispatcherProvider
         )
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthServerApi(firebaseClients: FirebaseClients): AuthServerApi {
+        return FirebaseAuthApi(firebaseClients)
     }
 }
