@@ -27,7 +27,7 @@ class ReminderRepositoryImpl(
     private val alarm: Alarm,
     private val dataStore: DataStore,
     private val dispatchers: DispatcherProvider,
-    private val context: Context
+    private val workManager: WorkManager,
 ) : ReminderRepository {
 
     override fun getAllLocalRemindersLiveData() = reminderDao.getAllRemindersLiveData()
@@ -80,7 +80,7 @@ class ReminderRepositoryImpl(
         }
     }
 
-    private fun registerUploadServerReminderWorker(reminderId: String) {
+    private suspend fun registerUploadServerReminderWorker(reminderId: String) {
         val reminderData = Data.Builder().putString(REMINDER_ID_WORKER_DATA, reminderId).build()
         val constraints =
             Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
@@ -90,7 +90,7 @@ class ReminderRepositoryImpl(
             .setConstraints(constraints)
             .build()
 
-        WorkManager.getInstance(context).enqueue(uploadReminder)
+        workManager.enqueue(uploadReminder).await()
     }
 
     override fun getActiveReminderLiveData() = reminderDao.getActiveReminderLiveData()

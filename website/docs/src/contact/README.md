@@ -2,7 +2,7 @@
 
 ### Personal website
 
-It's in spanish at the moment, but i will translate it to english in the future.
+Take a look at my other projects.
 
 [Visit my website!](https://puntogris.com)
 

@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="item"
             type="com.puntogris.posture.utils.ReminderUi.Color" />
@@ -11,6 +12,7 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/reminderColorImage"
             android:layout_width="90dp"

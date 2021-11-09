@@ -1,7 +1,7 @@
 package com.puntogris.posture.data.repository
 
-import android.content.Context
 import androidx.work.*
+import com.lyft.kronos.KronosClock
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.datasource.local.db.ReminderDao
 import com.puntogris.posture.data.datasource.local.db.UserDao
@@ -14,7 +14,6 @@ import com.puntogris.posture.domain.repository.SyncRepository
 import com.puntogris.posture.utils.DispatcherProvider
 import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.constants.Constants.EXPERIENCE_FIELD
-import com.puntogris.posture.utils.constants.Constants.SERVER_TIMESTAMP_FUNCTION
 import com.puntogris.posture.utils.constants.Constants.SYNC_ACCOUNT_WORKER
 import com.puntogris.posture.workers.SyncAccountWorker
 import kotlinx.coroutines.tasks.await
@@ -28,7 +27,8 @@ class SyncRepositoryImpl(
     private val firestoreReminder: FirebaseReminderDataSource,
     private val dataStore: DataStore,
     private val dispatchers: DispatcherProvider,
-    private val context: Context
+    private val workManager: WorkManager,
+    private val kronosClock: KronosClock,
 ) : SyncRepository {
 
     override suspend fun syncSeverAccountWithLocalDb(loginUser: UserPrivateData): SimpleResult =
@@ -41,8 +41,8 @@ class SyncRepositoryImpl(
                 } else {
                     insertNewUser(loginUser)
                 }
-                dataStore.setShowLoginPref(false)
                 setupSyncAccountWorkManager()
+                dataStore.setShowLoginPref(false)
             }
         }
 
@@ -111,38 +111,27 @@ class SyncRepositoryImpl(
 
     override suspend fun syncUserExperienceInServerWithLocalDb() {
         userDao.getUser()?.let {
-            val expAmount = it.calculateMaxExpPermitted(getTimestampFromServer())
+            val serverTime = kronosClock.getCurrentNtpTimeMs() ?: return
+            val expAmount = it.calculateMaxExpPermitted(serverTime)
 
-            if (expAmount != null) {
-                firestoreUser.runBatch().apply {
-                    update(firestoreUser.getUserPublicProfileRef(), EXPERIENCE_FIELD, expAmount)
-                    update(firestoreUser.getUserPrivateDataRef(), EXPERIENCE_FIELD, expAmount)
-                }.commit().await()
-            }
+            firestoreUser.runBatch().apply {
+                update(firestoreUser.getUserPublicProfileRef(), EXPERIENCE_FIELD, expAmount)
+                update(firestoreUser.getUserPrivateDataRef(), EXPERIENCE_FIELD, expAmount)
+            }.commit().await()
         }
     }
 
-    private suspend fun getTimestampFromServer(): Long? {
-        return firestoreUser.functions
-            .getHttpsCallable(SERVER_TIMESTAMP_FUNCTION)
-            .call()
-            .await()
-            .data as? Long
-    }
-
-    private fun setupSyncAccountWorkManager() {
+    private suspend fun setupSyncAccountWorkManager() {
         val syncWork = PeriodicWorkRequestBuilder<SyncAccountWorker>(5, TimeUnit.HOURS)
             .setConstraints(
                 Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
             )
             .build()
 
-        WorkManager
-            .getInstance(context)
-            .enqueueUniquePeriodicWork(
-                SYNC_ACCOUNT_WORKER,
-                ExistingPeriodicWorkPolicy.KEEP,
-                syncWork
-            )
+        workManager.enqueueUniquePeriodicWork(
+            SYNC_ACCOUNT_WORKER,
+            ExistingPeriodicWorkPolicy.KEEP,
+            syncWork
+        ).await()
     }
 }

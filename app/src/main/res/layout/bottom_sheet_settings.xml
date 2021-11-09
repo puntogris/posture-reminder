@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="bottomSheet"
             type="com.puntogris.posture.ui.settings.SettingsBottomSheet" />
@@ -47,7 +48,7 @@
                 android:id="@+id/container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="88dp"/>
+                android:paddingBottom="88dp" />
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 </layout>

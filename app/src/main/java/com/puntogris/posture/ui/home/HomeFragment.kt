@@ -16,6 +16,7 @@ import com.puntogris.posture.R
 import com.puntogris.posture.alarm.AlarmStatus
 import com.puntogris.posture.databinding.FragmentHomeBinding
 import com.puntogris.posture.domain.model.Reminder
+import com.puntogris.posture.domain.repository.SyncRepository
 import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.Utils
@@ -25,6 +26,7 @@ import com.puntogris.posture.utils.setPageFadeTransformer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_home) {
@@ -32,7 +34,8 @@ class HomeFragment : BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_
     private val viewModel: HomeViewModel by viewModels()
     private var mediator: TabLayoutMediator? = null
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<Intent>
-
+    @Inject
+    lateinit var syncRepositoryImpl: SyncRepository
     override fun initializeViews() {
         binding.let {
             it.viewModel = viewModel

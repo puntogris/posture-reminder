@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import com.jakewharton.threetenabp.AndroidThreeTen
+import com.lyft.kronos.KronosClock
 import com.puntogris.posture.alarm.Notifications
 import com.puntogris.posture.data.datasource.local.DataStore
 import dagger.hilt.android.HiltAndroidApp
@@ -25,31 +26,31 @@ class PostureApp : Application(), Configuration.Provider {
     @Inject
     lateinit var dataStore: DataStore
 
+    @Inject
+    lateinit var kronosClock: KronosClock
+
     override fun onCreate() {
         super.onCreate()
 
         AndroidThreeTen.init(this)
 
-        applyAppTheme()
-        removeDeprecatedNotificationChannels()
+        kronosClock.syncInBackground()
 
-        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
-    }
+        runBlocking {
+            dataStore.appTheme().let {
+                AppCompatDelegate.setDefaultNightMode(it)
+            }
+        }
 
-    private fun applyAppTheme() {
-        val theme = runBlocking { dataStore.appTheme() }
-        AppCompatDelegate.setDefaultNightMode(theme)
-    }
-
-    private fun removeDeprecatedNotificationChannels() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notifications.removeDeprecatedChannels()
         }
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
     }
 
-    override fun getWorkManagerConfiguration(): Configuration {
-        return Configuration.Builder()
-            .setWorkerFactory(workerFactory)
-            .build()
-    }
+    override fun getWorkManagerConfiguration() =
+        Configuration.Builder().setWorkerFactory(workerFactory).build()
 }

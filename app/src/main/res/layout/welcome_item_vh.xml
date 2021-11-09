@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="welcomeItem"
             type="com.puntogris.posture.domain.model.WelcomeItem" />

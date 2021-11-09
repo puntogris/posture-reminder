@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="reminder"
             type="com.puntogris.posture.domain.model.Reminder" />
@@ -25,7 +26,7 @@
             app:layout_constraintEnd_toStartOf="@+id/editReminder"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/reminderColor"
-            tools:text="Reminder name"/>
+            tools:text="Reminder name" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/selectReminder"

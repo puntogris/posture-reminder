@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
 
         <variable
             name="fragment"
             type="com.puntogris.posture.ui.home.HomeFragment" />
+
         <variable
             name="viewModel"
             type="com.puntogris.posture.ui.home.HomeViewModel" />
@@ -40,7 +42,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title"
-            tools:layout_height="140dp"/>
+            tools:layout_height="140dp" />
 
         <View
             android:id="@+id/divider"

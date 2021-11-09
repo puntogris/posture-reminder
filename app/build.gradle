@@ -70,6 +70,7 @@ ext{
     shimmerVersion = "0.5.0"
     licensesVersion = "17.0.0"
     timberVersion = "5.0.1"
+    kronosVersion = "0.0.1-alpha11"
 }
 
 dependencies {
@@ -171,4 +172,6 @@ dependencies {
     //Debug
     implementation "com.jakewharton.timber:timber:$timberVersion"
 
+    //NTP Kronos
+    implementation "com.lyft.kronos:kronos-android:$kronosVersion"
 }

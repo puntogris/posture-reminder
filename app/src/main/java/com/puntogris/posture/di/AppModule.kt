@@ -2,17 +2,19 @@ package com.puntogris.posture.di
 
 import android.content.Context
 import androidx.room.Room
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.puntogris.posture.BuildConfig
+import androidx.work.WorkManager
+import com.lyft.kronos.AndroidClockFactory
+import com.lyft.kronos.KronosClock
 import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.alarm.Notifications
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.datasource.local.db.AppDatabase
 import com.puntogris.posture.data.datasource.local.db.ReminderDao
 import com.puntogris.posture.data.datasource.local.db.UserDao
-import com.puntogris.posture.data.datasource.remote.*
+import com.puntogris.posture.data.datasource.remote.FirebaseDataSource
+import com.puntogris.posture.data.datasource.remote.FirebaseRankingDataSource
+import com.puntogris.posture.data.datasource.remote.FirebaseReminderDataSource
+import com.puntogris.posture.data.datasource.remote.FirebaseUserDataSource
 import com.puntogris.posture.data.repository.*
 import com.puntogris.posture.domain.repository.*
 import com.puntogris.posture.utils.DispatcherProvider
@@ -93,10 +95,18 @@ class AppModule {
         firestoreReminder: FirebaseReminderDataSource,
         dataStore: DataStore,
         dispatchers: DispatcherProvider,
-        @ApplicationContext context: Context
+        workManager: WorkManager,
+        kronosClock: KronosClock
     ): SyncRepository {
         return SyncRepositoryImpl(
-            reminderDao, userDao, firestoreUser, firestoreReminder, dataStore, dispatchers, context
+            reminderDao,
+            userDao,
+            firestoreUser,
+            firestoreReminder,
+            dataStore,
+            dispatchers,
+            workManager,
+            kronosClock
         )
     }
 
@@ -109,10 +119,10 @@ class AppModule {
         alarm: Alarm,
         dataStore: DataStore,
         dispatchers: DispatcherProvider,
-        @ApplicationContext context: Context
+        workManager: WorkManager,
     ): ReminderRepository {
         return ReminderRepositoryImpl(
-            firebase, reminderDao, notifications, alarm, dataStore, dispatchers, context
+            firebase, reminderDao, notifications, alarm, dataStore, dispatchers, workManager
         )
     }
 
@@ -128,28 +138,14 @@ class AppModule {
     }
 
     @Provides
-    fun provideLoginRepository(
-        @ApplicationContext context: Context,
-        loginFirebase: FirebaseLoginDataSource,
-        dataStore: DataStore,
-        userDao: UserDao,
-        googleSingIn: GoogleSingInDataSource,
-        alarm: Alarm
-    ): LoginRepository {
-        return LoginRepositoryImpl(
-            context, loginFirebase, dataStore, userDao, googleSingIn, alarm
-        )
+    @Singleton
+    fun provideKronosClock(@ApplicationContext context: Context): KronosClock {
+        return AndroidClockFactory.createKronosClock(context)
     }
 
     @Provides
-    @Singleton
-    fun provideGoogleSignInClient(@ApplicationContext context: Context): GoogleSignInClient {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .requestIdToken(BuildConfig.GOOGLE_WEB_CLIENT_ID)
-            .build()
-
-        return GoogleSignIn.getClient(context, gso)
+    fun provideWorkManager(@ApplicationContext context: Context): WorkManager{
+        return WorkManager.getInstance(context)
     }
 
 }

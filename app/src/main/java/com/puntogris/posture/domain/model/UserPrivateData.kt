@@ -49,14 +49,11 @@ data class UserPrivateData(
 
 ) : Parcelable {
 
-    fun calculateMaxExpPermitted(serverTimestamp: Long?): Int? {
+    fun calculateMaxExpPermitted(serverTimestamp: Long): Int {
+        val daysDiff = (serverTimestamp - BASE_DATE_MILLIS).toDays()
+        val maxExpPermitted = daysDiff * MAX_EXPERIENCE_PER_DAY
 
-        return if (serverTimestamp != null) {
-            val daysDiff = (serverTimestamp - BASE_DATE_MILLIS).toDays()
-            val maxExpPermitted = daysDiff * MAX_EXPERIENCE_PER_DAY
-
-            if (experience > maxExpPermitted) maxExpPermitted else experience
-        } else null
+        return if (experience > maxExpPermitted) maxExpPermitted else experience
     }
 
     companion object {
