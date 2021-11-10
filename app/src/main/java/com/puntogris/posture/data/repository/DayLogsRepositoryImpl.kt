@@ -6,6 +6,7 @@ import com.puntogris.posture.domain.model.DayLog
 import com.puntogris.posture.domain.repository.DayLogsRepository
 import com.puntogris.posture.utils.DispatcherProvider
 import com.puntogris.posture.utils.RewardExp
+import com.puntogris.posture.utils.constants.Constants.MAX_EXPERIENCE_PER_DAY
 import kotlinx.coroutines.withContext
 
 class DayLogsRepositoryImpl(
@@ -25,7 +26,7 @@ class DayLogsRepositoryImpl(
                     insertNewDayLog(dayLog)
                     RewardExp.Success
                 }
-                todayLog.expGained + dayLog.expGained <= 100 -> {
+                todayLog.expGained + dayLog.expGained <= MAX_EXPERIENCE_PER_DAY -> {
                     todayLog.apply {
                         exercises += dayLog.exercises
                         expGained += dayLog.expGained

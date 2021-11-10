@@ -8,7 +8,7 @@ import com.puntogris.posture.domain.model.Exercise
 class ExercisesAdapter(private val clickListener: (Exercise) -> Unit) :
     RecyclerView.Adapter<ExerciseViewHolder>() {
 
-    private var items = LocalDataSource().exercisesList
+    private var items = LocalDataSource.exercisesList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
         return ExerciseViewHolder.from(parent)

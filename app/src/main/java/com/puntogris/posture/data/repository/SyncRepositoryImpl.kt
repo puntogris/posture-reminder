@@ -1,6 +1,5 @@
 package com.puntogris.posture.data.repository
 
-import androidx.work.*
 import com.lyft.kronos.KronosClock
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.datasource.local.db.AppDatabase
@@ -11,10 +10,8 @@ import com.puntogris.posture.domain.repository.SyncRepository
 import com.puntogris.posture.domain.repository.UserServerApi
 import com.puntogris.posture.utils.DispatcherProvider
 import com.puntogris.posture.utils.SimpleResult
-import com.puntogris.posture.utils.constants.Constants.SYNC_ACCOUNT_WORKER
-import com.puntogris.posture.workers.SyncAccountWorker
+import com.puntogris.posture.workers.WorkersManager
 import kotlinx.coroutines.withContext
-import java.util.concurrent.TimeUnit
 
 class SyncRepositoryImpl(
     private val firebaseClients: FirebaseClients,
@@ -23,7 +20,7 @@ class SyncRepositoryImpl(
     private val reminderServerApi: ReminderServerApi,
     private val dataStore: DataStore,
     private val dispatchers: DispatcherProvider,
-    private val workManager: WorkManager,
+    private val workersManager: WorkersManager,
     private val kronosClock: KronosClock,
 ) : SyncRepository {
 
@@ -37,7 +34,7 @@ class SyncRepositoryImpl(
                 } else {
                     insertNewUser(loginUser)
                 }
-                setupSyncAccountWorkManager()
+                workersManager.launchSyncAccountWorker()
                 dataStore.setShowLoginPref(false)
             }
         }
@@ -90,19 +87,5 @@ class SyncRepositoryImpl(
             val expAmount = it.calculateMaxExpPermitted(serverTime)
             userServerApi.updateExperience(expAmount)
         }
-    }
-
-    private suspend fun setupSyncAccountWorkManager() {
-        val syncWork = PeriodicWorkRequestBuilder<SyncAccountWorker>(5, TimeUnit.HOURS)
-            .setConstraints(
-                Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
-            )
-            .build()
-
-        workManager.enqueueUniquePeriodicWork(
-            SYNC_ACCOUNT_WORKER,
-            ExistingPeriodicWorkPolicy.KEEP,
-            syncWork
-        ).await()
     }
 }

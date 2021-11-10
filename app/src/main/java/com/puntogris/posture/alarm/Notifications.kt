@@ -53,7 +53,7 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
             }
             if (reminder.vibrationPattern != 0) {
                 vibrationPattern =
-                    LocalDataSource().vibrationPatterns[reminder.vibrationPattern].pattern
+                    LocalDataSource.vibrationPatterns[reminder.vibrationPattern].pattern
             }
 
             notificationManager.createNotificationChannel(this)
@@ -98,7 +98,7 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
         if (reminder.soundUri.isNotBlank()) builder.setSound(Uri.parse(reminder.soundUri))
 
         if (reminder.vibrationPattern != 0) {
-            builder.setVibrate(LocalDataSource().vibrationPatterns[reminder.vibrationPattern].pattern)
+            builder.setVibrate(LocalDataSource.vibrationPatterns[reminder.vibrationPattern].pattern)
         }
 
         return builder

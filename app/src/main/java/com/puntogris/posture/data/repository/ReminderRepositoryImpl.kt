@@ -1,7 +1,6 @@
 package com.puntogris.posture.data.repository
 
 import android.os.Build
-import androidx.work.*
 import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.alarm.Notifications
 import com.puntogris.posture.data.datasource.local.DataStore
@@ -15,8 +14,7 @@ import com.puntogris.posture.utils.DispatcherProvider
 import com.puntogris.posture.utils.IDGenerator
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.SimpleResult
-import com.puntogris.posture.utils.constants.Constants.REMINDER_ID_WORKER_DATA
-import com.puntogris.posture.workers.UploadReminderWorker
+import com.puntogris.posture.workers.WorkersManager
 import kotlinx.coroutines.withContext
 
 class ReminderRepositoryImpl(
@@ -27,7 +25,7 @@ class ReminderRepositoryImpl(
     private val alarm: Alarm,
     private val dataStore: DataStore,
     private val dispatchers: DispatcherProvider,
-    private val workManager: WorkManager,
+    private val workersManager: WorkersManager,
 ) : ReminderRepository {
 
     override fun getAllLocalRemindersLiveData() = reminderDao.getAllRemindersLiveData()
@@ -56,7 +54,7 @@ class ReminderRepositoryImpl(
                     fillIdsIfNewReminder(reminder)
                 }
                 if (reminder.uid.isNotBlank()) {
-                    registerUploadReminderWorker(reminder.reminderId)
+                    workersManager.launchUploadReminderWorker(reminder.reminderId)
                 }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     notifications.createChannelForReminderSdkO(reminder)
@@ -78,19 +76,6 @@ class ReminderRepositoryImpl(
         firebase.currentUid?.let {
             reminder.uid = it
         }
-    }
-
-    private suspend fun registerUploadReminderWorker(reminderId: String) {
-        val reminderData = Data.Builder().putString(REMINDER_ID_WORKER_DATA, reminderId).build()
-        val constraints =
-            Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
-
-        val uploadReminder = OneTimeWorkRequestBuilder<UploadReminderWorker>()
-            .setInputData(reminderData)
-            .setConstraints(constraints)
-            .build()
-
-        workManager.enqueue(uploadReminder).await()
     }
 
     override fun getActiveReminderLiveData() = reminderDao.getActiveReminderLiveData()

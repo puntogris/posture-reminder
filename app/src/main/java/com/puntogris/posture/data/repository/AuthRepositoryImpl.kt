@@ -1,7 +1,6 @@
 package com.puntogris.posture.data.repository
 
 import androidx.activity.result.ActivityResult
-import androidx.work.WorkManager
 import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.datasource.local.db.UserDao
@@ -13,12 +12,13 @@ import com.puntogris.posture.utils.DispatcherProvider
 import com.puntogris.posture.utils.LoginResult
 import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.constants.Constants.SYNC_ACCOUNT_WORKER
+import com.puntogris.posture.workers.WorkersManager
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 
 class AuthRepositoryImpl(
-    private val workManager: WorkManager,
+    private val workersManager: WorkersManager,
     private val authServerApi: AuthServerApi,
     private val dataStore: DataStore,
     private val userDao: UserDao,
@@ -46,7 +46,7 @@ class AuthRepositoryImpl(
         authServerApi.signOut()
         googleSingInApi.signOut()
         dataStore.setShowLoginPref(true)
-        workManager.cancelUniqueWork(SYNC_ACCOUNT_WORKER)
+        workersManager.cancelWorker(SYNC_ACCOUNT_WORKER)
     }
 
     override suspend fun singInAnonymously() = withContext(dispatchers.io) {

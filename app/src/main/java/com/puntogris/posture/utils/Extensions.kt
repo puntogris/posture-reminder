@@ -18,7 +18,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
@@ -30,6 +29,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
+import com.puntogris.posture.data.datasource.local.LocalDataSource
 import com.puntogris.posture.ui.main.MainActivity
 import com.puntogris.posture.ui.main.UiInterfaceListener
 import com.puntogris.posture.utils.constants.Constants.EXPERIENCE_PER_LEVEL
@@ -143,15 +143,11 @@ fun BottomSheetDialogFragment.showSnackBar(
     actionText: Int = R.string.action_undo,
     actionListener: View.OnClickListener? = null
 ) {
-    Snackbar.make(dialog?.window!!.decorView, message, duration).let {
+    Snackbar.make(dialog!!.window!!.decorView, message, duration).let {
         if (anchorView != null) it.anchorView = anchorView
         if (actionListener != null) it.setAction(actionText, actionListener)
         it.show()
     }
-}
-
-inline fun <T> MutableLiveData<T>.setField(transform: T.() -> Unit) {
-    this.value = this.value?.apply(transform)
 }
 
 fun ViewPager2.setPageFadeTransformer() {
@@ -164,8 +160,11 @@ fun ViewPager2.setPageFadeTransformer() {
     }
 }
 
-fun LocalDate.getDayStringFormatted() =
-    format(DateTimeFormatter.ofPattern("EEE ")).replace(".", "").capitalizeFirstChar()
+fun LocalDate.getDayStringFormatted(): String {
+    return format(DateTimeFormatter.ofPattern("EEE "))
+        .replace(".", "")
+        .capitalizeFirstChar()
+}
 
 fun Menu.showItem(item: Int) {
     findItem(item).isVisible = true
@@ -234,4 +233,8 @@ inline fun AlertDialog.onPositive(crossinline block: () -> Unit) {
             block()
         }
     }
+}
+
+fun Context.getVibrationPatternTitle(position: Int): String {
+    return this.getString(LocalDataSource.vibrationPatterns[position].title)
 }

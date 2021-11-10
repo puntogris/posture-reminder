@@ -3,7 +3,6 @@ package com.puntogris.posture.utils
 import android.content.Context
 import androidx.annotation.StringRes
 import com.puntogris.posture.R
-import com.puntogris.posture.data.datasource.local.LocalDataSource
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.utils.Utils.minutesFromMidnightToHourlyTime
 
@@ -101,13 +100,12 @@ sealed class ReminderUi {
             description: String
         ) : Item(title, description) {
 
-            private val patterns = LocalDataSource().vibrationPatterns.map { it.title }
             private var lastValue = 0
 
             override fun update(reminder: Reminder, context: Context): Boolean {
                 return (lastValue != reminder.vibrationPattern).also {
                     if (it) {
-                        description = context.getString(patterns[reminder.vibrationPattern])
+                        description = context.getVibrationPatternTitle(reminder.vibrationPattern)
                         lastValue = reminder.vibrationPattern
                     }
                 }

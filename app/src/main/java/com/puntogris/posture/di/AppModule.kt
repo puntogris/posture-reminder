@@ -18,6 +18,7 @@ import com.puntogris.posture.domain.repository.*
 import com.puntogris.posture.utils.DispatcherProvider
 import com.puntogris.posture.utils.StandardDispatchers
 import com.puntogris.posture.utils.constants.Constants.ROOM_DATABASE_NAME
+import com.puntogris.posture.workers.WorkersManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -94,7 +95,7 @@ class AppModule {
         firestoreReminder: FirebaseReminderApi,
         dataStore: DataStore,
         dispatchers: DispatcherProvider,
-        workManager: WorkManager,
+        workersManager: WorkersManager,
         kronosClock: KronosClock
     ): SyncRepository {
         return SyncRepositoryImpl(
@@ -104,7 +105,7 @@ class AppModule {
             firestoreReminder,
             dataStore,
             dispatchers,
-            workManager,
+            workersManager,
             kronosClock
         )
     }
@@ -119,7 +120,7 @@ class AppModule {
         alarm: Alarm,
         dataStore: DataStore,
         dispatchers: DispatcherProvider,
-        workManager: WorkManager,
+        workersManager: WorkersManager,
     ): ReminderRepository {
         return ReminderRepositoryImpl(
             firebaseClients,
@@ -129,7 +130,7 @@ class AppModule {
             alarm,
             dataStore,
             dispatchers,
-            workManager
+            workersManager
         )
     }
 
@@ -166,4 +167,5 @@ class AppModule {
     fun provideUserServerApi(firebaseClients: FirebaseClients): UserServerApi {
         return FirebaseUserApi(firebaseClients)
     }
+
 }

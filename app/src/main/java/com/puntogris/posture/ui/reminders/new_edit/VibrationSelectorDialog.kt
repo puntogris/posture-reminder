@@ -28,7 +28,7 @@ class VibrationSelectorDialog : DialogFragment() {
 
         vibrator = requireActivity().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?
 
-        val vibrationPatterns = LocalDataSource().vibrationPatterns
+        val vibrationPatterns = LocalDataSource.vibrationPatterns
         val patternsTittleList = vibrationPatterns.map { getString(it.title) }.toTypedArray()
 
         return MaterialAlertDialogBuilder(requireContext(), R.style.MaterialAlertDialog_rounded)
