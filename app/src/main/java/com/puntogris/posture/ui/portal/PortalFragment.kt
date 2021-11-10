@@ -59,11 +59,11 @@ class PortalFragment : BaseFragmentOptions<FragmentPortalBinding>(R.layout.fragm
     }
 
     private fun onExerciseClicked(exercise: Exercise) {
-        val action = PortalFragmentDirections.actionPortalFragmentToExerciseBottomSheet(exercise)
+        val action = PortalFragmentDirections.actionPortalToExercise(exercise)
         findNavController().navigate(action)
     }
 
     fun navigateToGlobalRanking() {
-        navigateTo(R.id.action_portalFragment_to_rankingsFragment)
+        navigateTo(R.id.action_portal_to_rankings)
     }
 }

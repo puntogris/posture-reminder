@@ -1,6 +1,5 @@
 package com.puntogris.posture.ui.settings
 
-import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import androidx.core.os.bundleOf
@@ -39,11 +38,7 @@ class EditUserNameDialog : DialogFragment() {
             .setNegativeButton(R.string.action_cancel) { _, _ -> dismiss() }
             .create()
             .also {
-                it.setOnShowListener { _ ->
-                    it.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-                        onPositiveButtonClicked()
-                    }
-                }
+                it.onPositive(::onPositiveButtonClicked)
             }
     }
 
@@ -58,8 +53,7 @@ class EditUserNameDialog : DialogFragment() {
 
     private fun updateUsernameAndHandleResult(name: String) {
         lifecycleScope.launch {
-            val result = viewModel.updateUserName(name)
-            handleEditNameResult(result)
+            handleEditNameResult(viewModel.updateUserName(name))
         }
     }
 

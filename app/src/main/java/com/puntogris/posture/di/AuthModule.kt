@@ -12,6 +12,7 @@ import com.puntogris.posture.data.datasource.local.db.UserDao
 import com.puntogris.posture.data.datasource.remote.*
 import com.puntogris.posture.data.repository.AuthRepositoryImpl
 import com.puntogris.posture.domain.repository.AuthRepository
+import com.puntogris.posture.domain.repository.AuthServerApi
 import com.puntogris.posture.utils.DispatcherProvider
 import dagger.Module
 import dagger.Provides

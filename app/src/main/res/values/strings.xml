@@ -95,7 +95,6 @@
     <string name="sound_tone_item_none">None</string>
     <string name="sound_picker_title">Sound picker</string>
     <string name="snack_create_reminder_success">Reminder set correctly</string>
-    <string name="snack_create_reminder_error">An error occurred creating the reminder</string>
     <string name="interval">Interval</string>
     <string name="snack_active_reminder_not_found">No active reminder found.</string>
     <string name="name_required">Name*</string>
@@ -119,7 +118,7 @@
     <string name="minutes">Minutes</string>
     <string name="hours">Hours</string>
     <string name="time_unit_title">What time unit would you like to use?</string>
-    <string name="snack_time_interval_cant_be_zero">The time interval can\'t be 0 or less than 15.</string>
+    <string name="snack_time_interval_cant_be_zero">The time interval can\'t be 0.</string>
     <string name="time_interval_subtitle">Set the time interval</string>
     <string name="reminder_name_hint">Name of the reminder</string>
 

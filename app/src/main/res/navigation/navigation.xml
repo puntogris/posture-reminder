@@ -8,7 +8,7 @@
         android:id="@+id/homeFragment"
         android:name="com.puntogris.posture.ui.home.HomeFragment" >
         <action
-            android:id="@+id/action_homeFragment_to_newReminderBottomSheet"
+            android:id="@+id/action_home_to_newReminder"
             app:destination="@id/newReminderBottomSheet" />
     </fragment>
     <fragment
@@ -23,17 +23,17 @@
             app:nullable="true"
             android:defaultValue="@null" />
         <action
-            android:id="@+id/action_newReminderBottomSheet_to_vibrationSelectorDialog"
+            android:id="@+id/action_newReminder_to_vibrationSelector"
             app:destination="@id/vibrationSelectorDialog" />
         <action
-            android:id="@+id/action_newReminderBottomSheet_to_soundSelectorDialog"
+            android:id="@+id/action_newReminder_to_soundSelector"
             app:destination="@id/soundSelectorDialog" />
     </dialog>
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.puntogris.posture.ui.welcome.WelcomeFragment">
         <action
-            android:id="@+id/action_welcomeFragment_to_batteryOptimizationFragment"
+            android:id="@+id/action_welcome_to_batteryOptimization"
             app:destination="@id/batteryOptimizationFragment" />
     </fragment>
     <dialog
@@ -41,10 +41,10 @@
         android:name="com.puntogris.posture.ui.settings.SettingsBottomSheet"
         android:label="" >
         <action
-            android:id="@+id/action_settingsBottomSheet_to_dialogName"
+            android:id="@+id/action_settings_to_dialogName"
             app:destination="@id/editUserNameDialog" />
         <action
-            android:id="@+id/action_settingsBottomSheet_to_ticketBottomSheet"
+            android:id="@+id/action_setting_to_ticket"
             app:destination="@id/ticketBottomSheet" />
     </dialog>
     <dialog
@@ -61,14 +61,14 @@
         android:id="@+id/manageRemindersBottomSheet"
         android:name="com.puntogris.posture.ui.reminders.manage.ManageRemindersBottomSheet" >
         <action
-            android:id="@+id/action_manageRemindersBottomSheet_to_newReminderBottomSheet"
+            android:id="@+id/action_manageReminders_to_newReminder"
             app:destination="@id/newReminderBottomSheet" />
     </dialog>
     <fragment
         android:id="@+id/batteryOptimizationFragment"
         android:name="com.puntogris.posture.ui.welcome.BatteryOptimizationFragment">
         <action
-            android:id="@+id/action_batteryOptimizationFragment_to_homeFragment"
+            android:id="@+id/action_batteryOptimization_to_home"
             app:destination="@id/homeFragment" />
     </fragment>
     <dialog
@@ -94,10 +94,10 @@
         android:id="@+id/portalFragment"
         android:name="com.puntogris.posture.ui.portal.PortalFragment">
         <action
-            android:id="@+id/action_portalFragment_to_rankingsFragment"
+            android:id="@+id/action_portal_to_rankings"
             app:destination="@id/rankingsFragment" />
         <action
-            android:id="@+id/action_portalFragment_to_exerciseBottomSheet"
+            android:id="@+id/action_portal_to_exercise"
             app:destination="@id/exerciseBottomSheet" />
     </fragment>
     <fragment
@@ -123,7 +123,7 @@
             app:popUpTo="@id/navigation"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_synAccountFragment_to_homeFragment"
+            android:id="@+id/action_synAccount_to_home"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/navigation"
             app:popUpToInclusive="true" />
@@ -135,7 +135,7 @@
             android:name="exercise"
             app:argType="com.puntogris.posture.domain.model.Exercise" />
         <action
-            android:id="@+id/action_exerciseBottomSheet_to_exerciseCompletedDialog"
+            android:id="@+id/action_exercise_to_exerciseCompletedDialog"
             app:destination="@id/exerciseCompletedDialog" />
     </dialog>
     <dialog
@@ -145,7 +145,7 @@
         android:id="@+id/claimNotificationExpDialog"
         android:name="com.puntogris.posture.ui.notification.ClaimNotificationExpDialog" >
         <action
-            android:id="@+id/action_claimNotificationExpDialog_to_exerciseBottomSheet"
+            android:id="@+id/action_claimNotificationExp_to_exercise"
             app:destination="@id/exerciseBottomSheet" />
     </dialog>
     <dialog

@@ -14,20 +14,18 @@ class TicketRepositoryImpl(
     private val dispatchers: DispatcherProvider
 ) : TicketRepository {
 
-    override suspend fun fillTicketWithUserDataAndSend(ticket: Ticket): SimpleResult {
-        val firebaseUser = firebase.getCurrentUser()
+    override suspend fun sendTicketToServer(ticket: Ticket): SimpleResult {
+        val firebaseUser = firebase.getCurrentUser
         ticket.apply {
             username = firebaseUser?.displayName.toString()
             email = firebaseUser?.email.toString()
             uid = firebaseUser?.uid.toString()
         }
-        return sendTicketToServer(ticket)
-    }
 
-    private suspend fun sendTicketToServer(ticket: Ticket): SimpleResult =
-        withContext(dispatchers.io) {
+        return withContext(dispatchers.io) {
             SimpleResult.build {
                 firebase.firestore.collection(TICKET_COLLECTION).add(ticket).await()
             }
         }
+    }
 }

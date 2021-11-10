@@ -14,6 +14,7 @@ import android.widget.EditText
 import androidx.annotation.IdRes
 import androidx.annotation.RawRes
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -219,7 +220,6 @@ inline val EditText.data
 inline val Date.timeWithZoneOffset
     get() = time + TimeZone.getDefault().getOffset(time)
 
-
 fun Any.notEqualsAny(vararg values: Any): Boolean {
     return this !in values
 }
@@ -227,3 +227,11 @@ fun Any.notEqualsAny(vararg values: Any): Boolean {
 fun Fragment.navigateTo(@IdRes id: Int) = findNavController().navigate(id)
 
 fun SimpleResult.asBoolean() = this == SimpleResult.Success
+
+inline fun AlertDialog.onPositive(crossinline block: () -> Unit) {
+    setOnShowListener {
+        getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+            block()
+        }
+    }
+}

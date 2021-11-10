@@ -40,7 +40,7 @@ class ManageRemindersBottomSheet :
     }
 
     private fun subscribeUi(adapter: ManageReminderAdapter) {
-        viewModel.getAllReminders().observe(viewLifecycleOwner) {
+        viewModel.savedReminders.observe(viewLifecycleOwner) {
             adapter.updateList(it)
         }
     }
@@ -54,8 +54,8 @@ class ManageRemindersBottomSheet :
     }
 
     private fun onEditReminder(reminder: Reminder) {
-        val action = ManageRemindersBottomSheetDirections
-            .actionManageRemindersBottomSheetToNewReminderBottomSheet(reminder)
+        val action =
+            ManageRemindersBottomSheetDirections.actionManageRemindersToNewReminder(reminder)
         findNavController().navigate(action)
     }
 
@@ -74,6 +74,6 @@ class ManageRemindersBottomSheet :
     }
 
     fun onNewReminder() {
-        navigateTo(R.id.action_manageRemindersBottomSheet_to_newReminderBottomSheet)
+        navigateTo(R.id.action_manageReminders_to_newReminder)
     }
 }

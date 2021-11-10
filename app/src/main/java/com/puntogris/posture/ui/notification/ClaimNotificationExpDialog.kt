@@ -71,7 +71,7 @@ class ClaimNotificationExpDialog : DialogFragment() {
     private fun navigateToRandomExercise() {
         val exercise = LocalDataSource().exercisesList.random()
         val action = ClaimNotificationExpDialogDirections
-            .actionClaimNotificationExpDialogToExerciseBottomSheet(exercise)
+            .actionClaimNotificationExpToExercise(exercise)
         findNavController().navigate(action)
     }
 }

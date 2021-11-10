@@ -15,6 +15,6 @@ class NotificationViewModel @Inject constructor(
 
     suspend fun updateDayLogWithReward(): RewardExp {
         val log = DayLog(expGained = EXPERIENCE_PER_NOTIFICATION, notifications = 1)
-        return logsRepository.updateLocalDayLogAndUser(log)
+        return logsRepository.updateDayLogAndUser(log)
     }
 }

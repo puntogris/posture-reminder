@@ -19,7 +19,7 @@ class WelcomeFragment : BaseBindingFragment<FragmentWelcomeBinding>(R.layout.fra
     }
 
     fun onStartButtonClicked() {
-        navigateTo(R.id.action_welcomeFragment_to_batteryOptimizationFragment)
+        navigateTo(R.id.action_welcome_to_batteryOptimization)
     }
 
     override fun onDestroyView() {

@@ -10,8 +10,9 @@ import com.puntogris.posture.alarm.Notifications
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.datasource.local.db.AppDatabase
 import com.puntogris.posture.data.datasource.local.db.ReminderDao
-import com.puntogris.posture.data.datasource.local.db.UserDao
-import com.puntogris.posture.data.datasource.remote.*
+import com.puntogris.posture.data.datasource.remote.FirebaseClients
+import com.puntogris.posture.data.datasource.remote.FirebaseReminderApi
+import com.puntogris.posture.data.datasource.remote.FirebaseUserApi
 import com.puntogris.posture.data.repository.*
 import com.puntogris.posture.domain.repository.*
 import com.puntogris.posture.utils.DispatcherProvider
@@ -88,8 +89,7 @@ class AppModule {
     @Provides
     fun provideSyncRepository(
         firebaseClients: FirebaseClients,
-        reminderDao: ReminderDao,
-        userDao: UserDao,
+        appDatabase: AppDatabase,
         firestoreUser: FirebaseUserApi,
         firestoreReminder: FirebaseReminderApi,
         dataStore: DataStore,
@@ -99,8 +99,7 @@ class AppModule {
     ): SyncRepository {
         return SyncRepositoryImpl(
             firebaseClients,
-            reminderDao,
-            userDao,
+            appDatabase,
             firestoreUser,
             firestoreReminder,
             dataStore,

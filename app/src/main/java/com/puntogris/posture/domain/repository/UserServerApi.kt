@@ -1,4 +1,4 @@
-package com.puntogris.posture.data.datasource.remote
+package com.puntogris.posture.domain.repository
 
 import com.puntogris.posture.domain.model.UserPrivateData
 

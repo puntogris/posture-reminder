@@ -1,5 +1,6 @@
 package com.puntogris.posture.ui.base
 
+import android.widget.ProgressBar
 import com.puntogris.posture.ui.login.LoginViewModel
 
 interface LoginConfiguration {
@@ -7,4 +8,5 @@ interface LoginConfiguration {
     fun onLoginError()
     fun onLoginFinished()
     val viewModel: LoginViewModel
+    val progressBar: ProgressBar
 }

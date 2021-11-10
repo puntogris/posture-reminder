@@ -1,6 +1,7 @@
 package com.puntogris.posture.data.datasource.remote
 
 import com.puntogris.posture.domain.model.Reminder
+import com.puntogris.posture.domain.repository.ReminderServerApi
 import com.puntogris.posture.utils.constants.Constants.REMINDERS_COLLECTION
 import com.puntogris.posture.utils.constants.Constants.USERS_COLLECTION
 import kotlinx.coroutines.tasks.await

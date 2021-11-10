@@ -1,11 +1,15 @@
 package com.puntogris.posture.ui.login
 
+import android.widget.ProgressBar
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentLoginBinding
 import com.puntogris.posture.ui.base.BaseLoginFragment
-import com.puntogris.posture.utils.*
+import com.puntogris.posture.utils.SimpleResult
+import com.puntogris.posture.utils.UiInterface
+import com.puntogris.posture.utils.launchWebBrowserIntent
+import com.puntogris.posture.utils.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -19,20 +23,10 @@ class LoginFragment : BaseLoginFragment<FragmentLoginBinding>(R.layout.fragment_
         binding.fragment = this
     }
 
-    override fun onLoginStarted() {
-        binding.progressBar.visible()
-    }
-
-    override fun onLoginFinished() {
-        binding.progressBar.gone()
-    }
-
-    override fun onLoginError() {
-        binding.progressBar.gone()
-    }
+    override val progressBar: ProgressBar
+        get() = binding.progressBar
 
     fun continueAnonymously() {
-        onLoginStarted()
         lifecycleScope.launch {
             when (viewModel.registerAnonymousUser()) {
                 SimpleResult.Failure -> {

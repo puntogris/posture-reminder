@@ -7,19 +7,16 @@ import com.puntogris.posture.alarm.Notifications
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.datasource.local.db.ReminderDao
 import com.puntogris.posture.data.datasource.remote.FirebaseClients
-import com.puntogris.posture.data.datasource.remote.FirebaseReminderApi
-import com.puntogris.posture.data.datasource.remote.ReminderServerApi
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.domain.model.ReminderId
 import com.puntogris.posture.domain.repository.ReminderRepository
+import com.puntogris.posture.domain.repository.ReminderServerApi
 import com.puntogris.posture.utils.DispatcherProvider
 import com.puntogris.posture.utils.IDGenerator
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.constants.Constants.REMINDER_ID_WORKER_DATA
 import com.puntogris.posture.workers.UploadReminderWorker
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 class ReminderRepositoryImpl(
@@ -59,7 +56,7 @@ class ReminderRepositoryImpl(
                     fillIdsIfNewReminder(reminder)
                 }
                 if (reminder.uid.isNotBlank()) {
-                    registerUploadServerReminderWorker(reminder.reminderId)
+                    registerUploadReminderWorker(reminder.reminderId)
                 }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     notifications.createChannelForReminderSdkO(reminder)
@@ -67,7 +64,7 @@ class ReminderRepositoryImpl(
 
                 reminderDao.insert(reminder)
                 reminderDao.getActiveReminder()?.let {
-                    if (it.reminderId == reminder.reminderId && dataStore.isAlarmActive().first()) {
+                    if (it == reminder && dataStore.isAlarmActive()) {
                         alarm.refreshAlarms(reminder)
                     }
                 }
@@ -83,7 +80,7 @@ class ReminderRepositoryImpl(
         }
     }
 
-    private suspend fun registerUploadServerReminderWorker(reminderId: String) {
+    private suspend fun registerUploadReminderWorker(reminderId: String) {
         val reminderData = Data.Builder().putString(REMINDER_ID_WORKER_DATA, reminderId).build()
         val constraints =
             Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()

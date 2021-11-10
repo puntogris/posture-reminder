@@ -3,7 +3,6 @@ package com.puntogris.posture.ui.rankings
 import androidx.lifecycle.ViewModel
 import com.puntogris.posture.domain.repository.RankingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 @HiltViewModel

@@ -13,13 +13,13 @@ class ManageRemindersViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
-    fun getAllReminders() = reminderRepository.getAllLocalRemindersLiveData()
+    val savedReminders = reminderRepository.getAllLocalRemindersLiveData()
 
     suspend fun deleteReminder(reminder: Reminder) = reminderRepository.deleteReminder(reminder)
 
     suspend fun insertReminder(reminder: Reminder) = reminderRepository.insertReminder(reminder)
 
     suspend fun updateCurrentReminder(reminder: Reminder) =
-        userRepository.updateLocalActiveReminder(reminder)
+        userRepository.updateActiveReminder(reminder)
 
 }

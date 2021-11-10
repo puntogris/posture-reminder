@@ -93,7 +93,6 @@
     <string name="sound_tone_item_none">Ninguno</string>
     <string name="sound_picker_title">Elegir sonido</string>
     <string name="snack_create_reminder_success">Recordatorio configurado correctamente</string>
-    <string name="snack_create_reminder_error">Error al crear el recordatorio</string>
     <string name="interval">Intervalo</string>
     <string name="snack_active_reminder_not_found">No se encontro un recodatorio activo.</string>
     <string name="name_required">Nombre*</string>
@@ -308,7 +307,7 @@
         <item>Jueves</item>
         <item>Viernes</item>
         <item>Sabado</item>
-        <item>Doming</item>
+        <item>Domingo</item>
     </string-array>
 
     <string-array name="theme_names">

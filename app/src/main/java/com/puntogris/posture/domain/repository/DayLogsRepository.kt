@@ -10,5 +10,5 @@ interface DayLogsRepository {
 
     suspend fun getWeekDayLogs(): List<DayLog>
 
-    suspend fun updateLocalDayLogAndUser(dayLog: DayLog): RewardExp
+    suspend fun updateDayLogAndUser(dayLog: DayLog): RewardExp
 }

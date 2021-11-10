@@ -34,8 +34,10 @@ class HomeFragment : BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_
     private val viewModel: HomeViewModel by viewModels()
     private var mediator: TabLayoutMediator? = null
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<Intent>
+
     @Inject
     lateinit var syncRepositoryImpl: SyncRepository
+
     override fun initializeViews() {
         binding.let {
             it.viewModel = viewModel
@@ -47,7 +49,6 @@ class HomeFragment : BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_
         setupPagerAndTabLayout()
         observeAlarmStatus()
         registerAlarmPermissionLauncher()
-        subscribeToggleButton()
     }
 
     private fun setupPagerAndTabLayout() {
@@ -64,16 +65,14 @@ class HomeFragment : BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_
     }
 
     private fun subscribePager(adapter: DayLogHomeAdapter) {
-        viewModel.getLastTwoDaysHistory().observe(viewLifecycleOwner) {
+        viewModel.getLastTwoDaysHistory.observe(viewLifecycleOwner) {
             adapter.updateList(it)
         }
     }
 
     private fun observeAlarmStatus() {
         lifecycleScope.launch {
-            viewModel.alarmStatus.collect {
-                handleAlarmStatusResult(it)
-            }
+            viewModel.alarmStatus.collect(::handleAlarmStatusResult)
         }
     }
 
@@ -112,11 +111,11 @@ class HomeFragment : BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_
         }
     }
 
-    private fun subscribeToggleButton() {
-        binding.activeReminder.materialButton.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !viewModel.canScheduleExactAlarms()) {
-                showSnackWithPermissionAction()
-            } else viewModel.toggleAlarm()
+    fun onToggleAlarmClicked() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !viewModel.canScheduleExactAlarms()) {
+            showSnackWithPermissionAction()
+        } else {
+            viewModel.toggleAlarm()
         }
     }
 
@@ -143,7 +142,7 @@ class HomeFragment : BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_
     }
 
     fun onNavigateToEditReminder(reminder: Reminder) {
-        val action = HomeFragmentDirections.actionHomeFragmentToNewReminderBottomSheet(reminder)
+        val action = HomeFragmentDirections.actionHomeToNewReminder(reminder)
         findNavController().navigate(action)
     }
 

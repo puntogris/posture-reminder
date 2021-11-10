@@ -19,12 +19,12 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     dataStore: DataStore,
+    dayLogsRepository: DayLogsRepository,
     private val alarm: Alarm,
-    private val dayLogsRepository: DayLogsRepository,
     private val reminderRepository: ReminderRepository
 ) : ViewModel() {
 
-    val isAlarmActive = dataStore.isAlarmActive().asLiveData()
+    val isAlarmActive = dataStore.isAlarmActiveFlow().asLiveData()
 
     val activeReminder = reminderRepository.getActiveReminderLiveData()
 
@@ -54,7 +54,7 @@ class HomeViewModel @Inject constructor(
 
     val isPandaAnimationEnabled = dataStore.showPandaAnimation().asLiveData()
 
-    fun getLastTwoDaysHistory() = dayLogsRepository.getLastTwoDaysLogsLiveData()
+    val getLastTwoDaysHistory = dayLogsRepository.getLastTwoDaysLogsLiveData()
 
     @RequiresApi(Build.VERSION_CODES.S)
     fun canScheduleExactAlarms() = alarm.canScheduleExactAlarms()

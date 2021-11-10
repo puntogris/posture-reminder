@@ -5,10 +5,10 @@ import androidx.work.WorkManager
 import com.puntogris.posture.alarm.Alarm
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.datasource.local.db.UserDao
-import com.puntogris.posture.data.datasource.remote.AuthServerApi
 import com.puntogris.posture.data.datasource.remote.GoogleSingInApi
 import com.puntogris.posture.domain.model.UserPrivateData
 import com.puntogris.posture.domain.repository.AuthRepository
+import com.puntogris.posture.domain.repository.AuthServerApi
 import com.puntogris.posture.utils.DispatcherProvider
 import com.puntogris.posture.utils.LoginResult
 import com.puntogris.posture.utils.SimpleResult

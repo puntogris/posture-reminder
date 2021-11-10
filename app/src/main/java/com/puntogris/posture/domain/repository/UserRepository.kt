@@ -11,9 +11,9 @@ interface UserRepository {
 
     suspend fun getLocalUser(): UserPrivateData?
 
-    suspend fun updateLocalAndServerUsername(name: String): SimpleResult
+    suspend fun updateUsername(name: String): SimpleResult
 
-    suspend fun updateLocalActiveReminder(reminder: Reminder)
+    suspend fun updateActiveReminder(reminder: Reminder)
 
     fun isUserLoggedIn(): Boolean
 

@@ -2,7 +2,6 @@ package com.puntogris.posture.data.repository
 
 import androidx.room.withTransaction
 import com.puntogris.posture.data.datasource.local.db.AppDatabase
-import com.puntogris.posture.data.datasource.local.db.DayLogsDao
 import com.puntogris.posture.domain.model.DayLog
 import com.puntogris.posture.domain.repository.DayLogsRepository
 import com.puntogris.posture.utils.DispatcherProvider
@@ -18,7 +17,7 @@ class DayLogsRepositoryImpl(
 
     override suspend fun getWeekDayLogs() = appDatabase.dayLogsDao.getWeekEntries()
 
-    override suspend fun updateLocalDayLogAndUser(dayLog: DayLog) = withContext(dispatchers.io) {
+    override suspend fun updateDayLogAndUser(dayLog: DayLog) = withContext(dispatchers.io) {
         try {
             val todayLog = appDatabase.dayLogsDao.getTodayLog()
             when {
@@ -57,5 +56,4 @@ class DayLogsRepositoryImpl(
             }
         }
     }
-
 }

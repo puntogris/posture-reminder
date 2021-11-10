@@ -16,7 +16,7 @@ class TicketViewModel @Inject constructor(
 
     suspend fun sendTicket(message: String): SimpleResult {
         ticket.message = message
-        return ticketRepository.fillTicketWithUserDataAndSend(ticket)
+        return ticketRepository.sendTicketToServer(ticket)
     }
 
     fun updateTicketType(type: Int) {

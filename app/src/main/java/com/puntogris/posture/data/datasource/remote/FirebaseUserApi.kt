@@ -2,6 +2,7 @@ package com.puntogris.posture.data.datasource.remote
 
 import com.puntogris.posture.domain.model.UserPrivateData
 import com.puntogris.posture.domain.model.UserPublicProfile
+import com.puntogris.posture.domain.repository.UserServerApi
 import com.puntogris.posture.utils.constants.Constants
 import com.puntogris.posture.utils.constants.Constants.PUBLIC_PROFILE_COL_GROUP
 import com.puntogris.posture.utils.constants.Constants.PUBLIC_PROFILE_DOC

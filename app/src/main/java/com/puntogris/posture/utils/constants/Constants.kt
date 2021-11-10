@@ -1,8 +1,5 @@
 package com.puntogris.posture.utils.constants
 
-import androidx.annotation.Keep
-
-@Keep
 object Constants {
 
     //Experience
@@ -38,7 +35,6 @@ object Constants {
     const val SEND_TICKET_KEY = "send_ticket_key"
     const val EDIT_NAME_KEY = "edit_name_key"
 
-
     //Work manager
     const val SYNC_ACCOUNT_WORKER = "sync_account_worker"
     const val REMINDER_ID_WORKER_DATA = "upload_reminder_worker"
@@ -51,8 +47,4 @@ object Constants {
     const val PUBLIC_PROFILE_DOC = "profile"
     const val USER_NAME_FIELD = "username"
     const val TICKET_COLLECTION = "tickets"
-
-    //Functions
-    const val SERVER_TIMESTAMP_FUNCTION = "getServerTimestamp"
-
 }

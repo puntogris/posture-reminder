@@ -1,16 +1,16 @@
 package com.puntogris.posture.ui.reminders.new_edit
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.puntogris.posture.R
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.domain.model.ReminderId
 import com.puntogris.posture.domain.model.ToneItem
 import com.puntogris.posture.domain.repository.ReminderRepository
-import com.puntogris.posture.utils.Result
-import com.puntogris.posture.utils.millisToMinutes
-import com.puntogris.posture.utils.setField
+import com.puntogris.posture.utils.*
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,12 +20,22 @@ class NewReminderViewModel @Inject constructor(
 
     private var initialReminderCopy: Reminder? = null
 
-    private val _reminder = MutableLiveData(Reminder())
-    val reminder: LiveData<Reminder> = _reminder
+    private val _reminder = MutableStateFlow(Reminder())
+    val reminder = _reminder.asStateFlow()
+
 
     suspend fun saveReminder(): Result<ReminderId> {
-        return if (reminderIsEdited()) reminderRepository.insertReminder(_reminder.value!!)
-        else Result.Success(ReminderId(reminder.value!!.reminderId))
+        return when {
+            !reminder.value.requiredInfoValid() -> {
+                Result.Error(R.string.snack_reminder_not_valid)
+            }
+            !reminderWasEdited() -> {
+                Result.Success(ReminderId(reminder.value.reminderId))
+            }
+            else -> {
+                reminderRepository.insertReminder(_reminder.value)
+            }
+        }
     }
 
     fun updateReminder(reminder: Reminder) {
@@ -33,47 +43,58 @@ class NewReminderViewModel @Inject constructor(
         initialReminderCopy = reminder.copy()
     }
 
-    private fun reminderIsEdited(): Boolean {
-        return initialReminderCopy != _reminder.value
-    }
+    private fun reminderWasEdited() = initialReminderCopy != _reminder.value
 
     fun saveReminderName(text: String) {
-        _reminder.value?.name = text
+        _reminder.value.name = text
     }
 
     fun saveStartTime(time: Long) {
-        _reminder.setField { startTime = time.millisToMinutes() }
+        _reminder.value = _reminder.value.copy(startTime = time.millisToMinutes())
     }
 
     fun saveEndTime(time: Long) {
-        _reminder.setField { endTime = time.millisToMinutes() }
+        _reminder.value = _reminder.value.copy(endTime = time.millisToMinutes())
     }
 
     fun saveTimeInterval(time: Int) {
-        _reminder.setField { timeInterval = time }
+        _reminder.value = _reminder.value.copy(timeInterval = time)
     }
 
     fun saveReminderDays(days: List<Int>) {
-        _reminder.setField { alarmDays = days }
+        _reminder.value = _reminder.value.copy(alarmDays = days)
+
     }
 
     fun saveReminderColor(resource: Int) {
-        _reminder.setField { color = resource }
+        _reminder.value = _reminder.value.copy(color = resource)
     }
 
     fun saveReminderVibrationPattern(position: Int) {
-        _reminder.setField { vibrationPattern = position }
+        _reminder.value = _reminder.value.copy(vibrationPattern = position)
     }
 
     fun saveReminderSoundPattern(toneItem: ToneItem?) {
         toneItem?.let {
-            _reminder.setField {
-                soundUri = it.uri
+            _reminder.value = _reminder.value.copy(
+                soundUri = it.uri,
                 soundName = it.title
-            }
+            )
         }
     }
 
-    fun isReminderValid() = reminder.value!!.requiredInfoValid()
+    fun getDefaultClockTimeInMillis(code: ReminderUi.Item): Long {
+        val isNewReminder = reminder.value.reminderId.isBlank()
+
+        val date = if (isNewReminder) Date()
+        else Utils.getDateFromMinutesSinceMidnight(getReminderTime(code))
+
+        return date.timeWithZoneOffset
+    }
+
+    private fun getReminderTime(code: ReminderUi.Item): Int {
+        return if (code is ReminderUi.Item.Start) reminder.value.startTime
+        else reminder.value.endTime
+    }
 
 }

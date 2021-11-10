@@ -18,7 +18,7 @@ class SettingsViewModel @Inject constructor(
 ) : ViewModel() {
 
     suspend fun updateUserName(name: String) =
-        userRepository.updateLocalAndServerUsername(name.capitalizeWords())
+        userRepository.updateUsername(name.capitalizeWords())
 
     val user = userRepository.getLocalUserLiveData()
 

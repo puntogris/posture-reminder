@@ -17,16 +17,15 @@ import com.maxkeppeler.sheets.options.OptionsSheet
 import com.maxkeppeler.sheets.time_clock.ClockTimeSheet
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetNewReminderBinding
-import com.puntogris.posture.domain.model.ReminderId
 import com.puntogris.posture.ui.base.BaseBindingBottomSheetFragment
 import com.puntogris.posture.utils.*
-import com.puntogris.posture.utils.Utils.getDateFromMinutesSinceMidnight
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
 import com.puntogris.posture.utils.constants.Constants.INTERVAL_KEY
 import com.puntogris.posture.utils.constants.Constants.SOUND_PICKER_KEY
 import com.puntogris.posture.utils.constants.Constants.TIME_UNIT_KEY
 import com.puntogris.posture.utils.constants.Constants.VIBRATION_PICKER_KEY
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
 
@@ -46,7 +45,6 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
         checkIfIsNotNewReminder()
         setupReminderRvAdapter()
         setFragmentResultListeners()
-
     }
 
     private fun checkIfIsNotNewReminder() {
@@ -63,8 +61,10 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
     }
 
     private fun subscribeUi(adapter: ReminderItemAdapter) {
-        viewModel.reminder.observe(viewLifecycleOwner) {
-            adapter.updateConfigData(it)
+        launchAndRepeatWithViewLifecycle {
+            viewModel.reminder.collect {
+                adapter.updateConfigData(it)
+            }
         }
     }
 
@@ -78,23 +78,15 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
     }
 
     fun onSaveReminder() {
-        if (viewModel.isReminderValid()) {
-            lifecycleScope.launch {
-                handleResultOfSavingReminder(viewModel.saveReminder())
-            }
-        } else {
-            showSnackBar(R.string.snack_reminder_not_valid)
-        }
-    }
-
-    private fun handleResultOfSavingReminder(result: Result<ReminderId>) {
-        when (result) {
-            is Result.Error -> {
-                showSnackBar(R.string.snack_create_reminder_error)
-            }
-            is Result.Success -> {
-                dismiss()
-                requireParentFragment().UiInterface.showSnackBar(getString(R.string.snack_create_reminder_success))
+        lifecycleScope.launch {
+            when (val result = viewModel.saveReminder()) {
+                is Result.Error -> {
+                    showSnackBar(result.error)
+                }
+                is Result.Success -> {
+                    dismiss()
+                    requireParentFragment().UiInterface.showSnackBar(getString(R.string.snack_create_reminder_success))
+                }
             }
         }
     }
@@ -113,14 +105,16 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
     }
 
     private fun onSoundPicker() {
-        val action = NewReminderBottomSheetDirections
-            .actionNewReminderBottomSheetToSoundSelectorDialog(viewModel.reminder.value!!.soundUri)
+        val action = NewReminderBottomSheetDirections.actionNewReminderToSoundSelector(
+            viewModel.reminder.value.soundUri
+        )
         findNavController().navigate(action)
     }
 
     private fun onVibrationPicker() {
-        val action = NewReminderBottomSheetDirections
-            .actionNewReminderBottomSheetToVibrationSelectorDialog(viewModel.reminder.value!!.vibrationPattern)
+        val action = NewReminderBottomSheetDirections.actionNewReminderToVibrationSelector(
+            viewModel.reminder.value.vibrationPattern
+        )
         findNavController().navigate(action)
     }
 
@@ -148,7 +142,7 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
             })
             with(InputEditText(INTERVAL_KEY) {
                 required()
-                this@NewReminderBottomSheet.viewModel.reminder.value?.timeInterval?.let {
+                viewModel.reminder.value.timeInterval.let {
                     if (it != 0) defaultValue(it.toString())
                 }
                 closeIconButton(IconButton(R.drawable.ic_baseline_close_24))
@@ -163,7 +157,7 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
                 if (interval != 0) {
                     viewModel.saveTimeInterval(if (timeUnit == 0) interval else interval * 60)
                 } else {
-                    this@NewReminderBottomSheet.showSnackBar(R.string.snack_time_interval_cant_be_zero)
+                    showSnackBar(R.string.snack_time_interval_cant_be_zero)
                 }
             }
         }
@@ -171,7 +165,7 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
 
     private fun openDaysPicker() {
         val alarmDaysString = resources.getStringArray(R.array.alarmDays)
-        val savedList = viewModel.reminder.value?.alarmDays
+        val savedList = viewModel.reminder.value.alarmDays
         val options = Utils.getSavedOptions(savedList, alarmDaysString)
 
         OptionsSheet().show(requireParentFragment().requireContext()) {
@@ -188,7 +182,7 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
     private fun openTimePicker(code: ReminderUi.Item) {
         ClockTimeSheet().show(requireParentFragment().requireContext()) {
             style(SheetStyle.DIALOG)
-            currentTime(getDefaultClockTimeInMillis(code))
+            currentTime(viewModel.getDefaultClockTimeInMillis(code))
             title(
                 if (code is ReminderUi.Item.Start) R.string.start_time_title
                 else R.string.end_time_title
@@ -198,19 +192,5 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
                 else viewModel.saveEndTime(milliseconds)
             }
         }
-    }
-
-    private fun getDefaultClockTimeInMillis(code: ReminderUi.Item): Long {
-        val isNewReminder = viewModel.reminder.value?.reminderId.isNullOrBlank()
-
-        val date = if (isNewReminder) Date()
-        else getDateFromMinutesSinceMidnight(getReminderTime(code))
-
-        return date.timeWithZoneOffset
-    }
-
-    private fun getReminderTime(code: ReminderUi.Item): Int {
-        return if (code is ReminderUi.Item.Start) viewModel.reminder.value!!.startTime
-        else viewModel.reminder.value!!.endTime
     }
 }

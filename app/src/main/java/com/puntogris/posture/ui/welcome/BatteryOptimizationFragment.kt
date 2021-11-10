@@ -51,7 +51,7 @@ class BatteryOptimizationFragment :
     }
 
     fun onFinalizeButtonClicked() {
-        navigateTo(R.id.action_batteryOptimizationFragment_to_homeFragment)
+        navigateTo(R.id.action_batteryOptimization_to_home)
     }
 
     override fun onResume() {

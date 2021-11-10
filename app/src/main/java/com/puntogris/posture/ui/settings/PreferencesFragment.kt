@@ -123,7 +123,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
                 lifecycleScope.launch {
                     if (viewModel.isUserLoggedIn()) {
                         val action = SettingsBottomSheetDirections
-                            .actionSettingsBottomSheetToDialogName(viewModel.user.value!!.username)
+                            .actionSettingsToDialogName(viewModel.user.value!!.username)
                         findNavController().navigate(action)
                     } else showRequireLoginSnack()
                 }

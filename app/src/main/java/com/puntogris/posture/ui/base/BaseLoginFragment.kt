@@ -12,6 +12,8 @@ import com.puntogris.posture.NavigationDirections
 import com.puntogris.posture.R
 import com.puntogris.posture.utils.LoginResult
 import com.puntogris.posture.utils.UiInterface
+import com.puntogris.posture.utils.gone
+import com.puntogris.posture.utils.visible
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -64,4 +66,17 @@ abstract class BaseLoginFragment<T : ViewDataBinding>(@LayoutRes override val la
         val intent = viewModel.getGoogleSignInIntent()
         loginActivityResultLauncher.launch(intent)
     }
+
+    override fun onLoginError() {
+        progressBar.gone()
+    }
+
+    override fun onLoginFinished() {
+        progressBar.gone()
+    }
+
+    override fun onLoginStarted() {
+        progressBar.visible()
+    }
+
 }
