@@ -30,13 +30,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="60dp"
-            android:inputType="textEmailAddress"
+            android:autofillHints="emailAddress"
+            android:textAlignment="center"
             android:hint="@string/account_email"
+            android:inputType="textEmailAddress"
             app:layout_constraintBottom_toTopOf="@+id/textView29"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView34"
-            android:autofillHints="emailAddress" />
+            app:layout_constraintVertical_bias="0.4" />
 
         <TextView
             android:id="@+id/textView20"

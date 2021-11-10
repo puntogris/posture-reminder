@@ -153,13 +153,13 @@
     <string name="open_source_licenses">Licencias de codigo abierto</string>
     <string name="terms_and_conditions">Terminos y condiciones</string>
     <string name="privacy_policy">Políticas de privacidad</string>
-    <string name="delete_account_summary">Eliminar cuenta del servidor.</string>
+    <string name="delete_account_summary">Eliminar cuenta</string>
     <string name="snack_account_deleted_success">Cuenta eliminada correctamente.</string>
 
     <!-- Delete account -->
     <string name="snack_account_email_not_matching">El email no coincide con el que esta en tu cuenta.</string>
-    <string name="delete_account_email_required_alert">Como un mecanismo de precaución te pedimos que ingreses el email que usaste para registrarte o el de la cuenta de google en tu dispositivo.</string>
-    <string name="delete_account_danger_alert">Zona de peligro!! Esto acción eliminara tu cuenta, borrando toda tu informacion local, en la nube y cerrando tu sesión. Esto es irreversible.</string>
+    <string name="delete_account_email_required_alert">Como mecanismo de precaución te pedimos que ingreses el email que usaste para registrarte o el de la cuenta de google en tu dispositivo.</string>
+    <string name="delete_account_danger_alert">Zona de peligro!! Esta acción eliminara tu cuenta, borrando toda tu informacion local, en la nube y cerrando tu sesión. Esto es irreversible.</string>
 
     <!-- Notifications -->
     <string name="snack_notifications_set">Se activaron las notificaciones desde las %1$s hasta las %2$s.</string>
@@ -206,7 +206,7 @@
     <string name="message">Mensaje</string>
     <string name="an_error_occurred">Ocurrio un error</string>
     <string name="snack_action_requires_login">Esta acción requiere login</string>
-    <string name="account_email">E-mail de la cuenta</string>
+    <string name="account_email">email de la cuenta</string>
 
     <!-- Exercises -->
     <string name="in_progress">En progreso</string>

@@ -21,7 +21,7 @@
             app:iconSpaceReserved="false"/>
         <Preference
             android:key="delete_account_preference_key"
-            app:title="@string/action_delete_account"
+            app:title="@string/action_delete"
             app:iconSpaceReserved="false"
             app:summary="@string/delete_account_summary"/>
         <Preference
