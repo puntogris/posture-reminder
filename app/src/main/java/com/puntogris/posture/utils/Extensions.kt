@@ -69,10 +69,16 @@ fun Int.expForCompleteLevel() = this % EXPERIENCE_PER_LEVEL
 
 fun Long.toDays() = (this / (1000 * 60 * 60 * 24)).toInt()
 
-fun String.capitalizeFirstChar() =
-    replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+fun String.capitalizeFirstChar(): String {
+    return replaceFirstChar {
+        if (it.isLowerCase()) it.titlecase(Locale.getDefault())
+        else it.toString()
+    }
+}
 
-fun String.capitalizeWords(): String = split(" ").joinToString(" ") { it.capitalizeFirstChar() }
+fun String.capitalizeWords(): String {
+    return split(" ").joinToString(" ") { it.capitalizeFirstChar() }
+}
 
 fun AppCompatActivity.getNavController() = getNavHostFragment().navController
 
