@@ -10,6 +10,7 @@ sealed class SimpleResult {
                 function.invoke()
                 Success
             } catch (e: Exception) {
+                println(e.localizedMessage)
                 Failure
             }
     }

@@ -25,7 +25,7 @@ class SynAccountFragment :
         startAccountSync(args.userPrivateData)
     }
 
-    private fun startAccountSync(userPrivateData: UserPrivateData) {
+    private fun startAccountSync(userPrivateData: UserPrivateData?) {
         launchAndRepeatWithViewLifecycle(Lifecycle.State.CREATED) {
             when (viewModel.synAccountWith(userPrivateData)) {
                 SimpleResult.Failure -> onSyncAccountFailure()

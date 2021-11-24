@@ -16,6 +16,4 @@ class LoginViewModel @Inject constructor(
     fun authGoogleUser(result: ActivityResult) = authRepository.serverAuthWithGoogle(result)
 
     fun getGoogleSignInIntent() = googleSignInClient.signInIntent
-
-    suspend fun registerAnonymousUser() = authRepository.singInAnonymously()
 }
