@@ -50,15 +50,13 @@ data class Reminder(
     var soundName: String = ""
 ) : Parcelable {
 
-    private fun isAlarmPastMidnight() = startTime > endTime
-
     fun isAlarmInRange(minutesSinceMidnight: Int): Boolean {
-        return if (isAlarmPastMidnight()) minutesSinceMidnight !in (endTime..startTime)
+        return if (startTime > endTime) minutesSinceMidnight !in (endTime..startTime)
         else minutesSinceMidnight in (startTime..endTime)
     }
 
     fun isAlarmPastMidnightAndInRange(minutesSinceMidnight: Int) =
-        isAlarmPastMidnight() && isAlarmInRange(minutesSinceMidnight)
+        startTime > endTime && isAlarmInRange(minutesSinceMidnight)
 
     fun alarmDaysSummary(daysList: Array<String>) = alarmDays.joinToString(", ") {
         daysList[it].first().toString()

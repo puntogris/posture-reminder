@@ -1,5 +1,6 @@
 package com.puntogris.posture.data.datasource.remote
 
+import com.puntogris.posture.data.datasource.toPublicProfile
 import com.puntogris.posture.domain.model.UserPrivateData
 import com.puntogris.posture.domain.model.UserPublicProfile
 import com.puntogris.posture.domain.repository.UserServerApi
@@ -29,10 +30,10 @@ class FirebaseUserApi @Inject constructor(
             .toObject(UserPrivateData::class.java)
     }
 
-    override suspend fun createUser(user: UserPrivateData) {
+    override suspend fun insertUser(userPrivateData: UserPrivateData) {
         firebase.firestore.runBatch {
-            it.set(privateProfileRef(), user)
-            it.set(publicProfileRef(), UserPublicProfile.from(user))
+            it.set(privateProfileRef(), userPrivateData)
+            it.set(publicProfileRef(), userPrivateData.toPublicProfile())
         }.await()
     }
 

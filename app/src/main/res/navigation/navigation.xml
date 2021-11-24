@@ -38,8 +38,7 @@
     </fragment>
     <dialog
         android:id="@+id/settingsBottomSheet"
-        android:name="com.puntogris.posture.ui.settings.SettingsBottomSheet"
-        android:label="" >
+        android:name="com.puntogris.posture.ui.settings.SettingsBottomSheet" >
         <action
             android:id="@+id/action_settings_to_dialogName"
             app:destination="@id/editUserNameDialog" />
@@ -102,8 +101,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.puntogris.posture.ui.login.LoginFragment"
-        android:label=" "/>
+        android:name="com.puntogris.posture.ui.login.LoginFragment"/>
     <fragment
         android:id="@+id/rankingsFragment"
         android:name="com.puntogris.posture.ui.rankings.RankingsFragment"/>

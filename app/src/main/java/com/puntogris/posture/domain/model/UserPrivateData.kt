@@ -42,7 +42,7 @@ data class UserPrivateData(
     val creationDate: Timestamp = Timestamp.now(),
 
     @ColumnInfo
-    var experience: Int = 0,
+    val experience: Int = 0,
 
     @ColumnInfo
     val currentReminderId: String = ""
@@ -54,20 +54,5 @@ data class UserPrivateData(
         val maxExpPermitted = daysDiff * MAX_EXPERIENCE_PER_DAY
 
         return if (experience > maxExpPermitted) maxExpPermitted else experience
-    }
-
-    companion object {
-        fun from(user: FirebaseUser?): UserPrivateData {
-            val date = user?.metadata?.creationTimestamp
-            val timestamp = if (date == null) Timestamp.now() else Timestamp((Date(date)))
-
-            return UserPrivateData(
-                username = user?.displayName.toString().capitalizeWords(),
-                uid = user?.uid.toString(),
-                email = user?.email.toString(),
-                photoUrl = user?.photoUrl.toString(),
-                creationDate = timestamp
-            )
-        }
     }
 }

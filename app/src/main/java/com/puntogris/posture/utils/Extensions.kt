@@ -28,6 +28,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.Timestamp
 import com.puntogris.posture.R
 import com.puntogris.posture.data.datasource.local.LocalDataSource
 import com.puntogris.posture.ui.main.MainActivity
@@ -54,6 +55,8 @@ fun View.visible() {
 fun Int.getHours() = this / 60
 
 fun Int.getMinutes() = this % 60
+
+fun Long.millistToTimestamp() = Timestamp(this / 100, 0)
 
 fun Long.millisToMinutes() = (this / 1000 / 60).toInt()
 
