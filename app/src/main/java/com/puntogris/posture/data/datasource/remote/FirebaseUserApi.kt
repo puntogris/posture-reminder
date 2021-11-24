@@ -52,14 +52,8 @@ class FirebaseUserApi @Inject constructor(
 
     override suspend fun updateExperience(experience: Int) {
         firebase.firestore.runBatch {
-            it.update(
-                privateProfileRef(), Constants.USER_NAME_FIELD,
-                Constants.EXPERIENCE_FIELD, experience
-            )
-            it.update(
-                publicProfileRef(), Constants.USER_NAME_FIELD,
-                Constants.EXPERIENCE_FIELD, experience
-            )
+            it.update(privateProfileRef(), Constants.EXPERIENCE_FIELD, experience)
+            it.update(publicProfileRef(), Constants.EXPERIENCE_FIELD, experience)
         }.await()
     }
 }

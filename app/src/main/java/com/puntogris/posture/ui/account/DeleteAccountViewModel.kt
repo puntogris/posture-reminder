@@ -14,11 +14,8 @@ class DeleteAccountViewModel @Inject constructor(
 ) : ViewModel() {
 
     suspend fun deleteAccount(): SimpleResult {
-        val deleteAccount = userRepository.deleteUserAccountData()
-        return if (deleteAccount is SimpleResult.Success) {
-            authRepository.signOutUser()
-        } else {
-            deleteAccount
+        return userRepository.deleteUserAccountData().let {
+            if (it is SimpleResult.Success) return authRepository.signOutUser() else it
         }
     }
 

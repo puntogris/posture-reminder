@@ -53,18 +53,20 @@ class ReminderRepositoryImpl(
                 if (reminder.reminderId.isBlank()) {
                     fillIdsIfNewReminder(reminder)
                 }
+
+                reminderDao.insert(reminder)
+
+                reminderDao.getActiveReminder()?.let {
+                    if (it == reminder && dataStore.isAlarmActive()) {
+                        alarm.refreshAlarms(reminder)
+                    }
+                }
+
                 if (reminder.uid.isNotBlank()) {
                     workersManager.launchUploadReminderWorker(reminder.reminderId)
                 }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     notifications.createChannelForReminderSdkO(reminder)
-                }
-
-                reminderDao.insert(reminder)
-                reminderDao.getActiveReminder()?.let {
-                    if (it == reminder && dataStore.isAlarmActive()) {
-                        alarm.refreshAlarms(reminder)
-                    }
                 }
 
                 ReminderId(reminder.reminderId)
