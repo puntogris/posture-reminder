@@ -23,7 +23,7 @@ class UploadReminderWorker @AssistedInject constructor(
             val reminderId = inputData.getString(REMINDER_ID_WORKER_DATA)
 
             if (!reminderId.isNullOrBlank()) {
-                reminderRepository.insertLocalReminderToServer(reminderId)
+                reminderRepository.syncReminder(reminderId)
             }
             Result.success()
         } catch (e: Exception) {

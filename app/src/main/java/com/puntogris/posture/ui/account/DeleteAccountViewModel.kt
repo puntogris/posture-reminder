@@ -14,10 +14,10 @@ class DeleteAccountViewModel @Inject constructor(
 ) : ViewModel() {
 
     suspend fun deleteAccount(): SimpleResult {
-        return userRepository.deleteUserAccountData().let {
+        return userRepository.deleteUserAccount().let {
             if (it is SimpleResult.Success) return authRepository.signOutUser() else it
         }
     }
 
-    suspend fun getCurrentUser() = userRepository.getLocalUser()
+    suspend fun getCurrentUser() = userRepository.getUser()
 }

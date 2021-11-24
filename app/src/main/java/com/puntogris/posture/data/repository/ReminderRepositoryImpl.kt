@@ -28,8 +28,6 @@ class ReminderRepositoryImpl(
     private val workersManager: WorkersManager,
 ) : ReminderRepository {
 
-    override fun getAllLocalRemindersLiveData() = reminderDao.getAllRemindersLiveData()
-
     override suspend fun deleteReminder(reminder: Reminder): SimpleResult =
         withContext(dispatchers.io) {
             SimpleResult.build {
@@ -51,7 +49,10 @@ class ReminderRepositoryImpl(
             Result.build {
 
                 if (reminder.reminderId.isBlank()) {
-                    fillIdsIfNewReminder(reminder)
+                    reminder.reminderId = IDGenerator.randomID()
+                    firebase.currentUid?.let {
+                        reminder.uid = it
+                    }
                 }
 
                 reminderDao.insert(reminder)
@@ -73,12 +74,7 @@ class ReminderRepositoryImpl(
             }
         }
 
-    private fun fillIdsIfNewReminder(reminder: Reminder) {
-        reminder.reminderId = IDGenerator.randomID()
-        firebase.currentUid?.let {
-            reminder.uid = it
-        }
-    }
+    override fun getRemindersLiveData() = reminderDao.getAllRemindersLiveData()
 
     override fun getActiveReminderLiveData() = reminderDao.getActiveReminderLiveData()
 
@@ -86,7 +82,7 @@ class ReminderRepositoryImpl(
         reminderDao.getActiveReminder()
     }
 
-    override suspend fun insertLocalReminderToServer(reminderId: String) {
+    override suspend fun syncReminder(reminderId: String) {
         reminderDao.getReminderWithId(reminderId)?.let {
             reminderServerApi.saveReminder(it)
         }

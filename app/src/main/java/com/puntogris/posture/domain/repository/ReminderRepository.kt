@@ -7,15 +7,16 @@ import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.SimpleResult
 
 interface ReminderRepository {
-    fun getAllLocalRemindersLiveData(): LiveData<List<Reminder>>
 
-    suspend fun deleteReminder(reminder: Reminder): SimpleResult
-
-    suspend fun insertReminder(reminder: Reminder): Result<ReminderId>
+    fun getRemindersLiveData(): LiveData<List<Reminder>>
 
     fun getActiveReminderLiveData(): LiveData<Reminder?>
 
     suspend fun getActiveReminder(): Reminder?
 
-    suspend fun insertLocalReminderToServer(reminderId: String)
+    suspend fun deleteReminder(reminder: Reminder): SimpleResult
+
+    suspend fun insertReminder(reminder: Reminder): Result<ReminderId>
+
+    suspend fun syncReminder(reminderId: String)
 }

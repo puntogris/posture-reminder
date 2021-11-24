@@ -13,7 +13,7 @@ class LoginViewModel @Inject constructor(
     private val googleSignInClient: GoogleSignInClient
 ) : ViewModel() {
 
-    fun authGoogleUser(result: ActivityResult) = authRepository.serverAuthWithGoogle(result)
+    fun authGoogleUser(result: ActivityResult) = authRepository.authWithGoogle(result)
 
     fun getGoogleSignInIntent() = googleSignInClient.signInIntent
 }

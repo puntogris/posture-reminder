@@ -17,10 +17,9 @@ class SettingsViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
 
-    suspend fun updateUserName(name: String) =
-        userRepository.updateUsername(name.capitalizeWords())
+    suspend fun updateUserName(name: String) = userRepository.updateUsername(name.capitalizeWords())
 
-    val user = userRepository.getLocalUserLiveData()
+    val user = userRepository.getUserLiveData()
 
     fun getThemeNamePosition() = dataStore.appThemeFlow()
 

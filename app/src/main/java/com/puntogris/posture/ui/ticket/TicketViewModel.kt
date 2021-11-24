@@ -1,5 +1,6 @@
 package com.puntogris.posture.ui.ticket
 
+import android.text.Editable
 import androidx.lifecycle.ViewModel
 import com.puntogris.posture.domain.model.Ticket
 import com.puntogris.posture.domain.repository.TicketRepository
@@ -14,12 +15,13 @@ class TicketViewModel @Inject constructor(
 
     private var ticket = Ticket()
 
-    suspend fun sendTicket(message: String): SimpleResult {
-        ticket.message = message
-        return ticketRepository.sendTicketToServer(ticket)
-    }
+    fun sendTicket() = ticketRepository.sendTicket(ticket)
 
     fun updateTicketType(type: Int) {
         ticket.type = if (type == 0) Ticket.PROBLEM_TYPE else Ticket.SUGGESTION_TYPE
+    }
+
+    fun updateMessage(editable: Editable){
+        ticket.message = editable.toString()
     }
 }

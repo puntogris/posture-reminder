@@ -14,7 +14,7 @@ class SyncAccountViewModel @Inject constructor(
 ) : ViewModel() {
 
     suspend fun synAccountWith(userPrivateData: UserPrivateData?) =
-        syncRepository.syncServerAccountWithLocalDb(userPrivateData)
+        syncRepository.syncAccount(userPrivateData)
 
     suspend fun logOut() {
         authRepository.signOutUser()

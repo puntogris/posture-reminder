@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.puntogris.posture.ui.ticket.TicketViewModel" />
         <variable
             name="bottomSheet"
             type="com.puntogris.posture.ui.ticket.TicketBottomSheet" />
@@ -81,6 +83,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="8"
                 android:gravity="top"
+                android:afterTextChanged="@{viewModel::updateMessage}"
                 android:maxLength="400"
                 android:lines="8" />
 

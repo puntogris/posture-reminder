@@ -13,6 +13,7 @@ import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
 import com.puntogris.posture.utils.constants.Constants.SEND_TICKET_KEY
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -23,13 +24,19 @@ class TicketBottomSheet :
 
     override fun initializeViews() {
         binding.bottomSheet = this
+        binding.viewModel = viewModel
         setupTicketTypeAdapter()
     }
 
     private fun setupTicketTypeAdapter() {
-        val items = resources.getStringArray(R.array.ticket_types)
         binding.ticketType.apply {
-            setAdapter(ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, items))
+            setAdapter(
+                ArrayAdapter(
+                    requireContext(),
+                    android.R.layout.simple_list_item_1,
+                    resources.getStringArray(R.array.ticket_types)
+                )
+            )
             setOnItemClickListener { _, _, i, _ ->
                 viewModel.updateTicketType(i)
             }
@@ -37,36 +44,28 @@ class TicketBottomSheet :
     }
 
     fun onSendTicketClicked() {
-        showProgressUi()
         lifecycleScope.launch {
-            when (viewModel.sendTicket(binding.messageText.text.toString())) {
-                SimpleResult.Failure -> showErrorUi()
-                SimpleResult.Success -> navigateBackAndShowSuccessMessage()
+            viewModel.sendTicket().collect {
+                with(binding){
+                    when (it) {
+                        is Result.Error -> {
+                            sendButton.isEnabled = true
+                            ticketAlert.visible()
+                            progressBar.gone()
+                        }
+                        is Result.Loading -> {
+                            sendButton.isEnabled = false
+                            ticketAlert.gone()
+                            progressBar.visible()
+                        }
+                        is Result.Success -> {
+                            setFragmentResult(SEND_TICKET_KEY, bundleOf(DATA_KEY to true))
+                            findNavController().navigateUp()
+                        }
+                    }
+                }
             }
-            dismiss()
         }
-    }
-
-    private fun showProgressUi() {
-        binding.apply {
-            sendButton.isEnabled = false
-            ticketAlert.gone()
-            progressBar.visible()
-        }
-    }
-
-    private fun showErrorUi() {
-        binding.apply {
-            sendButton.isEnabled = true
-            ticketAlert.visible()
-            progressBar.gone()
-        }
-        showSnackBar(R.string.snack_general_error)
-    }
-
-    private fun navigateBackAndShowSuccessMessage() {
-        setFragmentResult(SEND_TICKET_KEY, bundleOf(DATA_KEY to true))
-        findNavController().navigateUp()
     }
 
     fun onHideKeyboardClicked() {

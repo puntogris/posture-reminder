@@ -24,7 +24,7 @@ class SyncRepositoryImpl(
     private val kronosClock: KronosClock,
 ) : SyncRepository {
 
-    override suspend fun syncServerAccountWithLocalDb(loginUser: UserPrivateData?): SimpleResult =
+    override suspend fun syncAccount(loginUser: UserPrivateData?): SimpleResult =
         withContext(dispatchers.io) {
             SimpleResult.build {
                 if (loginUser != null) {
@@ -81,7 +81,7 @@ class SyncRepositoryImpl(
         }
     }
 
-    override suspend fun syncUserExperienceInServerWithLocalDb() {
+    override suspend fun syncAccountExperience() {
         appDatabase.userDao.getUser()?.let {
             val serverTime = kronosClock.getCurrentNtpTimeMs() ?: return
             val expAmount = it.calculateMaxExpPermitted(serverTime)

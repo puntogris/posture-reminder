@@ -23,7 +23,6 @@ class NewReminderViewModel @Inject constructor(
     private val _reminder = MutableStateFlow(Reminder())
     val reminder = _reminder.asStateFlow()
 
-
     suspend fun saveReminder(): Result<ReminderId> {
         return when {
             !reminder.value.requiredInfoValid() -> {

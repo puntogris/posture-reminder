@@ -9,13 +9,13 @@ interface UserRepository {
 
     fun isUserLoggedIn(): Boolean
 
-    fun getLocalUserLiveData(): LiveData<UserPrivateData>
+    fun getUserLiveData(): LiveData<UserPrivateData>
 
-    suspend fun getLocalUser(): UserPrivateData?
+    suspend fun getUser(): UserPrivateData?
 
     suspend fun updateUsername(name: String): SimpleResult
 
     suspend fun updateActiveReminder(reminder: Reminder)
 
-    suspend fun deleteUserAccountData(): SimpleResult
+    suspend fun deleteUserAccount(): SimpleResult
 }

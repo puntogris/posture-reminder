@@ -31,7 +31,7 @@ class AuthRepositoryImpl(
 
     override suspend fun getShowWelcomePref() = dataStore.showWelcomePref()
 
-    override fun serverAuthWithGoogle(result: ActivityResult): Flow<LoginResult> = flow {
+    override fun authWithGoogle(result: ActivityResult): Flow<LoginResult> = flow {
         try {
             emit(LoginResult.InProgress)
             val credential = googleSingInApi.getCredentialWithIntent(requireNotNull(result.data))

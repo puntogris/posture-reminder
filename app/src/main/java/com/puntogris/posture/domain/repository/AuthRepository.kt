@@ -6,7 +6,7 @@ import com.puntogris.posture.utils.SimpleResult
 import kotlinx.coroutines.flow.Flow
 
 interface AuthRepository {
-    fun serverAuthWithGoogle(result: ActivityResult): Flow<LoginResult>
+    fun authWithGoogle(result: ActivityResult): Flow<LoginResult>
 
     suspend fun signOutUser(): SimpleResult
 

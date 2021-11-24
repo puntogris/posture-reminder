@@ -5,7 +5,7 @@ import com.puntogris.posture.utils.SimpleResult
 
 interface SyncRepository {
 
-    suspend fun syncServerAccountWithLocalDb(loginUser: UserPrivateData?): SimpleResult
+    suspend fun syncAccount(loginUser: UserPrivateData?): SimpleResult
 
-    suspend fun syncUserExperienceInServerWithLocalDb()
+    suspend fun syncAccountExperience()
 }

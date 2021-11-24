@@ -20,9 +20,9 @@ class UserRepositoryImpl(
 
     override fun isUserLoggedIn() = firebaseClients.getCurrentUser != null
 
-    override fun getLocalUserLiveData() = appDatabase.userDao.getUserLiveData()
+    override fun getUserLiveData() = appDatabase.userDao.getUserLiveData()
 
-    override suspend fun getLocalUser() = appDatabase.userDao.getUser()
+    override suspend fun getUser() = appDatabase.userDao.getUser()
 
     override suspend fun updateUsername(name: String) = withContext(dispatchers.io) {
         SimpleResult.build {
@@ -36,7 +36,7 @@ class UserRepositoryImpl(
         alarm.refreshAlarms(reminder)
     }
 
-    override suspend fun deleteUserAccountData(): SimpleResult = withContext(dispatchers.io) {
+    override suspend fun deleteUserAccount(): SimpleResult = withContext(dispatchers.io) {
         SimpleResult.build {
             userServerApi.deleteAccount()
             appDatabase.clearAllTables()

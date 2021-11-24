@@ -15,8 +15,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ExerciseViewModel @Inject constructor(
-    private val logsRepository: DayLogsRepository
+    private val repository: DayLogsRepository
 ) : ViewModel() {
+
     private var durationTimer: CountDownTimer? = null
 
     private val _exerciseDurationTimer = MutableLiveData<Int>()
@@ -25,6 +26,7 @@ class ExerciseViewModel @Inject constructor(
     fun startExerciseTimerWithDuration(duration: Int) {
         val durationInMillis = duration.toMillis()
         val countInterval = (1000 / PROGRESS_BAR_SMOOTH_OFFSET).toLong()
+
         durationTimer = object : CountDownTimer(durationInMillis, countInterval) {
             override fun onTick(millisUntilFinished: Long) {
                 _exerciseDurationTimer.value =
@@ -47,14 +49,14 @@ class ExerciseViewModel @Inject constructor(
         durationTimer?.cancel()
     }
 
+    suspend fun updateDayLogWithReward(): RewardExp {
+        val log = DayLog(expGained = EXPERIENCE_PER_EXERCISE, exercises = 1)
+        return repository.updateDayLogAndUser(log)
+    }
+
     override fun onCleared() {
         durationTimer?.cancel()
         super.onCleared()
-    }
-
-    suspend fun updateDayLogWithReward(): RewardExp {
-        val log = DayLog(expGained = EXPERIENCE_PER_EXERCISE, exercises = 1)
-        return logsRepository.updateDayLogAndUser(log)
     }
 
 }
