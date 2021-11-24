@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.puntogris.posture.ui.ticket.TicketViewModel" />
+
         <variable
             name="bottomSheet"
             type="com.puntogris.posture.ui.ticket.TicketBottomSheet" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/Theme.Posture.Layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/Theme.Posture.Layout"
         tools:context=".ui.ticket.TicketBottomSheet">
 
         <TextView
@@ -25,8 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="55dp"
-            android:text="@string/ticket_label"
             android:labelFor="@id/ticketType"
+            android:text="@string/ticket_label"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,13 +37,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:contentDescription="@string/close_screen_content_description"
             android:foreground="?actionBarItemBackground"
             android:onClick="@{()-> bottomSheet.dismiss()}"
             android:padding="8dp"
             android:src="@drawable/ic_baseline_close_24"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/close_screen_content_description" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ticket"
@@ -81,11 +83,11 @@
                 android:id="@+id/messageText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="8"
-                android:gravity="top"
                 android:afterTextChanged="@{viewModel::updateMessage}"
+                android:gravity="top"
+                android:lines="8"
                 android:maxLength="400"
-                android:lines="8" />
+                android:maxLines="8" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,23 +105,23 @@
             app:layout_constraintTop_toBottomOf="@+id/message" />
 
         <TextView
+            style="@style/Theme.Posture.TextMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:onClick="@{()-> bottomSheet.onHideKeyboardClicked()}"
-            style="@style/Theme.Posture.TextMedium"
-            android:text="@string/action_close_keyboard"
             android:foreground="?selectableItemBackground"
+            android:onClick="@{()-> bottomSheet.onHideKeyboardClicked()}"
+            android:padding="8dp"
+            android:text="@string/action_close_keyboard"
             app:layout_constraintEnd_toEndOf="@+id/message"
             app:layout_constraintTop_toBottomOf="@+id/message" />
 
         <Button
             android:id="@+id/sendButton"
+            style="@style/Theme.Posture.Button"
             android:layout_width="match_parent"
             android:layout_marginBottom="8dp"
-            android:text="@string/action_send"
             android:onClick="@{()-> bottomSheet.onSendTicketClicked()}"
-            style="@style/Theme.Posture.Button"
+            android:text="@string/action_send"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

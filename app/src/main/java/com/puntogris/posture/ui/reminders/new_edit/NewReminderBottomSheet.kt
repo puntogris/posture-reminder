@@ -5,7 +5,6 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.google.android.material.textfield.TextInputLayout
 import com.maxkeppeler.sheets.color.ColorSheet
 import com.maxkeppeler.sheets.core.IconButton
@@ -35,22 +34,14 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
     true
 ) {
     private val viewModel: NewReminderViewModel by viewModels()
-    private val args: NewReminderBottomSheetArgs by navArgs()
 
     override fun initializeViews() {
         binding.bottomSheet = this
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        checkIfIsNotNewReminder()
         setupReminderRvAdapter()
         setFragmentResultListeners()
-    }
-
-    private fun checkIfIsNotNewReminder() {
-        args.reminder?.let {
-            viewModel.updateReminder(it.copy())
-        }
     }
 
     private fun setupReminderRvAdapter() {

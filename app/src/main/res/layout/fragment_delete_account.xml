@@ -17,10 +17,10 @@
 
         <Button
             android:id="@+id/deleteButton"
-            android:layout_width="0dp"
-            android:text="@string/action_delete_account"
-            android:onClick="@{()-> fragment.onDeleteAccountClicked()}"
             style="@style/Theme.Posture.Button"
+            android:layout_width="0dp"
+            android:onClick="@{()-> fragment.onDeleteAccountClicked()}"
+            android:text="@string/action_delete_account"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -31,9 +31,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="60dp"
             android:autofillHints="emailAddress"
-            android:textAlignment="center"
             android:hint="@string/account_email"
             android:inputType="textEmailAddress"
+            android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/textView29"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,10 +69,10 @@
             android:id="@+id/textView34"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:layout_marginHorizontal="24dp"
-            android:textAlignment="center"
+            android:layout_marginTop="40dp"
             android:text="@string/delete_account_email_required_alert"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,12 +82,12 @@
             android:id="@+id/animation_view"
             android:layout_width="200dp"
             android:layout_height="200dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/deleteButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView20"
             app:lottie_autoPlay="false"
-            android:visibility="gone"
             app:lottie_rawRes="@raw/loading" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

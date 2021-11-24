@@ -24,17 +24,17 @@ class SyncRepositoryImpl(
     private val kronosClock: KronosClock,
 ) : SyncRepository {
 
-    override suspend fun syncAccount(userPrivateData: UserPrivateData?): SimpleResult =
+    override suspend fun syncAccount(authUser: UserPrivateData?): SimpleResult =
         withContext(dispatchers.io) {
             SimpleResult.build {
-                if (userPrivateData != null) {
+                if (authUser != null) {
                     val serverUser = userServerApi.getUser()
                     if (serverUser != null) {
                         compareLatestUserData(serverUser)
                         syncUserReminders()
                     } else {
-                        appDatabase.userDao.insert(userPrivateData)
-                        userServerApi.insertUser(userPrivateData)
+                        appDatabase.userDao.insert(authUser)
+                        userServerApi.insertUser(authUser)
                     }
                     workersManager.launchSyncAccountWorker()
                 } else {
@@ -44,15 +44,11 @@ class SyncRepositoryImpl(
             }
         }
 
-
     private suspend fun compareLatestUserData(userPrivateData: UserPrivateData) {
-        val localUser = appDatabase.userDao.getUser()
-        if (
-            localUser == null ||
-            localUser.uid != userPrivateData.uid ||
-            localUser.experience < userPrivateData.experience
-        ) {
-            appDatabase.userDao.insert(userPrivateData)
+        appDatabase.userDao.getUser()?.let {
+            if (it.uid != userPrivateData.uid || it.experience < userPrivateData.experience) {
+                appDatabase.userDao.insert(userPrivateData)
+            }
         }
     }
 
@@ -63,18 +59,14 @@ class SyncRepositoryImpl(
 
     private suspend fun insertServerRemindersIntoLocal() {
         val reminders = reminderServerApi.getReminders()
-        appDatabase.reminderDao.insertRemindersIfNotInRoom(reminders)
+        appDatabase.reminderDao.insertIfNotInRoom(reminders)
     }
 
     private suspend fun insertLocalRemindersIntoServer() {
-        val localReminders = appDatabase.reminderDao.getRemindersNotSynced()
-
-        if (localReminders.isNotEmpty()) {
-            val uid = requireNotNull(firebaseClients.currentUid)
-
-            localReminders.forEach { it.uid = uid }
-            reminderServerApi.saveReminders(localReminders)
-            appDatabase.reminderDao.insert(localReminders)
+        appDatabase.reminderDao.getRemindersNotSynced().takeIf { it.isNotEmpty() }?.let {
+            it.forEach { reminder -> reminder.uid = requireNotNull(firebaseClients.currentUid) }
+            reminderServerApi.insertReminders(it)
+            appDatabase.reminderDao.insert(it)
         }
     }
 

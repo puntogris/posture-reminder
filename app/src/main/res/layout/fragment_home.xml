@@ -24,11 +24,11 @@
 
         <TextView
             android:id="@+id/title"
+            style="@style/Theme.Posture.MediumTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/home_label"
-            style="@style/Theme.Posture.MediumTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,24 +90,25 @@
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <include
-            app:fragment="@{fragment}"
-            app:viewModel="@{viewModel}"
             android:id="@+id/active_reminder"
             layout="@layout/active_reminder"
-            app:reminder="@{viewModel.activeReminder}"
-            android:visibility="@{viewModel.activeReminder == null ? View.GONE : View.VISIBLE }"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:visibility="@{viewModel.activeReminder == null ? View.GONE : View.VISIBLE }"
+            app:fragment="@{fragment}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/selected_reminder_title" />
+            app:layout_constraintTop_toBottomOf="@+id/selected_reminder_title"
+            app:reminder="@{viewModel.activeReminder}"
+            app:viewModel="@{viewModel}" />
 
         <com.airbnb.lottie.LottieAnimationView
-            android:adjustViewBounds="true"
             android:id="@+id/panda_animation"
             android:layout_width="wrap_content"
             android:layout_height="140dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
             android:visibility="@{viewModel.isPandaAnimationEnabled == true ? View.VISIBLE : View.GONE }"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +116,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            android:scaleType="fitXY"
             app:lottie_rawRes="@raw/panda" />
 
         <androidx.constraintlayout.widget.Group

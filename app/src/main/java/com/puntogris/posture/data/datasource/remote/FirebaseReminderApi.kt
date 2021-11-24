@@ -23,18 +23,17 @@ class FirebaseReminderApi @Inject constructor(
             .await()
     }
 
-    override suspend fun saveReminder(reminder: Reminder) {
+    override suspend fun insertReminder(reminder: Reminder) {
         reminderCollection()
             .document(reminder.reminderId)
             .set(reminder)
             .await()
     }
 
-    override suspend fun saveReminders(reminders: List<Reminder>) {
+    override suspend fun insertReminders(reminders: List<Reminder>) {
         firebase.firestore.runBatch {
             for (reminder in reminders) {
-                val ref = reminderCollection().document(reminder.reminderId)
-                it.set(ref, reminder)
+                it.set(reminderCollection().document(reminder.reminderId), reminder)
             }
         }.await()
     }

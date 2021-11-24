@@ -8,10 +8,13 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
+import com.db.williamchart.view.BarChartView
 import com.db.williamchart.view.DonutChartView
 import com.google.android.material.button.MaterialButton
 import com.puntogris.posture.R
+import com.puntogris.posture.domain.model.DayLog
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.utils.constants.Constants.EXPERIENCE_PER_LEVEL
 import com.puntogris.posture.utils.constants.Constants.PROGRESS_BAR_SMOOTH_OFFSET
@@ -120,10 +123,8 @@ fun ImageView.setProfileRankingMedal(position: Int) {
         2 -> R.drawable.ic_bronze_medal
         else -> null
     }.let {
-        if (it != null) {
-            visible()
-            setImageDrawable(ContextCompat.getDrawable(context, it))
-        } else gone()
+        isVisible = it != null
+        if (it != null) setImageDrawable(ContextCompat.getDrawable(context, it))
     }
 }
 
@@ -141,27 +142,6 @@ fun ProgressBar.setProgressBarSmoothMax(duration: Int) {
     max = duration * PROGRESS_BAR_SMOOTH_OFFSET
 }
 
-@BindingAdapter("userRankingName")
-fun TextView.setUserRankingName(name: String) {
-    val list = name
-        .split(" ")
-        .filter { it.isNotBlank() }
-        .map { it.replace(" ", "") }
-
-    text = if (list.size == 1) {
-        list.first().let { if (it.length < 25) it else it.substring(0, 25) + ".." }
-    } else {
-        var newName = ""
-        var i = 0
-
-        while (newName.length < 25 && i < list.size && (newName + list[i]).length < 25) {
-            newName += if (newName.isEmpty()) list[i] else " " + list[i]
-            i++
-        }
-        newName
-    }
-}
-
 @BindingAdapter("toggleButton")
 fun MaterialButton.setToggleButton(isReminderActive: Boolean) {
     val (color, text) =
@@ -172,4 +152,21 @@ fun MaterialButton.setToggleButton(isReminderActive: Boolean) {
         }
     setBackgroundColor(getColor(context, color))
     setText(text)
+}
+
+@BindingAdapter("barChartLabels")
+fun BarChartView.setBarChartLabels(data: List<DayLog>?){
+    if (data == null) return
+    val today = LocalDate.now()
+    val labels = mutableListOf<Pair<String, Float>>()
+
+    for (i in 6 downTo 0L) {
+        val day = today.minusDays(i)
+        val dayName = if (i == 0L) context.getString(R.string.today) else day.getDayName()
+
+        val dayLog = data.singleOrNull { it.dateId == day.toString() }
+        val expValue = dayLog?.expGained?.toFloat() ?: 0F
+        labels.add(dayName to expValue)
+    }
+    animate(labels)
 }

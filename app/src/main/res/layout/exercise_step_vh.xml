@@ -15,7 +15,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@{String.valueOf(position)+ ` - ` + step}"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginVertical="8dp" />
+        android:layout_marginVertical="8dp"
+        android:text="@{String.valueOf(position)+ ` - ` + step}" />
 </layout>

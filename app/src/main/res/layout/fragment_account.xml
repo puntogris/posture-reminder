@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -17,7 +17,6 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/progressBar"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,17 +26,16 @@
 
             <TextView
                 android:id="@+id/layoutTitle"
+                style="@style/Theme.Posture.MediumTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/account_label"
-                style="@style/Theme.Posture.MediumTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <include
                 android:id="@+id/headerLayout"
-                app:viewModel="@{viewModel}"
                 layout="@layout/user_account_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -45,20 +43,22 @@
                 android:layout_marginTop="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layoutTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/layoutTitle"
+                app:viewModel="@{viewModel}" />
 
             <View
                 android:id="@+id/divider"
+                style="@style/Theme.Posture.Divider"
                 android:layout_width="0dp"
                 android:layout_height="8dp"
                 android:layout_marginTop="24dp"
-                style="@style/Theme.Posture.Divider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/barChart" />
 
             <com.db.williamchart.view.BarChartView
                 android:id="@+id/barChart"
+                barChartLabels="@{viewModel.weekData}"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:layout_marginHorizontal="16dp"
@@ -67,8 +67,8 @@
                 app:chart_barsColor="@color/grey"
                 app:chart_barsRadius="6dp"
                 app:chart_gridStrokeWidth="3dp"
-                app:chart_labelsSize="15sp"
                 app:chart_labelsColor="?colorControlNormal"
+                app:chart_labelsSize="15sp"
                 app:chart_spacing="20dp"
                 app:layout_constraintEnd_toStartOf="@+id/donutChart"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,13 +76,13 @@
 
             <com.db.williamchart.view.DonutChartView
                 android:id="@+id/donutChart"
+                donutChartProgress="@{viewModel.user.experience}"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginEnd="16dp"
                 app:chart_donutBackgroundColor="@color/gray_dark"
                 app:chart_donutRoundCorners="true"
                 app:chart_donutThickness="10dp"
-                donutChartProgress="@{viewModel.user.experience}"
                 app:layout_constraintBottom_toBottomOf="@id/barChart"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@id/barChart" />
@@ -121,10 +121,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/expTitle" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 style="@style/Theme.Posture.TextMedium"
                 donutLevel="@{viewModel.user.experience}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/donutChart"
                 app:layout_constraintEnd_toEndOf="@+id/donutChart"
@@ -132,11 +132,11 @@
                 app:layout_constraintTop_toTopOf="@+id/donutChart" />
 
             <TextView
+                style="@style/Theme.Posture.TextMedium"
+                expFromTotalLevel="@{viewModel.user.experience}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                style="@style/Theme.Posture.TextMedium"
-                expFromTotalLevel="@{viewModel.user.experience}"
                 android:textColor="@color/grey"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="@+id/donutChart"
@@ -170,8 +170,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="32dp"
                 android:layout_marginTop="16dp"
-                android:textAlignment="center"
                 android:text="@string/manage_account_reminders"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/selected_reminder_title" />

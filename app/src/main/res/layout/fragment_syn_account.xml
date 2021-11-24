@@ -17,11 +17,11 @@
 
         <TextView
             android:id="@+id/title"
+            style="@style/Theme.Posture.MediumTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/account_sync_in_progress"
-            style="@style/Theme.Posture.MediumTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,11 +39,11 @@
 
         <Button
             android:id="@+id/continueButton"
-            android:layout_width="match_parent"
-            android:text="@string/action_continue"
-            android:onClick="@{()-> fragment.onContinueButtonClicked()}"
             style="@style/Theme.Posture.Button"
+            android:layout_width="match_parent"
             android:enabled="false"
+            android:onClick="@{()-> fragment.onContinueButtonClicked()}"
+            android:text="@string/action_continue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

@@ -17,11 +17,9 @@ class SettingsViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
 
-    suspend fun updateUserName(name: String) = userRepository.updateUsername(name.capitalizeWords())
-
     val user = userRepository.getUserLiveData()
 
-    fun getThemeNamePosition() = dataStore.appThemeFlow()
+    val appTheme = dataStore.appThemeFlow()
 
     fun setPandaAnimationPref(value: Boolean) {
         viewModelScope.launch {
@@ -30,6 +28,8 @@ class SettingsViewModel @Inject constructor(
     }
 
     fun isUserLoggedIn() = userRepository.isUserLoggedIn()
+
+    suspend fun updateUserName(name: String) = userRepository.updateUsername(name.capitalizeWords())
 
     suspend fun logOut() = authRepository.signOutUser()
 

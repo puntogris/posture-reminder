@@ -23,8 +23,8 @@
             android:layout_marginEnd="8dp"
             android:contentDescription="@string/close_screen_content_description"
             android:foreground="?actionBarItemBackground"
-            android:padding="8dp"
             android:onClick="@{()->bottomSheet.dismiss()}"
+            android:padding="8dp"
             android:src="@drawable/ic_baseline_close_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

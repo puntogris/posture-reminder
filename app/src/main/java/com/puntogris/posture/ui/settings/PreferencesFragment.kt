@@ -28,7 +28,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
         preference(Keys.THEME_PREF_KEY) {
             val themeNames = resources.getStringArray(R.array.theme_names)
             lifecycleScope.launch {
-                viewModel.getThemeNamePosition().collect {
+                viewModel.appTheme.collect {
                     summary = themeNames[it]
                 }
             }
@@ -122,8 +122,9 @@ class PreferencesFragment : PreferenceFragmentCompat() {
             onClick {
                 lifecycleScope.launch {
                     if (viewModel.isUserLoggedIn()) {
-                        val action = SettingsBottomSheetDirections
-                            .actionSettingsToDialogName(viewModel.user.value!!.username)
+                        val action = SettingsBottomSheetDirections.actionSettingsToDialogName(
+                            viewModel.user.value!!.username
+                        )
                         findNavController().navigate(action)
                     } else showRequireLoginSnack()
                 }

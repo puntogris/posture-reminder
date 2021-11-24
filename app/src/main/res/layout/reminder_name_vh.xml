@@ -10,10 +10,10 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:orientation="horizontal"
-        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/itemName"
@@ -36,32 +36,32 @@
             android:ems="10"
             android:hint="@string/reminder_name_hint"
             android:imeOptions="actionDone"
-            android:textColor="?android:textColorHint"
+            android:importantForAutofill="no"
             android:inputType="textCapSentences"
-            android:paddingVertical="8dp"
-            android:textSize="16sp"
             android:maxLength="25"
+            android:paddingVertical="8dp"
+            android:textColor="?android:textColorHint"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/itemName"
-            app:layout_constraintTop_toTopOf="parent"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
+            android:contentDescription="@string/open_picker_content_description"
             android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/open_picker_content_description" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/divider"
+            style="@style/Theme.Posture.SlimDivider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            style="@style/Theme.Posture.SlimDivider"
             android:layout_marginHorizontal="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

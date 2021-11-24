@@ -169,7 +169,7 @@ fun ViewPager2.setPageFadeTransformer() {
     }
 }
 
-fun LocalDate.getDayStringFormatted(): String {
+fun LocalDate.getDayName(): String {
     return format(DateTimeFormatter.ofPattern("EEE "))
         .replace(".", "")
         .capitalizeFirstChar()

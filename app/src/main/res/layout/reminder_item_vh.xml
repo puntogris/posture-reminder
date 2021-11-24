@@ -11,16 +11,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout"
-        android:foreground="?selectableItemBackground"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:foreground="?selectableItemBackground">
 
         <TextView
             android:id="@+id/itemName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:layout_marginVertical="20dp"
+            android:layout_marginStart="24dp"
             android:ems="4"
             android:text="@{reminderItem.title}"
             android:textSize="16sp"
@@ -45,17 +45,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
+            android:contentDescription="@string/open_picker_content_description"
             android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/open_picker_content_description" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/divider"
+            style="@style/Theme.Posture.SlimDivider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            style="@style/Theme.Posture.SlimDivider"
             android:layout_marginHorizontal="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

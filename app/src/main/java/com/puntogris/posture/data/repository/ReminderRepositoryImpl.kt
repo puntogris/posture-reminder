@@ -84,7 +84,7 @@ class ReminderRepositoryImpl(
 
     override suspend fun syncReminder(reminderId: String) {
         reminderDao.getReminderWithId(reminderId)?.let {
-            reminderServerApi.saveReminder(it)
+            reminderServerApi.insertReminder(it)
         }
     }
 }

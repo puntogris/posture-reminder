@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -18,11 +18,11 @@
     </data>
 
     <RelativeLayout
-        android:orientation="vertical"
         style="@style/Theme.Posture.Layout"
-        android:paddingBottom="8dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="8dp">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -36,12 +36,12 @@
 
                 <TextView
                     android:id="@+id/title"
+                    style="@style/Theme.Posture.MediumTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="55dp"
                     android:text="@string/exercise"
-                    style="@style/Theme.Posture.MediumTitle"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,34 +49,34 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:padding="8dp"
-                    android:onClick="@{()-> bottomSheet.dismiss()}"
                     android:layout_marginEnd="8dp"
+                    android:contentDescription="@string/close_screen_content_description"
+                    android:onClick="@{()-> bottomSheet.dismiss()}"
+                    android:padding="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_baseline_close_24"
-                    android:contentDescription="@string/close_screen_content_description" />
+                    app:srcCompat="@drawable/ic_baseline_close_24" />
 
                 <ImageView
                     android:id="@+id/exerciseImage"
                     android:layout_width="0dp"
                     android:layout_height="200dp"
                     android:layout_marginTop="16dp"
+                    android:contentDescription="@string/image_content_description"
                     app:imageResource="@{exercise.image}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/stepsTitle"
-                    android:contentDescription="@string/image_content_description" />
+                    app:layout_constraintTop_toBottomOf="@+id/stepsTitle" />
 
                 <TextView
                     android:id="@+id/nameTitle"
+                    style="@style/Theme.Posture.TextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
                     android:text="@string/name"
                     android:textSize="13sp"
-                    style="@style/Theme.Posture.TextMedium"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/title" />
 
@@ -91,10 +91,10 @@
 
                 <TextView
                     android:id="@+id/descriptionTitle"
+                    style="@style/Theme.Posture.TextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    style="@style/Theme.Posture.TextMedium"
                     android:text="@string/description"
                     android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="@+id/nameSummary"
@@ -156,11 +156,11 @@
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/progressBar"
+            progressBarSmoothMax="@{exercise.duration}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/startButton"
             android:layout_marginTop="8dp"
-            progressBarSmoothMax="@{exercise.duration}"
             android:progress="@{viewModel.exerciseDurationTimer}"
             android:scaleY="2" />
 

@@ -4,7 +4,6 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.puntogris.posture.alarm.Notifications
 import com.puntogris.posture.data.datasource.toFcmNotification
-import com.puntogris.posture.domain.model.FcmNotification
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

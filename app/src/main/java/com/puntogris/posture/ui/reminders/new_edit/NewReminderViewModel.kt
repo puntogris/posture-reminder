@@ -1,5 +1,6 @@
 package com.puntogris.posture.ui.reminders.new_edit
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.puntogris.posture.R
 import com.puntogris.posture.domain.model.Reminder
@@ -15,13 +16,21 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NewReminderViewModel @Inject constructor(
-    private val reminderRepository: ReminderRepository
+    private val reminderRepository: ReminderRepository,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private var initialReminderCopy: Reminder? = null
 
     private val _reminder = MutableStateFlow(Reminder())
     val reminder = _reminder.asStateFlow()
+
+    init {
+        savedStateHandle.get<Reminder>("reminder")?.let {
+            _reminder.value = it
+            initialReminderCopy = it.copy()
+        }
+    }
 
     suspend fun saveReminder(): Result<ReminderId> {
         return when {
@@ -35,11 +44,6 @@ class NewReminderViewModel @Inject constructor(
                 reminderRepository.insertReminder(_reminder.value)
             }
         }
-    }
-
-    fun updateReminder(reminder: Reminder) {
-        _reminder.value = reminder
-        initialReminderCopy = reminder.copy()
     }
 
     private fun reminderWasEdited() = initialReminderCopy != _reminder.value
@@ -70,10 +74,12 @@ class NewReminderViewModel @Inject constructor(
     }
 
     fun saveReminderVibrationPattern(position: Int) {
+        println("af")
         _reminder.value = _reminder.value.copy(vibrationPattern = position)
     }
 
     fun saveReminderSoundPattern(toneItem: ToneItem?) {
+        println("a")
         toneItem?.let {
             _reminder.value = _reminder.value.copy(
                 soundUri = it.uri,

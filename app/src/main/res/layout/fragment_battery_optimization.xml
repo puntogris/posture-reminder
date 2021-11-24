@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -62,10 +62,10 @@
             android:layout_width="200dp"
             android:layout_height="45dp"
             android:layout_marginTop="24dp"
+            android:backgroundTint="@color/grey"
             android:onClick="@{()-> fragment.openBatteryOptimization()}"
             android:text="@string/action_disable"
             android:textColor="#292929"
-            android:backgroundTint="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/stepTwo" />
@@ -89,11 +89,11 @@
 
         <TextView
             android:id="@+id/textView37"
+            style="@style/Theme.Posture.TextMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            style="@style/Theme.Posture.TextMedium"
             android:text="@string/status"
             android:textSize="13sp"
             app:layout_constraintEnd_toStartOf="@+id/powerManagerState"
@@ -119,11 +119,11 @@
             android:layout_width="19dp"
             android:layout_height="19dp"
             android:layout_marginStart="8dp"
+            android:contentDescription="@string/image_content_description"
             android:src="@drawable/ic_baseline_cancel_24"
             app:layout_constraintBottom_toBottomOf="@+id/powerManagerState"
             app:layout_constraintStart_toEndOf="@+id/powerManagerState"
-            app:layout_constraintTop_toTopOf="@+id/powerManagerState"
-            android:contentDescription="@string/image_content_description" />
+            app:layout_constraintTop_toTopOf="@+id/powerManagerState" />
 
         <TextView
             android:id="@+id/textView39"
@@ -152,10 +152,10 @@
             android:id="@+id/textView48"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textAlignment="center"
             android:layout_marginHorizontal="32dp"
             android:text="@string/battery_optimization_alert2"
+            android:textAlignment="center"
+            android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/startButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

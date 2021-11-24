@@ -44,8 +44,8 @@
             android:id="@+id/startButton"
             style="@style/Theme.Posture.Button"
             android:layout_width="match_parent"
-            android:text="@string/action_start"
             android:onClick="@{()->fragment.onStartButtonClicked()}"
+            android:text="@string/action_start"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:layout_editor_absoluteX="16dp" />
 

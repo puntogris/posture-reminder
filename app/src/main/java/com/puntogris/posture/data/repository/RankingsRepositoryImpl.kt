@@ -7,11 +7,9 @@ import com.puntogris.posture.domain.repository.RankingsRepository
 import com.puntogris.posture.utils.DispatcherProvider
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.constants.Constants
-import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
 class RankingsRepositoryImpl(
     private val firebase: FirebaseClients,

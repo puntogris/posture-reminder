@@ -67,35 +67,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif"
             android:onClick="@{()-> fragment.onLoginProblemsClicked()}"
             android:text="@string/help_login_problems"
             android:textAllCaps="false"
             android:textColor="?colorControlNormal"
-            android:fontFamily="sans-serif"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/textView58"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:textAllCaps="false"
             android:onClick="@{()-> fragment.continueAnonymously()}"
-            android:text="@string/action_continue_anonymously"
-            android:textColor="?colorControlNormal"
-            app:icon="@drawable/ic_fi_sr_incognito"
-            app:iconTint="@color/grey"
-            app:strokeWidth="1dp"
             android:paddingHorizontal="16dp"
-            app:iconPadding="8dp"
-            app:strokeColor="@color/grey"
+            android:text="@string/action_continue_anonymously"
+            android:textAllCaps="false"
+            android:textColor="?colorControlNormal"
             app:cornerRadius="25dp"
+            app:icon="@drawable/ic_fi_sr_incognito"
+            app:iconPadding="8dp"
+            app:iconTint="@color/grey"
             app:layout_constraintBottom_toTopOf="@+id/textView35"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:strokeColor="@color/grey"
+            app:strokeWidth="1dp" />
 
         <TextView
             android:id="@+id/textView59"
@@ -115,6 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:backgroundTint="@color/white"
+            android:contentDescription="@string/action_login_with_google"
             android:onClick="@{()->fragment.startLoginWithGoogle()}"
             app:backgroundTint="@color/grey"
             app:borderWidth="1dp"
@@ -125,8 +126,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:rippleColor="@color/grey_5"
             app:srcCompat="@drawable/ic_search"
-            app:tint="@null"
-            android:contentDescription="@string/action_login_with_google" />
+            app:tint="@null" />
 
         <ImageView
             android:id="@+id/imageView7"

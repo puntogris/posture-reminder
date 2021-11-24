@@ -19,12 +19,12 @@
 
         <TextView
             android:id="@+id/textView"
+            style="@style/Theme.Posture.TextBlack"
+            pagerDay="@{position}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            style="@style/Theme.Posture.TextBlack"
-            pagerDay="@{position}"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -107,10 +107,10 @@
 
         <TextView
             android:id="@+id/textView15"
+            style="@style/Theme.Posture.TextBlack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            style="@style/Theme.Posture.TextBlack"
             android:text="@{String.valueOf(dayHistory.notifications)}"
             android:textColor="@color/white"
             android:textSize="17sp"
@@ -119,10 +119,10 @@
 
         <TextView
             android:id="@+id/textView17"
+            style="@style/Theme.Posture.TextBlack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            style="@style/Theme.Posture.TextBlack"
             android:text="@{String.valueOf(dayHistory.exercises)}"
             android:textColor="@color/white"
             android:textSize="17sp"
@@ -131,10 +131,10 @@
 
         <TextView
             android:id="@+id/textView18"
+            style="@style/Theme.Posture.TextBlack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            style="@style/Theme.Posture.TextBlack"
             android:text="@{`+` + String.valueOf(dayHistory.expGained)}"
             android:textColor="@color/white"
             android:textSize="17sp"

@@ -1,6 +1,7 @@
 package com.puntogris.posture.ui.account
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import com.puntogris.posture.domain.repository.DayLogsRepository
 import com.puntogris.posture.domain.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,5 +15,7 @@ class AccountViewModel @Inject constructor(
 
     val user = userRepository.getUserLiveData()
 
-    suspend fun getWeekData() = dayLogsRepository.getWeekDayLogs()
+    val weekData = liveData {
+        emit(dayLogsRepository.getWeekDayLogs())
+    }
 }
