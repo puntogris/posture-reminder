@@ -13,7 +13,7 @@ class SyncAccountViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
 
-    suspend fun synAccountWith(userPrivateData: UserPrivateData) =
+    suspend fun synAccountWith(userPrivateData: UserPrivateData?) =
         syncRepository.syncServerAccountWithLocalDb(userPrivateData)
 
     suspend fun logOut() {

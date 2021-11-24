@@ -15,13 +15,13 @@ import com.puntogris.posture.utils.constants.Constants.SYNC_ACCOUNT_WORKER
 import com.puntogris.posture.workers.WorkersManager
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 
 class AuthRepositoryImpl(
     private val workersManager: WorkersManager,
     private val authServerApi: AuthServerApi,
     private val dataStore: DataStore,
-    private val userDao: UserDao,
     private val googleSingInApi: GoogleSingInApi,
     private val alarm: Alarm,
     private val dispatchers: DispatcherProvider
@@ -41,7 +41,7 @@ class AuthRepositoryImpl(
             googleSingInApi.signOut()
             emit(LoginResult.Error)
         }
-    }
+    }.flowOn(dispatchers.io)
 
     override suspend fun signOutUser() = SimpleResult.build {
         alarm.cancelAlarms()
@@ -51,10 +51,4 @@ class AuthRepositoryImpl(
         workersManager.cancelWorker(SYNC_ACCOUNT_WORKER)
     }
 
-    override suspend fun singInAnonymously() = withContext(dispatchers.io) {
-        SimpleResult.build {
-            userDao.insert(UserPrivateData())
-            dataStore.setShowLoginPref(false)
-        }
-    }
 }

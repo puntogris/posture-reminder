@@ -10,8 +10,6 @@ interface AuthRepository {
 
     suspend fun signOutUser(): SimpleResult
 
-    suspend fun singInAnonymously(): SimpleResult
-
     suspend fun getShowLoginPref(): Boolean
 
     suspend fun getShowWelcomePref(): Boolean

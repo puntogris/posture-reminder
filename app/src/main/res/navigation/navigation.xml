@@ -116,7 +116,9 @@
         android:name="com.puntogris.posture.ui.sync.SynAccountFragment" >
         <argument
             android:name="userPrivateData"
-            app:argType="com.puntogris.posture.domain.model.UserPrivateData" />
+            app:argType="com.puntogris.posture.domain.model.UserPrivateData"
+            app:nullable="true"
+            android:defaultValue="@null" />
         <action
             android:id="@+id/action_synAccountFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment"

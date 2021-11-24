@@ -19,7 +19,7 @@ android {
         applicationId "com.puntogris.posture"
         minSdkVersion 23
         targetSdkVersion 31
-        versionCode 40
+        versionCode 42
         versionName "2.1.1"
         resConfigs "en", "es"
 
@@ -62,7 +62,7 @@ ext{
     hiltVersion = "2.35"
     dateVersion = "1.3.1"
     tabIndicatorVersion = "4.2"
-    fragmentKtxVersion = "1.4.0-beta01"
+    fragmentKtxVersion = "1.4.0"
     roomVersion = "2.4.0-alpha04"
     workManagerVersion = "2.7.1"
     kluentVersion = "1.68"

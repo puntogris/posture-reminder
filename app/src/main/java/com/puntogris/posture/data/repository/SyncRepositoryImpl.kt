@@ -24,17 +24,22 @@ class SyncRepositoryImpl(
     private val kronosClock: KronosClock,
 ) : SyncRepository {
 
-    override suspend fun syncServerAccountWithLocalDb(loginUser: UserPrivateData): SimpleResult =
+    override suspend fun syncServerAccountWithLocalDb(loginUser: UserPrivateData?): SimpleResult =
         withContext(dispatchers.io) {
             SimpleResult.build {
-                val serverUser = getUserFromServer()
-                if (serverUser != null) {
-                    compareLatestUserData(serverUser)
-                    syncUserReminders()
+                if (loginUser != null) {
+                    val serverUser = getUserFromServer()
+                    if (serverUser != null) {
+                        compareLatestUserData(serverUser)
+                        syncUserReminders()
+                    } else {
+                        appDatabase.userDao.insert(loginUser)
+                        userServerApi.createUser(loginUser)
+                    }
+                    workersManager.launchSyncAccountWorker()
                 } else {
-                    insertNewUser(loginUser)
+                    appDatabase.userDao.insert(UserPrivateData())
                 }
-                workersManager.launchSyncAccountWorker()
                 dataStore.setShowLoginPref(false)
             }
         }
@@ -52,11 +57,6 @@ class SyncRepositoryImpl(
         ) {
             appDatabase.userDao.insert(serverUser)
         }
-    }
-
-    private suspend fun insertNewUser(user: UserPrivateData) {
-        appDatabase.userDao.insert(user)
-        userServerApi.createUser(user)
     }
 
     private suspend fun syncUserReminders() {

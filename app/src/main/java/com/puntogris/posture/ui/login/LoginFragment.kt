@@ -2,16 +2,12 @@ package com.puntogris.posture.ui.login
 
 import android.widget.ProgressBar
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentLoginBinding
 import com.puntogris.posture.ui.base.BaseLoginFragment
-import com.puntogris.posture.utils.SimpleResult
-import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.launchWebBrowserIntent
-import com.puntogris.posture.utils.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : BaseLoginFragment<FragmentLoginBinding>(R.layout.fragment_login) {
@@ -27,15 +23,8 @@ class LoginFragment : BaseLoginFragment<FragmentLoginBinding>(R.layout.fragment_
         get() = binding.progressBar
 
     fun continueAnonymously() {
-        lifecycleScope.launch {
-            when (viewModel.registerAnonymousUser()) {
-                SimpleResult.Failure -> {
-                    UiInterface.showSnackBar(getString(R.string.snack_general_error))
-                    onLoginError()
-                }
-                SimpleResult.Success -> navigateTo(R.id.welcomeFragment)
-            }
-        }
+        val action = LoginFragmentDirections.actionGlobalSynAccountFragment()
+        findNavController().navigate(action)
     }
 
     fun onLoginProblemsClicked() {
