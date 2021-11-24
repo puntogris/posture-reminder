@@ -29,6 +29,8 @@ class AuthRepositoryImpl(
 
     override suspend fun getShowLoginPref() = dataStore.showLoginPref()
 
+    override suspend fun getShowWelcomePref() = dataStore.showWelcomePref()
+
     override fun serverAuthWithGoogle(result: ActivityResult): Flow<LoginResult> = flow {
         try {
             emit(LoginResult.InProgress)

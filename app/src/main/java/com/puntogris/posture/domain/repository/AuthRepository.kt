@@ -7,7 +7,12 @@ import kotlinx.coroutines.flow.Flow
 
 interface AuthRepository {
     fun serverAuthWithGoogle(result: ActivityResult): Flow<LoginResult>
+
     suspend fun signOutUser(): SimpleResult
+
     suspend fun singInAnonymously(): SimpleResult
+
     suspend fun getShowLoginPref(): Boolean
+
+    suspend fun getShowWelcomePref(): Boolean
 }

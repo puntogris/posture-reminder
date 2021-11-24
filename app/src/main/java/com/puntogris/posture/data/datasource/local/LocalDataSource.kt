@@ -6,12 +6,11 @@ import com.puntogris.posture.domain.model.VibrationPattern
 
 object LocalDataSource {
 
-    //todo change duration back to 60
     val exercisesList = listOf(
         Exercise(
             R.string.brugger_exercise_title,
             R.string.brugger_exercise_summary,
-            1,
+            60,
             R.color.card1,
             R.drawable.ic_brugger_exercise,
             R.array.brugger_exercise_steps

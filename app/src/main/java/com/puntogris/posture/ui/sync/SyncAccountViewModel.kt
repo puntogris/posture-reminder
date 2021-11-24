@@ -14,11 +14,11 @@ class SyncAccountViewModel @Inject constructor(
 ) : ViewModel() {
 
     suspend fun synAccountWith(userPrivateData: UserPrivateData) =
-        syncRepository.syncSeverAccountWithLocalDb(userPrivateData)
+        syncRepository.syncServerAccountWithLocalDb(userPrivateData)
 
     suspend fun logOut() {
         authRepository.signOutUser()
     }
 
-    suspend fun showLogin() = authRepository.getShowLoginPref()
+    suspend fun showWelcome() = authRepository.getShowWelcomePref()
 }

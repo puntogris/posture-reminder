@@ -65,8 +65,14 @@ class DataStore @Inject constructor(@ApplicationContext private val context: Con
     suspend fun showLoginPref() =
         context.dataStore.data.first()[booleanPreferencesKey(Keys.SHOW_LOGIN_KEY)] ?: true
 
-
     suspend fun setShowLoginPref(value: Boolean) = context.dataStore.edit {
         it[booleanPreferencesKey(Keys.SHOW_LOGIN_KEY)] = value
+    }
+
+    suspend fun showWelcomePref() =
+        context.dataStore.data.first()[booleanPreferencesKey(Keys.SHOW_WELCOME_KEY)] ?: true
+
+    suspend fun setShowWelcomePref(value: Boolean) = context.dataStore.edit {
+        it[booleanPreferencesKey(Keys.SHOW_WELCOME_KEY)] = value
     }
 }

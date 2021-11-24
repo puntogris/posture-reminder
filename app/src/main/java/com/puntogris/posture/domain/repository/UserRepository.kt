@@ -7,6 +7,8 @@ import com.puntogris.posture.utils.SimpleResult
 
 interface UserRepository {
 
+    fun isUserLoggedIn(): Boolean
+
     fun getLocalUserLiveData(): LiveData<UserPrivateData>
 
     suspend fun getLocalUser(): UserPrivateData?
@@ -14,8 +16,6 @@ interface UserRepository {
     suspend fun updateUsername(name: String): SimpleResult
 
     suspend fun updateActiveReminder(reminder: Reminder)
-
-    fun isUserLoggedIn(): Boolean
 
     suspend fun deleteUserAccountData(): SimpleResult
 }

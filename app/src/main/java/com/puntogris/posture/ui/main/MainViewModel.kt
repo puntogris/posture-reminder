@@ -28,5 +28,4 @@ class MainViewModel @Inject constructor(
     }
 
     suspend fun showLogin() = dataStore.showLoginPref()
-
 }

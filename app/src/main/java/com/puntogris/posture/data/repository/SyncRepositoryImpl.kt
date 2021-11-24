@@ -24,7 +24,7 @@ class SyncRepositoryImpl(
     private val kronosClock: KronosClock,
 ) : SyncRepository {
 
-    override suspend fun syncSeverAccountWithLocalDb(loginUser: UserPrivateData): SimpleResult =
+    override suspend fun syncServerAccountWithLocalDb(loginUser: UserPrivateData): SimpleResult =
         withContext(dispatchers.io) {
             SimpleResult.build {
                 val serverUser = getUserFromServer()

@@ -64,7 +64,7 @@ class SynAccountFragment :
     fun onContinueButtonClicked() {
         lifecycleScope.launch {
             navigateTo(
-                if (viewModel.showLogin()) R.id.action_synAccountFragment_to_welcomeFragment
+                if (viewModel.showWelcome()) R.id.action_synAccountFragment_to_welcomeFragment
                 else R.id.action_synAccount_to_home
             )
         }
