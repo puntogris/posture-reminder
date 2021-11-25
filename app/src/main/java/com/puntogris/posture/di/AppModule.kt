@@ -89,7 +89,6 @@ class AppModule {
 
     @Provides
     fun provideSyncRepository(
-        firebaseClients: FirebaseClients,
         appDatabase: AppDatabase,
         firestoreUser: FirebaseUserApi,
         firestoreReminder: FirebaseReminderApi,
@@ -99,7 +98,6 @@ class AppModule {
         kronosClock: KronosClock
     ): SyncRepository {
         return SyncRepositoryImpl(
-            firebaseClients,
             appDatabase,
             firestoreUser,
             firestoreReminder,

@@ -3,7 +3,6 @@ package com.puntogris.posture.data.repository
 import com.lyft.kronos.KronosClock
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.datasource.local.db.AppDatabase
-import com.puntogris.posture.data.datasource.remote.FirebaseClients
 import com.puntogris.posture.domain.model.UserPrivateData
 import com.puntogris.posture.domain.repository.ReminderServerApi
 import com.puntogris.posture.domain.repository.SyncRepository
@@ -14,7 +13,6 @@ import com.puntogris.posture.workers.WorkersManager
 import kotlinx.coroutines.withContext
 
 class SyncRepositoryImpl(
-    private val firebaseClients: FirebaseClients,
     private val appDatabase: AppDatabase,
     private val userServerApi: UserServerApi,
     private val reminderServerApi: ReminderServerApi,
@@ -30,11 +28,17 @@ class SyncRepositoryImpl(
                 if (authUser != null) {
                     val serverUser = userServerApi.getUser()
                     if (serverUser != null) {
-                        compareLatestUserData(serverUser)
+                        syncLatestUserData(serverUser)
                         syncUserReminders()
                     } else {
-                        appDatabase.userDao.insert(authUser)
                         userServerApi.insertUser(authUser)
+                        appDatabase.userDao.updateCurrentUserData(
+                            authUser.uid,
+                            authUser.username,
+                            authUser.email,
+                            authUser.photoUrl
+                        )
+                        insertLocalRemindersIntoServer()
                     }
                     workersManager.launchSyncAccountWorker()
                 } else {
@@ -44,10 +48,15 @@ class SyncRepositoryImpl(
             }
         }
 
-    private suspend fun compareLatestUserData(userPrivateData: UserPrivateData) {
-        appDatabase.userDao.getUser()?.let {
-            if (it.uid != userPrivateData.uid || it.experience < userPrivateData.experience) {
-                appDatabase.userDao.insert(userPrivateData)
+    private suspend fun syncLatestUserData(serverUser: UserPrivateData) {
+        val localUser = appDatabase.userDao.getUser()
+        if (localUser == null) {
+            appDatabase.userDao.insert(serverUser)
+        } else {
+            if (localUser.uid != serverUser.uid ||
+                localUser.experience < serverUser.experience
+            ) {
+                appDatabase.userDao.insert(serverUser)
             }
         }
     }
@@ -64,14 +73,13 @@ class SyncRepositoryImpl(
 
     private suspend fun insertLocalRemindersIntoServer() {
         appDatabase.reminderDao.getRemindersNotSynced().takeIf { it.isNotEmpty() }?.let {
-            it.forEach { reminder -> reminder.uid = requireNotNull(firebaseClients.currentUid) }
+            it.forEach { reminder -> reminder.uid = appDatabase.userDao.getUserId() }
             reminderServerApi.insertReminders(it)
-            appDatabase.reminderDao.insert(it)
         }
     }
 
     override suspend fun syncAccountExperience() {
-        appDatabase.userDao.getUser()?.let {
+        appDatabase.userDao.getUser().takeIf { it != null && it.uid.isNotEmpty() }?.let {
             val serverTime = kronosClock.getCurrentNtpTimeMs() ?: return
             val expAmount = it.calculateMaxExpPermitted(serverTime)
             userServerApi.updateExperience(expAmount)

@@ -16,8 +16,14 @@ interface UserDao {
     @Query("SELECT * FROM UserPrivateData WHERE roomId = 1")
     suspend fun getUser(): UserPrivateData?
 
+    @Query("SELECT uid FROM UserPrivateData WHERE roomId = 1")
+    suspend fun getUserId(): String
+
     @Query("SELECT * FROM UserPrivateData WHERE roomId = 1")
     fun getUserLiveData(): LiveData<UserPrivateData>
+
+    @Query("UPDATE UserPrivateData SET uid = :uid, username = :username, email = :email, photoUrl = :photoUrl WHERE roomId = 1")
+    suspend fun updateCurrentUserData(uid: String, username: String, email:String, photoUrl: String)
 
     @Query("UPDATE UserPrivateData SET currentReminderId = :reminderId WHERE roomId = 1")
     suspend fun updateCurrentUserReminder(reminderId: String)
