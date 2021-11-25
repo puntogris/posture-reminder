@@ -56,8 +56,10 @@ class PostureApp : Application(), Configuration.Provider {
             Timber.plant(Timber.DebugTree())
         }
 
-        //forcing account sync because in the last update work manager wasn't working, remove once
-        //all users migrated to 2.1.1+
+        /*
+        Forcing account sync because in v2.1.0 work manager wasn't working and new accounts created
+        on that version won't have sync on, remove when all users migrate to 2.1.1+
+         */
         MainScope().launch {
             workersManager.launchSyncAccountWorker()
         }

@@ -50,14 +50,12 @@ class SyncRepositoryImpl(
 
     private suspend fun syncLatestUserData(serverUser: UserPrivateData) {
         val localUser = appDatabase.userDao.getUser()
-        if (localUser == null) {
+        if (
+            localUser == null ||
+            localUser.uid != serverUser.uid ||
+            localUser.experience < serverUser.experience
+        ) {
             appDatabase.userDao.insert(serverUser)
-        } else {
-            if (localUser.uid != serverUser.uid ||
-                localUser.experience < serverUser.experience
-            ) {
-                appDatabase.userDao.insert(serverUser)
-            }
         }
     }
 
@@ -75,6 +73,7 @@ class SyncRepositoryImpl(
         appDatabase.reminderDao.getRemindersNotSynced().takeIf { it.isNotEmpty() }?.let {
             it.forEach { reminder -> reminder.uid = appDatabase.userDao.getUserId() }
             reminderServerApi.insertReminders(it)
+            appDatabase.reminderDao.insert(it)
         }
     }
 
