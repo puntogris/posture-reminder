@@ -19,13 +19,13 @@
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/dots_indicator"
+            app:layout_constraintBottom_toTopOf="@+id/dotsIndicator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-            android:id="@+id/dots_indicator"
+            android:id="@+id/dotsIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
@@ -34,14 +34,14 @@
             app:dotsSize="10dp"
             app:dotsSpacing="4dp"
             app:dotsWidthFactor="2.5"
-            app:layout_constraintBottom_toTopOf="@+id/startButton"
+            app:layout_constraintBottom_toTopOf="@+id/WelcomeContinueButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:progressMode="true"
             app:selectedDotColor="?colorPrimary" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/startButton"
+            android:id="@+id/WelcomeContinueButton"
             style="@style/Theme.Posture.Button"
             android:layout_width="match_parent"
             android:onClick="@{()->fragment.onStartButtonClicked()}"

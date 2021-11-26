@@ -36,10 +36,10 @@ class SynAccountFragment :
 
     private fun onSyncAccountFailure() {
         binding.apply {
-            animationView.playAnimationOnce(R.raw.error)
-            title.setText(R.string.account_sync_error)
+            syncAnimation.playAnimationOnce(R.raw.error)
+            syncTitle.setText(R.string.account_sync_error)
 
-            with(continueButton) {
+            with(syncContinueButton) {
                 setText(R.string.action_exit)
                 isEnabled = true
                 setOnClickListener {
@@ -55,9 +55,9 @@ class SynAccountFragment :
 
     private fun onSyncAccountSuccess() {
         binding.apply {
-            animationView.playAnimationOnce(R.raw.success)
-            title.setText(R.string.account_sync_success)
-            continueButton.isEnabled = true
+            syncAnimation.playAnimationOnce(R.raw.success)
+            syncTitle.setText(R.string.account_sync_success)
+            syncContinueButton.isEnabled = true
         }
     }
 

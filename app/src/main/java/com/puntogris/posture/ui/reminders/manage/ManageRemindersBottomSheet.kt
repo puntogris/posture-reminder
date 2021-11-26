@@ -64,7 +64,7 @@ class ManageRemindersBottomSheet :
             viewModel.deleteReminder(reminder)
             showSnackBar(
                 message = R.string.snack_delete_reminder_success,
-                anchorView = binding.floatingActionButton
+                anchorView = binding.addReminderButton
             ) {
                 lifecycleScope.launch {
                     viewModel.insertReminder(reminder)

@@ -11,7 +11,6 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
@@ -25,20 +24,20 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView24"
+                android:id="@+id/accountHeaderUsername"
+                usernameOrPlaceHolder="@{viewModel.user.username}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                usernameOrPlaceHolder="@{viewModel.user.username}"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Joaquin" />
 
             <TextView
-                android:id="@+id/textView22"
+                android:id="@+id/accountHeaderUserLevel"
                 style="@style/Theme.Posture.TextBlack"
                 accountLevelTitle="@{viewModel.user.experience}"
                 android:layout_width="wrap_content"
@@ -51,7 +50,7 @@
                 tools:text="Nivel 5" />
 
             <TextView
-                android:id="@+id/textView25"
+                android:id="@+id/accountHeaderUserLevelTag"
                 accountBadgeLevel="@{viewModel.user.experience}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

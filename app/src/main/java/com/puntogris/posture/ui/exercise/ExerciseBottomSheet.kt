@@ -41,7 +41,7 @@ class ExerciseBottomSheet : BaseBindingBottomSheetFragment<BottomSheetExerciseBi
     }
 
     private fun showInProgressUi() {
-        binding.startButton.apply {
+        binding.startExerciseButton.apply {
             isEnabled = false
             text = context.getString(R.string.in_progress)
         }
@@ -57,7 +57,7 @@ class ExerciseBottomSheet : BaseBindingBottomSheetFragment<BottomSheetExerciseBi
 
     private fun updateUiAndShowCompletedExerciseDialog() {
         navigateTo(R.id.exerciseCompletedDialog)
-        binding.startButton.text = getString(R.string.finished)
+        binding.startExerciseButton.text = getString(R.string.finished)
     }
 
     override fun onDestroyView() {

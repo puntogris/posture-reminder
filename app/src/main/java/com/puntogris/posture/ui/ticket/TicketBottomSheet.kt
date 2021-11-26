@@ -52,12 +52,12 @@ class TicketBottomSheet :
                 with(binding) {
                     when (it) {
                         is Result.Error -> {
-                            sendButton.isEnabled = true
+                            sendTicketButton.isEnabled = true
                             ticketAlert.visible()
                             progressBar.gone()
                         }
                         is Result.Loading -> {
-                            sendButton.isEnabled = false
+                            sendTicketButton.isEnabled = false
                             ticketAlert.gone()
                             progressBar.visible()
                         }

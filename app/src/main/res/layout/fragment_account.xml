@@ -25,7 +25,7 @@
             tools:context=".ui.account.AccountFragment">
 
             <TextView
-                android:id="@+id/layoutTitle"
+                android:id="@+id/accountTitle"
                 style="@style/Theme.Posture.MediumTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                 android:layout_marginTop="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layoutTitle"
+                app:layout_constraintTop_toBottomOf="@+id/accountTitle"
                 app:viewModel="@{viewModel}" />
 
             <View
@@ -144,7 +144,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/donutChart" />
 
             <TextView
-                android:id="@+id/selected_reminder_title"
+                android:id="@+id/selectedReminderTitle"
                 style="@style/Theme.Posture.RegularTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selected_reminder_title" />
+                app:layout_constraintTop_toBottomOf="@+id/selectedReminderTitle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

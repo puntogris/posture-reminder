@@ -21,13 +21,13 @@
             android:layout_height="0dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/ic_internal_login_background"
-            app:layout_constraintBottom_toTopOf="@+id/join_button"
+            app:layout_constraintBottom_toTopOf="@+id/continueAnonymouslyButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/title_text_view"
+            android:id="@+id/internalLoginTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
@@ -42,44 +42,32 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/subtitle_text_view"
+            android:id="@+id/internalLoginFeaturesTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="56dp"
+            android:text="@string/internal_login_subtitle"
+            android:textColor="@android:color/white"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/internalLoginTitle" />
+
+        <TextView
+            android:id="@+id/internalLoginFeatures"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="32dp"
-            android:text="@string/login_feature_one"
+            android:text="@string/login_features"
             android:textColor="@android:color/white"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/textView13"
+            app:layout_constraintTop_toBottomOf="@+id/internalLoginFeaturesTitle"
             tools:layout_editor_absoluteX="32dp" />
 
-        <TextView
-            android:id="@+id/textView60"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/login_feature_two"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/texView44" />
-
-        <TextView
-            android:id="@+id/texView44"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/login_feature_three"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@+id/subtitle_text_view"
-            tools:layout_editor_absoluteX="16dp" />
-
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/join_button"
+            android:id="@+id/continueAnonymouslyButton"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -88,10 +76,10 @@
             android:layout_marginBottom="16dp"
             android:onClick="@{()-> fragment.onNavigateUp()}"
             android:text="@string/action_continue_anonymously"
-            app:layout_constraintBottom_toTopOf="@id/login_button" />
+            app:layout_constraintBottom_toTopOf="@id/loginWithGoogleButton" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/login_button"
+            android:id="@+id/loginWithGoogleButton"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -102,31 +90,6 @@
             android:text="@string/action_login_with_google"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="56dp"
-            android:text="@string/internal_login_subtitle"
-            android:textColor="@android:color/white"
-            android:textSize="17sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_text_view" />
-
-        <TextView
-            android:id="@+id/textView19"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/login_feature_four"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView60" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -136,7 +99,6 @@
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

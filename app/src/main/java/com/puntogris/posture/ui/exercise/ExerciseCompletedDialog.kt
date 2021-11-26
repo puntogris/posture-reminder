@@ -29,24 +29,23 @@ class ExerciseCompletedDialog : DialogFragment() {
             when (viewModel.updateDayLogWithReward()) {
                 RewardExp.Error -> {
                     with(binding) {
-                        animationView.playAnimationOnce(R.raw.error)
-                        title.text = getString(R.string.an_error_occurred)
-                        message.text = getString(R.string.snack_general_error)
+                        completedExerciseAnimation.playAnimationOnce(R.raw.error)
+                        completedExerciseTitle.setText(R.string.an_error_occurred)
+                        completedExerciseMessage.setText(R.string.snack_general_error)
                     }
                 }
                 RewardExp.ExpLimit -> {
                     with(binding) {
-                        animationView.setAnimation(R.raw.trophy)
-                        title.text = getString(R.string.completed_exercise_title)
-                        message.text =
-                            getString(R.string.exercise_complete_dialog_exp_limit_message)
+                        completedExerciseAnimation.setAnimation(R.raw.trophy)
+                        completedExerciseTitle.setText(R.string.completed_exercise_title)
+                        completedExerciseMessage.setText(R.string.exercise_complete_dialog_exp_limit_message)
                     }
                 }
                 RewardExp.Success -> {
                     with(binding) {
-                        animationView.setAnimation(R.raw.congratulations)
-                        title.text = getString(R.string.completed_exercise_title)
-                        message.text =
+                        completedExerciseAnimation.setAnimation(R.raw.congratulations)
+                        completedExerciseTitle.setText(R.string.completed_exercise_title)
+                        completedExerciseMessage.text =
                             getString(R.string.completed_exercise_message, EXPERIENCE_PER_EXERCISE)
                     }
                 }

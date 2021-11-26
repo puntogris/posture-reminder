@@ -40,10 +40,10 @@ class DeleteAccountFragment :
 
     private fun showLoadingProgress() {
         with(binding) {
-            animationView.visible()
-            animationView.setAnimation(R.raw.loading)
-            animationView.repeatCount = LottieDrawable.INFINITE
-            animationView.playAnimation()
+            deleteAccountAnimation.visible()
+            deleteAccountAnimation.setAnimation(R.raw.loading)
+            deleteAccountAnimation.repeatCount = LottieDrawable.INFINITE
+            deleteAccountAnimation.playAnimation()
             emailField.gone()
         }
     }
@@ -57,8 +57,8 @@ class DeleteAccountFragment :
 
     private fun onDeleteFailure() {
         with(binding) {
-            animationView.gone()
-            animationView.playAnimationOnce(R.raw.error)
+            deleteAccountAnimation.gone()
+            deleteAccountAnimation.playAnimationOnce(R.raw.error)
             emailField.visible()
         }
         UiInterface.showSnackBar(getString(R.string.snack_connection_error))

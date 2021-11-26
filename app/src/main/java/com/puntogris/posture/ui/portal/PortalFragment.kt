@@ -48,7 +48,7 @@ class PortalFragment : BaseFragmentOptions<FragmentPortalBinding>(R.layout.fragm
                 UiInterface.showSnackBar(getString(R.string.snack_connection_error))
             }
             is Result.Success -> {
-                binding.shimmerViewContainer.apply {
+                binding.portalRankingsShimmer.apply {
                     hideShimmer()
                     stopShimmer()
                     gone()

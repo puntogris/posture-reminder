@@ -42,10 +42,7 @@
     <string name="action_login_with_google">Login con google</string>
     <string name="internal_login_title">Tu aventura empieza ahora</string>
     <string name="internal_login_subtitle">Login desbloqueara estos increibles beneficios!</string>
-    <string name="login_feature_one">• Se parte de la comunidad.</string>
-    <string name="login_feature_two">• Backup automaticos de tu informacion en la nube.</string>
-    <string name="login_feature_three">• Perfil publico para escalar los rankings.</string>
-    <string name="login_feature_four">• Soporte mediante tickets.</string>
+    <string name="login_features">• Se parte de la comunidad.\n\n• Backup automaticos de tu informacion en la nube.\n\n• Perfil publico para escalar los rankings.\n\n• Soporte mediante tickets.</string>
 
     <!-- Welcome -->
     <string name="welcome_pager_title1">Llega hasta la cima del ranking!</string>

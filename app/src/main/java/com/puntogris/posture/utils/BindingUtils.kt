@@ -172,6 +172,6 @@ fun BarChartView.setBarChartLabels(data: List<DayLog>?) {
 }
 
 @BindingAdapter("usernameOrPlaceHolder")
-fun TextView.setUsernameOrPlaceHolder(name: String?){
+fun TextView.setUsernameOrPlaceHolder(name: String?) {
     text = if (name.isNullOrEmpty()) context.getString(R.string.human) else name
 }

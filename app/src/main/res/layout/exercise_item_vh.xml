@@ -17,27 +17,27 @@
         android:paddingHorizontal="8dp">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/exerciseTitleLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-medium"
             android:text="@{exercise.title}"
-            app:layout_constraintStart_toEndOf="@+id/view2"
+            app:layout_constraintStart_toEndOf="@+id/exerciseColor"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/exerciseDuration"
             exerciseDuration="@{exercise.duration}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textView30" />
+            app:layout_constraintEnd_toEndOf="@+id/exerciseDurationLabel" />
 
         <TextView
-            android:id="@+id/textView27"
+            android:id="@+id/exerciseSummary"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -46,23 +46,23 @@
             android:text="@{exercise.summary}"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView5"
-            app:layout_constraintStart_toStartOf="@+id/textView4"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintEnd_toStartOf="@+id/exerciseDuration"
+            app:layout_constraintStart_toStartOf="@+id/exerciseTitleLabel"
+            app:layout_constraintTop_toBottomOf="@+id/exerciseTitleLabel" />
 
         <TextView
-            android:id="@+id/textView30"
+            android:id="@+id/exerciseDurationLabel"
             style="@style/Theme.Posture.TextMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="@string/duration"
             android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView5"
+            app:layout_constraintBottom_toTopOf="@+id/exerciseDuration"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <View
-            android:id="@+id/view2"
+            android:id="@+id/exerciseColor"
             backgroundColorTintView="@{exercise.color}"
             android:layout_width="5dp"
             android:layout_height="50dp"

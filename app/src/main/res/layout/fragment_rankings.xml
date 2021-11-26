@@ -10,7 +10,7 @@
         tools:context=".ui.rankings.RankingsFragment">
 
         <TextView
-            android:id="@+id/layoutTitle"
+            android:id="@+id/rankingsTitle"
             style="@style/Theme.Posture.MediumTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

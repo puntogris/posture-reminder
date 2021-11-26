@@ -35,7 +35,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/title"
+                    android:id="@+id/exerciseTitle"
                     style="@style/Theme.Posture.MediumTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/stepsTitle" />
 
                 <TextView
-                    android:id="@+id/nameTitle"
+                    android:id="@+id/exerciseNameLabel"
                     style="@style/Theme.Posture.TextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -78,42 +78,41 @@
                     android:text="@string/name"
                     android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/title" />
+                    app:layout_constraintTop_toBottomOf="@+id/exerciseTitle" />
 
                 <TextView
-                    android:id="@+id/nameSummary"
+                    android:id="@+id/exerciseName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="@{exercise.title}"
-                    app:layout_constraintStart_toStartOf="@+id/nameTitle"
-                    app:layout_constraintTop_toBottomOf="@+id/nameTitle" />
+                    app:layout_constraintStart_toStartOf="@+id/exerciseNameLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/exerciseNameLabel" />
 
                 <TextView
-                    android:id="@+id/descriptionTitle"
+                    android:id="@+id/exerciseDescriptionLabel"
                     style="@style/Theme.Posture.TextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/description"
                     android:textSize="13sp"
-                    app:layout_constraintStart_toStartOf="@+id/nameSummary"
-                    app:layout_constraintTop_toBottomOf="@+id/nameSummary" />
+                    app:layout_constraintStart_toStartOf="@+id/exerciseName"
+                    app:layout_constraintTop_toBottomOf="@+id/exerciseName" />
 
                 <TextView
-                    android:id="@+id/descriptionSummary"
+                    android:id="@+id/exerciseDescription"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
                     android:text="@{exercise.summary}"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/descriptionTitle"
-                    app:layout_constraintTop_toBottomOf="@+id/descriptionTitle" />
-
+                    app:layout_constraintStart_toStartOf="@+id/exerciseDescriptionLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/exerciseDescriptionLabel" />
 
                 <TextView
-                    android:id="@+id/durationTitle"
+                    android:id="@+id/exerciseDurationLabel"
                     style="@style/Theme.Posture.TextMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -121,15 +120,15 @@
                     android:text="@string/duration"
                     android:textSize="13sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/nameTitle" />
+                    app:layout_constraintTop_toTopOf="@+id/exerciseNameLabel" />
 
                 <TextView
                     exerciseDuration="@{exercise.duration}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    app:layout_constraintStart_toStartOf="@+id/durationTitle"
-                    app:layout_constraintTop_toBottomOf="@+id/durationTitle" />
+                    app:layout_constraintStart_toStartOf="@+id/exerciseDurationLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/exerciseDurationLabel" />
 
                 <TextView
                     android:id="@+id/stepsTitle"
@@ -140,7 +139,7 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/steps"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/descriptionSummary" />
+                    app:layout_constraintTop_toBottomOf="@+id/exerciseDescription" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
@@ -161,13 +160,13 @@
             progressBarSmoothMax="@{exercise.duration}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/startButton"
+            android:layout_above="@+id/startExerciseButton"
             android:layout_marginTop="8dp"
             android:progress="@{viewModel.exerciseDurationTimer}"
             android:scaleY="2" />
 
         <Button
-            android:id="@+id/startButton"
+            android:id="@+id/startExerciseButton"
             style="@style/Theme.Posture.Button"
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"

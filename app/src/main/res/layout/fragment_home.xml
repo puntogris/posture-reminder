@@ -56,7 +56,7 @@
             app:layout_constraintTop_toBottomOf="@+id/usagePager" />
 
         <TextView
-            android:id="@+id/selected_reminder_title"
+            android:id="@+id/selectedReminderTitle"
             style="@style/Theme.Posture.RegularTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
             app:layout_constraintTop_toBottomOf="@+id/divider" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/manageRemindersMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
@@ -76,10 +76,10 @@
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/selected_reminder_title" />
+            app:layout_constraintTop_toBottomOf="@+id/selectedReminderTitle" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/manageRemindersButton"
             style="@style/Theme.Posture.Button"
             android:layout_width="match_parent"
             android:layout_marginTop="24dp"
@@ -87,10 +87,10 @@
             android:text="@string/see_all_reminders"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toBottomOf="@+id/manageRemindersMessage" />
 
         <include
-            android:id="@+id/active_reminder"
+            android:id="@+id/activeReminderLayout"
             layout="@layout/active_reminder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,12 +99,12 @@
             app:fragment="@{fragment}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/selected_reminder_title"
+            app:layout_constraintTop_toBottomOf="@+id/selectedReminderTitle"
             app:reminder="@{viewModel.activeReminder}"
             app:viewModel="@{viewModel}" />
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/panda_animation"
+            android:id="@+id/pandaAnimation"
             android:layout_width="wrap_content"
             android:layout_height="140dp"
             android:adjustViewBounds="true"
@@ -123,7 +123,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="@{viewModel.activeReminder == null ? View.VISIBLE : View.GONE }"
-            app:constraint_referenced_ids="button3, textView6" />
+            app:constraint_referenced_ids="manageRemindersButton, manageRemindersMessage" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

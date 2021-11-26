@@ -30,29 +30,29 @@ class ClaimNotificationExpDialog : DialogFragment() {
             when (viewModel.updateDayLogWithReward()) {
                 RewardExp.Error -> {
                     with(binding) {
-                        animationView.playAnimationOnce(R.raw.error)
-                        title.setText(R.string.an_error_occurred)
-                        summary.setText(R.string.claim_experience_error_summary)
-                        message.setText(R.string.snack_general_error)
+                        claimExpAnimation.playAnimationOnce(R.raw.error)
+                        claimExpMessage.setText(R.string.an_error_occurred)
+                        claimExpSummary.setText(R.string.claim_experience_error_summary)
+                        claimExpMessage.setText(R.string.snack_general_error)
                     }
                 }
                 RewardExp.ExpLimit -> {
                     with(binding) {
-                        animationView.setAnimation(R.raw.trophy)
-                        title.setText(R.string.claim_experience_title)
-                        summary.setText(R.string.claim_experience_exp_limit_summary)
-                        message.setText(R.string.claim_experience_exp_limit_message)
+                        claimExpAnimation.setAnimation(R.raw.trophy)
+                        claimExpMessage.setText(R.string.claim_experience_title)
+                        claimExpSummary.setText(R.string.claim_experience_exp_limit_summary)
+                        claimExpMessage.setText(R.string.claim_experience_exp_limit_message)
                     }
                 }
                 RewardExp.Success -> {
                     with(binding) {
-                        animationView.setAnimation(R.raw.congratulations)
-                        title.setText(R.string.completed_exercise_title)
-                        summary.text = getString(
+                        claimExpAnimation.setAnimation(R.raw.congratulations)
+                        claimExpMessage.setText(R.string.completed_exercise_title)
+                        claimExpSummary.text = getString(
                             R.string.claim_experience_message,
                             EXPERIENCE_PER_NOTIFICATION
                         )
-                        message.setText(R.string.claim_experience_exercise_message)
+                        claimExpMessage.setText(R.string.claim_experience_exercise_message)
                     }
                 }
             }
