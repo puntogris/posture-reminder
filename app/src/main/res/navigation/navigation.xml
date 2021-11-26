@@ -146,7 +146,8 @@
         android:name="com.puntogris.posture.ui.notification.ClaimNotificationExpDialog" >
         <action
             android:id="@+id/action_claimNotificationExp_to_exercise"
-            app:destination="@id/exerciseBottomSheet" />
+            app:destination="@id/exerciseBottomSheet"
+            app:popUpTo="@id/homeFragment" />
     </dialog>
     <dialog
         android:id="@+id/creditsBottomSheet"

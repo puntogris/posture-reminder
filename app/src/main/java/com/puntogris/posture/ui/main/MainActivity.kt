@@ -169,5 +169,4 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_
             it.show()
         }
     }
-
 }

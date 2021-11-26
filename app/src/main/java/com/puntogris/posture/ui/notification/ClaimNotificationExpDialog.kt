@@ -61,7 +61,6 @@ class ClaimNotificationExpDialog : DialogFragment() {
         return MaterialAlertDialogBuilder(requireContext(), R.style.MaterialAlertDialog_rounded)
             .setView(binding.root)
             .setPositiveButton(R.string.exercise) { _, _ ->
-                dismiss()
                 navigateToRandomExercise()
             }
             .setNegativeButton(R.string.action_cancel) { _, _ -> dismiss() }
