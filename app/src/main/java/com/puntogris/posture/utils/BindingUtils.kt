@@ -155,7 +155,7 @@ fun MaterialButton.setToggleButton(isReminderActive: Boolean) {
 }
 
 @BindingAdapter("barChartLabels")
-fun BarChartView.setBarChartLabels(data: List<DayLog>?){
+fun BarChartView.setBarChartLabels(data: List<DayLog>?) {
     if (data == null) return
     val today = LocalDate.now()
     val labels = mutableListOf<Pair<String, Float>>()
@@ -169,4 +169,9 @@ fun BarChartView.setBarChartLabels(data: List<DayLog>?){
         labels.add(dayName to expValue)
     }
     animate(labels)
+}
+
+@BindingAdapter("usernameOrPlaceHolder")
+fun TextView.setUsernameOrPlaceHolder(name: String?){
+    text = if (name.isNullOrEmpty()) context.getString(R.string.human) else name
 }

@@ -20,7 +20,7 @@ class TicketViewModel @Inject constructor(
         ticket.type = if (type == 0) Ticket.PROBLEM_TYPE else Ticket.SUGGESTION_TYPE
     }
 
-    fun updateMessage(editable: Editable){
+    fun updateMessage(editable: Editable) {
         ticket.message = editable.toString()
     }
 }

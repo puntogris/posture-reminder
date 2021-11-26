@@ -4,7 +4,6 @@ import androidx.work.*
 import com.puntogris.posture.utils.constants.Constants
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class WorkersManager @Inject constructor(
     private val workManager: WorkManager
