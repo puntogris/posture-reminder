@@ -18,7 +18,7 @@
         style="@style/Theme.Posture.Layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".feature_main.presentation.reminders.new_edit.NewReminderBottomSheet">
+        tools:context=".ui.reminders.new_edit.NewReminderBottomSheet">
 
         <TextView
             android:id="@+id/newReminderTitle"

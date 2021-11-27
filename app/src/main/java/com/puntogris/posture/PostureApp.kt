@@ -7,9 +7,9 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.lyft.kronos.KronosClock
-import com.puntogris.posture.common.alarm.Notifications
-import com.puntogris.posture.feature_main.data.datasource.local.DataStore
-import com.puntogris.posture.common.workers.WorkersManager
+import com.puntogris.posture.framework.alarm.Notifications
+import com.puntogris.posture.data.datasource.local.DataStore
+import com.puntogris.posture.framework.workers.WorkersManager
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch

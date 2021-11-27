@@ -17,7 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".feature_main.presentation.explore.PortalFragment">
+            tools:context=".ui.explore.PortalFragment">
 
             <TextView
                 android:id="@+id/portalTitle"

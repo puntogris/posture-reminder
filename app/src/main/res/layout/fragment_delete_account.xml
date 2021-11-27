@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".feature_main.presentation.account.DeleteAccountFragment">
+        tools:context=".ui.account.DeleteAccountFragment">
 
         <Button
             android:id="@+id/deleteButton"

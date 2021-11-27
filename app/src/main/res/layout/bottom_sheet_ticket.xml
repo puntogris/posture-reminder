@@ -18,7 +18,7 @@
         style="@style/Theme.Posture.Layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".feature_main.presentation.ticket.TicketBottomSheet">
+        tools:context=".ui.ticket.TicketBottomSheet">
 
         <TextView
             android:id="@+id/ticketTitle"

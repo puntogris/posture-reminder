@@ -22,7 +22,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".feature_main.presentation.account.AccountFragment">
+            tools:context=".ui.account.AccountFragment">
 
             <TextView
                 android:id="@+id/accountTitle"
