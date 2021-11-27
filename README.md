@@ -2,7 +2,7 @@
 App that will send you a notification reminding you to fix your posture, you can set the time frame to receive them and the time interval between each notification.
 
 Used in this project:</br>
-  * Kotlin
+  * Kotlin2
   * MVVM
   * Alarm Manager
   * Broadcast Receiver
