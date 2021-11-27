@@ -6,20 +6,20 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.puntogris.posture.ui.home.HomeFragment" >
+        android:name="com.puntogris.posture.feature_main.presentation.home.HomeFragment" >
         <action
             android:id="@+id/action_home_to_newReminder"
             app:destination="@id/newReminderBottomSheet" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.puntogris.posture.ui.account.AccountFragment"/>
+        android:name="com.puntogris.posture.feature_main.presentation.account.AccountFragment"/>
     <dialog
         android:id="@+id/newReminderBottomSheet"
-        android:name="com.puntogris.posture.ui.reminders.new_edit.NewReminderBottomSheet">
+        android:name="com.puntogris.posture.feature_main.presentation.reminders.new_edit.NewReminderBottomSheet">
         <argument
             android:name="reminder"
-            app:argType="com.puntogris.posture.domain.model.Reminder"
+            app:argType="com.puntogris.posture.feature_main.domain.model.Reminder"
             app:nullable="true"
             android:defaultValue="@null" />
         <action
@@ -31,14 +31,14 @@
     </dialog>
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.puntogris.posture.ui.welcome.WelcomeFragment">
+        android:name="com.puntogris.posture.feature_main.presentation.welcome.WelcomeFragment">
         <action
             android:id="@+id/action_welcome_to_batteryOptimization"
             app:destination="@id/batteryOptimizationFragment" />
     </fragment>
     <dialog
         android:id="@+id/settingsBottomSheet"
-        android:name="com.puntogris.posture.ui.settings.SettingsBottomSheet" >
+        android:name="com.puntogris.posture.feature_main.presentation.settings.SettingsBottomSheet" >
         <action
             android:id="@+id/action_settings_to_dialogName"
             app:destination="@id/editUserNameDialog" />
@@ -48,31 +48,31 @@
     </dialog>
     <dialog
         android:id="@+id/editUserNameDialog"
-        android:name="com.puntogris.posture.ui.settings.EditUserNameDialog" >
+        android:name="com.puntogris.posture.feature_main.presentation.settings.EditUserNameDialog" >
         <argument
             android:name="username"
             app:argType="string" />
     </dialog>
     <dialog
         android:id="@+id/selectThemeDialog"
-        android:name="com.puntogris.posture.ui.settings.SelectThemeDialog"/>
+        android:name="com.puntogris.posture.feature_main.presentation.settings.SelectThemeDialog"/>
     <dialog
         android:id="@+id/manageRemindersBottomSheet"
-        android:name="com.puntogris.posture.ui.reminders.manage.ManageRemindersBottomSheet" >
+        android:name="com.puntogris.posture.feature_main.presentation.reminders.manage.ManageRemindersBottomSheet" >
         <action
             android:id="@+id/action_manageReminders_to_newReminder"
             app:destination="@id/newReminderBottomSheet" />
     </dialog>
     <fragment
         android:id="@+id/batteryOptimizationFragment"
-        android:name="com.puntogris.posture.ui.welcome.BatteryOptimizationFragment">
+        android:name="com.puntogris.posture.feature_main.presentation.welcome.BatteryOptimizationFragment">
         <action
             android:id="@+id/action_batteryOptimization_to_home"
             app:destination="@id/homeFragment" />
     </fragment>
     <dialog
         android:id="@+id/vibrationSelectorDialog"
-        android:name="com.puntogris.posture.ui.reminders.new_edit.VibrationSelectorDialog" >
+        android:name="com.puntogris.posture.feature_main.presentation.reminders.new_edit.VibrationSelectorDialog" >
         <argument
             android:name="savedPosition"
             app:argType="integer"
@@ -80,7 +80,7 @@
     </dialog>
     <dialog
         android:id="@+id/soundSelectorDialog"
-        android:name="com.puntogris.posture.ui.reminders.new_edit.SoundSelectorDialog">
+        android:name="com.puntogris.posture.feature_main.presentation.reminders.new_edit.SoundSelectorDialog">
         <argument
             android:name="savedSound"
             app:argType="string"
@@ -88,10 +88,10 @@
     </dialog>
     <dialog
         android:id="@+id/whatsNewDialog"
-        android:name="com.puntogris.posture.ui.main.WhatsNewDialog" />
+        android:name="com.puntogris.posture.common.presentation.main.WhatsNewDialog" />
     <fragment
         android:id="@+id/portalFragment"
-        android:name="com.puntogris.posture.ui.portal.PortalFragment">
+        android:name="com.puntogris.posture.feature_main.presentation.explore.PortalFragment">
         <action
             android:id="@+id/action_portal_to_rankings"
             app:destination="@id/rankingsFragment" />
@@ -101,20 +101,20 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.puntogris.posture.ui.login.LoginFragment"/>
+        android:name="com.puntogris.posture.feature_auth.presentation.login.LoginFragment"/>
     <fragment
         android:id="@+id/rankingsFragment"
-        android:name="com.puntogris.posture.ui.rankings.RankingsFragment"/>
+        android:name="com.puntogris.posture.feature_main.presentation.rankings.RankingsFragment"/>
     <dialog
         android:id="@+id/ticketBottomSheet"
-        android:name="com.puntogris.posture.ui.ticket.TicketBottomSheet"
+        android:name="com.puntogris.posture.feature_main.presentation.ticket.TicketBottomSheet"
         android:label="TicketBottomSheet" />
     <fragment
         android:id="@+id/synAccountFragment"
-        android:name="com.puntogris.posture.ui.sync.SynAccountFragment" >
+        android:name="com.puntogris.posture.feature_main.presentation.sync.SynAccountFragment" >
         <argument
             android:name="userPrivateData"
-            app:argType="com.puntogris.posture.domain.model.UserPrivateData"
+            app:argType="com.puntogris.posture.feature_auth.domain.model.UserPrivateData"
             app:nullable="true"
             android:defaultValue="@null" />
         <action
@@ -130,20 +130,20 @@
     </fragment>
     <dialog
         android:id="@+id/exerciseBottomSheet"
-        android:name="com.puntogris.posture.ui.exercise.ExerciseBottomSheet" >
+        android:name="com.puntogris.posture.feature_main.presentation.exercise.ExerciseBottomSheet" >
         <argument
             android:name="exercise"
-            app:argType="com.puntogris.posture.domain.model.Exercise" />
+            app:argType="com.puntogris.posture.feature_main.domain.model.Exercise" />
         <action
             android:id="@+id/action_exercise_to_exerciseCompletedDialog"
             app:destination="@id/exerciseCompletedDialog" />
     </dialog>
     <dialog
         android:id="@+id/exerciseCompletedDialog"
-        android:name="com.puntogris.posture.ui.exercise.ExerciseCompletedDialog" />
+        android:name="com.puntogris.posture.feature_main.presentation.exercise.ExerciseCompletedDialog" />
     <dialog
         android:id="@+id/claimNotificationExpDialog"
-        android:name="com.puntogris.posture.ui.notification.ClaimNotificationExpDialog" >
+        android:name="com.puntogris.posture.feature_main.presentation.notification.ClaimNotificationExpDialog" >
         <action
             android:id="@+id/action_claimNotificationExp_to_exercise"
             app:destination="@id/exerciseBottomSheet"
@@ -151,17 +151,17 @@
     </dialog>
     <dialog
         android:id="@+id/creditsBottomSheet"
-        android:name="com.puntogris.posture.ui.settings.CreditsBottomSheet"/>
+        android:name="com.puntogris.posture.feature_main.presentation.settings.CreditsBottomSheet"/>
     <action
         android:id="@+id/action_global_homeFragment"
         app:destination="@id/homeFragment" />
     <fragment
         android:id="@+id/internalLoginFragment"
-        android:name="com.puntogris.posture.ui.login.InternalLoginFragment"/>
+        android:name="com.puntogris.posture.feature_auth.presentation.login.InternalLoginFragment"/>
     <action
         android:id="@+id/action_global_synAccountFragment"
         app:destination="@id/synAccountFragment" />
     <fragment
         android:id="@+id/deleteAccountFragment"
-        android:name="com.puntogris.posture.ui.account.DeleteAccountFragment"/>
+        android:name="com.puntogris.posture.feature_main.presentation.account.DeleteAccountFragment"/>
 </navigation>

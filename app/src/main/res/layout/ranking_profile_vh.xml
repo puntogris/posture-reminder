@@ -7,7 +7,7 @@
 
         <variable
             name="rankingProfile"
-            type="com.puntogris.posture.domain.model.UserPublicProfile" />
+            type="com.puntogris.posture.feature_main.domain.model.UserPublicProfile" />
 
         <variable
             name="position"

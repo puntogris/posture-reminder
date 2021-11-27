@@ -7,15 +7,15 @@
 
         <variable
             name="reminder"
-            type="com.puntogris.posture.domain.model.Reminder" />
+            type="com.puntogris.posture.feature_main.domain.model.Reminder" />
 
         <variable
             name="fragment"
-            type="com.puntogris.posture.ui.home.HomeFragment" />
+            type="com.puntogris.posture.feature_main.presentation.home.HomeFragment" />
 
         <variable
             name="viewModel"
-            type="com.puntogris.posture.ui.home.HomeViewModel" />
+            type="com.puntogris.posture.feature_main.presentation.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

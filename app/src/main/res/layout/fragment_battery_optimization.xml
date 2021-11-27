@@ -7,13 +7,13 @@
 
         <variable
             name="fragment"
-            type="com.puntogris.posture.ui.welcome.BatteryOptimizationFragment" />
+            type="com.puntogris.posture.feature_main.presentation.welcome.BatteryOptimizationFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.welcome.BatteryOptimizationFragment">
+        tools:context=".feature_main.presentation.welcome.BatteryOptimizationFragment">
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/requireOptimizationGroup"
@@ -107,7 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="@string/require_action"
+            android:text="@string/optimization_require_action"
             app:layout_constraintBottom_toBottomOf="@+id/optimizationStatusLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

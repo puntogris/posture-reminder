@@ -18,7 +18,7 @@
         android:allowBackup="true">
         <activity
             android:launchMode="singleTask"
-            android:name=".ui.main.MainActivity"
+            android:name="com.puntogris.posture.common.presentation.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,13 +32,13 @@
             android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
             android:theme="@style/Theme.Posture.Licenses" />
         <service
-            android:name=".fcm.FirebaseMessagingService"
+            android:name="com.puntogris.posture.feature_main.data.datasource.remote.FirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <receiver android:name=".alarm.ReminderBroadcast"
+        <receiver android:name="com.puntogris.posture.common.alarm.ReminderBroadcast"
             android:enabled="true"
             android:exported="false"/>
         <meta-data

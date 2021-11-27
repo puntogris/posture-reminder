@@ -5,20 +5,20 @@ import androidx.room.Room
 import androidx.work.WorkManager
 import com.lyft.kronos.AndroidClockFactory
 import com.lyft.kronos.KronosClock
-import com.puntogris.posture.alarm.Alarm
-import com.puntogris.posture.alarm.Notifications
-import com.puntogris.posture.data.datasource.local.DataStore
-import com.puntogris.posture.data.datasource.local.db.AppDatabase
-import com.puntogris.posture.data.datasource.local.db.ReminderDao
-import com.puntogris.posture.data.datasource.remote.FirebaseClients
-import com.puntogris.posture.data.datasource.remote.FirebaseReminderApi
-import com.puntogris.posture.data.datasource.remote.FirebaseUserApi
-import com.puntogris.posture.data.repository.*
-import com.puntogris.posture.domain.repository.*
-import com.puntogris.posture.utils.DispatcherProvider
-import com.puntogris.posture.utils.StandardDispatchers
-import com.puntogris.posture.utils.constants.Constants.ROOM_DATABASE_NAME
-import com.puntogris.posture.workers.WorkersManager
+import com.puntogris.posture.common.alarm.Alarm
+import com.puntogris.posture.common.alarm.Notifications
+import com.puntogris.posture.feature_main.data.datasource.local.DataStore
+import com.puntogris.posture.feature_main.data.datasource.local.db.AppDatabase
+import com.puntogris.posture.feature_main.data.datasource.local.db.ReminderDao
+import com.puntogris.posture.feature_main.data.datasource.remote.FirebaseClients
+import com.puntogris.posture.feature_main.data.datasource.remote.FirebaseReminderApi
+import com.puntogris.posture.feature_main.data.datasource.remote.FirebaseUserApi
+import com.puntogris.posture.feature_main.data.repository.*
+import com.puntogris.posture.feature_main.domain.repository.*
+import com.puntogris.posture.common.utils.DispatcherProvider
+import com.puntogris.posture.common.utils.StandardDispatchers
+import com.puntogris.posture.common.utils.constants.Constants.ROOM_DATABASE_NAME
+import com.puntogris.posture.common.workers.WorkersManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,18 +29,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module
 class AppModule {
-
-    @Singleton
-    @Provides
-    fun providesReminderDao(appDatabase: AppDatabase) = appDatabase.reminderDao
-
-    @Singleton
-    @Provides
-    fun providesUserDao(appDatabase: AppDatabase) = appDatabase.userDao
-
-    @Singleton
-    @Provides
-    fun providesDayHistoryDao(appDatabase: AppDatabase) = appDatabase.dayLogsDao
 
     @Provides
     @Singleton
@@ -53,6 +41,18 @@ class AppModule {
             )
             .build()
     }
+
+    @Singleton
+    @Provides
+    fun providesReminderDao(appDatabase: AppDatabase) = appDatabase.reminderDao
+
+    @Singleton
+    @Provides
+    fun providesUserDao(appDatabase: AppDatabase) = appDatabase.userDao
+
+    @Singleton
+    @Provides
+    fun providesDayHistoryDao(appDatabase: AppDatabase) = appDatabase.dayLogsDao
 
     @Singleton
     @Provides

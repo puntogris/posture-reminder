@@ -7,13 +7,13 @@
 
         <variable
             name="fragment"
-            type="com.puntogris.posture.ui.sync.SynAccountFragment" />
+            type="com.puntogris.posture.feature_main.presentation.sync.SynAccountFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.sync.SynAccountFragment">
+        tools:context=".feature_main.presentation.sync.SynAccountFragment">
 
         <TextView
             android:id="@+id/syncTitle"

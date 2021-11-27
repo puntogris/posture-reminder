@@ -9,18 +9,18 @@
 
         <variable
             name="fragment"
-            type="com.puntogris.posture.ui.home.HomeFragment" />
+            type="com.puntogris.posture.feature_main.presentation.home.HomeFragment" />
 
         <variable
             name="viewModel"
-            type="com.puntogris.posture.ui.home.HomeViewModel" />
+            type="com.puntogris.posture.feature_main.presentation.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipChildren="false"
-        tools:context=".ui.home.HomeFragment">
+        tools:context=".feature_main.presentation.home.HomeFragment">
 
         <TextView
             android:id="@+id/title"

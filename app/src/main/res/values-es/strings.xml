@@ -6,7 +6,7 @@
     <string name="home_label">Inicio</string>
     <string name="account_label">Cuenta</string>
     <string name="create_reminder_label">Nuevo recordatorio</string>
-    <string name="portal_label">Portal</string>
+    <string name="portal_label">Explorar</string>
     <string name="rankings_label">Rankings</string>
     <string name="ticket_label">Ticket</string>
     <string name="settings_label">Configuración</string>
@@ -67,8 +67,8 @@
     <string name="battery_optimization_step_two_light"><![CDATA[<font color=\'#C0C0C4\'>2 - Selecciona </font><b><font color=\'#ffffff\'> no optimizar</font></b><font color=\'#C0C0C4\'> la bateria</font>]]></string>
     <string name="battery_optimization_step_one_dark"><![CDATA[<font color=\'#757575\'>1 - Busca </font><b><font color=\'#000000\'>Recordatorio de Postura</font></b><font color=\'#757575\'> en el listado</font>]]></string>
     <string name="battery_optimization_step_two_dark"><![CDATA[<font color=\'#757575\'>2 - Selecciona </font><b><font color=\'#000000\'> no optimizar</font></b><font color=\'#757575\'> la bateria</font>]]></string>
-    <string name="all_in_order">Todo en orden</string>
-    <string name="require_action">Requiere acción</string>
+    <string name="optimization_correct">Todo en orden</string>
+    <string name="optimization_require_action">Requiere acción</string>
     <string name="status">Estado:</string>
     <string name="battery_optimization_alert2">* Esto no es obligatorio, pero puede que no todas las notificaciones sean ejecutadas.</string>
     <string name="battery_optimization_alert1">Para un mejor funcionamiento de la aplicacion te pedimos que desactives la optimizacion de bateria en respecto a nuestra aplicacion.\n\nNo te preocupes no gastaremos mucha bateria.</string>

@@ -6,15 +6,15 @@
 
         <variable
             name="bottomSheet"
-            type="com.puntogris.posture.ui.exercise.ExerciseBottomSheet" />
+            type="com.puntogris.posture.feature_main.presentation.exercise.ExerciseBottomSheet" />
 
         <variable
             name="exercise"
-            type="com.puntogris.posture.domain.model.Exercise" />
+            type="com.puntogris.posture.feature_main.domain.model.Exercise" />
 
         <variable
             name="viewModel"
-            type="com.puntogris.posture.ui.exercise.ExerciseViewModel" />
+            type="com.puntogris.posture.feature_main.presentation.exercise.ExerciseViewModel" />
     </data>
 
     <RelativeLayout

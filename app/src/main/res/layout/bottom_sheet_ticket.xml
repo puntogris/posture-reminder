@@ -7,18 +7,18 @@
 
         <variable
             name="viewModel"
-            type="com.puntogris.posture.ui.ticket.TicketViewModel" />
+            type="com.puntogris.posture.feature_main.presentation.ticket.TicketViewModel" />
 
         <variable
             name="bottomSheet"
-            type="com.puntogris.posture.ui.ticket.TicketBottomSheet" />
+            type="com.puntogris.posture.feature_main.presentation.ticket.TicketBottomSheet" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/Theme.Posture.Layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.ticket.TicketBottomSheet">
+        tools:context=".feature_main.presentation.ticket.TicketBottomSheet">
 
         <TextView
             android:id="@+id/ticketTitle"

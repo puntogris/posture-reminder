@@ -7,13 +7,13 @@
 
         <variable
             name="fragment"
-            type="com.puntogris.posture.ui.welcome.WelcomeFragment" />
+            type="com.puntogris.posture.feature_main.presentation.welcome.WelcomeFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.welcome.WelcomeFragment">
+        tools:context=".feature_main.presentation.welcome.WelcomeFragment">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"

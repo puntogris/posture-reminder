@@ -6,7 +6,7 @@
 
         <variable
             name="dayHistory"
-            type="com.puntogris.posture.domain.model.DayLog" />
+            type="com.puntogris.posture.feature_main.domain.model.DayLog" />
 
         <variable
             name="position"
