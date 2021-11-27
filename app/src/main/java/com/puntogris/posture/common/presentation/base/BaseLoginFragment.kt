@@ -14,7 +14,7 @@ import com.puntogris.posture.feature_auth.domain.model.LoginResult
 import com.puntogris.posture.common.utils.UiInterface
 import com.puntogris.posture.common.utils.gone
 import com.puntogris.posture.common.utils.visible
-import com.puntogris.posture.feature_auth.presentation.login.LoginConfiguration
+import com.puntogris.posture.feature_auth.presentation.LoginConfiguration
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 

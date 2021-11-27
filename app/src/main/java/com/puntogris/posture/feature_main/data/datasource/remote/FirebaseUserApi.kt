@@ -1,7 +1,8 @@
 package com.puntogris.posture.feature_main.data.datasource.remote
 
+import com.puntogris.posture.common.data.data_source.remote.FirebaseClients
 import com.puntogris.posture.feature_main.data.datasource.toPublicProfile
-import com.puntogris.posture.feature_auth.domain.model.UserPrivateData
+import com.puntogris.posture.feature_main.domain.model.UserPrivateData
 import com.puntogris.posture.feature_main.domain.repository.UserServerApi
 import com.puntogris.posture.common.utils.constants.Constants
 import kotlinx.coroutines.tasks.await

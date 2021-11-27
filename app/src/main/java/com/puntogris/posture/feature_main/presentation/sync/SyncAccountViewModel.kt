@@ -1,7 +1,7 @@
 package com.puntogris.posture.feature_main.presentation.sync
 
 import androidx.lifecycle.ViewModel
-import com.puntogris.posture.feature_auth.domain.model.UserPrivateData
+import com.puntogris.posture.feature_main.domain.model.UserPrivateData
 import com.puntogris.posture.feature_auth.domain.repository.AuthRepository
 import com.puntogris.posture.feature_main.domain.repository.SyncRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.puntogris.posture.feature_main.domain.model.DayLog
 import com.puntogris.posture.feature_main.domain.model.Reminder
-import com.puntogris.posture.feature_auth.domain.model.UserPrivateData
+import com.puntogris.posture.feature_main.domain.model.UserPrivateData
 import com.puntogris.posture.common.utils.constants.Converters
 
 @Database(

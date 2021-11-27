@@ -101,7 +101,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.puntogris.posture.feature_auth.presentation.login.LoginFragment"/>
+        android:name="com.puntogris.posture.feature_auth.presentation.LoginFragment"/>
     <fragment
         android:id="@+id/rankingsFragment"
         android:name="com.puntogris.posture.feature_main.presentation.rankings.RankingsFragment"/>
@@ -114,7 +114,7 @@
         android:name="com.puntogris.posture.feature_main.presentation.sync.SynAccountFragment" >
         <argument
             android:name="userPrivateData"
-            app:argType="com.puntogris.posture.feature_auth.domain.model.UserPrivateData"
+            app:argType="com.puntogris.posture.feature_main.domain.model.UserPrivateData"
             app:nullable="true"
             android:defaultValue="@null" />
         <action
@@ -157,7 +157,7 @@
         app:destination="@id/homeFragment" />
     <fragment
         android:id="@+id/internalLoginFragment"
-        android:name="com.puntogris.posture.feature_auth.presentation.login.InternalLoginFragment"/>
+        android:name="com.puntogris.posture.feature_auth.presentation.InternalLoginFragment"/>
     <action
         android:id="@+id/action_global_synAccountFragment"
         app:destination="@id/synAccountFragment" />

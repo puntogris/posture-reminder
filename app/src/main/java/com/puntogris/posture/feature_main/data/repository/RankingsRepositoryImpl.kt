@@ -1,7 +1,7 @@
 package com.puntogris.posture.feature_main.data.repository
 
 import com.google.firebase.firestore.Query
-import com.puntogris.posture.feature_main.data.datasource.remote.FirebaseClients
+import com.puntogris.posture.common.data.data_source.remote.FirebaseClients
 import com.puntogris.posture.feature_main.domain.model.UserPublicProfile
 import com.puntogris.posture.feature_main.domain.repository.RankingsRepository
 import com.puntogris.posture.common.utils.DispatcherProvider

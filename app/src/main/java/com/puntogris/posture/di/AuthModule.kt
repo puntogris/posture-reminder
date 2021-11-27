@@ -8,7 +8,7 @@ import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.common.alarm.Alarm
 import com.puntogris.posture.feature_main.data.datasource.local.DataStore
 import com.puntogris.posture.feature_auth.data.data_source.FirebaseAuthApi
-import com.puntogris.posture.feature_main.data.datasource.remote.FirebaseClients
+import com.puntogris.posture.common.data.data_source.remote.FirebaseClients
 import com.puntogris.posture.feature_main.data.datasource.remote.GoogleSingInApi
 import com.puntogris.posture.feature_auth.data.repository.AuthRepositoryImpl
 import com.puntogris.posture.feature_auth.domain.repository.AuthRepository

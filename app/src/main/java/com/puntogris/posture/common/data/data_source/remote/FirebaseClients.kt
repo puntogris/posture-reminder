@@ -1,4 +1,4 @@
-package com.puntogris.posture.feature_main.data.datasource.remote
+package com.puntogris.posture.common.data.data_source.remote
 
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth

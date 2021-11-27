@@ -3,7 +3,7 @@ package com.puntogris.posture.feature_main.data.repository
 import com.lyft.kronos.KronosClock
 import com.puntogris.posture.feature_main.data.datasource.local.DataStore
 import com.puntogris.posture.feature_main.data.datasource.local.db.AppDatabase
-import com.puntogris.posture.feature_auth.domain.model.UserPrivateData
+import com.puntogris.posture.feature_main.domain.model.UserPrivateData
 import com.puntogris.posture.feature_main.domain.repository.ReminderServerApi
 import com.puntogris.posture.feature_main.domain.repository.SyncRepository
 import com.puntogris.posture.feature_main.domain.repository.UserServerApi

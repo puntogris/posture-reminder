@@ -1,4 +1,4 @@
-package com.puntogris.posture.feature_auth.presentation.login
+package com.puntogris.posture.feature_auth.presentation
 
 import androidx.activity.result.ActivityResult
 import androidx.lifecycle.ViewModel

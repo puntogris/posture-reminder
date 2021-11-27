@@ -7,13 +7,13 @@
 
         <variable
             name="fragment"
-            type="com.puntogris.posture.feature_auth.presentation.login.LoginFragment" />
+            type="com.puntogris.posture.feature_auth.presentation.LoginFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".feature_auth.presentation.login.LoginFragment">
+        tools:context=".feature_auth.presentation.LoginFragment">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/loginLogoCard"

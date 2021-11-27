@@ -5,7 +5,7 @@ import com.puntogris.posture.common.alarm.Alarm
 import com.puntogris.posture.common.alarm.Notifications
 import com.puntogris.posture.feature_main.data.datasource.local.DataStore
 import com.puntogris.posture.feature_main.data.datasource.local.db.ReminderDao
-import com.puntogris.posture.feature_main.data.datasource.remote.FirebaseClients
+import com.puntogris.posture.common.data.data_source.remote.FirebaseClients
 import com.puntogris.posture.feature_main.domain.model.Reminder
 import com.puntogris.posture.feature_main.domain.model.ReminderId
 import com.puntogris.posture.feature_main.domain.repository.ReminderRepository

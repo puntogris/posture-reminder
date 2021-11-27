@@ -4,7 +4,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.messaging.RemoteMessage
 import com.puntogris.posture.feature_main.domain.model.FcmNotification
-import com.puntogris.posture.feature_auth.domain.model.UserPrivateData
+import com.puntogris.posture.feature_main.domain.model.UserPrivateData
 import com.puntogris.posture.feature_main.domain.model.UserPublicProfile
 import com.puntogris.posture.common.utils.capitalizeWords
 import com.puntogris.posture.common.utils.millisToTimestamp

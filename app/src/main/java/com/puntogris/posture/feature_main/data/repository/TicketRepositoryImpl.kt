@@ -1,6 +1,6 @@
 package com.puntogris.posture.feature_main.data.repository
 
-import com.puntogris.posture.feature_main.data.datasource.remote.FirebaseClients
+import com.puntogris.posture.common.data.data_source.remote.FirebaseClients
 import com.puntogris.posture.feature_main.domain.model.Ticket
 import com.puntogris.posture.feature_main.domain.repository.TicketRepository
 import com.puntogris.posture.common.utils.DispatcherProvider

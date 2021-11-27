@@ -2,7 +2,7 @@ package com.puntogris.posture.feature_main.data.repository
 
 import com.puntogris.posture.common.alarm.Alarm
 import com.puntogris.posture.feature_main.data.datasource.local.db.AppDatabase
-import com.puntogris.posture.feature_main.data.datasource.remote.FirebaseClients
+import com.puntogris.posture.common.data.data_source.remote.FirebaseClients
 import com.puntogris.posture.feature_main.domain.model.Reminder
 import com.puntogris.posture.feature_main.domain.repository.UserRepository
 import com.puntogris.posture.feature_main.domain.repository.UserServerApi

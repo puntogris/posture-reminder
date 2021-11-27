@@ -1,4 +1,4 @@
-package com.puntogris.posture.feature_auth.domain.model
+package com.puntogris.posture.feature_main.domain.model
 
 import android.os.Parcelable
 import androidx.annotation.Keep

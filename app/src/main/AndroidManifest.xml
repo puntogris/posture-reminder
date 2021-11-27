@@ -32,7 +32,7 @@
             android:name="com.google.android.gms.oss.licenses.OssLicensesActivity"
             android:theme="@style/Theme.Posture.Licenses" />
         <service
-            android:name="com.puntogris.posture.feature_main.data.datasource.remote.FirebaseMessagingService"
+            android:name="com.puntogris.posture.common.data.data_source.remote.FirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
