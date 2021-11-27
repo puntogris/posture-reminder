@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App -->
-    <string name="app_name">Posture Reminder - Держи осанку!</string> <!-- Not the direct translation, more like "Keep the posture". Probably will change it later, as for now - leaving to your judgement. -->
+    <string name="app_name">Держи осанку!</string> <!-- "Keep the posture!" -->
 
     <!-- Navigation -->
     <string name="home_label">Дом. страница</string> <!-- Gotta change this one for sure. -->
@@ -13,7 +13,7 @@
     <string name="settings_label">Настройки</string>
     <string name="reminders_label">Напоминания</string>
     <string name="battery_optimization_label">Экономия батареи</string>
-    <string name="top_rankings_label">Топ-30 рейтинга</string>
+    <string name="top_rankings_label">Топ-30 пользователей</string>
     <string name="credits_label">Авторские права</string>
 
     <!-- Actions -->
@@ -55,7 +55,7 @@
     <!-- Home --> <!-- Attention -->
     <string name="stop_alarm">Остановить</string>
     <string name="start_alarm">Начать</string>
-    <string name="snack_alarms_off">Напоминание отключено.</string> <!-- Wait, an alarm? I suppose it's misspelled, so I'll translate this one as "reminder" too. -->
+    <string name="snack_alarms_off">Напоминание отключено.</string>
     <string name="today_pager">Сегодня</string>
     <string name="yesterday_pager">Вчера</string>
 
@@ -64,14 +64,14 @@
     <string name="whats_new">Что нового</string>
 
     <!-- Battery optimization -->
-    <string name="battery_optimization_step_one_light"><![CDATA[<font color=\'#C0C0C4\'>1 - Найдите </font><b><font color=\'#ffffff\'>Posture Reminder - Держи осанку!</font></b><font color=\'#C0C0C4\'> в списке</font>]]></string>
+    <string name="battery_optimization_step_one_light"><![CDATA[<font color=\'#C0C0C4\'>1 - Найдите приложение </font><b><font color=\'#ffffff\'>Держи осанку!</font></b><font color=\'#C0C0C4\'> в списке</font>]]></string>
     <string name="battery_optimization_step_two_light"><![CDATA[<font color=\'#C0C0C4\'>2 - Выберите </font><b><font color=\'#ffffff\'> "Не экономить батарею"</font></b></font>]]></string>
-    <string name="battery_optimization_step_one_dark"><![CDATA[<font color=\'#757575\'>1 - Найдите </font><b><font color=\'#000000\'>Posture Reminder - Держи осанку!</font></b><font color=\'#757575\'> в списке</font>]]></string>
+    <string name="battery_optimization_step_one_dark"><![CDATA[<font color=\'#757575\'>1 - Найдите приложение </font><b><font color=\'#000000\'>Держи осанку!</font></b><font color=\'#757575\'> в списке</font>]]></string>
     <string name="battery_optimization_step_two_dark"><![CDATA[<font color=\'#757575\'>2 - Выберите </font><b><font color=\'#000000\'> "Не экономить батарею"</font></b></font>]]></string>
     <string name="optimization_correct">Все готово</string>
-    <string name="optimization_require_action">Требует действий</string>
+    <string name="optimization_require_action">Требуется разрешение</string>
     <string name="status">Статус:</string>
-    <string name="battery_optimization_alert2">* Это не обязательно к выполнению, но в случае отказа может привести к пропуску уведомлений.</string>
+    <string name="battery_optimization_alert2">* Это не обязательно делать, но отсутствие разрешения может помешать присылать вам уведомления.</string>
     <string name="battery_optimization_alert1">Пожалуйста, отключите экономию энергии для лучшей работы приложения.\n\nНе волнуйтесь, оно совсем не прожорливое.</string>
 
     <!-- Ticket -->
@@ -89,18 +89,18 @@
     <string name="color_picker_title">Цвет напоминания</string>
     <string name="vibration_picker_title">Тип вибрации</string>
     <string name="sound_tone_item_none">Нет</string>
-    <string name="sound_picker_title">Выбор звука</string>
-    <string name="snack_create_reminder_success">Напоминание успешно создано</string>
+    <string name="sound_picker_title">Выбор звукового уведомления</string>
+    <string name="snack_create_reminder_success">Напоминание успешно сохранено</string>
     <string name="interval">Интервал</string>
     <string name="snack_active_reminder_not_found">Активных напоминаний нет.</string>
-    <string name="name_required">Название*</string>
-    <string name="interval_required">Интервал*</string>
+    <string name="name_required">Имя*</string>
+    <string name="interval_required">Повторы*</string>
     <string name="days_required">Дни*</string>
     <string name="start_time_required">Начало*</string>
     <string name="end_time_required">Конец в*</string>
     <string name="snack_reminder_not_valid">Заполните все поля, помеченные * </string>
     <string name="create_reminder_interval_summary">Выбор интервала</string>
-    <string name="create_reminder_days_summary">Выберите дни</string>
+    <string name="create_reminder_days_summary">Выберите дни активности</string>
     <string name="create_reminder_start_summary">Выберите время начала работы</string>
     <string name="create_reminder_end_summary">Выберите время конца работы</string>
     <string name="select_another_reminder">Выбрать другое напоминание</string>
@@ -109,13 +109,13 @@
     <string name="end_time_title">Время окончания</string>
     <string name="start_time_title">Время начала</string>
     <string name="alarm_days_title">Дни работы</string>
-    <string name="time_interval_title">Интервал времени</string>
-    <string name="time_hint">Время</string>
+    <string name="time_interval_title">Интервал между напоминаниями</string>
+    <string name="time_hint">Введите число</string> <!-- Do we actually need to hint that this field is for time? -->
     <string name="minutes">Минуты</string>
     <string name="hours">Часы</string>
-    <string name="time_unit_title">Какую ед. времени вы хотите использовать?</string>
+    <string name="time_unit_title">Выберите ед. времени:</string>
     <string name="snack_time_interval_cant_be_zero">Интервал не может быть равен 0.</string>
-    <string name="time_interval_subtitle">Установить интервал повторных напоминаний</string>
+    <string name="time_interval_subtitle">Длительность интервала</string>
     <string name="reminder_name_hint">Название напоминания</string>
 
     <!-- Sync -->
@@ -124,7 +124,7 @@
     <string name="account_sync_error">Ошибка, сихронизация не завершена</string>
 
     <!-- Settings -->
-    <string name="snack_panda_unlocked">Панда разблокирован! Возвращайтесь на главный экран и наслаждайтесь его милотой!</string> <!-- Heyy, what panda? Where I can find him? -->
+    <string name="snack_panda_unlocked">Панда разблокирован! Возвращайтесь на главный экран и наслаждайтесь его милотой!</string>
     <string name="change_name_title">Изменить имя</string>
     <string name="change_name_subtitle">Введите новое имя</string>
     <string name="snack_edit_username_success">Имя успешно обновлено</string>
@@ -176,7 +176,7 @@
     <string name="fmc_channel_name">Posture Reminder Server</string>  <!-- Where are these two lines can be seen? -->
 
     <!-- Account -->
-    <string name="level_1_title">Из спины веревки вить</string>
+    <string name="level_1_title">Спина-веревка</string>
     <string name="level_2_title">Бумажная спина</string>
     <string name="level_3_title">Бронзовая спина</string>
     <string name="level_4_title">Серебряная спина</string>
@@ -187,19 +187,19 @@
     <string name="account_exp_title">Опыт</string>
     <string name="selected_reminder">Выбранное напоминание</string>
     <string name="see_all_reminders">Посмотреть мои напоминания</string>
-    <string name="no_reminders_found_alert">На вашем аккаунте не найдено активных напоминаний, предлагаем вам выбрать существующее или создать новое и выбрать его. We did not find an active reminder in your account, we invite you to create a new one and select it.</string> <!-- Is this message pops up only when there is no active reminders, or when there is no reminders at all? -->
+    <string name="no_reminders_found_alert">На вашем аккаунте не найдено активных напоминаний, предлагаем вам выбрать существующее или создать новое.</string> 
     <string name="manage_account_reminders">Создавайте, редактируйте и удаляйте ваши напоминания.</string>
 
     <!-- Other -->
     <string name="snack_configuration_updated">Настройки успешно обновлены. Напоминание активировано.</string>
     <string name="name">Имя</string>
-    <string name="disabled">Выключено</string>
+    <string name="disabled">Беззвучный</string>
     <string name="experience">Опыт</string>
     <string name="exercises">Упражнения</string>
     <string name="snack_connection_error">Произошла ошибка. Проверьте интернет-соединение и попробуйте снова.</string>
     <string name="snack_general_error">Произошла ошибка. Пожалуйста, попробуйте снова.</string>
     <string name="see_global_rankings">Посмотреть глобальный рейтинг</string>
-    <string name="today">Сегодня</string>
+    <string name="today">Сег.</string>
     <string name="snack_permission_required">Данное разрешение необходимо, чтобы выполнить это действие.</string>
     <string name="snack_action_require_permission">Это действие требует особых разрешений.</string>
     <string name="message">Сообщение</string>
@@ -211,7 +211,7 @@
     <string name="in_progress">В процессе выполнения</string>
     <string name="finished">Выполнено</string>
     <string name="steps">Шаги</string>
-    <string name="duration">Продолжительность</string>
+    <string name="duration">Длит-ность</string> <!-- was overlapping with exercises' descriptions -->
     <string name="description">Описание</string>
     <string name="exercise">Упражнение</string>
     <string name="completed_exercise_title">Поздравляем!</string>
@@ -290,7 +290,7 @@
     <string name="bottom_nav_icons_credit">Иконки панели навигации - Flaticon</string>
 
     <!-- Vibration Patterns -->
-    <string name="disabled_pattern">Отключено</string>
+    <string name="disabled_pattern">Без вибрации</string>
     <string name="normal_pattern">Обычный</string>
     <string name="stairs_pattern">Ступенчатый</string>
     <string name="fast_pattern">Быстрый</string>
@@ -302,13 +302,13 @@
     </string-array>
 
     <string-array name="alarmDays">
-        <item>Понедельник</item>
+        <item>Понед.</item>
         <item>Вторник</item>
         <item>Среда</item>
         <item>Четверг</item>
         <item>Пятница</item>
         <item>Суббота</item>
-        <item>Воскресенье</item>
+        <item>Воскр.</item> <!-- Shortened Monday and Sunday as they don't fit in their boxes -->
     </string-array>
 
     <string-array name="theme_names">
