@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.view.isVisible
 import androidx.navigation.*
 import androidx.navigation.ui.*
 import com.google.android.material.snackbar.Snackbar

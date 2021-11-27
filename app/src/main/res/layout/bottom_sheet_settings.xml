@@ -6,7 +6,7 @@
 
         <variable
             name="bottomSheet"
-            type="com.puntogris.posture.feature_main.presentation.settings.SettingsBottomSheet" />
+            type="com.puntogris.posture.ui.settings.SettingsBottomSheet" />
     </data>
 
     <LinearLayout

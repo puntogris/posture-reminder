@@ -9,11 +9,11 @@
 
         <variable
             name="fragment"
-            type="com.puntogris.posture.feature_main.presentation.home.HomeFragment" />
+            type="com.puntogris.posture.ui.home.HomeFragment" />
 
         <variable
             name="viewModel"
-            type="com.puntogris.posture.feature_main.presentation.home.HomeViewModel" />
+            type="com.puntogris.posture.ui.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

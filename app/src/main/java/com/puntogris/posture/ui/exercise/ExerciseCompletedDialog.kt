@@ -10,6 +10,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.DialogCompletedExerciseBinding
 import com.puntogris.posture.domain.model.RewardExp
+import com.puntogris.posture.utils.constants.Constants.EXPERIENCE_PER_EXERCISE
+import com.puntogris.posture.utils.playAnimationOnce
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

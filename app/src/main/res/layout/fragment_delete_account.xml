@@ -7,7 +7,7 @@
 
         <variable
             name="fragment"
-            type="com.puntogris.posture.feature_main.presentation.account.DeleteAccountFragment" />
+            type="com.puntogris.posture.ui.account.DeleteAccountFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

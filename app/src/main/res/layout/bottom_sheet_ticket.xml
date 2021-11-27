@@ -7,11 +7,11 @@
 
         <variable
             name="viewModel"
-            type="com.puntogris.posture.feature_main.presentation.ticket.TicketViewModel" />
+            type="com.puntogris.posture.ui.ticket.TicketViewModel" />
 
         <variable
             name="bottomSheet"
-            type="com.puntogris.posture.feature_main.presentation.ticket.TicketBottomSheet" />
+            type="com.puntogris.posture.ui.ticket.TicketBottomSheet" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

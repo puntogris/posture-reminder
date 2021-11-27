@@ -7,7 +7,7 @@
 
         <variable
             name="fragment"
-            type="com.puntogris.posture.feature_main.presentation.sync.SynAccountFragment" />
+            type="com.puntogris.posture.ui.sync.SynAccountFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

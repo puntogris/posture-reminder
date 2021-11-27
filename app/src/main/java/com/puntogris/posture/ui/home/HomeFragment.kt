@@ -22,6 +22,7 @@ import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.constants.Constants.PACKAGE_URI_NAME
 import com.puntogris.posture.utils.navigateTo
+import com.puntogris.posture.utils.setPageFadeTransformer
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

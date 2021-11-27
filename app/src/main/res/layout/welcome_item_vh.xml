@@ -7,7 +7,7 @@
 
         <variable
             name="welcomeItem"
-            type="com.puntogris.posture.feature_main.presentation.util.WelcomeItem" />
+            type="com.puntogris.posture.utils.WelcomeItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

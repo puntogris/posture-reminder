@@ -3,6 +3,7 @@ package com.puntogris.posture.ui.sync
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.ui.base.BaseBindingFragment
 import com.puntogris.posture.utils.*

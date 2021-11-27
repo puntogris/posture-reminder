@@ -5,7 +5,7 @@
 
         <variable
             name="dialog"
-            type="com.puntogris.posture.feature_main.presentation.settings.EditUserNameDialog" />
+            type="com.puntogris.posture.ui.settings.EditUserNameDialog" />
     </data>
 
     <LinearLayout

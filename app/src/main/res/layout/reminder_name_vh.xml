@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.puntogris.posture.feature_main.presentation.util.ReminderUi.Name" />
+            type="com.puntogris.posture.utils.ReminderUi.Name" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

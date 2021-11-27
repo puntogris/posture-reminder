@@ -6,7 +6,7 @@
 
         <variable
             name="bottomSheet"
-            type="com.puntogris.posture.feature_main.presentation.settings.CreditsBottomSheet" />
+            type="com.puntogris.posture.ui.settings.CreditsBottomSheet" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -7,11 +7,11 @@
 
         <variable
             name="bottomSheet"
-            type="com.puntogris.posture.feature_main.presentation.reminders.new_edit.NewReminderBottomSheet" />
+            type="com.puntogris.posture.ui.reminders.new_edit.NewReminderBottomSheet" />
 
         <variable
             name="viewModel"
-            type="com.puntogris.posture.feature_main.presentation.reminders.new_edit.NewReminderViewModel" />
+            type="com.puntogris.posture.ui.reminders.new_edit.NewReminderViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

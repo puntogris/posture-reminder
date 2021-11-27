@@ -1,13 +1,20 @@
 package com.puntogris.posture.ui.ticket
 
 import android.widget.ArrayAdapter
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetTicketBinding
 import com.puntogris.posture.ui.base.BaseBindingBottomSheetFragment
 import com.puntogris.posture.utils.Result
+import com.puntogris.posture.utils.constants.Constants.DATA_KEY
+import com.puntogris.posture.utils.constants.Constants.SEND_TICKET_KEY
+import com.puntogris.posture.utils.gone
 import com.puntogris.posture.utils.hideKeyboard
+import com.puntogris.posture.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

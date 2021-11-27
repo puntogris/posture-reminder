@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.puntogris.posture.feature_main.presentation.account.AccountViewModel" />
+            type="com.puntogris.posture.ui.account.AccountViewModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

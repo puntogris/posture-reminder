@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.databinding.RankingProfileVhBinding
 import com.puntogris.posture.domain.model.UserPublicProfile
+import com.puntogris.posture.utils.gone
 
 class RankingsViewHolder(private val binding: RankingProfileVhBinding) :
     RecyclerView.ViewHolder(binding.root) {

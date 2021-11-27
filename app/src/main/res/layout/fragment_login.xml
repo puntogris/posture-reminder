@@ -7,7 +7,7 @@
 
         <variable
             name="fragment"
-            type="com.puntogris.posture.feature_main.presentation.login.LoginFragment" />
+            type="com.puntogris.posture.ui.login.LoginFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -7,7 +7,7 @@
 
         <variable
             name="fragment"
-            type="com.puntogris.posture.feature_main.presentation.explore.PortalFragment" />
+            type="com.puntogris.posture.ui.explore.PortalFragment" />
     </data>
 
     <androidx.core.widget.NestedScrollView

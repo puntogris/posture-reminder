@@ -4,6 +4,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.airbnb.lottie.LottieDrawable
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentDeleteAccountBinding
 import com.puntogris.posture.ui.base.BaseBindingFragment

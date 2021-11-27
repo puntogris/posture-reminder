@@ -5,6 +5,7 @@ import com.puntogris.posture.R
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.databinding.FragmentWelcomeBinding
 import com.puntogris.posture.ui.base.BaseBindingFragment
+import com.puntogris.posture.utils.isDarkThemeOn
 import com.puntogris.posture.utils.navigateTo
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

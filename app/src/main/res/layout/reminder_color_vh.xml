@@ -5,7 +5,7 @@
 
         <variable
             name="item"
-            type="com.puntogris.posture.feature_main.presentation.util.ReminderUi.Color" />
+            type="com.puntogris.posture.utils.ReminderUi.Color" />
     </data>
 
     <LinearLayout
