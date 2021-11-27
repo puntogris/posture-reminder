@@ -60,7 +60,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
                 lifecycleScope.launch {
                     when (viewModel.logOut()) {
                         SimpleResult.Failure -> {
-                            (requireParentFragment() as SettingsBottomSheet).showSnackBar(R.string.snack_general_error)
+                            (requireParentFragment() as SettingsBottomSheet).showSnackBarAnchored(R.string.snack_general_error)
                         }
                         SimpleResult.Success -> {
                             val nav = NavOptions.Builder().setPopUpTo(R.id.navigation, true).build()
@@ -94,7 +94,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
             summary = BuildConfig.VERSION_NAME + " ( ${BuildConfig.VERSION_CODE} )"
             onClick {
                 viewModel.setPandaAnimationPref(true)
-                (requireParentFragment() as SettingsBottomSheet).showSnackBar(R.string.snack_panda_unlocked)
+                (requireParentFragment() as SettingsBottomSheet).showSnackBarAnchored(R.string.snack_panda_unlocked)
             }
         }
 

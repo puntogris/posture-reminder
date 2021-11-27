@@ -35,16 +35,19 @@ class SettingsBottomSheet : BaseBindingBottomSheetFragment<BottomSheetSettingsBi
             val snackMessage =
                 if (ticketSentSuccessfully) R.string.snack_send_ticket_success
                 else R.string.snack_connection_error
-            showSnackBar(snackMessage)
+            showSnackBarAnchored(snackMessage)
         }
         setFragmentResultListener(EDIT_NAME_KEY) { _, bundle ->
             val editUsernameSuccessfully = bundle.getBoolean(DATA_KEY)
             val snackMessage =
                 if (editUsernameSuccessfully) R.string.snack_edit_username_success
                 else R.string.snack_connection_error
-            showSnackBar(snackMessage)
+            showSnackBarAnchored(snackMessage)
         }
     }
 
+    fun showSnackBarAnchored(message: Int){
+        showSnackBar(message, anchorView = binding.guidelineEnd)
+    }
 }
 

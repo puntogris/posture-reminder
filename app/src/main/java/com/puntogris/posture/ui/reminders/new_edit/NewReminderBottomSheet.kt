@@ -72,7 +72,7 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
         lifecycleScope.launch {
             when (val result = viewModel.saveReminder()) {
                 is Result.Error -> {
-                    showSnackBar(result.error)
+                    showSnackBar(result.error, anchorView = binding.saveReminderButton)
                 }
                 is Result.Success -> {
                     dismiss()
@@ -150,7 +150,7 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
                 if (interval != 0) {
                     viewModel.saveTimeInterval(if (timeUnit == 0) interval else interval * 60)
                 } else {
-                    showSnackBar(R.string.snack_time_interval_cant_be_zero)
+                    showSnackBar(R.string.snack_time_interval_cant_be_zero, anchorView = binding.saveReminderButton)
                 }
             }
         }
