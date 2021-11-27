@@ -113,6 +113,7 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
         ColorSheet().show(requireParentFragment().requireContext()) {
             title(R.string.color_picker_title)
             disableSwitchColorView()
+            onNegative(R.string.action_cancel)
             onPositive { color -> viewModel.saveReminderColor(color) }
         }
     }
@@ -142,6 +143,7 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
                 hint(R.string.time_hint)
                 inputType(InputType.TYPE_CLASS_NUMBER)
             })
+            onNegative(R.string.action_cancel)
             onPositive(R.string.action_save) {
                 val timeUnit = it.getInt(TIME_UNIT_KEY)
                 val interval = it.getString(INTERVAL_KEY, "0").toInt()
@@ -164,6 +166,7 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
             title(R.string.alarm_days_title)
             multipleChoices(true)
             with(options)
+            onNegative(R.string.action_cancel)
             onPositiveMultiple(R.string.action_save) { indices, _ ->
                 viewModel.saveReminderDays(indices.sorted())
             }
@@ -178,6 +181,7 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
                 if (code is ReminderUi.Item.Start) R.string.start_time_title
                 else R.string.end_time_title
             )
+            onNegative(R.string.action_cancel)
             onPositive { milliseconds: Long, _, _ ->
                 if (code is ReminderUi.Item.Start) viewModel.saveStartTime(milliseconds)
                 else viewModel.saveEndTime(milliseconds)
