@@ -1,20 +1,26 @@
 package com.puntogris.posture.feature_main.presentation.sync
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.puntogris.posture.feature_main.domain.model.UserPrivateData
 import com.puntogris.posture.feature_auth.domain.repository.AuthRepository
 import com.puntogris.posture.feature_main.domain.repository.SyncRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 @HiltViewModel
 class SyncAccountViewModel @Inject constructor(
     private val syncRepository: SyncRepository,
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    suspend fun synAccountWith(userPrivateData: UserPrivateData?) =
-        syncRepository.syncAccount(userPrivateData)
+    private val authUser = savedStateHandle.get<UserPrivateData>("userPrivateData")
+
+    val syncStatus = flow {
+        emit(syncRepository.syncAccount(authUser))
+    }
 
     suspend fun logOut() {
         authRepository.signOutUser()

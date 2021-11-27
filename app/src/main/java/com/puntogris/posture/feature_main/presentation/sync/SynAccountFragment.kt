@@ -4,13 +4,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.puntogris.posture.R
-import com.puntogris.posture.databinding.FragmentSynAccountBinding
-import com.puntogris.posture.feature_main.domain.model.UserPrivateData
 import com.puntogris.posture.common.presentation.base.BaseBindingFragment
 import com.puntogris.posture.common.utils.*
+import com.puntogris.posture.databinding.FragmentSynAccountBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -18,18 +17,19 @@ class SynAccountFragment :
     BaseBindingFragment<FragmentSynAccountBinding>(R.layout.fragment_syn_account) {
 
     private val viewModel: SyncAccountViewModel by viewModels()
-    private val args: SynAccountFragmentArgs by navArgs()
 
     override fun initializeViews() {
         binding.fragment = this
-        startAccountSync(args.userPrivateData)
+        subscribeUi()
     }
 
-    private fun startAccountSync(userPrivateData: UserPrivateData?) {
+    private fun subscribeUi() {
         launchAndRepeatWithViewLifecycle(Lifecycle.State.CREATED) {
-            when (viewModel.synAccountWith(userPrivateData)) {
-                SimpleResult.Failure -> onSyncAccountFailure()
-                SimpleResult.Success -> onSyncAccountSuccess()
+            viewModel.syncStatus.collect {
+                when (it) {
+                    SimpleResult.Failure -> onSyncAccountFailure()
+                    SimpleResult.Success -> onSyncAccountSuccess()
+                }
             }
         }
     }
