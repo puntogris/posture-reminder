@@ -3,8 +3,8 @@ package com.puntogris.posture.utils
 import android.content.Context
 import androidx.annotation.StringRes
 import com.puntogris.posture.R
-import com.puntogris.posture.utils.Utils.minutesFromMidnightToHourlyTime
 import com.puntogris.posture.domain.model.Reminder
+import com.puntogris.posture.utils.Utils.minutesFromMidnightToHourlyTime
 
 sealed class ReminderUi {
 

@@ -1,17 +1,17 @@
 package com.puntogris.posture.data.repository
 
 import androidx.activity.result.ActivityResult
-import com.puntogris.posture.framework.alarm.Alarm
-import com.puntogris.posture.framework.workers.WorkersManager
-import com.puntogris.posture.utils.DispatcherProvider
-import com.puntogris.posture.utils.SimpleResult
-import com.puntogris.posture.utils.constants.Constants.SYNC_ACCOUNT_WORKER
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.datasource.remote.GoogleSingInApi
 import com.puntogris.posture.data.datasource.toUserPrivateData
 import com.puntogris.posture.domain.model.LoginResult
 import com.puntogris.posture.domain.repository.AuthRepository
 import com.puntogris.posture.domain.repository.AuthServerApi
+import com.puntogris.posture.framework.alarm.Alarm
+import com.puntogris.posture.framework.workers.WorkersManager
+import com.puntogris.posture.utils.DispatcherProvider
+import com.puntogris.posture.utils.SimpleResult
+import com.puntogris.posture.utils.constants.Constants.SYNC_ACCOUNT_WORKER
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn

@@ -6,7 +6,7 @@
     <string name="home_label">Home</string>
     <string name="account_label">Account</string>
     <string name="create_reminder_label">New reminder</string>
-    <string name="portal_label">Portal</string>
+    <string name="explore_label">Explore</string>
     <string name="rankings_label">Rankings</string>
     <string name="ticket_label">Ticket</string>
     <string name="settings_label">Settings</string>
@@ -52,8 +52,6 @@
     <string name="welcome_pager_title3">We are always with you!</string>
 
     <!-- Home -->
-    <string name="alarm_on">The reminder is on</string>
-    <string name="alarm_off">The reminder is off</string>
     <string name="stop_alarm">Stop</string>
     <string name="start_alarm">Start</string>
     <string name="snack_alarms_off">The alarm has been deactivated.</string>
@@ -141,7 +139,7 @@
     <string name="version">Version</string>
     <string name="version_name">Version %1$s</string>
     <string name="rate_us">Rate us</string>
-    <string name="battery_optimization">Battery optimiz.</string>
+    <string name="battery_optimization_abbreviation">Battery optimiz.</string>
     <string name="ticker_feedback">Ticket /Feedback</string>
     <string name="human">Human</string>
     <string name="create_ticket">Create a ticket</string>

@@ -3,9 +3,9 @@ package com.puntogris.posture.data.repository
 import androidx.room.withTransaction
 import com.puntogris.posture.data.datasource.local.db.AppDatabase
 import com.puntogris.posture.domain.model.DayLog
+import com.puntogris.posture.domain.model.RewardExp
 import com.puntogris.posture.domain.repository.DayLogsRepository
 import com.puntogris.posture.utils.DispatcherProvider
-import com.puntogris.posture.domain.model.RewardExp
 import com.puntogris.posture.utils.constants.Constants.MAX_EXPERIENCE_PER_DAY
 import kotlinx.coroutines.withContext
 

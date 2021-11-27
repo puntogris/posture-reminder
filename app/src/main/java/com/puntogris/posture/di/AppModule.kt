@@ -5,8 +5,6 @@ import androidx.room.Room
 import androidx.work.WorkManager
 import com.lyft.kronos.AndroidClockFactory
 import com.lyft.kronos.KronosClock
-import com.puntogris.posture.framework.alarm.Alarm
-import com.puntogris.posture.framework.alarm.Notifications
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.datasource.local.db.AppDatabase
 import com.puntogris.posture.data.datasource.local.db.ReminderDao
@@ -15,10 +13,12 @@ import com.puntogris.posture.data.datasource.remote.FirebaseReminderApi
 import com.puntogris.posture.data.datasource.remote.FirebaseUserApi
 import com.puntogris.posture.data.repository.*
 import com.puntogris.posture.domain.repository.*
+import com.puntogris.posture.framework.alarm.Alarm
+import com.puntogris.posture.framework.alarm.Notifications
+import com.puntogris.posture.framework.workers.WorkersManager
 import com.puntogris.posture.utils.DispatcherProvider
 import com.puntogris.posture.utils.StandardDispatchers
 import com.puntogris.posture.utils.constants.Constants.ROOM_DATABASE_NAME
-import com.puntogris.posture.framework.workers.WorkersManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -23,8 +23,6 @@ import com.puntogris.posture.utils.constants.Constants.INTERVAL_KEY
 import com.puntogris.posture.utils.constants.Constants.SOUND_PICKER_KEY
 import com.puntogris.posture.utils.constants.Constants.TIME_UNIT_KEY
 import com.puntogris.posture.utils.constants.Constants.VIBRATION_PICKER_KEY
-import com.puntogris.posture.utils.ReminderUi
-import com.puntogris.posture.utils.Utils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

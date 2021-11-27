@@ -11,10 +11,10 @@ import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.NavigationDirections
 import com.puntogris.posture.R
 import com.puntogris.posture.domain.model.LoginResult
+import com.puntogris.posture.ui.login.LoginConfiguration
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.gone
 import com.puntogris.posture.utils.visible
-import com.puntogris.posture.ui.login.LoginConfiguration
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 

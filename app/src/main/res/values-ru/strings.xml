@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App -->
+    <string name="app_name">Posture Reminder - Держи осанку!</string> <!-- Not the direct translation, more like "Keep the posture". Probably will change it later, as for now - leaving to your judgement. -->
+
+    <!-- Navigation -->
+    <string name="home_label">Дом. страница</string> <!-- Gotta change this one for sure. -->
+    <string name="account_label">Аккаунт</string>
+    <string name="create_reminder_label">Новое напоминание</string>
+    <string name="explore_label">Исследуй</string>
+    <string name="rankings_label">Рейтинг</string>
+    <string name="ticket_label">Обратная связь</string>
+    <string name="settings_label">Настройки</string>
+    <string name="reminders_label">Напоминания</string>
+    <string name="battery_optimization_label">Экономия батареи</string>
+    <string name="top_rankings_label">Топ-30 рейтинга</string>
+    <string name="credits_label">Авторские права</string>
+
+    <!-- Actions -->
+    <string name="action_done">Завершить</string>
+    <string name="action_delete">Удалить</string>
+    <string name="action_undo">Вернуть</string>
+    <string name="action_cancel">Отменить</string>
+    <string name="action_save">Сохранить</string>
+    <string name="action_send">Отправить</string>
+    <string name="action_finish">Закончить</string>
+    <string name="action_disable">Отключить</string>
+    <string name="action_continue">Продолжить</string>
+    <string name="action_close_keyboard">Скрыть клавиатуру</string>
+    <string name="action_start">Начать</string>
+    <string name="action_select">Выбрать</string>
+    <string name="action_exit">Выйти</string>
+    <string name="action_give_permission">Дать разрешение</string>
+    <string name="action_yes">Да</string>
+    <string name="action_login">Войти в аккаунт</string>
+    <string name="action_off">Выключить</string>
+    <string name="action_on">Включить</string>
+    <string name="action_delete_account">Удалить аккаунт</string>
+
+    <!-- Login -->
+    <string name="help_login_problems">Проблемы со входом?</string>
+    <string name="snack_fail_login">Вход отменен, ошибка соединения или аккаунт Google не найден на устройстве.</string>
+    <string name="fast_login">Быстрый вход</string>
+    <string name="action_continue_anonymously">Продолжить без входа</string>
+    <string name="action_login_with_google">Войти через Google</string>
+    <string name="internal_login_title">Ваше приключение начинается здесь</string>
+    <string name="internal_login_subtitle">Вход в приложение откроет для вас вот эти классные возможности!</string> <!-- Probably will change this one later.-->
+    <string name="login_features">• Становитесь частью нашего сообщества.\n\n• Публичный профиль для соревнований с другими пользователями.\n\n• Автоматическое сохранение данных в облаке.\n\n• Быстрая обратная связь в приложении.</string>
+
+    <!-- Welcome -->
+    <string name="welcome_pager_title1">Заберись на вершину рейтинга!</string>
+    <string name="welcome_pager_title2">Попрощайся с болью в спине!</string>
+    <string name="welcome_pager_title3">Мы всегда с тобой!</string>
+
+    <!-- Home --> <!-- Attention -->
+    <string name="stop_alarm">Остановить</string>
+    <string name="start_alarm">Начать</string>
+    <string name="snack_alarms_off">Напоминание отключено.</string> <!-- Wait, an alarm? I suppose it's misspelled, so I'll translate this one as "reminder" too. -->
+    <string name="today_pager">Сегодня</string>
+    <string name="yesterday_pager">Вчера</string>
+
+    <!-- What's new dialog -->
+    <string name="updated_version">Обновлено до v%1$s</string>
+    <string name="whats_new">Что нового</string>
+
+    <!-- Battery optimization -->
+    <string name="battery_optimization_step_one_light"><![CDATA[<font color=\'#C0C0C4\'>1 - Найдите </font><b><font color=\'#ffffff\'>Posture Reminder - Держи осанку!</font></b><font color=\'#C0C0C4\'> в списке</font>]]></string>
+    <string name="battery_optimization_step_two_light"><![CDATA[<font color=\'#C0C0C4\'>2 - Выберите </font><b><font color=\'#ffffff\'> "Не экономить батарею"</font></b></font>]]></string>
+    <string name="battery_optimization_step_one_dark"><![CDATA[<font color=\'#757575\'>1 - Найдите </font><b><font color=\'#000000\'>Posture Reminder - Держи осанку!</font></b><font color=\'#757575\'> в списке</font>]]></string>
+    <string name="battery_optimization_step_two_dark"><![CDATA[<font color=\'#757575\'>2 - Выберите </font><b><font color=\'#000000\'> "Не экономить батарею"</font></b></font>]]></string>
+    <string name="optimization_correct">Все готово</string>
+    <string name="optimization_require_action">Требует действий</string>
+    <string name="status">Статус:</string>
+    <string name="battery_optimization_alert2">* Это не обязательно к выполнению, но в случае отказа может привести к пропуску уведомлений.</string>
+    <string name="battery_optimization_alert1">Пожалуйста, отключите экономию энергии для лучшей работы приложения.\n\nНе волнуйтесь, оно совсем не прожорливое.</string>
+
+    <!-- Ticket -->
+    <string name="snack_send_ticket_success">Сообщение доставлено. Спасибо вам за помощь и участие в развитии приложения!</string>
+    <string name="ticket_type">Тема сообщения</string>
+    <string name="send_ticket_alert">*Я скоро с вами свяжусь.\nВы также можете написать мне напрямую по адресу:\npuntogrishelp@gmail.com</string>
+
+    <!-- Reminder -->
+    <string name="snack_delete_reminder_success">Напоминание успешно удалено</string>
+    <string name="days">Дни</string>
+    <string name="start_time">Начало в</string>
+    <string name="end_time">Конец в</string>
+    <string name="sound">Звук</string>
+    <string name="vibration">Вибро</string>
+    <string name="color_picker_title">Цвет напоминания</string>
+    <string name="vibration_picker_title">Тип вибрации</string>
+    <string name="sound_tone_item_none">Нет</string>
+    <string name="sound_picker_title">Выбор звука</string>
+    <string name="snack_create_reminder_success">Напоминание успешно создано</string>
+    <string name="interval">Интервал</string>
+    <string name="snack_active_reminder_not_found">Активных напоминаний нет.</string>
+    <string name="name_required">Название*</string>
+    <string name="interval_required">Интервал*</string>
+    <string name="days_required">Дни*</string>
+    <string name="start_time_required">Начало*</string>
+    <string name="end_time_required">Конец в*</string>
+    <string name="snack_reminder_not_valid">Заполните все поля, помеченные * </string>
+    <string name="create_reminder_interval_summary">Выбор интервала</string>
+    <string name="create_reminder_days_summary">Выберите дни</string>
+    <string name="create_reminder_start_summary">Выберите время начала работы</string>
+    <string name="create_reminder_end_summary">Выберите время конца работы</string>
+    <string name="select_another_reminder">Выбрать другое напоминание</string>
+
+    <!-- Reminder pickers -->
+    <string name="end_time_title">Время окончания</string>
+    <string name="start_time_title">Время начала</string>
+    <string name="alarm_days_title">Дни работы</string>
+    <string name="time_interval_title">Интервал времени</string>
+    <string name="time_hint">Время</string>
+    <string name="minutes">Минуты</string>
+    <string name="hours">Часы</string>
+    <string name="time_unit_title">Какую ед. времени вы хотите использовать?</string>
+    <string name="snack_time_interval_cant_be_zero">Интервал не может быть равен 0.</string>
+    <string name="time_interval_subtitle">Установить интервал повторных напоминаний</string>
+    <string name="reminder_name_hint">Название напоминания</string>
+
+    <!-- Sync -->
+    <string name="account_sync_in_progress">Синхронизируем аккаунт</string>
+    <string name="account_sync_success">Успешно сихронизировано</string>
+    <string name="account_sync_error">Ошибка, сихронизация не завершена</string>
+
+    <!-- Settings -->
+    <string name="snack_panda_unlocked">Панда разблокирован! Возвращайтесь на главный экран и наслаждайтесь его милотой!</string> <!-- Heyy, what panda? Where I can find him? -->
+    <string name="change_name_title">Изменить имя</string>
+    <string name="change_name_subtitle">Введите новое имя</string>
+    <string name="snack_edit_username_success">Имя успешно обновлено</string>
+    <string name="help">Помощь</string>
+    <string name="contact">Связаться</string>
+    <string name="about_us">О приложении</string>
+    <string name="theme">Тема</string>
+    <string name="log_in">Войти</string>
+    <string name="log_out">Выйти</string>
+    <string name="questions">Вопросы</string>
+    <string name="website">Наш сайт</string>
+    <string name="github">Github</string>
+    <string name="version">Версия</string>
+    <string name="version_name">Версия %1$s</string>
+    <string name="rate_us">Оцените нас</string>
+    <string name="battery_optimization_abbreviation">Экономия бат.</string>
+    <string name="ticker_feedback">Сообщить о проблеме/Оставить отзыв</string>
+    <string name="human">Человек</string>
+    <string name="create_ticket">Сообщить о проблеме</string>
+    <string name="got_to_website">Посетить сайт</string>
+    <string name="see_the_code">Посмотреть код</string>
+    <string name="rate_the_app">Оценить приложение</string>
+    <string name="read_the_faq">Прочесть F.A.Q.</string>
+    <string name="log_out_summary">Выйти из аккаунта</string>
+    <string name="log_in_summary">Войти в аккаунт</string>
+    <string name="open_source_licenses">Лицензии open source </string>
+    <string name="terms_and_conditions">Terms and conditions</string>
+    <string name="privacy_policy">Политика конфиденциальности</string>
+    <string name="delete_account_summary">Удалить аккаунт</string>
+    <string name="snack_account_deleted_success">Аккаунт успешно удален.</string>
+
+    <!-- Delete account -->
+    <string name="snack_account_email_not_matching">E-mail не соответствует указанному в аккаунте</string>
+    <string name="delete_account_email_required_alert">Чтобы подтвердить удаление аккаунта, напишите адрес электронной почты или аккаунт Google, использованный вами при регистрации.</string>
+    <string name="delete_account_danger_alert">Внимание!! Это удалит ваш аккаунт и ваши данные в этом приложении и в облаке. Действие необратимо.</string>
+
+    <!-- Notifications --> <!-- Attention -->
+    <string name="snack_notifications_set">Уведомления установлены с %1$s по %2$s.</string>
+    <string name="posture_notification_title">Posture Notification</string>
+    <string name="posture_notification_text">Пора выпрямлять вашу спину! Нажмите, чтобы получить опыт!</string>
+    <string name="notifications">Уведомления</string>
+    <string name="claim_experience_title">Поздравляем!</string>
+    <string name="claim_experience_message">Вы получили %1$d опыта!</string>
+    <string name="claim_experience_exercise_message">Выполните упражнение и удвойте полученный опыт! Это не займет и пары минут!</string>
+    <string name="claim_exp_notification_action_title">Получить опыт</string>
+    <string name="claim_experience_error_summary">Напишите в приложении или по адресу puntogrishelp@gmail.com и сообщите о вашей проблеме.</string>
+    <string name="claim_experience_exp_limit_summary">Вы достигли суточного лимита опыта!</string>
+    <string name="claim_experience_exp_limit_message">Сегодня вы больше не сможете получать опыт, но мы приглашаем вас сделать еще одно упражнение. Ваша спина скажет вам "спасибо"!</string>
+    <string name="alarm_channel_name">Posture Reminder</string>
+    <string name="fmc_channel_name">Posture Reminder Server</string>  <!-- Where are these two lines can be seen? -->
+
+    <!-- Account -->
+    <string name="level_1_title">Из спины веревки вить</string>
+    <string name="level_2_title">Бумажная спина</string>
+    <string name="level_3_title">Бронзовая спина</string>
+    <string name="level_4_title">Серебряная спина</string>
+    <string name="level_5_title">Золотая спина</string>
+    <string name="level_6_title">Сапфировая спина</string>
+    <string name="level_7_title">Алмазная спина</string> <!-- Definitely need to change these lines later. The direct translation sounds mediocre -->
+    <string name="account_exp_last_week_title">Последняя неделя</string>
+    <string name="account_exp_title">Опыт</string>
+    <string name="selected_reminder">Выбранное напоминание</string>
+    <string name="see_all_reminders">Посмотреть мои напоминания</string>
+    <string name="no_reminders_found_alert">На вашем аккаунте не найдено активных напоминаний, предлагаем вам выбрать существующее или создать новое и выбрать его. We did not find an active reminder in your account, we invite you to create a new one and select it.</string> <!-- Is this message pops up only when there is no active reminders, or when there is no reminders at all? -->
+    <string name="manage_account_reminders">Создавайте, редактируйте и удаляйте ваши напоминания.</string>
+
+    <!-- Other -->
+    <string name="snack_configuration_updated">Настройки успешно обновлены. Напоминание активировано.</string>
+    <string name="name">Имя</string>
+    <string name="disabled">Выключено</string>
+    <string name="experience">Опыт</string>
+    <string name="exercises">Упражнения</string>
+    <string name="snack_connection_error">Произошла ошибка. Проверьте интернет-соединение и попробуйте снова.</string>
+    <string name="snack_general_error">Произошла ошибка. Пожалуйста, попробуйте снова.</string>
+    <string name="see_global_rankings">Посмотреть глобальный рейтинг</string>
+    <string name="today">Сегодня</string>
+    <string name="snack_permission_required">Данное разрешение необходимо, чтобы выполнить это действие.</string>
+    <string name="snack_action_require_permission">Это действие требует особых разрешений.</string>
+    <string name="message">Сообщение</string>
+    <string name="an_error_occurred">Произошла ошибка</string>
+    <string name="snack_action_requires_login">Для выполнения действия требуется войти в аккаунт</string>
+    <string name="account_email">email аккаунта</string>
+
+    <!-- Exercises -->
+    <string name="in_progress">В процессе выполнения</string>
+    <string name="finished">Выполнено</string>
+    <string name="steps">Шаги</string>
+    <string name="duration">Продолжительность</string>
+    <string name="description">Описание</string>
+    <string name="exercise">Упражнение</string>
+    <string name="completed_exercise_title">Поздравляем!</string>
+    <string name="completed_exercise_message">Вы выполнили упражнение и получаете за это %1$d опыта!</string>
+    <string name="exercise_complete_dialog_exp_limit_message">Вы отлично постарались и достигли максимума опыта за день! Продолжайте в том же духе и вы достигните вершины рейтинга!</string>
+
+    <!-- Brugger -->
+    <string name="brugger_exercise_title">Расслабляющее упражнение по Брюггеру</string>
+    <string name="brugger_exercise_summary">Эта растяжка может помочь выйти из согнутого положения.</string>
+    <string-array name="brugger_exercise_steps">
+        <item>Данное упражнение выполняется сидя или стоя. Рекомендуем к выполнению, если у вас нет возможности встать.</item>
+        <item>Если сидите, отодвиньте стул от стола и сдвиньте ягодицы на край сиденья.</item>
+        <item>Выпрямитесь, опустите руки по бокам ладонями вперед.</item>
+        <item>Вытяните запястья в стороны и потянитесь пальцами назад. Грудь и внутрення сторона рук при этом открыты.</item>
+        <item>Ваши лопатки должны слегка упираться в друг друга.</item>
+        <item>Вы должны почуствовать напряжение от груди до рук и от предплечья до кистей.</item>
+        <item>Задержитесь в этой позе на несколько секунд.</item>
+        <item>Расслабьтесь.</item>
+        <item>Повторите хотя бы 5 раз.</item>
+    </string-array>
+
+    <!-- Chin tuck -->
+    <string name="chin_tuck_exercise_title">Задвигаем подбородок</string>
+    <string name="chin_tuck_exercise_summary">Классическое упражнение для выхода из позы "компьютерной шеи".</string>
+    <string-array name="chin_tuck_exercise_steps">
+        <item>Упражнение выполняется сидя или стоя.</item>
+        <item>Держа подбородок параллельно полу, совершайте движения головой назад.</item>
+        <item>Упражнение задействует мышцы шеи спереди, поэтому вы можете почувствовать напряжениев этом месте.</item>
+        <item>Вы также можете почувствовать напряжение сзади шеи и в основании черепа, что также является нормальным.</item>
+        <item>Не пытайтесь делать упражнение через боль.</item>
+        <item>Повторите не менее 5 раз.</item>
+    </string-array>
+
+    <!-- Back extensions --> <!-- Attention-->
+    <string name="back_extensions_exercise_title">Расправление спины</string>
+    <string name="back_extension_exercise_summary">Данное упражнение поможет раскрыть и расправить ваше тело.</string>
+    <string-array name="back_extension_exercise_steps">
+        <item>Упражнение выполняется стоя.</item>
+        <item>Руки (можно упереться кулаками) на поясе.</item>
+        <item>Аккуратно подталкивая, двигайте бедрами вперед, пока не почувствуете распрямление спины.</item> <!-- A bit of tautology here in English "Extend back,... and extending back."-->
+        <item>При выполнении вы можете почувствовать давление в спине, но вы не должны чувствовать боль.</item>
+        <item>Повторите не менее 5 раз.</item>
+    </string-array>
+
+    <!-- Side bend -->
+    <string name="side_bend_exercise_title">Сгибы в стороны</string>
+    <string name="side_bend_exercise_summary">Упражнение с наклонами для снятия напряжения с затекшей спины.</string>
+    <string-array name="side_bend_exercise_steps">
+        <item>Упражнение выполняется стоя.</item>
+        <item>Расположите руки ладонями внутрь вдоль тела по бокам, не напрягая.</item>
+        <item>Наклоняясь туловищем в сторону, скользя ладонью к колену.</item>
+        <item>Вы должны почувствовать напряжение на противоположной стороне туловища.</item>
+        <item>Поочередно совершайте наклоны, сменяя сторону.</item>
+        <item>Повторите упражнение не менее 5 раз на каждую сторону (суммарно 10 раз).</item>
+    </string-array>
+
+    <!-- Binding -->
+    <string name="exercise_duration_seconds">%1$d сек.</string>
+    <string name="account_level_title">Уровень %1$d</string>
+    <string name="experience_for_level_x">+%1$d до ур. %2$d</string>
+    <string name="account_donut_level">Ур. %1$d</string>
+    <string name="ranking_level">ур. %1$d</string>
+
+    <!-- Content description -->
+    <string name="close_screen_content_description">Close screen</string>
+    <string name="logo_content_description">Лого приложения</string>
+    <string name="edit_content_description">Редактировать напоминаниее</string>
+    <string name="medal_content_description">Медали за рейтинг</string>
+    <string name="color_picker_content_description">Выберите цвет</string>
+    <string name="open_picker_content_description">Открыть напоминание</string>
+    <string name="image_content_description">Изображение</string>
+    <string name="open_action_content_description">Открыть</string>
+
+    <!-- Credits -->
+    <string name="panda_credits">Автор анимации панды - @ucilucil</string>
+    <string name="bottom_nav_icons_credit">Иконки панели навигации - Flaticon</string>
+
+    <!-- Vibration Patterns -->
+    <string name="disabled_pattern">Отключено</string>
+    <string name="normal_pattern">Обычный</string>
+    <string name="stairs_pattern">Ступенчатый</string>
+    <string name="fast_pattern">Быстрый</string>
+
+    <!-- Arrays -->
+    <string-array name="ticket_types">
+        <item>Проблема</item>
+        <item>Отзыв, предложение</item>
+    </string-array>
+
+    <string-array name="alarmDays">
+        <item>Понедельник</item>
+        <item>Вторник</item>
+        <item>Среда</item>
+        <item>Четверг</item>
+        <item>Пятница</item>
+        <item>Суббота</item>
+        <item>Воскресенье</item>
+    </string-array>
+
+    <string-array name="theme_names">
+        <item>Светлая</item>
+        <item>Темная</item>
+        <item>Системная</item>
+    </string-array>
+</resources>

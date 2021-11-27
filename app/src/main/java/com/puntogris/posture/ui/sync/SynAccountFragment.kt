@@ -5,9 +5,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
+import com.puntogris.posture.databinding.FragmentSynAccountBinding
 import com.puntogris.posture.ui.base.BaseBindingFragment
 import com.puntogris.posture.utils.*
-import com.puntogris.posture.databinding.FragmentSynAccountBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

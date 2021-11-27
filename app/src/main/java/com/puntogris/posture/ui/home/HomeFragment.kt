@@ -13,10 +13,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.posture.R
-import com.puntogris.posture.framework.alarm.AlarmStatus
 import com.puntogris.posture.databinding.FragmentHomeBinding
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.domain.repository.SyncRepository
+import com.puntogris.posture.framework.alarm.AlarmStatus
 import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.Utils

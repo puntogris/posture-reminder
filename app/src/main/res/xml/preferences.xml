@@ -17,7 +17,7 @@
             app:iconSpaceReserved="false"/>
         <Preference
             android:key="battery_preference_key"
-            app:title="@string/battery_optimization"
+            app:title="@string/battery_optimization_abbreviation"
             app:iconSpaceReserved="false"/>
         <Preference
             android:key="delete_account_preference_key"

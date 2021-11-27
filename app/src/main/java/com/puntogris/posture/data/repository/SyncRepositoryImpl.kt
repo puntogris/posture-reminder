@@ -7,9 +7,9 @@ import com.puntogris.posture.domain.model.UserPrivateData
 import com.puntogris.posture.domain.repository.ReminderServerApi
 import com.puntogris.posture.domain.repository.SyncRepository
 import com.puntogris.posture.domain.repository.UserServerApi
+import com.puntogris.posture.framework.workers.WorkersManager
 import com.puntogris.posture.utils.DispatcherProvider
 import com.puntogris.posture.utils.SimpleResult
-import com.puntogris.posture.framework.workers.WorkersManager
 import kotlinx.coroutines.withContext
 
 class SyncRepositoryImpl(

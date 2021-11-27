@@ -5,7 +5,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.puntogris.posture.BuildConfig
-import com.puntogris.posture.framework.alarm.Alarm
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.data.datasource.remote.FirebaseAuthApi
 import com.puntogris.posture.data.datasource.remote.FirebaseClients
@@ -13,8 +12,9 @@ import com.puntogris.posture.data.datasource.remote.GoogleSingInApi
 import com.puntogris.posture.data.repository.AuthRepositoryImpl
 import com.puntogris.posture.domain.repository.AuthRepository
 import com.puntogris.posture.domain.repository.AuthServerApi
-import com.puntogris.posture.utils.DispatcherProvider
+import com.puntogris.posture.framework.alarm.Alarm
 import com.puntogris.posture.framework.workers.WorkersManager
+import com.puntogris.posture.utils.DispatcherProvider
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
