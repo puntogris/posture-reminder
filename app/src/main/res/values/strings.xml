@@ -12,7 +12,7 @@
     <string name="settings_label">Settings</string>
     <string name="reminders_label">Reminders</string>
     <string name="battery_optimization_label">Battery optimization</string>
-    <string name="top_rankings_label" translatable="false">Top 30 rankings</string>
+    <string name="top_rankings_label">Top 30 rankings</string>
     <string name="credits_label">Credits</string>
 
     <!-- Actions -->
@@ -31,7 +31,7 @@
     <string name="action_exit">Exit</string>
     <string name="action_give_permission">Give permission</string>
     <string name="action_yes">Yes</string>
-    <string name="action_login" translatable="false">Login</string>
+    <string name="action_login">Login</string>
     <string name="action_off">Turn off</string>
     <string name="action_on">Turn on</string>
     <string name="action_delete_account">Delete account</string>
@@ -134,7 +134,7 @@
     <string name="log_in">Log in</string>
     <string name="log_out">Log out</string>
     <string name="questions">Questions</string>
-    <string name="website" translatable="false">Website</string>
+    <string name="website">Website</string>
     <string name="github" translatable="false">Github</string>
     <string name="version">Version</string>
     <string name="version_name">Version %1$s</string>
@@ -281,8 +281,8 @@
     <string name="exercise_duration_seconds">%1$d secs.</string>
     <string name="account_level_title">Level %1$d</string>
     <string name="experience_for_level_x">+%1$d for lvl. %2$d</string>
-    <string name="account_donut_level" translatable="false">Lvl. %1$d</string>
-    <string name="ranking_level" translatable="false">lvl. %1$d</string>
+    <string name="account_donut_level">Lvl. %1$d</string>
+    <string name="ranking_level">lvl. %1$d</string>
 
     <!-- Content description -->
     <string name="close_screen_content_description">Close screen</string>

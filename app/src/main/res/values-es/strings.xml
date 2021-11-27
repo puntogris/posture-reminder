@@ -12,6 +12,7 @@
     <string name="settings_label">Configuración</string>
     <string name="reminders_label">Recordatorios</string>
     <string name="battery_optimization_label">Optimización de bateria</string>
+    <string name="top_rankings_label">Top 30 rankings</string>
     <string name="credits_label">Créditos</string>
 
     <!-- Actions -->
@@ -30,6 +31,7 @@
     <string name="action_exit">Salir</string>
     <string name="action_give_permission">Dar permiso</string>
     <string name="action_yes">Si</string>
+    <string name="action_login">Login</string>
     <string name="action_off">Desactivar</string>
     <string name="action_on">Activar</string>
     <string name="action_delete_account">Eliminar cuenta</string>
@@ -132,6 +134,7 @@
     <string name="log_in">Log in</string>
     <string name="log_out">Cerrar</string>
     <string name="questions">Preguntas</string>
+    <string name="website">Página web</string>
     <string name="version">Versión</string>
     <string name="version_name">Versión %1$s</string>
     <string name="rate_us">Calificanos</string>
@@ -268,6 +271,8 @@
     <string name="exercise_duration_seconds">%1$d segs.</string>
     <string name="account_level_title">Nivel %1$d</string>
     <string name="experience_for_level_x">+%1$d para lvl. %2$d</string>
+    <string name="account_donut_level">Lvl. %1$d</string>
+    <string name="ranking_level">lvl. %1$d</string>
 
     <!-- Content description -->
     <string name="close_screen_content_description">Cerrar pantalla</string>
