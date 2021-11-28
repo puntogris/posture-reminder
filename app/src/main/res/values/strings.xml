@@ -181,8 +181,8 @@
     <string name="claim_experience_error_summary">Send us a ticket or find us at puntogrishelp@gmail.com and tell us your problem.</string>
     <string name="claim_experience_exp_limit_summary">You reached the daily experience limit!</string>
     <string name="claim_experience_exp_limit_message">You will not be able to earn more exp for today but we invite you to do an exercise, your back will thank you!</string>
-    <string name="alarm_channel_name">Posture Reminder</string>
-    <string name="fmc_channel_name">Posture Reminder Server</string>
+    <string name="alarm_channel_name">Scheduled notifications</string>
+    <string name="fmc_channel_name">General notifications</string>
 
     <!-- Account -->
     <string name="level_1_title">Back of string</string>

@@ -171,8 +171,8 @@
     <string name="claim_experience_error_summary">Mandanos un ticket o encontranos en puntogrishelp@gmail.com y contanos tu problema.</string>
     <string name="claim_experience_exp_limit_summary">Alcanzaste el limite de experienca diario!</string>
     <string name="claim_experience_exp_limit_message">Ya no podras ganar mas exp por hoy pero te invitamos a que hagas un ejercicio, tu espalda te lo agradecera!</string>
-    <string name="alarm_channel_name">Recordatorio de Postura</string>
-    <string name="fmc_channel_name">Servidor Recordatorio de Postura</string>
+    <string name="alarm_channel_name">Notificaciones agendadas</string>
+    <string name="fmc_channel_name">Notificaciones generales</string>
 
     <!-- Account -->
     <string name="level_1_title">Espalda de hilo</string>
