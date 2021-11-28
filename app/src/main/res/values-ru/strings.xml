@@ -172,8 +172,8 @@
     <string name="claim_experience_error_summary">Напишите в приложении или по адресу puntogrishelp@gmail.com и сообщите о вашей проблеме.</string>
     <string name="claim_experience_exp_limit_summary">Вы достигли суточного лимита опыта!</string>
     <string name="claim_experience_exp_limit_message">Сегодня вы больше не сможете получать опыт, но мы приглашаем вас сделать еще одно упражнение. Ваша спина скажет вам "спасибо"!</string>
-    <string name="alarm_channel_name">Posture Reminder</string>
-    <string name="fmc_channel_name">Posture Reminder Server</string>
+    <string name="alarm_channel_name">Запланированные уведомления</string>
+    <string name="fmc_channel_name">Общие уведомления</string>
 
     <!-- Account -->
     <string name="level_1_title">Спина-веревка</string>
