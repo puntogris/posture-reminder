@@ -287,6 +287,7 @@
     <!-- Credits -->
     <string name="panda_credits">Animación del panda por @ucilucil</string>
     <string name="bottom_nav_icons_credit">Iconos menú inferior por Flaticon</string>
+    <string name="russian_translation_credit">Traducción Rusa - @mahpell</string>
 
     <!-- Vibration Patterns -->
     <string name="disabled_pattern">Desactivado</string>

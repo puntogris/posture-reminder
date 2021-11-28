@@ -160,7 +160,7 @@
     <string name="delete_account_email_required_alert">Чтобы подтвердить удаление аккаунта, напишите адрес электронной почты или аккаунт Google, использованный вами при регистрации.</string>
     <string name="delete_account_danger_alert">Внимание!! Это удалит ваш аккаунт и ваши данные в этом приложении и в облаке. Действие необратимо.</string>
 
-    <!-- Notifications --> <!-- Attention -->
+    <!-- Notifications -->
     <string name="snack_notifications_set">Уведомления установлены с %1$s по %2$s.</string>
     <string name="posture_notification_title">Posture Notification</string>
     <string name="posture_notification_text">Пора выпрямлять вашу спину! Нажмите, чтобы получить опыт!</string>
@@ -173,7 +173,7 @@
     <string name="claim_experience_exp_limit_summary">Вы достигли суточного лимита опыта!</string>
     <string name="claim_experience_exp_limit_message">Сегодня вы больше не сможете получать опыт, но мы приглашаем вас сделать еще одно упражнение. Ваша спина скажет вам "спасибо"!</string>
     <string name="alarm_channel_name">Posture Reminder</string>
-    <string name="fmc_channel_name">Posture Reminder Server</string>  <!-- Where are these two lines can be seen? -->
+    <string name="fmc_channel_name">Posture Reminder Server</string>
 
     <!-- Account -->
     <string name="level_1_title">Спина-веревка</string>
@@ -211,7 +211,7 @@
     <string name="in_progress">В процессе выполнения</string>
     <string name="finished">Выполнено</string>
     <string name="steps">Шаги</string>
-    <string name="duration">Длит-ность</string> <!-- was overlapping with exercises' descriptions -->
+    <string name="duration">Длит-ность</string>
     <string name="description">Описание</string>
     <string name="exercise">Упражнение</string>
     <string name="completed_exercise_title">Поздравляем!</string>
@@ -251,7 +251,7 @@
     <string-array name="back_extension_exercise_steps">
         <item>Упражнение выполняется стоя.</item>
         <item>Руки (можно упереться кулаками) на поясе.</item>
-        <item>Аккуратно подталкивая, двигайте бедрами вперед, пока не почувствуете распрямление спины.</item> <!-- A bit of tautology here in English "Extend back,... and extending back."-->
+        <item>Аккуратно подталкивая, двигайте бедрами вперед, пока не почувствуете распрямление спины.</item>
         <item>При выполнении вы можете почувствовать давление в спине, но вы не должны чувствовать боль.</item>
         <item>Повторите не менее 5 раз.</item>
     </string-array>
@@ -288,6 +288,7 @@
     <!-- Credits -->
     <string name="panda_credits">Автор анимации панды - @ucilucil</string>
     <string name="bottom_nav_icons_credit">Иконки панели навигации - Flaticon</string>
+    <string name="russian_translation_credit">Перевод на русский язык - @mahpell</string>
 
     <!-- Vibration Patterns -->
     <string name="disabled_pattern">Без вибрации</string>
@@ -308,7 +309,7 @@
         <item>Четверг</item>
         <item>Пятница</item>
         <item>Суббота</item>
-        <item>Воскр.</item> <!-- Shortened Monday and Sunday as they don't fit in their boxes -->
+        <item>Воскр.</item>
     </string-array>
 
     <string-array name="theme_names">
