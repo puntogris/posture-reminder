@@ -18,6 +18,7 @@
         android:allowBackup="true">
         <activity
             android:launchMode="singleTask"
+            android:screenOrientation="unspecified"
             android:name="com.puntogris.posture.ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
