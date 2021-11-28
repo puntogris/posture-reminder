@@ -3,7 +3,7 @@ package com.puntogris.posture.ui.explore
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
-import com.puntogris.posture.databinding.FragmentPortalBinding
+import com.puntogris.posture.databinding.FragmentExploreBinding
 import com.puntogris.posture.domain.model.Exercise
 import com.puntogris.posture.domain.model.UserPublicProfile
 import com.puntogris.posture.ui.base.BaseFragmentOptions
@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class PortalFragment : BaseFragmentOptions<FragmentPortalBinding>(R.layout.fragment_portal) {
+class ExploreFragment : BaseFragmentOptions<FragmentExploreBinding>(R.layout.fragment_explore) {
 
     private val viewModel: PortalViewModel by viewModels()
     private lateinit var rankingsAdapter: RankingsAdapter
@@ -59,11 +59,11 @@ class PortalFragment : BaseFragmentOptions<FragmentPortalBinding>(R.layout.fragm
     }
 
     private fun onExerciseClicked(exercise: Exercise) {
-        val action = PortalFragmentDirections.actionPortalToExercise(exercise)
+        val action = ExploreFragmentDirections.actionExploreToExercise(exercise)
         findNavController().navigate(action)
     }
 
     fun navigateToGlobalRanking() {
-        navigateTo(R.id.action_portal_to_rankings)
+        navigateTo(R.id.action_explore_to_rankings)
     }
 }

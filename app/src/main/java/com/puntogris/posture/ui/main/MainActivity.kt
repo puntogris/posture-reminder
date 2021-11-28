@@ -88,7 +88,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_
                 R.id.accountFragment,
                 R.id.newReminderBottomSheet,
                 R.id.welcomeFragment,
-                R.id.portalFragment,
+                R.id.exploreFragment,
                 R.id.loginFragment,
                 R.id.synAccountFragment
             )

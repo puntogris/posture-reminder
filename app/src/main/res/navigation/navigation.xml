@@ -90,13 +90,13 @@
         android:id="@+id/whatsNewDialog"
         android:name="com.puntogris.posture.ui.main.WhatsNewDialog" />
     <fragment
-        android:id="@+id/portalFragment"
-        android:name="com.puntogris.posture.ui.explore.PortalFragment">
+        android:id="@+id/exploreFragment"
+        android:name="com.puntogris.posture.ui.explore.ExploreFragment">
         <action
-            android:id="@+id/action_portal_to_rankings"
+            android:id="@+id/action_explore_to_rankings"
             app:destination="@id/rankingsFragment" />
         <action
-            android:id="@+id/action_portal_to_exercise"
+            android:id="@+id/action_explore_to_exercise"
             app:destination="@id/exerciseBottomSheet" />
     </fragment>
     <fragment

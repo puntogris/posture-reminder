@@ -7,7 +7,7 @@
 
         <variable
             name="fragment"
-            type="com.puntogris.posture.ui.explore.PortalFragment" />
+            type="com.puntogris.posture.ui.explore.ExploreFragment" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -17,7 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.explore.PortalFragment">
+            tools:context=".ui.explore.ExploreFragment">
 
             <TextView
                 android:id="@+id/portalTitle"

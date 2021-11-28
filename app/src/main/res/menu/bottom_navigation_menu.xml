@@ -7,8 +7,8 @@
         android:title="@string/home_label" />
 
     <item
-        android:id="@+id/portalFragment"
-        android:icon="@drawable/portal_selector_icon"
+        android:id="@+id/exploreFragment"
+        android:icon="@drawable/explore_selector_icon"
         android:title="@string/explore_label" />
 
     <item
