@@ -1,6 +1,8 @@
 package com.puntogris.posture.ui.notification
 
 import android.app.Dialog
+import android.content.DialogInterface
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
@@ -22,10 +24,13 @@ class ClaimNotificationExpDialog : DialogFragment() {
 
     private val viewModel: NotificationViewModel by viewModels()
     private lateinit var binding: DialogClaimExperienceBinding
+    private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding =
             DataBindingUtil.inflate(layoutInflater, R.layout.dialog_claim_experience, null, false)
+        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.claim_sound)
+        mediaPlayer?.start()
         lifecycleScope.launch {
             when (viewModel.updateDayLogWithReward()) {
                 RewardExp.Error -> {
@@ -72,5 +77,10 @@ class ClaimNotificationExpDialog : DialogFragment() {
         val action = ClaimNotificationExpDialogDirections
             .actionClaimNotificationExpToExercise(exercise)
         findNavController().navigate(action)
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        mediaPlayer?.stop()
+        super.onDismiss(dialog)
     }
 }

@@ -1,6 +1,8 @@
 package com.puntogris.posture.ui.exercise
 
 import android.app.Dialog
+import android.content.DialogInterface
+import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
@@ -20,11 +22,13 @@ class ExerciseCompletedDialog : DialogFragment() {
 
     private val viewModel: ExerciseViewModel by viewModels()
     private lateinit var binding: DialogCompletedExerciseBinding
+    private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding =
             DataBindingUtil.inflate(layoutInflater, R.layout.dialog_completed_exercise, null, false)
-
+        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.claim_sound)
+        mediaPlayer?.start()
         lifecycleScope.launch {
             when (viewModel.updateDayLogWithReward()) {
                 RewardExp.Error -> {
@@ -58,5 +62,10 @@ class ExerciseCompletedDialog : DialogFragment() {
                 dismiss()
             }
             .create()
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        mediaPlayer?.stop()
+        super.onDismiss(dialog)
     }
 }

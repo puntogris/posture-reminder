@@ -31,13 +31,18 @@ class SyncRepositoryImpl(
                         syncLatestUserData(serverUser)
                         syncUserReminders()
                     } else {
+                        val localUser = appDatabase.userDao.getUser()
+                        if (localUser == null) {
+                            appDatabase.userDao.insert(authUser)
+                        } else {
+                            appDatabase.userDao.updateCurrentUserData(
+                                authUser.uid,
+                                authUser.username,
+                                authUser.email,
+                                authUser.photoUrl
+                            )
+                        }
                         userServerApi.insertUser(authUser)
-                        appDatabase.userDao.updateCurrentUserData(
-                            authUser.uid,
-                            authUser.username,
-                            authUser.email,
-                            authUser.photoUrl
-                        )
                         insertLocalRemindersIntoServer()
                     }
                     workersManager.launchSyncAccountWorker()

@@ -1,5 +1,6 @@
 package com.puntogris.posture.ui.settings
 
+import android.view.View
 import androidx.fragment.app.setFragmentResultListener
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetSettingsBinding
@@ -46,8 +47,17 @@ class SettingsBottomSheet : BaseBindingBottomSheetFragment<BottomSheetSettingsBi
         }
     }
 
-    fun showSnackBarAnchored(message: Int){
-        showSnackBar(message, anchorView = binding.guidelineEnd)
+    fun showSnackBarAnchored(
+        message: Int,
+        actionText: Int = R.string.action_undo,
+        actionListener: View.OnClickListener? = null
+    ) {
+        showSnackBar(
+            message,
+            anchorView = binding.guidelineEnd,
+            actionText = actionText,
+            actionListener = actionListener
+        )
     }
 }
 

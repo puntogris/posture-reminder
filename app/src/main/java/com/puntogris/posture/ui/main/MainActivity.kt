@@ -1,5 +1,6 @@
 package com.puntogris.posture.ui.main
 
+import android.content.ContentResolver
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu

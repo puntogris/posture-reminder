@@ -94,6 +94,7 @@
         <entry key="app/src/main/res/layout/fragment_announcement.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_battery_optimization.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_delete_account.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.24618055555555557" />
         <entry key="app/src/main/res/layout/fragment_health.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_internal_login.xml" value="0.25" />
@@ -116,7 +117,7 @@
         <entry key="app/src/main/res/layout/new_reminder_bottom_sheet.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/pager_item.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/preference_custom_category.xml" value="0.35052083333333334" />
-        <entry key="app/src/main/res/layout/preference_custom_item.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/preference_custom_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/ranking_profile_shimmer.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/ranking_profile_vh.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/reminder_color_vh.xml" value="0.35052083333333334" />

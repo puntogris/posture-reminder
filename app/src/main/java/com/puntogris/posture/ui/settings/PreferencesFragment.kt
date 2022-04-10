@@ -134,7 +134,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 
     private fun showRequireLoginSnack() {
         (requireParentFragment() as SettingsBottomSheet)
-            .showSnackBar(
+            .showSnackBarAnchored(
                 message = R.string.snack_action_requires_login,
                 actionText = R.string.action_login
             ) {

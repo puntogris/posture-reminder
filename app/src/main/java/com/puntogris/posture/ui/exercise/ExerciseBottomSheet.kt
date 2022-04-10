@@ -1,5 +1,6 @@
 package com.puntogris.posture.ui.exercise
 
+import android.media.MediaPlayer
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.puntogris.posture.R

@@ -35,9 +35,6 @@ class HomeFragment : BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_
     private var mediator: TabLayoutMediator? = null
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<Intent>
 
-    @Inject
-    lateinit var syncRepositoryImpl: SyncRepository
-
     override fun initializeViews() {
         binding.let {
             it.viewModel = viewModel
@@ -49,6 +46,7 @@ class HomeFragment : BaseFragmentOptions<FragmentHomeBinding>(R.layout.fragment_
         setupPagerAndTabLayout()
         observeAlarmStatus()
         registerAlarmPermissionLauncher()
+
     }
 
     private fun setupPagerAndTabLayout() {

@@ -33,7 +33,7 @@ class ManageRemindersBottomSheet :
             { onSelectReminder(it) },
             { onEditReminder(it) },
             { onDeleteReminder(it) }
-        ).let {
+        ).also {
             binding.recyclerView.adapter = it
             subscribeUi(it)
         }
