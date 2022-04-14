@@ -36,7 +36,7 @@ class ClaimNotificationExpDialog : DialogFragment() {
                 RewardExp.Error -> {
                     with(binding) {
                         claimExpAnimation.playAnimationOnce(R.raw.error)
-                        claimExpMessage.setText(R.string.an_error_occurred)
+                        claimExpTitle.setText(R.string.an_error_occurred)
                         claimExpSummary.setText(R.string.claim_experience_error_summary)
                         claimExpMessage.setText(R.string.snack_general_error)
                     }
@@ -44,7 +44,7 @@ class ClaimNotificationExpDialog : DialogFragment() {
                 RewardExp.ExpLimit -> {
                     with(binding) {
                         claimExpAnimation.setAnimation(R.raw.trophy)
-                        claimExpMessage.setText(R.string.claim_experience_title)
+                        claimExpTitle.setText(R.string.claim_experience_title)
                         claimExpSummary.setText(R.string.claim_experience_exp_limit_summary)
                         claimExpMessage.setText(R.string.claim_experience_exp_limit_message)
                     }
@@ -52,7 +52,7 @@ class ClaimNotificationExpDialog : DialogFragment() {
                 RewardExp.Success -> {
                     with(binding) {
                         claimExpAnimation.setAnimation(R.raw.congratulations)
-                        claimExpMessage.setText(R.string.completed_exercise_title)
+                        claimExpTitle.setText(R.string.completed_exercise_title)
                         claimExpSummary.text = getString(
                             R.string.claim_experience_message,
                             EXPERIENCE_PER_NOTIFICATION

@@ -9,6 +9,7 @@ plugins {
     id 'com.google.firebase.crashlytics'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
     id 'com.google.android.gms.oss-licenses-plugin'
+    id 'com.google.firebase.firebase-perf'
 }
 
 android {
@@ -21,7 +22,7 @@ android {
         targetSdkVersion 31
         versionCode 51
         versionName "2.2.0"
-        resConfigs "en", "es", "ru"
+        resConfigs 'en', 'es', 'ru'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -52,7 +53,7 @@ android {
 
 ext {
     lifecycleVersion = "2.4.1"
-    navigationVersion = "2.3.5"
+    navigationVersion = "2.4.2"
     lottieVersion = "3.5.0"
     bottomSheetVersion = "2.2.5"
     coroutinesVersion = "1.6.0"
@@ -71,6 +72,7 @@ ext {
     licensesVersion = "17.0.0"
     timberVersion = "5.0.1"
     kronosVersion = "0.0.1-alpha11"
+    gsonVersion = "2.9.0"
 }
 
 dependencies {
@@ -115,12 +117,13 @@ dependencies {
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
     //Firebase
-    implementation platform('com.google.firebase:firebase-bom:28.3.0')
+    implementation platform('com.google.firebase:firebase-bom:29.3.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-firestore-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-messaging-ktx'
+    implementation 'com.google.firebase:firebase-perf-ktx'
 
     //BottomSheet
     implementation "com.maxkeppeler.sheets:core:$bottomSheetVersion"
@@ -171,4 +174,7 @@ dependencies {
 
     //NTP Kronos
     implementation "com.lyft.kronos:kronos-android:$kronosVersion"
+
+    //Gson
+    implementation "com.google.code.gson:gson:$gsonVersion"
 }
