@@ -1,66 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Theme.Posture.Layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.reminders.new_edit.NewReminderBottomSheet">
 
-    <data>
+    <TextView
+        android:id="@+id/newReminderTitle"
+        style="@style/Theme.Posture.MediumTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="55dp"
+        android:text="@string/create_reminder_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <variable
-            name="bottomSheet"
-            type="com.puntogris.posture.ui.reminders.new_edit.NewReminderBottomSheet" />
+    <ImageView
+        android:id="@+id/close_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/close_screen_content_description"
+        android:foreground="?actionBarItemBackground"
+        android:padding="8dp"
+        android:src="@drawable/ic_baseline_close_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <variable
-            name="viewModel"
-            type="com.puntogris.posture.ui.reminders.new_edit.NewReminderViewModel" />
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/Theme.Posture.Layout"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.reminders.new_edit.NewReminderBottomSheet">
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/saveReminderButton"
+        app:layout_constraintTop_toBottomOf="@+id/newReminderTitle" />
 
-        <TextView
-            android:id="@+id/newReminderTitle"
-            style="@style/Theme.Posture.MediumTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="55dp"
-            android:text="@string/create_reminder_label"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/saveReminderButton"
+        style="@style/Theme.Posture.Button"
+        android:layout_width="match_parent"
+        android:text="@string/action_save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:contentDescription="@string/close_screen_content_description"
-            android:foreground="?actionBarItemBackground"
-            android:onClick="@{()-> bottomSheet.dismiss()}"
-            android:padding="8dp"
-            android:src="@drawable/ic_baseline_close_24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@+id/saveReminderButton"
-            app:layout_constraintTop_toBottomOf="@+id/newReminderTitle" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/saveReminderButton"
-            style="@style/Theme.Posture.Button"
-            android:layout_width="match_parent"
-            android:onClick="@{()-> bottomSheet.onSaveReminder()}"
-            android:text="@string/action_save"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>

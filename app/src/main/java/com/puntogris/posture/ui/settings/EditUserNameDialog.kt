@@ -3,7 +3,6 @@ package com.puntogris.posture.ui.settings
 import android.app.Dialog
 import android.os.Bundle
 import androidx.core.os.bundleOf
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
@@ -16,20 +15,18 @@ import com.puntogris.posture.databinding.DialogEditUsernameBinding
 import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
 import com.puntogris.posture.utils.constants.Constants.EDIT_NAME_KEY
+import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class EditUserNameDialog : DialogFragment() {
 
-    private lateinit var binding: DialogEditUsernameBinding
+    private val binding by viewBinding(DialogEditUsernameBinding::bind)
     private val viewModel: SettingsViewModel by viewModels()
     private val args: EditUserNameDialogArgs by navArgs()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        binding =
-            DataBindingUtil.inflate(layoutInflater, R.layout.dialog_edit_username, null, false)
-        binding.dialog = this
         binding.usernameEditText.setText(args.username)
 
         return MaterialAlertDialogBuilder(requireContext(), R.style.MaterialAlertDialog_rounded)

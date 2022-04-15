@@ -1,21 +1,26 @@
 package com.puntogris.posture.utils
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
+import android.os.Bundle
 import android.os.PowerManager
 import android.view.Menu
 import android.view.View
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.FrameLayout
 import androidx.annotation.IdRes
 import androidx.annotation.RawRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -26,6 +31,8 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.airbnb.lottie.LottieAnimationView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Timestamp
@@ -101,6 +108,10 @@ inline val Fragment.UiInterface: UiInterfaceListener
     get() = (requireActivity() as UiInterfaceListener)
 
 fun Fragment.isDarkThemeOn() =
+    (resources.configuration.uiMode and
+            Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES)
+
+fun Context.isDarkThemeOn() =
     (resources.configuration.uiMode and
             Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES)
 
@@ -246,4 +257,29 @@ inline fun AlertDialog.onPositive(crossinline block: () -> Unit) {
 
 fun Context.getVibrationPatternTitle(position: Int): String {
     return this.getString(LocalDataSource.vibrationPatterns[position].title)
+}
+
+fun BottomSheetDialog.setupAsFullScreen(isDraggable: Boolean = false): Dialog {
+    return this.apply {
+        window?.let {
+            behavior.isDraggable = isDraggable
+            it.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+            WindowInsetsControllerCompat(it, it.decorView)
+                .isAppearanceLightStatusBars = !context.isDarkThemeOn()
+        }
+        behavior.skipCollapsed = true
+
+        setOnShowListener {
+            findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)?.let { layout ->
+                setupFullHeight(layout)
+            }
+        }
+    }
+}
+
+private fun setupFullHeight(bottomSheet: View) {
+    val layoutParams = bottomSheet.layoutParams
+    layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
+    bottomSheet.layoutParams = layoutParams
+    BottomSheetBehavior.from(bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
 }

@@ -1,21 +1,32 @@
 package com.puntogris.posture.ui.welcome
 
 import android.content.Intent
+import android.os.Bundle
 import android.provider.Settings
+import android.view.View
 import androidx.core.text.HtmlCompat
+import androidx.fragment.app.Fragment
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentBatteryOptimizationBinding
-import com.puntogris.posture.ui.base.BaseBindingFragment
 import com.puntogris.posture.utils.gone
 import com.puntogris.posture.utils.isDarkThemeOn
 import com.puntogris.posture.utils.isIgnoringBatteryOptimizations
 import com.puntogris.posture.utils.navigateTo
+import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 
-class BatteryOptimizationFragment :
-    BaseBindingFragment<FragmentBatteryOptimizationBinding>(R.layout.fragment_battery_optimization) {
+class BatteryOptimizationFragment : Fragment(R.layout.fragment_battery_optimization) {
 
-    override fun initializeViews() {
-        binding.fragment = this
+    private val binding by viewBinding(FragmentBatteryOptimizationBinding::bind)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.finishOptimizationButton.setOnClickListener {
+            navigateTo(R.id.action_batteryOptimization_to_home)
+        }
+        binding.disableOptimizationButton.setOnClickListener {
+            startActivity(Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS))
+        }
         checkPowerStatus()
         setBatteryOptimizationsStepsUi()
     }
@@ -44,14 +55,6 @@ class BatteryOptimizationFragment :
                 requireOptimizationGroup.gone()
             }
         }
-    }
-
-    fun openBatteryOptimization() {
-        startActivity(Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS))
-    }
-
-    fun onFinalizeButtonClicked() {
-        navigateTo(R.id.action_batteryOptimization_to_home)
     }
 
     override fun onResume() {

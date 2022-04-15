@@ -11,19 +11,17 @@ class ReminderNameViewHolder(private val binding: ReminderNameVhBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(reminderItem: ReminderUi.Name, clickListener: (ReminderUi) -> Unit) {
-        binding.item = reminderItem
         if (reminderItem.value.isNotBlank()) binding.itemEditText.setText(reminderItem.value)
         binding.itemEditText.addTextChangedListener {
             reminderItem.value = it.toString()
             clickListener(reminderItem)
         }
-        binding.executePendingBindings()
     }
 
     companion object {
         fun from(parent: ViewGroup): ReminderNameViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = ReminderNameVhBinding.inflate(layoutInflater, parent, false)
+            val binding = ReminderNameVhBinding.inflate(layoutInflater)
             return ReminderNameViewHolder(binding)
         }
     }

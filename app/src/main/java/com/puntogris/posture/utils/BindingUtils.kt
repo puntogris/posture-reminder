@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
 import androidx.core.view.isVisible
-import androidx.databinding.BindingAdapter
 import com.db.williamchart.view.BarChartView
 import com.db.williamchart.view.DonutChartView
 import com.google.android.material.button.MaterialButton
@@ -21,22 +20,18 @@ import com.puntogris.posture.utils.constants.Constants.PROGRESS_BAR_SMOOTH_OFFSE
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 
-@BindingAdapter("exerciseDuration")
 fun TextView.setExerciseDuration(duration: Int) {
     text = context.getString(R.string.exercise_duration_seconds, duration)
 }
 
-@BindingAdapter("minutesToHourlyTime")
 fun TextView.setMinutesToHourlyTime(minutes: Int) {
     text = Utils.minutesFromMidnightToHourlyTime(minutes)
 }
 
-@BindingAdapter("daysSummary")
 fun TextView.setDaysSummary(reminder: Reminder?) {
     text = reminder?.alarmDaysSummary(resources.getStringArray(R.array.alarmDays))
 }
 
-@BindingAdapter("reminderColor")
 fun View.setReminderColor(color: Int) {
     backgroundTintList = try {
         ColorStateList.valueOf(getColor(context, color))
@@ -45,24 +40,20 @@ fun View.setReminderColor(color: Int) {
     }
 }
 
-@BindingAdapter("dayMonth")
 fun TextView.setDayMonth(position: Int) {
     var date = LocalDate.now()
     if (position == 1) date = date.minusDays(1)
     text = date.format(DateTimeFormatter.ofPattern("d MMM"))
 }
 
-@BindingAdapter("pagerDay")
 fun TextView.setPagerDay(position: Int) {
     setText(if (position == 0) R.string.today_pager else R.string.yesterday_pager)
 }
 
-@BindingAdapter("accountLevelTitle")
 fun TextView.setAccountLevelTitle(exp: Int) {
     text = context.getString(R.string.account_level_title, exp.getLevel())
 }
 
-@BindingAdapter("accountBadgeLevel")
 fun TextView.setAccountBadgeLevel(exp: Int) {
     val string = when (exp.getLevel()) {
         1 -> R.string.level_1_title
@@ -76,19 +67,16 @@ fun TextView.setAccountBadgeLevel(exp: Int) {
     setText(string)
 }
 
-@BindingAdapter("expForNextLevel")
 fun TextView.setExpForNextLevel(exp: Int) {
     val nextLevel = exp.getLevel().inc()
     text = context.getString(R.string.experience_for_level_x, exp.expForNextLevel(), nextLevel)
 }
 
 @SuppressLint("SetTextI18n")
-@BindingAdapter("expFromTotalLevel")
 fun TextView.setExpFromTotalLevel(exp: Int) {
     text = "${exp.expForCompleteLevel()} / $EXPERIENCE_PER_LEVEL"
 }
 
-@BindingAdapter("donutChartProgress")
 fun DonutChartView.setDonutChartProgress(exp: Int) {
     donutTotal = EXPERIENCE_PER_LEVEL.toFloat()
     donutColors = intArrayOf(getColor(context, R.color.colorPrimaryDark))
@@ -96,17 +84,14 @@ fun DonutChartView.setDonutChartProgress(exp: Int) {
     animate(listOf(exp.expForCompleteLevel().toFloat()))
 }
 
-@BindingAdapter("donutLevel")
 fun TextView.setDonutLevel(exp: Int) {
     text = context.getString(R.string.account_donut_level, exp.getLevel())
 }
 
-@BindingAdapter("rankingLevel")
 fun TextView.setRankingLevel(exp: Int) {
     text = context.getString(R.string.ranking_level, exp.getLevel())
 }
 
-@BindingAdapter("profileRankingNumber")
 fun TextView.setProfileRankingNumber(position: Int) {
     if (position in 0..2) gone()
     else {
@@ -115,7 +100,6 @@ fun TextView.setProfileRankingNumber(position: Int) {
     }
 }
 
-@BindingAdapter("profileRankingMedal")
 fun ImageView.setProfileRankingMedal(position: Int) {
     when (position) {
         0 -> R.drawable.ic_gold_medal
@@ -128,7 +112,6 @@ fun ImageView.setProfileRankingMedal(position: Int) {
     }
 }
 
-@BindingAdapter("backgroundColorTintView")
 fun View.setBackgroundColorTintView(color: Int) {
     backgroundTintList = try {
         ColorStateList.valueOf(getColor(context, color))
@@ -137,12 +120,10 @@ fun View.setBackgroundColorTintView(color: Int) {
     }
 }
 
-@BindingAdapter("progressBarSmoothMax")
 fun ProgressBar.setProgressBarSmoothMax(duration: Int) {
     max = duration * PROGRESS_BAR_SMOOTH_OFFSET
 }
 
-@BindingAdapter("toggleButton")
 fun MaterialButton.setToggleButton(isReminderActive: Boolean) {
     val (color, text) =
         if (isReminderActive) {
@@ -154,7 +135,6 @@ fun MaterialButton.setToggleButton(isReminderActive: Boolean) {
     setText(text)
 }
 
-@BindingAdapter("barChartLabels")
 fun BarChartView.setBarChartLabels(data: List<DayLog>?) {
     if (data == null) return
     val today = LocalDate.now()
@@ -171,7 +151,6 @@ fun BarChartView.setBarChartLabels(data: List<DayLog>?) {
     animate(labels)
 }
 
-@BindingAdapter("usernameOrPlaceHolder")
 fun TextView.setUsernameOrPlaceHolder(name: String?) {
     text = if (name.isNullOrEmpty()) context.getString(R.string.human) else name
 }

@@ -9,15 +9,13 @@ class ExerciseStepViewHolder(private val binding: ExerciseStepVhBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(step: String, position: Int) {
-        binding.step = step
-        binding.position = position
-        binding.executePendingBindings()
+        binding.stepDescription.text = "$position - $step"
     }
 
     companion object {
         fun from(parent: ViewGroup): ExerciseStepViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = ExerciseStepVhBinding.inflate(layoutInflater, parent, false)
+            val binding = ExerciseStepVhBinding.inflate(layoutInflater)
             return ExerciseStepViewHolder(binding)
         }
     }

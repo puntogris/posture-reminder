@@ -1,32 +1,42 @@
 package com.puntogris.posture.ui.explore
 
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentExploreBinding
 import com.puntogris.posture.domain.model.Exercise
 import com.puntogris.posture.domain.model.UserPublicProfile
-import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.ui.rankings.RankingsAdapter
 import com.puntogris.posture.utils.*
+import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class ExploreFragment : BaseFragmentOptions<FragmentExploreBinding>(R.layout.fragment_explore) {
+class ExploreFragment : Fragment(R.layout.fragment_explore) {
 
     private val viewModel: PortalViewModel by viewModels()
+    private val binding by viewBinding(FragmentExploreBinding::bind)
     private lateinit var rankingsAdapter: RankingsAdapter
 
-    override fun initializeViews() {
-        binding.fragment = this
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         setupRankingsRvAdapter()
         fetchRankingsAndFillAdapter()
         setupExercisesRvAdapter()
+
+        binding.globalRankingsButton.setOnClickListener {
+            navigateTo(R.id.action_explore_to_rankings)
+        }
     }
 
     private fun setupExercisesRvAdapter() {
-        binding.exercisesRv.adapter = ExercisesAdapter { onExerciseClicked(it) }
+        binding.exercisesRv.adapter = ExercisesAdapter(::onExerciseClicked)
     }
 
     private fun setupRankingsRvAdapter() {
@@ -63,7 +73,14 @@ class ExploreFragment : BaseFragmentOptions<FragmentExploreBinding>(R.layout.fra
         findNavController().navigate(action)
     }
 
-    fun navigateToGlobalRanking() {
-        navigateTo(R.id.action_explore_to_rankings)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.showItem(R.id.settings)
+        menu.showItem(R.id.newReminder)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 }

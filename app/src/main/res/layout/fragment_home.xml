@@ -1,129 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    tools:context=".ui.home.HomeFragment">
 
-    <data>
+    <TextView
+        android:id="@+id/title"
+        style="@style/Theme.Posture.MediumTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/home_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <import type="android.view.View" />
-
-        <variable
-            name="fragment"
-            type="com.puntogris.posture.ui.home.HomeFragment" />
-
-        <variable
-            name="viewModel"
-            type="com.puntogris.posture.ui.home.HomeViewModel" />
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <include
+        android:id="@+id/usagePager"
+        layout="@layout/home_app_usage_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipChildren="false"
-        tools:context=".ui.home.HomeFragment">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:layout_height="140dp" />
 
-        <TextView
-            android:id="@+id/title"
-            style="@style/Theme.Posture.MediumTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="@string/home_label"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <View
+        android:id="@+id/divider"
+        style="@style/Theme.Posture.Divider"
+        android:layout_width="0dp"
+        android:layout_height="8dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/usagePager" />
 
-        <include
-            android:id="@+id/usagePager"
-            layout="@layout/home_app_usage_pager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-            tools:layout_height="140dp" />
+    <TextView
+        android:id="@+id/selectedReminderTitle"
+        style="@style/Theme.Posture.RegularTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/selected_reminder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-        <View
-            android:id="@+id/divider"
-            style="@style/Theme.Posture.Divider"
-            android:layout_width="0dp"
-            android:layout_height="8dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/usagePager" />
+    <TextView
+        android:id="@+id/manageRemindersMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/no_reminders_found_alert"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectedReminderTitle" />
 
-        <TextView
-            android:id="@+id/selectedReminderTitle"
-            style="@style/Theme.Posture.RegularTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/selected_reminder"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
+    <Button
+        android:id="@+id/manageRemindersButton"
+        style="@style/Theme.Posture.Button"
+        android:layout_width="match_parent"
+        android:layout_marginTop="24dp"
+        android:visibility="visible"
+        android:text="@string/see_all_reminders"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/manageRemindersMessage" />
 
-        <TextView
-            android:id="@+id/manageRemindersMessage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/no_reminders_found_alert"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/selectedReminderTitle" />
+    <include
+        android:id="@+id/activeReminderLayout"
+        layout="@layout/active_reminder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectedReminderTitle" />
 
-        <Button
-            android:id="@+id/manageRemindersButton"
-            style="@style/Theme.Posture.Button"
-            android:layout_width="match_parent"
-            android:layout_marginTop="24dp"
-            android:onClick="@{()->fragment.onNavigateToRemindersClicked()}"
-            android:text="@string/see_all_reminders"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/manageRemindersMessage" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/pandaAnimation"
+        android:layout_width="wrap_content"
+        android:layout_height="140dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/panda" />
 
-        <include
-            android:id="@+id/activeReminderLayout"
-            layout="@layout/active_reminder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:visibility="@{viewModel.activeReminder == null ? View.GONE : View.VISIBLE }"
-            app:fragment="@{fragment}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/selectedReminderTitle"
-            app:reminder="@{viewModel.activeReminder}"
-            app:viewModel="@{viewModel}" />
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/reminderNotFoundGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="manageRemindersButton, manageRemindersMessage" />
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/pandaAnimation"
-            android:layout_width="wrap_content"
-            android:layout_height="140dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:visibility="@{viewModel.isPandaAnimationEnabled == true ? View.VISIBLE : View.GONE }"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/panda" />
-
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/reminderNotFoundGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="@{viewModel.activeReminder == null ? View.VISIBLE : View.GONE }"
-            app:constraint_referenced_ids="manageRemindersButton, manageRemindersMessage" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,15 @@
 package com.puntogris.posture.ui.reminders.new_edit
 
+import android.app.Dialog
+import android.os.Bundle
 import android.text.InputType
+import android.view.View
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.TextInputLayout
 import com.maxkeppeler.sheets.color.ColorSheet
 import com.maxkeppeler.sheets.core.IconButton
@@ -16,32 +21,39 @@ import com.maxkeppeler.sheets.options.OptionsSheet
 import com.maxkeppeler.sheets.time_clock.ClockTimeSheet
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetNewReminderBinding
-import com.puntogris.posture.ui.base.BaseBindingBottomSheetFragment
 import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
 import com.puntogris.posture.utils.constants.Constants.INTERVAL_KEY
 import com.puntogris.posture.utils.constants.Constants.SOUND_PICKER_KEY
 import com.puntogris.posture.utils.constants.Constants.TIME_UNIT_KEY
 import com.puntogris.posture.utils.constants.Constants.VIBRATION_PICKER_KEY
+import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.util.*
 
 @AndroidEntryPoint
-class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewReminderBinding>(
-    R.layout.bottom_sheet_new_reminder,
-    true
-) {
+class NewReminderBottomSheet : BottomSheetDialogFragment() {
+
     private val viewModel: NewReminderViewModel by viewModels()
+    private val binding by viewBinding(BottomSheetNewReminderBinding::bind)
 
-    override fun initializeViews() {
-        binding.bottomSheet = this
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = viewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        binding.closeButton.setOnClickListener {
+            dismiss()
+        }
+        binding.saveReminderButton.setOnClickListener {
+            onSaveReminder()
+        }
         setupReminderRvAdapter()
         setFragmentResultListeners()
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return (super.onCreateDialog(savedInstanceState) as BottomSheetDialog).apply {
+            setupAsFullScreen(isDraggable = true)
+        }
     }
 
     private fun setupReminderRvAdapter() {
@@ -53,9 +65,7 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
 
     private fun subscribeUi(adapter: ReminderItemAdapter) {
         launchAndRepeatWithViewLifecycle {
-            viewModel.reminder.collect {
-                adapter.updateConfigData(it)
-            }
+            viewModel.reminder.collect(adapter::updateConfigData)
         }
     }
 
@@ -68,7 +78,7 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
         }
     }
 
-    fun onSaveReminder() {
+    private fun onSaveReminder() {
         lifecycleScope.launch {
             when (val result = viewModel.saveReminder()) {
                 is Result.Error -> {
@@ -150,7 +160,10 @@ class NewReminderBottomSheet : BaseBindingBottomSheetFragment<BottomSheetNewRemi
                 if (interval != 0) {
                     viewModel.saveTimeInterval(if (timeUnit == 0) interval else interval * 60)
                 } else {
-                    showSnackBar(R.string.snack_time_interval_cant_be_zero, anchorView = binding.saveReminderButton)
+                    showSnackBar(
+                        R.string.snack_time_interval_cant_be_zero,
+                        anchorView = binding.saveReminderButton
+                    )
                 }
             }
         }

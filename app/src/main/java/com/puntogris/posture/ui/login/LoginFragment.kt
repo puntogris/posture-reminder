@@ -1,33 +1,37 @@
 package com.puntogris.posture.ui.login
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
+import com.puntogris.posture.databinding.FragmentExploreBinding
 import com.puntogris.posture.databinding.FragmentLoginBinding
 import com.puntogris.posture.ui.base.BaseLoginFragment
 import com.puntogris.posture.utils.launchWebBrowserIntent
+import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : BaseLoginFragment<FragmentLoginBinding>(R.layout.fragment_login) {
+class LoginFragment : BaseLoginFragment<FragmentLoginBinding>() {
 
     override val viewModel: LoginViewModel by viewModels()
+    override val binding by viewBinding(FragmentLoginBinding::bind)
+    override val progressBar: ProgressBar = binding.progressBar
+    override val loginWithGoogleButton: View = binding.loginWithGoogleButton
 
-    override fun initializeViews() {
-        super.initializeViews()
-        binding.fragment = this
-    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    override val progressBar: ProgressBar
-        get() = binding.progressBar
-
-    fun continueAnonymously() {
-        val action = LoginFragmentDirections.actionGlobalSynAccountFragment()
-        findNavController().navigate(action)
-    }
-
-    fun onLoginProblemsClicked() {
-        launchWebBrowserIntent("https://postureapp.puntogris.com/help/")
+        binding.continueAnonymouslyButton.setOnClickListener {
+            val action = LoginFragmentDirections.actionGlobalSynAccountFragment()
+            findNavController().navigate(action)
+        }
+        binding.loginProblemsButton.setOnClickListener {
+            launchWebBrowserIntent("https://postureapp.puntogris.com/help/")
+        }
     }
 }

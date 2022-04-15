@@ -1,5 +1,8 @@
 package com.puntogris.posture.ui.account
 
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
@@ -7,22 +10,25 @@ import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieDrawable
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentDeleteAccountBinding
-import com.puntogris.posture.ui.base.BaseBindingFragment
 import com.puntogris.posture.utils.*
+import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class DeleteAccountFragment :
-    BaseBindingFragment<FragmentDeleteAccountBinding>(R.layout.fragment_delete_account) {
+class DeleteAccountFragment : Fragment(R.layout.fragment_delete_account) {
 
     private val viewModel: DeleteAccountViewModel by viewModels()
+    private val binding by viewBinding(FragmentDeleteAccountBinding::bind)
 
-    override fun initializeViews() {
-        binding.fragment = this
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.deleteButton.setOnClickListener {
+            onDeleteAccountClicked()
+        }
     }
 
-    fun onDeleteAccountClicked() {
+    private fun onDeleteAccountClicked() {
         lifecycleScope.launch {
             val user = viewModel.getCurrentUser()
             if (

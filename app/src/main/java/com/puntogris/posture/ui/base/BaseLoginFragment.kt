@@ -1,30 +1,37 @@
 package com.puntogris.posture.ui.base
 
 import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.LayoutRes
-import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.viewbinding.ViewBinding
 import com.puntogris.posture.NavigationDirections
 import com.puntogris.posture.R
+import com.puntogris.posture.databinding.FragmentExploreBinding
 import com.puntogris.posture.domain.model.LoginResult
 import com.puntogris.posture.ui.login.LoginConfiguration
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.gone
 import com.puntogris.posture.utils.visible
-import kotlinx.coroutines.flow.collect
+import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import kotlinx.coroutines.launch
 
-abstract class BaseLoginFragment<T : ViewDataBinding>(@LayoutRes override val layout: Int) :
-    BaseBindingFragment<T>(layout), LoginConfiguration {
+abstract class BaseLoginFragment<T : ViewBinding>() :
+    Fragment(), LoginConfiguration {
 
+    protected abstract val binding: T
     private lateinit var loginActivityResultLauncher: ActivityResultLauncher<Intent>
 
-    override fun initializeViews() {
-        super.initializeViews()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         registerActivityResultLauncher()
     }
 
@@ -79,5 +86,4 @@ abstract class BaseLoginFragment<T : ViewDataBinding>(@LayoutRes override val la
     override fun onLoginStarted() {
         progressBar.visible()
     }
-
 }

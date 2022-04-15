@@ -15,16 +15,16 @@ class ReminderItemViewHolder(private val binding: ReminderItemVhBinding) :
         clickListener: (ReminderUi) -> Unit,
         isLastItem: Boolean
     ) {
-        binding.reminderItem = reminderItem
+        binding.itemName.setText(reminderItem.title)
+        binding.itemDescription.text = reminderItem.description
         binding.root.setOnClickListener { clickListener(reminderItem) }
         if (isLastItem) binding.divider.gone()
-        binding.executePendingBindings()
     }
 
     companion object {
         fun from(parent: ViewGroup): ReminderItemViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = ReminderItemVhBinding.inflate(layoutInflater, parent, false)
+            val binding = ReminderItemVhBinding.inflate(layoutInflater)
             return ReminderItemViewHolder(binding)
         }
     }

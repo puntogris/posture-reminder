@@ -1,106 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <data>
-
-        <variable
-            name="fragment"
-            type="com.puntogris.posture.ui.explore.ExploreFragment" />
-    </data>
-
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".ui.explore.ExploreFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            android:id="@+id/portalTitle"
+            style="@style/Theme.Posture.MediumTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/explore_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/portalRankingsShimmer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".ui.explore.ExploreFragment">
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/globalRankingsButton">
 
-            <TextView
-                android:id="@+id/portalTitle"
-                style="@style/Theme.Posture.MediumTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="@string/explore_label"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <include layout="@layout/ranking_profile_shimmer" />
 
-            <com.facebook.shimmer.ShimmerFrameLayout
-                android:id="@+id/portalRankingsShimmer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/globalRankingsButton">
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
-                <include layout="@layout/ranking_profile_shimmer" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rankingsRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/portalRankingsShimmer"
+            tools:itemCount="3"
+            tools:listitem="@layout/ranking_profile_vh" />
 
-            </com.facebook.shimmer.ShimmerFrameLayout>
+        <View
+            android:id="@+id/divider"
+            style="@style/Theme.Posture.Divider"
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rankingsRv" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rankingsRv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/portalRankingsShimmer"
-                tools:itemCount="3"
-                tools:listitem="@layout/ranking_profile_vh" />
+        <TextView
+            android:id="@+id/globalRankingsButton"
+            style="@style/Theme.Posture.TextMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:foreground="?selectableItemBackground"
+            android:padding="8dp"
+            android:text="@string/see_global_rankings"
+            android:textSize="15sp"
+            app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/portalTitle" />
 
-            <View
-                android:id="@+id/divider"
-                style="@style/Theme.Posture.Divider"
-                android:layout_width="0dp"
-                android:layout_height="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rankingsRv" />
+        <TextView
+            android:id="@+id/portalExerciseTitle"
+            style="@style/Theme.Posture.RegularTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/exercises"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-            <TextView
-                android:id="@+id/globalRankingsButton"
-                style="@style/Theme.Posture.TextMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:foreground="?selectableItemBackground"
-                android:onClick="@{()-> fragment.navigateToGlobalRanking()}"
-                android:padding="8dp"
-                android:text="@string/see_global_rankings"
-                android:textSize="15sp"
-                app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/portalTitle" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/exercisesRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:clipToPadding="false"
+            android:paddingBottom="88dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/portalExerciseTitle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
 
-            <TextView
-                android:id="@+id/portalExerciseTitle"
-                style="@style/Theme.Posture.RegularTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/exercises"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/exercisesRv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:clipToPadding="false"
-                android:paddingBottom="88dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/portalExerciseTitle" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
-
-</layout>

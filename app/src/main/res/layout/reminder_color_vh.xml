@@ -1,26 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center">
 
-    <data>
-
-        <variable
-            name="item"
-            type="com.puntogris.posture.utils.ReminderUi.Color" />
-    </data>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/reminderColorImage"
-            reminderColor="@{item.color}"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_marginVertical="24dp"
-            android:background="@drawable/round_corners_background"
-            android:contentDescription="@string/color_picker_content_description"
-            android:foreground="?selectableItemBackground" />
-    </LinearLayout>
-</layout>
+    <ImageView
+        android:id="@+id/reminderColorImage"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginVertical="24dp"
+        android:background="@drawable/round_corners_background"
+        android:contentDescription="@string/color_picker_content_description"
+        android:foreground="?selectableItemBackground" />
+</LinearLayout>

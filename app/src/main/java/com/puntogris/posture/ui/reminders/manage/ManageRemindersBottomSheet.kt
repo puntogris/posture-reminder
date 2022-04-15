@@ -1,30 +1,46 @@
 package com.puntogris.posture.ui.reminders.manage
 
+import android.app.Dialog
+import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.puntogris.posture.R
+import com.puntogris.posture.databinding.BottomSheetExerciseBinding
 import com.puntogris.posture.databinding.BottomSheetManageRemindersBinding
 import com.puntogris.posture.domain.model.Reminder
-import com.puntogris.posture.ui.base.BaseBindingBottomSheetFragment
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.navigateTo
+import com.puntogris.posture.utils.setupAsFullScreen
 import com.puntogris.posture.utils.showSnackBar
+import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ManageRemindersBottomSheet :
-    BaseBindingBottomSheetFragment<BottomSheetManageRemindersBinding>(
-        R.layout.bottom_sheet_manage_reminders,
-        false
-    ) {
+class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
 
     private val viewModel: ManageRemindersViewModel by viewModels()
+    private val binding by viewBinding(BottomSheetManageRemindersBinding::bind)
 
-    override fun initializeViews() {
-        binding.bottomSheet = this
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupRecyclerViewAdapter()
+        binding.closeButton.setOnClickListener {
+            dismiss()
+        }
+        binding.addReminderButton.setOnClickListener {
+            navigateTo(R.id.action_manageReminders_to_newReminder)
+        }
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return (super.onCreateDialog(savedInstanceState) as BottomSheetDialog).apply {
+            setupAsFullScreen(isDraggable = false)
+        }
     }
 
     private fun setupRecyclerViewAdapter() {
@@ -71,9 +87,5 @@ class ManageRemindersBottomSheet :
                 }
             }
         }
-    }
-
-    fun onNewReminder() {
-        navigateTo(R.id.action_manageReminders_to_newReminder)
     }
 }

@@ -70,14 +70,6 @@ class AppModule {
         return UserRepositoryImpl(firebaseClients, userServerApi, alarm, dispatchers, appDatabase)
     }
 
-    @Provides
-    fun provideTicketRepository(
-        firebase: FirebaseClients,
-        dispatchers: DispatcherProvider
-    ): TicketRepository {
-        return TicketRepositoryImpl(firebase, dispatchers)
-    }
-
     @Singleton
     @Provides
     fun provideRankingRepository(

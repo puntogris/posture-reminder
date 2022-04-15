@@ -1,146 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <data>
+    <TextView
+        android:id="@+id/dayLabel"
+        style="@style/Theme.Posture.TextBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <variable
-            name="dayHistory"
-            type="com.puntogris.posture.domain.model.DayLog" />
+    <TextView
+        android:id="@+id/notificationsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/notifications"
+        android:textColor="@color/grey"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/logNotifications"
+        app:layout_constraintTop_toBottomOf="@+id/logNotifications"
+        app:layout_constraintVertical_bias="1.0" />
 
-        <variable
-            name="position"
-            type="Integer" />
-    </data>
+    <TextView
+        android:id="@+id/experienceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="@string/experience"
+        android:textColor="@color/grey"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/logExperience"
+        app:layout_constraintTop_toTopOf="@+id/exerciseLabel"
+        app:layout_constraintVertical_bias="1.0" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/exerciseLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="@string/exercises"
+        android:textColor="@color/grey"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/logExercises"
+        app:layout_constraintTop_toTopOf="@+id/notificationsLabel"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/dayLabel"
-            style="@style/Theme.Posture.TextBlack"
-            pagerDay="@{position}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/logDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/grey"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dayLabel"
+        app:layout_constraintStart_toEndOf="@+id/dayLabel" />
 
-        <TextView
-            android:id="@+id/notificationsLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="24dp"
-            android:text="@string/notifications"
-            android:textColor="@color/grey"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/logNotifications"
-            app:layout_constraintTop_toBottomOf="@+id/logNotifications"
-            app:layout_constraintVertical_bias="1.0" />
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="1dp"
+        android:layout_height="50dp"
+        android:alpha="0.5"
+        android:background="@color/grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/divider3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/experienceLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="@string/experience"
-            android:textColor="@color/grey"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/logExperience"
-            app:layout_constraintTop_toTopOf="@+id/exerciseLabel"
-            app:layout_constraintVertical_bias="1.0" />
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="1dp"
+        android:layout_height="50dp"
+        android:alpha="0.5"
+        android:background="@color/grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/divider2"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/exerciseLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="@string/exercises"
-            android:textColor="@color/grey"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/logExercises"
-            app:layout_constraintTop_toTopOf="@+id/notificationsLabel"
-            app:layout_constraintVertical_bias="0.0" />
+    <TextView
+        android:id="@+id/logNotifications"
+        style="@style/Theme.Posture.TextBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintStart_toStartOf="@+id/dayLabel"
+        app:layout_constraintTop_toBottomOf="@+id/dayLabel" />
 
-        <TextView
-            android:id="@+id/logDay"
-            dayMonth="@{position}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:textColor="@color/grey"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="@+id/dayLabel"
-            app:layout_constraintStart_toEndOf="@+id/dayLabel" />
+    <TextView
+        android:id="@+id/logExercises"
+        style="@style/Theme.Posture.TextBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintStart_toEndOf="@+id/divider2"
+        app:layout_constraintTop_toTopOf="@+id/logNotifications" />
 
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="1dp"
-            android:layout_height="50dp"
-            android:alpha="0.5"
-            android:background="@color/grey"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/divider3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/divider3"
-            android:layout_width="1dp"
-            android:layout_height="50dp"
-            android:alpha="0.5"
-            android:background="@color/grey"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/divider2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/logNotifications"
-            style="@style/Theme.Posture.TextBlack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@{String.valueOf(dayHistory.notifications)}"
-            android:textColor="@color/white"
-            android:textSize="17sp"
-            app:layout_constraintStart_toStartOf="@+id/dayLabel"
-            app:layout_constraintTop_toBottomOf="@+id/dayLabel" />
-
-        <TextView
-            android:id="@+id/logExercises"
-            style="@style/Theme.Posture.TextBlack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="@{String.valueOf(dayHistory.exercises)}"
-            android:textColor="@color/white"
-            android:textSize="17sp"
-            app:layout_constraintStart_toEndOf="@+id/divider2"
-            app:layout_constraintTop_toTopOf="@+id/logNotifications" />
-
-        <TextView
-            android:id="@+id/logExperience"
-            style="@style/Theme.Posture.TextBlack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="@{`+` + String.valueOf(dayHistory.expGained)}"
-            android:textColor="@color/white"
-            android:textSize="17sp"
-            app:layout_constraintStart_toEndOf="@+id/divider3"
-            app:layout_constraintTop_toTopOf="@+id/logExercises" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+    <TextView
+        android:id="@+id/logExperience"
+        style="@style/Theme.Posture.TextBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintStart_toEndOf="@+id/divider3"
+        app:layout_constraintTop_toTopOf="@+id/logExercises" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 

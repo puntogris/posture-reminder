@@ -10,14 +10,14 @@ class WelcomeItemViewHolder(private val binding: WelcomeItemVhBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(welcomeItem: WelcomeItem) {
-        binding.welcomeItem = welcomeItem
-        binding.executePendingBindings()
+        binding.welcomeItemImage.setImageResource(welcomeItem.image)
+        binding.welcomeItemTitle.setText(welcomeItem.tittle)
     }
 
     companion object {
         fun from(parent: ViewGroup): WelcomeItemViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = WelcomeItemVhBinding.inflate(layoutInflater, parent, false)
+            val binding = WelcomeItemVhBinding.inflate(layoutInflater)
             return WelcomeItemViewHolder(binding)
         }
     }

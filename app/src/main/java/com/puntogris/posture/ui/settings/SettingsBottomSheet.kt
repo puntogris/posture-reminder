@@ -1,26 +1,39 @@
 package com.puntogris.posture.ui.settings
 
+import android.app.Dialog
+import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.setFragmentResultListener
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetSettingsBinding
-import com.puntogris.posture.ui.base.BaseBindingBottomSheetFragment
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
 import com.puntogris.posture.utils.constants.Constants.EDIT_NAME_KEY
 import com.puntogris.posture.utils.constants.Constants.SEND_TICKET_KEY
+import com.puntogris.posture.utils.setupAsFullScreen
 import com.puntogris.posture.utils.showSnackBar
+import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SettingsBottomSheet : BaseBindingBottomSheetFragment<BottomSheetSettingsBinding>(
-    R.layout.bottom_sheet_settings,
-    true
-) {
+class SettingsBottomSheet : BottomSheetDialogFragment() {
 
-    override fun initializeViews() {
-        binding.bottomSheet = this
+    private val binding by viewBinding(BottomSheetSettingsBinding::bind)
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return (super.onCreateDialog(savedInstanceState) as BottomSheetDialog).apply {
+            setupAsFullScreen(isDraggable = true)
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         createPreferenceScreen()
         setFragmentResultsListener()
+        binding.closeButton.setOnClickListener {
+            dismiss()
+        }
     }
 
     private fun createPreferenceScreen() {

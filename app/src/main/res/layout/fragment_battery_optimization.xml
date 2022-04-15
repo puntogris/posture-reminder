@@ -1,164 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.welcome.BatteryOptimizationFragment">
 
-    <data>
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/requireOptimizationGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="divider,stepOne,optimizationStepsTitle,disableOptimizationButton,optimizationAlert,stepTwo" />
 
-        <variable
-            name="fragment"
-            type="com.puntogris.posture.ui.welcome.BatteryOptimizationFragment" />
-    </data>
+    <TextView
+        android:id="@+id/optimizationTitle"
+        style="@style/Theme.Posture.RegularTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/battery_optimization_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
+        android:id="@+id/optimizationMessage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.welcome.BatteryOptimizationFragment">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/battery_optimization_alert1"
+        android:textAlignment="center"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/optimizationTitle" />
 
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/requireOptimizationGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:constraint_referenced_ids="divider,stepOne,optimizationStepsTitle,disableOptimizationButton,optimizationAlert,stepTwo" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/finishOptimizationButton"
+        style="@style/Theme.Posture.Button"
+        android:layout_width="match_parent"
+        android:text="@string/action_finish"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/optimizationTitle"
-            style="@style/Theme.Posture.RegularTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/battery_optimization_label"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/disableOptimizationButton"
+        style="@style/Theme.Posture.Button"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/grey"
+        android:text="@string/action_disable"
+        android:textColor="#292929"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stepTwo" />
 
-        <TextView
-            android:id="@+id/optimizationMessage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginTop="32dp"
-            android:text="@string/battery_optimization_alert1"
-            android:textAlignment="center"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/optimizationTitle" />
+    <TextView
+        android:id="@+id/stepOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/optimizationStepsTitle" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/finishOptimizationButton"
-            style="@style/Theme.Posture.Button"
-            android:layout_width="match_parent"
-            android:onClick="@{()-> fragment.onFinalizeButtonClicked()}"
-            android:text="@string/action_finish"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+    <TextView
+        android:id="@+id/stepTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="@+id/stepOne"
+        app:layout_constraintTop_toBottomOf="@+id/stepOne" />
 
-        <Button
-            android:id="@+id/disableOptimizationButton"
-            style="@style/Theme.Posture.Button"
-            android:layout_width="200dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="@color/grey"
-            android:onClick="@{()-> fragment.openBatteryOptimization()}"
-            android:text="@string/action_disable"
-            android:textColor="#292929"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stepTwo" />
+    <TextView
+        android:id="@+id/optimizationStatusLabel"
+        style="@style/Theme.Posture.TextMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/status"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toStartOf="@+id/powerManagerState"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/optimizationMessage" />
 
-        <TextView
-            android:id="@+id/stepOne"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/optimizationStepsTitle" />
+    <TextView
+        android:id="@+id/powerManagerState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="@string/optimization_require_action"
+        app:layout_constraintBottom_toBottomOf="@+id/optimizationStatusLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/optimizationStatusLabel"
+        app:layout_constraintTop_toTopOf="@+id/optimizationStatusLabel" />
 
-        <TextView
-            android:id="@+id/stepTwo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="@+id/stepOne"
-            app:layout_constraintTop_toBottomOf="@+id/stepOne" />
+    <ImageView
+        android:id="@+id/powerStateImage"
+        android:layout_width="19dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:contentDescription="@string/image_content_description"
+        android:src="@drawable/ic_baseline_cancel_24"
+        app:layout_constraintBottom_toBottomOf="@+id/powerManagerState"
+        app:layout_constraintStart_toEndOf="@+id/powerManagerState"
+        app:layout_constraintTop_toTopOf="@+id/powerManagerState" />
 
-        <TextView
-            android:id="@+id/optimizationStatusLabel"
-            style="@style/Theme.Posture.TextMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/status"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toStartOf="@+id/powerManagerState"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/optimizationMessage" />
+    <TextView
+        android:id="@+id/optimizationStepsTitle"
+        style="@style/Theme.Posture.RegularTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/steps"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-        <TextView
-            android:id="@+id/powerManagerState"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="@string/optimization_require_action"
-            app:layout_constraintBottom_toBottomOf="@+id/optimizationStatusLabel"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/optimizationStatusLabel"
-            app:layout_constraintTop_toTopOf="@+id/optimizationStatusLabel" />
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="8dp"
+        android:layout_marginTop="24dp"
+        android:alpha="0.2"
+        android:background="@color/grey"
+        android:elevation="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/optimizationStatusLabel" />
 
-        <ImageView
-            android:id="@+id/powerStateImage"
-            android:layout_width="19dp"
-            android:layout_height="19dp"
-            android:layout_marginStart="8dp"
-            android:contentDescription="@string/image_content_description"
-            android:src="@drawable/ic_baseline_cancel_24"
-            app:layout_constraintBottom_toBottomOf="@+id/powerManagerState"
-            app:layout_constraintStart_toEndOf="@+id/powerManagerState"
-            app:layout_constraintTop_toTopOf="@+id/powerManagerState" />
-
-        <TextView
-            android:id="@+id/optimizationStepsTitle"
-            style="@style/Theme.Posture.RegularTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/steps"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.505"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="0dp"
-            android:layout_height="8dp"
-            android:layout_marginTop="24dp"
-            android:alpha="0.2"
-            android:background="@color/grey"
-            android:elevation="1dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/optimizationStatusLabel" />
-
-        <TextView
-            android:id="@+id/optimizationAlert"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="32dp"
-            android:text="@string/battery_optimization_alert2"
-            android:textAlignment="center"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/finishOptimizationButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/disableOptimizationButton" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+    <TextView
+        android:id="@+id/optimizationAlert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:text="@string/battery_optimization_alert2"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/finishOptimizationButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/disableOptimizationButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>

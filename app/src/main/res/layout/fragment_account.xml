@@ -1,181 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView android:fillViewport="true"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.puntogris.posture.ui.account.AccountViewModel" />
-
-        <variable
-            name="fragment"
-            type="com.puntogris.posture.ui.account.AccountFragment" />
-    </data>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_width="match_parent"
+        tools:context=".ui.account.AccountFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            style="@style/Theme.Posture.MediumTitle"
+            android:id="@+id/accountTitle"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_width="wrap_content"
+            android:text="@string/account_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/headerLayout"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="24dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".ui.account.AccountFragment">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/accountTitle"
+            layout="@layout/user_account_header" />
 
-            <TextView
-                android:id="@+id/accountTitle"
-                style="@style/Theme.Posture.MediumTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="@string/account_label"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <View
+            style="@style/Theme.Posture.Divider"
+            android:id="@+id/divider"
+            android:layout_height="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_width="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/barChart" />
 
-            <include
-                android:id="@+id/headerLayout"
-                layout="@layout/user_account_header"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/accountTitle"
-                app:viewModel="@{viewModel}" />
+        <com.db.williamchart.view.BarChartView
+            android:id="@+id/barChart"
+            android:layout_height="150dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_width="0dp"
+            app:chart_axis="x"
+            app:chart_barsColor="@color/grey"
+            app:chart_barsRadius="6dp"
+            app:chart_gridStrokeWidth="3dp"
+            app:chart_labelsColor="?colorControlNormal"
+            app:chart_labelsSize="15sp"
+            app:chart_spacing="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/donutChart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/logTitle"/>
 
-            <View
-                android:id="@+id/divider"
-                style="@style/Theme.Posture.Divider"
-                android:layout_width="0dp"
-                android:layout_height="8dp"
-                android:layout_marginTop="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/barChart" />
+        <com.db.williamchart.view.DonutChartView
+            android:id="@+id/donutChart"
+            android:layout_height="100dp"
+            android:layout_marginEnd="16dp"
+            android:layout_width="100dp"
+            app:chart_donutBackgroundColor="@color/gray_dark"
+            app:chart_donutRoundCorners="true"
+            app:chart_donutThickness="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/barChart"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/barChart"/>
 
-            <com.db.williamchart.view.BarChartView
-                android:id="@+id/barChart"
-                barChartLabels="@{viewModel.weekData}"
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="24dp"
-                app:chart_axis="x"
-                app:chart_barsColor="@color/grey"
-                app:chart_barsRadius="6dp"
-                app:chart_gridStrokeWidth="3dp"
-                app:chart_labelsColor="?colorControlNormal"
-                app:chart_labelsSize="15sp"
-                app:chart_spacing="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/donutChart"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/logTitle" />
+        <TextView
+            style="@style/Theme.Posture.RegularTitle"
+            android:id="@+id/logTitle"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_width="wrap_content"
+            android:text="@string/account_exp_last_week_title"
+            app:layout_constraintStart_toStartOf="@+id/barChart"
+            app:layout_constraintTop_toBottomOf="@+id/headerLayout" />
 
-            <com.db.williamchart.view.DonutChartView
-                android:id="@+id/donutChart"
-                donutChartProgress="@{viewModel.user.experience}"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginEnd="16dp"
-                app:chart_donutBackgroundColor="@color/gray_dark"
-                app:chart_donutRoundCorners="true"
-                app:chart_donutThickness="10dp"
-                app:layout_constraintBottom_toBottomOf="@id/barChart"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/barChart" />
+        <TextView
+            style="@style/Theme.Posture.RegularTitle"
+            android:id="@+id/expTitle"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/account_exp_title"
+            app:layout_constraintStart_toStartOf="@+id/donutChart"
+            app:layout_constraintTop_toTopOf="@+id/logTitle" />
 
-            <TextView
-                android:id="@+id/logTitle"
-                style="@style/Theme.Posture.RegularTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="@string/account_exp_last_week_title"
-                app:layout_constraintStart_toStartOf="@+id/barChart"
-                app:layout_constraintTop_toBottomOf="@+id/headerLayout" />
+        <TextView
+            android:id="@+id/experience_for_next_lvl"
+            style="@style/Theme.Posture.TextMedium"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_width="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/grey"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/expTitle"
+            app:layout_constraintTop_toBottomOf="@+id/expTitle"/>
 
-            <TextView
-                android:id="@+id/expTitle"
-                style="@style/Theme.Posture.RegularTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/account_exp_title"
-                app:layout_constraintStart_toStartOf="@+id/donutChart"
-                app:layout_constraintTop_toTopOf="@+id/logTitle" />
+        <TextView
+            android:id="@+id/current_lvl"
+            style="@style/Theme.Posture.TextMedium"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/donutChart"
+            app:layout_constraintEnd_toEndOf="@+id/donutChart"
+            app:layout_constraintStart_toStartOf="@+id/donutChart"
+            app:layout_constraintTop_toTopOf="@+id/donutChart"/>
 
-            <TextView
-                style="@style/Theme.Posture.TextMedium"
-                expForNextLevel="@{viewModel.user.experience}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:textAlignment="center"
-                android:textColor="@color/grey"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/expTitle"
-                app:layout_constraintTop_toBottomOf="@+id/expTitle" />
+        <TextView
+            android:id="@+id/exp_from_total_lvl"
+            style="@style/Theme.Posture.TextMedium"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:textColor="@color/grey"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/donutChart"
+            app:layout_constraintStart_toStartOf="@+id/donutChart"
+            app:layout_constraintTop_toBottomOf="@+id/donutChart" />
 
-            <TextView
-                style="@style/Theme.Posture.TextMedium"
-                donutLevel="@{viewModel.user.experience}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/donutChart"
-                app:layout_constraintEnd_toEndOf="@+id/donutChart"
-                app:layout_constraintStart_toStartOf="@+id/donutChart"
-                app:layout_constraintTop_toTopOf="@+id/donutChart" />
+        <TextView
+            style="@style/Theme.Posture.RegularTitle"
+            android:id="@+id/selectedReminderTitle"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:text="@string/reminders_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-            <TextView
-                style="@style/Theme.Posture.TextMedium"
-                expFromTotalLevel="@{viewModel.user.experience}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textColor="@color/grey"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@+id/donutChart"
-                app:layout_constraintStart_toStartOf="@+id/donutChart"
-                app:layout_constraintTop_toBottomOf="@+id/donutChart" />
+        <Button
+            android:id="@+id/manage_reminders_button"
+            style="@style/Theme.Posture.Button"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:text="@string/see_all_reminders"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/remindersSummary" />
 
-            <TextView
-                android:id="@+id/selectedReminderTitle"
-                style="@style/Theme.Posture.RegularTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/reminders_label"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider" />
+        <TextView
+            android:id="@+id/remindersSummary"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:text="@string/manage_account_reminders"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/selectedReminderTitle" />
 
-            <Button
-                style="@style/Theme.Posture.Button"
-                android:layout_width="match_parent"
-                android:layout_marginTop="16dp"
-                android:onClick="@{()->fragment.onNavigateToRemindersClicked()}"
-                android:text="@string/see_all_reminders"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/remindersSummary" />
-
-            <TextView
-                android:id="@+id/remindersSummary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="32dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/manage_account_reminders"
-                android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/selectedReminderTitle" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
-</layout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

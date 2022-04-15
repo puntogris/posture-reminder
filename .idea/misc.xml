@@ -82,6 +82,7 @@
         <entry key="app/src/main/res/layout/bug_report_dialog.xml" value="0.23697916666666666" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/credit_item.xml" value="0.234375" />
+        <entry key="app/src/main/res/layout/credit_item_vh.xml" value="0.234375" />
         <entry key="app/src/main/res/layout/day_history_main_pager_item.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/day_log_home_pager_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/dialog_claim_experience.xml" value="0.25" />

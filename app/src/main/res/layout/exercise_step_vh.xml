@@ -1,21 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <data>
-
-        <variable
-            name="step"
-            type="String" />
-
-        <variable
-            name="position"
-            type="Integer" />
-    </data>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginVertical="8dp"
-        android:text="@{String.valueOf(position)+ ` - ` + step}" />
-</layout>
+<TextView
+    android:id="@+id/step_description"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

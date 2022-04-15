@@ -1,41 +1,48 @@
 package com.puntogris.posture.ui.main
 
-import android.content.ContentResolver
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.view.isVisible
-import androidx.navigation.*
-import androidx.navigation.ui.*
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.ActivityMainBinding
-import com.puntogris.posture.ui.base.BaseBindingActivity
-import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.constants.Constants.CLAIM_NOTIFICATION_EXP_INTENT
 import com.puntogris.posture.utils.constants.Constants.NAVIGATION_DATA
 import com.puntogris.posture.utils.constants.Constants.NOTIFICATION_ID
 import com.puntogris.posture.utils.constants.Constants.URI_STRING
 import com.puntogris.posture.utils.constants.Constants.WEBSITE_HTTPS
+import com.puntogris.posture.utils.getNavController
+import com.puntogris.posture.utils.getNavHostFragment
+import com.puntogris.posture.utils.launchWebBrowserIntent
+import com.puntogris.posture.utils.notEqualsAny
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.*
+import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
-class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_main) {
+class MainActivity : AppCompatActivity(R.layout.activity_main),
+    NavController.OnDestinationChangedListener,
+    UiInterfaceListener {
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
 
-    override fun preInitializeViews() {
+    override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Posture)
-    }
-
-    override fun initializeViews() {
+        super.onCreate(savedInstanceState)
         setupNavigation()
         checkAppCurrentVersion()
         checkIntentForNavigation(intent)
@@ -171,5 +178,14 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_
             if (actionListener != null) it.setAction(actionText, actionListener)
             it.show()
         }
+    }
+
+    override fun onBackPressed() {
+        if (isTaskRoot &&
+            getNavHostFragment().childFragmentManager.backStackEntryCount == 0 &&
+            supportFragmentManager.backStackEntryCount == 0
+        ) {
+            finishAfterTransition()
+        } else super.onBackPressed()
     }
 }

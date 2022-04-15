@@ -1,56 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <data>
+    <TextView
+        style="@style/Theme.Posture.TextMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:labelFor="@+id/usernameEditText"
+        android:text="@string/change_name_title"
+        android:textSize="17sp" />
 
-        <variable
-            name="dialog"
-            type="com.puntogris.posture.ui.settings.EditUserNameDialog" />
-    </data>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:text="@string/change_name_subtitle"
+        android:textSize="13sp" />
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/usernameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="16dp"
+        android:autofillHints="username"
+        android:ems="10"
+        android:inputType="textCapSentences"
+        android:maxLength="20"
+        android:paddingBottom="20dp"
+        android:textSize="14sp" />
 
-        <TextView
-            style="@style/Theme.Posture.TextMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="24dp"
-            android:labelFor="@+id/usernameEditText"
-            android:text="@string/change_name_title"
-            android:textSize="17sp" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:visibility="gone" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:text="@string/change_name_subtitle"
-            android:textSize="13sp" />
-
-        <EditText
-            android:id="@+id/usernameEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="16dp"
-            android:autofillHints="username"
-            android:ems="10"
-            android:inputType="textCapSentences"
-            android:maxLength="20"
-            android:paddingBottom="20dp"
-            android:textSize="14sp" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="8dp"
-            android:visibility="gone" />
-
-    </LinearLayout>
-</layout>
+</LinearLayout>

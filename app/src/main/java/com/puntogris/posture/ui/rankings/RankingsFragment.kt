@@ -1,21 +1,25 @@
 package com.puntogris.posture.ui.rankings
 
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentRankingsBinding
-import com.puntogris.posture.ui.base.BaseFragmentOptions
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.UiInterface
 import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
+import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class RankingsFragment : BaseFragmentOptions<FragmentRankingsBinding>(R.layout.fragment_rankings) {
+class RankingsFragment : Fragment(R.layout.fragment_rankings) {
 
     private val viewModel: RankingsViewModel by viewModels()
+    private val binding by viewBinding(FragmentRankingsBinding::bind)
 
-    override fun initializeViews() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         RankingsAdapter().let {
             binding.recyclerView.adapter = it
             subscribeUi(it)

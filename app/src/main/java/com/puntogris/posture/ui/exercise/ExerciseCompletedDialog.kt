@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.media.MediaPlayer
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -14,19 +13,18 @@ import com.puntogris.posture.databinding.DialogCompletedExerciseBinding
 import com.puntogris.posture.domain.model.RewardExp
 import com.puntogris.posture.utils.constants.Constants.EXPERIENCE_PER_EXERCISE
 import com.puntogris.posture.utils.playAnimationOnce
+import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ExerciseCompletedDialog : DialogFragment() {
 
+    private val binding by viewBinding(DialogCompletedExerciseBinding::bind)
     private val viewModel: ExerciseViewModel by viewModels()
-    private lateinit var binding: DialogCompletedExerciseBinding
     private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        binding =
-            DataBindingUtil.inflate(layoutInflater, R.layout.dialog_completed_exercise, null, false)
         mediaPlayer = MediaPlayer.create(requireContext(), R.raw.claim_sound)
         mediaPlayer?.start()
         lifecycleScope.launch {

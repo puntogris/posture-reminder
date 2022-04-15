@@ -1,33 +1,51 @@
 package com.puntogris.posture.ui.exercise
 
-import android.media.MediaPlayer
+import android.app.Dialog
+import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetExerciseBinding
-import com.puntogris.posture.ui.base.BaseBindingBottomSheetFragment
 import com.puntogris.posture.utils.constants.Constants.PROGRESS_BAR_SMOOTH_OFFSET
 import com.puntogris.posture.utils.navigateTo
+import com.puntogris.posture.utils.setExerciseDuration
+import com.puntogris.posture.utils.setProgressBarSmoothMax
+import com.puntogris.posture.utils.setupAsFullScreen
+import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ExerciseBottomSheet : BaseBindingBottomSheetFragment<BottomSheetExerciseBinding>(
-    R.layout.bottom_sheet_exercise,
-    true
-) {
+class ExerciseBottomSheet : BottomSheetDialogFragment() {
 
     private val args: ExerciseBottomSheetArgs by navArgs()
     private val viewModel: ExerciseViewModel by viewModels()
+    private val binding by viewBinding(BottomSheetExerciseBinding::bind)
 
-    override fun initializeViews() {
-        binding.let {
-            it.bottomSheet = this
-            it.exercise = args.exercise
-            it.viewModel = viewModel
-            it.lifecycleOwner = viewLifecycleOwner
-        }
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupRecyclerViewAdapter()
+
+        binding.exerciseImage.setImageResource(args.exercise.image)
+        binding.closeButton.setOnClickListener {
+            dismiss()
+        }
+        binding.startExerciseButton.setOnClickListener {
+            startExercise()
+        }
+        viewModel.exerciseDurationTimer.observe(viewLifecycleOwner) {
+            binding.exerciseDuration.setExerciseDuration(it)
+            binding.progressBar.setProgressBarSmoothMax(it)
+            binding.progressBar.progress = it
+        }
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return (super.onCreateDialog(savedInstanceState) as BottomSheetDialog).apply {
+            setupAsFullScreen(isDraggable = true)
+        }
     }
 
     private fun setupRecyclerViewAdapter() {
@@ -35,7 +53,7 @@ class ExerciseBottomSheet : BaseBindingBottomSheetFragment<BottomSheetExerciseBi
         binding.recyclerView.adapter = ExerciseStepsAdapter(steps)
     }
 
-    fun startExercise() {
+    private fun startExercise() {
         viewModel.startExerciseTimerWithDuration(args.exercise.duration)
         setCompleteExerciseListener()
         showInProgressUi()
