@@ -1,6 +1,8 @@
 package com.puntogris.posture.ui.settings
 
 import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -9,6 +11,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+import com.google.firebase.Timestamp
 import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.R
 import com.puntogris.posture.utils.SimpleResult
@@ -83,7 +86,27 @@ class PreferencesFragment : PreferenceFragmentCompat() {
         }
 
         preferenceOnClick(Keys.TICKET_PREF_KEY) {
-            // todo send email with data included
+            val selectorIntent = Intent(Intent.ACTION_SENDTO)
+            selectorIntent.data = Uri.parse("mailto:")
+
+            val body = getString(
+                R.string.email_body,
+                viewModel.user.value?.email,
+                BuildConfig.VERSION_NAME,
+                BuildConfig.VERSION_CODE,
+                Build.DEVICE,
+                Build.MODEL,
+                Build.VERSION.RELEASE
+            )
+
+            val emailIntent = Intent(Intent.ACTION_SEND).apply {
+                putExtra(Intent.EXTRA_EMAIL, arrayOf("puntogrishelp@mail.com"))
+                putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject))
+                putExtra(Intent.EXTRA_TEXT, body)
+                selector = selectorIntent
+            }
+
+            startActivity(Intent.createChooser(emailIntent, getString(R.string.email_chooser_description)))
         }
 
         preference(Keys.VERSION_PREF_KEY) {

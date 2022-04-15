@@ -74,11 +74,6 @@
     <string name="battery_optimization_alert2">* Это не обязательно делать, но отсутствие разрешения может помешать присылать вам уведомления.</string>
     <string name="battery_optimization_alert1">Пожалуйста, отключите экономию энергии для лучшей работы приложения.\n\nНе волнуйтесь, оно совсем не прожорливое.</string>
 
-    <!-- Ticket -->
-    <string name="snack_send_ticket_success">Сообщение доставлено. Спасибо вам за помощь и участие в развитии приложения!</string>
-    <string name="ticket_type">Тема сообщения</string>
-    <string name="send_ticket_alert">*Я скоро с вами свяжусь.\nВы также можете написать мне напрямую по адресу:\npuntogrishelp@gmail.com</string>
-
     <!-- Reminder -->
     <string name="snack_delete_reminder_success">Напоминание успешно удалено</string>
     <string name="days">Дни</string>
@@ -154,6 +149,12 @@
     <string name="privacy_policy">Политика конфиденциальности</string>
     <string name="delete_account_summary">Удалить аккаунт</string>
     <string name="snack_account_deleted_success">Аккаунт успешно удален.</string>
+
+    <!-- Email -->
+    <string name="email_subject">About Posture Reminder App</string>
+    <string name="email_chooser_description">Send Email to Posture Reminder App</string>
+    <string name="email_body">Hey!…\n\n--- --- ---\nThis info may be needed to provide support, remove if you don\'t feel comfortable or is not needed.\n\nEmail registered: %1$s\nVersion app: %2$s (%3$d)\nDevice: %4$s - %5$s\nAndroid Release: %6$s</string>
+
 
     <!-- Delete account -->
     <string name="snack_account_email_not_matching">E-mail не соответствует указанному в аккаунте</string>

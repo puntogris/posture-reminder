@@ -73,11 +73,6 @@
     <string name="battery_optimization_alert2">* This is not mandatory, but not all notifications may be executed.</string>
     <string name="battery_optimization_alert1">For a better functioning of the application we ask you to disable the battery optimization in relation to our application.\n\nDon\'t worry, we will not use a lot of battery.</string>
 
-    <!-- Ticket -->
-    <string name="snack_send_ticket_success">Sent successfully. Thanks for helping us improve our app.</string>
-    <string name="ticket_type">Ticket type</string>
-    <string name="send_ticket_alert">*I will be in touch shortly.\nYou can also reach me at :\npuntogrishelp@gmail.com</string>
-
     <!-- Reminder -->
     <string name="snack_delete_reminder_success">Reminder deleted successfully</string>
     <string name="days">Days</string>
@@ -163,6 +158,11 @@
     <string name="pref_play_store_web_url" translatable="false">https://play.google.com/store/apps/details?id=com.puntogris.posture</string>
     <string name="pref_privacy_policy_url" translatable="false">https://postureapp.puntogris.com/information/privacy-policy.html</string>
     <string name="pref_terms_and_conditions_url" translatable="false">https://postureapp.puntogris.com/information/terms-and-conditions.html</string>
+
+    <!-- Email -->
+    <string name="email_subject">About Posture Reminder App</string>
+    <string name="email_chooser_description">Send Email to Posture Reminder App</string>
+    <string name="email_body">Hey!…\n\n--- --- ---\nThis info may be needed to provide support, remove if you don\'t feel comfortable or is not needed.\n\nEmail registered: %1$s\nVersion app: %2$s (%3$d)\nDevice: %4$s - %5$s\nAndroid Release: %6$s</string>
 
     <!-- Delete account -->
     <string name="snack_account_email_not_matching">The email doesn\'t match the one in your account.</string>

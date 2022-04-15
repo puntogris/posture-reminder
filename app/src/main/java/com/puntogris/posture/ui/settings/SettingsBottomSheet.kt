@@ -12,7 +12,6 @@ import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetSettingsBinding
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
 import com.puntogris.posture.utils.constants.Constants.EDIT_NAME_KEY
-import com.puntogris.posture.utils.constants.Constants.SEND_TICKET_KEY
 import com.puntogris.posture.utils.extensions.setupAsFullScreen
 import com.puntogris.posture.utils.extensions.showSnackBar
 import com.puntogris.posture.utils.viewBinding
@@ -54,13 +53,6 @@ class SettingsBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun setFragmentResultsListener() {
-        setFragmentResultListener(SEND_TICKET_KEY) { _, bundle ->
-            val ticketSentSuccessfully = bundle.getBoolean(DATA_KEY)
-            val snackMessage =
-                if (ticketSentSuccessfully) R.string.snack_send_ticket_success
-                else R.string.snack_connection_error
-            showSnackBarAnchored(snackMessage)
-        }
         setFragmentResultListener(EDIT_NAME_KEY) { _, bundle ->
             val editUsernameSuccessfully = bundle.getBoolean(DATA_KEY)
             val snackMessage =
