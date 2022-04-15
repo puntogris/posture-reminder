@@ -42,9 +42,6 @@
         <action
             android:id="@+id/action_settings_to_dialogName"
             app:destination="@id/editUserNameDialog" />
-        <action
-            android:id="@+id/action_setting_to_ticket"
-            app:destination="@id/ticketBottomSheet" />
     </dialog>
     <dialog
         android:id="@+id/editUserNameDialog"
@@ -105,10 +102,6 @@
     <fragment
         android:id="@+id/rankingsFragment"
         android:name="com.puntogris.posture.ui.rankings.RankingsFragment"/>
-    <dialog
-        android:id="@+id/ticketBottomSheet"
-        android:name="com.puntogris.posture.ui.ticket.TicketBottomSheet"
-        android:label="TicketBottomSheet" />
     <fragment
         android:id="@+id/synAccountFragment"
         android:name="com.puntogris.posture.ui.sync.SynAccountFragment" >

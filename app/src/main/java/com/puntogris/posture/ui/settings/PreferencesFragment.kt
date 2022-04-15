@@ -83,11 +83,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
         }
 
         preferenceOnClick(Keys.TICKET_PREF_KEY) {
-            if (viewModel.isUserLoggedIn()) {
-                navigateTo(R.id.ticketBottomSheet)
-            } else {
-                showRequireLoginSnack()
-            }
+            // todo send email with data included
         }
 
         preference(Keys.VERSION_PREF_KEY) {
