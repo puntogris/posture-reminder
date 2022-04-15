@@ -1,6 +1,10 @@
 package com.puntogris.posture.utils
 
 import com.maxkeppeler.sheets.options.Option
+import com.puntogris.posture.utils.extensions.getHours
+import com.puntogris.posture.utils.extensions.getMinutes
+import com.puntogris.posture.utils.extensions.millisToMinutes
+import com.puntogris.posture.utils.extensions.minutesToMillis
 import java.util.*
 
 object Utils {

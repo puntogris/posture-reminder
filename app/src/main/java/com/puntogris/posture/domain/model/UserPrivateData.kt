@@ -9,7 +9,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.Exclude
 import com.puntogris.posture.utils.constants.Constants.BASE_DATE_MILLIS
 import com.puntogris.posture.utils.constants.Constants.MAX_EXPERIENCE_PER_DAY
-import com.puntogris.posture.utils.toDays
+import com.puntogris.posture.utils.extensions.toDays
 import kotlinx.parcelize.Parcelize
 
 @Keep

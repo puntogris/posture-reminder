@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import com.puntogris.posture.R
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.utils.Utils.minutesFromMidnightToHourlyTime
+import com.puntogris.posture.utils.extensions.getVibrationPatternTitle
 
 sealed class ReminderUi {
 

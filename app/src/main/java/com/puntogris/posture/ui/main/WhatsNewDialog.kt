@@ -6,7 +6,7 @@ import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.R
-import com.puntogris.posture.utils.launchWebBrowserIntent
+import com.puntogris.posture.utils.extensions.launchWebBrowserIntent
 
 class WhatsNewDialog : DialogFragment() {
 

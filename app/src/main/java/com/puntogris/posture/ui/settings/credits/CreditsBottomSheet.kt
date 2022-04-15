@@ -5,11 +5,10 @@ import android.os.Bundle
 import android.view.View
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetCreditsBinding
 import com.puntogris.posture.utils.CreditItem
-import com.puntogris.posture.utils.launchWebBrowserIntent
-import com.puntogris.posture.utils.setupAsFullScreen
+import com.puntogris.posture.utils.extensions.launchWebBrowserIntent
+import com.puntogris.posture.utils.extensions.setupAsFullScreen
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 
 class CreditsBottomSheet : BottomSheetDialogFragment() {
@@ -19,7 +18,7 @@ class CreditsBottomSheet : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        CreditsAdapter{ onCreditClicked(it) }.also {
+        CreditsAdapter { onCreditClicked(it) }.also {
             binding.creditsList.adapter = it
         }
         binding.closeButton.setOnClickListener {
@@ -27,7 +26,7 @@ class CreditsBottomSheet : BottomSheetDialogFragment() {
         }
     }
 
-    private fun onCreditClicked(creditItem: CreditItem){
+    private fun onCreditClicked(creditItem: CreditItem) {
         launchWebBrowserIntent(getString(creditItem.url))
     }
 

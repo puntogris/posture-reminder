@@ -7,8 +7,8 @@ import androidx.fragment.app.viewModels
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentRankingsBinding
 import com.puntogris.posture.utils.Result
-import com.puntogris.posture.utils.UiInterface
-import com.puntogris.posture.utils.launchAndRepeatWithViewLifecycle
+import com.puntogris.posture.utils.extensions.UiInterface
+import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 

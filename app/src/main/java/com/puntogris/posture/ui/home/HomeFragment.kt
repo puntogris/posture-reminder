@@ -20,10 +20,13 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentHomeBinding
-import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.framework.alarm.AlarmStatus
 import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.constants.Constants.PACKAGE_URI_NAME
+import com.puntogris.posture.utils.extensions.UiInterface
+import com.puntogris.posture.utils.extensions.navigateTo
+import com.puntogris.posture.utils.extensions.setPageFadeTransformer
+import com.puntogris.posture.utils.extensions.showItem
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -52,7 +55,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             onToggleAlarmClicked()
         }
         binding.activeReminderLayout.editReminderButton.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeToNewReminder(viewModel.activeReminder.value)
+            val action =
+                HomeFragmentDirections.actionHomeToNewReminder(viewModel.activeReminder.value)
             findNavController().navigate(action)
         }
         binding.manageRemindersButton.setOnClickListener {

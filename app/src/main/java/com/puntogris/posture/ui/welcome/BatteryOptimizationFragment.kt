@@ -8,10 +8,10 @@ import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentBatteryOptimizationBinding
-import com.puntogris.posture.utils.gone
-import com.puntogris.posture.utils.isDarkThemeOn
-import com.puntogris.posture.utils.isIgnoringBatteryOptimizations
-import com.puntogris.posture.utils.navigateTo
+import com.puntogris.posture.utils.extensions.gone
+import com.puntogris.posture.utils.extensions.isDarkThemeOn
+import com.puntogris.posture.utils.extensions.isIgnoringBatteryOptimizations
+import com.puntogris.posture.utils.extensions.navigateTo
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 
 class BatteryOptimizationFragment : Fragment(R.layout.fragment_battery_optimization) {

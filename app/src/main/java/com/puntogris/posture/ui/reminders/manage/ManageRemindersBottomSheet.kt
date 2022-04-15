@@ -9,13 +9,12 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.puntogris.posture.R
-import com.puntogris.posture.databinding.BottomSheetExerciseBinding
 import com.puntogris.posture.databinding.BottomSheetManageRemindersBinding
 import com.puntogris.posture.domain.model.Reminder
-import com.puntogris.posture.utils.UiInterface
-import com.puntogris.posture.utils.navigateTo
-import com.puntogris.posture.utils.setupAsFullScreen
-import com.puntogris.posture.utils.showSnackBar
+import com.puntogris.posture.utils.extensions.UiInterface
+import com.puntogris.posture.utils.extensions.navigateTo
+import com.puntogris.posture.utils.extensions.setupAsFullScreen
+import com.puntogris.posture.utils.extensions.showSnackBar
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

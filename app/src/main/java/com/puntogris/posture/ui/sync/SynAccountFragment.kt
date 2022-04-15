@@ -9,7 +9,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentSynAccountBinding
-import com.puntogris.posture.utils.*
+import com.puntogris.posture.utils.SimpleResult
+import com.puntogris.posture.utils.extensions.UiInterface
+import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
+import com.puntogris.posture.utils.extensions.navigateTo
+import com.puntogris.posture.utils.extensions.playAnimationOnce
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

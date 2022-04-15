@@ -10,7 +10,7 @@ import com.puntogris.posture.utils.Utils.dayOfTheWeek
 import com.puntogris.posture.utils.Utils.minutesSinceMidnight
 import com.puntogris.posture.utils.constants.Constants.DAILY_ALARM_TRIGGERED
 import com.puntogris.posture.utils.constants.Constants.REPEATING_ALARM_TRIGGERED
-import com.puntogris.posture.utils.goAsync
+import com.puntogris.posture.utils.extensions.goAsync
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

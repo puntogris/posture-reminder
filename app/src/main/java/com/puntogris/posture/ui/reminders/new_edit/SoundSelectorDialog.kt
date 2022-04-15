@@ -15,7 +15,6 @@ import com.puntogris.posture.R
 import com.puntogris.posture.utils.ToneItem
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
 import com.puntogris.posture.utils.constants.Constants.SOUND_PICKER_KEY
-import java.util.*
 
 class SoundSelectorDialog : DialogFragment() {
 

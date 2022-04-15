@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.databinding.CreditItemVhBinding
-import com.puntogris.posture.databinding.DayLogHomePagerItemBinding
 import com.puntogris.posture.utils.CreditItem
 
 class CreditViewHolder(private val binding: CreditItemVhBinding) :

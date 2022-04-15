@@ -6,8 +6,8 @@ import com.google.firebase.messaging.RemoteMessage
 import com.puntogris.posture.domain.model.FcmNotification
 import com.puntogris.posture.domain.model.UserPrivateData
 import com.puntogris.posture.domain.model.UserPublicProfile
-import com.puntogris.posture.utils.capitalizeWords
-import com.puntogris.posture.utils.millisToTimestamp
+import com.puntogris.posture.utils.extensions.capitalizeWords
+import com.puntogris.posture.utils.extensions.millisToTimestamp
 
 fun FirebaseUser.toUserPrivateData(): UserPrivateData {
     val date = metadata?.creationTimestamp

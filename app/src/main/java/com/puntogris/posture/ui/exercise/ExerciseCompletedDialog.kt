@@ -12,7 +12,7 @@ import com.puntogris.posture.R
 import com.puntogris.posture.databinding.DialogCompletedExerciseBinding
 import com.puntogris.posture.domain.model.RewardExp
 import com.puntogris.posture.utils.constants.Constants.EXPERIENCE_PER_EXERCISE
-import com.puntogris.posture.utils.playAnimationOnce
+import com.puntogris.posture.utils.extensions.playAnimationOnce
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

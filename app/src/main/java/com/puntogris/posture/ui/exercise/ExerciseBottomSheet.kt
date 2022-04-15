@@ -10,10 +10,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetExerciseBinding
 import com.puntogris.posture.utils.constants.Constants.PROGRESS_BAR_SMOOTH_OFFSET
-import com.puntogris.posture.utils.navigateTo
+import com.puntogris.posture.utils.extensions.navigateTo
+import com.puntogris.posture.utils.extensions.setupAsFullScreen
 import com.puntogris.posture.utils.setExerciseDuration
 import com.puntogris.posture.utils.setProgressBarSmoothMax
-import com.puntogris.posture.utils.setupAsFullScreen
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -10,7 +10,11 @@ import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieDrawable
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentDeleteAccountBinding
-import com.puntogris.posture.utils.*
+import com.puntogris.posture.utils.SimpleResult
+import com.puntogris.posture.utils.extensions.UiInterface
+import com.puntogris.posture.utils.extensions.gone
+import com.puntogris.posture.utils.extensions.playAnimationOnce
+import com.puntogris.posture.utils.extensions.visible
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

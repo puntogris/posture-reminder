@@ -11,8 +11,8 @@ import com.puntogris.posture.databinding.BottomSheetSettingsBinding
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
 import com.puntogris.posture.utils.constants.Constants.EDIT_NAME_KEY
 import com.puntogris.posture.utils.constants.Constants.SEND_TICKET_KEY
-import com.puntogris.posture.utils.setupAsFullScreen
-import com.puntogris.posture.utils.showSnackBar
+import com.puntogris.posture.utils.extensions.setupAsFullScreen
+import com.puntogris.posture.utils.extensions.showSnackBar
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -1,12 +1,16 @@
 package com.puntogris.posture.ui.account
 
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentAccountBinding
 import com.puntogris.posture.utils.*
+import com.puntogris.posture.utils.extensions.navigateTo
+import com.puntogris.posture.utils.extensions.showItem
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,7 +23,7 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.user.observe(viewLifecycleOwner){
+        viewModel.user.observe(viewLifecycleOwner) {
             binding.experienceForNextLvl.setExpForNextLevel(it.experience)
             binding.currentLvl.setDonutLevel(it.experience)
             binding.expFromTotalLvl.setExpFromTotalLevel(it.experience)

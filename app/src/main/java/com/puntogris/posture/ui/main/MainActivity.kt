@@ -23,10 +23,10 @@ import com.puntogris.posture.utils.constants.Constants.NAVIGATION_DATA
 import com.puntogris.posture.utils.constants.Constants.NOTIFICATION_ID
 import com.puntogris.posture.utils.constants.Constants.URI_STRING
 import com.puntogris.posture.utils.constants.Constants.WEBSITE_HTTPS
-import com.puntogris.posture.utils.getNavController
-import com.puntogris.posture.utils.getNavHostFragment
-import com.puntogris.posture.utils.launchWebBrowserIntent
-import com.puntogris.posture.utils.notEqualsAny
+import com.puntogris.posture.utils.extensions.getNavController
+import com.puntogris.posture.utils.extensions.getNavHostFragment
+import com.puntogris.posture.utils.extensions.launchWebBrowserIntent
+import com.puntogris.posture.utils.extensions.notEqualsAny
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
 

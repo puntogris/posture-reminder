@@ -11,10 +11,10 @@ import androidx.preference.PreferenceFragmentCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.R
-import com.puntogris.posture.utils.*
+import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.constants.Keys
+import com.puntogris.posture.utils.extensions.*
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -112,7 +112,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
         preference(Keys.USERNAME_PREF_KEY) {
             lifecycleScope.launch {
                 viewModel.user.observe(viewLifecycleOwner) {
-                    summary = if (it.username.isBlank()) getString(R.string.human) else it.username
+                    summary = it.username.ifBlank { getString(R.string.human) }
                 }
             }
             onClick {

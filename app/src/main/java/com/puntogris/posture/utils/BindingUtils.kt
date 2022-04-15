@@ -17,6 +17,7 @@ import com.puntogris.posture.domain.model.DayLog
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.utils.constants.Constants.EXPERIENCE_PER_LEVEL
 import com.puntogris.posture.utils.constants.Constants.PROGRESS_BAR_SMOOTH_OFFSET
+import com.puntogris.posture.utils.extensions.*
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 

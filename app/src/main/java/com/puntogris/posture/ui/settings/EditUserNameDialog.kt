@@ -12,9 +12,11 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.DialogEditUsernameBinding
-import com.puntogris.posture.utils.*
+import com.puntogris.posture.utils.SimpleResult
+import com.puntogris.posture.utils.isSuccess
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
 import com.puntogris.posture.utils.constants.Constants.EDIT_NAME_KEY
+import com.puntogris.posture.utils.extensions.*
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -55,7 +57,7 @@ class EditUserNameDialog : DialogFragment() {
     }
 
     private fun handleEditNameResult(result: SimpleResult) {
-        setFragmentResult(EDIT_NAME_KEY, bundleOf(DATA_KEY to result.asBoolean()))
+        setFragmentResult(EDIT_NAME_KEY, bundleOf(DATA_KEY to result.isSuccess()))
         findNavController().navigateUp()
     }
 
