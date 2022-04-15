@@ -30,7 +30,7 @@ class ManageReminderViewHolder(private val binding: ManageReminderVhBinding) :
     companion object {
         fun from(parent: ViewGroup): ManageReminderViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = ManageReminderVhBinding.inflate(layoutInflater)
+            val binding = ManageReminderVhBinding.inflate(layoutInflater, parent, false)
             return ManageReminderViewHolder(binding)
         }
     }

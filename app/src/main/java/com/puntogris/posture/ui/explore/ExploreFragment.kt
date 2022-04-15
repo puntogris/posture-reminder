@@ -14,7 +14,7 @@ import com.puntogris.posture.domain.model.UserPublicProfile
 import com.puntogris.posture.ui.rankings.RankingsAdapter
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.extensions.*
-import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
+import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -17,7 +17,7 @@ class WelcomeItemViewHolder(private val binding: WelcomeItemVhBinding) :
     companion object {
         fun from(parent: ViewGroup): WelcomeItemViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = WelcomeItemVhBinding.inflate(layoutInflater)
+            val binding = WelcomeItemVhBinding.inflate(layoutInflater, parent, false)
             return WelcomeItemViewHolder(binding)
         }
     }

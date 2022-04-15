@@ -19,8 +19,8 @@ import com.puntogris.posture.utils.extensions.gone
 import com.puntogris.posture.utils.extensions.visible
 import kotlinx.coroutines.launch
 
-abstract class BaseLoginFragment<T : ViewBinding>() :
-    Fragment(), LoginConfiguration {
+abstract class BaseLoginFragment<T : ViewBinding>(layoutId: Int) : Fragment(layoutId),
+    LoginConfiguration {
 
     protected abstract val binding: T
     private lateinit var loginActivityResultLauncher: ActivityResultLauncher<Intent>
@@ -28,6 +28,10 @@ abstract class BaseLoginFragment<T : ViewBinding>() :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         registerActivityResultLauncher()
+        loginWithGoogleButton.setOnClickListener {
+            startLoginWithGoogle()
+        }
+
     }
 
     private fun registerActivityResultLauncher() {

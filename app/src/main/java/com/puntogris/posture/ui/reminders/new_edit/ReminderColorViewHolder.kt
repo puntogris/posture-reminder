@@ -18,7 +18,7 @@ class ReminderColorViewHolder(private val binding: ReminderColorVhBinding) :
     companion object {
         fun from(parent: ViewGroup): ReminderColorViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = ReminderColorVhBinding.inflate(layoutInflater)
+            val binding = ReminderColorVhBinding.inflate(layoutInflater, parent, false)
             return ReminderColorViewHolder(binding)
         }
     }

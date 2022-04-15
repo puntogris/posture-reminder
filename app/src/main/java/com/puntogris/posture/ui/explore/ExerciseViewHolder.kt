@@ -12,10 +12,10 @@ class ExerciseViewHolder(private val binding: ExerciseItemVhBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(exercise: Exercise, clickListener: (Exercise) -> Unit) {
-        binding.exerciseSummary.setText(exercise.summary)
         binding.exerciseTitleLabel.setText(exercise.title)
-        binding.exerciseColor.setBackgroundColorTintView(exercise.color)
         binding.exerciseDuration.setExerciseDuration(exercise.duration)
+        binding.exerciseSummary.setText(exercise.summary)
+        binding.exerciseColor.setBackgroundColorTintView(exercise.color)
         binding.root.setOnClickListener {
             clickListener(exercise)
         }
@@ -24,7 +24,7 @@ class ExerciseViewHolder(private val binding: ExerciseItemVhBinding) :
     companion object {
         fun from(parent: ViewGroup): ExerciseViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = ExerciseItemVhBinding.inflate(layoutInflater)
+            val binding = ExerciseItemVhBinding.inflate(layoutInflater, parent, false)
             return ExerciseViewHolder(binding)
         }
     }

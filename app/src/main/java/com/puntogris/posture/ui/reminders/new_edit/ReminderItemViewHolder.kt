@@ -24,7 +24,7 @@ class ReminderItemViewHolder(private val binding: ReminderItemVhBinding) :
     companion object {
         fun from(parent: ViewGroup): ReminderItemViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = ReminderItemVhBinding.inflate(layoutInflater)
+            val binding = ReminderItemVhBinding.inflate(layoutInflater, parent, false)
             return ReminderItemViewHolder(binding)
         }
     }

@@ -15,14 +15,14 @@ import com.puntogris.posture.databinding.DialogClaimExperienceBinding
 import com.puntogris.posture.domain.model.RewardExp
 import com.puntogris.posture.utils.constants.Constants.EXPERIENCE_PER_NOTIFICATION
 import com.puntogris.posture.utils.extensions.playAnimationOnce
-import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
+import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ClaimNotificationExpDialog : DialogFragment() {
 
-    private val binding by viewBinding(DialogClaimExperienceBinding::bind)
+    private val binding by viewBinding(DialogClaimExperienceBinding::inflate)
     private val viewModel: NotificationViewModel by viewModels()
     private var mediaPlayer: MediaPlayer? = null
 

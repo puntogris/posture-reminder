@@ -8,11 +8,10 @@ import androidx.navigation.fragment.NavHostFragment
 import com.puntogris.posture.R
 import com.puntogris.posture.ui.main.MainActivity
 
-
-fun AppCompatActivity.getNavController() = getNavHostFragment().navController
-
 fun AppCompatActivity.getNavHostFragment() =
     (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment)
+
+fun AppCompatActivity.getNavController() = getNavHostFragment().navController
 
 fun Activity.launchWebBrowserIntent(uri: String) {
     try {

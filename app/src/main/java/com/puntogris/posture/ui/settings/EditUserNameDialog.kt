@@ -13,18 +13,18 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.DialogEditUsernameBinding
 import com.puntogris.posture.utils.SimpleResult
-import com.puntogris.posture.utils.isSuccess
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
 import com.puntogris.posture.utils.constants.Constants.EDIT_NAME_KEY
 import com.puntogris.posture.utils.extensions.*
-import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
+import com.puntogris.posture.utils.isSuccess
+import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class EditUserNameDialog : DialogFragment() {
 
-    private val binding by viewBinding(DialogEditUsernameBinding::bind)
+    private val binding by viewBinding(DialogEditUsernameBinding::inflate)
     private val viewModel: SettingsViewModel by viewModels()
     private val args: EditUserNameDialogArgs by navArgs()
 

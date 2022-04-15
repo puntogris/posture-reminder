@@ -15,7 +15,7 @@ class ExerciseStepViewHolder(private val binding: ExerciseStepVhBinding) :
     companion object {
         fun from(parent: ViewGroup): ExerciseStepViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = ExerciseStepVhBinding.inflate(layoutInflater)
+            val binding = ExerciseStepVhBinding.inflate(layoutInflater, parent, false)
             return ExerciseStepViewHolder(binding)
         }
     }

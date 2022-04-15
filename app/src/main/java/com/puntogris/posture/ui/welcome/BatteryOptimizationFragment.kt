@@ -12,7 +12,7 @@ import com.puntogris.posture.utils.extensions.gone
 import com.puntogris.posture.utils.extensions.isDarkThemeOn
 import com.puntogris.posture.utils.extensions.isIgnoringBatteryOptimizations
 import com.puntogris.posture.utils.extensions.navigateTo
-import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
+import com.puntogris.posture.utils.viewBinding
 
 class BatteryOptimizationFragment : Fragment(R.layout.fragment_battery_optimization) {
 

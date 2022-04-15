@@ -7,6 +7,7 @@ import com.puntogris.posture.databinding.RankingProfileVhBinding
 import com.puntogris.posture.domain.model.UserPublicProfile
 import com.puntogris.posture.utils.extensions.gone
 import com.puntogris.posture.utils.setProfileRankingMedal
+import com.puntogris.posture.utils.setProfileRankingNumber
 import com.puntogris.posture.utils.setRankingLevel
 
 class RankingsViewHolder(private val binding: RankingProfileVhBinding) :
@@ -16,7 +17,7 @@ class RankingsViewHolder(private val binding: RankingProfileVhBinding) :
         with(binding) {
             rankingMedalImage.setProfileRankingMedal(position)
             rankingUsername.text = rankingProfile.username
-            rankingUserPosition.text = position.toString()
+            rankingUserPosition.setProfileRankingNumber(position)
             binding.rankingUserExp.setRankingLevel(rankingProfile.experience)
             if (isLastItem) divider.gone()
         }

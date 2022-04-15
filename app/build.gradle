@@ -178,6 +178,4 @@ dependencies {
     //Gson
     implementation "com.google.code.gson:gson:$gsonVersion"
 
-    //ViewBinding Delegate
-    implementation "com.github.Zhuinden:fragmentviewbindingdelegate-kt:1.0.0"
 }

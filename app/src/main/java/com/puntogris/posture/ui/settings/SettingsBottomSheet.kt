@@ -2,7 +2,9 @@ package com.puntogris.posture.ui.settings
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResultListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -13,13 +15,21 @@ import com.puntogris.posture.utils.constants.Constants.EDIT_NAME_KEY
 import com.puntogris.posture.utils.constants.Constants.SEND_TICKET_KEY
 import com.puntogris.posture.utils.extensions.setupAsFullScreen
 import com.puntogris.posture.utils.extensions.showSnackBar
-import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
+import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SettingsBottomSheet : BottomSheetDialogFragment() {
 
     private val binding by viewBinding(BottomSheetSettingsBinding::bind)
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.bottom_sheet_settings, container, false)
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return (super.onCreateDialog(savedInstanceState) as BottomSheetDialog).apply {

@@ -22,7 +22,7 @@ class DayLogHomeViewHolder(private val binding: DayLogHomePagerItemBinding) :
     companion object {
         fun from(parent: ViewGroup): DayLogHomeViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = DayLogHomePagerItemBinding.inflate(layoutInflater)
+            val binding = DayLogHomePagerItemBinding.inflate(layoutInflater, parent, false)
             return DayLogHomeViewHolder(binding)
         }
     }

@@ -25,7 +25,6 @@ class VibrationSelectorDialog : DialogFragment() {
 
     @Suppress("DEPRECATION")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-
         vibrator = requireActivity().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?
 
         val vibrationPatterns = LocalDataSource.vibrationPatterns

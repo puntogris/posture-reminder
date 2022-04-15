@@ -15,7 +15,7 @@ import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.gone
 import com.puntogris.posture.utils.extensions.playAnimationOnce
 import com.puntogris.posture.utils.extensions.visible
-import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
+import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

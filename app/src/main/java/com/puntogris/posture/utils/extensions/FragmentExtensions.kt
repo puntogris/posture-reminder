@@ -1,7 +1,6 @@
 package com.puntogris.posture.utils.extensions
 
 import android.content.Intent
-import android.content.res.Configuration
 import android.net.Uri
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment

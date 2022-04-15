@@ -8,10 +8,10 @@ import com.puntogris.posture.R
 import com.puntogris.posture.data.datasource.local.DataStore
 import com.puntogris.posture.databinding.FragmentWelcomeBinding
 import com.puntogris.posture.utils.extensions.isDarkThemeOn
+import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.extensions.navigateTo
-import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
+import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -28,7 +28,7 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
             viewPager.adapter = WelcomePagerAdapter(isDarkThemeOn())
             dotsIndicator.setViewPager2(viewPager)
             welcomeContinueButton.setOnClickListener {
-                lifecycleScope.launch {
+                launchAndRepeatWithViewLifecycle {
                     dataStore.setShowWelcomePref(false)
                     navigateTo(R.id.action_welcome_to_batteryOptimization)
                 }

@@ -2,7 +2,9 @@ package com.puntogris.posture.ui.exercise
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -14,7 +16,7 @@ import com.puntogris.posture.utils.extensions.navigateTo
 import com.puntogris.posture.utils.extensions.setupAsFullScreen
 import com.puntogris.posture.utils.setExerciseDuration
 import com.puntogris.posture.utils.setProgressBarSmoothMax
-import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
+import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,22 +26,34 @@ class ExerciseBottomSheet : BottomSheetDialogFragment() {
     private val viewModel: ExerciseViewModel by viewModels()
     private val binding by viewBinding(BottomSheetExerciseBinding::bind)
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.bottom_sheet_exercise, container, false)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerViewAdapter()
 
+        binding.exerciseDuration.setExerciseDuration(args.exercise.duration)
         binding.exerciseImage.setImageResource(args.exercise.image)
+        binding.exerciseName.setText(args.exercise.title)
+        binding.exerciseDescription.setText(args.exercise.summary)
+        binding.progressBar.setProgressBarSmoothMax(args.exercise.duration)
+
         binding.closeButton.setOnClickListener {
             dismiss()
         }
         binding.startExerciseButton.setOnClickListener {
             startExercise()
         }
+
         viewModel.exerciseDurationTimer.observe(viewLifecycleOwner) {
-            binding.exerciseDuration.setExerciseDuration(it)
-            binding.progressBar.setProgressBarSmoothMax(it)
             binding.progressBar.progress = it
         }
+        setupRecyclerViewAdapter()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

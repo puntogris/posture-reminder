@@ -9,7 +9,7 @@ import com.puntogris.posture.databinding.FragmentRankingsBinding
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
-import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
+import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

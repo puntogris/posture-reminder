@@ -2,7 +2,9 @@ package com.puntogris.posture.ui.reminders.manage
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -15,7 +17,7 @@ import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.navigateTo
 import com.puntogris.posture.utils.extensions.setupAsFullScreen
 import com.puntogris.posture.utils.extensions.showSnackBar
-import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
+import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -24,6 +26,13 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
 
     private val viewModel: ManageRemindersViewModel by viewModels()
     private val binding by viewBinding(BottomSheetManageRemindersBinding::bind)
+
+    override fun onCreateView(inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.bottom_sheet_manage_reminders, container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -1,17 +1,15 @@
 package com.puntogris.posture.ui.account
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.View
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.db.williamchart.data.configuration.ChartConfiguration
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentAccountBinding
 import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.extensions.navigateTo
 import com.puntogris.posture.utils.extensions.showItem
-import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,6 +21,10 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // we need to do init this or it will crash
+        binding.barChart.setBarChartLabels(emptyList())
+        binding.donutChart.setDonutChartProgress(0)
+
         viewModel.user.observe(viewLifecycleOwner) {
             binding.experienceForNextLvl.setExpForNextLevel(it.experience)
             binding.currentLvl.setDonutLevel(it.experience)
@@ -31,7 +33,6 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
             binding.headerLayout.accountHeaderUsername.setUsernameOrPlaceHolder(it.username)
             binding.headerLayout.accountHeaderUserLevel.setAccountLevelTitle(it.experience)
             binding.headerLayout.accountHeaderUserLevelTag.setAccountBadgeLevel(it.experience)
-
         }
 
         viewModel.weekData.observe(viewLifecycleOwner) {
@@ -41,7 +42,6 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
         binding.manageRemindersButton.setOnClickListener {
             navigateTo(R.id.manageRemindersBottomSheet)
         }
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

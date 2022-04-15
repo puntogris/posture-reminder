@@ -27,14 +27,13 @@ import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.navigateTo
 import com.puntogris.posture.utils.extensions.setPageFadeTransformer
 import com.puntogris.posture.utils.extensions.showItem
-import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
-    private val binding by viewBinding(FragmentHomeBinding::bind)
+    private val binding: FragmentHomeBinding by viewBinding(FragmentHomeBinding::bind)
     private val viewModel: HomeViewModel by viewModels()
     private var mediator: TabLayoutMediator? = null
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<Intent>
