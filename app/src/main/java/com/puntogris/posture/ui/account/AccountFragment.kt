@@ -1,10 +1,11 @@
 package com.puntogris.posture.ui.account
 
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.db.williamchart.data.configuration.ChartConfiguration
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentAccountBinding
 import com.puntogris.posture.utils.*

@@ -66,6 +66,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
         viewModel.activeReminder.observe(viewLifecycleOwner) { reminder ->
             reminder?.let {
+                binding.activeReminderLayout.reminderTitle.text = it.name
+                binding.activeReminderLayout.reminderInterval.text = it.timeIntervalSummary()
                 binding.activeReminderLayout.reminderStart.setMinutesToHourlyTime(it.startTime)
                 binding.activeReminderLayout.reminderEnd.setMinutesToHourlyTime(it.endTime)
                 binding.activeReminderLayout.reminderDays.setDaysSummary(it)

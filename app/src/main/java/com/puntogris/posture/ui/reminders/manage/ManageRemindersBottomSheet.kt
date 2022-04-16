@@ -27,7 +27,8 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
     private val viewModel: ManageRemindersViewModel by viewModels()
     private val binding by viewBinding(BottomSheetManageRemindersBinding::bind)
 
-    override fun onCreateView(inflater: LayoutInflater,
+    override fun onCreateView(
+        inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {

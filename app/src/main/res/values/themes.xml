@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Posture" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Posture" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -20,5 +20,7 @@
         <item name="sheetsTitleColor">?colorControlNormal</item>
         <item name="sheetsBackgroundColor">#ffffff</item>
         <item name="preferenceTheme">@style/Theme.Posture.PreferenceScreen</item>
+        <item name="materialCardViewStyle">?attr/materialCardViewFilledStyle</item>
+        <item name="materialAlertDialogTheme">@style/MaterialAlertDialog_rounded</item>
     </style>
 </resources>

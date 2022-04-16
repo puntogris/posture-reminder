@@ -11,7 +11,6 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
-import com.google.firebase.Timestamp
 import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.R
 import com.puntogris.posture.utils.SimpleResult
@@ -106,7 +105,12 @@ class PreferencesFragment : PreferenceFragmentCompat() {
                 selector = selectorIntent
             }
 
-            startActivity(Intent.createChooser(emailIntent, getString(R.string.email_chooser_description)))
+            startActivity(
+                Intent.createChooser(
+                    emailIntent,
+                    getString(R.string.email_chooser_description)
+                )
+            )
         }
 
         preference(Keys.VERSION_PREF_KEY) {

@@ -28,7 +28,7 @@ class SoundSelectorDialog : DialogFragment() {
         val matchLastPosition = listRingTones().indexOfFirst { it.uri == args.savedSound }
         val lastPosition = if (matchLastPosition == -1) 0 else matchLastPosition
 
-        return MaterialAlertDialogBuilder(requireContext(), R.style.MaterialAlertDialog_rounded)
+        return MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.sound_picker_title)
             .setPositiveButton(R.string.action_done) { _, _ ->
                 setFragmentResult(SOUND_PICKER_KEY, bundleOf(DATA_KEY to tones[selectedPosition]))

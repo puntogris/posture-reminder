@@ -54,7 +54,7 @@ class ExerciseCompletedDialog : DialogFragment() {
             }
         }
 
-        return MaterialAlertDialogBuilder(requireContext(), R.style.MaterialAlertDialog_rounded)
+        return MaterialAlertDialogBuilder(requireContext())
             .setView(binding.root)
             .setPositiveButton(R.string.action_done) { _, _ ->
                 dismiss()

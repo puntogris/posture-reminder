@@ -30,7 +30,7 @@ class VibrationSelectorDialog : DialogFragment() {
         val vibrationPatterns = LocalDataSource.vibrationPatterns
         val patternsTittleList = vibrationPatterns.map { getString(it.title) }.toTypedArray()
 
-        return MaterialAlertDialogBuilder(requireContext(), R.style.MaterialAlertDialog_rounded)
+        return MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.vibration_picker_title)
             .setPositiveButton(R.string.action_done) { _, _ ->
                 setFragmentResult(VIBRATION_PICKER_KEY, bundleOf(DATA_KEY to vibrationPosition))

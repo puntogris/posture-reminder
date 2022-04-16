@@ -15,7 +15,10 @@ import com.puntogris.posture.databinding.DialogEditUsernameBinding
 import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
 import com.puntogris.posture.utils.constants.Constants.EDIT_NAME_KEY
-import com.puntogris.posture.utils.extensions.*
+import com.puntogris.posture.utils.extensions.data
+import com.puntogris.posture.utils.extensions.gone
+import com.puntogris.posture.utils.extensions.onPositive
+import com.puntogris.posture.utils.extensions.visible
 import com.puntogris.posture.utils.isSuccess
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,7 +34,8 @@ class EditUserNameDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding.usernameEditText.setText(args.username)
 
-        return MaterialAlertDialogBuilder(requireContext(), R.style.MaterialAlertDialog_rounded)
+        return MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.change_name_title)
             .setView(binding.root)
             .setPositiveButton(R.string.action_done, null)
             .setNegativeButton(R.string.action_cancel) { _, _ -> dismiss() }

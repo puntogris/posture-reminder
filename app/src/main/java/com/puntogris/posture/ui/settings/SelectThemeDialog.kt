@@ -27,7 +27,7 @@ class SelectThemeDialog : DialogFragment() {
             if (currentTheme == -1) 2 else currentTheme - 1
         }
 
-        return MaterialAlertDialogBuilder(requireContext(), R.style.MaterialAlertDialog_rounded)
+        return MaterialAlertDialogBuilder(requireContext())
             .setSingleChoiceItems(R.array.theme_names, currentPosition) { _, position ->
                 themeValuesArray[position].let {
                     lifecycleScope.launch {
