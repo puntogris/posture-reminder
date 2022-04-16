@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
 import androidx.core.view.isVisible
@@ -22,7 +21,7 @@ import com.puntogris.posture.utils.extensions.*
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 
-fun TextView.setText(stringRes: Int, vararg args: Any?){
+fun TextView.setText(stringRes: Int, vararg args: Any?) {
     text = context.getString(stringRes, *args)
 }
 
@@ -47,9 +46,7 @@ fun View.setReminderColor(color: Int) {
 }
 
 fun TextView.setDayMonth(position: Int) {
-    var date = LocalDate.now()
-    if (position == 1) date = date.minusDays(1)
-    text = date.format(DateTimeFormatter.ofPattern("d MMM"))
+    position
 }
 
 fun TextView.setPagerDay(position: Int) {
