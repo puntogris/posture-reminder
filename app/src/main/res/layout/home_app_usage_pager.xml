@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:backgroundTint="?colorPrimary"
     android:id="@+id/dayLogsCardView"
-    android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="?colorPrimary"
     app:cardCornerRadius="7dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -13,21 +13,21 @@
     tools:layout_height="140dp">
 
     <FrameLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/pager"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <com.google.android.material.tabs.TabLayout
-            android:backgroundTint="@android:color/transparent"
             android:id="@+id/tabLayout"
-            android:layout_gravity="end|top"
-            android:layout_height="30dp"
-            android:layout_marginEnd="8dp"
             android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end|top"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@android:color/transparent"
             app:tabBackground="@drawable/tab_selector" />
     </FrameLayout>
 </com.google.android.material.card.MaterialCardView>

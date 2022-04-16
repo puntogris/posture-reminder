@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.puntogris.posture.ui.login.InternalLoginFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.puntogris.posture.ui.login.InternalLoginFragment">
 
     <View
         android:id="@+id/frameLayout"
@@ -47,7 +47,6 @@
 
     <TextView
         android:id="@+id/internalLoginFeatures"
-        tools:layout_editor_absoluteX="32dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
@@ -55,7 +54,8 @@
         android:text="@string/login_features"
         android:textColor="@android:color/white"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@+id/internalLoginFeaturesTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/internalLoginFeaturesTitle"
+        tools:layout_editor_absoluteX="32dp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/continueAnonymouslyButton"
@@ -65,8 +65,8 @@
         android:layout_marginStart="48dp"
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="16dp"
-        app:cornerRadius="4dp"
         android:text="@string/action_continue_anonymously"
+        app:cornerRadius="4dp"
         app:layout_constraintBottom_toTopOf="@id/loginWithGoogleButton" />
 
     <com.google.android.material.button.MaterialButton
@@ -75,10 +75,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        app:cornerRadius="4dp"
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="24dp"
         android:text="@string/action_login_with_google"
+        app:cornerRadius="4dp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <ProgressBar
