@@ -14,7 +14,6 @@ import androidx.navigation.NavDestination
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.ActivityMainBinding
@@ -87,7 +86,10 @@ class MainActivity : AppCompatActivity(),
 
     private fun setupBottomNavigation() {
         binding.bottomNavigation.apply {
-            setupWithNavController(navController)
+            setOnItemSelectedListener {
+                navController.navigate(it.itemId)
+                true
+            }
             //trick to disable reloading the same destination if we are there already
             setOnItemReselectedListener {}
         }
@@ -126,15 +128,15 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
-    override fun onSupportNavigateUp() =
-        navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    override fun onSupportNavigateUp() : Boolean {
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
 
     override fun onDestinationChanged(
         controller: NavController,
         destination: NavDestination,
         arguments: Bundle?
     ) {
-
         binding.bottomNavigation.isVisible = destination.id.notEqualsAny(
             R.id.welcomeFragment,
             R.id.synAccountFragment,
@@ -174,7 +176,6 @@ class MainActivity : AppCompatActivity(),
         anchorToBottomNav: Boolean,
         actionListener: View.OnClickListener?
     ) {
-
         Snackbar.make(binding.root, message, duration).let {
             if (anchorToBottomNav) it.anchorView = binding.bottomNavigation
             if (actionListener != null) it.setAction(actionText, actionListener)
@@ -188,6 +189,8 @@ class MainActivity : AppCompatActivity(),
             supportFragmentManager.backStackEntryCount == 0
         ) {
             finishAfterTransition()
-        } else super.onBackPressed()
+        } else {
+            super.onBackPressed()
+        }
     }
 }
