@@ -46,7 +46,9 @@ fun View.setReminderColor(color: Int) {
 }
 
 fun TextView.setDayMonth(position: Int) {
-    position
+    var date = LocalDate.now()
+    if (position == 1) date = date.minusDays(1)
+    text = date.format(DateTimeFormatter.ofPattern("d MMM"))
 }
 
 fun TextView.setPagerDay(position: Int) {

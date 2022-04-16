@@ -2,7 +2,6 @@ package com.puntogris.posture.ui.reminders.new_edit
 
 import android.app.Dialog
 import android.os.Bundle
-import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.textfield.TextInputLayout
 import com.maxkeppeler.sheets.color.ColorSheet
-import com.maxkeppeler.sheets.core.IconButton
 import com.maxkeppeler.sheets.core.SheetStyle
-import com.maxkeppeler.sheets.input.InputSheet
-import com.maxkeppeler.sheets.input.type.InputEditText
-import com.maxkeppeler.sheets.input.type.InputRadioButtons
 import com.maxkeppeler.sheets.options.OptionsSheet
 import com.maxkeppeler.sheets.time_clock.ClockTimeSheet
 import com.puntogris.posture.R
@@ -27,9 +21,7 @@ import com.puntogris.posture.utils.ReminderUi
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
-import com.puntogris.posture.utils.constants.Constants.INTERVAL_KEY
 import com.puntogris.posture.utils.constants.Constants.SOUND_PICKER_KEY
-import com.puntogris.posture.utils.constants.Constants.TIME_UNIT_KEY
 import com.puntogris.posture.utils.constants.Constants.VIBRATION_PICKER_KEY
 import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
@@ -145,44 +137,9 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun openIntervalPicker() {
-        InputSheet().show(requireParentFragment().requireContext()) {
-            style(SheetStyle.DIALOG)
-            title(R.string.time_interval_title)
-            with(InputRadioButtons(TIME_UNIT_KEY) {
-                label(R.string.time_unit_title)
-                options(
-                    mutableListOf(
-                        this@NewReminderBottomSheet.getString(R.string.minutes),
-                        this@NewReminderBottomSheet.getString(R.string.hours)
-                    )
-                )
-                selected(0)
-            })
-            with(InputEditText(INTERVAL_KEY) {
-                required()
-                viewModel.reminder.value.timeInterval.let {
-                    if (it != 0) defaultValue(it.toString())
-                }
-                closeIconButton(IconButton(R.drawable.ic_baseline_close_24))
-                endIconMode(TextInputLayout.END_ICON_CLEAR_TEXT)
-                label(R.string.time_interval_subtitle)
-                hint(R.string.time_hint)
-                inputType(InputType.TYPE_CLASS_NUMBER)
-            })
-            onNegative(R.string.action_cancel)
-            onPositive(R.string.action_save) {
-                val timeUnit = it.getInt(TIME_UNIT_KEY)
-                val interval = it.getString(INTERVAL_KEY, "0").toInt()
-                if (interval != 0) {
-                    viewModel.saveTimeInterval(if (timeUnit == 0) interval else interval * 60)
-                } else {
-                    showSnackBar(
-                        R.string.snack_time_interval_cant_be_zero,
-                        anchorView = binding.saveReminderButton
-                    )
-                }
-            }
-        }
+        IntervalPickerDialog(viewModel.reminder.value.timeInterval) {
+            if (it != null) viewModel.saveTimeInterval(it)
+        }.show(parentFragmentManager, "TIME_INTERVAL_DIALOG")
     }
 
     private fun openDaysPicker() {

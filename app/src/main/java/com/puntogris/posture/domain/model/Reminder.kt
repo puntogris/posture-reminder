@@ -6,6 +6,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.puntogris.posture.R
+import com.puntogris.posture.utils.IDGenerator
 import com.puntogris.posture.utils.extensions.getHours
 import com.puntogris.posture.utils.extensions.getMinutes
 import kotlinx.parcelize.Parcelize
@@ -17,7 +18,7 @@ import java.util.*
 data class Reminder(
 
     @PrimaryKey(autoGenerate = false)
-    var reminderId: String = "",
+    var reminderId: String =  IDGenerator.randomID(),
 
     @ColumnInfo
     var uid: String = "",

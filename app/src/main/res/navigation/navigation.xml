@@ -157,4 +157,7 @@
     <fragment
         android:id="@+id/deleteAccountFragment"
         android:name="com.puntogris.posture.ui.account.DeleteAccountFragment"/>
+    <dialog
+        android:id="@+id/intervalPickerDialog"
+        android:name="com.puntogris.posture.ui.reminders.new_edit.IntervalPickerDialog" />
 </navigation>

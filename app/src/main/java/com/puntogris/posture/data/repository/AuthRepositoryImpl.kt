@@ -49,5 +49,4 @@ class AuthRepositoryImpl(
         dataStore.setShowLoginPref(true)
         workersManager.cancelWorker(SYNC_ACCOUNT_WORKER)
     }
-
 }

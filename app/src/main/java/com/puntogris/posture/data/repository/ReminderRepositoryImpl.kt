@@ -48,13 +48,9 @@ class ReminderRepositoryImpl(
         withContext(dispatchers.io) {
             Result.build {
 
-                if (reminder.reminderId.isBlank()) {
-                    reminder.reminderId = IDGenerator.randomID()
-                    firebase.currentUid?.let {
-                        reminder.uid = it
-                    }
+                firebase.currentUid?.let {
+                    reminder.uid = it
                 }
-
                 reminderDao.insert(reminder)
 
                 reminderDao.getActiveReminder()?.let {

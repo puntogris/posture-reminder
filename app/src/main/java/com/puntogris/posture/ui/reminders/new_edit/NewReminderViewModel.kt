@@ -2,6 +2,8 @@ package com.puntogris.posture.ui.reminders.new_edit
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asFlow
+import androidx.lifecycle.viewModelScope
 import com.puntogris.posture.R
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.domain.model.ReminderId
@@ -13,79 +15,64 @@ import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.extensions.millisToMinutes
 import com.puntogris.posture.utils.extensions.timeWithZoneOffset
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
 import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
 class NewReminderViewModel @Inject constructor(
     private val reminderRepository: ReminderRepository,
-    savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private var initialReminderCopy: Reminder? = null
+    private val initialReminderCopy = savedStateHandle.get<Reminder>("reminder")
 
-    private val _reminder = MutableStateFlow(Reminder())
-    val reminder = _reminder.asStateFlow()
-
-    init {
-        savedStateHandle.get<Reminder>("reminder")?.let {
-            _reminder.value = it
-            initialReminderCopy = it.copy()
-        }
-    }
+    val reminder = savedStateHandle.getLiveData<Reminder>("reminder")
+        .asFlow()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), Reminder())
 
     suspend fun saveReminder(): Result<ReminderId> {
         return when {
-            !reminder.value.requiredInfoValid() -> {
-                Result.Error(R.string.snack_reminder_not_valid)
-            }
-            !reminderWasEdited() -> {
-                Result.Success(ReminderId(reminder.value.reminderId))
-            }
-            else -> {
-                reminderRepository.insertReminder(_reminder.value)
-            }
+            !reminder.value.requiredInfoValid() -> Result.Error(R.string.snack_reminder_not_valid)
+            !reminderWasEdited() -> Result.Success(ReminderId(reminder.value.reminderId))
+            else -> reminderRepository.insertReminder(reminder.value)
         }
     }
 
-    private fun reminderWasEdited() = initialReminderCopy != _reminder.value
+    private fun reminderWasEdited() = initialReminderCopy != reminder.value
 
     fun saveReminderName(text: String) {
-        _reminder.value.name = text
+        reminder.value.name = text
     }
 
     fun saveStartTime(time: Long) {
-        _reminder.value = _reminder.value.copy(startTime = time.millisToMinutes())
+        savedStateHandle["reminder"] = reminder.value.copy(startTime = time.millisToMinutes())
     }
 
     fun saveEndTime(time: Long) {
-        _reminder.value = _reminder.value.copy(endTime = time.millisToMinutes())
+        savedStateHandle["reminder"] = reminder.value.copy(endTime = time.millisToMinutes())
     }
 
     fun saveTimeInterval(time: Int) {
-        _reminder.value = _reminder.value.copy(timeInterval = time)
+        savedStateHandle["reminder"] = reminder.value.copy(timeInterval = time)
     }
 
     fun saveReminderDays(days: List<Int>) {
-        _reminder.value = _reminder.value.copy(alarmDays = days)
-
+        savedStateHandle["reminder"] = reminder.value.copy(alarmDays = days)
     }
 
     fun saveReminderColor(resource: Int) {
-        _reminder.value = _reminder.value.copy(color = resource)
+        savedStateHandle["reminder"] = reminder.value.copy(color = resource)
     }
 
     fun saveReminderVibrationPattern(position: Int) {
-        println("af")
-        _reminder.value = _reminder.value.copy(vibrationPattern = position)
+        savedStateHandle["reminder"] = reminder.value.copy(vibrationPattern = position)
     }
 
     fun saveReminderSoundPattern(toneItem: ToneItem?) {
-        println("a")
         toneItem?.let {
-            _reminder.value = _reminder.value.copy(
+            savedStateHandle["reminder"] = reminder.value.copy(
                 soundUri = it.uri,
                 soundName = it.title
             )
@@ -93,17 +80,13 @@ class NewReminderViewModel @Inject constructor(
     }
 
     fun getDefaultClockTimeInMillis(code: ReminderUi.Item): Long {
-        val isNewReminder = reminder.value.reminderId.isBlank()
-
-        val date = if (isNewReminder) Date()
-        else Utils.getDateFromMinutesSinceMidnight(getReminderTime(code))
-
+        val date = if (code is ReminderUi.Item.Start && reminder.value.startTime != -1) {
+            Utils.getDateFromMinutesSinceMidnight(reminder.value.startTime)
+        } else if (code is ReminderUi.Item.End && reminder.value.endTime != -1) {
+            Utils.getDateFromMinutesSinceMidnight(reminder.value.endTime)
+        } else {
+            Date()
+        }
         return date.timeWithZoneOffset
     }
-
-    private fun getReminderTime(code: ReminderUi.Item): Int {
-        return if (code is ReminderUi.Item.Start) reminder.value.startTime
-        else reminder.value.endTime
-    }
-
 }

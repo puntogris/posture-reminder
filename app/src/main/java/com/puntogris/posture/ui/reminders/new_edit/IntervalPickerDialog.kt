@@ -1,0 +1,50 @@
+package com.puntogris.posture.ui.reminders.new_edit
+
+import android.app.Dialog
+import android.os.Bundle
+import androidx.fragment.app.DialogFragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.puntogris.posture.R
+import com.puntogris.posture.databinding.DialogIntervalPickerBinding
+import com.puntogris.posture.utils.extensions.getHours
+import com.puntogris.posture.utils.extensions.getMinutes
+import com.puntogris.posture.utils.extensions.onPositive
+import com.puntogris.posture.utils.extensions.visible
+import com.puntogris.posture.utils.viewBinding
+
+class IntervalPickerDialog(
+    private val interval: Int,
+    private val result: (Int?) -> Unit
+) : DialogFragment() {
+
+    private val binding by viewBinding(DialogIntervalPickerBinding::inflate)
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        if (interval != 0) {
+            binding.reminderIntervalHours.editText?.setText(interval.getHours().toString())
+            binding.reminderIntervalMinutes.editText?.setText(interval.getMinutes().toString())
+        }
+        return MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.time_interval_title)
+            .setView(binding.root)
+            .setPositiveButton(R.string.action_done, null)
+            .setNegativeButton(R.string.action_cancel, null)
+            .create().also {
+                it.onPositive(::onPositiveButtonClicked)
+            }
+    }
+
+    private fun onPositiveButtonClicked() {
+        val hours =
+            binding.reminderIntervalHours.editText?.text.toString().toIntOrNull() ?: 0
+        val minutes =
+            binding.reminderIntervalMinutes.editText?.text.toString().toIntOrNull() ?: 0
+        val interval = hours * 60 + minutes
+        if (interval == 0) {
+            binding.intervalAlert.visible()
+        } else {
+            result(interval)
+            dismiss()
+        }
+    }
+}
