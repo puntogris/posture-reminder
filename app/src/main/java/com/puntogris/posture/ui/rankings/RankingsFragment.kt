@@ -20,6 +20,7 @@ class RankingsFragment : Fragment(R.layout.fragment_rankings) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         RankingsAdapter().let {
             binding.recyclerView.adapter = it
             subscribeUi(it)

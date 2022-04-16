@@ -68,7 +68,7 @@ abstract class BaseLoginFragment<T : ViewBinding>(layoutId: Int) : Fragment(layo
         }
     }
 
-    fun startLoginWithGoogle() {
+    private fun startLoginWithGoogle() {
         onLoginStarted()
         val intent = viewModel.getGoogleSignInIntent()
         loginActivityResultLauncher.launch(intent)

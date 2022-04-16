@@ -13,11 +13,11 @@ import com.puntogris.posture.utils.setRankingLevel
 class RankingsViewHolder(private val binding: RankingProfileVhBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(rankingProfile: UserPublicProfile, position: Int, isLastItem: Boolean) {
+    fun bind(rankingProfile: UserPublicProfile, isLastItem: Boolean) {
         with(binding) {
-            rankingMedalImage.setProfileRankingMedal(position)
+            rankingMedalImage.setProfileRankingMedal(adapterPosition)
             rankingUsername.text = rankingProfile.username
-            rankingUserPosition.setProfileRankingNumber(position)
+            rankingUserPosition.setProfileRankingNumber(adapterPosition)
             binding.rankingUserExp.setRankingLevel(rankingProfile.experience)
             if (isLastItem) divider.gone()
         }

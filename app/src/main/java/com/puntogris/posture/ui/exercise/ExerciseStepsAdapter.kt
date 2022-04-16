@@ -11,7 +11,7 @@ class ExerciseStepsAdapter(private val steps: Array<String>) :
     }
 
     override fun onBindViewHolder(holder: ExerciseStepViewHolder, position: Int) {
-        holder.bind(steps[position], position + 1)
+        holder.bind(steps[position])
     }
 
     override fun getItemCount() = steps.size

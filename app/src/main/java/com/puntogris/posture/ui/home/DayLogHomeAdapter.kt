@@ -14,7 +14,7 @@ class DayLogHomeAdapter : RecyclerView.Adapter<DayLogHomeViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: DayLogHomeViewHolder, position: Int) {
-        holder.bind(items[position], position)
+        holder.bind(items[position])
     }
 
     override fun getItemCount() = items.size

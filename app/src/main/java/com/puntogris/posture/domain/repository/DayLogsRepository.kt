@@ -8,7 +8,7 @@ interface DayLogsRepository {
 
     fun getLastTwoDaysLogsLiveData(): LiveData<List<DayLog>>
 
-    suspend fun getWeekDayLogs(): List<DayLog>
+    fun getWeekDayLogs(): LiveData<List<DayLog>>
 
     suspend fun updateDayLogAndUser(dayLog: DayLog): RewardExp
 }

@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
 import androidx.core.view.isVisible
@@ -20,6 +21,10 @@ import com.puntogris.posture.utils.constants.Constants.PROGRESS_BAR_SMOOTH_OFFSE
 import com.puntogris.posture.utils.extensions.*
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
+
+fun TextView.setText(stringRes: Int, vararg args: Any?){
+    text = context.getString(stringRes, *args)
+}
 
 fun TextView.setExerciseDuration(duration: Int) {
     text = context.getString(R.string.exercise_duration_seconds, duration)

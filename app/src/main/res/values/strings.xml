@@ -283,6 +283,7 @@
     <string name="experience_for_level_x">+%1$d for lvl. %2$d</string>
     <string name="account_donut_level">Lvl. %1$d</string>
     <string name="ranking_level">lvl. %1$d</string>
+    <string name="number_plus_prefix" translatable="false">+%1$d</string>
 
     <!-- Content description -->
     <string name="close_screen_content_description">Close screen</string>

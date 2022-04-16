@@ -16,6 +16,7 @@ import com.puntogris.posture.utils.extensions.navigateTo
 import com.puntogris.posture.utils.extensions.setupAsFullScreen
 import com.puntogris.posture.utils.setExerciseDuration
 import com.puntogris.posture.utils.setProgressBarSmoothMax
+import com.puntogris.posture.utils.setText
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 

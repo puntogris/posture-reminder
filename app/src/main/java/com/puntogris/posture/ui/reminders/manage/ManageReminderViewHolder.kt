@@ -17,14 +17,16 @@ class ManageReminderViewHolder(private val binding: ManageReminderVhBinding) :
         selectReminder: (Reminder) -> Unit,
         editReminder: (Reminder) -> Unit
     ) {
-        binding.reminderName.text = reminder.name
-        binding.reminderColor.setReminderColor(reminder.color)
-        binding.intervalSummary.text = reminder.timeIntervalSummary()
-        binding.startSummary.setMinutesToHourlyTime(reminder.startTime)
-        binding.endSummary.setMinutesToHourlyTime(reminder.endTime)
-        binding.daysSummary.setDaysSummary(reminder)
-        binding.selectReminder.setOnClickListener { selectReminder(reminder) }
-        binding.editReminder.setOnClickListener { editReminder(reminder) }
+        with(binding) {
+            reminderName.text = reminder.name
+            reminderColor.setReminderColor(reminder.color)
+            intervalSummary.text = reminder.timeIntervalSummary()
+            startSummary.setMinutesToHourlyTime(reminder.startTime)
+            endSummary.setMinutesToHourlyTime(reminder.endTime)
+            daysSummary.setDaysSummary(reminder)
+            this.selectReminder.setOnClickListener { selectReminder(reminder) }
+            this.editReminder.setOnClickListener { editReminder(reminder) }
+        }
     }
 
     companion object {

@@ -20,7 +20,7 @@ interface DayLogsDao {
     fun getLastTwoEntries(): LiveData<List<DayLog>>
 
     @Query("SELECT * from DayLog WHERE dateId >= (SELECT date('now', '-7 day', 'localtime')) ORDER BY dateId DESC LIMIT 7")
-    suspend fun getWeekEntries(): List<DayLog>
+    fun getWeekEntries(): LiveData<List<DayLog>>
 
     @Query("SELECT * from DayLog WHERE dateId = date('now', 'localtime')")
     suspend fun getTodayLog(): DayLog?

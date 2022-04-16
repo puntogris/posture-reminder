@@ -14,6 +14,6 @@ class RankingsAdapter : ListAdapter<UserPublicProfile, RankingsViewHolder>(
 
     override fun onBindViewHolder(holder: RankingsViewHolder, position: Int) {
         val isLastItem = currentList.size - 1 == position
-        holder.bind(getItem(position), position, isLastItem)
+        holder.bind(getItem(position), isLastItem)
     }
 }

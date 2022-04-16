@@ -16,7 +16,7 @@ class DayLogsRepositoryImpl(
 
     override fun getLastTwoDaysLogsLiveData() = appDatabase.dayLogsDao.getLastTwoEntries()
 
-    override suspend fun getWeekDayLogs() = appDatabase.dayLogsDao.getWeekEntries()
+    override fun getWeekDayLogs() = appDatabase.dayLogsDao.getWeekEntries()
 
     override suspend fun updateDayLogAndUser(dayLog: DayLog) = withContext(dispatchers.io) {
         try {

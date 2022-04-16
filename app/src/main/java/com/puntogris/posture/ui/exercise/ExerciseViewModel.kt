@@ -58,5 +58,4 @@ class ExerciseViewModel @Inject constructor(
         durationTimer?.cancel()
         super.onCleared()
     }
-
 }
