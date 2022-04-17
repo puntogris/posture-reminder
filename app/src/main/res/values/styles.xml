@@ -36,8 +36,8 @@
     </style>
 
     <style name="MaterialAlertDialog_rounded" parent="ThemeOverlay.Material3.MaterialAlertDialog.Centered">
-        <item name="android:background">@color/dayBackground</item>
-        <item name="colorSurface">@color/dayBackground</item>
+        <item name="android:background">?colorOnPrimary</item>
+        <item name="colorSurface">?colorOnPrimary</item>
     </style>
 
     <style name="NegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">

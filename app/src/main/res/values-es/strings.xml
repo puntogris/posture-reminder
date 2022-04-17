@@ -109,7 +109,7 @@
     <string name="hours">Horas</string>
     <string name="time_unit_title">Qué tipo de unidad de tiempo queres usar?</string>
     <string name="snack_time_interval_cant_be_zero">El intervalo de tiempo no puede ser 0.</string>
-    <string name="time_interval_subtitle">Indica el intervalo de tiempo</string>
+    <string name="time_interval_subtitle">Indica cada cuanto te gustaría que te notifiquemos</string>
     <string name="reminder_name_hint">Nombre del recordatorio</string>
 
     <!-- Sync -->

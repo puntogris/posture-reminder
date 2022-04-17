@@ -62,6 +62,7 @@
         <entry key="app/src/main/res/drawable/portal_selector_icon.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/round_border_background.xml" value="0.28541666666666665" />
         <entry key="app/src/main/res/drawable/round_corners_background.xml" value="0.36102564102564105" />
+        <entry key="app/src/main/res/drawable/round_corners_background_10.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/round_corners_dialog.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/selected_dot.xml" value="0.32592592592592595" />
         <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.36666666666666664" />

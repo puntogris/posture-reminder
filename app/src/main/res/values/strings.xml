@@ -109,7 +109,7 @@
     <string name="hours">Hours</string>
     <string name="time_unit_title">What time unit would you like to use?</string>
     <string name="snack_time_interval_cant_be_zero">The time interval can\'t be 0.</string>
-    <string name="time_interval_subtitle">Set the time interval</string>
+    <string name="time_interval_subtitle">Select how often do you want to get notified</string>
     <string name="reminder_name_hint">Name of the reminder</string>
 
     <!-- Sync -->

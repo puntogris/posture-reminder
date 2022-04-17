@@ -110,7 +110,7 @@
     <string name="hours">Часы</string>
     <string name="time_unit_title">Выберите ед. времени:</string>
     <string name="snack_time_interval_cant_be_zero">Интервал не может быть равен 0.</string>
-    <string name="time_interval_subtitle">Длительность интервала</string>
+    <string name="time_interval_subtitle">Выберите, как часто вы хотите получать уведомления</string>
     <string name="reminder_name_hint">Название напоминания</string>
 
     <!-- Sync -->
