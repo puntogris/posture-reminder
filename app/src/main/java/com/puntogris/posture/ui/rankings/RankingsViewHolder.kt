@@ -20,7 +20,6 @@ class RankingsViewHolder(private val binding: RankingProfileVhBinding) :
             rankingUsername.text = rankingProfile.username
             rankingUserPosition.setProfileRankingNumber(adapterPosition)
             binding.rankingUserExp.text = rankingProfile.experience.getLevel().toString()
-            if (isLastItem) divider.gone()
         }
     }
 

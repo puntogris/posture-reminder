@@ -26,7 +26,7 @@ class NewReminderViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val initialReminderCopy = savedStateHandle.get<Reminder>("reminder")
+    private val initialReminderCopy = savedStateHandle.get<Reminder>("reminder")?.copy()
 
     val reminder = savedStateHandle.getLiveData<Reminder>("reminder")
         .asFlow()

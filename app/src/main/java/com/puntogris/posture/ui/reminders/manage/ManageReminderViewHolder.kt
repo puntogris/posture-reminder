@@ -2,7 +2,9 @@ package com.puntogris.posture.ui.reminders.manage
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.puntogris.posture.R
 import com.puntogris.posture.databinding.ManageReminderVhBinding
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.utils.setDaysSummary
@@ -13,19 +15,25 @@ class ManageReminderViewHolder(private val binding: ManageReminderVhBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(
-        reminder: Reminder,
-        selectReminder: (Reminder) -> Unit,
-        editReminder: (Reminder) -> Unit
+        reminder: SelectableReminder,
+        selectListener: (Reminder) -> Unit,
+        editListener: (Reminder) -> Unit,
+        isLastItem: Boolean
     ) {
         with(binding) {
-            reminderName.text = reminder.name
-            reminderColor.setReminderColor(reminder.color)
-            intervalSummary.text = reminder.timeIntervalSummary()
-            startSummary.setMinutesToHourlyTime(reminder.startTime)
-            endSummary.setMinutesToHourlyTime(reminder.endTime)
-            daysSummary.setDaysSummary(reminder)
-            this.selectReminder.setOnClickListener { selectReminder(reminder) }
-            this.editReminder.setOnClickListener { editReminder(reminder) }
+            reminderName.text = reminder.reminder.name
+            reminderColor.setReminderColor(reminder.reminder.color)
+            intervalSummary.text = reminder.reminder.timeIntervalSummary()
+            startSummary.setMinutesToHourlyTime(reminder.reminder.startTime)
+            endSummary.setMinutesToHourlyTime(reminder.reminder.endTime)
+            daysSummary.setDaysSummary(reminder.reminder)
+            editReminder.setOnClickListener { editListener(reminder.reminder) }
+            selectReminder.setOnClickListener { selectListener(reminder.reminder) }
+            selectReminder.isEnabled = !reminder.isSelected
+            selectReminder.setText(
+                if (reminder.isSelected) R.string.action_selected else R.string.action_select
+            )
+            divider.isVisible = !isLastItem
         }
     }
 

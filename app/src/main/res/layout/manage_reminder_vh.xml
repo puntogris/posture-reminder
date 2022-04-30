@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="24dp"
-        android:backgroundTint="#F1F0F0"
+        android:backgroundTint="@color/light_button"
         android:text="@string/action_select"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"

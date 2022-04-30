@@ -46,6 +46,7 @@
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:clickable="true"
+        android:backgroundTint="?colorPrimary"
         android:contentDescription="@string/close_screen_content_description"
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"

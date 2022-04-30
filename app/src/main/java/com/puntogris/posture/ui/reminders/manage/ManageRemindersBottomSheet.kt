@@ -7,18 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetManageRemindersBinding
 import com.puntogris.posture.domain.model.Reminder
-import com.puntogris.posture.utils.extensions.UiInterface
-import com.puntogris.posture.utils.extensions.navigateTo
-import com.puntogris.posture.utils.extensions.setupAsFullScreen
-import com.puntogris.posture.utils.extensions.showSnackBar
+import com.puntogris.posture.utils.extensions.*
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -54,10 +53,10 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
 
     private fun setupRecyclerViewAdapter() {
         ManageReminderAdapter(
-            requireContext(),
-            { onSelectReminder(it) },
-            { onEditReminder(it) },
-            { onDeleteReminder(it) }
+            context = requireContext(),
+            selectListener = { onSelectReminder(it) },
+            editListener = { onEditReminder(it) },
+            deleteListener = { onDeleteReminder(it) }
         ).also {
             binding.recyclerView.adapter = it
             subscribeUi(it)
@@ -65,8 +64,10 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun subscribeUi(adapter: ManageReminderAdapter) {
-        viewModel.savedReminders.observe(viewLifecycleOwner) {
-            adapter.updateList(it)
+        launchAndRepeatWithViewLifecycle {
+            viewModel.reminders.collectLatest {
+                adapter.updateList(it)
+            }
         }
     }
 

@@ -10,26 +10,25 @@ import com.puntogris.posture.utils.SwipeToDeleteCallback
 
 class ManageReminderAdapter(
     private val context: Context,
-    private val selectReminder: (Reminder) -> Unit,
-    private val editReminder: (Reminder) -> Unit,
-    private val removeReminder: (Reminder) -> Unit
+    private val selectListener: (Reminder) -> Unit,
+    private val editListener: (Reminder) -> Unit,
+    private val deleteListener: (Reminder) -> Unit
 ) : RecyclerView.Adapter<ManageReminderViewHolder>(
 ) {
-    private var items = listOf<Reminder>()
+    private var items = listOf<SelectableReminder>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ManageReminderViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: ManageReminderViewHolder, position: Int) {
-        holder.bind(items[position], selectReminder, editReminder)
+        holder.bind(items[position], selectListener, editListener, items.size.dec() == position)
     }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
-
         object : SwipeToDeleteCallback(context) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                removeReminder.invoke(items[viewHolder.adapterPosition])
+                deleteListener(items[viewHolder.adapterPosition].reminder)
             }
         }.apply { ItemTouchHelper(this).attachToRecyclerView(recyclerView) }
     }
@@ -37,9 +36,8 @@ class ManageReminderAdapter(
     override fun getItemCount() = items.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateList(list: List<Reminder>) {
+    fun updateList(list: List<SelectableReminder>) {
         items = list
         notifyDataSetChanged()
     }
-
 }

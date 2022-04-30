@@ -4,10 +4,11 @@
     style="@style/Theme.Posture.Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="8dp">
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/asd"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/progressBar"
@@ -140,7 +141,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/startExerciseButton"
-        android:layout_marginTop="8dp"
+        android:layout_marginVertical="8dp"
         android:scaleY="2" />
 
     <Button
