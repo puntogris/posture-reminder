@@ -49,12 +49,17 @@
         android:id="@+id/rankingUserExp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:textSize="16sp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/round_corners_background_4"
+        android:backgroundTint="#EDE3FF"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="2dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/rankingUsername"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/rankingUsername"
-        tools:text="lvl. 1" />
+        tools:text="1" />
 
     <View
         android:id="@+id/divider"
