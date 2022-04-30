@@ -34,6 +34,9 @@
         <entry key="app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_keyboard_arrow_right_24.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_notifications_none_24.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_baseline_public_24.xml" value="0.2425" />
+        <entry key="app/src/main/res/drawable/ic_baseline_show_chart_24.xml" value="0.2425" />
+        <entry key="app/src/main/res/drawable/ic_baseline_sync_24.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/ic_brugger_exercise.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_chin_tuck_exercise.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_exercise_1.xml" value="0.36666666666666664" />
@@ -52,6 +55,7 @@
         <entry key="app/src/main/res/drawable/ic_men_selfie.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_men_standing.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_men_standing_dark.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_outline_help_outline_24.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/ic_outline_settings_24.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_react_group_236.xml" value="0.36102564102564105" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.36666666666666664" />
@@ -101,7 +105,7 @@
         <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.24618055555555557" />
         <entry key="app/src/main/res/layout/fragment_health.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_internal_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_internal_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_login_with_email.xml" value="0.23541666666666666" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.2946153846153846" />

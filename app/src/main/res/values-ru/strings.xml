@@ -45,8 +45,19 @@
     <string name="action_continue_anonymously">Продолжить без входа</string>
     <string name="action_login_with_google">Войти через Google</string>
     <string name="internal_login_title">Ваше приключение начинается здесь</string>
-    <string name="internal_login_subtitle">Вход в приложение откроет для вас вот эти классные возможности!</string> <!-- Probably will change this one later.-->
-    <string name="login_features">• Становитесь частью нашего сообщества.\n\n• Публичный профиль для соревнований с другими пользователями.\n\n• Автоматическое сохранение данных в облаке.\n\n• Быстрая обратная связь в приложении.</string>
+    <string name="internal_login_subtitle">Преимущества включают в себя:</string>
+
+    <string name="login_feature_1_title">присоединяйтесь к нам</string>
+    <string name="login_feature_1_content">Становитесь частью нашего сообщества.</string>
+
+    <string name="login_feature_2_title">Рейтинг</string>
+    <string name="login_feature_2_content">Публичный профиль для соревнований с другими пользователями.</string>
+
+    <string name="login_feature_3_title">Резервная копия</string>
+    <string name="login_feature_3_content">Автоматическое сохранение данных в облаке.</string>
+
+    <string name="login_feature_4_title">Поддержка</string>
+    <string name="login_feature_4_content">Быстрая обратная связь в приложении.</string>
 
     <!-- Welcome -->
     <string name="welcome_pager_title1">Заберись на вершину рейтинга!</string>
