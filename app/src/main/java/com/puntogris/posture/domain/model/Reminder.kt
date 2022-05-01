@@ -18,7 +18,7 @@ import java.util.*
 data class Reminder(
 
     @PrimaryKey(autoGenerate = false)
-    var reminderId: String =  IDGenerator.randomID(),
+    var reminderId: String = IDGenerator.randomID(),
 
     @ColumnInfo
     var uid: String = "",
@@ -69,12 +69,11 @@ data class Reminder(
     }
 
     fun requiredInfoValid(): Boolean {
-        return (name.isNotBlank() &&
+        return name.isNotBlank() &&
                 timeInterval != 0 &&
                 startTime != -1 &&
                 endTime != -1 &&
                 alarmDays.isNotEmpty()
-                )
     }
 
     fun triggerTimeAtMillis(): Long {

@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -73,7 +72,7 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
 
     private fun onSelectReminder(reminder: Reminder) {
         lifecycleScope.launch {
-            viewModel.updateCurrentReminder(reminder)
+            viewModel.updateReminder(reminder)
             navigateTo(R.id.homeFragment)
             requireParentFragment().UiInterface.showSnackBar(getString(R.string.snack_configuration_updated))
         }

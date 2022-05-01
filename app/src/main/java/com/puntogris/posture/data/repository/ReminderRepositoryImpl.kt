@@ -12,7 +12,6 @@ import com.puntogris.posture.framework.alarm.Alarm
 import com.puntogris.posture.framework.alarm.Notifications
 import com.puntogris.posture.framework.workers.WorkersManager
 import com.puntogris.posture.utils.DispatcherProvider
-import com.puntogris.posture.utils.IDGenerator
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.SimpleResult
 import kotlinx.coroutines.withContext

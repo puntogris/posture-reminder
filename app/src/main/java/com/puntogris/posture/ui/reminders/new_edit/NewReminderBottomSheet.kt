@@ -65,7 +65,7 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun setupReminderRvAdapter() {
-        ReminderItemAdapter(requireContext()) { onReminderItemClicked(it) }.let {
+        ReminderItemAdapter(requireContext()) { onReminderItemClicked(it) }.also {
             binding.recyclerView.adapter = it
             subscribeUi(it)
         }
