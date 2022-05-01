@@ -2,6 +2,9 @@ package com.puntogris.posture.utils.extensions
 
 import android.content.Intent
 import android.net.Uri
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -46,3 +49,8 @@ fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null) {
 inline val Fragment.UiInterface: UiInterfaceListener
     get() = (requireActivity() as UiInterfaceListener)
 
+inline fun Fragment.setIntentLauncher(crossinline block: (ActivityResult) -> Unit): ActivityResultLauncher<Intent> {
+    return registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        block(it)
+    }
+}

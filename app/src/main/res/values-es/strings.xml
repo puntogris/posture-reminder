@@ -45,6 +45,7 @@
     <string name="action_login_with_google">Login con google</string>
     <string name="internal_login_title">Tu aventura empieza ahora</string>
     <string name="internal_login_subtitle">Los beneficios incluyen:</string>
+    <string name="internal_login_alert">Tu información siempre estara a salvo.</string>
 
     <string name="login_feature_1_title">Unitenos</string>
     <string name="login_feature_1_content">Se parte de la comunidad.</string>
@@ -169,7 +170,7 @@
     <!-- Delete account -->
     <string name="snack_account_email_not_matching">El email no coincide con el que esta en tu cuenta.</string>
     <string name="delete_account_email_required_alert">Como mecanismo de precaución te pedimos que ingreses el email que usaste para registrarte o el de la cuenta de google en tu dispositivo.</string>
-    <string name="delete_account_danger_alert">Zona de peligro!! Esta acción eliminara tu cuenta, borrando toda tu informacion local, en la nube y cerrando tu sesión. Esto es irreversible.</string>
+    <string name="delete_account_danger_alert">Zona de peligro! Esta acción eliminara tu cuenta, borrando toda tu informacion local, en la nube y cerrando tu sesión. Esto es irreversible.</string>
 
     <!-- Notifications -->
     <string name="snack_notifications_set">Se activaron las notificaciones desde las %1$s hasta las %2$s.</string>

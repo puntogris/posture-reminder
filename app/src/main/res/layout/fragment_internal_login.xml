@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Your data will always be safe."
+        android:text="@string/internal_login_alert"
         android:textSize="13sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/loginWithGoogleButton"

@@ -46,6 +46,7 @@
     <string name="action_login_with_google">Войти через Google</string>
     <string name="internal_login_title">Ваше приключение начинается здесь</string>
     <string name="internal_login_subtitle">Преимущества включают в себя:</string>
+    <string name="internal_login_alert">Ваши данные всегда будут в безопасности.</string>
 
     <string name="login_feature_1_title">присоединяйтесь к нам</string>
     <string name="login_feature_1_content">Становитесь частью нашего сообщества.</string>
@@ -167,11 +168,10 @@
     <string name="email_chooser_description">Send Email to Posture Reminder App</string>
     <string name="email_body">Hey!…\n\n--- --- ---\nThis info may be needed to provide support, remove if you don\'t feel comfortable or is not needed.\n\nEmail registered: %1$s\nVersion app: %2$s (%3$d)\nDevice: %4$s - %5$s\nAndroid Release: %6$s</string>
 
-
     <!-- Delete account -->
     <string name="snack_account_email_not_matching">E-mail не соответствует указанному в аккаунте</string>
     <string name="delete_account_email_required_alert">Чтобы подтвердить удаление аккаунта, напишите адрес электронной почты или аккаунт Google, использованный вами при регистрации.</string>
-    <string name="delete_account_danger_alert">Внимание!! Это удалит ваш аккаунт и ваши данные в этом приложении и в облаке. Действие необратимо.</string>
+    <string name="delete_account_danger_alert">Внимание! Это удалит ваш аккаунт и ваши данные в этом приложении и в облаке. Действие необратимо.</string>
 
     <!-- Notifications -->
     <string name="snack_notifications_set">Уведомления установлены с %1$s по %2$s.</string>

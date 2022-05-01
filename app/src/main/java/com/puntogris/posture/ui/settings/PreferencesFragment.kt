@@ -156,12 +156,11 @@ class PreferencesFragment : PreferenceFragmentCompat() {
     }
 
     private fun showRequireLoginSnack() {
-        (requireParentFragment() as SettingsBottomSheet)
-            .showSnackBarAnchored(
-                message = R.string.snack_action_requires_login,
-                actionText = R.string.action_login
-            ) {
-                navigateTo(R.id.internalLoginFragment)
-            }
+        (requireParentFragment() as SettingsBottomSheet).showSnackBarAnchored(
+            message = R.string.snack_action_requires_login,
+            actionText = R.string.action_login
+        ) {
+            navigateTo(R.id.internalLoginFragment)
+        }
     }
 }
