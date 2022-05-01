@@ -16,11 +16,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val authRepository: AuthRepository,
+    private val repository: AuthRepository,
     private val googleSignInClient: GoogleSignInClient
 ) : ViewModel() {
 
-    fun authGoogleUser(result: ActivityResult) = authRepository.authWithGoogle(result)
+    fun authGoogleUser(result: ActivityResult) = repository.authWithGoogle(result)
 
     fun getGoogleSignInIntent() = googleSignInClient.signInIntent
 }

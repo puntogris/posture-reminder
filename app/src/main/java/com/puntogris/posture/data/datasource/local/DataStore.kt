@@ -13,6 +13,7 @@ import com.puntogris.posture.utils.constants.Keys
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -75,5 +76,4 @@ class DataStore @Inject constructor(@ApplicationContext private val context: Con
     suspend fun setShowWelcomePref(value: Boolean) = context.dataStore.edit {
         it[booleanPreferencesKey(Keys.SHOW_WELCOME_KEY)] = value
     }
-
 }

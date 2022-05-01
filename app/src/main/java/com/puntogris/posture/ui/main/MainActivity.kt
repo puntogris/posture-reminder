@@ -36,9 +36,9 @@ class MainActivity : AppCompatActivity(),
     UiInterfaceListener {
 
     private val binding by viewBinding(ActivityMainBinding::inflate)
+    private val viewModel: MainViewModel by viewModels()
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Posture)
@@ -67,15 +67,12 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun setupInitialDestination() {
-        navController.graph = navController.navInflater.inflate(R.navigation.navigation)
-            .apply {
-                setStartDestination(
-                    runBlocking {
-                        if (viewModel.showLogin()) R.id.loginFragment
-                        else R.id.homeFragment
-                    }
-                )
-            }
+        val startDestination = runBlocking {
+            if (viewModel.showLogin()) R.id.loginFragment else R.id.homeFragment
+        }
+        navController.graph = navController.navInflater.inflate(R.navigation.navigation).apply {
+            setStartDestination(startDestination)
+        }
     }
 
     private fun setupTopToolbar() {
@@ -154,17 +151,17 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun checkIntentForNavigation(intent: Intent?) {
-        intent?.extras?.apply {
-            getString(URI_STRING)?.let {
-                if (it.contains(WEBSITE_HTTPS)) launchWebBrowserIntent(it)
+        intent?.extras?.let {
+            it.getString(URI_STRING)?.let { uri ->
+                if (uri.contains(WEBSITE_HTTPS)) launchWebBrowserIntent(uri)
             }
-            getString(NAVIGATION_DATA)?.let {
-                if (it == CLAIM_NOTIFICATION_EXP_INTENT) {
+            it.getString(NAVIGATION_DATA)?.let { intent ->
+                if (intent == CLAIM_NOTIFICATION_EXP_INTENT) {
                     navController.navigate(R.id.claimNotificationExpDialog)
                 }
             }
-            getInt(NOTIFICATION_ID).let {
-                NotificationManagerCompat.from(this@MainActivity).cancel(it)
+            it.getInt(NOTIFICATION_ID).let { id ->
+                NotificationManagerCompat.from(this).cancel(id)
             }
         }
     }
@@ -174,11 +171,11 @@ class MainActivity : AppCompatActivity(),
         duration: Int,
         actionText: Int,
         anchorToBottomNav: Boolean,
-        actionListener: View.OnClickListener?
+        action: View.OnClickListener?
     ) {
         Snackbar.make(binding.root, message, duration).let {
             if (anchorToBottomNav) it.anchorView = binding.bottomNavigation
-            if (actionListener != null) it.setAction(actionText, actionListener)
+            if (action != null) it.setAction(actionText, action)
             it.show()
         }
     }
