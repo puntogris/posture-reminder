@@ -54,6 +54,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     getString(R.string.snack_fail_login),
                     anchorToBottomNav = false
                 )
+                binding.progressBar.isVisible = false
             }
             LoginResult.InProgress -> {
                 binding.progressBar.isVisible = true

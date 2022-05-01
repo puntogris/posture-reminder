@@ -13,14 +13,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.puntogris.posture"
         minSdkVersion 23
-        targetSdkVersion
-        versionCode 51
+        targetSdkVersion 32
+        versionCode 52
         versionName "2.2.0"
         resConfigs 'en', 'es', 'ru'
 
@@ -128,11 +128,8 @@ dependencies {
     //BottomSheet
     implementation "com.maxkeppeler.sheets:core:$bottomSheetVersion"
     implementation "com.maxkeppeler.sheets:time-clock:$bottomSheetVersion"
-    implementation "com.maxkeppeler.sheets:input:$bottomSheetVersion"
-    implementation "com.maxkeppeler.sheets:time:$bottomSheetVersion"
     implementation "com.maxkeppeler.sheets:options:$bottomSheetVersion"
     implementation "com.maxkeppeler.sheets:color:$bottomSheetVersion"
-    implementation "com.maxkeppeler.sheets:info:$bottomSheetVersion"
 
     //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"

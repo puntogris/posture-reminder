@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.ManageReminderVhBinding
 import com.puntogris.posture.domain.model.Reminder
+import com.puntogris.posture.domain.model.SelectableReminder
 import com.puntogris.posture.utils.setDaysSummary
 import com.puntogris.posture.utils.setMinutesToHourlyTime
 import com.puntogris.posture.utils.setReminderColor

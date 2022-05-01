@@ -12,7 +12,7 @@ import com.puntogris.posture.utils.setProfileRankingNumber
 class RankingsViewHolder(private val binding: RankingProfileVhBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(rankingProfile: UserPublicProfile, isLastItem: Boolean) {
+    fun bind(rankingProfile: UserPublicProfile) {
         with(binding) {
             rankingMedalImage.setProfileRankingMedal(adapterPosition)
             rankingUsername.text = rankingProfile.username

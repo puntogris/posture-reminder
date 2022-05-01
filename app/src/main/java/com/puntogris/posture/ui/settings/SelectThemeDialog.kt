@@ -28,6 +28,7 @@ class SelectThemeDialog : DialogFragment() {
         }
 
         return MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.theme)
             .setSingleChoiceItems(R.array.theme_names, currentPosition) { _, position ->
                 themeValuesArray[position].let {
                     lifecycleScope.launch {
