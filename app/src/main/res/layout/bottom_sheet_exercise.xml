@@ -26,10 +26,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_large"
-                android:layout_marginTop="55dp"
                 android:text="@string/exercise"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/close_button" />
 
             <ImageView
                 android:id="@+id/close_button"
@@ -109,7 +108,7 @@
                 android:id="@+id/exerciseDuration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="@dimen/spacing_xxsmall"
                 app:layout_constraintStart_toStartOf="@+id/exerciseDurationLabel"
                 app:layout_constraintTop_toBottomOf="@+id/exerciseDurationLabel" />
 

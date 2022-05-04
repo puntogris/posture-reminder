@@ -9,4 +9,6 @@
     <dimen name="spacing_large">16dp</dimen>
     <dimen name="spacing_xxlarge">24dp</dimen>
     <dimen name="spacing_huge">32dp</dimen>
+
+    <dimen name="spacing_scroll_margin">88dp</dimen>
 </resources>

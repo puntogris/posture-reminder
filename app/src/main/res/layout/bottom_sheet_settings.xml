@@ -14,7 +14,7 @@
         android:layout_marginEnd="@dimen/spacing_standard"
         android:contentDescription="@string/close_screen_content_description"
         android:foreground="?actionBarItemBackground"
-        android:padding="8dp"
+        android:padding="@dimen/spacing_standard"
         android:src="@drawable/ic_baseline_close_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +41,7 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="88dp" />
+            android:paddingBottom="@dimen/spacing_scroll_margin" />
     </androidx.core.widget.NestedScrollView>
 
     <androidx.constraintlayout.widget.Guideline

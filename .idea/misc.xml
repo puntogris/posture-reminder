@@ -82,7 +82,7 @@
         <entry key="app/src/main/res/layout/bottom_sheet_exercise.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bottom_sheet_managae_reminders.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/bottom_sheet_manage_reminders.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/bottom_sheet_new_reminder.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/bottom_sheet_new_reminder.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bottom_sheet_settings.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bottom_sheet_ticket.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/bug_report_dialog.xml" value="0.23697916666666666" />

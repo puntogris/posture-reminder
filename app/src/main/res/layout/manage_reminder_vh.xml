@@ -58,7 +58,7 @@
 
     <View
         android:id="@+id/reminderColor"
-        android:layout_width="5dp"
+        android:layout_width="@dimen/spacing_small"
         android:layout_height="50dp"
         android:layout_marginStart="@dimen/spacing_large"
         android:layout_marginTop="@dimen/spacing_large"
