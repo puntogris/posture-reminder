@@ -10,8 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="@dimen/spacing_standard"
+        android:layout_marginEnd="@dimen/spacing_standard"
         android:contentDescription="@string/close_screen_content_description"
         android:foreground="?actionBarItemBackground"
         android:padding="8dp"
@@ -24,14 +24,14 @@
         style="@style/Theme.Posture.MediumTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/spacing_large"
         android:text="@string/settings_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/close_button" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/spacing_empty"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +49,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="0dp" />
+        app:layout_constraintGuide_end="@dimen/spacing_empty" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,7 @@
         android:id="@+id/rankingMedalImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/spacing_large"
         android:contentDescription="@string/medal_content_description"
         app:layout_constraintBottom_toBottomOf="@+id/rankingUsername"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,9 +18,9 @@
 
     <TextView
         android:id="@+id/rankingUsername"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/spacing_empty"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="16dp"
+        android:layout_marginVertical="@dimen/spacing_large"
         android:layout_marginEnd="100dp"
         android:ellipsize="end"
         android:maxLines="1"
@@ -29,7 +29,6 @@
         app:layout_constraintEnd_toStartOf="@+id/rankingUserExp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.468"
         tools:text="Joaquin" />
 
     <TextView
@@ -37,7 +36,7 @@
         style="@style/Theme.Posture.TextMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="@dimen/spacing_xxlarge"
         android:minEms="2"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/rankingUsername"
@@ -49,11 +48,11 @@
         android:id="@+id/rankingUserExp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="@dimen/spacing_large"
         android:fontFamily="@font/roboto_medium"
         android:background="@drawable/round_corners_background_4"
         android:backgroundTint="#EDE3FF"
-        android:paddingHorizontal="12dp"
+        android:paddingHorizontal="@dimen/spacing_medium"
         android:paddingVertical="2dp"
         android:textColor="@color/colorPrimary"
         android:textSize="15sp"

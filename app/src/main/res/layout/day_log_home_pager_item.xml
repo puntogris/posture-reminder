@@ -9,8 +9,8 @@
         style="@style/Theme.Posture.TextBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_large"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +34,7 @@
         android:id="@+id/experienceLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="@dimen/spacing_xxlarge"
         android:text="@string/experience"
         android:textColor="@color/grey"
         android:textSize="11sp"
@@ -47,20 +47,19 @@
         android:id="@+id/exerciseLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="@dimen/spacing_xxlarge"
         android:text="@string/exercises"
         android:textColor="@color/grey"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/logExercises"
-        app:layout_constraintTop_toTopOf="@+id/notificationsLabel"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/notificationsLabel" />
 
     <TextView
         android:id="@+id/logDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/spacing_standard"
         android:textColor="@color/grey"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/dayLabel"
@@ -68,7 +67,7 @@
 
     <View
         android:id="@+id/divider2"
-        android:layout_width="1dp"
+        android:layout_width="@dimen/spacing_xmicro"
         android:layout_height="50dp"
         android:alpha="0.5"
         android:background="@color/grey"
@@ -80,7 +79,7 @@
 
     <View
         android:id="@+id/divider3"
-        android:layout_width="1dp"
+        android:layout_width="@dimen/spacing_xmicro"
         android:layout_height="50dp"
         android:alpha="0.5"
         android:background="@color/grey"
@@ -95,7 +94,7 @@
         style="@style/Theme.Posture.TextBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="@dimen/spacing_xxlarge"
         android:textColor="@color/white"
         android:textSize="17sp"
         app:layout_constraintStart_toStartOf="@+id/dayLabel"
@@ -106,7 +105,7 @@
         style="@style/Theme.Posture.TextBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/spacing_large"
         android:textColor="@color/white"
         android:textSize="17sp"
         app:layout_constraintStart_toEndOf="@+id/divider2"
@@ -117,11 +116,10 @@
         style="@style/Theme.Posture.TextBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/spacing_large"
         android:textColor="@color/white"
         android:textSize="17sp"
         app:layout_constraintStart_toEndOf="@+id/divider3"
         app:layout_constraintTop_toTopOf="@+id/logExercises" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-

@@ -15,7 +15,7 @@
             style="@style/Theme.Posture.MediumTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/spacing_large"
             android:text="@string/explore_label"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -46,9 +46,9 @@
         <View
             android:id="@+id/divider"
             style="@style/Theme.Posture.Divider"
-            android:layout_width="0dp"
-            android:layout_height="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="@dimen/spacing_empty"
+            android:layout_height="@dimen/spacing_standard"
+            android:layout_marginTop="@dimen/spacing_standard"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rankingsRv" />
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:foreground="?selectableItemBackground"
-            android:padding="8dp"
+            android:padding="@dimen/spacing_standard"
             android:text="@string/see_global_rankings"
             android:textSize="15sp"
             app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
@@ -72,8 +72,8 @@
             style="@style/Theme.Posture.RegularTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="@dimen/spacing_large"
+            android:layout_marginTop="@dimen/spacing_large"
             android:text="@string/exercises"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
@@ -82,7 +82,7 @@
             android:id="@+id/exercisesRv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/spacing_standard"
             android:clipToPadding="false"
             android:paddingBottom="88dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -91,5 +91,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/portalExerciseTitle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
 
+</androidx.core.widget.NestedScrollView>

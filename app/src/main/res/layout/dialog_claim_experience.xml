@@ -10,8 +10,8 @@
         android:id="@+id/claimExpTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_xxlarge"
         android:fontFamily="sans-serif-medium"
         android:textSize="22sp"
         tools:text="Congratulations" />
@@ -20,8 +20,8 @@
         android:id="@+id/claimExpSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp" />
+        android:layout_marginHorizontal="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_standard" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/claimExpAnimation"
@@ -37,5 +37,6 @@
         android:id="@+id/claimExpMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp" />
+        android:layout_marginHorizontal="@dimen/spacing_large" />
+
 </LinearLayout>

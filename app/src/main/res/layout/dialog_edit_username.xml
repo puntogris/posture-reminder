@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/spacing_large"
         android:text="@string/change_name_subtitle"
         android:textSize="13sp" />
 
@@ -30,7 +30,7 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="8dp"
+        android:layout_marginVertical="@dimen/spacing_standard"
         android:visibility="gone" />
 
 </LinearLayout>

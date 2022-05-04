@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="6dp"
+    android:layout_marginVertical="@dimen/spacing_small"
     android:foreground="?selectableItemBackground"
-    android:paddingHorizontal="8dp">
+    android:paddingHorizontal="@dimen/spacing_standard">
 
     <TextView
         android:id="@+id/exerciseTitleLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_large"
         android:fontFamily="@font/roboto_medium"
         app:layout_constraintStart_toEndOf="@+id/exerciseColor"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,19 +20,19 @@
     <TextView
         android:id="@+id/exerciseDuration"
         android:layout_width="wrap_content"
-        android:textSize="13sp"
         android:layout_height="wrap_content"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/exerciseDurationLabel"
         app:layout_constraintTop_toBottomOf="@+id/exerciseDurationLabel" />
 
     <TextView
         android:id="@+id/exerciseSummary"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/spacing_empty"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="@dimen/spacing_standard"
+        android:layout_marginEnd="@dimen/spacing_large"
+        android:layout_marginBottom="@dimen/spacing_large"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/exerciseDuration"
@@ -44,7 +44,7 @@
         style="@style/Theme.Posture.TextMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="@dimen/spacing_large"
         android:text="@string/duration"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/exerciseDuration"
@@ -54,12 +54,12 @@
 
     <View
         android:id="@+id/exerciseColor"
-        android:layout_width="5dp"
+        android:layout_width="@dimen/spacing_xxsmall"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/spacing_standard"
         android:background="@drawable/round_corners_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
 
+</androidx.constraintlayout.widget.ConstraintLayout>

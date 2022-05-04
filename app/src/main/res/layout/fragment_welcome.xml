@@ -9,7 +9,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/spacing_empty"
         app:layout_constraintBottom_toTopOf="@+id/dotsIndicator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         app:dotsColor="@color/grey"
-        app:dotsCornerRadius="8dp"
+        app:dotsCornerRadius="@dimen/spacing_standard"
         app:dotsSize="10dp"
         app:dotsSpacing="4dp"
         app:dotsWidthFactor="2.5"
@@ -36,7 +36,6 @@
         style="@style/Theme.Posture.Button"
         android:layout_width="match_parent"
         android:text="@string/action_start"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

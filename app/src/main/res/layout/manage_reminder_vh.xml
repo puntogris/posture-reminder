@@ -10,12 +10,12 @@
     <TextView
         android:id="@+id/reminder_name"
         style="@style/Theme.Posture.RegularTitle"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/spacing_empty"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
+        android:layout_marginStart="@dimen/spacing_large"
         app:layout_constraintBottom_toBottomOf="@+id/reminderColor"
         app:layout_constraintEnd_toStartOf="@+id/editReminder"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/reminderColor"
         app:layout_constraintTop_toTopOf="@+id/reminderColor"
         tools:text="Reminder name" />
 
@@ -23,8 +23,8 @@
         android:id="@+id/selectReminder"
         style="@style/Theme.Posture.Button"
         android:layout_width="match_parent"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="@dimen/spacing_huge"
+        android:layout_marginBottom="@dimen/spacing_xxlarge"
         android:backgroundTint="@color/light_button"
         android:text="@string/action_select"
         android:textColor="@color/colorPrimaryDark"
@@ -32,14 +32,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/intervalSummary"
-        app:layout_constraintVertical_bias="0.0"
         app:rippleColor="@color/grey" />
 
     <View
         android:id="@+id/divider"
         style="@style/Theme.Posture.Divider"
-        android:layout_width="0dp"
-        android:layout_height="8dp"
+        android:layout_width="@dimen/spacing_empty"
+        android:layout_height="@dimen/spacing_standard"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -48,11 +47,11 @@
         android:id="@+id/editReminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginEnd="@dimen/spacing_large"
         android:contentDescription="@string/edit_content_description"
         android:foreground="?actionBarItemBackground"
-        android:padding="8dp"
+        android:padding="@dimen/spacing_standard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_edit_24" />
@@ -61,8 +60,8 @@
         android:id="@+id/reminderColor"
         android:layout_width="5dp"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_large"
         android:background="@drawable/round_corners_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -72,7 +71,7 @@
         style="@style/Theme.Posture.TextMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/spacing_large"
         android:text="@string/interval"
         android:textSize="11sp"
         app:layout_constraintStart_toStartOf="@+id/intervalSummary"

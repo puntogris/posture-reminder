@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     style="@style/Theme.Posture.Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,9 +9,9 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/spacing_empty"
         android:layout_above="@id/progressBar"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="@dimen/spacing_standard"
         android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,7 +25,7 @@
                 style="@style/Theme.Posture.MediumTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/spacing_large"
                 android:layout_marginTop="55dp"
                 android:text="@string/exercise"
                 app:layout_constraintStart_toStartOf="parent"
@@ -36,19 +35,19 @@
                 android:id="@+id/close_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginTop="@dimen/spacing_standard"
+                android:layout_marginEnd="@dimen/spacing_standard"
                 android:contentDescription="@string/close_screen_content_description"
-                android:padding="8dp"
+                android:padding="@dimen/spacing_standard"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_baseline_close_24" />
 
             <ImageView
                 android:id="@+id/exerciseImage"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/spacing_empty"
                 android:layout_height="200dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/spacing_large"
                 android:contentDescription="@string/image_content_description"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -59,8 +58,8 @@
                 style="@style/Theme.Posture.TextMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginStart="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_xxlarge"
                 android:text="@string/name"
                 android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +69,7 @@
                 android:id="@+id/exerciseName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="@dimen/spacing_xxsmall"
                 app:layout_constraintStart_toStartOf="@+id/exerciseNameLabel"
                 app:layout_constraintTop_toBottomOf="@+id/exerciseNameLabel" />
 
@@ -79,7 +78,7 @@
                 style="@style/Theme.Posture.TextMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/spacing_large"
                 android:text="@string/description"
                 android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="@+id/exerciseName"
@@ -87,10 +86,10 @@
 
             <TextView
                 android:id="@+id/exerciseDescription"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/spacing_empty"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="@dimen/spacing_xxsmall"
+                android:layout_marginEnd="@dimen/spacing_large"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/exerciseDescriptionLabel"
                 app:layout_constraintTop_toBottomOf="@+id/exerciseDescriptionLabel" />
@@ -100,7 +99,7 @@
                 style="@style/Theme.Posture.TextMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="@dimen/spacing_large"
                 android:text="@string/duration"
                 android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -119,8 +118,8 @@
                 style="@style/Theme.Posture.RegularTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_large"
                 android:text="@string/steps"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/exerciseDescription" />
@@ -129,7 +128,7 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/spacing_large"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -144,8 +143,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/startExerciseButton"
-        android:layout_marginVertical="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginVertical="@dimen/spacing_standard"
+        android:layout_marginBottom="@dimen/spacing_standard"
         android:scaleY="2"
         app:layout_constraintBottom_toTopOf="@+id/startExerciseButton" />
 
@@ -155,6 +154,6 @@
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
         android:text="@string/action_start"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
