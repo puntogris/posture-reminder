@@ -29,6 +29,6 @@
             android:layout_marginEnd="@dimen/spacing_standard"
             android:backgroundTint="@android:color/transparent"
             app:tabBackground="@drawable/tab_selector" />
-    </FrameLayout>
 
+    </FrameLayout>
 </com.google.android.material.card.MaterialCardView>

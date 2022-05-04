@@ -50,5 +50,4 @@
             tools:text="Espalda de acero" />
 
     </LinearLayout>
-
 </com.google.android.material.card.MaterialCardView>
