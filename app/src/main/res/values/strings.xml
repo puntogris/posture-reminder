@@ -12,7 +12,7 @@
     <string name="settings_label">Settings</string>
     <string name="reminders_label">Reminders</string>
     <string name="battery_optimization_label">Battery optimization</string>
-    <string name="top_rankings_label">Top 30 rankings per level</string>
+    <string name="top_rankings_label">Top 30 rankings by level</string>
     <string name="credits_label">Credits</string>
 
     <!-- Actions -->

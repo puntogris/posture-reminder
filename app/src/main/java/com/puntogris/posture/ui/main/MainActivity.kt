@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.ui.AppBarConfiguration
@@ -28,6 +29,9 @@ import com.puntogris.posture.utils.extensions.launchWebBrowserIntent
 import com.puntogris.posture.utils.extensions.notEqualsAny
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
@@ -50,8 +54,10 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun checkAppCurrentVersion() {
-        viewModel.appVersionStatus.observe(this) { isNewVersion ->
-            if (isNewVersion) navController.navigate(R.id.whatsNewDialog)
+        lifecycleScope.launch(Dispatchers.Main.immediate) {
+            viewModel.appVersionStatus.collectLatest { isNewVersion ->
+                if (isNewVersion) navController.navigate(R.id.whatsNewDialog)
+            }
         }
     }
 

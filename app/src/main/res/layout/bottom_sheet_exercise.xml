@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/Theme.Posture.Layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,11 +9,13 @@
     android:orientation="vertical">
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/asd"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_above="@id/progressBar"
-        android:fillViewport="true">
+        android:layout_marginBottom="8dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -142,7 +145,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/startExerciseButton"
         android:layout_marginVertical="8dp"
-        android:scaleY="2" />
+        android:layout_marginBottom="8dp"
+        android:scaleY="2"
+        app:layout_constraintBottom_toTopOf="@+id/startExerciseButton" />
 
     <Button
         android:id="@+id/startExerciseButton"
@@ -150,5 +155,6 @@
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
         android:text="@string/action_start"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
-</RelativeLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
