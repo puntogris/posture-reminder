@@ -52,18 +52,18 @@ android {
 }
 
 ext {
-    lifecycleVersion = "2.4.1"
-    navigationVersion = "2.4.2"
-    lottieVersion = "3.5.0"
-    bottomSheetVersion = "2.2.5"
+    lifecycleVersion = "2.5.0"
+    navigationVersion = "2.5.0"
+    lottieVersion = "5.2.0"
+    bottomSheetVersion = "2.2.8"
     coroutinesVersion = "1.6.0"
     dataStoreVersion = "1.0.0"
     chartsVersion = "3.10.1"
-    googleSignIn = "20.1.0"
+    googleSignIn = "20.2.0"
     hiltVersion = "2.35"
     dateVersion = "1.3.1"
     tabIndicatorVersion = "4.2"
-    fragmentKtxVersion = "1.4.0"
+    fragmentKtxVersion = "1.5.0"
     roomVersion = "2.4.0-alpha04"
     workManagerVersion = "2.7.1"
     kluentVersion = "1.68"
@@ -76,10 +76,10 @@ ext {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     //Test
@@ -117,7 +117,7 @@ dependencies {
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
     //Firebase
-    implementation platform('com.google.firebase:firebase-bom:29.3.0')
+    implementation platform('com.google.firebase:firebase-bom:30.3.0')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-firestore-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
