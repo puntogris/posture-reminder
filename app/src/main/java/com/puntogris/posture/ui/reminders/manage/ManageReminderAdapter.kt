@@ -32,6 +32,7 @@ class ManageReminderAdapter(
                 if (direction == ItemTouchHelper.RIGHT) {
                     deleteListener(item)
                 } else if (direction == ItemTouchHelper.LEFT) {
+                    notifyItemChanged(viewHolder.adapterPosition)
                     editListener(item)
                 }
             }
