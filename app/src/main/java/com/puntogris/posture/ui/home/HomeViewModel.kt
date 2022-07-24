@@ -5,27 +5,26 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.puntogris.posture.data.datasource.local.DataStore
+import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import com.puntogris.posture.domain.repository.DayLogsRepository
 import com.puntogris.posture.domain.repository.ReminderRepository
 import com.puntogris.posture.framework.alarm.Alarm
 import com.puntogris.posture.framework.alarm.AlarmStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    dataStore: DataStore,
+    dataStoreHelper: DataStoreHelper,
     dayLogsRepository: DayLogsRepository,
     private val alarm: Alarm,
     private val reminderRepository: ReminderRepository
 ) : ViewModel() {
 
-    val isAlarmActive = dataStore.isAlarmActiveFlow().asLiveData()
+    val isAlarmActive = dataStoreHelper.isAlarmActiveFlow().asLiveData()
 
     val activeReminder = reminderRepository.getActiveReminderLiveData()
 
@@ -57,7 +56,7 @@ class HomeViewModel @Inject constructor(
         _alarmStatus.emit(AlarmStatus.Canceled)
     }
 
-    val isPandaAnimationEnabled = dataStore.showPandaAnimation().asLiveData()
+    val isPandaAnimationEnabled = dataStoreHelper.showPandaAnimation().asLiveData()
 
     val getLastTwoDaysHistory = dayLogsRepository.getLastTwoDaysLogsLiveData()
 

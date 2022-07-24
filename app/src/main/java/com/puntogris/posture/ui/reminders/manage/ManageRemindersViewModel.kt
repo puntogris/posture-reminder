@@ -1,10 +1,9 @@
 package com.puntogris.posture.ui.reminders.manage
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
-import com.puntogris.posture.data.datasource.local.DataStore
+import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.domain.model.SelectableReminder
 import com.puntogris.posture.domain.repository.ReminderRepository
@@ -18,7 +17,7 @@ import javax.inject.Inject
 class ManageRemindersViewModel @Inject constructor(
     private val reminderRepository: ReminderRepository,
     private val userRepository: UserRepository,
-    private val dataStore: DataStore
+    private val dataStoreHelper: DataStoreHelper
 ) : ViewModel() {
 
     private val activeReminder = reminderRepository.getActiveReminderLiveData()
@@ -34,9 +33,6 @@ class ManageRemindersViewModel @Inject constructor(
         }
     }
 
-    init {
-        Log.d("debuger", "init viewmodel")
-    }
     suspend fun deleteReminder(reminder: Reminder) = reminderRepository.deleteReminder(reminder)
 
     fun insertReminder(reminder: Reminder) {
@@ -47,5 +43,5 @@ class ManageRemindersViewModel @Inject constructor(
 
     suspend fun updateReminder(reminder: Reminder) = userRepository.updateActiveReminder(reminder)
 
-    val showTutorial = dataStore.showTutorial()
+    val showTutorial = dataStoreHelper.showTutorial()
 }

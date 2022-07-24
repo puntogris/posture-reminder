@@ -5,7 +5,7 @@ import androidx.room.Room
 import androidx.work.WorkManager
 import com.lyft.kronos.AndroidClockFactory
 import com.lyft.kronos.KronosClock
-import com.puntogris.posture.data.datasource.local.DataStore
+import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import com.puntogris.posture.data.datasource.local.db.AppDatabase
 import com.puntogris.posture.data.datasource.local.db.ReminderDao
 import com.puntogris.posture.data.datasource.remote.FirebaseClients
@@ -84,7 +84,7 @@ class AppModule {
         appDatabase: AppDatabase,
         firestoreUser: FirebaseUserApi,
         firestoreReminder: FirebaseReminderApi,
-        dataStore: DataStore,
+        dataStoreHelper: DataStoreHelper,
         dispatchers: DispatcherProvider,
         workersManager: WorkersManager,
         kronosClock: KronosClock
@@ -93,7 +93,7 @@ class AppModule {
             appDatabase,
             firestoreUser,
             firestoreReminder,
-            dataStore,
+            dataStoreHelper,
             dispatchers,
             workersManager,
             kronosClock
@@ -108,7 +108,7 @@ class AppModule {
         reminderDao: ReminderDao,
         notifications: Notifications,
         alarm: Alarm,
-        dataStore: DataStore,
+        dataStoreHelper: DataStoreHelper,
         dispatchers: DispatcherProvider,
         workersManager: WorkersManager,
     ): ReminderRepository {
@@ -118,7 +118,7 @@ class AppModule {
             reminderDao,
             notifications,
             alarm,
-            dataStore,
+            dataStoreHelper,
             dispatchers,
             workersManager
         )

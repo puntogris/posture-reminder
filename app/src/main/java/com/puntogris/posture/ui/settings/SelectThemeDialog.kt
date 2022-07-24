@@ -7,7 +7,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.posture.R
-import com.puntogris.posture.data.datasource.local.DataStore
+import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -17,13 +17,13 @@ import javax.inject.Inject
 class SelectThemeDialog : DialogFragment() {
 
     @Inject
-    lateinit var dataStore: DataStore
+    lateinit var dataStoreHelper: DataStoreHelper
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val themeValuesArray = resources.getIntArray(R.array.theme_values)
 
         val currentPosition = runBlocking {
-            val currentTheme = dataStore.appTheme()
+            val currentTheme = dataStoreHelper.appTheme()
             if (currentTheme == -1) 2 else currentTheme - 1
         }
 
@@ -32,7 +32,7 @@ class SelectThemeDialog : DialogFragment() {
             .setSingleChoiceItems(R.array.theme_names, currentPosition) { _, position ->
                 themeValuesArray[position].let {
                     lifecycleScope.launch {
-                        dataStore.setAppTheme(it)
+                        dataStoreHelper.setAppTheme(it)
                         AppCompatDelegate.setDefaultNightMode(it)
                         dismiss()
                     }

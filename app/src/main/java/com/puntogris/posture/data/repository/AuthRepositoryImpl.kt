@@ -1,7 +1,7 @@
 package com.puntogris.posture.data.repository
 
 import androidx.activity.result.ActivityResult
-import com.puntogris.posture.data.datasource.local.DataStore
+import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import com.puntogris.posture.data.datasource.remote.GoogleSingInApi
 import com.puntogris.posture.data.datasource.toUserPrivateData
 import com.puntogris.posture.domain.model.LoginResult
@@ -19,15 +19,15 @@ import kotlinx.coroutines.flow.flowOn
 class AuthRepositoryImpl(
     private val workersManager: WorkersManager,
     private val authServerApi: AuthServerApi,
-    private val dataStore: DataStore,
+    private val dataStoreHelper: DataStoreHelper,
     private val googleSingInApi: GoogleSingInApi,
     private val alarm: Alarm,
     private val dispatchers: DispatcherProvider
 ) : AuthRepository {
 
-    override suspend fun getShowLoginPref() = dataStore.showLoginPref()
+    override suspend fun getShowLoginPref() = dataStoreHelper.showLoginPref()
 
-    override suspend fun getShowWelcomePref() = dataStore.showWelcomePref()
+    override suspend fun getShowWelcomePref() = dataStoreHelper.showWelcomePref()
 
     override fun authWithGoogle(result: ActivityResult): Flow<LoginResult> = flow {
         try {
@@ -46,7 +46,7 @@ class AuthRepositoryImpl(
         alarm.cancelAlarms()
         authServerApi.signOut()
         googleSingInApi.signOut()
-        dataStore.setShowLoginPref(true)
+        dataStoreHelper.setShowLoginPref(true)
         workersManager.cancelWorker(SYNC_ACCOUNT_WORKER)
     }
 }

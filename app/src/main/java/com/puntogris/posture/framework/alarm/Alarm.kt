@@ -6,7 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.puntogris.posture.data.datasource.local.DataStore
+import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.Utils.getTriggerTime
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 class Alarm @Inject constructor(
     @ApplicationContext context: Context,
-    private val dataStore: DataStore
+    private val dataStoreHelper: DataStoreHelper
 ) {
 
     private val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -55,7 +55,7 @@ class Alarm @Inject constructor(
         if (reminder.isAlarmPastMidnightAndInRange(Utils.minutesSinceMidnight())) {
             startRepeatingAlarm(reminder.timeInterval)
         }
-        dataStore.isCurrentReminderStateActive(true)
+        dataStoreHelper.isCurrentReminderStateActive(true)
     }
 
     suspend fun cancelAlarms() {
@@ -63,7 +63,7 @@ class Alarm @Inject constructor(
             cancel(pendingIntentDailyAlarm)
             cancel(pendingIntentRepeatingAlarm)
         }
-        dataStore.isCurrentReminderStateActive(false)
+        dataStoreHelper.isCurrentReminderStateActive(false)
     }
 
     fun startRepeatingAlarm(intervalInMinutes: Int) {

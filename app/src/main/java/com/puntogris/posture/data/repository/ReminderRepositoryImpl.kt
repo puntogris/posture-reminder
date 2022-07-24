@@ -1,7 +1,7 @@
 package com.puntogris.posture.data.repository
 
 import android.os.Build
-import com.puntogris.posture.data.datasource.local.DataStore
+import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import com.puntogris.posture.data.datasource.local.db.ReminderDao
 import com.puntogris.posture.data.datasource.remote.FirebaseClients
 import com.puntogris.posture.domain.model.Reminder
@@ -22,7 +22,7 @@ class ReminderRepositoryImpl(
     private val reminderDao: ReminderDao,
     private val notifications: Notifications,
     private val alarm: Alarm,
-    private val dataStore: DataStore,
+    private val dataStoreHelper: DataStoreHelper,
     private val dispatchers: DispatcherProvider,
     private val workersManager: WorkersManager,
 ) : ReminderRepository {
@@ -53,7 +53,7 @@ class ReminderRepositoryImpl(
                 reminderDao.insert(reminder)
 
                 reminderDao.getActiveReminder()?.let {
-                    if (it == reminder && dataStore.isAlarmActive()) {
+                    if (it == reminder && dataStoreHelper.isAlarmActive()) {
                         alarm.refreshAlarms(reminder)
                     }
                 }

@@ -6,7 +6,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.posture.R
-import com.puntogris.posture.data.datasource.local.DataStore
+import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import com.puntogris.posture.databinding.DialogManageReminderTutorialBinding
 import com.puntogris.posture.utils.extensions.isDarkThemeOn
 import com.puntogris.posture.utils.viewBinding
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class ManageReminderTutorialDialog: DialogFragment() {
 
     @Inject
-    lateinit var dataStore: DataStore
+    lateinit var dataStoreHelper: DataStoreHelper
 
     private val binding by viewBinding(DialogManageReminderTutorialBinding::inflate)
 
@@ -38,7 +38,7 @@ class ManageReminderTutorialDialog: DialogFragment() {
     private fun initViews() {
         binding.buttonReminderTutorialUnderstoodButton.setOnClickListener {
             lifecycleScope.launch {
-                dataStore.setShowTutorial(false)
+                dataStoreHelper.setShowTutorial(false)
                 dismiss()
             }
         }

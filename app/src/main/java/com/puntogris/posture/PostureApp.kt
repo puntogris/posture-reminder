@@ -7,7 +7,7 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.lyft.kronos.KronosClock
-import com.puntogris.posture.data.datasource.local.DataStore
+import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import com.puntogris.posture.framework.alarm.Notifications
 import com.puntogris.posture.framework.workers.WorkersManager
 import dagger.hilt.android.HiltAndroidApp
@@ -30,7 +30,7 @@ class PostureApp : Application(), Configuration.Provider {
     lateinit var notifications: Notifications
 
     @Inject
-    lateinit var dataStore: DataStore
+    lateinit var dataStoreHelper: DataStoreHelper
 
     @Inject
     lateinit var kronosClock: KronosClock
@@ -43,7 +43,7 @@ class PostureApp : Application(), Configuration.Provider {
         kronosClock.syncInBackground()
 
         runBlocking {
-            dataStore.appTheme().let {
+            dataStoreHelper.appTheme().let {
                 AppCompatDelegate.setDefaultNightMode(it)
             }
         }

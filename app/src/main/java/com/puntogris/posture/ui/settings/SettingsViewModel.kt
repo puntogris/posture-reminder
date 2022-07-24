@@ -2,7 +2,7 @@ package com.puntogris.posture.ui.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.puntogris.posture.data.datasource.local.DataStore
+import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import com.puntogris.posture.domain.repository.AuthRepository
 import com.puntogris.posture.domain.repository.UserRepository
 import com.puntogris.posture.utils.extensions.capitalizeWords
@@ -13,17 +13,17 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    private val dataStore: DataStore,
+    private val dataStoreHelper: DataStoreHelper,
     private val authRepository: AuthRepository
 ) : ViewModel() {
 
     val user = userRepository.getUserLiveData()
 
-    val appTheme = dataStore.appThemeFlow()
+    val appTheme = dataStoreHelper.appThemeFlow()
 
     fun setPandaAnimationPref(value: Boolean) {
         viewModelScope.launch {
-            dataStore.setPandaAnimation(value)
+            dataStoreHelper.setPandaAnimation(value)
         }
     }
 

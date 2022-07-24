@@ -5,7 +5,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.puntogris.posture.BuildConfig
-import com.puntogris.posture.data.datasource.local.DataStore
+import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import com.puntogris.posture.data.datasource.remote.FirebaseAuthApi
 import com.puntogris.posture.data.datasource.remote.FirebaseClients
 import com.puntogris.posture.data.datasource.remote.GoogleSingInApi
@@ -41,7 +41,7 @@ class AuthModule {
     fun provideLoginRepository(
         workersManager: WorkersManager,
         authServerApi: AuthServerApi,
-        dataStore: DataStore,
+        dataStoreHelper: DataStoreHelper,
         googleSingInApi: GoogleSingInApi,
         alarm: Alarm,
         dispatcherProvider: DispatcherProvider
@@ -49,7 +49,7 @@ class AuthModule {
         return AuthRepositoryImpl(
             workersManager,
             authServerApi,
-            dataStore,
+            dataStoreHelper,
             googleSingInApi,
             alarm,
             dispatcherProvider
