@@ -21,12 +21,17 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentHomeBinding
 import com.puntogris.posture.framework.alarm.AlarmStatus
-import com.puntogris.posture.utils.*
+import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.constants.Constants.PACKAGE_URI_NAME
 import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.navigateTo
 import com.puntogris.posture.utils.extensions.setPageFadeTransformer
 import com.puntogris.posture.utils.extensions.showItem
+import com.puntogris.posture.utils.setBackgroundColorTintView
+import com.puntogris.posture.utils.setDaysSummary
+import com.puntogris.posture.utils.setMinutesToHourlyTime
+import com.puntogris.posture.utils.setToggleButton
+import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

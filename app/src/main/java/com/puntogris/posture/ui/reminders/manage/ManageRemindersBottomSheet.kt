@@ -13,7 +13,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetManageRemindersBinding
 import com.puntogris.posture.domain.model.Reminder
-import com.puntogris.posture.utils.extensions.*
+import com.puntogris.posture.utils.extensions.UiInterface
+import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
+import com.puntogris.posture.utils.extensions.navigateTo
+import com.puntogris.posture.utils.extensions.setupAsFullScreen
+import com.puntogris.posture.utils.extensions.showSnackBar
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

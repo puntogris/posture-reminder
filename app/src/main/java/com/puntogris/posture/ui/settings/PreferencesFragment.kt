@@ -15,7 +15,12 @@ import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.R
 import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.constants.Keys
-import com.puntogris.posture.utils.extensions.*
+import com.puntogris.posture.utils.extensions.isIgnoringBatteryOptimizations
+import com.puntogris.posture.utils.extensions.launchWebBrowserIntent
+import com.puntogris.posture.utils.extensions.navigateTo
+import com.puntogris.posture.utils.extensions.onClick
+import com.puntogris.posture.utils.extensions.preference
+import com.puntogris.posture.utils.extensions.preferenceOnClick
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
