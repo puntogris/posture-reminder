@@ -39,14 +39,9 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerViewAdapter()
-        binding.closeButton.setOnClickListener {
-            dismiss()
-        }
-        binding.addReminderButton.setOnClickListener {
-            navigateTo(R.id.action_manageReminders_to_newReminder)
-        }
-        navigateTo(R.id.manageReminderTutorialDialog)
+        initViews()
+        initListeners()
+        initObserver()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -55,25 +50,43 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
         }
     }
 
-    private fun setupRecyclerViewAdapter() {
-        ManageReminderAdapter(
+    private fun initListeners() {
+        binding.closeButton.setOnClickListener {
+            dismiss()
+        }
+        binding.addReminderButton.setOnClickListener {
+            navigateTo(R.id.action_manageReminders_to_newReminder)
+        }
+    }
+
+    private fun initObserver(){
+        lifecycleScope.launch {
+            viewModel.showTutorial.collect { show ->
+                if (show) navigateTo(R.id.manageReminderTutorialDialog)
+            }
+        }
+    }
+
+    private fun initViews() {
+        val adapter = ManageReminderAdapter(
             context = requireContext(),
             selectListener = { onSelectReminder(it) },
             editListener = { onEditReminder(it) },
             deleteListener = { onDeleteReminder(it) }
-        ).also {
-            binding.recyclerView.adapter = it
-            binding.recyclerView.setHasFixedSize(true)
-            subscribeUi(it)
-        }
+        )
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.setHasFixedSize(true)
+        subscribeUi(adapter)
     }
 
     private fun subscribeUi(adapter: ManageReminderAdapter) {
         launchAndRepeatWithViewLifecycle {
             viewModel.reminders.collectLatest {
                 adapter.submitList(it)
-                binding.recyclerView.post {
-                    binding.recyclerView.smoothScrollToPosition(0)
+                binding.recyclerView.run {
+                    post {
+                        smoothScrollToPosition(0)
+                    }
                 }
             }
         }

@@ -10,6 +10,7 @@ object Keys {
     const val REMINDER_STATE_KEY = "reminder_state_key"
     const val SHOW_LOGIN_KEY = "show_login_key"
     const val SHOW_WELCOME_KEY = "show_welcome_key"
+    const val SHOW_MANAGE_TUTORIAL_KEY = "show_manage_tutorial_key"
 
     //Pref keys
     const val USERNAME_PREF_KEY = "username_preference_key"

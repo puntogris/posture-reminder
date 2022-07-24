@@ -75,4 +75,12 @@ class DataStore @Inject constructor(@ApplicationContext private val context: Con
     suspend fun setShowWelcomePref(value: Boolean) = context.dataStore.edit {
         it[booleanPreferencesKey(Keys.SHOW_WELCOME_KEY)] = value
     }
+
+    fun showTutorial() = context.dataStore.data.map {
+        it[booleanPreferencesKey(Keys.SHOW_MANAGE_TUTORIAL_KEY)] ?: false
+    }
+
+    suspend fun setShowTutorial(value: Boolean) = context.dataStore.edit {
+        it[booleanPreferencesKey(Keys.SHOW_MANAGE_TUTORIAL_KEY)] = value
+    }
 }
