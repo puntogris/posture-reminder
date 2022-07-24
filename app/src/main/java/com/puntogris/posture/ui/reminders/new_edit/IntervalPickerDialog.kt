@@ -6,7 +6,11 @@ import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.DialogIntervalPickerBinding
-import com.puntogris.posture.utils.extensions.*
+import com.puntogris.posture.utils.extensions.data
+import com.puntogris.posture.utils.extensions.getHours
+import com.puntogris.posture.utils.extensions.getMinutes
+import com.puntogris.posture.utils.extensions.onPositive
+import com.puntogris.posture.utils.extensions.visible
 import com.puntogris.posture.utils.viewBinding
 
 class IntervalPickerDialog(

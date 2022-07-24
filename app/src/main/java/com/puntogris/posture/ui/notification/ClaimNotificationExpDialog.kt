@@ -27,8 +27,23 @@ class ClaimNotificationExpDialog : DialogFragment() {
     private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        playSound()
+        subscribeUi()
+        return MaterialAlertDialogBuilder(requireContext())
+            .setView(binding.root)
+            .setPositiveButton(R.string.exercise) { _, _ ->
+                navigateToRandomExercise()
+            }
+            .setNegativeButton(R.string.action_cancel) { _, _ -> dismiss() }
+            .create()
+    }
+
+    private fun playSound() {
         mediaPlayer = MediaPlayer.create(requireContext(), R.raw.claim_sound)
         mediaPlayer?.start()
+    }
+
+    private fun subscribeUi() {
         lifecycleScope.launch {
             when (viewModel.updateDayLogWithReward()) {
                 RewardExp.Error -> {
@@ -60,20 +75,12 @@ class ClaimNotificationExpDialog : DialogFragment() {
                 }
             }
         }
-
-        return MaterialAlertDialogBuilder(requireContext())
-            .setView(binding.root)
-            .setPositiveButton(R.string.exercise) { _, _ ->
-                navigateToRandomExercise()
-            }
-            .setNegativeButton(R.string.action_cancel) { _, _ -> dismiss() }
-            .create()
     }
 
     private fun navigateToRandomExercise() {
-        val exercise = LocalDataSource.exercisesList.random()
-        val action = ClaimNotificationExpDialogDirections
-            .actionClaimNotificationExpToExercise(exercise)
+        val action = ClaimNotificationExpDialogDirections.actionClaimNotificationExpToExercise(
+            LocalDataSource.exercisesList.random()
+        )
         findNavController().navigate(action)
     }
 

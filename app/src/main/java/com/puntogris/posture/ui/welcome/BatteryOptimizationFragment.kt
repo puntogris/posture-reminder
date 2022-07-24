@@ -32,20 +32,20 @@ class BatteryOptimizationFragment : Fragment(R.layout.fragment_battery_optimizat
     }
 
     private fun setBatteryOptimizationsStepsUi() {
-        val stepOne =
-            if (isDarkThemeOn()) R.string.battery_optimization_step_one_light
-            else R.string.battery_optimization_step_one_dark
-
-        val stepTwo =
-            if (isDarkThemeOn()) R.string.battery_optimization_step_two_light
-            else R.string.battery_optimization_step_two_dark
+        val (stepOne, stepTwo) = if (isDarkThemeOn()) {
+            R.string.battery_optimization_step_one_light to R.string.battery_optimization_step_two_light
+        } else {
+            R.string.battery_optimization_step_one_dark to R.string.battery_optimization_step_two_dark
+        }
 
         binding.stepOne.text = htmlToString(stepOne)
         binding.stepTwo.text = htmlToString(stepTwo)
     }
 
-    private fun htmlToString(htmlRes: Int) =
-        HtmlCompat.fromHtml(getString(htmlRes), HtmlCompat.FROM_HTML_MODE_LEGACY)
+    private fun htmlToString(htmlRes: Int) = HtmlCompat.fromHtml(
+        getString(htmlRes),
+        HtmlCompat.FROM_HTML_MODE_LEGACY
+    )
 
     private fun checkPowerStatus() {
         if (requireContext().isIgnoringBatteryOptimizations()) {

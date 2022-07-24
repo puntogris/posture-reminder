@@ -18,9 +18,9 @@ import javax.inject.Singleton
 
 @Keep
 @Singleton
-class DataStore @Inject constructor(@ApplicationContext private val context: Context) {
+class DataStoreHelper @Inject constructor(@ApplicationContext private val context: Context) {
 
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = Keys.APP_PREFERENCES_NAME)
+    private val Context.dataStore by preferencesDataStore(name = Keys.APP_PREFERENCES_NAME)
 
     suspend fun lastVersionCode() =
         context.dataStore.data.first()[intPreferencesKey(Keys.LAST_VERSION_CODE)] ?: 0

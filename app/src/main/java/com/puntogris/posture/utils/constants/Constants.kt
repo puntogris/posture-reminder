@@ -15,6 +15,7 @@ object Constants {
     //Other
     const val PROGRESS_BAR_SMOOTH_OFFSET = 20
     const val PACKAGE_URI_NAME = "package:com.puntogris.posture"
+    const val ONE_SECOND_IN_MILLIS = 1000
 
     //Notifications
     const val DAILY_ALARM_TRIGGERED = "DAILY_ALARM_TRIGGERED"

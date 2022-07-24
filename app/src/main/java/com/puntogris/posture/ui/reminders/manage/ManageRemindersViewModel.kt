@@ -17,7 +17,7 @@ import javax.inject.Inject
 class ManageRemindersViewModel @Inject constructor(
     private val reminderRepository: ReminderRepository,
     private val userRepository: UserRepository,
-    private val dataStoreHelper: DataStoreHelper
+    dataStoreHelper: DataStoreHelper
 ) : ViewModel() {
 
     private val activeReminder = reminderRepository.getActiveReminderLiveData()

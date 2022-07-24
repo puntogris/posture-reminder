@@ -31,8 +31,11 @@ class SynAccountFragment : Fragment(R.layout.fragment_syn_account) {
         binding.syncContinueButton.setOnClickListener {
             lifecycleScope.launch {
                 navigateTo(
-                    if (viewModel.showWelcome()) R.id.action_synAccountFragment_to_welcomeFragment
-                    else R.id.action_synAccount_to_home
+                    if (viewModel.showWelcome()) {
+                        R.id.action_synAccountFragment_to_welcomeFragment
+                    } else {
+                        R.id.action_synAccount_to_home
+                    }
                 )
             }
         }
@@ -75,5 +78,4 @@ class SynAccountFragment : Fragment(R.layout.fragment_syn_account) {
             syncContinueButton.isEnabled = true
         }
     }
-
 }

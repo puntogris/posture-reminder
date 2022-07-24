@@ -8,6 +8,7 @@ import com.puntogris.posture.domain.model.DayLog
 import com.puntogris.posture.domain.model.RewardExp
 import com.puntogris.posture.domain.repository.DayLogsRepository
 import com.puntogris.posture.utils.constants.Constants.EXPERIENCE_PER_EXERCISE
+import com.puntogris.posture.utils.constants.Constants.ONE_SECOND_IN_MILLIS
 import com.puntogris.posture.utils.constants.Constants.PROGRESS_BAR_SMOOTH_OFFSET
 import com.puntogris.posture.utils.extensions.toMillis
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,7 +26,7 @@ class ExerciseViewModel @Inject constructor(
 
     fun startExerciseTimerWithDuration(duration: Int) {
         val durationInMillis = duration.toMillis()
-        val countInterval = (1000 / PROGRESS_BAR_SMOOTH_OFFSET).toLong()
+        val countInterval = (ONE_SECOND_IN_MILLIS / PROGRESS_BAR_SMOOTH_OFFSET).toLong()
 
         durationTimer = object : CountDownTimer(durationInMillis, countInterval) {
             override fun onTick(millisUntilFinished: Long) {

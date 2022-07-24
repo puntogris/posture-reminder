@@ -1,7 +1,7 @@
 package com.puntogris.posture.data.repository
 
 import com.lyft.kronos.KronosClock
-import com.puntogris.posture.data.datasource.local.DataStore
+import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import com.puntogris.posture.data.datasource.local.db.AppDatabase
 import com.puntogris.posture.domain.model.UserPrivateData
 import com.puntogris.posture.domain.repository.ReminderServerApi
@@ -16,7 +16,7 @@ class SyncRepositoryImpl(
     private val appDatabase: AppDatabase,
     private val userServerApi: UserServerApi,
     private val reminderServerApi: ReminderServerApi,
-    private val dataStore: DataStore,
+    private val dataStoreHelper: DataStoreHelper,
     private val dispatchers: DispatcherProvider,
     private val workersManager: WorkersManager,
     private val kronosClock: KronosClock,
@@ -49,7 +49,7 @@ class SyncRepositoryImpl(
                 } else {
                     appDatabase.userDao.insert(UserPrivateData())
                 }
-                dataStore.setShowLoginPref(false)
+                dataStoreHelper.setShowLoginPref(false)
             }
         }
 

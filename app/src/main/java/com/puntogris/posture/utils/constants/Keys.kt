@@ -24,5 +24,4 @@ object Keys {
     const val RATE_APP_PREF_KEY = "rate_app_preference_key"
     const val LICENSES_PREF_KEY = "licenses_preference_key"
     const val DELETE_ACCOUNT_PREF_KEY = "delete_account_preference_key"
-
 }

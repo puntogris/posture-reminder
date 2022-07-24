@@ -13,7 +13,11 @@ import com.puntogris.posture.domain.model.Exercise
 import com.puntogris.posture.domain.model.UserPublicProfile
 import com.puntogris.posture.ui.rankings.RankingsAdapter
 import com.puntogris.posture.utils.Result
-import com.puntogris.posture.utils.extensions.*
+import com.puntogris.posture.utils.extensions.UiInterface
+import com.puntogris.posture.utils.extensions.gone
+import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
+import com.puntogris.posture.utils.extensions.navigateTo
+import com.puntogris.posture.utils.extensions.showItem
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
