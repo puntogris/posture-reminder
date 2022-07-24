@@ -291,6 +291,10 @@
         <item>Perform this at least 5 times to each side (10 times total).</item>
     </string-array>
 
+    <!-- Tutorial -->
+    <string name="tutorial_title">Manage your reminders</string>
+    <string name="tutorial_content">By sliding to the sides you can delete and edit your reminders.</string>
+
     <!-- Binding -->
     <string name="exercise_duration_seconds">%1$d secs.</string>
     <string name="account_level_title">Level %1$d</string>

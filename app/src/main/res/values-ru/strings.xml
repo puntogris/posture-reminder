@@ -282,6 +282,10 @@
         <item>Повторите упражнение не менее 5 раз на каждую сторону (суммарно 10 раз).</item>
     </string-array>
 
+    <!-- Tutorial -->
+    <string name="tutorial_title">Управляйте своими напоминаниями</string>
+    <string name="tutorial_content">Сдвигая в сторону, вы можете удалять и редактировать свои напоминания.</string>
+
     <!-- Binding -->
     <string name="exercise_duration_seconds">%1$d сек.</string>
     <string name="account_level_title">Уровень %1$d</string>

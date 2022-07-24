@@ -23,8 +23,8 @@ class ManageReminderTutorialDialog: DialogFragment() {
         )
 
         return MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Administra tus recordatorios")
-            .setMessage("Deslizando hacia los costados podras eliminar y editar tu recordatorio.")
+            .setTitle(R.string.tutorial_title)
+            .setMessage(R.string.tutorial_content)
             .setView(binding.root)
             .setCancelable(false)
             .create()

@@ -281,6 +281,10 @@
         <item>Realice esto al menos 5 veces a cada lado (10 veces en total).</item>
     </string-array>
 
+    <!-- Tutorial -->
+    <string name="tutorial_title">Administra tus recordatorios</string>
+    <string name="tutorial_content">Deslizando hacia los costados podrás eliminar y editar tus recordatorios.</string>
+
     <!-- Binding -->
     <string name="exercise_duration_seconds">%1$d segs.</string>
     <string name="account_level_title">Nivel %1$d</string>
