@@ -93,10 +93,6 @@ fun TextView.setDonutLevel(exp: Int) {
     text = context.getString(R.string.account_donut_level, exp.getLevel())
 }
 
-fun TextView.setRankingLevel(exp: Int) {
-    text = context.getString(R.string.ranking_level, exp.getLevel())
-}
-
 fun TextView.setProfileRankingNumber(position: Int) {
     if (position in 0..2) gone()
     else {
@@ -148,7 +144,6 @@ fun BarChartView.setBarChartLabels(data: List<DayLog>?) {
     for (i in 6 downTo 0L) {
         val day = today.minusDays(i)
         val dayName = if (i == 0L) context.getString(R.string.today) else day.getDayName()
-
         val dayLog = data.singleOrNull { it.dateId == day.toString() }
         val expValue = dayLog?.expGained?.toFloat() ?: 0F
         labels.add(dayName to expValue)

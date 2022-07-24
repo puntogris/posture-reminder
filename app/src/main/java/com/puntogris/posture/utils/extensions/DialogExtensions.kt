@@ -13,7 +13,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
 
-
 inline fun AlertDialog.onPositive(crossinline block: () -> Unit) {
     setOnShowListener {
         getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {

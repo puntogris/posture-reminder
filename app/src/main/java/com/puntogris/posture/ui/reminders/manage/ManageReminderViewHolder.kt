@@ -15,12 +15,8 @@ import com.puntogris.posture.utils.setReminderColor
 class ManageReminderViewHolder(private val binding: ManageReminderVhBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(
-        reminder: SelectableReminder,
-        selectListener: (Reminder) -> Unit,
-        editListener: (Reminder) -> Unit,
-        isLastItem: Boolean
-    ) {
+    fun bind(reminder: SelectableReminder, onSelected: (Reminder) -> Unit, isLastItem: Boolean) {
+
         with(binding) {
             reminderName.text = reminder.reminder.name
             reminderColor.setReminderColor(reminder.reminder.color)
@@ -28,8 +24,7 @@ class ManageReminderViewHolder(private val binding: ManageReminderVhBinding) :
             startSummary.setMinutesToHourlyTime(reminder.reminder.startTime)
             endSummary.setMinutesToHourlyTime(reminder.reminder.endTime)
             daysSummary.setDaysSummary(reminder.reminder)
-            editReminder.setOnClickListener { editListener(reminder.reminder) }
-            selectReminder.setOnClickListener { selectListener(reminder.reminder) }
+            selectReminder.setOnClickListener { onSelected(reminder.reminder) }
             selectReminder.isEnabled = !reminder.isSelected
             selectReminder.setText(
                 if (reminder.isSelected) R.string.action_selected else R.string.action_select

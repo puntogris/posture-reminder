@@ -1,9 +1,9 @@
 package com.puntogris.posture.ui.reminders.manage
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.domain.model.SelectableReminder
@@ -14,31 +14,27 @@ class ManageReminderAdapter(
     private val selectListener: (Reminder) -> Unit,
     private val editListener: (Reminder) -> Unit,
     private val deleteListener: (Reminder) -> Unit
-) : RecyclerView.Adapter<ManageReminderViewHolder>(
-) {
-    private var items = listOf<SelectableReminder>()
+) : ListAdapter< SelectableReminder, ManageReminderViewHolder>(SelectableReminderComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ManageReminderViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: ManageReminderViewHolder, position: Int) {
-        holder.bind(items[position], selectListener, editListener, items.size.dec() == position)
+        holder.bind(getItem(position), selectListener, itemCount.dec() == position)
     }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
+
         object : SwipeToDeleteCallback(context) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                deleteListener(items[viewHolder.adapterPosition].reminder)
+                val item = getItem(viewHolder.adapterPosition).reminder
+                if (direction == ItemTouchHelper.RIGHT) {
+                    deleteListener(item)
+                } else if (direction == ItemTouchHelper.LEFT) {
+                    editListener(item)
+                }
             }
         }.apply { ItemTouchHelper(this).attachToRecyclerView(recyclerView) }
-    }
-
-    override fun getItemCount() = items.size
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun updateList(list: List<SelectableReminder>) {
-        items = list
-        notifyDataSetChanged()
     }
 }

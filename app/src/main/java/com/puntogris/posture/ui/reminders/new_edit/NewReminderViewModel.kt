@@ -20,17 +20,17 @@ import kotlinx.coroutines.flow.stateIn
 import java.util.*
 import javax.inject.Inject
 
+private const val REMINDER_KEY = "reminder"
+
 @HiltViewModel
 class NewReminderViewModel @Inject constructor(
     private val reminderRepository: ReminderRepository,
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val initialReminderCopy = savedStateHandle.get<Reminder>("reminder")?.copy()
+    private val initialReminderCopy = savedStateHandle.get<Reminder>(REMINDER_KEY)?.copy()
 
-    val reminder = savedStateHandle.getLiveData<Reminder>("reminder")
-        .asFlow()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), Reminder())
+    val reminder = savedStateHandle.getStateFlow(REMINDER_KEY, Reminder())
 
     suspend fun saveReminder(): Result<ReminderId> {
         return when {
@@ -43,36 +43,36 @@ class NewReminderViewModel @Inject constructor(
     private fun reminderWasEdited() = initialReminderCopy != reminder.value
 
     fun saveReminderName(text: String) {
-        reminder.value.name = text
+        savedStateHandle[REMINDER_KEY] = reminder.value.copy(name = text)
     }
 
     fun saveStartTime(time: Long) {
-        savedStateHandle["reminder"] = reminder.value.copy(startTime = time.millisToMinutes())
+        savedStateHandle[REMINDER_KEY] = reminder.value.copy(startTime = time.millisToMinutes())
     }
 
     fun saveEndTime(time: Long) {
-        savedStateHandle["reminder"] = reminder.value.copy(endTime = time.millisToMinutes())
+        savedStateHandle[REMINDER_KEY] = reminder.value.copy(endTime = time.millisToMinutes())
     }
 
     fun saveTimeInterval(time: Int) {
-        savedStateHandle["reminder"] = reminder.value.copy(timeInterval = time)
+        savedStateHandle[REMINDER_KEY] = reminder.value.copy(timeInterval = time)
     }
 
     fun saveReminderDays(days: List<Int>) {
-        savedStateHandle["reminder"] = reminder.value.copy(alarmDays = days)
+        savedStateHandle[REMINDER_KEY] = reminder.value.copy(alarmDays = days)
     }
 
     fun saveReminderColor(resource: Int) {
-        savedStateHandle["reminder"] = reminder.value.copy(color = resource)
+        savedStateHandle[REMINDER_KEY] = reminder.value.copy(color = resource)
     }
 
     fun saveReminderVibrationPattern(position: Int) {
-        savedStateHandle["reminder"] = reminder.value.copy(vibrationPattern = position)
+        savedStateHandle[REMINDER_KEY] = reminder.value.copy(vibrationPattern = position)
     }
 
     fun saveReminderSoundPattern(toneItem: ToneItem?) {
         toneItem?.let {
-            savedStateHandle["reminder"] = reminder.value.copy(
+            savedStateHandle[REMINDER_KEY] = reminder.value.copy(
                 soundUri = it.uri,
                 soundName = it.title
             )

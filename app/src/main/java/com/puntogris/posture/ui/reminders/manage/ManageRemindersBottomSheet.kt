@@ -58,6 +58,7 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
             deleteListener = { onDeleteReminder(it) }
         ).also {
             binding.recyclerView.adapter = it
+            binding.recyclerView.setHasFixedSize(true)
             subscribeUi(it)
         }
     }
@@ -65,7 +66,10 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
     private fun subscribeUi(adapter: ManageReminderAdapter) {
         launchAndRepeatWithViewLifecycle {
             viewModel.reminders.collectLatest {
-                adapter.updateList(it)
+                adapter.submitList(it)
+                binding.recyclerView.post {
+                    binding.recyclerView.smoothScrollToPosition(0)
+                }
             }
         }
     }
@@ -79,8 +83,9 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun onEditReminder(reminder: Reminder) {
-        val action =
-            ManageRemindersBottomSheetDirections.actionManageRemindersToNewReminder(reminder)
+        val action = ManageRemindersBottomSheetDirections.actionManageRemindersToNewReminder(
+            reminder
+        )
         findNavController().navigate(action)
     }
 
@@ -91,9 +96,7 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
                 message = R.string.snack_delete_reminder_success,
                 anchorView = binding.addReminderButton
             ) {
-                lifecycleScope.launch {
-                    viewModel.insertReminder(reminder)
-                }
+                viewModel.insertReminder(reminder)
             }
         }
     }

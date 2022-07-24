@@ -54,8 +54,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             onToggleAlarmClicked()
         }
         binding.activeReminderLayout.editReminderButton.setOnClickListener {
-            val action =
-                HomeFragmentDirections.actionHomeToNewReminder(viewModel.activeReminder.value)
+            val action = HomeFragmentDirections.actionHomeToNewReminder(
+                viewModel.activeReminder.value
+            )
             findNavController().navigate(action)
         }
         binding.manageRemindersButton.setOnClickListener {
@@ -133,11 +134,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun registerAlarmPermissionLauncher() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            requestPermissionLauncher =
-                registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                    if (result.resultCode == Activity.RESULT_OK) viewModel.toggleAlarm()
-                    else UiInterface.showSnackBar(getString(R.string.snack_permission_required))
+            requestPermissionLauncher = registerForActivityResult(
+                ActivityResultContracts.StartActivityForResult()
+            ) {
+                if (it.resultCode == Activity.RESULT_OK) {
+                    viewModel.toggleAlarm()
+                } else {
+                    UiInterface.showSnackBar(getString(R.string.snack_permission_required))
                 }
+            }
         }
     }
 
@@ -162,9 +167,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     @RequiresApi(Build.VERSION_CODES.S)
     private fun startAlarmPermissionIntent() {
-        requestPermissionLauncher.launch(Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).also {
-            it.data = Uri.parse(PACKAGE_URI_NAME)
-        })
+        requestPermissionLauncher.launch(
+            Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).apply {
+                data = Uri.parse(PACKAGE_URI_NAME)
+            }
+        )
     }
 
     override fun onDestroyView() {

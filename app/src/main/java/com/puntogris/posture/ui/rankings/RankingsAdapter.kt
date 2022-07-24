@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.puntogris.posture.domain.model.UserPublicProfile
 
 class RankingsAdapter : ListAdapter<UserPublicProfile, RankingsViewHolder>(
-    UserPublicProfileDiffCallBack()
+    UserPublicProfileComparator()
 ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RankingsViewHolder {

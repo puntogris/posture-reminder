@@ -13,6 +13,7 @@ import com.puntogris.posture.framework.alarm.AlarmStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,11 +30,15 @@ class HomeViewModel @Inject constructor(
     val activeReminder = reminderRepository.getActiveReminderLiveData()
 
     private val _alarmStatus = MutableSharedFlow<AlarmStatus>()
-    val alarmStatus: SharedFlow<AlarmStatus> = _alarmStatus
+    val alarmStatus = _alarmStatus.asSharedFlow()
 
     fun toggleAlarm() {
         viewModelScope.launch {
-            if (isAlarmActive.value!!) cancelAlarms() else startAlarm()
+            if (isAlarmActive.value == true) {
+                cancelAlarms()
+            }else {
+                startAlarm()
+            }
         }
     }
 

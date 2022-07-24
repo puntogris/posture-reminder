@@ -36,6 +36,7 @@
     <string name="action_off">Desactivar</string>
     <string name="action_on">Activar</string>
     <string name="action_delete_account">Eliminar cuenta</string>
+    <string name="action_edit">Editar</string>
 
     <!-- Login -->
     <string name="help_login_problems">Problemas para ingresar?</string>

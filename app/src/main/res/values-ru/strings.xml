@@ -37,6 +37,7 @@
     <string name="action_off">Выключить</string>
     <string name="action_on">Включить</string>
     <string name="action_delete_account">Удалить аккаунт</string>
+    <string name="action_edit">Редактировать</string>
 
     <!-- Login -->
     <string name="help_login_problems">Проблемы со входом?</string>

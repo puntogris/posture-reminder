@@ -24,4 +24,6 @@
 
     <color name="turn_on">#4FA658</color>
     <color name="turn_off">#CB6B6B</color>
+
+    <color name="delete">#CB6B6B</color>
 </resources>

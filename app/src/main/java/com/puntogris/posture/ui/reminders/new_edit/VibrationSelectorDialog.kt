@@ -38,16 +38,14 @@ class VibrationSelectorDialog : DialogFragment() {
             }
             .setNegativeButton(R.string.action_cancel) { _, _ -> dismiss() }
             .setSingleChoiceItems(patternsTittleList, args.savedPosition) { _, position ->
-
                 if (position != 0) {
                     val pattern = vibrationPatterns[position].pattern
-                    vibrator?.let {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                            it.vibrate(VibrationEffect.createWaveform(pattern, -1))
-                        else it.vibrate(pattern, -1)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        vibrator?.vibrate(VibrationEffect.createWaveform(pattern, -1))
+                    } else {
+                        vibrator?.vibrate(pattern, -1)
                     }
                 }
-
                 vibrationPosition = position
             }
             .create()

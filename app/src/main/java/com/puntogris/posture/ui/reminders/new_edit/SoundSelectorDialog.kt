@@ -1,6 +1,7 @@
 package com.puntogris.posture.ui.reminders.new_edit
 
 import android.app.Dialog
+import android.content.DialogInterface
 import android.media.MediaPlayer
 import android.media.RingtoneManager
 import android.net.Uri
@@ -37,25 +38,33 @@ class SoundSelectorDialog : DialogFragment() {
             .setNegativeButton(R.string.action_cancel) { _, _ -> dismiss() }
             .setSingleChoiceItems(stringTones, lastPosition) { _, position ->
                 selectedPosition = position
-                mediaPlayer?.stop()
-                mediaPlayer = MediaPlayer.create(requireContext(), Uri.parse(tones[position].uri))
-                mediaPlayer?.start()
+                playSound(tones[position].uri)
             }
             .create()
     }
 
-    private fun listRingTones(): ArrayList<ToneItem> {
-        val toneItems = ArrayList<ToneItem>()
-        toneItems.add(ToneItem(getString(R.string.disabled), ""))
+    private fun playSound(uri: String){
+        mediaPlayer?.stop()
+        mediaPlayer = MediaPlayer.create(requireContext(), Uri.parse(uri))
+        mediaPlayer?.start()
+    }
 
+    private fun listRingTones(): ArrayList<ToneItem> {
+        val toneItems = arrayListOf(
+            ToneItem(getString(R.string.disabled), "")
+        )
         val manager = RingtoneManager(requireContext())
         manager.setType(RingtoneManager.TYPE_NOTIFICATION)
-
         manager.cursor?.let {
             while (it.moveToNext()) {
                 toneItems.add(ToneItem.from(it))
             }
         }
         return toneItems
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        mediaPlayer?.stop()
+        super.onDismiss(dialog)
     }
 }

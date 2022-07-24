@@ -50,7 +50,9 @@ class EditUserNameDialog : DialogFragment() {
             if (it != args.username) {
                 showLoadingUi()
                 updateUsernameAndHandleResult(it)
-            } else dismiss()
+            } else {
+                dismiss()
+            }
         }
     }
 

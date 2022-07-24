@@ -31,6 +31,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_color_lens_24.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.335" />
         <entry key="app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_keyboard_arrow_right_24.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_notifications_none_24.xml" value="0.36666666666666664" />
@@ -73,7 +74,9 @@
         <entry key="app/src/main/res/drawable/tab_selector.xml" value="0.32592592592592595" />
         <entry key="app/src/main/res/drawable/test.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/font/lato_bold.xml" value="0.3807291666666667" />
+        <entry key="app/src/main/res/font/nunito_bold.xml" value="0.2545138888888889" />
         <entry key="app/src/main/res/font/open_sans_bold.xml" value="0.3807291666666667" />
+        <entry key="app/src/main/res/font/roboto_medium.xml" value="0.2545138888888889" />
         <entry key="app/src/main/res/layout/a.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/active_reminder.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25925925925925924" />
