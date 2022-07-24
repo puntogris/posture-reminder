@@ -46,6 +46,7 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
         binding.addReminderButton.setOnClickListener {
             navigateTo(R.id.action_manageReminders_to_newReminder)
         }
+        navigateTo(R.id.manageReminderTutorialDialog)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

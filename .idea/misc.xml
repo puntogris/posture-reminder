@@ -99,6 +99,7 @@
         <entry key="app/src/main/res/layout/dialog_edit_username.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/dialog_interval_picker.xml" value="0.234375" />
         <entry key="app/src/main/res/layout/dialog_name.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/dialog_tutorial_manage_reminder.xml" value="0.23368055555555556" />
         <entry key="app/src/main/res/layout/exercise_item_vh.xml" value="0.33" />
         <entry key="app/src/main/res/layout/exercise_step_vh.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.33" />

@@ -160,4 +160,7 @@
     <dialog
         android:id="@+id/intervalPickerDialog"
         android:name="com.puntogris.posture.ui.reminders.new_edit.IntervalPickerDialog" />
+    <dialog
+        android:id="@+id/manageReminderTutorialDialog"
+        android:name="com.puntogris.posture.ui.reminders.tutorial.ManageReminderTutorialDialog" />
 </navigation>

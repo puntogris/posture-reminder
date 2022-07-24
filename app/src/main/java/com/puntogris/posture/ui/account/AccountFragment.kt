@@ -8,9 +8,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentAccountBinding
-import com.puntogris.posture.utils.*
 import com.puntogris.posture.utils.extensions.navigateTo
 import com.puntogris.posture.utils.extensions.showItem
+import com.puntogris.posture.utils.setAccountBadgeLevel
+import com.puntogris.posture.utils.setAccountLevelTitle
+import com.puntogris.posture.utils.setBarChartLabels
+import com.puntogris.posture.utils.setDonutChartProgress
+import com.puntogris.posture.utils.setDonutLevel
+import com.puntogris.posture.utils.setExpForNextLevel
+import com.puntogris.posture.utils.setExpFromTotalLevel
+import com.puntogris.posture.utils.setUsernameOrPlaceHolder
+import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

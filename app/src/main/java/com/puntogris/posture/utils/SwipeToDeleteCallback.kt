@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Rect
+import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.text.TextPaint
 import android.view.View
@@ -12,7 +13,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.R
 
-private const val TEXT_SIZE = 40F
+private const val TEXT_SIZE = 45F
 private const val TEXT_MARGIN = 120F
 private const val ICON_MARGIN = 30
 
@@ -25,6 +26,7 @@ abstract class SwipeToDeleteCallback(val context: Context) : ItemTouchHelper.Sim
         isAntiAlias = true
         color = Color.WHITE
         textSize = TEXT_SIZE
+        typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
     }
 
     private val textBounds = Rect()
