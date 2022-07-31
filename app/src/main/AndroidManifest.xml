@@ -19,6 +19,7 @@
         <activity
             android:launchMode="singleTask"
             android:screenOrientation="unspecified"
+            android:windowSoftInputMode="adjustResize"
             android:name="com.puntogris.posture.ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
