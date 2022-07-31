@@ -16,7 +16,6 @@ import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.gone
 import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
-import com.puntogris.posture.utils.extensions.navigateTo
 import com.puntogris.posture.utils.extensions.showItem
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,7 +35,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         setupExercisesRvAdapter()
 
         binding.globalRankingsButton.setOnClickListener {
-            navigateTo(R.id.action_explore_to_rankings)
+            findNavController().navigate(R.id.action_explore_to_rankings)
         }
     }
 

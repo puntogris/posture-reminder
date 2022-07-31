@@ -224,6 +224,7 @@
     <string name="an_error_occurred">An error occurred</string>
     <string name="snack_action_requires_login">This action requires login</string>
     <string name="account_email">account email</string>
+    <string name="ticket_sent_success">Ticket sent successfully</string>
 
     <!-- Exercises -->
     <string name="in_progress">In progress</string>
@@ -349,6 +350,5 @@
         <item>2</item>
         <item>-1</item>
     </integer-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

@@ -15,7 +15,6 @@ import com.puntogris.posture.databinding.BottomSheetManageRemindersBinding
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
-import com.puntogris.posture.utils.extensions.navigateTo
 import com.puntogris.posture.utils.extensions.setupAsFullScreen
 import com.puntogris.posture.utils.extensions.showSnackBar
 import com.puntogris.posture.utils.viewBinding
@@ -55,14 +54,16 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
             dismiss()
         }
         binding.addReminderButton.setOnClickListener {
-            navigateTo(R.id.action_manageReminders_to_newReminder)
+            findNavController().navigate(R.id.action_manageReminders_to_newReminder)
         }
     }
 
     private fun initObserver(){
         lifecycleScope.launch {
             viewModel.showTutorial.collect { show ->
-                if (show) navigateTo(R.id.manageReminderTutorialDialog)
+                if (show) {
+                    findNavController().navigate(R.id.manageReminderTutorialDialog)
+                }
             }
         }
     }
@@ -95,7 +96,7 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
     private fun onSelectReminder(reminder: Reminder) {
         lifecycleScope.launch {
             viewModel.updateReminder(reminder)
-            navigateTo(R.id.homeFragment)
+            findNavController().navigate(R.id.homeFragment)
             requireParentFragment().UiInterface.showSnackBar(getString(R.string.snack_configuration_updated))
         }
     }

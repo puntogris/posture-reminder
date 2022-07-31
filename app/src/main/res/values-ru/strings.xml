@@ -215,6 +215,7 @@
     <string name="an_error_occurred">Произошла ошибка</string>
     <string name="snack_action_requires_login">Для выполнения действия требуется войти в аккаунт</string>
     <string name="account_email">email аккаунта</string>
+    <string name="ticket_sent_success">Билет успешно отправлен</string>
 
     <!-- Exercises -->
     <string name="in_progress">В процессе выполнения</string>

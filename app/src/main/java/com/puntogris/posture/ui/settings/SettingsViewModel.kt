@@ -33,4 +33,5 @@ class SettingsViewModel @Inject constructor(
 
     suspend fun logOut() = authRepository.signOutUser()
 
+    fun sendTicket(messsage: String) = userRepository.sendTicket(messsage)
 }

@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import com.puntogris.posture.databinding.FragmentWelcomeBinding
 import com.puntogris.posture.utils.extensions.isDarkThemeOn
-import com.puntogris.posture.utils.extensions.navigateTo
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -30,7 +30,7 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
             welcomeContinueButton.setOnClickListener {
                 lifecycleScope.launch {
                     dataStoreHelper.setShowWelcomePref(false)
-                    navigateTo(R.id.action_welcome_to_batteryOptimization)
+                    findNavController().navigate(R.id.action_welcome_to_batteryOptimization)
                 }
             }
         }

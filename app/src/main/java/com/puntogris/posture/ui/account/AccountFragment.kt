@@ -6,9 +6,9 @@ import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentAccountBinding
-import com.puntogris.posture.utils.extensions.navigateTo
 import com.puntogris.posture.utils.extensions.showItem
 import com.puntogris.posture.utils.setAccountBadgeLevel
 import com.puntogris.posture.utils.setAccountLevelTitle
@@ -49,7 +49,7 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
         }
 
         binding.manageRemindersButton.setOnClickListener {
-            navigateTo(R.id.manageRemindersBottomSheet)
+            findNavController().navigate(R.id.manageRemindersBottomSheet)
         }
     }
 

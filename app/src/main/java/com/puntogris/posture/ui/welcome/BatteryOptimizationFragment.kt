@@ -6,12 +6,12 @@ import android.provider.Settings
 import android.view.View
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentBatteryOptimizationBinding
 import com.puntogris.posture.utils.extensions.gone
 import com.puntogris.posture.utils.extensions.isDarkThemeOn
 import com.puntogris.posture.utils.extensions.isIgnoringBatteryOptimizations
-import com.puntogris.posture.utils.extensions.navigateTo
 import com.puntogris.posture.utils.viewBinding
 
 class BatteryOptimizationFragment : Fragment(R.layout.fragment_battery_optimization) {
@@ -22,7 +22,7 @@ class BatteryOptimizationFragment : Fragment(R.layout.fragment_battery_optimizat
         super.onViewCreated(view, savedInstanceState)
 
         binding.finishOptimizationButton.setOnClickListener {
-            navigateTo(R.id.action_batteryOptimization_to_home)
+            findNavController().navigate(R.id.action_batteryOptimization_to_home)
         }
         binding.disableOptimizationButton.setOnClickListener {
             startActivity(Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS))

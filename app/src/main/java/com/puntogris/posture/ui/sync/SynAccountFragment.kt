@@ -12,7 +12,6 @@ import com.puntogris.posture.databinding.FragmentSynAccountBinding
 import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
-import com.puntogris.posture.utils.extensions.navigateTo
 import com.puntogris.posture.utils.extensions.playAnimationOnce
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,7 +29,7 @@ class SynAccountFragment : Fragment(R.layout.fragment_syn_account) {
 
         binding.syncContinueButton.setOnClickListener {
             lifecycleScope.launch {
-                navigateTo(
+                findNavController().navigate(
                     if (viewModel.showWelcome()) {
                         R.id.action_synAccountFragment_to_welcomeFragment
                     } else {

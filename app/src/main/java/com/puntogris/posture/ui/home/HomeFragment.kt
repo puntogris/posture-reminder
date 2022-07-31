@@ -24,7 +24,6 @@ import com.puntogris.posture.framework.alarm.AlarmStatus
 import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.constants.Constants.PACKAGE_URI_NAME
 import com.puntogris.posture.utils.extensions.UiInterface
-import com.puntogris.posture.utils.extensions.navigateTo
 import com.puntogris.posture.utils.extensions.setPageFadeTransformer
 import com.puntogris.posture.utils.extensions.showItem
 import com.puntogris.posture.utils.setBackgroundColorTintView
@@ -53,7 +52,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         binding.activeReminderLayout.selectReminderButton.setOnClickListener {
-            navigateTo(R.id.manageRemindersBottomSheet)
+            findNavController().navigate(R.id.manageRemindersBottomSheet)
         }
         binding.activeReminderLayout.toggleReminderButton.setOnClickListener {
             onToggleAlarmClicked()
@@ -65,7 +64,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             findNavController().navigate(action)
         }
         binding.manageRemindersButton.setOnClickListener {
-            navigateTo(R.id.manageRemindersBottomSheet)
+            findNavController().navigate(R.id.manageRemindersBottomSheet)
         }
         viewModel.isAlarmActive.observe(viewLifecycleOwner) {
             binding.activeReminderLayout.toggleReminderButton.setToggleButton(it)
@@ -131,7 +130,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     getString(R.string.snack_active_reminder_not_found),
                     actionText = R.string.action_select
                 ) {
-                    navigateTo(R.id.manageRemindersBottomSheet)
+                    findNavController().navigate(R.id.manageRemindersBottomSheet)
                 }
             }
         }

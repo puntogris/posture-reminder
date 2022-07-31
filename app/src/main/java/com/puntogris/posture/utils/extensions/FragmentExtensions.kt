@@ -2,22 +2,22 @@ package com.puntogris.posture.utils.extensions
 
 import android.content.Intent
 import android.net.Uri
+import android.view.View
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.IdRes
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
 import com.puntogris.posture.ui.main.UiInterfaceListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-
-fun Fragment.navigateTo(@IdRes id: Int) = findNavController().navigate(id)
 
 inline fun Fragment.launchAndRepeatWithViewLifecycle(
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
@@ -53,4 +53,16 @@ inline fun Fragment.setIntentLauncher(crossinline block: (ActivityResult) -> Uni
     return registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         block(it)
     }
+}
+
+fun Fragment.showSnackBar(message: Int, anchor: View? = null) {
+    Snackbar.make(requireView(), message, Snackbar.LENGTH_LONG).apply {
+        anchorView = anchor
+    }.show()
+}
+
+fun Fragment.hideKeyBoard() {
+    WindowCompat
+        .getInsetsController(requireActivity().window, requireView())
+        .hide(WindowInsetsCompat.Type.ime())
 }

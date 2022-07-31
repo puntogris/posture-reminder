@@ -1,6 +1,7 @@
 package com.puntogris.posture.data.datasource.remote
 
 import com.puntogris.posture.data.datasource.toPublicProfile
+import com.puntogris.posture.domain.model.Ticket
 import com.puntogris.posture.domain.model.UserPrivateData
 import com.puntogris.posture.domain.repository.UserServerApi
 import com.puntogris.posture.utils.constants.Constants
@@ -52,5 +53,13 @@ class FirebaseUserApi @Inject constructor(
             it.update(privateProfileRef(), Constants.EXPERIENCE_FIELD, experience)
             it.update(publicProfileRef(), Constants.EXPERIENCE_FIELD, experience)
         }.await()
+    }
+
+    override suspend fun sendTicket(ticket: Ticket) {
+        firebase.firestore
+            .collection(Constants.TICKET_COLLECTION)
+            .document(ticket.id)
+            .set(ticket)
+            .await()
     }
 }

@@ -3,7 +3,9 @@ package com.puntogris.posture.domain.repository
 import androidx.lifecycle.LiveData
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.domain.model.UserPrivateData
+import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.SimpleResult
+import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
 
@@ -18,4 +20,6 @@ interface UserRepository {
     suspend fun updateActiveReminder(reminder: Reminder)
 
     suspend fun deleteUserAccount(): SimpleResult
+
+    fun sendTicket(message: String): Flow<Result<Unit>>
 }

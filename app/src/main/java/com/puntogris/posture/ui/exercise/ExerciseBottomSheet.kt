@@ -6,13 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetExerciseBinding
 import com.puntogris.posture.utils.constants.Constants.PROGRESS_BAR_SMOOTH_OFFSET
-import com.puntogris.posture.utils.extensions.navigateTo
 import com.puntogris.posture.utils.extensions.setupAsFullScreen
 import com.puntogris.posture.utils.setExerciseDuration
 import com.puntogris.posture.utils.setProgressBarSmoothMax
@@ -89,7 +89,7 @@ class ExerciseBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun updateUiAndShowCompletedExerciseDialog() {
-        navigateTo(R.id.exerciseCompletedDialog)
+        findNavController().navigate(R.id.exerciseCompletedDialog)
         binding.startExerciseButton.setText(R.string.finished)
     }
 

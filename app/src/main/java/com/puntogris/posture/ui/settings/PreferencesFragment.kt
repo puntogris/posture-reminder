@@ -9,13 +9,13 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
+import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.R
 import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.constants.Keys
 import com.puntogris.posture.utils.extensions.isIgnoringBatteryOptimizations
 import com.puntogris.posture.utils.extensions.launchWebBrowserIntent
-import com.puntogris.posture.utils.extensions.navigateTo
 import com.puntogris.posture.utils.extensions.onClick
 import com.puntogris.posture.utils.extensions.preference
 import com.puntogris.posture.utils.extensions.preferenceOnClick
@@ -38,7 +38,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
                 }
             }
             onClick {
-                navigateTo(R.id.selectThemeDialog)
+                findNavController().navigate(R.id.selectThemeDialog)
             }
         }
 
@@ -48,14 +48,14 @@ class PreferencesFragment : PreferenceFragmentCompat() {
                 else R.string.optimization_require_action
             )
             onClick {
-                navigateTo(R.id.batteryOptimizationFragment)
+                findNavController().navigate(R.id.batteryOptimizationFragment)
             }
         }
 
         preference(Keys.DELETE_ACCOUNT_PREF_KEY) {
             isVisible = viewModel.isUserLoggedIn()
             onClick {
-                navigateTo(R.id.deleteAccountFragment)
+                findNavController().navigate(R.id.deleteAccountFragment)
             }
         }
 
@@ -81,16 +81,16 @@ class PreferencesFragment : PreferenceFragmentCompat() {
         preference(Keys.LOG_IN_PREF_KEY) {
             isVisible = !viewModel.isUserLoggedIn()
             onClick {
-                navigateTo(R.id.internalLoginFragment)
+                findNavController().navigate(R.id.internalLoginFragment)
             }
         }
 
         preferenceOnClick(Keys.CREDITS_PREF_KEY) {
-            navigateTo(R.id.creditsBottomSheet)
+            findNavController().navigate(R.id.creditsBottomSheet)
         }
 
         preferenceOnClick(Keys.TICKET_PREF_KEY) {
-            navigateTo(R.id.ticketFragment)
+            findNavController().navigate(R.id.ticketFragment)
         }
 
         preference(Keys.VERSION_PREF_KEY) {
@@ -136,11 +136,11 @@ class PreferencesFragment : PreferenceFragmentCompat() {
     }
 
     private fun showRequireLoginSnack() {
-        (requireParentFragment() as SettingsFragment).showSnackBarAnchored(
-            message = R.string.snack_action_requires_login,
-            actionText = R.string.action_login
-        ) {
-            navigateTo(R.id.internalLoginFragment)
-        }
+        Snackbar.make(requireView(), R.string.snack_action_requires_login, Snackbar.LENGTH_LONG)
+            .apply {
+                setAction(R.string.action_login) {
+                    findNavController().navigate(R.id.internalLoginFragment)
+                }
+            }.show()
     }
 }

@@ -214,6 +214,7 @@
     <string name="an_error_occurred">Ocurrio un error</string>
     <string name="snack_action_requires_login">Esta acción requiere login</string>
     <string name="account_email">email de la cuenta</string>
+    <string name="ticket_sent_success">Ticket enviado correctamente</string>
 
     <!-- Exercises -->
     <string name="in_progress">En progreso</string>

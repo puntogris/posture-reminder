@@ -140,7 +140,7 @@
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.234375" />
         <entry key="app/src/main/res/layout/fragment_settings_bottom_sheet.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_syn_account.xml" value="0.35052083333333334" />
-        <entry key="app/src/main/res/layout/fragment_ticket.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/fragment_ticket.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_welcome.xml" value="0.25" />
         <entry key="app/src/main/res/layout/home_app_usage_pager.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/horizontal_dividier.xml" value="0.35052083333333334" />
