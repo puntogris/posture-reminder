@@ -91,32 +91,6 @@ class PreferencesFragment : PreferenceFragmentCompat() {
 
         preferenceOnClick(Keys.TICKET_PREF_KEY) {
             navigateTo(R.id.ticketFragment)
-//            val selectorIntent = Intent(Intent.ACTION_SENDTO)
-//            selectorIntent.data = Uri.parse("mailto:")
-//
-//            val body = getString(
-//                R.string.email_body,
-//                viewModel.user.value?.email,
-//                BuildConfig.VERSION_NAME,
-//                BuildConfig.VERSION_CODE,
-//                Build.DEVICE,
-//                Build.MODEL,
-//                Build.VERSION.RELEASE
-//            )
-//
-//            val emailIntent = Intent(Intent.ACTION_SEND).apply {
-//                putExtra(Intent.EXTRA_EMAIL, arrayOf("puntogrishelp@mail.com"))
-//                putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject))
-//                putExtra(Intent.EXTRA_TEXT, body)
-//                selector = selectorIntent
-//            }
-//
-//            startActivity(
-//                Intent.createChooser(
-//                    emailIntent,
-//                    getString(R.string.email_chooser_description)
-//                )
-//            )
         }
 
         preference(Keys.VERSION_PREF_KEY) {
@@ -143,19 +117,19 @@ class PreferencesFragment : PreferenceFragmentCompat() {
         super.onViewCreated(view, savedInstanceState)
 
         preference(Keys.USERNAME_PREF_KEY) {
-            lifecycleScope.launch {
-                viewModel.user.observe(viewLifecycleOwner) {
-                    summary = it.username.ifBlank { getString(R.string.human) }
-                }
+            viewModel.user.observe(viewLifecycleOwner) {
+                summary = it.username.ifBlank { getString(R.string.human) }
             }
             onClick {
                 lifecycleScope.launch {
-//                    if (viewModel.isUserLoggedIn()) {
-//                        val action = SettingsBottomSheetDirections.actionSettingsToDialogName(
-//                            viewModel.user.value!!.username
-//                        )
-//                        findNavController().navigate(action)
-//                    } else showRequireLoginSnack()
+                    if (viewModel.isUserLoggedIn()) {
+                        val action = SettingsFragmentDirections.actionSettingsToDialogName(
+                            viewModel.user.value!!.username
+                        )
+                        findNavController().navigate(action)
+                    } else {
+                        showRequireLoginSnack()
+                    }
                 }
             }
         }

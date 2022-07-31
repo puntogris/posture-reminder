@@ -173,11 +173,6 @@
     <string name="pref_privacy_policy_url" translatable="false">https://postureapp.puntogris.com/information/privacy-policy.html</string>
     <string name="pref_terms_and_conditions_url" translatable="false">https://postureapp.puntogris.com/information/terms-and-conditions.html</string>
 
-    <!-- Email -->
-    <string name="email_subject">About Posture Reminder App</string>
-    <string name="email_chooser_description">Send Email to Posture Reminder App</string>
-    <string name="email_body">Hey!…\n\n--- --- ---\nThis info may be needed to provide support, remove if you don\'t feel comfortable or is not needed.\n\nEmail registered: %1$s\nVersion app: %2$s (%3$d)\nDevice: %4$s - %5$s\nAndroid Release: %6$s</string>
-
     <!-- Delete account -->
     <string name="snack_account_email_not_matching">The email doesn\'t match the one in your account.</string>
     <string name="delete_account_email_required_alert">As a safety precaution we will ask you to type the email you used in your registration or google account in your phone.</string>

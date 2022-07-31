@@ -163,11 +163,6 @@
     <string name="delete_account_summary">Eliminar cuenta</string>
     <string name="snack_account_deleted_success">Cuenta eliminada correctamente.</string>
 
-    <!-- Email -->
-    <string name="email_subject">Sobre Recordatio de Postura App</string>
-    <string name="email_chooser_description">Enviar email a Recordatorio de Postura App</string>
-    <string name="email_body">Hey!…\n\n--- --- ---\nThis info may be needed to provide support, remove if you don\'t feel comfortable or is not needed.\n\nEmail registered: %1$s\nVersion app: %2$s (%3$d)\nDevice: %4$s - %5$s\nAndroid Release: %6$s</string>
-
     <!-- Delete account -->
     <string name="snack_account_email_not_matching">El email no coincide con el que esta en tu cuenta.</string>
     <string name="delete_account_email_required_alert">Como mecanismo de precaución te pedimos que ingreses el email que usaste para registrarte o el de la cuenta de google en tu dispositivo.</string>

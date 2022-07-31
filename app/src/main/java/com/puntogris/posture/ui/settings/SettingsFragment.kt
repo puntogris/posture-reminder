@@ -8,6 +8,7 @@ import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentSettingsBinding
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
 import com.puntogris.posture.utils.constants.Constants.EDIT_NAME_KEY
+import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,12 +47,11 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         actionText: Int = R.string.action_undo,
         actionListener: View.OnClickListener? = null
     ) {
-//        showSnackBar(
-//            message,
-//            anchorView = binding.guidelineEnd,
-//            actionText = actionText,
-//            actionListener = actionListener
-//        )
+        UiInterface.showSnackBar(
+            message = getString(message),
+            actionText = actionText,
+            action = actionListener
+        )
     }
 }
 
