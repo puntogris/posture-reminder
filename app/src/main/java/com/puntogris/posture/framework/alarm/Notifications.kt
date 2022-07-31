@@ -89,7 +89,7 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
             .addAction(
-                R.drawable.ic_baseline_add_24,
+                R.drawable.ic_plus,
                 context.getString(R.string.claim_exp_notification_action_title),
                 pendingIntent
             )

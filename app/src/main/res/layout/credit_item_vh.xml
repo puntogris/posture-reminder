@@ -33,6 +33,7 @@
         app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
+        app:tint="?colorControlNormal"
+        app:srcCompat="@drawable/ic_caret_right" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,13 +6,13 @@
         app:showAsAction="always"
         android:id="@+id/newReminder"
         android:visible="false"
-        android:icon="@drawable/ic_baseline_add_24"
+        android:icon="@drawable/ic_plus"
         android:title="@string/create_reminder_label" />
 
     <item
         android:id="@+id/settings"
         app:showAsAction="ifRoom"
         android:visible="false"
-        android:icon="@drawable/ic_outline_settings_24"
+        android:icon="@drawable/ic_gear"
         android:title="@string/settings_label" />
 </menu>

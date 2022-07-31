@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/drawable/ic_account_info_background.xml" value="0.31574074074074077" />
         <entry key="app/src/main/res/drawable/ic_account_info_background_small.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_app_logo.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_arrow_left.xml" value="0.353" />
         <entry key="app/src/main/res/drawable/ic_back_extension_exercise.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_background.xml" value="0.36102564102564105" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.36666666666666664" />
@@ -39,28 +40,47 @@
         <entry key="app/src/main/res/drawable/ic_baseline_show_chart_24.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/ic_baseline_sync_24.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/ic_brugger_exercise.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_caret_right.xml" value="0.353" />
         <entry key="app/src/main/res/drawable/ic_chin_tuck_exercise.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_detective.xml" value="0.353" />
         <entry key="app/src/main/res/drawable/ic_exercise_1.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_exit.xml" value="0.353" />
         <entry key="app/src/main/res/drawable/ic_fi_br_world.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_fi_rr_home.xml" value="0.3605128205128205" />
+        <entry key="app/src/main/res/drawable/ic_fi_rr_settings.xml" value="0.233" />
         <entry key="app/src/main/res/drawable/ic_fi_rr_user.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_fi_sr_home.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/ic_fi_sr_incognito.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_fi_sr_world.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_gear.xml" value="0.233" />
+        <entry key="app/src/main/res/drawable/ic_gear_light.xml" value="0.233" />
+        <entry key="app/src/main/res/drawable/ic_gear_six_light.xml" value="0.233" />
         <entry key="app/src/main/res/drawable/ic_girl_sitting.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_girl_sitting_dark.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_girl_swing.xml" value="0.13177083333333334" />
         <entry key="app/src/main/res/drawable/ic_girl_swing_dark.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_github_logo.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_gold_medal.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_group_5_.xml" value="0.233" />
+        <entry key="app/src/main/res/drawable/ic_house.xml" value="0.353" />
         <entry key="app/src/main/res/drawable/ic_men_selfie.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_men_standing.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_men_standing_dark.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_outline_help_outline_24.xml" value="0.2425" />
         <entry key="app/src/main/res/drawable/ic_outline_settings_24.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_pencil_fill.xml" value="0.353" />
+        <entry key="app/src/main/res/drawable/ic_pencil_square.xml" value="0.353" />
+        <entry key="app/src/main/res/drawable/ic_person_1_.xml" value="0.353" />
+        <entry key="app/src/main/res/drawable/ic_planet.xml" value="0.353" />
+        <entry key="app/src/main/res/drawable/ic_plus.xml" value="0.233" />
+        <entry key="app/src/main/res/drawable/ic_plus_lg.xml" value="0.233" />
+        <entry key="app/src/main/res/drawable/ic_plus_light.xml" value="0.233" />
         <entry key="app/src/main/res/drawable/ic_react_group_236.xml" value="0.36102564102564105" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_side_bend_exercise.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_trash_fill.xml" value="0.353" />
+        <entry key="app/src/main/res/drawable/ic_user.xml" value="0.353" />
+        <entry key="app/src/main/res/drawable/ic_users_three.xml" value="0.353" />
         <entry key="app/src/main/res/drawable/ic_vector.xml" value="0.11822916666666666" />
         <entry key="app/src/main/res/drawable/ic_vector__1_.xml" value="0.3605128205128205" />
         <entry key="app/src/main/res/drawable/ic_vector__2___1_.xml" value="0.36102564102564105" />

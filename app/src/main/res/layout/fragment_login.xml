@@ -76,7 +76,7 @@
         android:textAllCaps="false"
         android:textColor="?colorControlNormal"
         app:cornerRadius="25dp"
-        app:icon="@drawable/ic_fi_sr_incognito"
+        app:icon="@drawable/ic_detective"
         app:iconPadding="@dimen/spacing_standard"
         app:iconTint="@color/grey"
         app:layout_constraintBottom_toTopOf="@+id/loginProblemsButton"

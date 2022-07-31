@@ -15,7 +15,7 @@
         android:contentDescription="@string/close_screen_content_description"
         android:foreground="?actionBarItemBackground"
         android:padding="@dimen/spacing_standard"
-        android:src="@drawable/ic_baseline_close_24"
+        app:srcCompat="@drawable/ic_exit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

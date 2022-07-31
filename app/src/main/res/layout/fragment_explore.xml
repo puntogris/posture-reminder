@@ -62,8 +62,10 @@
             android:foreground="?selectableItemBackground"
             android:padding="@dimen/spacing_standard"
             android:text="@string/see_global_rankings"
-            android:textSize="15sp"
-            app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
+            android:textSize="14sp"
+            android:gravity="center_vertical"
+            app:drawableTint="?colorControlNormal"
+            app:drawableEndCompat="@drawable/ic_caret_right"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/portalTitle" />
 

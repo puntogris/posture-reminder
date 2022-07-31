@@ -37,6 +37,7 @@
         <item name="colorControlNormal">@color/white</item>
     </style>
 
+
     <style name="Theme.Posture.ReminderButton" parent="@style/Widget.MaterialComponents.Button">
         <item name="backgroundTint">#20202B</item>
         <item name="shapeAppearanceOverlay">@style/Theme.Posture.RoundButtonShapeOverlay</item>
