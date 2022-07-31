@@ -37,13 +37,13 @@
             android:id="@+id/action_welcome_to_batteryOptimization"
             app:destination="@id/batteryOptimizationFragment" />
     </fragment>
-    <dialog
-        android:id="@+id/settingsBottomSheet"
-        android:name="com.puntogris.posture.ui.settings.SettingsBottomSheet" >
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.puntogris.posture.ui.settings.SettingsFragment" >
         <action
             android:id="@+id/action_settings_to_dialogName"
             app:destination="@id/editUserNameDialog" />
-    </dialog>
+    </fragment>
     <dialog
         android:id="@+id/editUserNameDialog"
         android:name="com.puntogris.posture.ui.settings.EditUserNameDialog" >

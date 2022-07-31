@@ -137,6 +137,7 @@
         <entry key="app/src/main/res/layout/fragment_new_user.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_portal.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_rankings.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.234375" />
         <entry key="app/src/main/res/layout/fragment_settings_bottom_sheet.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_syn_account.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_ticket.xml" value="0.35052083333333334" />

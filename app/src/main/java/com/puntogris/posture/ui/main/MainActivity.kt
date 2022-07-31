@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity(),
                 true
             }
             R.id.settings -> {
-                navController.navigate(R.id.settingsBottomSheet)
+                navController.navigate(R.id.settingsFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -147,7 +147,9 @@ class MainActivity : AppCompatActivity(),
             R.id.loginFragment,
             R.id.whatsNewDialog,
             R.id.internalLoginFragment,
-            R.id.deleteAccountFragment
+            R.id.deleteAccountFragment,
+            R.id.settingsFragment,
+            R.id.ticketFragment
         )
     }
 

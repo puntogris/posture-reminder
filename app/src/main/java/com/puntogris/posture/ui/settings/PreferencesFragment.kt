@@ -1,8 +1,6 @@
 package com.puntogris.posture.ui.settings
 
 import android.content.Intent
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -67,7 +65,9 @@ class PreferencesFragment : PreferenceFragmentCompat() {
                 lifecycleScope.launch {
                     when (viewModel.logOut()) {
                         SimpleResult.Failure -> {
-                            (requireParentFragment() as SettingsBottomSheet).showSnackBarAnchored(R.string.snack_general_error)
+                            (requireParentFragment() as SettingsFragment).showSnackBarAnchored(
+                                R.string.snack_general_error
+                            )
                         }
                         SimpleResult.Success -> {
                             val nav = NavOptions.Builder().setPopUpTo(R.id.navigation, true).build()
@@ -123,7 +123,7 @@ class PreferencesFragment : PreferenceFragmentCompat() {
             summary = BuildConfig.VERSION_NAME + " ( ${BuildConfig.VERSION_CODE} )"
             onClick {
                 viewModel.setPandaAnimationPref(true)
-                (requireParentFragment() as SettingsBottomSheet).showSnackBarAnchored(R.string.snack_panda_unlocked)
+                (requireParentFragment() as SettingsFragment).showSnackBarAnchored(R.string.snack_panda_unlocked)
             }
         }
 
@@ -150,19 +150,19 @@ class PreferencesFragment : PreferenceFragmentCompat() {
             }
             onClick {
                 lifecycleScope.launch {
-                    if (viewModel.isUserLoggedIn()) {
-                        val action = SettingsBottomSheetDirections.actionSettingsToDialogName(
-                            viewModel.user.value!!.username
-                        )
-                        findNavController().navigate(action)
-                    } else showRequireLoginSnack()
+//                    if (viewModel.isUserLoggedIn()) {
+//                        val action = SettingsBottomSheetDirections.actionSettingsToDialogName(
+//                            viewModel.user.value!!.username
+//                        )
+//                        findNavController().navigate(action)
+//                    } else showRequireLoginSnack()
                 }
             }
         }
     }
 
     private fun showRequireLoginSnack() {
-        (requireParentFragment() as SettingsBottomSheet).showSnackBarAnchored(
+        (requireParentFragment() as SettingsFragment).showSnackBarAnchored(
             message = R.string.snack_action_requires_login,
             actionText = R.string.action_login
         ) {
