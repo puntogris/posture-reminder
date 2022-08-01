@@ -2,8 +2,6 @@ package com.puntogris.posture.ui.reminders.new_edit
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asFlow
-import androidx.lifecycle.viewModelScope
 import com.puntogris.posture.R
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.domain.model.ReminderId
@@ -11,12 +9,10 @@ import com.puntogris.posture.domain.repository.ReminderRepository
 import com.puntogris.posture.utils.ReminderUi
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.ToneItem
-import com.puntogris.posture.utils.Utils
+import com.puntogris.posture.utils.Utils.getDateFromMinutesSinceMidnight
 import com.puntogris.posture.utils.extensions.millisToMinutes
 import com.puntogris.posture.utils.extensions.timeWithZoneOffset
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.stateIn
 import java.util.*
 import javax.inject.Inject
 
@@ -62,8 +58,8 @@ class NewReminderViewModel @Inject constructor(
         savedStateHandle[REMINDER_KEY] = reminder.value.copy(alarmDays = days)
     }
 
-    fun saveReminderColor(resource: Int) {
-        savedStateHandle[REMINDER_KEY] = reminder.value.copy(color = resource)
+    fun saveReminderColor(color: Int) {
+        savedStateHandle[REMINDER_KEY] = reminder.value.copy(color = color)
     }
 
     fun saveReminderVibrationPattern(position: Int) {
@@ -80,12 +76,14 @@ class NewReminderViewModel @Inject constructor(
     }
 
     fun getDefaultClockTimeInMillis(code: ReminderUi.Item): Long {
-        val date = if (code is ReminderUi.Item.Start && reminder.value.startTime != -1) {
-            Utils.getDateFromMinutesSinceMidnight(reminder.value.startTime)
-        } else if (code is ReminderUi.Item.End && reminder.value.endTime != -1) {
-            Utils.getDateFromMinutesSinceMidnight(reminder.value.endTime)
-        } else {
-            Date()
+        val date = when {
+            code is ReminderUi.Item.Start && reminder.value.startTimeValid -> {
+                getDateFromMinutesSinceMidnight(reminder.value.startTime)
+            }
+            code is ReminderUi.Item.End && reminder.value.endTimeValid -> {
+                getDateFromMinutesSinceMidnight(reminder.value.endTime)
+            }
+            else -> Date()
         }
         return date.timeWithZoneOffset
     }

@@ -14,7 +14,9 @@ class ReminderItemAdapter(
 
     private val items = listOf(
         ReminderUi.Color(),
-        ReminderUi.Name(),
+        ReminderUi.Item.Name(
+            description = context.getString(R.string.name)
+        ),
         ReminderUi.Item.Interval(
             description = context.getString(R.string.create_reminder_interval_summary)
         ),
@@ -40,7 +42,6 @@ class ReminderItemAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             R.layout.reminder_color_vh -> ReminderColorViewHolder.from(parent)
-            R.layout.reminder_name_vh -> ReminderNameViewHolder.from(parent)
             else -> ReminderItemViewHolder.from(parent)
         }
     }
@@ -49,7 +50,6 @@ class ReminderItemAdapter(
         val isLastItem = itemCount - 1 == position
         when (val item = items[position]) {
             is ReminderUi.Color -> (holder as ReminderColorViewHolder).bind(item, clickListener)
-            is ReminderUi.Name -> (holder as ReminderNameViewHolder).bind(item, clickListener)
             is ReminderUi.Item -> (holder as ReminderItemViewHolder).bind(
                 item,
                 clickListener,
@@ -61,7 +61,6 @@ class ReminderItemAdapter(
     override fun getItemViewType(position: Int): Int {
         return when (items[position]) {
             is ReminderUi.Color -> R.layout.reminder_color_vh
-            is ReminderUi.Name -> R.layout.reminder_name_vh
             is ReminderUi.Item -> R.layout.reminder_item_vh
         }
     }

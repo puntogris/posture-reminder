@@ -47,15 +47,18 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupListeners()
+        setupReminderRvAdapter()
+        setFragmentResultListeners()
+    }
 
+    private fun setupListeners() {
         binding.closeButton.setOnClickListener {
             dismiss()
         }
         binding.saveReminderButton.setOnClickListener {
             onSaveReminder()
         }
-        setupReminderRvAdapter()
-        setFragmentResultListeners()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -65,7 +68,7 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun setupReminderRvAdapter() {
-        ReminderItemAdapter(requireContext()) { onReminderItemClicked(it) }.also {
+        ReminderItemAdapter(requireContext(), ::onReminderItemClicked).also {
             binding.recyclerView.adapter = it
             subscribeUi(it)
         }
@@ -104,13 +107,19 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
         when (reminderUi) {
             is ReminderUi.Color -> openColorPicker()
             is ReminderUi.Item.Interval -> openIntervalPicker()
-            is ReminderUi.Name -> viewModel.saveReminderName(reminderUi.value)
+            is ReminderUi.Item.Name -> openNamePicker()
             is ReminderUi.Item.Days -> openDaysPicker()
             is ReminderUi.Item.End -> openTimePicker(reminderUi)
             is ReminderUi.Item.Start -> openTimePicker(reminderUi)
             is ReminderUi.Item.Sound -> onSoundPicker()
             is ReminderUi.Item.Vibration -> onVibrationPicker()
         }
+    }
+
+    private fun openNamePicker() {
+        NamePickerDialog(viewModel.reminder.value.name) {
+            viewModel.saveReminderName(it)
+        }.show(parentFragmentManager, "REMINDER_NAME_DIALOG")
     }
 
     private fun onSoundPicker() {
@@ -160,17 +169,22 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun openTimePicker(code: ReminderUi.Item) {
+        val title = if (code is ReminderUi.Item.Start) {
+            R.string.start_time_title
+        } else {
+            R.string.end_time_title
+        }
         ClockTimeSheet().show(requireParentFragment().requireContext()) {
             style(SheetStyle.DIALOG)
             currentTime(viewModel.getDefaultClockTimeInMillis(code))
-            title(
-                if (code is ReminderUi.Item.Start) R.string.start_time_title
-                else R.string.end_time_title
-            )
+            title(title)
             onNegative(R.string.action_cancel)
             onPositive { milliseconds: Long, _, _ ->
-                if (code is ReminderUi.Item.Start) viewModel.saveStartTime(milliseconds)
-                else viewModel.saveEndTime(milliseconds)
+                if (code is ReminderUi.Item.Start) {
+                    viewModel.saveStartTime(milliseconds)
+                } else {
+                    viewModel.saveEndTime(milliseconds)
+                }
             }
         }
     }

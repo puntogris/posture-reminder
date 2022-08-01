@@ -112,13 +112,20 @@ sealed class ReminderUi {
                 }
             }
         }
-    }
+        class Name(
+            title: Int = R.string.name_required,
+            description: String
+        ) : Item(title, description) {
 
-    class Name(var value: String = "") : ReminderUi() {
+            private var lastValue: String = ""
 
-        override fun update(reminder: Reminder, context: Context): Boolean {
-            return (reminder.name.isNotBlank()).also {
-                if (it) value = reminder.name
+            override fun update(reminder: Reminder, context: Context): Boolean {
+                return (lastValue != reminder.name).also {
+                    if (it) {
+                        description = reminder.name
+                        lastValue = reminder.name
+                    }
+                }
             }
         }
     }

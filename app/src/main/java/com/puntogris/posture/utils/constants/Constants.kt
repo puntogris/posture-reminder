@@ -28,8 +28,6 @@ object Constants {
     const val NOTIFICATION_ID = "notification_id"
 
     //Keys
-    const val TIME_UNIT_KEY = "time_unit_key"
-    const val INTERVAL_KEY = "interval_key"
     const val DATA_KEY = "data_key"
     const val VIBRATION_PICKER_KEY = "vibration_picker_key"
     const val SOUND_PICKER_KEY = "sound_picker_key"

@@ -5,7 +5,7 @@ import com.google.firebase.Timestamp
 import com.puntogris.posture.BuildConfig
 import com.puntogris.posture.utils.IDGenerator
 
-class Ticket(
+data class Ticket(
     val id: String = IDGenerator.randomID(),
     val uid: String,
     val message: String,
