@@ -34,9 +34,21 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/spacing_empty"
+        android:layout_marginBottom="@dimen/spacing_large"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/saveReminderButton"
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/newReminderTitle" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:text="* Items required to create the reminder"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/saveReminderButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/saveReminderButton"

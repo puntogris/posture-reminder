@@ -13,13 +13,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 33
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.puntogris.posture"
         minSdkVersion 23
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode 53
         versionName "2.2.0"
         resConfigs 'en', 'es', 'ru'
@@ -59,8 +59,8 @@ ext {
     coroutinesVersion = "1.6.0"
     dataStoreVersion = "1.0.0"
     chartsVersion = "3.10.1"
-    googleSignIn = "20.2.0"
-    hiltVersion = "2.35"
+    googleSignIn = "20.3.0"
+    hiltVersion = "2.43.2"
     dateVersion = "1.3.1"
     tabIndicatorVersion = "4.2"
     fragmentKtxVersion = "1.5.0"
@@ -76,8 +76,8 @@ ext {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -103,7 +103,6 @@ dependencies {
     //Hilt
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
-    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
     kapt 'androidx.hilt:hilt-compiler:1.0.0'
     implementation 'androidx.hilt:hilt-work:1.0.0'
 

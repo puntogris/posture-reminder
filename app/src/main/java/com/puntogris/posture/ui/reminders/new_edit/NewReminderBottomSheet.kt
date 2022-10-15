@@ -99,6 +99,7 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
                     dismiss()
                     requireParentFragment().UiInterface.showSnackBar(getString(R.string.snack_create_reminder_success))
                 }
+                else -> {}
             }
         }
     }
@@ -117,7 +118,7 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun openNamePicker() {
-        NamePickerDialog(viewModel.reminder.value.name) {
+        ReminderNamePickerDialog(viewModel.reminder.value.name) {
             viewModel.saveReminderName(it)
         }.show(parentFragmentManager, "REMINDER_NAME_DIALOG")
     }

@@ -11,7 +11,7 @@ import com.puntogris.posture.utils.extensions.onPositive
 import com.puntogris.posture.utils.extensions.visible
 import com.puntogris.posture.utils.viewBinding
 
-class NamePickerDialog(
+class ReminderNamePickerDialog(
     val name: String,
     private val result: (String) -> Unit
 ) : DialogFragment() {
@@ -21,7 +21,7 @@ class NamePickerDialog(
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
         return MaterialAlertDialogBuilder(requireContext())
-            .setTitle(R.string.change_name_title)
+            .setTitle("Name")
             .setView(binding.root)
             .setPositiveButton(R.string.action_done, null)
             .setNegativeButton(R.string.action_cancel, null)

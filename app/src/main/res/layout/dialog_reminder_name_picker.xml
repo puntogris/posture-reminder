@@ -6,9 +6,10 @@
 
     <TextView
         android:id="@+id/textView11"
+        android:layout_marginTop="@dimen/spacing_standard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/change_name_title"
+        android:text="How are we calling this?"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -18,13 +19,15 @@
         android:layout_height="wrap_content"
         app:expandedHintEnabled="false"
         app:hintAnimationEnabled="false"
-        app:hintEnabled="true"
+        android:layout_marginTop="@dimen/spacing_large"
+        app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
+            android:hint="At work"
             android:id="@+id/editText_dialog_reminder_name"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>

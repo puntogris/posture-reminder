@@ -15,7 +15,7 @@ class ReminderItemAdapter(
     private val items = listOf(
         ReminderUi.Color(),
         ReminderUi.Item.Name(
-            description = context.getString(R.string.name)
+            description = context.getString(R.string.create_reminder_name_summary)
         ),
         ReminderUi.Item.Interval(
             description = context.getString(R.string.create_reminder_interval_summary)

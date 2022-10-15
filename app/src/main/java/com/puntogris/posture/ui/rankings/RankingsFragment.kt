@@ -37,6 +37,7 @@ class RankingsFragment : Fragment(R.layout.fragment_rankings) {
                     is Result.Success -> {
                         adapter.submitList(it.value)
                     }
+                    else -> {}
                 }
             }
         }

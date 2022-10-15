@@ -53,6 +53,7 @@ class TicketFragment : Fragment(R.layout.fragment_ticket) {
                 showSnackBar(R.string.ticket_sent_success)
                 findNavController().navigateUp()
             }
+            else -> {}
         }
         binding.buttonTicketFragmentSend.isEnabled = result !is Result.Loading
         binding.progressTicketFragment.isVisible = result is Result.Loading

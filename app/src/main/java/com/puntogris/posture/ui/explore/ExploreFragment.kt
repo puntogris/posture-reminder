@@ -69,6 +69,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
                 }
                 rankingsAdapter.submitList(result.value)
             }
+            else -> {}
         }
     }
 
