@@ -27,7 +27,6 @@ class RankingsRepositoryImpl(
                 .toObjects(UserPublicProfile::class.java)
 
             emit(Result.Success(result))
-
         } catch (e: Exception) {
             emit(Result.Error())
         }

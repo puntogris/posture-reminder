@@ -66,7 +66,7 @@ class ReminderRepositoryImpl(
             }
         }
 
-    override fun getRemindersStream() = reminderDao.getAllRemindersLiveData()
+    override fun getRemindersStream() = reminderDao.getAllRemindersStream()
 
     override fun getActiveReminderStream() = reminderDao.getActiveReminderStream()
 

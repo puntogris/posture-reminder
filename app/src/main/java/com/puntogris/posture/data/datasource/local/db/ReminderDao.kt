@@ -39,7 +39,7 @@ interface ReminderDao {
     fun getActiveReminderStream(): Flow<Reminder?>
 
     @Query("SELECT * FROM reminder r INNER JOIN UserPrivateData u ON r.uid = u.uid ORDER BY name ASC")
-    fun getAllRemindersLiveData(): LiveData<List<Reminder>>
+    fun getAllRemindersStream(): Flow<List<Reminder>>
 
     @Query("SELECT * FROM reminder WHERE uid = ''")
     suspend fun getRemindersNotSynced(): List<Reminder>

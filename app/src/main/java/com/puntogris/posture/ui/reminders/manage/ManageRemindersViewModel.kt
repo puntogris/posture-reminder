@@ -1,7 +1,6 @@
 package com.puntogris.posture.ui.reminders.manage
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import com.puntogris.posture.domain.model.Reminder
@@ -20,11 +19,10 @@ class ManageRemindersViewModel @Inject constructor(
     dataStoreHelper: DataStoreHelper
 ) : ViewModel() {
 
-    private val activeReminder = reminderRepository.getActiveReminderStream()
-
-    private val savedReminders = reminderRepository.getRemindersStream()
-
-    val reminders = combine(activeReminder, savedReminders.asFlow()) { active, reminders ->
+    val reminders = combine(
+        reminderRepository.getActiveReminderStream(),
+        reminderRepository.getRemindersStream()
+    ) { active, reminders ->
         reminders.map {
             SelectableReminder(
                 reminder = it,

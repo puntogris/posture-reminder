@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentAccountBinding
+import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.extensions.showItem
 import com.puntogris.posture.utils.setAccountBadgeLevel
 import com.puntogris.posture.utils.setAccountLevelTitle
@@ -20,6 +21,7 @@ import com.puntogris.posture.utils.setExpFromTotalLevel
 import com.puntogris.posture.utils.setUsernameOrPlaceHolder
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class AccountFragment : Fragment(R.layout.fragment_account) {
@@ -29,27 +31,34 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // we need to do init this or it will crash
-        binding.barChart.setBarChartLabels(emptyList())
-        binding.donutChart.setDonutChartProgress(0)
-
-        viewModel.user.observe(viewLifecycleOwner) {
-            binding.experienceForNextLvl.setExpForNextLevel(it.experience)
-            binding.currentLvl.setDonutLevel(it.experience)
-            binding.expFromTotalLvl.setExpFromTotalLevel(it.experience)
-            binding.donutChart.setDonutChartProgress(it.experience)
-            binding.headerLayout.accountHeaderUsername.setUsernameOrPlaceHolder(it.username)
-            binding.headerLayout.accountHeaderUserLevel.setAccountLevelTitle(it.experience)
-            binding.headerLayout.accountHeaderUserLevelTag.setAccountBadgeLevel(it.experience)
-        }
-
-        viewModel.weekData.observe(viewLifecycleOwner) {
-            binding.barChart.setBarChartLabels(it)
-        }
-
+        setupViews()
+        setupObservers()
         binding.manageRemindersButton.setOnClickListener {
             findNavController().navigate(R.id.manageRemindersBottomSheet)
+        }
+    }
+
+    private fun setupViews() {
+        binding.barChart.setBarChartLabels(emptyList())
+        binding.donutChart.setDonutChartProgress(0)
+    }
+
+    private fun setupObservers() {
+        launchAndRepeatWithViewLifecycle {
+            viewModel.user.collectLatest {
+                binding.experienceForNextLvl.setExpForNextLevel(it.experience)
+                binding.currentLvl.setDonutLevel(it.experience)
+                binding.expFromTotalLvl.setExpFromTotalLevel(it.experience)
+                binding.donutChart.setDonutChartProgress(it.experience)
+                binding.headerLayout.accountHeaderUsername.setUsernameOrPlaceHolder(it.username)
+                binding.headerLayout.accountHeaderUserLevel.setAccountLevelTitle(it.experience)
+                binding.headerLayout.accountHeaderUserLevelTag.setAccountBadgeLevel(it.experience)
+            }
+        }
+        launchAndRepeatWithViewLifecycle {
+            viewModel.weekData.collectLatest {
+                binding.barChart.setBarChartLabels(it)
+            }
         }
     }
 

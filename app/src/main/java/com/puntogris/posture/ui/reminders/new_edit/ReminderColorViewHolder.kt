@@ -11,8 +11,10 @@ class ReminderColorViewHolder(private val binding: ReminderColorVhBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(reminderItem: ReminderUi.Color, clickListener: (ReminderUi) -> Unit) {
-        binding.reminderColorImage.setReminderColor(reminderItem.color)
-        binding.reminderColorImage.setOnClickListener { clickListener(reminderItem) }
+        binding.reminderColorImage.apply {
+            setReminderColor(reminderItem.color)
+            setOnClickListener { clickListener(reminderItem) }
+        }
     }
 
     companion object {

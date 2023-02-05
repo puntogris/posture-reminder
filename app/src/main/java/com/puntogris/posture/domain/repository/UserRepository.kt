@@ -1,6 +1,5 @@
 package com.puntogris.posture.domain.repository
 
-import androidx.lifecycle.LiveData
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.domain.model.UserPrivateData
 import com.puntogris.posture.utils.Result
@@ -11,7 +10,7 @@ interface UserRepository {
 
     fun isUserLoggedIn(): Boolean
 
-    fun getUserLiveData(): LiveData<UserPrivateData>
+    fun getUserStream(): Flow<UserPrivateData>
 
     suspend fun getUser(): UserPrivateData?
 

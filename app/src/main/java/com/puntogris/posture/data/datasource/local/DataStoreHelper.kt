@@ -75,7 +75,7 @@ class DataStoreHelper @Inject constructor(@ApplicationContext private val contex
     }
 
     fun showTutorial() = context.dataStore.data.map {
-        it[booleanPreferencesKey(Keys.SHOW_MANAGE_TUTORIAL_KEY)] ?: false
+        it[booleanPreferencesKey(Keys.SHOW_MANAGE_TUTORIAL_KEY)] ?: true
     }
 
     suspend fun setShowTutorial(value: Boolean) = context.dataStore.edit {

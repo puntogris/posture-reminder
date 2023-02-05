@@ -14,11 +14,13 @@ class DayLogHomeViewHolder(private val binding: DayLogHomePagerItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(dayLog: DayLog) {
-        binding.dayLabel.setPagerDay(adapterPosition)
-        binding.logDay.setDayMonth(adapterPosition)
-        binding.logNotifications.text = dayLog.notifications.toString()
-        binding.logExercises.text = dayLog.exercises.toString()
-        binding.logExperience.setText(R.string.number_plus_prefix, dayLog.expGained)
+        with(binding) {
+            dayLabel.setPagerDay(adapterPosition)
+            logDay.setDayMonth(adapterPosition)
+            logNotifications.text = dayLog.notifications.toString()
+            logExercises.text = dayLog.exercises.toString()
+            logExperience.setText(R.string.number_plus_prefix, dayLog.expGained)
+        }
     }
 
     companion object {

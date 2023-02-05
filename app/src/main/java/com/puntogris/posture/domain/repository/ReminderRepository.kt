@@ -1,6 +1,5 @@
 package com.puntogris.posture.domain.repository
 
-import androidx.lifecycle.LiveData
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.domain.model.ReminderId
 import com.puntogris.posture.utils.Result
@@ -9,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface ReminderRepository {
 
-    fun getRemindersStream(): LiveData<List<Reminder>>
+    fun getRemindersStream(): Flow<List<Reminder>>
 
     fun getActiveReminderStream(): Flow<Reminder?>
 

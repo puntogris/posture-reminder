@@ -20,7 +20,7 @@ class ReminderNamePickerDialog(
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
         return MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Name")
+            .setTitle(R.string.name)
             .setView(binding.root)
             .setPositiveButton(R.string.action_done, null)
             .setNegativeButton(R.string.action_cancel, null)

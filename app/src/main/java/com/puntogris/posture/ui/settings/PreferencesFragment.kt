@@ -15,11 +15,13 @@ import com.puntogris.posture.R
 import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.constants.Keys
 import com.puntogris.posture.utils.extensions.isIgnoringBatteryOptimizations
+import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.extensions.launchWebBrowserIntent
 import com.puntogris.posture.utils.extensions.onClick
 import com.puntogris.posture.utils.extensions.preference
 import com.puntogris.posture.utils.extensions.preferenceOnClick
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -117,19 +119,19 @@ class PreferencesFragment : PreferenceFragmentCompat() {
         super.onViewCreated(view, savedInstanceState)
 
         preference(Keys.USERNAME_PREF_KEY) {
-            viewModel.user.observe(viewLifecycleOwner) {
-                summary = it.username.ifBlank { getString(R.string.human) }
+            launchAndRepeatWithViewLifecycle {
+                viewModel.user.collectLatest {
+                    summary = it.username.ifBlank { getString(R.string.human) }
+                }
             }
             onClick {
-                lifecycleScope.launch {
-                    if (viewModel.isUserLoggedIn()) {
-                        val action = SettingsFragmentDirections.actionSettingsToDialogName(
-                            viewModel.user.value!!.username
-                        )
-                        findNavController().navigate(action)
-                    } else {
-                        showRequireLoginSnack()
-                    }
+                if (viewModel.isUserLoggedIn()) {
+                    val action = SettingsFragmentDirections.actionSettingsToDialogName(
+                        viewModel.user.value.username
+                    )
+                    findNavController().navigate(action)
+                } else {
+                    showRequireLoginSnack()
                 }
             }
         }

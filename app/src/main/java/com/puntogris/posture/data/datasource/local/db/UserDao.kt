@@ -1,11 +1,11 @@
 package com.puntogris.posture.data.datasource.local.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.puntogris.posture.domain.model.UserPrivateData
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
@@ -20,7 +20,7 @@ interface UserDao {
     suspend fun getUserId(): String
 
     @Query("SELECT * FROM UserPrivateData WHERE roomId = 1")
-    fun getUserLiveStream(): LiveData<UserPrivateData>
+    fun getUserStream(): Flow<UserPrivateData>
 
     @Query("UPDATE UserPrivateData SET uid = :uid, username = :username, email = :email, photoUrl = :photoUrl WHERE roomId = 1")
     suspend fun updateCurrentUserData(
