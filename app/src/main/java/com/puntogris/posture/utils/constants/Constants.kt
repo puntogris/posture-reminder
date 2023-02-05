@@ -48,4 +48,8 @@ object Constants {
 
     //Url
     const val AUTH_HELP_URL = "https://postureapp.puntogris.com/help/"
+
+    //Exercise
+    const val EXERCISE_KEY = "exercise"
+    const val DEFAULT_EXERCISE_TIMER_SECS = 50
 }

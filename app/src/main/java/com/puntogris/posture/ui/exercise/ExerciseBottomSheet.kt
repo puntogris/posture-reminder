@@ -13,11 +13,13 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetExerciseBinding
 import com.puntogris.posture.utils.constants.Constants.PROGRESS_BAR_SMOOTH_OFFSET
+import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.extensions.setupAsFullScreen
 import com.puntogris.posture.utils.setExerciseDuration
 import com.puntogris.posture.utils.setProgressBarSmoothMax
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class ExerciseBottomSheet : BottomSheetDialogFragment() {
@@ -36,24 +38,42 @@ class ExerciseBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupViews()
+        setupListeners()
+        setupObservers()
+    }
 
-        binding.exerciseDuration.setExerciseDuration(args.exercise.duration)
-        binding.exerciseImage.setImageResource(args.exercise.image)
-        binding.exerciseName.setText(args.exercise.title)
-        binding.exerciseDescription.setText(args.exercise.summary)
-        binding.progressBar.setProgressBarSmoothMax(args.exercise.duration)
+    private fun setupViews() {
+        with(binding) {
+            exerciseDuration.setExerciseDuration(args.exercise.duration)
+            exerciseImage.setImageResource(args.exercise.image)
+            exerciseName.setText(args.exercise.title)
+            exerciseDescription.setText(args.exercise.summary)
+            progressBar.setProgressBarSmoothMax(args.exercise.duration)
+            recyclerView.adapter = ExerciseStepsAdapter(
+                resources.getStringArray(args.exercise.steps)
+            )
+        }
+    }
 
+    private fun setupListeners() {
         binding.closeButton.setOnClickListener {
             dismiss()
         }
         binding.startExerciseButton.setOnClickListener {
-            startExercise()
+            startExerciseAndShowInProgressUi()
         }
+    }
 
-        viewModel.exerciseDurationTimer.observe(viewLifecycleOwner) {
-            binding.progressBar.progress = it
+    private fun setupObservers() {
+        launchAndRepeatWithViewLifecycle {
+            viewModel.exerciseDurationTimer.collectLatest {
+                binding.progressBar.progress = it
+                if (it == args.exercise.duration * PROGRESS_BAR_SMOOTH_OFFSET) {
+                    updateUiAndShowCompletedExerciseDialog()
+                }
+            }
         }
-        setupRecyclerViewAdapter()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -62,29 +82,11 @@ class ExerciseBottomSheet : BottomSheetDialogFragment() {
         }
     }
 
-    private fun setupRecyclerViewAdapter() {
-        val steps = resources.getStringArray(args.exercise.steps)
-        binding.recyclerView.adapter = ExerciseStepsAdapter(steps)
-    }
-
-    private fun startExercise() {
-        viewModel.startExerciseTimerWithDuration(args.exercise.duration)
-        setCompleteExerciseListener()
-        showInProgressUi()
-    }
-
-    private fun showInProgressUi() {
+    private fun startExerciseAndShowInProgressUi() {
+        viewModel.startExerciseTimer()
         binding.startExerciseButton.apply {
             isEnabled = false
             setText(R.string.in_progress)
-        }
-    }
-
-    private fun setCompleteExerciseListener() {
-        viewModel.exerciseDurationTimer.observe(viewLifecycleOwner) {
-            if (it == args.exercise.duration * PROGRESS_BAR_SMOOTH_OFFSET) {
-                updateUiAndShowCompletedExerciseDialog()
-            }
         }
     }
 
