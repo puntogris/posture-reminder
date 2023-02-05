@@ -8,7 +8,6 @@ import com.puntogris.posture.R
 import com.puntogris.posture.databinding.DialogReminderNamePickerBinding
 import com.puntogris.posture.utils.extensions.data
 import com.puntogris.posture.utils.extensions.onPositive
-import com.puntogris.posture.utils.extensions.visible
 import com.puntogris.posture.utils.viewBinding
 
 class ReminderNamePickerDialog(

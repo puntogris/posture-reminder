@@ -2,8 +2,6 @@ package com.puntogris.posture.data.datasource.local
 
 import android.content.Context
 import androidx.annotation.Keep
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
