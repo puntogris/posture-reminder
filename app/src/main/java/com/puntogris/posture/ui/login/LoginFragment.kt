@@ -11,6 +11,7 @@ import com.puntogris.posture.NavigationDirections
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentLoginBinding
 import com.puntogris.posture.domain.model.LoginResult
+import com.puntogris.posture.utils.constants.Constants.AUTH_HELP_URL
 import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.launchWebBrowserIntent
 import com.puntogris.posture.utils.extensions.setIntentLauncher
@@ -43,7 +44,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
 
         binding.loginProblemsButton.setOnClickListener {
-            launchWebBrowserIntent("https://postureapp.puntogris.com/help/")
+            launchWebBrowserIntent(AUTH_HELP_URL)
         }
     }
 
