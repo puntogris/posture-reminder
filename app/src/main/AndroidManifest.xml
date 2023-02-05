@@ -19,7 +19,7 @@
         android:allowBackup="true">
         <activity
             android:launchMode="singleTask"
-            android:screenOrientation="unspecified"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"
             android:name="com.puntogris.posture.ui.main.MainActivity"
             android:exported="true">

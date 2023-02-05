@@ -30,13 +30,10 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
     private val notificationManager =
         context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-    private val deprecatedChannels = listOf(
-        "postureNotification"
-    )
+    private val deprecatedChannels = listOf("postureNotification")
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun createChannelForReminderSdkO(reminder: Reminder) {
-
         NotificationChannel(
             reminder.reminderId,
             context.getString(R.string.alarm_channel_name),
@@ -55,7 +52,6 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
                 vibrationPattern =
                     LocalDataSource.vibrationPatterns[reminder.vibrationPattern].pattern
             }
-
             notificationManager.createNotificationChannel(this)
         }
     }
@@ -68,20 +64,17 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
     }
 
     private fun getNotificationBuilderWithReminder(reminder: Reminder): NotificationCompat.Builder {
-
         val intent = Intent(context, MainActivity::class.java).apply {
             putExtra(NAVIGATION_DATA, CLAIM_NOTIFICATION_EXP_INTENT)
             putExtra(NOTIFICATION_ID, reminder.reminderId.hashCode())
             flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
         }
-
         val pendingIntent = PendingIntent.getActivity(
             context,
             0,
             intent,
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
-
         val builder = NotificationCompat.Builder(context, reminder.reminderId)
             .setSmallIcon(R.drawable.ic_app_logo)
             .setContentTitle(context.getString(R.string.posture_notification_title))
@@ -95,12 +88,12 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
             )
             .setAutoCancel(true)
 
-        if (reminder.soundUri.isNotBlank()) builder.setSound(Uri.parse(reminder.soundUri))
-
+        if (reminder.soundUri.isNotBlank()) {
+            builder.setSound(Uri.parse(reminder.soundUri))
+        }
         if (reminder.vibrationPattern != 0) {
             builder.setVibrate(LocalDataSource.vibrationPatterns[reminder.vibrationPattern].pattern)
         }
-
         return builder
     }
 
@@ -108,9 +101,7 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createChannelForReminderSdkO(reminder)
         }
-
         val builder = getNotificationBuilderWithReminder(reminder)
-
         notificationManager.notify(reminder.reminderId.hashCode(), builder.build())
     }
 

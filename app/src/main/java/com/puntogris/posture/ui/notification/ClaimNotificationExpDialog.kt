@@ -17,6 +17,7 @@ import com.puntogris.posture.utils.constants.Constants.EXPERIENCE_PER_NOTIFICATI
 import com.puntogris.posture.utils.extensions.playAnimationOnce
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -45,35 +46,43 @@ class ClaimNotificationExpDialog : DialogFragment() {
 
     private fun subscribeUi() {
         lifecycleScope.launch {
-            when (viewModel.updateDayLogWithReward()) {
-                RewardExp.Error -> {
-                    with(binding) {
-                        claimExpAnimation.playAnimationOnce(R.raw.error)
-                        claimExpTitle.setText(R.string.an_error_occurred)
-                        claimExpSummary.setText(R.string.claim_experience_error_summary)
-                        claimExpMessage.setText(R.string.snack_general_error)
-                    }
-                }
-                RewardExp.ExpLimit -> {
-                    with(binding) {
-                        claimExpAnimation.setAnimation(R.raw.trophy)
-                        claimExpTitle.setText(R.string.claim_experience_title)
-                        claimExpSummary.setText(R.string.claim_experience_exp_limit_summary)
-                        claimExpMessage.setText(R.string.claim_experience_exp_limit_message)
-                    }
-                }
-                RewardExp.Success -> {
-                    with(binding) {
-                        claimExpAnimation.setAnimation(R.raw.congratulations)
-                        claimExpTitle.setText(R.string.completed_exercise_title)
-                        claimExpSummary.text = getString(
-                            R.string.claim_experience_message,
-                            EXPERIENCE_PER_NOTIFICATION
-                        )
-                        claimExpMessage.setText(R.string.claim_experience_exercise_message)
-                    }
+            viewModel.expRewardStatus.collectLatest {
+                when (it) {
+                    RewardExp.Error -> onExpRewardError()
+                    RewardExp.ExpLimit -> onExpRewardLimit()
+                    RewardExp.Success -> onExpRewardSuccess()
                 }
             }
+        }
+    }
+
+    private fun onExpRewardError() {
+        with(binding) {
+            claimExpAnimation.playAnimationOnce(R.raw.error)
+            claimExpTitle.setText(R.string.an_error_occurred)
+            claimExpSummary.setText(R.string.claim_experience_error_summary)
+            claimExpMessage.setText(R.string.snack_general_error)
+        }
+    }
+
+    private fun onExpRewardLimit() {
+        with(binding) {
+            claimExpAnimation.setAnimation(R.raw.trophy)
+            claimExpTitle.setText(R.string.claim_experience_title)
+            claimExpSummary.setText(R.string.claim_experience_exp_limit_summary)
+            claimExpMessage.setText(R.string.claim_experience_exp_limit_message)
+        }
+    }
+
+    private fun onExpRewardSuccess() {
+        with(binding) {
+            claimExpAnimation.setAnimation(R.raw.congratulations)
+            claimExpTitle.setText(R.string.completed_exercise_title)
+            claimExpSummary.text = getString(
+                R.string.claim_experience_message,
+                EXPERIENCE_PER_NOTIFICATION
+            )
+            claimExpMessage.setText(R.string.claim_experience_exercise_message)
         }
     }
 
