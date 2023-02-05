@@ -12,6 +12,7 @@ import com.puntogris.posture.utils.constants.Constants.ONE_SECOND_IN_MILLIS
 import com.puntogris.posture.utils.constants.Constants.PROGRESS_BAR_SMOOTH_OFFSET
 import com.puntogris.posture.utils.extensions.toMillis
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 @HiltViewModel
@@ -50,9 +51,9 @@ class ExerciseViewModel @Inject constructor(
         durationTimer?.cancel()
     }
 
-    suspend fun updateDayLogWithReward(): RewardExp {
+    val expRewardStatus = flow {
         val log = DayLog(expGained = EXPERIENCE_PER_EXERCISE, exercises = 1)
-        return repository.updateDayLogAndUser(log)
+        emit(repository.updateDayLogAndUser(log))
     }
 
     override fun onCleared() {
