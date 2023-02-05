@@ -14,5 +14,5 @@ class AccountViewModel @Inject constructor(
 
     val user = userRepository.getUserLiveData()
 
-    val weekData = dayLogsRepository.getWeekDayLogs()
+    val weekData = dayLogsRepository.getWeekDayLogsStream()
 }

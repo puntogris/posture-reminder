@@ -37,8 +37,8 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
 
     private fun onDailyAlarmTriggered() {
         goAsync {
-            repository.getActiveReminder()?.apply {
-                if (dayOfTheWeek() in alarmDays) alarm.startRepeatingAlarm(timeInterval)
+            repository.getActiveReminder()?.let {
+                if (dayOfTheWeek() in it.alarmDays) alarm.startRepeatingAlarm(it.timeInterval)
             }
         }
     }

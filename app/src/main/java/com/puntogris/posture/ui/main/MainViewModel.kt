@@ -14,7 +14,9 @@ class MainViewModel @Inject constructor(
 
     val appVersionStatus = channelFlow {
         val isOldVersion = dataStoreHelper.lastVersionCode() < BuildConfig.VERSION_CODE
-        if (isOldVersion) dataStoreHelper.updateLastVersionCode()
+        if (isOldVersion) {
+            dataStoreHelper.updateLastVersionCode()
+        }
         send(isOldVersion)
     }
 

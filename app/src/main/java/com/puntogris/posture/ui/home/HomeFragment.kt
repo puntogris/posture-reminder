@@ -15,15 +15,16 @@ import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentHomeBinding
+import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.framework.alarm.AlarmStatus
 import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.constants.Constants.PACKAGE_URI_NAME
 import com.puntogris.posture.utils.extensions.UiInterface
+import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.extensions.setPageFadeTransformer
 import com.puntogris.posture.utils.extensions.showItem
 import com.puntogris.posture.utils.setBackgroundColorTintView
@@ -32,7 +33,7 @@ import com.puntogris.posture.utils.setMinutesToHourlyTime
 import com.puntogris.posture.utils.setToggleButton
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -40,17 +41,41 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val binding: FragmentHomeBinding by viewBinding(FragmentHomeBinding::bind)
     private val viewModel: HomeViewModel by viewModels()
     private var mediator: TabLayoutMediator? = null
+    private lateinit var pagerAdapter: DayLogHomeAdapter
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<Intent>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.pandaAnimation.setPadding(0, 0, -100, -110)
+        setupListeners()
+        setupObservers()
+        setupPagerAndTabLayout()
+        registerAlarmPermissionLauncher()
+    }
 
-        viewModel.isPandaAnimationEnabled.observe(viewLifecycleOwner) {
-            if (it != null) binding.pandaAnimation.isVisible = it
+    private fun setupObservers() {
+        launchAndRepeatWithViewLifecycle {
+            viewModel.isAlarmActive.collectLatest {
+                binding.activeReminderLayout.toggleReminderButton.setToggleButton(it)
+            }
         }
+        launchAndRepeatWithViewLifecycle {
+            viewModel.isPandaAnimationEnabled.collectLatest {
+                binding.pandaAnimation.isVisible = it
+            }
+        }
+        launchAndRepeatWithViewLifecycle {
+            viewModel.alarmStatus.collectLatest(::handleAlarmStatusResult)
+        }
+        launchAndRepeatWithViewLifecycle {
+            viewModel.getLastTwoDaysHistory.collectLatest(pagerAdapter::updateList)
+        }
+        launchAndRepeatWithViewLifecycle {
+            viewModel.activeReminder.collectLatest(::onActiveReminderUpdated)
+        }
+    }
 
+    private fun setupListeners() {
         binding.activeReminderLayout.selectReminderButton.setOnClickListener {
             findNavController().navigate(R.id.manageRemindersBottomSheet)
         }
@@ -66,30 +91,26 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.manageRemindersButton.setOnClickListener {
             findNavController().navigate(R.id.manageRemindersBottomSheet)
         }
-        viewModel.isAlarmActive.observe(viewLifecycleOwner) {
-            binding.activeReminderLayout.toggleReminderButton.setToggleButton(it)
+    }
+
+    private fun onActiveReminderUpdated(reminder: Reminder?) {
+        binding.activeReminderLayout.root.isVisible = reminder != null
+        binding.reminderNotFoundGroup.isVisible = reminder == null
+        if (reminder == null) {
+            return
         }
-        viewModel.activeReminder.observe(viewLifecycleOwner) { reminder ->
-            reminder?.let {
-                binding.activeReminderLayout.reminderTitle.text = it.name
-                binding.activeReminderLayout.reminderInterval.text = it.timeIntervalSummary()
-                binding.activeReminderLayout.reminderStart.setMinutesToHourlyTime(it.startTime)
-                binding.activeReminderLayout.reminderEnd.setMinutesToHourlyTime(it.endTime)
-                binding.activeReminderLayout.reminderDays.setDaysSummary(it)
-                binding.activeReminderLayout.reminderColor.setBackgroundColorTintView(reminder.color)
-            }
-            binding.activeReminderLayout.root.isVisible = reminder != null
-            binding.reminderNotFoundGroup.isVisible = reminder == null
+        with(binding.activeReminderLayout) {
+            reminderTitle.text = reminder.name
+            reminderInterval.text = reminder.timeIntervalSummary()
+            reminderStart.setMinutesToHourlyTime(reminder.startTime)
+            reminderEnd.setMinutesToHourlyTime(reminder.endTime)
+            reminderDays.setDaysSummary(reminder)
+            reminderColor.setBackgroundColorTintView(reminder.color)
         }
-        setupPagerAndTabLayout()
-        observeAlarmStatus()
-        registerAlarmPermissionLauncher()
     }
 
     private fun setupPagerAndTabLayout() {
-        val pagerAdapter = DayLogHomeAdapter()
-        subscribePager(pagerAdapter)
-
+        pagerAdapter = DayLogHomeAdapter()
         binding.usagePager.pager.apply {
             adapter = pagerAdapter
             setPageFadeTransformer()
@@ -99,16 +120,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             binding.usagePager.pager
         ) { _, _ -> }
         mediator?.attach()
-    }
-
-    private fun subscribePager(adapter: DayLogHomeAdapter) {
-        viewModel.getLastTwoDaysHistory.observe(viewLifecycleOwner, adapter::updateList)
-    }
-
-    private fun observeAlarmStatus() {
-        lifecycleScope.launch {
-            viewModel.alarmStatus.collect(::handleAlarmStatusResult)
-        }
     }
 
     private fun handleAlarmStatusResult(result: AlarmStatus) {

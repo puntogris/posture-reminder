@@ -14,9 +14,9 @@ class DayLogsRepositoryImpl(
     private val dispatchers: DispatcherProvider
 ) : DayLogsRepository {
 
-    override fun getLastTwoDaysLogsLiveData() = appDatabase.dayLogsDao.getLastTwoEntries()
+    override fun getLastTwoDaysLogsStream() = appDatabase.dayLogsDao.getLastTwoEntries()
 
-    override fun getWeekDayLogs() = appDatabase.dayLogsDao.getWeekEntries()
+    override fun getWeekDayLogsStream() = appDatabase.dayLogsDao.getWeekEntries()
 
     override suspend fun updateDayLogAndUser(dayLog: DayLog) = withContext(dispatchers.io) {
         try {

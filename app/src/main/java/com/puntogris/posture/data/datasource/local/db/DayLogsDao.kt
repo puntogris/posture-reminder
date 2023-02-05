@@ -1,8 +1,13 @@
 package com.puntogris.posture.data.datasource.local.db
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Update
 import com.puntogris.posture.domain.model.DayLog
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DayLogsDao {
@@ -17,7 +22,7 @@ interface DayLogsDao {
     suspend fun getLastEntry(): DayLog?
 
     @Query("SELECT * from DayLog WHERE dateId >= (SELECT date('now', '-2 day', 'localtime')) ORDER BY dateId DESC LIMIT 2")
-    fun getLastTwoEntries(): LiveData<List<DayLog>>
+    fun getLastTwoEntries(): Flow<List<DayLog>>
 
     @Query("SELECT * from DayLog WHERE dateId >= (SELECT date('now', '-7 day', 'localtime')) ORDER BY dateId DESC LIMIT 7")
     fun getWeekEntries(): LiveData<List<DayLog>>

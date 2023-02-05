@@ -20,11 +20,11 @@ class ManageRemindersViewModel @Inject constructor(
     dataStoreHelper: DataStoreHelper
 ) : ViewModel() {
 
-    private val activeReminder = reminderRepository.getActiveReminderLiveData()
+    private val activeReminder = reminderRepository.getActiveReminderStream()
 
-    private val savedReminders = reminderRepository.getRemindersLiveData()
+    private val savedReminders = reminderRepository.getRemindersStream()
 
-    val reminders = combine(activeReminder.asFlow(), savedReminders.asFlow()) { active, reminders ->
+    val reminders = combine(activeReminder, savedReminders.asFlow()) { active, reminders ->
         reminders.map {
             SelectableReminder(
                 reminder = it,

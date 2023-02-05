@@ -52,11 +52,9 @@ class ReminderRepositoryImpl(
                 }
                 reminderDao.insert(reminder)
 
-                reminderDao.getActiveReminder()?.let {
-                    if (it == reminder && dataStoreHelper.isAlarmActive()) {
-                        alarm.refreshAlarms(reminder)
-                    }
-                }
+                reminderDao.getActiveReminder()
+                    ?.takeIf { it == reminder && dataStoreHelper.isAlarmActive() }
+                    ?.let { alarm.refreshAlarms(it) }
 
                 if (reminder.uid.isNotBlank()) {
                     workersManager.launchUploadReminderWorker(reminder.reminderId)
@@ -64,14 +62,13 @@ class ReminderRepositoryImpl(
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     notifications.createChannelForReminderSdkO(reminder)
                 }
-
                 ReminderId(reminder.reminderId)
             }
         }
 
-    override fun getRemindersLiveData() = reminderDao.getAllRemindersLiveData()
+    override fun getRemindersStream() = reminderDao.getAllRemindersLiveData()
 
-    override fun getActiveReminderLiveData() = reminderDao.getActiveReminderLiveData()
+    override fun getActiveReminderStream() = reminderDao.getActiveReminderLiveData()
 
     override suspend fun getActiveReminder() = withContext(dispatchers.io) {
         reminderDao.getActiveReminder()

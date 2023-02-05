@@ -5,12 +5,13 @@ import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.domain.model.ReminderId
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.SimpleResult
+import kotlinx.coroutines.flow.Flow
 
 interface ReminderRepository {
 
-    fun getRemindersLiveData(): LiveData<List<Reminder>>
+    fun getRemindersStream(): LiveData<List<Reminder>>
 
-    fun getActiveReminderLiveData(): LiveData<Reminder?>
+    fun getActiveReminderStream(): Flow<Reminder?>
 
     suspend fun getActiveReminder(): Reminder?
 

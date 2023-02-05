@@ -3,7 +3,6 @@ package com.puntogris.posture.ui.home
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import com.puntogris.posture.domain.repository.DayLogsRepository
@@ -12,7 +11,9 @@ import com.puntogris.posture.framework.alarm.Alarm
 import com.puntogris.posture.framework.alarm.AlarmStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,16 +25,19 @@ class HomeViewModel @Inject constructor(
     private val reminderRepository: ReminderRepository
 ) : ViewModel() {
 
-    val isAlarmActive = dataStoreHelper.isAlarmActiveFlow().asLiveData()
+    val isAlarmActive = dataStoreHelper
+        .isAlarmActiveFlow()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), false)
 
-    val activeReminder = reminderRepository.getActiveReminderLiveData()
+    val activeReminder = reminderRepository.getActiveReminderStream()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
 
     private val _alarmStatus = MutableSharedFlow<AlarmStatus>()
     val alarmStatus = _alarmStatus.asSharedFlow()
 
     fun toggleAlarm() {
         viewModelScope.launch {
-            if (isAlarmActive.value == true) {
+            if (isAlarmActive.value) {
                 cancelAlarms()
             }else {
                 startAlarm()
@@ -56,9 +60,9 @@ class HomeViewModel @Inject constructor(
         _alarmStatus.emit(AlarmStatus.Canceled)
     }
 
-    val isPandaAnimationEnabled = dataStoreHelper.showPandaAnimation().asLiveData()
+    val isPandaAnimationEnabled = dataStoreHelper.showPandaAnimation()
 
-    val getLastTwoDaysHistory = dayLogsRepository.getLastTwoDaysLogsLiveData()
+    val getLastTwoDaysHistory = dayLogsRepository.getLastTwoDaysLogsStream()
 
     @RequiresApi(Build.VERSION_CODES.S)
     fun canScheduleExactAlarms() = alarm.canScheduleExactAlarms()
