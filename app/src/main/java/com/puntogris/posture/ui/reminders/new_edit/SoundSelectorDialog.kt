@@ -53,9 +53,9 @@ class SoundSelectorDialog : DialogFragment() {
         val toneItems = arrayListOf(
             ToneItem(getString(R.string.disabled), "")
         )
-        val manager = RingtoneManager(requireContext())
-        manager.setType(RingtoneManager.TYPE_NOTIFICATION)
-        manager.cursor?.let {
+         RingtoneManager(requireContext()).apply {
+            setType(RingtoneManager.TYPE_NOTIFICATION)
+        }.cursor?.let {
             while (it.moveToNext()) {
                 toneItems.add(ToneItem.from(it))
             }

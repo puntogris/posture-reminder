@@ -23,8 +23,7 @@ class ManageReminderTutorialDialog: DialogFragment() {
     private val binding by viewBinding(DialogManageReminderTutorialBinding::inflate)
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        initViews()
-
+        setupViews()
         return MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.tutorial_title)
             .setMessage(R.string.tutorial_content)
@@ -35,7 +34,7 @@ class ManageReminderTutorialDialog: DialogFragment() {
             }
     }
 
-    private fun initViews() {
+    private fun setupViews() {
         binding.buttonReminderTutorialUnderstoodButton.setOnClickListener {
             lifecycleScope.launch {
                 dataStoreHelper.setShowTutorial(false)

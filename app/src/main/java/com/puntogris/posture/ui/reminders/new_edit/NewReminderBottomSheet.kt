@@ -19,6 +19,7 @@ import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetNewReminderBinding
 import com.puntogris.posture.utils.ReminderUi
 import com.puntogris.posture.utils.Result
+import com.puntogris.posture.utils.ToneItem
 import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
 import com.puntogris.posture.utils.constants.Constants.SOUND_PICKER_KEY
@@ -99,7 +100,7 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
                     dismiss()
                     requireParentFragment().UiInterface.showSnackBar(getString(R.string.snack_create_reminder_success))
                 }
-                else -> {}
+                else -> Unit
             }
         }
     }
@@ -180,7 +181,7 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
             currentTime(viewModel.getDefaultClockTimeInMillis(code))
             title(title)
             onNegative(R.string.action_cancel)
-            onPositive { milliseconds: Long, _, _ ->
+            onPositive { milliseconds, _, _ ->
                 if (code is ReminderUi.Item.Start) {
                     viewModel.saveStartTime(milliseconds)
                 } else {
