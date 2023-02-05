@@ -25,7 +25,7 @@ class UserRepositoryImpl(
 
     override fun isUserLoggedIn() = firebaseClients.getCurrentUser != null
 
-    override fun getUserLiveData() = appDatabase.userDao.getUserLiveData()
+    override fun getUserLiveData() = appDatabase.userDao.getUserLiveStream()
 
     override suspend fun getUser() = appDatabase.userDao.getUser()
 

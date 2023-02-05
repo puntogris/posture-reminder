@@ -68,7 +68,7 @@ class ReminderRepositoryImpl(
 
     override fun getRemindersStream() = reminderDao.getAllRemindersLiveData()
 
-    override fun getActiveReminderStream() = reminderDao.getActiveReminderLiveData()
+    override fun getActiveReminderStream() = reminderDao.getActiveReminderStream()
 
     override suspend fun getActiveReminder() = withContext(dispatchers.io) {
         reminderDao.getActiveReminder()

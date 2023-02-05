@@ -20,7 +20,7 @@ interface UserDao {
     suspend fun getUserId(): String
 
     @Query("SELECT * FROM UserPrivateData WHERE roomId = 1")
-    fun getUserLiveData(): LiveData<UserPrivateData>
+    fun getUserLiveStream(): LiveData<UserPrivateData>
 
     @Query("UPDATE UserPrivateData SET uid = :uid, username = :username, email = :email, photoUrl = :photoUrl WHERE roomId = 1")
     suspend fun updateCurrentUserData(

@@ -1,7 +1,14 @@
 package com.puntogris.posture.data.datasource.local.db
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.RewriteQueriesToDropUnusedColumns
+import androidx.room.Transaction
+import androidx.room.Update
 import com.puntogris.posture.domain.model.Reminder
 import kotlinx.coroutines.flow.Flow
 
@@ -29,7 +36,7 @@ interface ReminderDao {
 
     @RewriteQueriesToDropUnusedColumns
     @Query("SELECT * FROM reminder r INNER JOIN UserPrivateData ON currentReminderId = reminderId")
-    fun getActiveReminderLiveData(): Flow<Reminder?>
+    fun getActiveReminderStream(): Flow<Reminder?>
 
     @Query("SELECT * FROM reminder r INNER JOIN UserPrivateData u ON r.uid = u.uid ORDER BY name ASC")
     fun getAllRemindersLiveData(): LiveData<List<Reminder>>
@@ -47,5 +54,4 @@ interface ReminderDao {
             if (it.reminderId !in roomRemindersIds) insert(it)
         }
     }
-
 }
