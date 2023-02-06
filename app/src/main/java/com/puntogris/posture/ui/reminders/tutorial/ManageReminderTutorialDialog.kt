@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ManageReminderTutorialDialog: DialogFragment() {
+class ManageReminderTutorialDialog : DialogFragment() {
 
     @Inject
     lateinit var dataStoreHelper: DataStoreHelper
@@ -29,9 +29,8 @@ class ManageReminderTutorialDialog: DialogFragment() {
             .setMessage(R.string.tutorial_content)
             .setView(binding.root)
             .setCancelable(false)
-            .create().also {
-                it.setCanceledOnTouchOutside(false)
-            }
+            .create()
+            .apply { setCanceledOnTouchOutside(false) }
     }
 
     private fun setupViews() {

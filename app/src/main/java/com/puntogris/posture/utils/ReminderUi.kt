@@ -112,6 +112,7 @@ sealed class ReminderUi {
                 }
             }
         }
+
         class Name(
             title: Int = R.string.name_required,
             description: String
@@ -133,7 +134,9 @@ sealed class ReminderUi {
     class Color(var color: Int = R.color.grey) : ReminderUi() {
         override fun update(reminder: Reminder, context: Context): Boolean {
             return (reminder.color != color).also {
-                if (it) color = reminder.color
+                if (it) {
+                    color = reminder.color
+                }
             }
         }
     }
