@@ -90,5 +90,4 @@ class Alarm @Inject constructor(
     suspend fun setAlarmOnExactAlarmStateChange(reminder: Reminder) {
         if (canScheduleExactAlarms()) startDailyAlarm(reminder) else cancelAlarms()
     }
-
 }

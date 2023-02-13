@@ -1,5 +1,6 @@
 package com.puntogris.posture.framework.alarm
 
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -13,6 +14,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.puntogris.posture.R
 import com.puntogris.posture.data.datasource.local.LocalDataSource
 import com.puntogris.posture.domain.model.FcmNotification
@@ -27,13 +29,12 @@ import javax.inject.Inject
 
 class Notifications @Inject constructor(@ApplicationContext private val context: Context) {
 
-    private val notificationManager =
-        context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    private val notificationManager = NotificationManagerCompat.from(context)
 
     private val deprecatedChannels = listOf("postureNotification")
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun createChannelForReminderSdkO(reminder: Reminder) {
+    fun createNotificationChannel(reminder: Reminder) {
         NotificationChannel(
             reminder.reminderId,
             context.getString(R.string.alarm_channel_name),
@@ -54,6 +55,16 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
             }
             notificationManager.createNotificationChannel(this)
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createNotificationChannel(notification: Notification) {
+        val channel = NotificationChannel(
+            notification.channelId,
+            context.getString(R.string.fmc_channel_name),
+            NotificationManager.IMPORTANCE_DEFAULT
+        )
+        notificationManager.createNotificationChannel(channel)
     }
 
     private fun getNotificationAudioAttributes(): AudioAttributes {
@@ -99,10 +110,10 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
 
     fun buildAndShowNotificationWithReminder(reminder: Reminder) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            createChannelForReminderSdkO(reminder)
+            createNotificationChannel(reminder)
         }
         val builder = getNotificationBuilderWithReminder(reminder)
-        notificationManager.notify(reminder.reminderId.hashCode(), builder.build())
+        sendNotification(reminder.reminderId.hashCode(), builder.build())
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -133,15 +144,16 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
 
     fun sendFcmNotification(fcmNotification: FcmNotification) {
         val notification = buildNotificationForFcm(fcmNotification)
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                notification.channelId,
-                context.getString(R.string.fmc_channel_name),
-                NotificationManager.IMPORTANCE_DEFAULT
-            )
-            notificationManager.createNotificationChannel(channel)
+            createNotificationChannel(notification)
         }
-        notificationManager.notify(0, notification)
+        sendNotification(0, notification)
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun sendNotification(id: Int, notification: Notification) {
+        if (notificationManager.areNotificationsEnabled()) {
+            notificationManager.notify(id, notification)
+        }
     }
 }

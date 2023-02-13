@@ -1,7 +1,5 @@
 package com.puntogris.posture.ui.home
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.puntogris.posture.data.datasource.local.DataStoreHelper
@@ -64,7 +62,4 @@ class HomeViewModel @Inject constructor(
     val isPandaAnimationEnabled = dataStoreHelper.showPandaAnimation()
 
     val getLastTwoDaysHistory = dayLogsRepository.getLastTwoDaysLogsStream()
-
-    @RequiresApi(Build.VERSION_CODES.S)
-    fun canScheduleExactAlarms() = alarm.canScheduleExactAlarms()
 }

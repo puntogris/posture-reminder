@@ -60,7 +60,7 @@ class ReminderRepositoryImpl(
                     workersManager.launchUploadReminderWorker(reminder.reminderId)
                 }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    notifications.createChannelForReminderSdkO(reminder)
+                    notifications.createNotificationChannel(reminder)
                 }
                 ReminderId(reminder.reminderId)
             }
