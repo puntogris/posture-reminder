@@ -167,4 +167,7 @@
      <fragment
          android:id="@+id/ticketFragment"
          android:name="com.puntogris.posture.ui.tickets.TicketFragment" />
- </navigation>
+    <fragment
+        android:id="@+id/permissionsFragment"
+        android:name="com.puntogris.posture.ui.permissions.PermissionsFragment" />
+</navigation>

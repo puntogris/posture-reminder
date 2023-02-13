@@ -107,7 +107,8 @@ class MainActivity : AppCompatActivity(),
                 R.id.welcomeFragment,
                 R.id.exploreFragment,
                 R.id.loginFragment,
-                R.id.synAccountFragment
+                R.id.synAccountFragment,
+                R.id.permissionsFragment
             )
         )
     }
@@ -149,7 +150,8 @@ class MainActivity : AppCompatActivity(),
             R.id.internalLoginFragment,
             R.id.deleteAccountFragment,
             R.id.settingsFragment,
-            R.id.ticketFragment
+            R.id.ticketFragment,
+            R.id.permissionsFragment
         )
     }
 

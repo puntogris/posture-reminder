@@ -32,6 +32,7 @@ object Constants {
     const val VIBRATION_PICKER_KEY = "vibration_picker_key"
     const val SOUND_PICKER_KEY = "sound_picker_key"
     const val EDIT_NAME_KEY = "edit_name_key"
+    const val PERMISSION_KEY = "permission_key"
 
     //Work manager
     const val SYNC_ACCOUNT_WORKER = "sync_account_worker"

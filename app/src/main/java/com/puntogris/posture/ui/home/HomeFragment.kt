@@ -1,19 +1,15 @@
 package com.puntogris.posture.ui.home
 
-import android.app.Activity
-import android.content.Intent
-import android.net.Uri
+import android.app.AlarmManager
 import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
@@ -22,7 +18,8 @@ import com.puntogris.posture.databinding.FragmentHomeBinding
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.framework.alarm.AlarmStatus
 import com.puntogris.posture.utils.Utils
-import com.puntogris.posture.utils.constants.Constants.PACKAGE_URI_NAME
+import com.puntogris.posture.utils.constants.Constants
+import com.puntogris.posture.utils.constants.Constants.PERMISSION_KEY
 import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.extensions.setPageFadeTransformer
@@ -42,7 +39,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val viewModel: HomeViewModel by viewModels()
     private var mediator: TabLayoutMediator? = null
     private lateinit var pagerAdapter: DayLogHomeAdapter
-    private lateinit var requestPermissionLauncher: ActivityResultLauncher<Intent>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,7 +46,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         setupListeners()
         setupObservers()
         setupPagerAndTabLayout()
-        registerAlarmPermissionLauncher()
     }
 
     private fun setupObservers() {
@@ -90,6 +85,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
         binding.manageRemindersButton.setOnClickListener {
             findNavController().navigate(R.id.manageRemindersBottomSheet)
+        }
+        setFragmentResultListener(PERMISSION_KEY) { _, bundle ->
+            val permissionsGranted = bundle.getBoolean(Constants.DATA_KEY)
+            if (permissionsGranted) {
+                viewModel.toggleAlarm()
+            } else {
+                UiInterface.showSnackBar("Not all permissions were granted to use this function.")
+            }
         }
     }
 
@@ -147,46 +150,17 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-    private fun registerAlarmPermissionLauncher() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            requestPermissionLauncher = registerForActivityResult(
-                ActivityResultContracts.StartActivityForResult()
-            ) {
-                if (it.resultCode == Activity.RESULT_OK) {
-                    viewModel.toggleAlarm()
-                } else {
-                    UiInterface.showSnackBar(getString(R.string.snack_permission_required))
-                }
-            }
-        }
-    }
-
     private fun onToggleAlarmClicked() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !viewModel.canScheduleExactAlarms()) {
-            showSnackWithPermissionAction()
+        val am = requireContext().getSystemService(AlarmManager::class.java)
+        val nm = NotificationManagerCompat.from(requireContext())
+        if (
+            (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !am.canScheduleExactAlarms()) ||
+            !nm.areNotificationsEnabled()
+        ) {
+            findNavController().navigate(R.id.permissionsFragment)
         } else {
             viewModel.toggleAlarm()
         }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.S)
-    private fun showSnackWithPermissionAction() {
-        UiInterface.showSnackBar(
-            message = getString(R.string.snack_action_require_permission),
-            actionText = R.string.action_give_permission
-        )
-        {
-            startAlarmPermissionIntent()
-        }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.S)
-    private fun startAlarmPermissionIntent() {
-        requestPermissionLauncher.launch(
-            Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).apply {
-                data = Uri.parse(PACKAGE_URI_NAME)
-            }
-        )
     }
 
     override fun onDestroyView() {
