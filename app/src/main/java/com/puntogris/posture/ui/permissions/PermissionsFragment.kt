@@ -8,14 +8,12 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
@@ -32,13 +30,6 @@ class PermissionsFragment : Fragment(R.layout.fragment_permissions) {
     private lateinit var intentPermissionLauncher: ActivityResultLauncher<Intent>
     private lateinit var stringPermissionLauncher: ActivityResultLauncher<String>
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_permissions, container, false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -52,9 +43,15 @@ class PermissionsFragment : Fragment(R.layout.fragment_permissions) {
         ) {
             onPermissionResult(it.resultCode == Activity.RESULT_OK)
         }
+        setupListeners()
+    }
 
-        binding.button.setOnClickListener {
+    private fun setupListeners() {
+        binding.buttonSkip.setOnClickListener {
             setResultAndNavigateUp(false)
+        }
+        binding.buttonContinue.setOnClickListener {
+            continuePermissionsFlow()
         }
     }
 
@@ -85,9 +82,7 @@ class PermissionsFragment : Fragment(R.layout.fragment_permissions) {
             !notificationManager.areNotificationsEnabled() -> {
                 stringPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
             }
-            else -> {
-                setResultAndNavigateUp(true)
-            }
+            else -> setResultAndNavigateUp(true)
         }
     }
 }

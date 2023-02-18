@@ -55,9 +55,17 @@ inline fun Fragment.setIntentLauncher(crossinline block: (ActivityResult) -> Uni
     }
 }
 
-fun Fragment.showSnackBar(message: Int, anchor: View? = null) {
+fun Fragment.showSnackBar(
+    message: Int,
+    anchor: View? = null,
+    actionRes: Int? = null,
+    action: View.OnClickListener? = null
+) {
     Snackbar.make(requireView(), message, Snackbar.LENGTH_LONG).apply {
         anchorView = anchor
+        if (actionRes != null && action != null) {
+            setAction(actionRes, action)
+        }
     }.show()
 }
 
