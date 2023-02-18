@@ -11,8 +11,6 @@ import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import com.puntogris.posture.framework.alarm.Notifications
 import com.puntogris.posture.framework.workers.WorkersManager
 import dagger.hilt.android.HiltAndroidApp
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 import javax.inject.Inject
@@ -54,16 +52,6 @@ class PostureApp : Application(), Configuration.Provider {
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
-        }
-
-        /*
-        Forcing account sync because in v2.1.0 work manager wasn't working and new accounts created
-        on that version won't have sync on, remove when all users migrate to 2.1.1+
-         */
-        if (BuildConfig.VERSION_CODE < 44) {
-            MainScope().launch {
-                workersManager.launchSyncAccountWorker()
-            }
         }
     }
 
