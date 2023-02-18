@@ -38,7 +38,9 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
     private fun onDailyAlarmTriggered() {
         goAsync {
             repository.getActiveReminder()?.let {
-                if (dayOfTheWeek() in it.alarmDays) alarm.startRepeatingAlarm(it.timeInterval)
+                if (dayOfTheWeek() in it.alarmDays) {
+                    alarm.startRepeatingAlarm(it.timeInterval)
+                }
             }
         }
     }
@@ -46,8 +48,11 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
     private fun onRepeatingAlarmTriggered() {
         goAsync {
             repository.getActiveReminder()?.let {
-                if (it.isAlarmInRange(minutesSinceMidnight())) deliverNotificationAndSetNewAlarm(it)
-                else alarm.cancelRepeatingAlarm()
+                if (it.isAlarmInRange(minutesSinceMidnight())) {
+                    deliverNotificationAndSetNewAlarm(it)
+                } else {
+                    alarm.cancelRepeatingAlarm()
+                }
             }
         }
     }

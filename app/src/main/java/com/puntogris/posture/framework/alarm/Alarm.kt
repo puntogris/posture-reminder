@@ -8,7 +8,6 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import com.puntogris.posture.domain.model.Reminder
-import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.Utils.getTriggerTime
 import com.puntogris.posture.utils.constants.Constants.DAILY_ALARM_TRIGGERED
 import com.puntogris.posture.utils.constants.Constants.REPEATING_ALARM_TRIGGERED
@@ -51,10 +50,7 @@ class Alarm @Inject constructor(
             AlarmManager.INTERVAL_DAY,
             pendingIntentDailyAlarm
         )
-
-        if (reminder.isAlarmPastMidnightAndInRange(Utils.minutesSinceMidnight())) {
-            startRepeatingAlarm(reminder.timeInterval)
-        }
+        startRepeatingAlarm(reminder.timeInterval)
         dataStoreHelper.isCurrentReminderStateActive(true)
     }
 
