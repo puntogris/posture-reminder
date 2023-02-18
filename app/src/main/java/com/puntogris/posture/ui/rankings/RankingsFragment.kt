@@ -34,9 +34,7 @@ class RankingsFragment : Fragment(R.layout.fragment_rankings) {
                     is Result.Error -> {
                         UiInterface.showSnackBar(getString(R.string.snack_connection_error))
                     }
-                    is Result.Success -> {
-                        adapter.submitList(it.value)
-                    }
+                    is Result.Success -> adapter.submitList(it.value)
                     is Result.Loading -> Unit
                 }
             }

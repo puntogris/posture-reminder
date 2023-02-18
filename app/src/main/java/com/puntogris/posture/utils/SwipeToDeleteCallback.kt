@@ -91,26 +91,20 @@ abstract class SwipeToDeleteCallback(val context: Context) : ItemTouchHelper.Sim
         if (xPosition > 0) {
             val left = view.left + ICON_MARGIN
             val right = left + iconSize
-
             deleteIcon?.setBounds(left, top, right, bottom)
-            deleteIcon?.draw(canvas)
-
         } else {
             val right = view.right - ICON_MARGIN
             val left = right - iconSize
-
             editIcon?.setBounds(left, top, right, bottom)
-            editIcon?.draw(canvas)
         }
+        editIcon?.draw(canvas)
     }
 
     private fun drawText(canvas: Canvas, view: View, xPosition: Int) {
         val textY = getViewCenter(view) - textBounds.exactCenterY()
-
         if (xPosition > 0) {
             textPaint.getTextBounds(deleteText, 0, deleteText.length, textBounds)
             canvas.drawText(deleteText, view.left + TEXT_MARGIN, textY, textPaint)
-
         } else {
             textPaint.getTextBounds(editText, 0, editText.length, textBounds)
             val textWidth = textPaint.measureText(editText)

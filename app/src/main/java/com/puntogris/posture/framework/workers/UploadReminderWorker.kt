@@ -21,7 +21,6 @@ class UploadReminderWorker @AssistedInject constructor(
     override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
         try {
             val reminderId = inputData.getString(REMINDER_ID_WORKER_DATA)
-
             if (!reminderId.isNullOrBlank()) {
                 reminderRepository.syncReminder(reminderId)
             }

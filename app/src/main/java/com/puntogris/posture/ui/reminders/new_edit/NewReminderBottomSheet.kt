@@ -19,7 +19,6 @@ import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetNewReminderBinding
 import com.puntogris.posture.utils.ReminderUi
 import com.puntogris.posture.utils.Result
-import com.puntogris.posture.utils.ToneItem
 import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
 import com.puntogris.posture.utils.constants.Constants.SOUND_PICKER_KEY

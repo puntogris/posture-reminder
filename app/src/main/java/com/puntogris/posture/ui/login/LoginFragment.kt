@@ -12,9 +12,9 @@ import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentLoginBinding
 import com.puntogris.posture.domain.model.LoginResult
 import com.puntogris.posture.utils.constants.Constants.AUTH_HELP_URL
-import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.launchWebBrowserIntent
 import com.puntogris.posture.utils.extensions.setIntentLauncher
+import com.puntogris.posture.utils.extensions.showSnackBar
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -28,21 +28,21 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupListeners()
+    }
 
+    private fun setupListeners() {
         val loginLauncher = setIntentLauncher {
             lifecycleScope.launch {
                 viewModel.authGoogleUser(it).collectLatest(::handleAuthUserResult)
             }
         }
-
         binding.loginWithGoogleButton.setOnClickListener {
             loginLauncher.launch(viewModel.getGoogleSignInIntent())
         }
-
         binding.continueAnonymouslyButton.setOnClickListener {
             findNavController().navigate(R.id.synAccountFragment)
         }
-
         binding.loginProblemsButton.setOnClickListener {
             launchWebBrowserIntent(AUTH_HELP_URL)
         }
@@ -51,18 +51,16 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private fun handleAuthUserResult(result: LoginResult) {
         when (result) {
             is LoginResult.Error -> {
-                UiInterface.showSnackBar(
-                    getString(R.string.snack_fail_login),
-                    anchorToBottomNav = false
-                )
+                showSnackBar(R.string.snack_fail_login)
                 binding.progressBar.isVisible = false
             }
             LoginResult.InProgress -> {
                 binding.progressBar.isVisible = true
             }
             is LoginResult.Success -> {
-                val action =
-                    NavigationDirections.actionGlobalSynAccountFragment(result.userPrivateData)
+                val action = NavigationDirections.actionGlobalSynAccountFragment(
+                    result.userPrivateData
+                )
                 findNavController().navigate(action)
             }
         }

@@ -11,10 +11,7 @@ import com.airbnb.lottie.LottieDrawable
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentDeleteAccountBinding
 import com.puntogris.posture.utils.SimpleResult
-import com.puntogris.posture.utils.extensions.UiInterface
-import com.puntogris.posture.utils.extensions.gone
-import com.puntogris.posture.utils.extensions.playAnimationOnce
-import com.puntogris.posture.utils.extensions.visible
+import com.puntogris.posture.utils.extensions.*
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -43,7 +40,7 @@ class DeleteAccountFragment : Fragment(R.layout.fragment_delete_account) {
                 showLoadingProgress()
                 deleteAccount()
             } else {
-                UiInterface.showSnackBar(getString(R.string.snack_account_email_not_matching))
+                showSnackBar(R.string.snack_account_email_not_matching)
             }
         }
     }
@@ -71,7 +68,7 @@ class DeleteAccountFragment : Fragment(R.layout.fragment_delete_account) {
             deleteAccountAnimation.playAnimationOnce(R.raw.error)
             emailField.visible()
         }
-        UiInterface.showSnackBar(getString(R.string.snack_connection_error))
+        showSnackBar(R.string.snack_connection_error)
     }
 
     private fun onDeleteSuccess() {

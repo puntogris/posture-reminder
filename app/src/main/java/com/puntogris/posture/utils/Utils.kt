@@ -5,7 +5,8 @@ import com.puntogris.posture.utils.extensions.getHours
 import com.puntogris.posture.utils.extensions.getMinutes
 import com.puntogris.posture.utils.extensions.millisToMinutes
 import com.puntogris.posture.utils.extensions.minutesToMillis
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 
 object Utils {
 
@@ -37,8 +38,9 @@ object Utils {
 
     fun getSavedOptions(savedList: List<Int>?, daysList: Array<String>): MutableList<Option> {
         return daysList.mapIndexed { index, _ ->
-            if (!savedList.isNullOrEmpty() && index in savedList) Option(daysList[index]).select()
-            else Option(daysList[index])
+            Option(daysList[index]).apply {
+                if (!savedList.isNullOrEmpty() && index in savedList) select()
+            }
         }.toMutableList()
     }
 

@@ -11,8 +11,8 @@ import com.puntogris.posture.NavigationDirections
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentInternalLoginBinding
 import com.puntogris.posture.domain.model.LoginResult
-import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.setIntentLauncher
+import com.puntogris.posture.utils.extensions.showSnackBar
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -26,13 +26,15 @@ class InternalLoginFragment : Fragment(R.layout.fragment_internal_login) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupListeners()
+    }
 
+    private fun setupListeners() {
         val loginLauncher = setIntentLauncher {
             lifecycleScope.launch {
                 viewModel.authGoogleUser(it).collectLatest(::handleAuthUserResult)
             }
         }
-
         binding.loginWithGoogleButton.setOnClickListener {
             loginLauncher.launch(viewModel.getGoogleSignInIntent())
         }
@@ -41,10 +43,7 @@ class InternalLoginFragment : Fragment(R.layout.fragment_internal_login) {
     private fun handleAuthUserResult(result: LoginResult) {
         when (result) {
             is LoginResult.Error -> {
-                UiInterface.showSnackBar(
-                    getString(R.string.snack_fail_login),
-                    anchorToBottomNav = false
-                )
+                showSnackBar(R.string.snack_fail_login)
                 binding.progressBar.isVisible = false
             }
             LoginResult.InProgress -> {

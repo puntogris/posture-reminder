@@ -13,10 +13,10 @@ import com.puntogris.posture.domain.model.Exercise
 import com.puntogris.posture.domain.model.UserPublicProfile
 import com.puntogris.posture.ui.rankings.RankingsAdapter
 import com.puntogris.posture.utils.Result
-import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.gone
 import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.extensions.showItem
+import com.puntogris.posture.utils.extensions.showSnackBar
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,26 +29,20 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupObservers()
+        setupViews()
+    }
 
-        setupRankingsRvAdapter()
-        fetchRankingsAndFillAdapter()
-        setupExercisesRvAdapter()
-
+    private fun setupViews() {
+        rankingsAdapter = RankingsAdapter()
+        binding.rankingsRv.adapter = rankingsAdapter
+        binding.exercisesRv.adapter = ExercisesAdapter(::onExerciseClicked)
         binding.globalRankingsButton.setOnClickListener {
             findNavController().navigate(R.id.action_explore_to_rankings)
         }
     }
 
-    private fun setupExercisesRvAdapter() {
-        binding.exercisesRv.adapter = ExercisesAdapter(::onExerciseClicked)
-    }
-
-    private fun setupRankingsRvAdapter() {
-        rankingsAdapter = RankingsAdapter()
-        binding.rankingsRv.adapter = rankingsAdapter
-    }
-
-    private fun fetchRankingsAndFillAdapter() {
+    private fun setupObservers() {
         launchAndRepeatWithViewLifecycle {
             viewModel.rankings.collect {
                 handleRankingsResult(it)
@@ -58,9 +52,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
 
     private fun handleRankingsResult(result: Result<List<UserPublicProfile>>) {
         when (result) {
-            is Result.Error -> {
-                UiInterface.showSnackBar(getString(R.string.snack_connection_error))
-            }
+            is Result.Error -> showSnackBar(R.string.snack_connection_error)
             is Result.Success -> {
                 binding.portalRankingsShimmer.apply {
                     hideShimmer()
