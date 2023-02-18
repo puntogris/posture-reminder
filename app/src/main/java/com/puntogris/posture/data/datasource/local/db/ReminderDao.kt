@@ -1,6 +1,5 @@
 package com.puntogris.posture.data.datasource.local.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -48,10 +47,12 @@ interface ReminderDao {
     suspend fun getAllRemindersIds(): List<String>
 
     @Transaction
-    suspend fun insertIfNotInRoom(firestoreReminders: List<Reminder>) {
+    suspend fun insertIfNotInRoom(newReminders: List<Reminder>) {
         val roomRemindersIds = getAllRemindersIds()
-        firestoreReminders.forEach {
-            if (it.reminderId !in roomRemindersIds) insert(it)
+        newReminders.forEach {
+            if (it.reminderId !in roomRemindersIds) {
+                insert(it)
+            }
         }
     }
 }
