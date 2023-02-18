@@ -13,8 +13,6 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33
-    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.puntogris.posture"
@@ -23,7 +21,7 @@ android {
         versionCode 53
         versionName "2.2.0"
         resConfigs 'en', 'es', 'ru'
-
+        compileSdk 33
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -73,6 +71,7 @@ ext {
     timberVersion = "5.0.1"
     kronosVersion = "0.0.1-alpha11"
     gsonVersion = "2.9.0"
+    tailwindStyles = "1.1"
 }
 
 dependencies {
@@ -173,4 +172,7 @@ dependencies {
 
     //Gson
     implementation "com.google.code.gson:gson:$gsonVersion"
+
+    //Resources guidelines
+    implementation "com.github.puntogris:tailwind-styles-android:$tailwindStyles"
 }
