@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/help">
+        <Preference
+            app:iconSpaceReserved="false"
+            app:summary="@string/read_the_faq"
+            app:title="@string/questions">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/pref_faq_url" />
+        </Preference>
+        <Preference
+            android:key="ticket_preference_key"
+            app:iconSpaceReserved="false"
+            app:summary="@string/create_ticket"
+            app:title="@string/ticker_feedback" />
+    </PreferenceCategory>
+</PreferenceScreen>

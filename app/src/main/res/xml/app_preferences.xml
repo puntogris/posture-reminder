@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/about_us">
+        <Preference
+            android:key="rate_app_preference_key"
+            app:iconSpaceReserved="false"
+            app:summary="@string/rate_the_app"
+            app:title="@string/rate_us"></Preference>
+        <Preference
+            android:key="version_preference_key"
+            app:iconSpaceReserved="false"
+            app:title="@string/version"></Preference>
+        <Preference
+            android:key="credits_preference_key"
+            app:iconSpaceReserved="false"
+            app:title="@string/credits_label" />
+        <Preference
+            android:key="licenses_preference_key"
+            app:iconSpaceReserved="false"
+            app:title="@string/open_source_licenses" />
+        <Preference
+            app:iconSpaceReserved="false"
+            app:title="@string/privacy_policy">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/pref_privacy_policy_url" />
+        </Preference>
+        <Preference
+            app:iconSpaceReserved="false"
+            app:title="@string/terms_and_conditions">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/pref_terms_and_conditions_url" />
+        </Preference>
+    </PreferenceCategory>
+</PreferenceScreen>

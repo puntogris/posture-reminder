@@ -170,4 +170,20 @@
     <fragment
         android:id="@+id/permissionsFragment"
         android:name="com.puntogris.posture.ui.permissions.PermissionsFragment" />
+    <fragment
+        android:id="@+id/accountPreferencesFragment"
+        android:name="com.puntogris.posture.ui.settings.AccountPreferencesFragment"
+        android:label="AccountPreferencesFragment" />
+    <fragment
+        android:id="@+id/helpPreferencesFragment"
+        android:name="com.puntogris.posture.ui.settings.HelpPreferencesFragment"
+        android:label="HelpPreferencesFragment" />
+    <fragment
+        android:id="@+id/contactPreferencesFragment"
+        android:name="com.puntogris.posture.ui.settings.ContactPreferencesFragment"
+        android:label="ContactPreferencesFragment" />
+    <fragment
+        android:id="@+id/appPreferencesFragment"
+        android:name="com.puntogris.posture.ui.settings.AppPreferencesFragment"
+        android:label="AppPreferencesFragment" />
 </navigation>

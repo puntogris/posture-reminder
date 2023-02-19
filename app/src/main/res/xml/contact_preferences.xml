@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        app:iconSpaceReserved="false"
+        app:title="@string/contact">
+        <Preference
+            app:iconSpaceReserved="false"
+            app:summary="@string/got_to_website"
+            app:title="@string/website">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/pref_app_website_url" />
+        </Preference>
+        <Preference
+            app:iconSpaceReserved="false"
+            app:summary="@string/see_the_code"
+            app:title="@string/github">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/pref_github_url" />
+        </Preference>
+    </PreferenceCategory>
+</PreferenceScreen>

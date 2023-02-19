@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        app:title="@string/account_label"
+        app:iconSpaceReserved="false">
+        <Preference
+            android:key="username_preference_key"
+            app:title="@string/name"
+            app:iconSpaceReserved="false"
+            app:summary="@string/human">
+        </Preference>
+        <Preference
+            android:key="theme_preference_key"
+            app:title="@string/theme"
+            app:iconSpaceReserved="false"/>
+        <Preference
+            android:key="battery_preference_key"
+            app:title="@string/battery_optimization_abbreviation"
+            app:iconSpaceReserved="false"/>
+        <Preference
+            android:key="delete_account_preference_key"
+            app:title="@string/action_delete"
+            app:iconSpaceReserved="false"
+            app:summary="@string/delete_account_summary"/>
+        <Preference
+            android:key="log_out_preference_key"
+            app:title="@string/log_out"
+            app:iconSpaceReserved="false"
+            app:summary="@string/log_out_summary"/>
+        <Preference
+            android:key="log_in_preference_key"
+            app:title="@string/log_in"
+            app:iconSpaceReserved="false"
+            app:summary="@string/log_in_summary"/>
+    </PreferenceCategory>
+</PreferenceScreen>
