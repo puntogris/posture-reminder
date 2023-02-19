@@ -151,7 +151,11 @@ class MainActivity : AppCompatActivity(),
             R.id.deleteAccountFragment,
             R.id.settingsFragment,
             R.id.ticketFragment,
-            R.id.permissionsFragment
+            R.id.permissionsFragment,
+            R.id.accountPreferencesFragment,
+            R.id.helpPreferencesFragment,
+            R.id.contactPreferencesFragment,
+            R.id.appPreferencesFragment
         )
     }
 
