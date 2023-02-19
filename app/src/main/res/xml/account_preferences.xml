@@ -2,36 +2,35 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory
-        app:title="@string/account_label"
-        app:iconSpaceReserved="false">
+        android:layout="@layout/preference_custom_category"
+        app:title="@string/account_label">
         <Preference
             android:key="username_preference_key"
-            app:title="@string/name"
             app:iconSpaceReserved="false"
-            app:summary="@string/human">
-        </Preference>
+            app:summary="@string/human"
+            app:title="@string/name" />
         <Preference
             android:key="theme_preference_key"
-            app:title="@string/theme"
-            app:iconSpaceReserved="false"/>
+            app:iconSpaceReserved="false"
+            app:title="@string/theme" />
         <Preference
             android:key="battery_preference_key"
-            app:title="@string/battery_optimization_abbreviation"
-            app:iconSpaceReserved="false"/>
+            app:iconSpaceReserved="false"
+            app:title="@string/battery_optimization_abbreviation" />
         <Preference
             android:key="delete_account_preference_key"
-            app:title="@string/action_delete"
             app:iconSpaceReserved="false"
-            app:summary="@string/delete_account_summary"/>
+            app:summary="@string/delete_account_summary"
+            app:title="@string/action_delete" />
         <Preference
             android:key="log_out_preference_key"
-            app:title="@string/log_out"
             app:iconSpaceReserved="false"
-            app:summary="@string/log_out_summary"/>
+            app:summary="@string/log_out_summary"
+            app:title="@string/log_out" />
         <Preference
             android:key="log_in_preference_key"
-            app:title="@string/log_in"
             app:iconSpaceReserved="false"
-            app:summary="@string/log_in_summary"/>
+            app:summary="@string/log_in_summary"
+            app:title="@string/log_in" />
     </PreferenceCategory>
 </PreferenceScreen>

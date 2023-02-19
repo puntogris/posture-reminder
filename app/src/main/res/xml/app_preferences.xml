@@ -2,17 +2,17 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory
-        app:iconSpaceReserved="false"
+        android:layout="@layout/preference_custom_category"
         app:title="@string/about_us">
         <Preference
             android:key="rate_app_preference_key"
             app:iconSpaceReserved="false"
             app:summary="@string/rate_the_app"
-            app:title="@string/rate_us"></Preference>
+            app:title="@string/rate_us" />
         <Preference
             android:key="version_preference_key"
             app:iconSpaceReserved="false"
-            app:title="@string/version"></Preference>
+            app:title="@string/version" />
         <Preference
             android:key="credits_preference_key"
             app:iconSpaceReserved="false"

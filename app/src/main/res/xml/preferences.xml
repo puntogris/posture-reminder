@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
     <Preference
+        app:icon="@drawable/ic_user"
         app:key="account_preferences_key"
-        app:iconSpaceReserved="false"
-        app:summary="@string/see_the_code"
+        app:summary="Theme and account settings"
         app:title="@string/account_label" />
     <Preference
+        app:icon="@drawable/ic_question"
         app:key="help_preferences_key"
-        app:iconSpaceReserved="false"
-        app:summary="@string/see_the_code"
+        app:summary="F.A.Q and tickets"
         app:title="@string/help" />
     <Preference
+        app:icon="@drawable/ic_paper_plane_right"
         app:key="contact_preferences_key"
-        app:iconSpaceReserved="false"
-        app:summary="@string/see_the_code"
+        app:summary="Contact, website and app's code"
         app:title="@string/contact" />
     <Preference
+        app:icon="@drawable/ic_gear"
         app:key="app_preferences_key"
-        app:iconSpaceReserved="false"
-        app:summary="@string/see_the_code"
+        app:summary="Version, credits and disclosures"
         app:title="@string/about_us" />
 </PreferenceScreen>
