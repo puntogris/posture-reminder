@@ -52,8 +52,11 @@ data class Reminder(
 ) : Parcelable {
 
     fun isAlarmInRange(minutesSinceMidnight: Int): Boolean {
-        return if (startTime > endTime) minutesSinceMidnight !in (endTime..startTime)
-        else minutesSinceMidnight in (startTime..endTime)
+        return if (startTime > endTime) {
+            minutesSinceMidnight !in (endTime..startTime)
+        } else {
+            minutesSinceMidnight in (startTime..endTime)
+        }
     }
 
     fun alarmDaysSummary(daysList: Array<String>) = alarmDays.joinToString(", ") {
@@ -61,8 +64,11 @@ data class Reminder(
     }
 
     fun timeIntervalSummary(): String {
-        return if (timeInterval < 60) "$timeInterval m."
-        else "${timeInterval / 60} h. ${timeInterval % 60} m."
+        return if (timeInterval < 60) {
+            "$timeInterval m."
+        } else {
+            "${timeInterval / 60} h. ${timeInterval % 60} m."
+        }
     }
 
     fun requiredInfoValid(): Boolean {
