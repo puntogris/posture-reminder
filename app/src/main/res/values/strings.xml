@@ -164,6 +164,10 @@
     <string name="privacy_policy">Privacy policy</string>
     <string name="delete_account_summary">Delete account</string>
     <string name="snack_account_deleted_success">Account deleted successfully.</string>
+    <string name="account_pref_summary">Theme, account configurations</string>
+    <string name="help_pref_summary">Frequently asked questions, tickets</string>
+    <string name="contact_pref_summary">Get in touch</string>
+    <string name="app_pref_summary">Version, credits, policies</string>
 
     <!-- Preferences -->
     <string name="pref_faq_url" translatable="false">https://postureapp.puntogris.com/help/</string>

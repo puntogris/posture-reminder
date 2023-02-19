@@ -3,21 +3,21 @@
     <Preference
         app:icon="@drawable/ic_user"
         app:key="account_preferences_key"
-        app:summary="Theme and account settings"
+        app:summary="@string/account_pref_summary"
         app:title="@string/account_label" />
     <Preference
         app:icon="@drawable/ic_question"
         app:key="help_preferences_key"
-        app:summary="F.A.Q and tickets"
+        app:summary="@string/help_pref_summary"
         app:title="@string/help" />
     <Preference
         app:icon="@drawable/ic_paper_plane_right"
         app:key="contact_preferences_key"
-        app:summary="Contact, website and app's code"
+        app:summary="@string/contact_pref_summary"
         app:title="@string/contact" />
     <Preference
         app:icon="@drawable/ic_info"
         app:key="app_preferences_key"
-        app:summary="Version, credits and disclosures"
+        app:summary="@string/app_pref_summary"
         app:title="@string/about_us" />
 </PreferenceScreen>

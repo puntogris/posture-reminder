@@ -164,6 +164,10 @@
     <string name="privacy_policy">Политика конфиденциальности</string>
     <string name="delete_account_summary">Удалить аккаунт</string>
     <string name="snack_account_deleted_success">Аккаунт успешно удален.</string>
+    <string name="account_pref_summary">Тема, настройки аккаунта</string>
+    <string name="help_pref_summary">Часто задаваемые вопросы, билеты</string>
+    <string name="contact_pref_summary">Связаться</string>
+    <string name="app_pref_summary">Версия, кредиты, политика</string>
 
     <!-- Delete account -->
     <string name="snack_account_email_not_matching">E-mail не соответствует указанному в аккаунте</string>

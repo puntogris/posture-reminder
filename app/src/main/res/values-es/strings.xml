@@ -163,6 +163,10 @@
     <string name="privacy_policy">Políticas de privacidad</string>
     <string name="delete_account_summary">Eliminar cuenta</string>
     <string name="snack_account_deleted_success">Cuenta eliminada correctamente.</string>
+    <string name="account_pref_summary">Tema, ajuste de cuenta</string>
+    <string name="help_pref_summary">Preguntas freguentes, tickets</string>
+    <string name="contact_pref_summary">Ponete en contacto</string>
+    <string name="app_pref_summary">Version, creditos, politicas</string>
 
     <!-- Delete account -->
     <string name="snack_account_email_not_matching">El email no coincide con el que esta en tu cuenta.</string>
