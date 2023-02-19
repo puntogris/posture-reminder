@@ -56,9 +56,6 @@ data class Reminder(
         else minutesSinceMidnight in (startTime..endTime)
     }
 
-    fun isAlarmPastMidnightAndInRange(minutesSinceMidnight: Int) =
-        startTime > endTime && isAlarmInRange(minutesSinceMidnight)
-
     fun alarmDaysSummary(daysList: Array<String>) = alarmDays.joinToString(", ") {
         daysList[it].first().toString()
     }
