@@ -51,34 +51,4 @@ class AppPreferencesFragment : PreferenceFragmentCompat() {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        preference(Keys.USERNAME_PREF_KEY) {
-            launchAndRepeatWithViewLifecycle {
-                viewModel.user.collectLatest {
-                    summary = it.username.ifBlank { getString(R.string.human) }
-                }
-            }
-            onClick {
-                if (viewModel.isUserLoggedIn()) {
-                    val action = SettingsFragmentDirections.actionSettingsToDialogName(
-                        viewModel.user.value.username
-                    )
-                    findNavController().navigate(action)
-                } else {
-                    showRequireLoginSnack()
-                }
-            }
-        }
-    }
-
-    private fun showRequireLoginSnack() {
-        Snackbar.make(requireView(), R.string.snack_action_requires_login, Snackbar.LENGTH_LONG)
-            .apply {
-                setAction(R.string.action_login) {
-                    findNavController().navigate(R.id.internalLoginFragment)
-                }
-            }.show()
-    }
 }

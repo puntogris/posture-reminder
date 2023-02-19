@@ -1,18 +1,22 @@
 package com.puntogris.posture.ui.settings
 
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceFragmentCompat
+import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
 import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.constants.Keys
 import com.puntogris.posture.utils.extensions.isIgnoringBatteryOptimizations
+import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.extensions.onClick
 import com.puntogris.posture.utils.extensions.preference
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -77,5 +81,36 @@ class AccountPreferencesFragment: PreferenceFragmentCompat() {
                 findNavController().navigate(R.id.internalLoginFragment)
             }
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        preference(Keys.USERNAME_PREF_KEY) {
+            launchAndRepeatWithViewLifecycle {
+                viewModel.user.collectLatest {
+                    summary = it.username.ifBlank { getString(R.string.human) }
+                }
+            }
+            onClick {
+                if (viewModel.isUserLoggedIn()) {
+                    val action = SettingsFragmentDirections.actionSettingsToDialogName(
+                        viewModel.user.value.username
+                    )
+                    findNavController().navigate(action)
+                } else {
+                    showRequireLoginSnack()
+                }
+            }
+        }
+    }
+
+    private fun showRequireLoginSnack() {
+        Snackbar.make(requireView(), R.string.snack_action_requires_login, Snackbar.LENGTH_LONG)
+            .apply {
+                setAction(R.string.action_login) {
+                    findNavController().navigate(R.id.internalLoginFragment)
+                }
+            }.show()
     }
 }
