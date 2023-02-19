@@ -45,6 +45,9 @@ fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null) {
         else UiInterface.showSnackBar(getString(R.string.snack_general_error))
     }
 }
+fun Fragment.launchWebBrowserIntent(uri: Int, packageName: String? = null) {
+    launchWebBrowserIntent(getString(uri), packageName)
+}
 
 inline val Fragment.UiInterface: UiInterfaceListener
     get() = (requireActivity() as UiInterfaceListener)
