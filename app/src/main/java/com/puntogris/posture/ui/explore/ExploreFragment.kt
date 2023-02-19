@@ -3,9 +3,12 @@ package com.puntogris.posture.ui.explore
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentExploreBinding
@@ -21,7 +24,7 @@ import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ExploreFragment : Fragment(R.layout.fragment_explore) {
+class ExploreFragment : Fragment(R.layout.fragment_explore), MenuProvider {
 
     private val viewModel: PortalViewModel by viewModels()
     private val binding by viewBinding(FragmentExploreBinding::bind)
@@ -31,6 +34,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
         setupViews()
+        requireActivity().addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     private fun setupViews() {
@@ -70,14 +74,10 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         findNavController().navigate(action)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        setHasOptionsMenu(true)
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menu.showItem(R.id.settings)
         menu.showItem(R.id.newReminder)
-        super.onCreateOptionsMenu(menu, inflater)
     }
+
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean = true
 }

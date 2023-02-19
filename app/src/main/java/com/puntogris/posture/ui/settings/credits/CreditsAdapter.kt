@@ -19,7 +19,7 @@ class CreditsAdapter(private val clickListener: (CreditItem) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: CreditViewHolder, position: Int) {
-        holder.bind(credits[position], clickListener, position)
+        holder.bind(credits[position], clickListener)
     }
 
     override fun getItemCount() = credits.size

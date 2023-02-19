@@ -9,7 +9,7 @@ import com.puntogris.posture.utils.CreditItem
 class CreditViewHolder(private val binding: CreditItemVhBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(creditItem: CreditItem, clickListener: (CreditItem) -> Unit, position: Int) {
+    fun bind(creditItem: CreditItem, clickListener: (CreditItem) -> Unit) {
         binding.creditTextView.setText(creditItem.credit)
         binding.root.setOnClickListener { clickListener(creditItem) }
     }
