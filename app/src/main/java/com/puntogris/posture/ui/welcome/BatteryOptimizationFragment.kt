@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentBatteryOptimizationBinding
-import com.puntogris.posture.utils.extensions.gone
 import com.puntogris.posture.utils.extensions.isDarkThemeOn
 import com.puntogris.posture.utils.extensions.isIgnoringBatteryOptimizations
 import com.puntogris.posture.utils.viewBinding
@@ -20,15 +19,21 @@ class BatteryOptimizationFragment : Fragment(R.layout.fragment_battery_optimizat
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupListeners()
+        setBatteryOptimizationsStepsUi()
+    }
 
-        binding.finishOptimizationButton.setOnClickListener {
+    private fun setupListeners() {
+        binding.buttonSkip.setOnClickListener {
             findNavController().navigate(R.id.action_batteryOptimization_to_home)
         }
-        binding.disableOptimizationButton.setOnClickListener {
-            startActivity(Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS))
+        binding.buttonContinue.setOnClickListener {
+            if (requireContext().isIgnoringBatteryOptimizations()) {
+                findNavController().navigate(R.id.action_batteryOptimization_to_home)
+            } else {
+                startActivity(Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS))
+            }
         }
-        checkPowerStatus()
-        setBatteryOptimizationsStepsUi()
     }
 
     private fun setBatteryOptimizationsStepsUi() {
@@ -37,7 +42,6 @@ class BatteryOptimizationFragment : Fragment(R.layout.fragment_battery_optimizat
         } else {
             R.string.battery_optimization_step_one_dark to R.string.battery_optimization_step_two_dark
         }
-
         binding.stepOne.text = htmlToString(stepOne)
         binding.stepTwo.text = htmlToString(stepTwo)
     }
@@ -47,18 +51,10 @@ class BatteryOptimizationFragment : Fragment(R.layout.fragment_battery_optimizat
         HtmlCompat.FROM_HTML_MODE_LEGACY
     )
 
-    private fun checkPowerStatus() {
-        if (requireContext().isIgnoringBatteryOptimizations()) {
-            binding.apply {
-                powerManagerState.setText(R.string.optimization_correct)
-                powerStateImage.setImageResource(R.drawable.ic_baseline_check_circle_24)
-                requireOptimizationGroup.gone()
-            }
-        }
-    }
-
     override fun onResume() {
-        checkPowerStatus()
+        if (requireContext().isIgnoringBatteryOptimizations()) {
+            findNavController().navigate(R.id.action_batteryOptimization_to_home)
+        }
         super.onResume()
     }
 }

@@ -108,7 +108,8 @@ class MainActivity : AppCompatActivity(),
                 R.id.exploreFragment,
                 R.id.loginFragment,
                 R.id.synAccountFragment,
-                R.id.permissionsFragment
+                R.id.permissionsFragment,
+                R.id.batteryOptimizationFragment
             )
         )
     }

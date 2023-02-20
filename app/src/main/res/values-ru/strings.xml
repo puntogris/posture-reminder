@@ -86,7 +86,7 @@
     <string name="optimization_require_action">Требуется разрешение</string>
     <string name="status">Статус:</string>
     <string name="battery_optimization_alert2">* Это не обязательно делать, но отсутствие разрешения может помешать присылать вам уведомления.</string>
-    <string name="battery_optimization_alert1">Пожалуйста, отключите экономию энергии для лучшей работы приложения.\n\nНе волнуйтесь, оно совсем не прожорливое.</string>
+    <string name="battery_optimization_alert1">Пожалуйста, отключите экономию энергии для лучшей работы приложения.</string>
 
     <!-- Reminder -->
     <string name="snack_delete_reminder_success">Напоминание успешно удалено</string>

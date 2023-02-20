@@ -85,7 +85,7 @@
     <string name="optimization_require_action">Requires action</string>
     <string name="status">Status:</string>
     <string name="battery_optimization_alert2">* This is not mandatory, but not all notifications may be executed.</string>
-    <string name="battery_optimization_alert1">For a better functioning of the application we ask you to disable the battery optimization in relation to our application.\n\nDon\'t worry, we will not use a lot of battery.</string>
+    <string name="battery_optimization_alert1">For a better functioning of the application we ask you to disable the battery optimization in relation to our application.</string>
 
     <!-- Reminder -->
     <string name="snack_delete_reminder_success">Reminder deleted successfully</string>

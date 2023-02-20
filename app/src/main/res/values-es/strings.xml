@@ -85,7 +85,7 @@
     <string name="optimization_require_action">Requiere acción</string>
     <string name="status">Estado:</string>
     <string name="battery_optimization_alert2">* Esto no es obligatorio, pero puede que no todas las notificaciones sean ejecutadas.</string>
-    <string name="battery_optimization_alert1">Para un mejor funcionamiento de la aplicacion te pedimos que desactives la optimizacion de bateria en respecto a nuestra aplicacion.\n\nNo te preocupes no gastaremos mucha bateria.</string>
+    <string name="battery_optimization_alert1">Para un mejor funcionamiento de la aplicacion te pedimos que desactives la optimizacion de bateria en respecto a nuestra aplicacion.</string>
 
     <!-- Reminder -->
     <string name="snack_delete_reminder_success">Recordatorio eliminado</string>
