@@ -114,6 +114,8 @@
     <string name="create_reminder_name_summary">Select the name</string>
     <string name="select_another_reminder">Select another</string>
     <string name="items_required_for_reminder_alert">* Items required to create the reminder</string>
+    <string name="reminder_name_selector_subtitle">How are we calling this?</string>
+    <string name="reminder_name_selector_hint">At work</string>
 
     <!-- Reminder pickers -->
     <string name="end_time_title">Ending time</string>

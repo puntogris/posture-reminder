@@ -9,7 +9,7 @@
         android:layout_marginTop="@dimen/spacing_standard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="How are we calling this?"
+        android:text="@string/reminder_name_selector_subtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +27,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:hint="At work"
+            android:hint="@string/reminder_name_selector_hint"
             android:id="@+id/editText_dialog_reminder_name"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>

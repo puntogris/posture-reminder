@@ -115,6 +115,8 @@
     <string name="create_reminder_name_summary">Выберите имя</string>
     <string name="select_another_reminder">Выбрать другое напоминание</string>
     <string name="items_required_for_reminder_alert">* Элементы, необходимые для создания напоминания</string>
+    <string name="reminder_name_selector_subtitle">Как мы это называем?</string>
+    <string name="reminder_name_selector_hint">На работе</string>
 
     <!-- Reminder pickers -->
     <string name="end_time_title">Время окончания</string>
