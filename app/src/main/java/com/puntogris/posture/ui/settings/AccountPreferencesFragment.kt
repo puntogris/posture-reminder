@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class AccountPreferencesFragment: PreferenceFragmentCompat() {
+class AccountPreferencesFragment : PreferenceFragmentCompat() {
 
     private val viewModel: SettingsViewModel by viewModels()
 
@@ -66,6 +66,7 @@ class AccountPreferencesFragment: PreferenceFragmentCompat() {
                                 R.string.snack_general_error
                             )
                         }
+
                         SimpleResult.Success -> {
                             val nav = NavOptions.Builder().setPopUpTo(R.id.navigation, true).build()
                             findNavController().navigate(R.id.loginFragment, null, nav)
@@ -94,9 +95,10 @@ class AccountPreferencesFragment: PreferenceFragmentCompat() {
             }
             onClick {
                 if (viewModel.isUserLoggedIn()) {
-                    val action = SettingsFragmentDirections.actionSettingsToDialogName(
-                        viewModel.user.value.username
-                    )
+                    val action = AccountPreferencesFragmentDirections
+                        .actionAccountPreferencesFragmentToEditUserNameDialog(
+                            viewModel.user.value.username
+                        )
                     findNavController().navigate(action)
                 } else {
                     showRequireLoginSnack()

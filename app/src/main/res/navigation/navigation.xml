@@ -39,11 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.puntogris.posture.ui.settings.SettingsFragment" >
-        <action
-            android:id="@+id/action_settings_to_dialogName"
-            app:destination="@id/editUserNameDialog" />
-    </fragment>
+        android:name="com.puntogris.posture.ui.settings.SettingsFragment" />
     <dialog
         android:id="@+id/editUserNameDialog"
         android:name="com.puntogris.posture.ui.settings.EditUserNameDialog" >
@@ -173,7 +169,11 @@
     <fragment
         android:id="@+id/accountPreferencesFragment"
         android:name="com.puntogris.posture.ui.settings.AccountPreferencesFragment"
-        android:label="AccountPreferencesFragment" />
+        android:label="AccountPreferencesFragment" >
+        <action
+            android:id="@+id/action_accountPreferencesFragment_to_editUserNameDialog"
+            app:destination="@id/editUserNameDialog" />
+    </fragment>
     <fragment
         android:id="@+id/helpPreferencesFragment"
         android:name="com.puntogris.posture.ui.settings.HelpPreferencesFragment"

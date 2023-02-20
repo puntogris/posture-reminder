@@ -113,6 +113,7 @@
     <string name="create_reminder_end_summary">Select the end time</string>
     <string name="create_reminder_name_summary">Select the name</string>
     <string name="select_another_reminder">Select another</string>
+    <string name="items_required_for_reminder_alert">* Items required to create the reminder</string>
 
     <!-- Reminder pickers -->
     <string name="end_time_title">Ending time</string>
