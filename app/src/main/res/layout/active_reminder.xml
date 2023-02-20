@@ -77,7 +77,6 @@
         android:id="@+id/reminderInterval"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
         android:textSize="12sp"
         app:layout_constraintEnd_toStartOf="@+id/reminderStart"
         app:layout_constraintStart_toStartOf="parent"
