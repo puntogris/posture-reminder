@@ -15,6 +15,7 @@ import com.puntogris.posture.utils.extensions.isIgnoringBatteryOptimizations
 import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.extensions.onClick
 import com.puntogris.posture.utils.extensions.preference
+import com.puntogris.posture.utils.extensions.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -61,12 +62,7 @@ class AccountPreferencesFragment : PreferenceFragmentCompat() {
             onClick {
                 lifecycleScope.launch {
                     when (viewModel.logOut()) {
-                        SimpleResult.Failure -> {
-                            (requireParentFragment() as SettingsFragment).showSnackBarAnchored(
-                                R.string.snack_general_error
-                            )
-                        }
-
+                        SimpleResult.Failure -> showSnackBar(R.string.snack_general_error)
                         SimpleResult.Success -> {
                             val nav = NavOptions.Builder().setPopUpTo(R.id.navigation, true).build()
                             findNavController().navigate(R.id.loginFragment, null, nav)

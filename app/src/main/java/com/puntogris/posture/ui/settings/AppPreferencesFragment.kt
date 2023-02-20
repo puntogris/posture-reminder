@@ -13,6 +13,7 @@ import com.puntogris.posture.utils.extensions.launchWebBrowserIntent
 import com.puntogris.posture.utils.extensions.onClick
 import com.puntogris.posture.utils.extensions.preference
 import com.puntogris.posture.utils.extensions.preferenceOnClick
+import com.puntogris.posture.utils.extensions.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,7 +28,7 @@ class AppPreferencesFragment : PreferenceFragmentCompat() {
             summary = BuildConfig.VERSION_NAME + " ( ${BuildConfig.VERSION_CODE} )"
             onClick {
                 viewModel.setPandaAnimationPref(true)
-                (requireParentFragment() as SettingsFragment).showSnackBarAnchored(R.string.snack_panda_unlocked)
+                showSnackBar(R.string.snack_panda_unlocked)
             }
         }
         preferenceOnClick(Keys.CREDITS_PREF_KEY) {

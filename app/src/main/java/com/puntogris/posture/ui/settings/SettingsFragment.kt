@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
-import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentSettingsBinding
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
 import com.puntogris.posture.utils.constants.Constants.EDIT_NAME_KEY
+import com.puntogris.posture.utils.extensions.showSnackBar
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,15 +38,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             } else {
                 R.string.snack_connection_error
             }
-            showSnackBarAnchored(snackMessage)
+            showSnackBar(snackMessage)
         }
-    }
-
-    fun showSnackBarAnchored(message: Int, action: View.OnClickListener? = null) {
-        Snackbar.make(binding.root, getText(message), Snackbar.LENGTH_LONG).apply {
-            if (action != null) {
-                setAction(R.string.action_login, action)
-            }
-        }.show()
     }
 }
