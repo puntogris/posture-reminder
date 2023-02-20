@@ -7,7 +7,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceFragmentCompat
-import com.google.android.material.snackbar.Snackbar
 import com.puntogris.posture.R
 import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.constants.Keys
@@ -97,18 +96,14 @@ class AccountPreferencesFragment : PreferenceFragmentCompat() {
                         )
                     findNavController().navigate(action)
                 } else {
-                    showRequireLoginSnack()
+                    showSnackBar(
+                        message = R.string.snack_action_requires_login,
+                        actionRes = R.string.action_login
+                    ) {
+                        findNavController().navigate(R.id.internalLoginFragment)
+                    }
                 }
             }
         }
-    }
-
-    private fun showRequireLoginSnack() {
-        Snackbar.make(requireView(), R.string.snack_action_requires_login, Snackbar.LENGTH_LONG)
-            .apply {
-                setAction(R.string.action_login) {
-                    findNavController().navigate(R.id.internalLoginFragment)
-                }
-            }.show()
     }
 }
