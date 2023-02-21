@@ -84,7 +84,7 @@
         android:background="@drawable/round_corners_background_4"
         android:backgroundTint="#FFD3D3"
         android:paddingHorizontal="@dimen/spacing_2"
-        android:paddingVertical="@dimen/spacing_0.5"
+        android:paddingVertical="@dimen/spacing_0_5"
         android:text="@string/snack_time_interval_cant_be_zero"
         android:textColor="@color/card1"
         android:visibility="gone"

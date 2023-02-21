@@ -37,13 +37,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 viewModel.authGoogleUser(it).collectLatest(::handleAuthUserResult)
             }
         }
-        binding.loginWithGoogleButton.setOnClickListener {
+        binding.buttonGoogleLogin.setOnClickListener {
             loginLauncher.launch(viewModel.getGoogleSignInIntent())
         }
-        binding.continueAnonymouslyButton.setOnClickListener {
+        binding.buttonContinueAnonymously.setOnClickListener {
             findNavController().navigate(R.id.synAccountFragment)
         }
-        binding.loginProblemsButton.setOnClickListener {
+        binding.buttonLoginProblems.setOnClickListener {
             launchWebBrowserIntent(AUTH_HELP_URL)
         }
     }

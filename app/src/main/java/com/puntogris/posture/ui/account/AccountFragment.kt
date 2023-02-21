@@ -42,7 +42,7 @@ class AccountFragment : Fragment(R.layout.fragment_account), MenuProvider {
     private fun setupViews() {
         binding.barChart.setBarChartLabels(emptyList())
         binding.donutChart.setDonutChartProgress(0)
-        binding.manageRemindersButton.setOnClickListener {
+        binding.buttonManageReminders.setOnClickListener {
             findNavController().navigate(R.id.manageRemindersBottomSheet)
         }
     }
@@ -51,9 +51,9 @@ class AccountFragment : Fragment(R.layout.fragment_account), MenuProvider {
         launchAndRepeatWithViewLifecycle {
             viewModel.user.collectLatest {
                 with(binding) {
-                    experienceForNextLvl.setExpForNextLevel(it.experience)
-                    currentLvl.setDonutLevel(it.experience)
-                    expFromTotalLvl.setExpFromTotalLevel(it.experience)
+                    textViewExperienceForNextLevel.setExpForNextLevel(it.experience)
+                    textViewCurrentLevel.setDonutLevel(it.experience)
+                    textViewExpFromTotalLevel.setExpFromTotalLevel(it.experience)
                     donutChart.setDonutChartProgress(it.experience)
                 }
                 with(binding.headerLayout) {

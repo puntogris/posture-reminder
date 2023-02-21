@@ -12,7 +12,7 @@
         tools:context=".ui.account.AccountFragment">
 
         <TextView
-            android:id="@+id/accountTitle"
+            android:id="@+id/textView_account_tittle"
             style="@style/Theme.Posture.MediumTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,10 +30,10 @@
             android:layout_marginTop="@dimen/spacing_6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/accountTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_account_tittle" />
 
         <View
-            android:id="@+id/divider"
+            android:id="@+id/view_divider"
             style="@style/Theme.Posture.Divider"
             android:layout_width="@dimen/spacing_0"
             android:layout_height="@dimen/spacing_2"
@@ -57,7 +57,7 @@
             app:chart_spacing="@dimen/spacing_5"
             app:layout_constraintEnd_toStartOf="@+id/donutChart"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_log_title" />
 
         <com.db.williamchart.view.DonutChartView
             android:id="@+id/donutChart"
@@ -72,7 +72,7 @@
             app:layout_constraintTop_toTopOf="@id/barChart" />
 
         <TextView
-            android:id="@+id/logTitle"
+            android:id="@+id/textView_log_title"
             style="@style/Theme.Posture.RegularTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,16 +82,16 @@
             app:layout_constraintTop_toBottomOf="@+id/headerLayout" />
 
         <TextView
-            android:id="@+id/expTitle"
+            android:id="@+id/textView_exp_title"
             style="@style/Theme.Posture.RegularTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/account_exp_title"
             app:layout_constraintStart_toStartOf="@+id/donutChart"
-            app:layout_constraintTop_toTopOf="@+id/logTitle" />
+            app:layout_constraintTop_toTopOf="@+id/textView_log_title" />
 
         <TextView
-            android:id="@+id/experience_for_next_lvl"
+            android:id="@+id/textView_experience_for_next_level"
             style="@style/Theme.Posture.TextMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -101,11 +101,11 @@
             android:textSize="@dimen/text_sm"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/expTitle"
-            app:layout_constraintTop_toBottomOf="@+id/expTitle" />
+            app:layout_constraintStart_toStartOf="@+id/textView_exp_title"
+            app:layout_constraintTop_toBottomOf="@+id/textView_exp_title" />
 
         <TextView
-            android:id="@+id/current_lvl"
+            android:id="@+id/textView_current_level"
             style="@style/Theme.Posture.TextMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
             app:layout_constraintTop_toTopOf="@+id/donutChart" />
 
         <TextView
-            android:id="@+id/exp_from_total_lvl"
+            android:id="@+id/textView_exp_from_total_level"
             style="@style/Theme.Posture.TextMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -127,7 +127,7 @@
             app:layout_constraintTop_toBottomOf="@+id/donutChart" />
 
         <TextView
-            android:id="@+id/selectedReminderTitle"
+            android:id="@+id/textView_selected_reminder_title"
             style="@style/Theme.Posture.RegularTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -135,20 +135,20 @@
             android:layout_marginTop="@dimen/spacing_4"
             android:text="@string/reminders_label"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
+            app:layout_constraintTop_toBottomOf="@+id/view_divider" />
 
         <Button
-            android:id="@+id/manage_reminders_button"
+            android:id="@+id/button_manage_reminders"
             style="@style/Theme.Posture.Button"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/spacing_4"
             android:text="@string/see_all_reminders"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/remindersSummary" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_reminders_summary" />
 
         <TextView
-            android:id="@+id/remindersSummary"
+            android:id="@+id/textView_reminders_summary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing_8"
@@ -157,7 +157,7 @@
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/selectedReminderTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/textView_selected_reminder_title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

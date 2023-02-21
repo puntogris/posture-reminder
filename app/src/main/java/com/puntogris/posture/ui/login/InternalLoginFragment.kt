@@ -35,7 +35,7 @@ class InternalLoginFragment : Fragment(R.layout.fragment_internal_login) {
                 viewModel.authGoogleUser(it).collectLatest(::handleAuthUserResult)
             }
         }
-        binding.loginWithGoogleButton.setOnClickListener {
+        binding.buttonGoogleLogin.setOnClickListener {
             loginLauncher.launch(viewModel.getGoogleSignInIntent())
         }
     }

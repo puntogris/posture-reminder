@@ -45,7 +45,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.pandaAnimation.setPadding(0, 0, -100, -110)
+        binding.animationPanda.setPadding(0, 0, -100, -110)
         setupListeners()
         setupObservers()
         setupPagerAndTabLayout()
@@ -55,12 +55,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
     private fun setupObservers() {
         launchAndRepeatWithViewLifecycle {
             viewModel.isAlarmActive.collectLatest {
-                binding.activeReminderLayout.buttonToggleReminderState.setToggleButton(it)
+                binding.layoutActiveReminder.buttonToggleReminderState.setToggleButton(it)
             }
         }
         launchAndRepeatWithViewLifecycle {
             viewModel.isPandaAnimationEnabled.collectLatest {
-                binding.pandaAnimation.isVisible = it
+                binding.animationPanda.isVisible = it
             }
         }
         launchAndRepeatWithViewLifecycle {
@@ -75,19 +75,21 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
     }
 
     private fun setupListeners() {
-        binding.activeReminderLayout.buttonSelectReminder.setOnClickListener {
-            findNavController().navigate(R.id.manageRemindersBottomSheet)
+        with(binding.layoutActiveReminder) {
+            buttonSelectReminder.setOnClickListener {
+                findNavController().navigate(R.id.manageRemindersBottomSheet)
+            }
+            buttonToggleReminderState.setOnClickListener {
+                onToggleAlarmClicked()
+            }
+            imageViewEditReminder.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeToNewReminder(
+                    viewModel.activeReminder.value
+                )
+                findNavController().navigate(action)
+            }
         }
-        binding.activeReminderLayout.buttonToggleReminderState.setOnClickListener {
-            onToggleAlarmClicked()
-        }
-        binding.activeReminderLayout.imageViewEditReminder.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeToNewReminder(
-                viewModel.activeReminder.value
-            )
-            findNavController().navigate(action)
-        }
-        binding.manageRemindersButton.setOnClickListener {
+        binding.buttonManageReminders.setOnClickListener {
             findNavController().navigate(R.id.manageRemindersBottomSheet)
         }
         setFragmentResultListener(PERMISSION_KEY) { _, bundle ->
@@ -101,12 +103,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
     }
 
     private fun onActiveReminderUpdated(reminder: Reminder?) {
-        binding.activeReminderLayout.root.isVisible = reminder != null
-        binding.reminderNotFoundGroup.isVisible = reminder == null
+        binding.layoutActiveReminder.root.isVisible = reminder != null
+        binding.groupReminderNotFound.isVisible = reminder == null
         if (reminder == null) {
             return
         }
-        with(binding.activeReminderLayout) {
+        with(binding.layoutActiveReminder) {
             textViewReminderTitleValue.text = reminder.name
             textViewReminderIntervalValue.text = reminder.timeIntervalSummary()
             textViewReminderStartValue.setMinutesToHourlyTime(reminder.startTime)
@@ -118,13 +120,13 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
 
     private fun setupPagerAndTabLayout() {
         pagerAdapter = DayLogHomeAdapter()
-        binding.usagePager.viewPager.apply {
+        binding.layoutLogsSummary.viewPager.apply {
             adapter = pagerAdapter
             setPageFadeTransformer()
         }
         mediator = TabLayoutMediator(
-            binding.usagePager.tabLayout,
-            binding.usagePager.viewPager
+            binding.layoutLogsSummary.tabLayout,
+            binding.layoutLogsSummary.viewPager
         ) { _, _ -> }
         mediator?.attach()
     }
@@ -170,7 +172,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
     override fun onDestroyView() {
         mediator?.detach()
         mediator = null
-        binding.usagePager.viewPager.adapter = null
+        binding.layoutLogsSummary.viewPager.adapter = null
         super.onDestroyView()
     }
 

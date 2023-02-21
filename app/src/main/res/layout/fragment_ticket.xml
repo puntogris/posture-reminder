@@ -23,7 +23,7 @@
         android:layout_marginTop="@dimen/spacing_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_tickets_title">
+        app:layout_constraintTop_toBottomOf="@+id/textView_ticket_title">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editText_ticket_fragment_message"

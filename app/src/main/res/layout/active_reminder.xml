@@ -52,7 +52,7 @@
 
     <View
         android:id="@+id/view_reminder_color"
-        android:layout_width="@dimen/spacing_1.5"
+        android:layout_width="@dimen/spacing_1_5"
         android:layout_height="@dimen/spacing_12"
         android:layout_marginStart="@dimen/spacing_4"
         android:layout_marginTop="@dimen/spacing_4"

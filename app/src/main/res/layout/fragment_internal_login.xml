@@ -7,7 +7,7 @@
     tools:context="com.puntogris.posture.ui.login.InternalLoginFragment">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/textView_login_title"
         style="@style/Theme.Posture.MediumTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/internalLoginFeaturesTitle"
+        android:id="@+id/textView_login_subtitle"
         android:layout_width="@dimen/spacing_0"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_2"
@@ -27,11 +27,11 @@
         android:textColor="?colorPrimary"
         android:textSize="@dimen/text_sm"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/title"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintStart_toStartOf="@+id/textView_login_title"
+        app:layout_constraintTop_toBottomOf="@+id/textView_login_title" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/loginWithGoogleButton"
+        android:id="@+id/button_google_login"
         style="@style/Theme.Posture.Button"
         android:layout_width="match_parent"
         android:text="@string/action_login_with_google"
@@ -55,35 +55,34 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/spacing_4"
         android:text="@string/internal_login_alert"
-        android:textSize="13sp"
+        android:textSize="@dimen/text_sm"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/loginWithGoogleButton"
+        app:layout_constraintBottom_toTopOf="@+id/button_google_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView_join_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_4"
         android:layout_marginTop="@dimen/spacing_8"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/login_feature_1_title"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/internalLoginFeaturesTitle" />
+        android:textSize="@dimen/text_md"
+        app:layout_constraintStart_toEndOf="@+id/imageView_join_icon"
+        app:layout_constraintTop_toBottomOf="@+id/textView_login_subtitle" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView_join_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_feature_1_content"
-        android:textSize="@dimen/text_sm"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintStart_toStartOf="@+id/textView_join_title"
+        app:layout_constraintTop_toBottomOf="@+id/textView_join_title" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView_rankings_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_4"
@@ -91,20 +90,19 @@
         android:fontFamily="@font/roboto_medium"
         android:text="@string/login_feature_2_title"
         android:textSize="@dimen/text_md"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintStart_toEndOf="@+id/imageView_rankings_icon"
+        app:layout_constraintTop_toBottomOf="@+id/textView_join_subtitle" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textView_rankings_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_feature_2_content"
-        android:textSize="@dimen/text_sm"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintStart_toStartOf="@+id/textView_rankings_title"
+        app:layout_constraintTop_toBottomOf="@+id/textView_rankings_title" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView_backup_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_4"
@@ -112,20 +110,19 @@
         android:fontFamily="@font/roboto_medium"
         android:text="@string/login_feature_3_title"
         android:textSize="@dimen/text_md"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintStart_toEndOf="@+id/imageView_backup_icon"
+        app:layout_constraintTop_toBottomOf="@+id/textView_rankings_subtitle" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textView_backup_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_feature_3_content"
-        android:textSize="@dimen/text_sm"
-        app:layout_constraintStart_toStartOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintStart_toStartOf="@+id/textView_backup_title"
+        app:layout_constraintTop_toBottomOf="@+id/textView_backup_title" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/textView_help_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_4"
@@ -133,56 +130,55 @@
         android:fontFamily="@font/roboto_medium"
         android:text="@string/login_feature_4_title"
         android:textSize="@dimen/text_md"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintStart_toEndOf="@+id/imageView_help_icon"
+        app:layout_constraintTop_toBottomOf="@+id/textView_backup_subtitle" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/textView_help_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_feature_4_content"
-        android:textSize="@dimen/text_sm"
-        app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintStart_toStartOf="@+id/textView_help_title"
+        app:layout_constraintTop_toBottomOf="@+id/textView_help_title" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView_join_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_4"
-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_join_subtitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/textView_join_title"
         app:srcCompat="@drawable/ic_users_three"
         app:tint="?colorControlNormal" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imageView_rankings_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_rankings_subtitle"
+        app:layout_constraintStart_toStartOf="@+id/imageView_join_icon"
+        app:layout_constraintTop_toTopOf="@+id/textView_rankings_title"
         app:srcCompat="@drawable/ic_trend_up"
         app:tint="?colorControlNormal" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imageView_backup_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/textView8"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="@+id/textView6"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_backup_subtitle"
+        app:layout_constraintStart_toStartOf="@+id/imageView_rankings_icon"
+        app:layout_constraintTop_toTopOf="@+id/textView_backup_title"
         app:srcCompat="@drawable/ic_cloud"
         app:tint="?colorControlNormal" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/imageView_help_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/textView10"
-        app:layout_constraintStart_toStartOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="@+id/textView9"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_help_subtitle"
+        app:layout_constraintStart_toStartOf="@+id/imageView_backup_icon"
+        app:layout_constraintTop_toTopOf="@+id/textView_help_title"
         app:srcCompat="@drawable/ic_question"
         app:tint="?colorControlNormal" />
 
