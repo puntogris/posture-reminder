@@ -21,8 +21,6 @@ import com.puntogris.posture.utils.extensions.expForCompleteLevel
 import com.puntogris.posture.utils.extensions.expForNextLevel
 import com.puntogris.posture.utils.extensions.getDayName
 import com.puntogris.posture.utils.extensions.getLevel
-import com.puntogris.posture.utils.extensions.gone
-import com.puntogris.posture.utils.extensions.visible
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 
@@ -99,9 +97,11 @@ fun TextView.setDonutLevel(exp: Int) {
 }
 
 fun TextView.setProfileRankingNumber(position: Int) {
-    if (position in 0..2) gone()
+    if (position in 0..2) {
+        isVisible = false
+    }
     else {
-        visible()
+        isVisible = true
         text = position.inc().toString()
     }
 }

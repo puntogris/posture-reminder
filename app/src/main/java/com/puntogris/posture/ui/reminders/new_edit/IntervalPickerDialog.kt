@@ -2,6 +2,7 @@ package com.puntogris.posture.ui.reminders.new_edit
 
 import android.app.Dialog
 import android.os.Bundle
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.posture.R
@@ -10,7 +11,6 @@ import com.puntogris.posture.utils.extensions.data
 import com.puntogris.posture.utils.extensions.getHours
 import com.puntogris.posture.utils.extensions.getMinutes
 import com.puntogris.posture.utils.extensions.onPositive
-import com.puntogris.posture.utils.extensions.visible
 import com.puntogris.posture.utils.viewBinding
 
 class IntervalPickerDialog(
@@ -40,7 +40,7 @@ class IntervalPickerDialog(
         val minutes = binding.editTextIntervalMinutes.data.toIntOrNull() ?: 0
         val interval = hours * 60 + minutes
         if (interval == 0) {
-            binding.textViewIntervalAlert.visible()
+            binding.textViewIntervalAlert.isVisible = true
         } else {
             result(interval)
             dismiss()

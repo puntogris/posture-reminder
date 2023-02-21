@@ -1,19 +1,10 @@
 package com.puntogris.posture.utils.extensions
 
-import android.view.View
 import android.widget.EditText
 import androidx.annotation.RawRes
 import androidx.viewpager2.widget.ViewPager2
 import com.airbnb.lottie.LottieAnimationView
 import kotlin.math.abs
-
-fun View.gone() {
-    visibility = View.GONE
-}
-
-fun View.visible() {
-    visibility = View.VISIBLE
-}
 
 fun ViewPager2.setPageFadeTransformer() {
     setPageTransformer { page, position ->

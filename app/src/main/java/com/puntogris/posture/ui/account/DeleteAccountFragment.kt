@@ -2,6 +2,7 @@ package com.puntogris.posture.ui.account
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -42,13 +43,13 @@ class DeleteAccountFragment : Fragment(R.layout.fragment_delete_account) {
     }
 
     private fun showLoadingProgress() {
-        with(binding) {
-            deleteAccountAnimation.visible()
-            deleteAccountAnimation.setAnimation(R.raw.loading)
-            deleteAccountAnimation.repeatCount = LottieDrawable.INFINITE
-            deleteAccountAnimation.playAnimation()
-            editTextAccountEmail.gone()
+        binding.deleteAccountAnimation.apply {
+            isVisible = true
+            setAnimation(R.raw.loading)
+            repeatCount = LottieDrawable.INFINITE
+            playAnimation()
         }
+        binding.editTextAccountEmail.isVisible = false
     }
 
     private suspend fun deleteAccount() {
@@ -60,9 +61,9 @@ class DeleteAccountFragment : Fragment(R.layout.fragment_delete_account) {
 
     private fun onDeleteFailure() {
         with(binding) {
-            deleteAccountAnimation.gone()
+            deleteAccountAnimation.isVisible = false
             deleteAccountAnimation.playAnimationOnce(R.raw.error)
-            editTextAccountEmail.visible()
+            editTextAccountEmail.isVisible = true
         }
         showSnackBar(R.string.snack_connection_error)
     }

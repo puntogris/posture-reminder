@@ -3,6 +3,7 @@ package com.puntogris.posture.ui.settings
 import android.app.Dialog
 import android.os.Bundle
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
@@ -16,9 +17,7 @@ import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
 import com.puntogris.posture.utils.constants.Constants.EDIT_NAME_KEY
 import com.puntogris.posture.utils.extensions.data
-import com.puntogris.posture.utils.extensions.gone
 import com.puntogris.posture.utils.extensions.onPositive
-import com.puntogris.posture.utils.extensions.visible
 import com.puntogris.posture.utils.isSuccess
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -68,8 +67,8 @@ class EditUserNameDialog : DialogFragment() {
 
     private fun showLoadingUi() {
         binding.apply {
-            progressBar.visible()
-            editTextUsernameInput.gone()
+            progressBar.isVisible = true
+            editTextUsernameInput.isVisible = false
         }
     }
 }

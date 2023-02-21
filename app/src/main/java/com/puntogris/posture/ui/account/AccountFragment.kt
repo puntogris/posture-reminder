@@ -50,13 +50,17 @@ class AccountFragment : Fragment(R.layout.fragment_account), MenuProvider {
     private fun setupObservers() {
         launchAndRepeatWithViewLifecycle {
             viewModel.user.collectLatest {
-                binding.experienceForNextLvl.setExpForNextLevel(it.experience)
-                binding.currentLvl.setDonutLevel(it.experience)
-                binding.expFromTotalLvl.setExpFromTotalLevel(it.experience)
-                binding.donutChart.setDonutChartProgress(it.experience)
-                binding.headerLayout.accountHeaderUsername.setUsernameOrPlaceHolder(it.username)
-                binding.headerLayout.accountHeaderUserLevel.setAccountLevelTitle(it.experience)
-                binding.headerLayout.accountHeaderUserLevelTag.setAccountBadgeLevel(it.experience)
+                with(binding) {
+                    experienceForNextLvl.setExpForNextLevel(it.experience)
+                    currentLvl.setDonutLevel(it.experience)
+                    expFromTotalLvl.setExpFromTotalLevel(it.experience)
+                    donutChart.setDonutChartProgress(it.experience)
+                }
+                with(binding.headerLayout) {
+                    accountHeaderUsername.setUsernameOrPlaceHolder(it.username)
+                    accountHeaderUserLevel.setAccountLevelTitle(it.experience)
+                    accountHeaderUserLevelTag.setAccountBadgeLevel(it.experience)
+                }
             }
         }
         launchAndRepeatWithViewLifecycle {
