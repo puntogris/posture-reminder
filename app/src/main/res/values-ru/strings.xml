@@ -39,6 +39,7 @@
     <string name="action_delete_account">Удалить аккаунт</string>
     <string name="action_edit">Редактировать</string>
     <string name="action_understood">Понял</string>
+    <string name="action_skip">пропускать</string>
 
     <!-- Login -->
     <string name="help_login_problems">Проблемы со входом?</string>
@@ -313,6 +314,11 @@
     <string name="normal_pattern">Обычный</string>
     <string name="stairs_pattern">Ступенчатый</string>
     <string name="fast_pattern">Быстрый</string>
+
+    <!-- Permissions -->
+    <string name="notification_permission_title">Получить уведомление!</string>
+    <string name="notification_permission_subtitle">Для корректной работы приложения нам потребуется ваше разрешение на отправку уведомлений и составление расписания сигналов тревоги.</string>
+    <string name="notification_permission_alert">Система Android позволяет нам запрашивать разрешения только один раз, вам придется включить их вручную, если вы отклонили их.</string>
 
     <!-- Arrays -->
     <string-array name="ticket_types">

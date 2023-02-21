@@ -38,6 +38,7 @@
     <string name="action_delete_account">Delete account</string>
     <string name="action_edit">Edit</string>
     <string name="action_understood">Understood</string>
+    <string name="action_skip">Skip</string>
 
     <!-- Login -->
     <string name="help_login_problems">Problems with login?</string>
@@ -326,6 +327,11 @@
     <string name="normal_pattern">Normal</string>
     <string name="stairs_pattern">Stairs</string>
     <string name="fast_pattern">Fast</string>
+
+    <!-- Permissions -->
+    <string name="notification_permission_title">Get notified!</string>
+    <string name="notification_permission_subtitle">To run the app correctly we will need your permission to send notifications and schedule alarms.</string>
+    <string name="notification_permission_alert">The Android system only allows us to ask permissions once, you will have to enabled them manually if you declined them.</string>
 
     <!-- Arrays -->
     <string-array name="ticket_types">

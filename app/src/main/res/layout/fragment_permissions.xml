@@ -7,7 +7,7 @@
     tools:context=".ui.permissions.PermissionsFragment">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageView_permission_icon"
         android:layout_width="@dimen/spacing_10"
         android:layout_height="@dimen/spacing_10"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,48 +16,48 @@
         app:srcCompat="@drawable/ic_bell" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/textView_permission_title"
         style="@style/Theme.Posture.MediumTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_4"
-        android:text="Get notified!"
+        android:text="@string/notification_permission_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView_permission_icon" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/textView_permission_subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_6"
         android:layout_marginTop="@dimen/spacing_4"
-        android:text="To run the app correctly we will need your permission to send you notifications and scheduale alarms."
+        android:text="@string/notification_permission_subtitle"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_permission_title" />
 
     <ImageView
         android:layout_width="@dimen/spacing_0"
         android:layout_height="@dimen/spacing_0"
         android:layout_marginHorizontal="@dimen/spacing_8"
         android:layout_marginBottom="@dimen/spacing_4"
-        app:layout_constraintBottom_toTopOf="@+id/textView15"
+        app:layout_constraintBottom_toTopOf="@+id/textView_permission_alert"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/textView_permission_subtitle"
         app:srcCompat="@drawable/ic_girl_swing" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/textView_permission_alert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_6"
         android:layout_marginBottom="@dimen/spacing_8"
         android:paddingHorizontal="@dimen/spacing_2"
         android:paddingVertical="@dimen/spacing_3"
-        android:text="The Android system only allows us to ask permissions once, you will have to enabled them manually if you declined them."
+        android:text="@string/notification_permission_alert"
         android:textAlignment="center"
         android:textSize="@dimen/text_sm"
         app:layout_constraintBottom_toTopOf="@+id/button_skip"
@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_4"
         android:layout_marginBottom="@dimen/spacing_4"
-        android:text="Skip"
+        android:text="@string/action_skip"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/spacing_4"
         android:layout_marginBottom="@dimen/spacing_4"
-        android:text="I'm in"
+        android:text="@string/action_continue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

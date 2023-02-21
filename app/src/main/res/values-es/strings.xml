@@ -38,6 +38,7 @@
     <string name="action_delete_account">Eliminar cuenta</string>
     <string name="action_edit">Editar</string>
     <string name="action_understood">Entendido</string>
+    <string name="action_skip">Omitir</string>
 
     <!-- Login -->
     <string name="help_login_problems">Problemas para ingresar?</string>
@@ -312,6 +313,11 @@
     <string name="normal_pattern">Normal</string>
     <string name="stairs_pattern">Escalera</string>
     <string name="fast_pattern">Rápido</string>
+
+    <!-- Permissions -->
+    <string name="notification_permission_title">Se notificado!</string>
+    <string name="notification_permission_subtitle">Para ejecutar la aplicación correctamente, necesitaremos su permiso para enviar notificaciones y programar alarmas.</string>
+    <string name="notification_permission_alert">El sistema Android solo nos permite pedir permisos una vez, tendrás que habilitarlos manualmente si los rechazaste.</string>
 
     <!-- Arrays -->
     <string-array name="ticket_types">
