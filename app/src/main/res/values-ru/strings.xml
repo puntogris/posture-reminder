@@ -308,11 +308,6 @@
     <string name="image_content_description">Изображение</string>
     <string name="open_action_content_description">Открыть</string>
 
-    <!-- Credits -->
-    <string name="panda_credits">Автор анимации панды - @ucilucil</string>
-    <string name="bottom_nav_icons_credit">Иконки панели навигации - Flaticon</string>
-    <string name="russian_translation_credit">Перевод на русский язык - @mahpell</string>
-
     <!-- Vibration Patterns -->
     <string name="disabled_pattern">Без вибрации</string>
     <string name="normal_pattern">Обычный</string>

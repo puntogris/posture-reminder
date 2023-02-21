@@ -16,7 +16,11 @@
         <Preference
             android:key="credits_preference_key"
             app:iconSpaceReserved="false"
-            app:title="@string/credits_label" />
+            app:title="@string/credits_label">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/pref_credits_url" />
+        </Preference>
         <Preference
             android:key="licenses_preference_key"
             app:iconSpaceReserved="false"

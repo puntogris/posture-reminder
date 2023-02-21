@@ -3,7 +3,6 @@ package com.puntogris.posture.ui.settings
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.puntogris.posture.BuildConfig
@@ -30,9 +29,6 @@ class AppPreferencesFragment : PreferenceFragmentCompat() {
                 viewModel.setPandaAnimationPref(true)
                 showSnackBar(R.string.snack_panda_unlocked)
             }
-        }
-        preferenceOnClick(Keys.CREDITS_PREF_KEY) {
-            findNavController().navigate(R.id.creditsBottomSheet)
         }
         preferenceOnClick(Keys.RATE_APP_PREF_KEY) {
             launchWebBrowserIntent(R.string.pref_play_store_web_url)

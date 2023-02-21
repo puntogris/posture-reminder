@@ -181,6 +181,7 @@
     <string name="pref_play_store_web_url" translatable="false">https://play.google.com/store/apps/details?id=com.puntogris.posture</string>
     <string name="pref_privacy_policy_url" translatable="false">https://postureapp.puntogris.com/information/privacy-policy.html</string>
     <string name="pref_terms_and_conditions_url" translatable="false">https://postureapp.puntogris.com/information/terms-and-conditions.html</string>
+    <string name="pref_credits_url" translatable="false">https://postureapp.puntogris.com/information/credits.html</string>
 
     <!-- Delete account -->
     <string name="snack_account_email_not_matching">The email doesn\'t match the one in your account.</string>
@@ -317,14 +318,6 @@
     <string name="open_picker_content_description">Open alarm</string>
     <string name="image_content_description">Image</string>
     <string name="open_action_content_description">Open</string>
-
-    <!-- Credits -->
-    <string name="panda_credits">Panda animation - @ucilucil</string>
-    <string name="bottom_nav_icons_credit">Bottom menu icons - Flaticon</string>
-    <string name="russian_translation_credit">Russian translation - @mahpell</string>
-    <string name="panda_credits_url" translatable="false">https://lottiefiles.com/ucilucil</string>
-    <string name="bottom_nav_icons_credit_url" translatable="false">https://www.flaticon.com/uicons</string>
-    <string name="russian_translation_credit_url" translatable="false">https://github.com/mahpell</string>
 
     <!-- Vibration Patterns -->
     <string name="disabled_pattern">Disabled</string>

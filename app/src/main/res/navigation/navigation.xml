@@ -138,9 +138,6 @@
             app:destination="@id/exerciseBottomSheet"
             app:popUpTo="@id/homeFragment" />
     </dialog>
-    <dialog
-        android:id="@+id/creditsBottomSheet"
-        android:name="com.puntogris.posture.ui.settings.credits.CreditsBottomSheet" />
     <action
         android:id="@+id/action_global_homeFragment"
         app:destination="@id/homeFragment" />
