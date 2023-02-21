@@ -85,7 +85,8 @@ module.exports = {
         children: [
           '',
           'privacy-policy',
-          'terms-and-conditions'
+          'terms-and-conditions',
+          'credits'
         ]
       }
     ]
