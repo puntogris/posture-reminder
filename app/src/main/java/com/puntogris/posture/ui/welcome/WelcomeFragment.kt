@@ -27,7 +27,7 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
         with(binding) {
             viewPager.adapter = WelcomePagerAdapter(isDarkThemeOn())
             dotsIndicator.setViewPager2(viewPager)
-            welcomeContinueButton.setOnClickListener {
+            buttonContinue.setOnClickListener {
                 lifecycleScope.launch {
                     dataStoreHelper.setShowWelcomePref(false)
                     findNavController().navigate(R.id.action_welcome_to_batteryOptimization)

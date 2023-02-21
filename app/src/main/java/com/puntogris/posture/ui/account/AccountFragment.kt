@@ -57,9 +57,9 @@ class AccountFragment : Fragment(R.layout.fragment_account), MenuProvider {
                     donutChart.setDonutChartProgress(it.experience)
                 }
                 with(binding.headerLayout) {
-                    accountHeaderUsername.setUsernameOrPlaceHolder(it.username)
-                    accountHeaderUserLevel.setAccountLevelTitle(it.experience)
-                    accountHeaderUserLevelTag.setAccountBadgeLevel(it.experience)
+                    textViewHeaderUsername.setUsernameOrPlaceHolder(it.username)
+                    textViewHeaderLevel.setAccountLevelTitle(it.experience)
+                    textViewHeaderLevelTag.setAccountBadgeLevel(it.experience)
                 }
             }
         }

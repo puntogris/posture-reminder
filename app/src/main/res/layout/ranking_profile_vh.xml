@@ -6,18 +6,18 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/rankingMedalImage"
+        android:id="@+id/imageView_ranking_medal_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_4"
         android:contentDescription="@string/medal_content_description"
-        app:layout_constraintBottom_toBottomOf="@+id/rankingUsername"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_ranking_username"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rankingUsername"
+        app:layout_constraintTop_toTopOf="@+id/textView_ranking_username"
         tools:src="@drawable/ic_gold_medal" />
 
     <TextView
-        android:id="@+id/rankingUsername"
+        android:id="@+id/textView_ranking_username"
         android:layout_width="@dimen/spacing_0"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/spacing_4"
@@ -26,26 +26,26 @@
         android:maxLines="1"
         android:textSize="@dimen/text_md"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/rankingUserExp"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/textView_ranking_user_exp"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ranking"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Joaquin" />
 
     <TextView
-        android:id="@+id/rankingUserPosition"
+        android:id="@+id/textView_ranking_user_position"
         style="@style/Theme.Posture.TextMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_6"
         android:minEms="2"
         android:textSize="@dimen/text_md"
-        app:layout_constraintBottom_toBottomOf="@+id/rankingUsername"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_ranking_username"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rankingUsername"
+        app:layout_constraintTop_toTopOf="@+id/textView_ranking_username"
         tools:text="1" />
 
     <TextView
-        android:id="@+id/rankingUserExp"
+        android:id="@+id/textView_ranking_user_exp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/spacing_4"
@@ -55,13 +55,13 @@
         android:paddingHorizontal="@dimen/spacing_3"
         android:paddingVertical="2dp"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/rankingUsername"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_ranking_username"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rankingUsername"
+        app:layout_constraintTop_toTopOf="@+id/textView_ranking_username"
         tools:text="1" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
+        android:id="@+id/guideline_ranking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"

@@ -18,18 +18,18 @@ class ManageReminderViewHolder(private val binding: ManageReminderVhBinding) :
     fun bind(reminder: SelectableReminder, onSelected: (Reminder) -> Unit, isLastItem: Boolean) {
 
         with(binding) {
-            reminderName.text = reminder.reminder.name
-            reminderColor.setReminderColor(reminder.reminder.color)
-            intervalSummary.text = reminder.reminder.timeIntervalSummary()
-            startSummary.setMinutesToHourlyTime(reminder.reminder.startTime)
-            endSummary.setMinutesToHourlyTime(reminder.reminder.endTime)
-            daysSummary.setDaysSummary(reminder.reminder)
-            selectReminder.setOnClickListener { onSelected(reminder.reminder) }
-            selectReminder.isEnabled = !reminder.isSelected
-            selectReminder.setText(
+            textViewReminderNameValue.text = reminder.reminder.name
+            viewReminderColor.setReminderColor(reminder.reminder.color)
+            textViewReminderIntervalValue.text = reminder.reminder.timeIntervalSummary()
+            textViewReminderStartValue.setMinutesToHourlyTime(reminder.reminder.startTime)
+            textViewReminderEndValue.setMinutesToHourlyTime(reminder.reminder.endTime)
+            textViewReminderDaysValue.setDaysSummary(reminder.reminder)
+            buttonSelectReminder.setOnClickListener { onSelected(reminder.reminder) }
+            buttonSelectReminder.isEnabled = !reminder.isSelected
+            buttonSelectReminder.setText(
                 if (reminder.isSelected) R.string.action_selected else R.string.action_select
             )
-            divider.isVisible = !isLastItem
+            viewDivider.isVisible = !isLastItem
         }
     }
 

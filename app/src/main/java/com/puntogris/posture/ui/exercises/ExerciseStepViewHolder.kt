@@ -13,7 +13,7 @@ class ExerciseStepViewHolder(private val binding: ExerciseStepVhBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(step: String) {
-        binding.stepDescription.text = SpannableStringBuilder().apply {
+        binding.textViewStepDescription.text = SpannableStringBuilder().apply {
             append(adapterPosition.inc().toString())
             setSpan(StyleSpan(Typeface.BOLD), 0, length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             append(" - ")

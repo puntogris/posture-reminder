@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/accountHeaderUsername"
+            android:id="@+id/textView_header_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -26,7 +26,7 @@
             tools:text="Joaquin" />
 
         <TextView
-            android:id="@+id/accountHeaderUserLevel"
+            android:id="@+id/textView_header_level"
             style="@style/Theme.Posture.TextBlack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
             tools:text="Nivel 5" />
 
         <TextView
-            android:id="@+id/accountHeaderUserLevelTag"
+            android:id="@+id/textView_header_level_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_4"
