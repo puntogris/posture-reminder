@@ -12,16 +12,16 @@
         style="@style/Theme.Posture.MediumTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_large"
+        android:layout_marginStart="@dimen/spacing_4"
         android:text="@string/top_rankings_label" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_4"
         android:clipToPadding="false"
-        android:paddingBottom="@dimen/spacing_scroll_margin"
+        android:paddingBottom="@dimen/spacing_20"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

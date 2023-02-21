@@ -4,6 +4,6 @@
     style="@style/Theme.Posture.TextMedium"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
+    android:layout_marginStart="2dp"
     android:textColor="?colorOnSurface"
-    android:textSize="17sp" />
+    android:textSize="@dimen/text_lg" />

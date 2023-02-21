@@ -9,14 +9,14 @@
         android:id="@+id/completedExerciseTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_xxlarge"
-        android:layout_marginTop="@dimen/spacing_xxlarge"
-        android:textSize="22sp" />
+        android:layout_marginStart="@dimen/spacing_6"
+        android:layout_marginTop="@dimen/spacing_6"
+        android:textSize="@dimen/text_xl" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/completedExerciseAnimation"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="@dimen/spacing_52"
+        android:layout_height="@dimen/spacing_52"
         android:layout_gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +27,6 @@
         android:id="@+id/completedExerciseMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_large" />
+        android:layout_marginHorizontal="@dimen/spacing_4" />
 
 </LinearLayout>

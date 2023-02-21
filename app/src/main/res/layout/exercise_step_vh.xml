@@ -3,5 +3,5 @@
     android:id="@+id/step_description"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/spacing_large"
-    android:layout_marginVertical="@dimen/spacing_standard" />
+    android:layout_marginHorizontal="@dimen/spacing_4"
+    android:layout_marginVertical="@dimen/spacing_2" />

@@ -3,24 +3,24 @@
     style="@style/Theme.Posture.Shimmer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/spacing_standard"
+    android:layout_marginHorizontal="@dimen/spacing_2"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/spacing_large"
-        android:textSize="16sp" />
+        android:layout_marginVertical="@dimen/spacing_4"
+        android:textSize="@dimen/text_md" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/spacing_large"
-        android:textSize="16sp" />
+        android:layout_marginVertical="@dimen/spacing_4"
+        android:textSize="@dimen/text_md" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/spacing_large"
-        android:textSize="16sp" />
+        android:layout_marginVertical="@dimen/spacing_4"
+        android:textSize="@dimen/text_md" />
 </LinearLayout>

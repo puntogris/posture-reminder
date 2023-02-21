@@ -9,7 +9,7 @@
     <Button
         android:id="@+id/deleteButton"
         style="@style/Theme.Posture.Button"
-        android:layout_width="@dimen/spacing_empty"
+        android:layout_width="@dimen/spacing_0"
         android:text="@string/action_delete_account"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,9 +17,9 @@
 
     <EditText
         android:id="@+id/emailField"
-        android:layout_width="@dimen/spacing_empty"
+        android:layout_width="@dimen/spacing_0"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="60dp"
+        android:layout_marginHorizontal="@dimen/spacing_14"
         android:autofillHints="emailAddress"
         android:hint="@string/account_email"
         android:inputType="textEmailAddress"
@@ -35,7 +35,7 @@
         style="@style/Theme.Posture.MediumTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_4"
         android:text="@string/action_delete_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,10 +43,10 @@
 
     <TextView
         android:id="@+id/deleteAccountAlert"
-        android:layout_width="@dimen/spacing_empty"
+        android:layout_width="@dimen/spacing_0"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_xxlarge"
-        android:layout_marginBottom="52dp"
+        android:layout_marginHorizontal="@dimen/spacing_6"
+        android:layout_marginBottom="@dimen/spacing_12"
         android:text="@string/delete_account_danger_alert"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/deleteButton"
@@ -56,10 +56,10 @@
 
     <TextView
         android:id="@+id/deleteAccountRequirements"
-        android:layout_width="@dimen/spacing_empty"
+        android:layout_width="@dimen/spacing_0"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_xxlarge"
-        android:layout_marginTop="40dp"
+        android:layout_marginHorizontal="@dimen/spacing_6"
+        android:layout_marginTop="@dimen/spacing_10"
         android:text="@string/delete_account_email_required_alert"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,8 +69,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/deleteAccountAnimation"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="@dimen/spacing_52"
+        android:layout_height="@dimen/spacing_52"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/deleteButton"
         app:layout_constraintEnd_toEndOf="parent"

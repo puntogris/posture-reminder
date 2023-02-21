@@ -10,10 +10,10 @@
         android:id="@+id/itemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="20dp"
-        android:layout_marginStart="@dimen/spacing_xxlarge"
+        android:layout_marginVertical="@dimen/spacing_5"
+        android:layout_marginStart="@dimen/spacing_6"
         android:ems="4"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_md"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:textColor="?android:textColorHint"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_md"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/itemName"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,20 +33,20 @@
         android:id="@+id/openButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/spacing_xxlarge"
+        android:layout_marginEnd="@dimen/spacing_6"
         android:contentDescription="@string/open_picker_content_description"
-        app:tint="?colorControlNormal"
         android:src="@drawable/ic_caret_right"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?colorControlNormal" />
 
     <View
         android:id="@+id/divider"
         style="@style/Theme.Posture.SlimDivider"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/spacing_xmicro"
-        android:layout_marginHorizontal="@dimen/spacing_xxlarge"
+        android:layout_height="@dimen/spacing"
+        android:layout_marginHorizontal="@dimen/spacing_6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

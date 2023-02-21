@@ -11,7 +11,7 @@
         style="@style/Theme.Posture.MediumTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_huge"
+        android:layout_marginTop="@dimen/spacing_6"
         android:text="@string/account_sync_in_progress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,8 +19,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/syncAnimation"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="@dimen/spacing_52"
+        android:layout_height="@dimen/spacing_52"
         app:layout_constraintBottom_toTopOf="@+id/syncContinueButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

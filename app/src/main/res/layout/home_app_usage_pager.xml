@@ -6,11 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:backgroundTint="?colorPrimary"
-    app:cardCornerRadius="7dp"
+    app:cardCornerRadius="@dimen/rounded_md"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/layoutTitle"
-    tools:layout_height="140dp">
+    tools:layout_height="@dimen/spacing_36">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -23,10 +23,10 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/spacing_6"
+            android:layout_height="@dimen/spacing_7"
             android:layout_gravity="end|top"
-            android:layout_marginEnd="@dimen/spacing_standard"
+            android:layout_marginEnd="@dimen/spacing_2"
             android:backgroundTint="@android:color/transparent"
             app:tabBackground="@drawable/tab_selector" />
 

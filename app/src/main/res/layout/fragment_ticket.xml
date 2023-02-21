@@ -11,7 +11,7 @@
         style="@style/Theme.Posture.MediumTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_large"
+        android:layout_marginStart="@dimen/spacing_4"
         android:text="@string/ticket_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -19,8 +19,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_large"
-        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginHorizontal="@dimen/spacing_4"
+        android:layout_marginTop="@dimen/spacing_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title">
@@ -28,7 +28,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editText_ticket_fragment_message"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="@dimen/spacing_52"
             android:gravity="top" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -37,8 +37,8 @@
         android:id="@+id/button_ticket_fragment_send"
         style="@style/Theme.Posture.Button"
         android:layout_width="match_parent"
-        android:text="@string/action_send"
         android:enabled="false"
+        android:text="@string/action_send"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -12,7 +12,7 @@
         style="@style/Theme.Posture.MediumTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_xxlarge"
+        android:layout_marginStart="@dimen/spacing_6"
         android:text="@string/create_reminder_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/close_button" />
@@ -21,20 +21,20 @@
         android:id="@+id/close_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_standard"
-        android:layout_marginEnd="@dimen/spacing_standard"
+        android:layout_marginTop="@dimen/spacing_2"
+        android:layout_marginEnd="@dimen/spacing_2"
         android:contentDescription="@string/close_screen_content_description"
         android:foreground="?actionBarItemBackground"
-        android:padding="@dimen/spacing_standard"
-        app:srcCompat="@drawable/ic_exit"
+        android:padding="@dimen/spacing_2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_exit" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/spacing_empty"
-        android:layout_marginBottom="@dimen/spacing_large"
+        android:layout_height="@dimen/spacing_0"
+        android:layout_marginBottom="@dimen/spacing_4"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/newReminderTitle" />
@@ -43,7 +43,7 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/spacing_large"
+        android:layout_marginBottom="@dimen/spacing_4"
         android:text="@string/items_required_for_reminder_alert"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/saveReminderButton"

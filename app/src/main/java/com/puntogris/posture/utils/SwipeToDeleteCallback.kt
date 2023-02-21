@@ -47,7 +47,7 @@ abstract class SwipeToDeleteCallback(val context: Context) : ItemTouchHelper.Sim
         }
     }
 
-    private val iconSize = context.resources.getDimensionPixelSize(R.dimen.spacing_xxlarge)
+    private val iconSize = context.resources.getDimensionPixelSize(R.dimen.spacing_6)
 
     private val background = ColorDrawable()
 

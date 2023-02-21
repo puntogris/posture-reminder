@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="@dimen/spacing_small"
+    android:layout_marginVertical="@dimen/spacing_1.5"
     android:foreground="?selectableItemBackground"
-    android:paddingHorizontal="@dimen/spacing_standard">
+    android:paddingHorizontal="@dimen/spacing_2">
 
     <TextView
         android:id="@+id/exerciseTitleLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_large"
-        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginStart="@dimen/spacing_4"
+        android:layout_marginTop="@dimen/spacing_4"
         android:fontFamily="@font/roboto_medium"
         app:layout_constraintStart_toEndOf="@+id/exerciseColor"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,19 +21,19 @@
         android:id="@+id/exerciseDuration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="13sp"
+        android:textSize="@dimen/text_sm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/exerciseDurationLabel"
         app:layout_constraintTop_toBottomOf="@+id/exerciseDurationLabel" />
 
     <TextView
         android:id="@+id/exerciseSummary"
-        android:layout_width="@dimen/spacing_empty"
+        android:layout_width="@dimen/spacing_0"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_standard"
-        android:layout_marginEnd="@dimen/spacing_large"
-        android:layout_marginBottom="@dimen/spacing_large"
-        android:textSize="13sp"
+        android:layout_marginTop="@dimen/spacing_2"
+        android:layout_marginEnd="@dimen/spacing_4"
+        android:layout_marginBottom="@dimen/spacing_4"
+        android:textSize="@dimen/text_sm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/exerciseDuration"
         app:layout_constraintStart_toStartOf="@+id/exerciseTitleLabel"
@@ -44,9 +44,9 @@
         style="@style/Theme.Posture.TextMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/spacing_large"
+        android:layout_marginEnd="@dimen/spacing_4"
         android:text="@string/duration"
-        android:textSize="12sp"
+        android:textSize="@dimen/text_sm"
         app:layout_constraintBottom_toTopOf="@+id/exerciseDuration"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -54,9 +54,9 @@
 
     <View
         android:id="@+id/exerciseColor"
-        android:layout_width="@dimen/spacing_xxsmall"
-        android:layout_height="50dp"
-        android:layout_marginStart="@dimen/spacing_standard"
+        android:layout_width="@dimen/spacing_1"
+        android:layout_height="@dimen/spacing_12"
+        android:layout_marginStart="@dimen/spacing_2"
         android:background="@drawable/round_corners_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -12,21 +12,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginTop="@dimen/spacing_standard"
-        android:layout_marginEnd="@dimen/spacing_standard"
+        android:layout_marginTop="@dimen/spacing_2"
+        android:layout_marginEnd="@dimen/spacing_2"
         android:contentDescription="@string/close_screen_content_description"
         android:foreground="?actionBarItemBackground"
-        android:padding="@dimen/spacing_standard"
-        app:srcCompat="@drawable/ic_exit"
+        android:padding="@dimen/spacing_2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_exit" />
 
     <TextView
         android:id="@+id/creditsTitle"
         style="@style/Theme.Posture.MediumTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_xxlarge"
+        android:layout_marginStart="@dimen/spacing_6"
         android:text="@string/credits_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

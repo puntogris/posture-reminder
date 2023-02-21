@@ -8,29 +8,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_4"
         android:text="@string/change_name_subtitle"
-        android:textSize="13sp" />
+        android:textSize="@dimen/text_sm" />
 
     <EditText
         android:id="@+id/usernameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="@dimen/spacing_12"
+        android:layout_marginTop="@dimen/spacing_4"
         android:autofillHints="username"
         android:ems="10"
         android:inputType="textCapSentences"
         android:maxLength="20"
-        android:paddingBottom="20dp"
-        android:textSize="14sp" />
+        android:paddingBottom="@dimen/spacing_5"
+        android:textSize="@dimen/text" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/spacing_standard"
+        android:layout_marginVertical="@dimen/spacing_2"
         android:visibility="gone" />
 
 </LinearLayout>
