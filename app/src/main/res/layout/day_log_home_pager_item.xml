@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/dayLabel"
+        android:id="@+id/textView_day_label"
         style="@style/Theme.Posture.TextBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/notificationsLabel"
+        android:id="@+id/textView_notifications_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_2"
@@ -26,12 +26,12 @@
         android:textColor="@color/grey"
         android:textSize="@dimen/text_sm"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/logNotifications"
-        app:layout_constraintTop_toBottomOf="@+id/logNotifications"
+        app:layout_constraintStart_toStartOf="@+id/textView_notification_value"
+        app:layout_constraintTop_toBottomOf="@+id/textView_notification_value"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/experienceLabel"
+        android:id="@+id/textView_experience_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/spacing_6"
@@ -39,12 +39,12 @@
         android:textColor="@color/grey"
         android:textSize="@dimen/text_sm"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/logExperience"
-        app:layout_constraintTop_toTopOf="@+id/exerciseLabel"
+        app:layout_constraintStart_toStartOf="@+id/textView_experience_value"
+        app:layout_constraintTop_toTopOf="@+id/textView_exercise_label"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/exerciseLabel"
+        android:id="@+id/textView_exercise_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/spacing_6"
@@ -52,18 +52,18 @@
         android:textColor="@color/grey"
         android:textSize="@dimen/text_sm"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/logExercises"
-        app:layout_constraintTop_toTopOf="@+id/notificationsLabel" />
+        app:layout_constraintStart_toStartOf="@+id/textView_exercises_value"
+        app:layout_constraintTop_toTopOf="@+id/textView_notifications_label" />
 
     <TextView
-        android:id="@+id/logDay"
+        android:id="@+id/textView_day_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_2"
         android:textColor="@color/grey"
         android:textSize="@dimen/text_md"
-        app:layout_constraintBottom_toBottomOf="@+id/dayLabel"
-        app:layout_constraintStart_toEndOf="@+id/dayLabel" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView_day_label"
+        app:layout_constraintStart_toEndOf="@+id/textView_day_label" />
 
     <View
         android:id="@+id/divider2"
@@ -79,7 +79,7 @@
 
     <View
         android:id="@+id/divider3"
-        android:layout_width="@dimen/spacing_1"
+        android:layout_width="@dimen/spacing"
         android:layout_height="@dimen/spacing_12"
         android:alpha="0.5"
         android:background="@color/grey"
@@ -90,18 +90,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/logNotifications"
+        android:id="@+id/textView_notification_value"
         style="@style/Theme.Posture.TextBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_6"
         android:textColor="@color/white"
         android:textSize="@dimen/text_lg"
-        app:layout_constraintStart_toStartOf="@+id/dayLabel"
-        app:layout_constraintTop_toBottomOf="@+id/dayLabel" />
+        app:layout_constraintStart_toStartOf="@+id/textView_day_label"
+        app:layout_constraintTop_toBottomOf="@+id/textView_day_label" />
 
     <TextView
-        android:id="@+id/logExercises"
+        android:id="@+id/textView_exercises_value"
         style="@style/Theme.Posture.TextBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -109,10 +109,10 @@
         android:textColor="@color/white"
         android:textSize="@dimen/text_lg"
         app:layout_constraintStart_toEndOf="@+id/divider2"
-        app:layout_constraintTop_toTopOf="@+id/logNotifications" />
+        app:layout_constraintTop_toTopOf="@+id/textView_notification_value" />
 
     <TextView
-        android:id="@+id/logExperience"
+        android:id="@+id/textView_experience_value"
         style="@style/Theme.Posture.TextBlack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -120,6 +120,6 @@
         android:textColor="@color/white"
         android:textSize="@dimen/text_lg"
         app:layout_constraintStart_toEndOf="@+id/divider3"
-        app:layout_constraintTop_toTopOf="@+id/logExercises" />
+        app:layout_constraintTop_toTopOf="@+id/textView_exercises_value" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

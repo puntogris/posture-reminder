@@ -51,26 +51,28 @@ class ExerciseCompletedDialog : DialogFragment() {
 
     private fun onExpRewardError() {
         with(binding) {
-            completedExerciseAnimation.playAnimationOnce(R.raw.error)
-            completedExerciseTitle.setText(R.string.an_error_occurred)
-            completedExerciseMessage.setText(R.string.snack_general_error)
+            animationCompletedExercise.playAnimationOnce(R.raw.error)
+            textViewCompletedExerciseTitle.setText(R.string.an_error_occurred)
+            textViewCompletedExerciseContent.setText(R.string.snack_general_error)
         }
     }
 
     private fun onExpRewardLimit() {
         with(binding) {
-            completedExerciseAnimation.setAnimation(R.raw.trophy)
-            completedExerciseTitle.setText(R.string.completed_exercise_title)
-            completedExerciseMessage.setText(R.string.exercise_complete_dialog_exp_limit_message)
+            animationCompletedExercise.setAnimation(R.raw.trophy)
+            textViewCompletedExerciseTitle.setText(R.string.completed_exercise_title)
+            textViewCompletedExerciseContent.setText(R.string.exercise_complete_dialog_exp_limit_message)
         }
     }
 
     private fun onExpRewardSuccess() {
         with(binding) {
-            completedExerciseAnimation.setAnimation(R.raw.congratulations)
-            completedExerciseTitle.setText(R.string.completed_exercise_title)
-            completedExerciseMessage.text =
-                getString(R.string.completed_exercise_message, EXPERIENCE_PER_EXERCISE)
+            animationCompletedExercise.setAnimation(R.raw.congratulations)
+            textViewCompletedExerciseTitle.setText(R.string.completed_exercise_title)
+            textViewCompletedExerciseContent.text = getString(
+                R.string.completed_exercise_message,
+                EXPERIENCE_PER_EXERCISE
+            )
         }
     }
 

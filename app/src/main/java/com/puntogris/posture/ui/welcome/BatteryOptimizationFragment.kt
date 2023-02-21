@@ -42,8 +42,8 @@ class BatteryOptimizationFragment : Fragment(R.layout.fragment_battery_optimizat
         } else {
             R.string.battery_optimization_step_one_dark to R.string.battery_optimization_step_two_dark
         }
-        binding.stepOne.text = htmlToString(stepOne)
-        binding.stepTwo.text = htmlToString(stepTwo)
+        binding.textViewStepOne.text = htmlToString(stepOne)
+        binding.textViewStepTwo.text = htmlToString(stepTwo)
     }
 
     private fun htmlToString(htmlRes: Int) = HtmlCompat.fromHtml(
