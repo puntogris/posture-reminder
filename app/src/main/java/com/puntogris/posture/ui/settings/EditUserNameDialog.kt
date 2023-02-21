@@ -32,7 +32,7 @@ class EditUserNameDialog : DialogFragment() {
     private val args: EditUserNameDialogArgs by navArgs()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        binding.usernameEditText.setText(args.username)
+        binding.editTextUsernameInput.setText(args.username)
 
         return MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.change_name_title)
@@ -46,13 +46,12 @@ class EditUserNameDialog : DialogFragment() {
     }
 
     private fun onPositiveButtonClicked() {
-        binding.usernameEditText.data.let {
-            if (it != args.username) {
-                showLoadingUi()
-                updateUsernameAndHandleResult(it)
-            } else {
-                dismiss()
-            }
+        val name = binding.editTextUsernameInput.data
+        if (name != args.username) {
+            showLoadingUi()
+            updateUsernameAndHandleResult(name)
+        } else {
+            dismiss()
         }
     }
 
@@ -70,7 +69,7 @@ class EditUserNameDialog : DialogFragment() {
     private fun showLoadingUi() {
         binding.apply {
             progressBar.visible()
-            usernameEditText.gone()
+            editTextUsernameInput.gone()
         }
     }
 }

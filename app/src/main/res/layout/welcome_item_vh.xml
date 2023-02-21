@@ -6,12 +6,12 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/welcomeItemImage"
+        android:id="@+id/imageView_welcome_item_illustration"
         android:layout_width="match_parent"
         android:layout_height="@dimen/spacing_0"
         android:layout_marginHorizontal="@dimen/spacing_10"
         android:contentDescription="@string/image_content_description"
-        app:layout_constraintBottom_toTopOf="@+id/welcomeItemTitle"
+        app:layout_constraintBottom_toTopOf="@+id/textView_welcome_item_title"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +20,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/welcomeItemTitle"
+        android:id="@+id/textView_welcome_item_title"
         style="@style/Theme.Posture.RegularTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

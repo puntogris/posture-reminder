@@ -55,7 +55,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
     private fun setupObservers() {
         launchAndRepeatWithViewLifecycle {
             viewModel.isAlarmActive.collectLatest {
-                binding.activeReminderLayout.toggleReminderButton.setToggleButton(it)
+                binding.activeReminderLayout.buttonToggleReminderState.setToggleButton(it)
             }
         }
         launchAndRepeatWithViewLifecycle {
@@ -75,13 +75,13 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
     }
 
     private fun setupListeners() {
-        binding.activeReminderLayout.selectReminderButton.setOnClickListener {
+        binding.activeReminderLayout.buttonSelectReminder.setOnClickListener {
             findNavController().navigate(R.id.manageRemindersBottomSheet)
         }
-        binding.activeReminderLayout.toggleReminderButton.setOnClickListener {
+        binding.activeReminderLayout.buttonToggleReminderState.setOnClickListener {
             onToggleAlarmClicked()
         }
-        binding.activeReminderLayout.editReminderButton.setOnClickListener {
+        binding.activeReminderLayout.imageViewEditReminder.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeToNewReminder(
                 viewModel.activeReminder.value
             )
@@ -107,24 +107,24 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
             return
         }
         with(binding.activeReminderLayout) {
-            reminderTitle.text = reminder.name
-            reminderInterval.text = reminder.timeIntervalSummary()
-            reminderStart.setMinutesToHourlyTime(reminder.startTime)
-            reminderEnd.setMinutesToHourlyTime(reminder.endTime)
-            reminderDays.setDaysSummary(reminder)
-            reminderColor.setBackgroundColorTintView(reminder.color)
+            textViewReminderTitleValue.text = reminder.name
+            textViewReminderIntervalValue.text = reminder.timeIntervalSummary()
+            textViewReminderStartValue.setMinutesToHourlyTime(reminder.startTime)
+            textViewReminderEndValue.setMinutesToHourlyTime(reminder.endTime)
+            textViewReminderDaysValue.setDaysSummary(reminder)
+            viewReminderColor.setBackgroundColorTintView(reminder.color)
         }
     }
 
     private fun setupPagerAndTabLayout() {
         pagerAdapter = DayLogHomeAdapter()
-        binding.usagePager.pager.apply {
+        binding.usagePager.viewPager.apply {
             adapter = pagerAdapter
             setPageFadeTransformer()
         }
         mediator = TabLayoutMediator(
             binding.usagePager.tabLayout,
-            binding.usagePager.pager
+            binding.usagePager.viewPager
         ) { _, _ -> }
         mediator?.attach()
     }
@@ -170,7 +170,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
     override fun onDestroyView() {
         mediator?.detach()
         mediator = null
-        binding.usagePager.pager.adapter = null
+        binding.usagePager.viewPager.adapter = null
         super.onDestroyView()
     }
 

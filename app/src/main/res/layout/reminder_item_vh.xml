@@ -7,7 +7,7 @@
     android:foreground="?selectableItemBackground">
 
     <TextView
-        android:id="@+id/itemName"
+        android:id="@+id/textView_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/spacing_5"
@@ -19,18 +19,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/itemDescription"
+        android:id="@+id/textView_item_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:textColor="?android:textColorHint"
         android:textSize="@dimen/text_md"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/itemName"
+        app:layout_constraintStart_toEndOf="@+id/textView_item_name"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/openButton"
+        android:id="@+id/imageView_open_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/spacing_6"
@@ -42,7 +42,7 @@
         app:tint="?colorControlNormal" />
 
     <View
-        android:id="@+id/divider"
+        android:id="@+id/view_divider"
         style="@style/Theme.Posture.SlimDivider"
         android:layout_width="match_parent"
         android:layout_height="@dimen/spacing"

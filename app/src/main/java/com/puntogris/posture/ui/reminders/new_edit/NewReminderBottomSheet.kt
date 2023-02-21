@@ -56,7 +56,7 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
         binding.closeButton.setOnClickListener {
             dismiss()
         }
-        binding.saveReminderButton.setOnClickListener {
+        binding.buttonSaveReminder.setOnClickListener {
             onSaveReminder()
         }
     }
@@ -69,7 +69,7 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
 
     private fun setupReminderRvAdapter() {
         ReminderItemAdapter(requireContext(), ::onReminderItemClicked).also {
-            binding.recyclerView.adapter = it
+            binding.recyclerViewReminderItems.adapter = it
             subscribeUi(it)
         }
     }
@@ -93,7 +93,7 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
         lifecycleScope.launch {
             when (val result = viewModel.saveReminder()) {
                 is Result.Error -> {
-                    showSnackBar(result.error, anchorView = binding.saveReminderButton)
+                    showSnackBar(result.error, anchorView = binding.buttonSaveReminder)
                 }
                 is Result.Success -> {
                     dismiss()

@@ -45,22 +45,22 @@ class ExerciseBottomSheet : BottomSheetDialogFragment() {
 
     private fun setupViews() {
         with(binding) {
-            exerciseDuration.setExerciseDuration(args.exercise.duration)
-            exerciseImage.setImageResource(args.exercise.image)
-            exerciseName.setText(args.exercise.title)
-            exerciseDescription.setText(args.exercise.summary)
-            progressBar.setProgressBarSmoothMax(args.exercise.duration)
-            recyclerView.adapter = ExerciseStepsAdapter(
+            textViewExerciseDurationValue.setExerciseDuration(args.exercise.duration)
+            imageViewExercisePreview.setImageResource(args.exercise.image)
+            textViewExerciseNameValue.setText(args.exercise.title)
+            textViewExerciseDescriptionValue.setText(args.exercise.summary)
+            progressBarExerciseDuration.setProgressBarSmoothMax(args.exercise.duration)
+            recyclerViewExerciseSteps.adapter = ExerciseStepsAdapter(
                 resources.getStringArray(args.exercise.steps)
             )
         }
     }
 
     private fun setupListeners() {
-        binding.closeButton.setOnClickListener {
+        binding.imageViewCloseScreen.setOnClickListener {
             dismiss()
         }
-        binding.startExerciseButton.setOnClickListener {
+        binding.buttonStartExercise.setOnClickListener {
             startExerciseAndShowInProgressUi()
         }
     }
@@ -68,7 +68,7 @@ class ExerciseBottomSheet : BottomSheetDialogFragment() {
     private fun setupObservers() {
         launchAndRepeatWithViewLifecycle {
             viewModel.exerciseDurationTimer.collectLatest {
-                binding.progressBar.progress = it
+                binding.progressBarExerciseDuration.progress = it
                 if (it == args.exercise.duration * PROGRESS_BAR_SMOOTH_OFFSET) {
                     updateUiAndShowCompletedExerciseDialog()
                 }
@@ -84,7 +84,7 @@ class ExerciseBottomSheet : BottomSheetDialogFragment() {
 
     private fun startExerciseAndShowInProgressUi() {
         viewModel.startExerciseTimer()
-        binding.startExerciseButton.apply {
+        binding.buttonStartExercise.apply {
             isEnabled = false
             setText(R.string.in_progress)
         }
@@ -92,7 +92,7 @@ class ExerciseBottomSheet : BottomSheetDialogFragment() {
 
     private fun updateUiAndShowCompletedExerciseDialog() {
         findNavController().navigate(R.id.exerciseCompletedDialog)
-        binding.startExerciseButton.setText(R.string.finished)
+        binding.buttonStartExercise.setText(R.string.finished)
     }
 
     override fun onDestroyView() {

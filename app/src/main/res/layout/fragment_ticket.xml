@@ -7,7 +7,7 @@
     tools:context=".ui.tickets.TicketFragment">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/textView_ticket_title"
         style="@style/Theme.Posture.MediumTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         android:layout_marginTop="@dimen/spacing_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title">
+        app:layout_constraintTop_toBottomOf="@+id/textView_tickets_title">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editText_ticket_fragment_message"
@@ -34,7 +34,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button_ticket_fragment_send"
+        android:id="@+id/button_send_ticket"
         style="@style/Theme.Posture.Button"
         android:layout_width="match_parent"
         android:enabled="false"
@@ -44,7 +44,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
-        android:id="@+id/progress_ticket_fragment"
+        android:id="@+id/progressBar_ticket"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

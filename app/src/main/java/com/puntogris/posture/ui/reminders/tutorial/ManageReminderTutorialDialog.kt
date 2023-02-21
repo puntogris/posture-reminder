@@ -34,13 +34,13 @@ class ManageReminderTutorialDialog : DialogFragment() {
     }
 
     private fun setupViews() {
-        binding.buttonReminderTutorialUnderstoodButton.setOnClickListener {
+        binding.buttonTutorialUnderstood.setOnClickListener {
             lifecycleScope.launch {
                 dataStoreHelper.setShowTutorial(false)
                 dismiss()
             }
         }
-        binding.swipeAnimation.setAnimation(
+        binding.animationSwipe.setAnimation(
             if (isDarkThemeOn()) R.raw.swipe_light else R.raw.swipe_dark
         )
     }

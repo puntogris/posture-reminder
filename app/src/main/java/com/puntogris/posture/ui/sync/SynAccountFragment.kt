@@ -27,7 +27,7 @@ class SynAccountFragment : Fragment(R.layout.fragment_syn_account) {
         super.onViewCreated(view, savedInstanceState)
         subscribeUi()
 
-        binding.syncContinueButton.setOnClickListener {
+        binding.buttonContinue.setOnClickListener {
             lifecycleScope.launch {
                 findNavController().navigate(
                     if (viewModel.showWelcome()) {
@@ -53,10 +53,10 @@ class SynAccountFragment : Fragment(R.layout.fragment_syn_account) {
 
     private fun onSyncAccountFailure() {
         binding.apply {
-            syncAnimation.playAnimationOnce(R.raw.error)
-            syncTitle.setText(R.string.account_sync_error)
+            animationSync.playAnimationOnce(R.raw.error)
+            textViewSyncTitle.setText(R.string.account_sync_error)
 
-            with(syncContinueButton) {
+            with(buttonContinue) {
                 setText(R.string.action_exit)
                 isEnabled = true
                 setOnClickListener {
@@ -72,9 +72,9 @@ class SynAccountFragment : Fragment(R.layout.fragment_syn_account) {
 
     private fun onSyncAccountSuccess() {
         binding.apply {
-            syncAnimation.playAnimationOnce(R.raw.success)
-            syncTitle.setText(R.string.account_sync_success)
-            syncContinueButton.isEnabled = true
+            animationSync.playAnimationOnce(R.raw.success)
+            textViewSyncTitle.setText(R.string.account_sync_success)
+            buttonContinue.isEnabled = true
         }
     }
 }

@@ -6,15 +6,15 @@
     android:foreground="?selectableItemBackground">
 
     <View
-        android:id="@+id/divider"
+        android:id="@+id/view_divider"
         style="@style/Theme.Posture.Divider"
         android:layout_width="match_parent"
         android:layout_height="@dimen/border"
         android:layout_marginHorizontal="@dimen/spacing_4"
-        app:layout_constraintTop_toBottomOf="@+id/creditTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_credit_name" />
 
     <TextView
-        android:id="@+id/creditTextView"
+        android:id="@+id/textView_credit_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foreground="?selectableItemBackground"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/spacing_4"
         android:contentDescription="@string/open_action_content_description"
-        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintBottom_toTopOf="@+id/view_divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_caret_right"

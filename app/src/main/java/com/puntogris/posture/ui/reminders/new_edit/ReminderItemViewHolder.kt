@@ -15,10 +15,10 @@ class ReminderItemViewHolder(private val binding: ReminderItemVhBinding) :
         clickListener: (ReminderUi) -> Unit,
         isLastItem: Boolean
     ) {
-        binding.itemName.setText(reminderItem.title)
-        binding.itemDescription.text = reminderItem.description
+        binding.textViewItemName.setText(reminderItem.title)
+        binding.textViewItemDescription.text = reminderItem.description
         binding.root.setOnClickListener { clickListener(reminderItem) }
-        binding.divider.isVisible = !isLastItem
+        binding.viewDivider.isVisible = !isLastItem
     }
 
     companion object {

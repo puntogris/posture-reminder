@@ -19,7 +19,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/loginLogoCard"
+                android:id="@+id/cardView_login_logo"
                 android:layout_width="@dimen/spacing_28"
                 android:layout_height="@dimen/spacing_28"
                 android:layout_gravity="center"
@@ -42,7 +42,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
-                android:id="@+id/settingsTitle"
+                android:id="@+id/textView_settings_title"
                 style="@style/Theme.Posture.MediumTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

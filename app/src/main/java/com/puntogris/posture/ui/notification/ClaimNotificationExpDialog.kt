@@ -58,31 +58,31 @@ class ClaimNotificationExpDialog : DialogFragment() {
 
     private fun onExpRewardError() {
         with(binding) {
-            claimExpAnimation.playAnimationOnce(R.raw.error)
-            claimExpTitle.setText(R.string.an_error_occurred)
-            claimExpSummary.setText(R.string.claim_experience_error_summary)
-            claimExpMessage.setText(R.string.snack_general_error)
+            animationClaimExp.playAnimationOnce(R.raw.error)
+            textViewClaimExpTitle.setText(R.string.an_error_occurred)
+            textViewClaimExpSummary.setText(R.string.claim_experience_error_summary)
+            textViewClaimExpContent.setText(R.string.snack_general_error)
         }
     }
 
     private fun onExpRewardLimit() {
         with(binding) {
-            claimExpAnimation.setAnimation(R.raw.trophy)
-            claimExpTitle.setText(R.string.claim_experience_title)
-            claimExpSummary.setText(R.string.claim_experience_exp_limit_summary)
-            claimExpMessage.setText(R.string.claim_experience_exp_limit_message)
+            animationClaimExp.setAnimation(R.raw.trophy)
+            textViewClaimExpTitle.setText(R.string.claim_experience_title)
+            textViewClaimExpSummary.setText(R.string.claim_experience_exp_limit_summary)
+            textViewClaimExpContent.setText(R.string.claim_experience_exp_limit_message)
         }
     }
 
     private fun onExpRewardSuccess() {
         with(binding) {
-            claimExpAnimation.setAnimation(R.raw.congratulations)
-            claimExpTitle.setText(R.string.completed_exercise_title)
-            claimExpSummary.text = getString(
+            animationClaimExp.setAnimation(R.raw.congratulations)
+            textViewClaimExpTitle.setText(R.string.completed_exercise_title)
+            textViewClaimExpSummary.text = getString(
                 R.string.claim_experience_message,
                 EXPERIENCE_PER_NOTIFICATION
             )
-            claimExpMessage.setText(R.string.claim_experience_exercise_message)
+            textViewClaimExpContent.setText(R.string.claim_experience_exercise_message)
         }
     }
 

@@ -7,7 +7,7 @@
     tools:context=".ui.sync.SynAccountFragment">
 
     <TextView
-        android:id="@+id/syncTitle"
+        android:id="@+id/textView_sync_title"
         style="@style/Theme.Posture.MediumTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,18 +18,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/syncAnimation"
+        android:id="@+id/animation_sync"
         android:layout_width="@dimen/spacing_52"
         android:layout_height="@dimen/spacing_52"
-        app:layout_constraintBottom_toTopOf="@+id/syncContinueButton"
+        app:layout_constraintBottom_toTopOf="@+id/button_continue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/syncTitle"
+        app:layout_constraintTop_toBottomOf="@+id/textView_sync_title"
         app:lottie_autoPlay="true"
         app:lottie_rawRes="@raw/loading" />
 
     <Button
-        android:id="@+id/syncContinueButton"
+        android:id="@+id/button_continue"
         style="@style/Theme.Posture.Button"
         android:layout_width="match_parent"
         android:enabled="false"

@@ -22,7 +22,7 @@ class RankingsFragment : Fragment(R.layout.fragment_rankings) {
         super.onViewCreated(view, savedInstanceState)
 
         RankingsAdapter().let {
-            binding.recyclerView.adapter = it
+            binding.recyclerViewRankings.adapter = it
             subscribeUi(it)
         }
     }

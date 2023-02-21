@@ -7,29 +7,29 @@
     android:elevation="@dimen/spacing_0">
 
     <TextView
-        android:id="@+id/reminderTitle"
+        android:id="@+id/textView_reminder_title_value"
         style="@style/Theme.Posture.RegularTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_8"
-        app:layout_constraintBottom_toBottomOf="@+id/reminderColor"
+        app:layout_constraintBottom_toBottomOf="@+id/view_reminder_color"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/reminderColor" />
+        app:layout_constraintTop_toTopOf="@+id/view_reminder_color" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/selectReminderButton"
+        android:id="@+id/button_select_reminder"
         style="@style/Theme.Posture.Button"
         android:layout_width="@dimen/spacing_0"
         android:layout_marginHorizontal="@dimen/spacing_4"
         android:layout_marginTop="@dimen/spacing_6"
         android:text="@string/select_another_reminder"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/toggleReminderButton"
+        app:layout_constraintEnd_toStartOf="@+id/button_toggle_reminder_state"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reminderInterval" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_reminder_interval_value" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/toggleReminderButton"
+        android:id="@+id/button_toggle_reminder_state"
         style="@style/Theme.Posture.Button"
         android:layout_width="@dimen/spacing_36"
         android:layout_marginEnd="@dimen/spacing_4"
@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@+id/editReminderButton"
+        android:id="@+id/imageView_edit_reminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_4"
@@ -51,7 +51,7 @@
         app:srcCompat="@drawable/ic_pencil_fill" />
 
     <View
-        android:id="@+id/reminderColor"
+        android:id="@+id/view_reminder_color"
         android:layout_width="@dimen/spacing_1.5"
         android:layout_height="@dimen/spacing_12"
         android:layout_marginStart="@dimen/spacing_4"
@@ -61,81 +61,81 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/reminderIntervalLabel"
+        android:id="@+id/textView_reminder_interval_label"
         style="@style/Theme.Posture.TextMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_4"
         android:text="@string/interval"
         android:textSize="@dimen/text_sm"
-        app:layout_constraintStart_toStartOf="@+id/reminderInterval"
-        app:layout_constraintTop_toBottomOf="@+id/reminderColor" />
+        app:layout_constraintStart_toStartOf="@+id/textView_reminder_interval_value"
+        app:layout_constraintTop_toBottomOf="@+id/view_reminder_color" />
 
     <TextView
-        android:id="@+id/reminderInterval"
+        android:id="@+id/textView_reminder_interval_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_sm"
-        app:layout_constraintEnd_toStartOf="@+id/reminderStart"
+        app:layout_constraintEnd_toStartOf="@+id/textView_reminder_start_value"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reminderIntervalLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_reminder_interval_label" />
 
     <TextView
-        android:id="@+id/reminderStartLabel"
+        android:id="@+id/textView_reminder_start_label"
         style="@style/Theme.Posture.TextMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/start_time"
         android:textSize="@dimen/text_sm"
-        app:layout_constraintStart_toStartOf="@+id/reminderStart"
-        app:layout_constraintTop_toTopOf="@+id/reminderIntervalLabel" />
+        app:layout_constraintStart_toStartOf="@+id/textView_reminder_start_value"
+        app:layout_constraintTop_toTopOf="@+id/textView_reminder_interval_label" />
 
     <TextView
-        android:id="@+id/reminderStart"
+        android:id="@+id/textView_reminder_start_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_sm"
-        app:layout_constraintEnd_toStartOf="@+id/reminderEnd"
-        app:layout_constraintStart_toEndOf="@+id/reminderInterval"
-        app:layout_constraintTop_toBottomOf="@+id/reminderStartLabel" />
+        app:layout_constraintEnd_toStartOf="@+id/textView_reminder_end_value"
+        app:layout_constraintStart_toEndOf="@+id/textView_reminder_interval_value"
+        app:layout_constraintTop_toBottomOf="@+id/textView_reminder_start_label" />
 
     <TextView
-        android:id="@+id/reminderEndLabel"
+        android:id="@+id/textView_reminder_end_label"
         style="@style/Theme.Posture.TextMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/end_time"
         android:textSize="@dimen/text_sm"
-        app:layout_constraintStart_toStartOf="@+id/reminderEnd"
-        app:layout_constraintTop_toTopOf="@+id/reminderStartLabel" />
+        app:layout_constraintStart_toStartOf="@+id/textView_reminder_end_value"
+        app:layout_constraintTop_toTopOf="@+id/textView_reminder_start_label" />
 
     <TextView
-        android:id="@+id/reminderEnd"
+        android:id="@+id/textView_reminder_end_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_sm"
-        app:layout_constraintEnd_toStartOf="@+id/reminderDays"
-        app:layout_constraintStart_toEndOf="@+id/reminderStart"
-        app:layout_constraintTop_toBottomOf="@+id/reminderEndLabel" />
+        app:layout_constraintEnd_toStartOf="@+id/textView_reminder_days_value"
+        app:layout_constraintStart_toEndOf="@+id/textView_reminder_start_value"
+        app:layout_constraintTop_toBottomOf="@+id/textView_reminder_end_label" />
 
     <TextView
-        android:id="@+id/reminderDaysLabel"
+        android:id="@+id/textView_reminder_days_label"
         style="@style/Theme.Posture.TextMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/days"
         android:textSize="@dimen/text_sm"
-        app:layout_constraintStart_toStartOf="@+id/reminderDays"
-        app:layout_constraintTop_toTopOf="@+id/reminderEndLabel" />
+        app:layout_constraintStart_toStartOf="@+id/textView_reminder_days_value"
+        app:layout_constraintTop_toTopOf="@+id/textView_reminder_end_label" />
 
     <TextView
-        android:id="@+id/reminderDays"
+        android:id="@+id/textView_reminder_days_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/spacing_4"
         android:textSize="@dimen/text_sm"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/reminderEnd"
-        app:layout_constraintTop_toBottomOf="@+id/reminderDaysLabel" />
+        app:layout_constraintStart_toEndOf="@+id/textView_reminder_end_value"
+        app:layout_constraintTop_toBottomOf="@+id/textView_reminder_days_label" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

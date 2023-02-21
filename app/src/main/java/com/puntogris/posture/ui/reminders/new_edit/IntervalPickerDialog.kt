@@ -22,8 +22,8 @@ class IntervalPickerDialog(
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         if (interval != 0) {
-            binding.intervalHours.setText(interval.getHours().toString())
-            binding.intervalMinutes.setText(interval.getMinutes().toString())
+            binding.editTextIntervalHours.setText(interval.getHours().toString())
+            binding.editTextIntervalMinutes.setText(interval.getMinutes().toString())
         }
         return MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.time_interval_title)
@@ -36,11 +36,11 @@ class IntervalPickerDialog(
     }
 
     private fun onPositiveButtonClicked() {
-        val hours = binding.intervalHours.data.toIntOrNull() ?: 0
-        val minutes = binding.intervalMinutes.data.toIntOrNull() ?: 0
+        val hours = binding.editTextIntervalHours.data.toIntOrNull() ?: 0
+        val minutes = binding.editTextIntervalMinutes.data.toIntOrNull() ?: 0
         val interval = hours * 60 + minutes
         if (interval == 0) {
-            binding.intervalAlert.visible()
+            binding.textViewIntervalAlert.visible()
         } else {
             result(interval)
             dismiss()

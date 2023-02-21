@@ -24,19 +24,15 @@ class DeleteAccountFragment : Fragment(R.layout.fragment_delete_account) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.deleteButton.setOnClickListener {
+        binding.buttonDeleteAccount.setOnClickListener {
             onDeleteAccountClicked()
         }
     }
 
     private fun onDeleteAccountClicked() {
+        hideKeyBoard()
         lifecycleScope.launch {
-            val user = viewModel.getCurrentUser()
-            if (
-                user != null &&
-                user.email.isNotBlank() &&
-                user.email == binding.emailField.text.toString()
-            ) {
+            if (viewModel.getCurrentUserEmail() == binding.editTextAccountEmail.text.toString()) {
                 showLoadingProgress()
                 deleteAccount()
             } else {
@@ -51,7 +47,7 @@ class DeleteAccountFragment : Fragment(R.layout.fragment_delete_account) {
             deleteAccountAnimation.setAnimation(R.raw.loading)
             deleteAccountAnimation.repeatCount = LottieDrawable.INFINITE
             deleteAccountAnimation.playAnimation()
-            emailField.gone()
+            editTextAccountEmail.gone()
         }
     }
 
@@ -66,7 +62,7 @@ class DeleteAccountFragment : Fragment(R.layout.fragment_delete_account) {
         with(binding) {
             deleteAccountAnimation.gone()
             deleteAccountAnimation.playAnimationOnce(R.raw.error)
-            emailField.visible()
+            editTextAccountEmail.visible()
         }
         showSnackBar(R.string.snack_connection_error)
     }

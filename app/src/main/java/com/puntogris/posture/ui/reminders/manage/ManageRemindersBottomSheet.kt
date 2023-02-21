@@ -50,10 +50,10 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun setupListeners() {
-        binding.closeButton.setOnClickListener {
+        binding.imageViewCloseScreen.setOnClickListener {
             dismiss()
         }
-        binding.addReminderButton.setOnClickListener {
+        binding.buttonAddReminder.setOnClickListener {
             findNavController().navigate(R.id.action_manageReminders_to_newReminder)
         }
     }
@@ -72,7 +72,7 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
         launchAndRepeatWithViewLifecycle {
             viewModel.reminders.collectLatest {
                 adapter.submitList(it)
-                binding.recyclerView.run {
+                binding.recyclerViewReminders.run {
                     post {
                         smoothScrollToPosition(0)
                     }
@@ -88,8 +88,8 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
             editListener = ::onEditReminder,
             deleteListener = ::onDeleteReminder
         )
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.setHasFixedSize(true)
+        binding.recyclerViewReminders.adapter = adapter
+        binding.recyclerViewReminders.setHasFixedSize(true)
         subscribeUi(adapter)
     }
 
@@ -113,7 +113,7 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
             viewModel.deleteReminder(reminder)
             showSnackBar(
                 message = R.string.snack_delete_reminder_success,
-                anchorView = binding.addReminderButton,
+                anchorView = binding.buttonAddReminder,
             ) {
                 viewModel.insertReminder(reminder)
             }

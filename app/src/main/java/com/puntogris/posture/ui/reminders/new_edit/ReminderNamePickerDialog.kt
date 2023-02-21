@@ -30,7 +30,7 @@ class ReminderNamePickerDialog(
     }
 
     private fun onPositiveButtonClicked() {
-        result(binding.editTextDialogReminderName.data)
+        result(binding.editTextReminderNameInput.data)
         dismiss()
     }
 }

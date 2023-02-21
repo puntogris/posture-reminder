@@ -34,28 +34,28 @@ class TicketFragment : Fragment(R.layout.fragment_ticket) {
 
     private fun initViews() {
         with(binding) {
-            buttonTicketFragmentSend.setOnClickListener {
+            buttonSendTicket.setOnClickListener {
                 hideKeyBoard()
                 viewModel.sendTicket(editTextTicketFragmentMessage.data)
                     .onEach(::handleTicketResult)
                     .launchIn(lifecycleScope)
             }
             editTextTicketFragmentMessage.doAfterTextChanged {
-                buttonTicketFragmentSend.isEnabled = !it.isNullOrEmpty()
+                buttonSendTicket.isEnabled = !it.isNullOrEmpty()
             }
         }
     }
 
     private fun handleTicketResult(result: Result<Unit>) {
         when (result) {
-            is Result.Error -> showSnackBar(result.error, binding.buttonTicketFragmentSend)
+            is Result.Error -> showSnackBar(result.error, binding.buttonSendTicket)
             is Result.Success -> {
                 showSnackBar(R.string.ticket_sent_success)
                 findNavController().navigateUp()
             }
             is Result.Loading -> Unit
         }
-        binding.buttonTicketFragmentSend.isEnabled = result !is Result.Loading
-        binding.progressTicketFragment.isVisible = result is Result.Loading
+        binding.buttonSendTicket.isEnabled = result !is Result.Loading
+        binding.progressBarTicket.isVisible = result is Result.Loading
     }
 }

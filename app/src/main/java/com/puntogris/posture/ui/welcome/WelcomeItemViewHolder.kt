@@ -10,8 +10,8 @@ class WelcomeItemViewHolder(private val binding: WelcomeItemVhBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(welcomeItem: WelcomeItem) {
-        binding.welcomeItemImage.setImageResource(welcomeItem.image)
-        binding.welcomeItemTitle.setText(welcomeItem.tittle)
+        binding.imageViewWelcomeItemIllustration.setImageResource(welcomeItem.image)
+        binding.textViewWelcomeItemTitle.setText(welcomeItem.tittle)
     }
 
     companion object {

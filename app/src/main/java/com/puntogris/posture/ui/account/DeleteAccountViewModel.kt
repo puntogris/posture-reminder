@@ -19,5 +19,5 @@ class DeleteAccountViewModel @Inject constructor(
         }
     }
 
-    suspend fun getCurrentUser() = userRepository.getUser()
+    suspend fun getCurrentUserEmail() = userRepository.getUser()?.email
 }

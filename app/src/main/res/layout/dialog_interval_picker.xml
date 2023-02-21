@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/reminder_interval_message"
+        android:id="@+id/textView_interval_content"
         android:layout_width="@dimen/spacing_0"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_8"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/reminder_interval_hours"
+        android:id="@+id/inputLayout_interval_hours"
         android:layout_width="@dimen/spacing_24"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_4"
@@ -26,14 +26,14 @@
         app:expandedHintEnabled="false"
         app:hintAnimationEnabled="false"
         app:hintEnabled="true"
-        app:layout_constraintEnd_toStartOf="@+id/separator"
+        app:layout_constraintEnd_toStartOf="@+id/textView_interval_separator"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/interval_alert">
+        app:layout_constraintTop_toBottomOf="@+id/textView_interval_alert">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/interval_hours"
+            android:id="@+id/editText_interval_hours"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="0"
@@ -41,7 +41,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/reminder_interval_minutes"
+        android:id="@+id/inputLayout_interval_minutes"
         android:layout_width="@dimen/spacing_24"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_2"
@@ -49,14 +49,14 @@
         app:expandedHintEnabled="false"
         app:hintAnimationEnabled="false"
         app:hintEnabled="true"
-        app:layout_constraintBottom_toBottomOf="@+id/reminder_interval_hours"
+        app:layout_constraintBottom_toBottomOf="@+id/inputLayout_interval_hours"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/separator"
-        app:layout_constraintTop_toTopOf="@+id/reminder_interval_hours">
+        app:layout_constraintStart_toEndOf="@+id/textView_interval_separator"
+        app:layout_constraintTop_toTopOf="@+id/inputLayout_interval_hours">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/interval_minutes"
+            android:id="@+id/editText_interval_minutes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="15"
@@ -65,31 +65,31 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/separator"
+        android:id="@+id/textView_interval_separator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=":"
         android:textSize="@dimen/text_2xl"
-        app:layout_constraintBottom_toBottomOf="@+id/reminder_interval_hours"
-        app:layout_constraintEnd_toStartOf="@+id/reminder_interval_minutes"
+        app:layout_constraintBottom_toBottomOf="@+id/inputLayout_interval_hours"
+        app:layout_constraintEnd_toStartOf="@+id/inputLayout_interval_minutes"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/reminder_interval_hours"
-        app:layout_constraintTop_toTopOf="@+id/reminder_interval_hours" />
+        app:layout_constraintStart_toEndOf="@+id/inputLayout_interval_hours"
+        app:layout_constraintTop_toTopOf="@+id/inputLayout_interval_hours" />
 
     <TextView
-        android:id="@+id/interval_alert"
+        android:id="@+id/textView_interval_alert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_2"
         android:background="@drawable/round_corners_background_4"
         android:backgroundTint="#FFD3D3"
         android:paddingHorizontal="@dimen/spacing_2"
-        android:paddingVertical="2dp"
+        android:paddingVertical="@dimen/spacing_0.5"
         android:text="@string/snack_time_interval_cant_be_zero"
         android:textColor="@color/card1"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reminder_interval_message" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_interval_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

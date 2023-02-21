@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_tutorial_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -13,25 +13,25 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/swipe_animation"
+        android:id="@+id/animation_swipe"
         android:layout_width="@dimen/spacing_52"
         android:layout_height="@dimen/spacing_52"
         android:layout_gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView_tutorial_title"
         app:lottie_autoPlay="true"
         app:lottie_loop="true" />
 
     <Button
-        android:id="@+id/button_reminder_tutorial_understood_button"
+        android:id="@+id/button_tutorial_understood"
         style="@style/Theme.Posture.Button"
         android:layout_width="match_parent"
         android:layout_margin="@dimen/spacing_4"
-        android:text="Entendido"
+        android:text="@string/action_understood"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/swipe_animation" />
+        app:layout_constraintTop_toBottomOf="@+id/animation_swipe" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

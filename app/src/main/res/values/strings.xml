@@ -37,6 +37,7 @@
     <string name="action_on">Turn on</string>
     <string name="action_delete_account">Delete account</string>
     <string name="action_edit">Edit</string>
+    <string name="action_understood">Understood</string>
 
     <!-- Login -->
     <string name="help_login_problems">Problems with login?</string>

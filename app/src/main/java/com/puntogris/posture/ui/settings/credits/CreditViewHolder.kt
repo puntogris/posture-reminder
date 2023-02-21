@@ -10,7 +10,7 @@ class CreditViewHolder(private val binding: CreditItemVhBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(creditItem: CreditItem, clickListener: (CreditItem) -> Unit) {
-        binding.creditTextView.setText(creditItem.credit)
+        binding.textViewCreditName.setText(creditItem.credit)
         binding.root.setOnClickListener { clickListener(creditItem) }
     }
 

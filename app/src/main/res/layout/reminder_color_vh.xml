@@ -5,7 +5,7 @@
     android:gravity="center">
 
     <ImageView
-        android:id="@+id/reminderColorImage"
+        android:id="@+id/imageView_reminder_color"
         android:layout_width="@dimen/spacing_24"
         android:layout_height="@dimen/spacing_24"
         android:layout_marginVertical="@dimen/spacing_6"
