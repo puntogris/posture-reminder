@@ -10,10 +10,10 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="@dimen/spacing_0"
-        android:layout_above="@id/progressBar"
+        android:layout_above="@id/progressBar_exercise_duration"
         android:layout_marginBottom="@dimen/spacing_2"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar_exercise_duration"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout

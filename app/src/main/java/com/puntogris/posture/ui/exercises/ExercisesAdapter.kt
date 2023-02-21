@@ -1,4 +1,4 @@
-package com.puntogris.posture.ui.explore
+package com.puntogris.posture.ui.exercises
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

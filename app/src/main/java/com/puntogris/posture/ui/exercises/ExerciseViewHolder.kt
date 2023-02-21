@@ -1,4 +1,4 @@
-package com.puntogris.posture.ui.explore
+package com.puntogris.posture.ui.exercises
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

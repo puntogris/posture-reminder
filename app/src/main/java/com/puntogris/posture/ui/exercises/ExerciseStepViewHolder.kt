@@ -1,4 +1,4 @@
-package com.puntogris.posture.ui.exercise
+package com.puntogris.posture.ui.exercises
 
 import android.graphics.Typeface
 import android.text.Spannable

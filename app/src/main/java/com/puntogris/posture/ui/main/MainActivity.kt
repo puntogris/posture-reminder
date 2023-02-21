@@ -105,11 +105,12 @@ class MainActivity : AppCompatActivity(),
                 R.id.accountFragment,
                 R.id.newReminderBottomSheet,
                 R.id.welcomeFragment,
-                R.id.exploreFragment,
+                R.id.exercisesFragment,
                 R.id.loginFragment,
                 R.id.synAccountFragment,
                 R.id.permissionsFragment,
-                R.id.batteryOptimizationFragment
+                R.id.batteryOptimizationFragment,
+                R.id.rankingsFragment
             )
         )
     }

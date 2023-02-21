@@ -222,7 +222,7 @@
     <string name="name">Name</string>
     <string name="disabled">Disabled</string>
     <string name="experience">Experience</string>
-    <string name="exercises">Exercise</string>
+    <string name="exercises">Exercises</string>
     <string name="snack_connection_error">An error occurred. Check your connection and try again.</string>
     <string name="snack_general_error">An error occurred. Please try again.</string>
     <string name="see_global_rankings">See global rankings</string>

@@ -7,9 +7,14 @@
         android:title="@string/home_label" />
 
     <item
-        android:id="@+id/exploreFragment"
+        android:id="@+id/exercisesFragment"
+        android:icon="@drawable/ic_heartbeat"
+        android:title="@string/exercises" />
+
+    <item
+        android:id="@+id/rankingsFragment"
         android:icon="@drawable/ic_planet"
-        android:title="@string/explore_label" />
+        android:title="@string/rankings_label" />
 
     <item
         android:id="@+id/accountFragment"
