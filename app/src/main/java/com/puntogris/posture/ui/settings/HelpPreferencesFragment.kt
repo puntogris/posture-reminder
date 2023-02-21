@@ -21,7 +21,6 @@ class HelpPreferencesFragment : PreferenceFragmentCompat() {
         preferenceOnClick(Keys.TICKET_PREF_KEY) {
             if (viewModel.isUserLoggedIn()) {
                 findNavController().navigate(R.id.ticketFragment)
-
             } else {
                 showSnackBar(
                     message = R.string.snack_action_requires_login,

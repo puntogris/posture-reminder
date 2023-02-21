@@ -41,8 +41,11 @@ class AccountPreferencesFragment : PreferenceFragmentCompat() {
 
         preference(Keys.BATTERY_PREF_KEY) {
             setSummary(
-                if (requireContext().isIgnoringBatteryOptimizations()) R.string.optimization_correct
-                else R.string.optimization_require_action
+                if (requireContext().isIgnoringBatteryOptimizations()) {
+                    R.string.optimization_correct
+                } else {
+                    R.string.optimization_require_action
+                }
             )
             onClick {
                 findNavController().navigate(R.id.batteryOptimizationFragment)

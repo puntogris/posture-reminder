@@ -24,7 +24,11 @@ class AppPreferencesFragment : PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.app_preferences, rootKey)
 
         preference(Keys.VERSION_PREF_KEY) {
-            summary = BuildConfig.VERSION_NAME + " ( ${BuildConfig.VERSION_CODE} )"
+            summary = getString(
+                R.string.pref_version_formatted,
+                BuildConfig.VERSION_NAME,
+                BuildConfig.VERSION_CODE
+            )
             onClick {
                 viewModel.setPandaAnimationPref(true)
                 showSnackBar(R.string.snack_panda_unlocked)
