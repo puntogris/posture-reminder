@@ -1,6 +1,6 @@
 # Credits
 
-Thanks you for your contributions! :tada: :tada:
+Thanks you for your contributions to the app! :tada:
 
 Panda animation - [@ucilucil](https://lottiefiles.com/ucilucil)
 

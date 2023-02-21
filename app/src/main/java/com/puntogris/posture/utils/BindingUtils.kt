@@ -99,8 +99,7 @@ fun TextView.setDonutLevel(exp: Int) {
 fun TextView.setProfileRankingNumber(position: Int) {
     if (position in 0..2) {
         isVisible = false
-    }
-    else {
+    } else {
         isVisible = true
         text = position.inc().toString()
     }
