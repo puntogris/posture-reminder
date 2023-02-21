@@ -1,6 +1,5 @@
 package com.puntogris.posture.utils
 
-import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.view.View
 import android.widget.ImageView
@@ -80,9 +79,12 @@ fun TextView.setExpForNextLevel(exp: Int) {
     text = context.getString(R.string.experience_for_level_x, exp.expForNextLevel(), nextLevel)
 }
 
-@SuppressLint("SetTextI18n")
 fun TextView.setExpFromTotalLevel(exp: Int) {
-    text = "${exp.expForCompleteLevel()} / $EXPERIENCE_PER_LEVEL"
+    text = context.getString(
+        R.string.numbers_with_slash_divider,
+        exp.expForCompleteLevel(),
+        EXPERIENCE_PER_LEVEL
+    )
 }
 
 fun DonutChartView.setDonutChartProgress(exp: Int) {

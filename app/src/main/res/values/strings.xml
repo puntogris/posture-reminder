@@ -308,6 +308,7 @@
     <string name="account_donut_level">Lvl. %1$d</string>
     <string name="ranking_level">lvl. %1$d</string>
     <string name="number_plus_prefix" translatable="false">+%1$d</string>
+    <string name="numbers_with_slash_divider" translatable="false">%1$d / %2$d</string>
 
     <!-- Content description -->
     <string name="close_screen_content_description">Close screen</string>
@@ -352,7 +353,5 @@
         <item>2</item>
         <item>-1</item>
     </integer-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
