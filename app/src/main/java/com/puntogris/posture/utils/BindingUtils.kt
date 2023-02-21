@@ -141,20 +141,31 @@ fun MaterialButton.setToggleButton(isReminderActive: Boolean) {
 }
 
 fun BarChartView.setBarChartLabels(data: List<DayLog>?) {
-    if (data == null) return
+    if (data == null) {
+        return
+    }
     val today = LocalDate.now()
     val labels = mutableListOf<Pair<String, Float>>()
 
     for (i in 6 downTo 0L) {
         val day = today.minusDays(i)
-        val dayName = if (i == 0L) context.getString(R.string.today) else day.getDayName()
-        val dayLog = data.singleOrNull { it.dateId == day.toString() }
-        val expValue = dayLog?.expGained?.toFloat() ?: 0F
-        labels.add(dayName to expValue)
+        val dayName = if (i == 0L) {
+            context.getString(R.string.today)
+        } else {
+            day.getDayName()
+        }
+        val dayLog = data.find { it.dateId == day.toString() }
+        if (dayLog != null) {
+            labels.add(dayName to dayLog.expGained.toFloat())
+        }
     }
     animate(labels)
 }
 
 fun TextView.setUsernameOrPlaceHolder(name: String?) {
-    text = if (name.isNullOrEmpty()) context.getString(R.string.human) else name
+    text = if (name.isNullOrEmpty()) {
+        context.getString(R.string.human)
+    } else {
+        name
+    }
 }
