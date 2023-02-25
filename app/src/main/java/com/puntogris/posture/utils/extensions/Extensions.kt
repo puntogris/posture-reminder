@@ -74,6 +74,6 @@ fun BroadcastReceiver.goAsync(
 inline val Date.timeWithZoneOffset
     get() = time + TimeZone.getDefault().getOffset(time)
 
-fun Any.notEqualsAny(vararg values: Any): Boolean {
-    return this !in values
+fun Any.equalsAny(vararg values: Any): Boolean {
+    return this in values
 }

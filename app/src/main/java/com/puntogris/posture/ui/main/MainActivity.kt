@@ -23,10 +23,10 @@ import com.puntogris.posture.utils.constants.Constants.NAVIGATION_DATA
 import com.puntogris.posture.utils.constants.Constants.NOTIFICATION_ID
 import com.puntogris.posture.utils.constants.Constants.URI_STRING
 import com.puntogris.posture.utils.constants.Constants.WEBSITE_HTTPS
+import com.puntogris.posture.utils.extensions.equalsAny
 import com.puntogris.posture.utils.extensions.getNavController
 import com.puntogris.posture.utils.extensions.getNavHostFragment
 import com.puntogris.posture.utils.extensions.launchWebBrowserIntent
-import com.puntogris.posture.utils.extensions.notEqualsAny
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -65,8 +65,6 @@ class MainActivity : AppCompatActivity(),
         navController = getNavController()
         appBarConfiguration = getAppBarConfiguration()
         navController.addOnDestinationChangedListener(this)
-
-        // Call after navController is set
         setupInitialDestination()
         setupTopToolbar()
         setupBottomNavigation()
@@ -126,10 +124,12 @@ class MainActivity : AppCompatActivity(),
                 navController.navigate(R.id.newReminderBottomSheet)
                 true
             }
+
             R.id.settings -> {
                 navController.navigate(R.id.settingsFragment)
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -143,25 +143,11 @@ class MainActivity : AppCompatActivity(),
         destination: NavDestination,
         arguments: Bundle?
     ) {
-        binding.bottomNavigation.isVisible = destination.id.notEqualsAny(
-            R.id.welcomeFragment,
-            R.id.synAccountFragment,
-            R.id.batteryOptimizationFragment,
-            R.id.loginFragment,
-            R.id.whatsNewDialog,
-            R.id.internalLoginFragment,
-            R.id.deleteAccountFragment,
-            R.id.settingsFragment,
-            R.id.ticketFragment,
-            R.id.permissionsFragment,
-            R.id.accountPreferencesFragment,
-            R.id.helpPreferencesFragment,
-            R.id.contactPreferencesFragment,
-            R.id.appPreferencesFragment,
-            R.id.selectThemeDialog,
-            R.id.manageRemindersFragment,
-            R.id.manageReminderTutorialDialog,
-            R.id.newReminderBottomSheet
+        binding.bottomNavigation.isVisible = destination.id.equalsAny(
+            R.id.homeFragment,
+            R.id.exercisesFragment,
+            R.id.rankingsFragment,
+            R.id.accountFragment
         )
     }
 
