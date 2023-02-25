@@ -38,7 +38,7 @@ class UserRepositoryImpl(
 
     override suspend fun updateActiveReminder(reminder: Reminder) {
         appDatabase.userDao.updateCurrentUserReminder(reminder.reminderId)
-        alarm.refreshAlarms(reminder)
+        alarm.cancelAlarms()
     }
 
     override suspend fun deleteUserAccount(): SimpleResult = withContext(dispatchers.io) {

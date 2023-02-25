@@ -209,7 +209,7 @@
     <string name="manage_account_reminders">Administre de forma rápida sus recordatorios, créelos, edítelos y elimínelos.</string>
 
     <!-- Other -->
-    <string name="snack_configuration_updated">Ajustes actualizados. Recordatorio activado.</string>
+    <string name="snack_configuration_updated">Ajustes actualizados.</string>
     <string name="name">Nombre</string>
     <string name="disabled">Desactivado</string>
     <string name="experience">Experiencia</string>

@@ -210,7 +210,7 @@
     <string name="manage_account_reminders">Создавайте, редактируйте и удаляйте ваши напоминания.</string>
 
     <!-- Other -->
-    <string name="snack_configuration_updated">Настройки успешно обновлены. Напоминание активировано.</string>
+    <string name="snack_configuration_updated">Настройки успешно обновлены.</string>
     <string name="name">Имя</string>
     <string name="disabled">Беззвучный</string>
     <string name="experience">Опыт</string>
