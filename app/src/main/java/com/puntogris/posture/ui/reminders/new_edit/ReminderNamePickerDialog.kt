@@ -11,22 +11,23 @@ import com.puntogris.posture.utils.extensions.onPositive
 import com.puntogris.posture.utils.viewBinding
 
 class ReminderNamePickerDialog(
-    val name: String,
+    private val currentName: String,
     private val result: (String) -> Unit
 ) : DialogFragment() {
 
     private val binding by viewBinding(DialogReminderNamePickerBinding::inflate)
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-
+        if (currentName.isNotBlank()) {
+            binding.editTextReminderNameInput.setText(currentName)
+        }
         return MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.name)
             .setView(binding.root)
             .setPositiveButton(R.string.action_done, null)
             .setNegativeButton(R.string.action_cancel, null)
-            .create().also {
-                it.onPositive(::onPositiveButtonClicked)
-            }
+            .create()
+            .also { it.onPositive(::onPositiveButtonClicked) }
     }
 
     private fun onPositiveButtonClicked() {
