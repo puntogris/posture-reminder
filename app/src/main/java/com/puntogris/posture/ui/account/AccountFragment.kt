@@ -43,7 +43,7 @@ class AccountFragment : Fragment(R.layout.fragment_account), MenuProvider {
         binding.barChart.setBarChartLabels(emptyList())
         binding.donutChart.setDonutChartProgress(0)
         binding.buttonManageReminders.setOnClickListener {
-            findNavController().navigate(R.id.manageRemindersBottomSheet)
+            findNavController().navigate(R.id.manageRemindersFragment)
         }
     }
 

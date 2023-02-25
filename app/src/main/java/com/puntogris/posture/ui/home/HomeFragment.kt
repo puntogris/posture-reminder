@@ -75,7 +75,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
     private fun setupListeners() {
         with(binding.layoutActiveReminder) {
             buttonSelectReminder.setOnClickListener {
-                findNavController().navigate(R.id.manageRemindersBottomSheet)
+                findNavController().navigate(R.id.manageRemindersFragment)
             }
             buttonToggleReminderState.setOnClickListener {
                 onToggleAlarmClicked()
@@ -88,7 +88,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
             }
         }
         binding.buttonManageReminders.setOnClickListener {
-            findNavController().navigate(R.id.manageRemindersBottomSheet)
+            findNavController().navigate(R.id.manageRemindersFragment)
         }
         setFragmentResultListener(PERMISSION_KEY) { _, bundle ->
             val permissionsGranted = bundle.getBoolean(Constants.DATA_KEY)
@@ -148,7 +148,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
                     getString(R.string.snack_active_reminder_not_found),
                     actionText = R.string.action_select
                 ) {
-                    findNavController().navigate(R.id.manageRemindersBottomSheet)
+                    findNavController().navigate(R.id.manageRemindersFragment)
                 }
             }
         }

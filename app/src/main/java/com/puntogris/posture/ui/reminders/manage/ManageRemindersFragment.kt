@@ -1,21 +1,16 @@
 package com.puntogris.posture.ui.reminders.manage
 
-import android.app.Dialog
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.puntogris.posture.R
-import com.puntogris.posture.databinding.BottomSheetManageRemindersBinding
+import com.puntogris.posture.databinding.FragmentManageRemindersBinding
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
-import com.puntogris.posture.utils.extensions.setupAsFullScreen
 import com.puntogris.posture.utils.extensions.showSnackBar
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,18 +18,10 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
+class ManageRemindersFragment : Fragment(R.layout.fragment_manage_reminders) {
 
     private val viewModel: ManageRemindersViewModel by viewModels()
-    private val binding by viewBinding(BottomSheetManageRemindersBinding::bind)
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.bottom_sheet_manage_reminders, container, false)
-    }
+    private val binding by viewBinding(FragmentManageRemindersBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,16 +30,7 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
         setupObserver()
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return (super.onCreateDialog(savedInstanceState) as BottomSheetDialog).apply {
-            setupAsFullScreen(isDraggable = false)
-        }
-    }
-
     private fun setupListeners() {
-        binding.imageViewCloseScreen.setOnClickListener {
-            dismiss()
-        }
         binding.buttonAddReminder.setOnClickListener {
             findNavController().navigate(R.id.action_manageReminders_to_newReminder)
         }
@@ -97,14 +75,12 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
         lifecycleScope.launch {
             viewModel.updateReminder(reminder)
             findNavController().navigate(R.id.homeFragment)
-            requireParentFragment().UiInterface.showSnackBar(getString(R.string.snack_configuration_updated))
+            UiInterface.showSnackBar(getString(R.string.snack_configuration_updated))
         }
     }
 
     private fun onEditReminder(reminder: Reminder) {
-        val action = ManageRemindersBottomSheetDirections.actionManageRemindersToNewReminder(
-            reminder
-        )
+        val action = ManageRemindersFragmentDirections.actionManageRemindersToNewReminder(reminder)
         findNavController().navigate(action)
     }
 
@@ -113,7 +89,7 @@ class ManageRemindersBottomSheet : BottomSheetDialogFragment() {
             viewModel.deleteReminder(reminder)
             showSnackBar(
                 message = R.string.snack_delete_reminder_success,
-                anchorView = binding.buttonAddReminder,
+                anchor = binding.buttonAddReminder,
             ) {
                 viewModel.insertReminder(reminder)
             }

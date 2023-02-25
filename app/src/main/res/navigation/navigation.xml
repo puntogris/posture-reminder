@@ -49,13 +49,13 @@
     <dialog
         android:id="@+id/selectThemeDialog"
         android:name="com.puntogris.posture.ui.settings.SelectThemeDialog" />
-    <dialog
-        android:id="@+id/manageRemindersBottomSheet"
-        android:name="com.puntogris.posture.ui.reminders.manage.ManageRemindersBottomSheet">
+    <fragment
+        android:id="@+id/manageRemindersFragment"
+        android:name="com.puntogris.posture.ui.reminders.manage.ManageRemindersFragment">
         <action
             android:id="@+id/action_manageReminders_to_newReminder"
             app:destination="@id/newReminderBottomSheet" />
-    </dialog>
+    </fragment>
     <fragment
         android:id="@+id/batteryOptimizationFragment"
         android:name="com.puntogris.posture.ui.welcome.BatteryOptimizationFragment">

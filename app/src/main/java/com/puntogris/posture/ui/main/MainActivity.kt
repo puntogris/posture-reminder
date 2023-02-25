@@ -158,7 +158,8 @@ class MainActivity : AppCompatActivity(),
             R.id.helpPreferencesFragment,
             R.id.contactPreferencesFragment,
             R.id.appPreferencesFragment,
-            R.id.selectThemeDialog
+            R.id.selectThemeDialog,
+            R.id.manageRemindersFragment
         )
     }
 

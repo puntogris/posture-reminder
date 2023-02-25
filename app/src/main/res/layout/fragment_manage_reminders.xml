@@ -5,18 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView_close_screen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_2"
-        android:layout_marginEnd="@dimen/spacing_2"
-        android:contentDescription="@string/close_screen_content_description"
-        android:padding="@dimen/spacing_2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_exit" />
-
     <TextView
         android:id="@+id/textView_reminder_title"
         style="@style/Theme.Posture.MediumTitle"
@@ -25,7 +13,7 @@
         android:layout_marginStart="@dimen/spacing_4"
         android:text="@string/reminders_label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_close_screen" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_reminders"
