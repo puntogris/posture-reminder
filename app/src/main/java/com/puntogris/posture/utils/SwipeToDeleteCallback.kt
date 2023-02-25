@@ -36,7 +36,7 @@ abstract class SwipeToDeleteCallback(val context: Context) : ItemTouchHelper.Sim
     private val editText = context.getString(R.string.action_edit)
 
     private val deleteIcon by lazy {
-        ContextCompat.getDrawable(context, R.drawable.ic_trash_fill)?.apply {
+        ContextCompat.getDrawable(context, R.drawable.ic_trash)?.apply {
             setTint(Color.WHITE)
         }
     }
@@ -92,12 +92,13 @@ abstract class SwipeToDeleteCallback(val context: Context) : ItemTouchHelper.Sim
             val left = view.left + ICON_MARGIN
             val right = left + iconSize
             deleteIcon?.setBounds(left, top, right, bottom)
+            deleteIcon?.draw(canvas)
         } else {
             val right = view.right - ICON_MARGIN
             val left = right - iconSize
             editIcon?.setBounds(left, top, right, bottom)
+            editIcon?.draw(canvas)
         }
-        editIcon?.draw(canvas)
     }
 
     private fun drawText(canvas: Canvas, view: View, xPosition: Int) {
