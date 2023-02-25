@@ -40,8 +40,7 @@ class AccountFragment : Fragment(R.layout.fragment_account), MenuProvider {
     }
 
     private fun setupViews() {
-        binding.barChart.setBarChartLabels(emptyList())
-        binding.donutChart.setDonutChartProgress(0)
+        setDonutChartProgress(binding.donutChart, 0)
         binding.buttonManageReminders.setOnClickListener {
             findNavController().navigate(R.id.manageRemindersFragment)
         }
@@ -51,21 +50,21 @@ class AccountFragment : Fragment(R.layout.fragment_account), MenuProvider {
         launchAndRepeatWithViewLifecycle {
             viewModel.user.collectLatest {
                 with(binding) {
-                    textViewExperienceForNextLevel.setExpForNextLevel(it.experience)
-                    textViewCurrentLevel.setDonutLevel(it.experience)
-                    textViewExpFromTotalLevel.setExpFromTotalLevel(it.experience)
-                    donutChart.setDonutChartProgress(it.experience)
+                    setExpForNextLevel(textViewExperienceForNextLevel, it.experience)
+                    setDonutLevel(textViewCurrentLevel, it.experience)
+                    setExpFromTotalLevel(textViewExpFromTotalLevel, it.experience)
+                    setDonutChartProgress(donutChart, it.experience)
                 }
                 with(binding.headerLayout) {
-                    textViewHeaderUsername.setUsernameOrPlaceHolder(it.username)
-                    textViewHeaderLevel.setAccountLevelTitle(it.experience)
-                    textViewHeaderLevelTag.setAccountBadgeLevel(it.experience)
+                    setUsernameOrPlaceHolder(textViewHeaderUsername, it.username)
+                    setAccountLevelTitle(textViewHeaderLevel, it.experience)
+                    setAccountBadgeLevel(textViewHeaderLevelTag, it.experience)
                 }
             }
         }
         launchAndRepeatWithViewLifecycle {
             viewModel.weekData.collectLatest {
-                binding.barChart.setBarChartLabels(it)
+                setBarChartLabels(binding.barChart, it)
             }
         }
     }

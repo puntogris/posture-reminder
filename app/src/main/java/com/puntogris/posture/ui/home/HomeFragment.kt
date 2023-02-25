@@ -53,7 +53,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
     private fun setupObservers() {
         launchAndRepeatWithViewLifecycle {
             viewModel.isAlarmActive.collectLatest {
-                binding.layoutActiveReminder.buttonToggleReminderState.setToggleButton(it)
+               setToggleButton( binding.layoutActiveReminder.buttonToggleReminderState, it)
             }
         }
         launchAndRepeatWithViewLifecycle {
@@ -109,9 +109,9 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
         with(binding.layoutActiveReminder) {
             textViewReminderTitleValue.text = reminder.name
             textViewReminderIntervalValue.text = reminder.timeIntervalSummary()
-            textViewReminderStartValue.setMinutesToHourlyTime(reminder.startTime)
-            textViewReminderEndValue.setMinutesToHourlyTime(reminder.endTime)
-            textViewReminderDaysValue.setDaysSummary(reminder)
+            setMinutesToHourlyTime(textViewReminderStartValue, reminder.startTime)
+            setMinutesToHourlyTime(textViewReminderEndValue, reminder.endTime)
+            setDaysSummary(textViewReminderDaysValue, reminder)
             viewReminderColor.setBackgroundColorTintView(reminder.color)
         }
     }

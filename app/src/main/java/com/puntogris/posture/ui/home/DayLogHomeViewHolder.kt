@@ -15,8 +15,8 @@ class DayLogHomeViewHolder(private val binding: DayLogHomePagerItemBinding) :
 
     fun bind(dayLog: DayLog) {
         with(binding) {
-            textViewDayLabel.setPagerDay(adapterPosition)
-            textViewDayValue.setDayMonth(adapterPosition)
+            setPagerDay(textViewDayLabel, adapterPosition)
+            setDayMonth(textViewDayValue, adapterPosition)
             textViewNotificationValue.text = dayLog.notifications.toString()
             textViewExercisesValue.text = dayLog.exercises.toString()
             textViewExperienceValue.setText(R.string.number_plus_prefix, dayLog.expGained)

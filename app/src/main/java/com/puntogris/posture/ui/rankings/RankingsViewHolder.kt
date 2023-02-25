@@ -14,9 +14,9 @@ class RankingsViewHolder(private val binding: RankingProfileVhBinding) :
 
     fun bind(rankingProfile: UserPublicProfile) {
         with(binding) {
-            imageViewRankingMedalIcon.setProfileRankingMedal(adapterPosition)
+            setProfileRankingMedal(imageViewRankingMedalIcon, adapterPosition)
             textViewRankingUsername.text = rankingProfile.username
-            textViewRankingUserPosition.setProfileRankingNumber(adapterPosition)
+            setProfileRankingNumber(textViewRankingUserPosition, adapterPosition)
             textViewRankingUserExp.text = rankingProfile.experience.getLevel().toString()
         }
     }

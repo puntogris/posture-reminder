@@ -14,7 +14,7 @@ class ExerciseViewHolder(private val binding: ExerciseItemVhBinding) :
     fun bind(exercise: Exercise, clickListener: (Exercise) -> Unit) {
         with(binding) {
             textViewExerciseTitleLabel.setText(exercise.title)
-            textViewExerciseDuration.setExerciseDuration(exercise.duration)
+            setExerciseDuration(textViewExerciseDuration, exercise.duration)
             textViewExerciseSummary.setText(exercise.summary)
             viewExerciseColor.setBackgroundColorTintView(exercise.color)
             root.setOnClickListener {

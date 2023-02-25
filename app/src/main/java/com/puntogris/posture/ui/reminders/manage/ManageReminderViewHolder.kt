@@ -21,9 +21,9 @@ class ManageReminderViewHolder(private val binding: ManageReminderVhBinding) :
             textViewReminderNameValue.text = reminder.reminder.name
             viewReminderColor.setReminderColor(reminder.reminder.color)
             textViewReminderIntervalValue.text = reminder.reminder.timeIntervalSummary()
-            textViewReminderStartValue.setMinutesToHourlyTime(reminder.reminder.startTime)
-            textViewReminderEndValue.setMinutesToHourlyTime(reminder.reminder.endTime)
-            textViewReminderDaysValue.setDaysSummary(reminder.reminder)
+            setMinutesToHourlyTime(textViewReminderStartValue, reminder.reminder.startTime)
+            setMinutesToHourlyTime(textViewReminderEndValue, reminder.reminder.endTime)
+            setDaysSummary(textViewReminderDaysValue, reminder.reminder)
             buttonSelectReminder.setOnClickListener { onSelected(reminder.reminder) }
             buttonSelectReminder.isEnabled = !reminder.isSelected
             buttonSelectReminder.setText(

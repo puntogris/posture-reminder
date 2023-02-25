@@ -45,11 +45,11 @@ class ExerciseBottomSheet : BottomSheetDialogFragment() {
 
     private fun setupViews() {
         with(binding) {
-            textViewExerciseDurationValue.setExerciseDuration(args.exercise.duration)
+            setExerciseDuration(textViewExerciseDurationValue, args.exercise.duration)
             imageViewExercisePreview.setImageResource(args.exercise.image)
             textViewExerciseNameValue.setText(args.exercise.title)
             textViewExerciseDescriptionValue.setText(args.exercise.summary)
-            progressBarExerciseDuration.setProgressBarSmoothMax(args.exercise.duration)
+            setProgressBarSmoothMax(progressBarExerciseDuration, args.exercise.duration)
             recyclerViewExerciseSteps.adapter = ExerciseStepsAdapter(
                 resources.getStringArray(args.exercise.steps)
             )
