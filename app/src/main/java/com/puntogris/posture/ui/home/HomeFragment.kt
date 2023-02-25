@@ -1,13 +1,10 @@
 package com.puntogris.posture.ui.home
 
-import android.app.AlarmManager
-import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import androidx.core.app.NotificationManagerCompat
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -20,6 +17,7 @@ import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentHomeBinding
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.framework.alarm.AlarmStatus
+import com.puntogris.posture.utils.PermissionsManager
 import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.constants.Constants
 import com.puntogris.posture.utils.constants.Constants.PERMISSION_KEY
@@ -157,12 +155,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
     }
 
     private fun onToggleAlarmClicked() {
-        val am = requireContext().getSystemService(AlarmManager::class.java)
-        val nm = NotificationManagerCompat.from(requireContext())
-        if (
-            (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !am.canScheduleExactAlarms()) ||
-            !nm.areNotificationsEnabled()
-        ) {
+        val needsAppsPermissions = PermissionsManager.needsPermissionForApp(requireContext())
+        if (!viewModel.isAlarmActive.value && needsAppsPermissions) {
             findNavController().navigate(R.id.permissionsFragment)
         } else {
             viewModel.toggleAlarm()
