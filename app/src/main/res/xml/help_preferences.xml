@@ -16,6 +16,6 @@
             android:key="ticket_preference_key"
             app:iconSpaceReserved="false"
             app:summary="@string/create_ticket"
-            app:title="@string/ticker_feedback" />
+            app:title="@string/ticket_feedback" />
     </PreferenceCategory>
 </PreferenceScreen>

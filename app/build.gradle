@@ -129,5 +129,8 @@ dependencies {
 
     //Resources guidelines
     implementation(libs.tailwindStyles)
+
+    //In-App Review
+    implementation(libs.inAppReview)
 }
 

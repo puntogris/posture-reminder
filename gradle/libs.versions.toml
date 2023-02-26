@@ -38,6 +38,7 @@ crashlytics = "2.9.4"
 secrets = "2.0.1"
 performance = "1.4.2"
 gradle-licenes = "0.10.6"
+inAppReview= "2.0.1"
 
 [libraries]
 #Gradle
@@ -147,6 +148,9 @@ gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 
 #Resources guidelines
 tailwindStyles = { module = "com.github.puntogris:tailwind-styles-android", version.ref = "tailwindStyles" }
+
+#In-App Review
+inAppReview = { module = "com.google.android.play:review-ktx", version.ref = "inAppReview"}
 
 [bundles]
 

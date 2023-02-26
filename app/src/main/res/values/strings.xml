@@ -155,7 +155,7 @@
     <string name="version_name">Version %1$s</string>
     <string name="rate_us">Rate us</string>
     <string name="battery_optimization_abbreviation">Battery optimiz.</string>
-    <string name="ticker_feedback">Ticket /Feedback</string>
+    <string name="ticket_feedback">Ticket /Feedback</string>
     <string name="human">Human</string>
     <string name="create_ticket">Create a ticket</string>
     <string name="got_to_website">Visit website</string>
@@ -332,6 +332,12 @@
     <string name="notification_permission_title">Get notified!</string>
     <string name="notification_permission_subtitle">To run the app correctly we will need your permission to send notifications and schedule alarms.</string>
     <string name="notification_permission_alert">The Android system only allows us to ask permissions once, you will have to enabled them manually if you declined them.</string>
+
+    <!-- Rate App -->
+    <string name="rate_app_title">Checkpoint</string>
+    <string name="rate_app_content">We noticed that you have been regularly using the app, leveling up and making progress!\n\nWe invite you to leave us a review if the app helped you or create a ticket if you had a problem.\n\nThis helps us improve so more people can enjoy it like you.</string>
+    <string name="rate_app_success">Thanks for your feedback!</string>
+    <string name="rate_app_error">There was an error submitting your review.</string>
 
     <!-- Arrays -->
     <string-array name="ticket_types">

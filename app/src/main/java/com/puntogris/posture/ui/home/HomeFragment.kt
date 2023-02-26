@@ -50,7 +50,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
     private fun setupObservers() {
         launchAndRepeatWithViewLifecycle {
             viewModel.isAlarmActive.collectLatest {
-               setToggleButton( binding.layoutActiveReminder.buttonToggleReminderState, it)
+                setToggleButton(binding.layoutActiveReminder.buttonToggleReminderState, it)
             }
         }
         launchAndRepeatWithViewLifecycle {

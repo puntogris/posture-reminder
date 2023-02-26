@@ -8,6 +8,9 @@ object Constants {
     const val EXPERIENCE_PER_LEVEL = 1000
     const val MAX_EXPERIENCE_PER_DAY = 100
     const val BASE_DATE_MILLIS = 1633126950000 // Friday, 1 October 2021 22:22:30
+    const val EXPERIENCE_TO_ENABLE_CHECKPOINT = 500
+    const val EXPERIENCE_TO_RETRY_CHECKPOINT = 300
+    const val EXPERIENCE_TO_DISABLE_CHECKPOINT = -1
 
     // Room
     const val ROOM_DATABASE_NAME = "posture_reminder_database"

@@ -155,7 +155,7 @@
     <string name="version_name">Версия %1$s</string>
     <string name="rate_us">Оцените нас</string>
     <string name="battery_optimization_abbreviation">Экономия бат.</string>
-    <string name="ticker_feedback">Сообщить о проблеме/Оставить отзыв</string>
+    <string name="ticket_feedback">Сообщить о проблеме/Оставить отзыв</string>
     <string name="human">Человек</string>
     <string name="create_ticket">Сообщить о проблеме</string>
     <string name="got_to_website">Посетить сайт</string>
@@ -319,6 +319,12 @@
     <string name="notification_permission_title">Получить уведомление!</string>
     <string name="notification_permission_subtitle">Для корректной работы приложения нам потребуется ваше разрешение на отправку уведомлений и составление расписания сигналов тревоги.</string>
     <string name="notification_permission_alert">Система Android позволяет нам запрашивать разрешения только один раз, вам придется включить их вручную, если вы отклонили их.</string>
+
+    <!-- Rate App -->
+    <string name="rate_app_title">контрольно-пропускной пункт</string>
+    <string name="rate_app_content">Мы заметили, что вы регулярно используете приложение, повышаете уровень и добиваетесь прогресса!\n\nМы приглашаем вас оставить нам отзыв, если приложение помогло вам, или создать тикет, если у вас возникла проблема.\n\nЭто поможет нам стать лучше чтобы больше людей могли наслаждаться этим, как вы.</string>
+    <string name="rate_app_success">Спасибо за ваш отзыв!</string>
+    <string name="rate_app_error">При отправке отзыва произошла ошибка.</string>
 
     <!-- Arrays -->
     <string-array name="ticket_types">

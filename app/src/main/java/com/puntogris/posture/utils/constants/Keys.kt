@@ -11,6 +11,7 @@ object Keys {
     const val SHOW_LOGIN_KEY = "show_login_key"
     const val SHOW_WELCOME_KEY = "show_welcome_key"
     const val SHOW_MANAGE_TUTORIAL_KEY = "show_manage_tutorial_key"
+    const val SHOW_APP_CHECKPOINT_KEY = "show_app_checkpoint_key"
 
     // Preferences keys
     const val USERNAME_PREF_KEY = "username_preference_key"

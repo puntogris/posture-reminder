@@ -62,6 +62,13 @@ class AccountFragment : Fragment(R.layout.fragment_account), MenuProvider {
                 }
             }
         }
+        launchAndRepeatWithViewLifecycle(Lifecycle.State.CREATED) {
+            viewModel.showCheckpoint.collectLatest { show ->
+                if (show) {
+                    findNavController().navigate(R.id.checkpointBottomSheet)
+                }
+            }
+        }
         launchAndRepeatWithViewLifecycle {
             viewModel.weekData.collectLatest {
                 setBarChartLabels(binding.barChart, it)

@@ -183,4 +183,7 @@
     <action
         android:id="@+id/action_global_permissionsFragment"
         app:destination="@id/permissionsFragment" />
+    <dialog
+        android:id="@+id/checkpointBottomSheet"
+        android:name="com.puntogris.posture.ui.home.CheckpointBottomSheet" />
 </navigation>

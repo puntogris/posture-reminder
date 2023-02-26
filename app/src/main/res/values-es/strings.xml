@@ -154,7 +154,7 @@
     <string name="version_name">Versión %1$s</string>
     <string name="rate_us">Calificanos</string>
     <string name="battery_optimization_abbreviation">Optimiz. bateria</string>
-    <string name="ticker_feedback">Ticket /Feedback</string>
+    <string name="ticket_feedback">Ticket /Feedback</string>
     <string name="human">Terricola</string>
     <string name="create_ticket">Crea un ticket</string>
     <string name="got_to_website">Ir a la página</string>
@@ -318,6 +318,12 @@
     <string name="notification_permission_title">Se notificado!</string>
     <string name="notification_permission_subtitle">Para ejecutar la aplicación correctamente, necesitaremos su permiso para enviar notificaciones y programar alarmas.</string>
     <string name="notification_permission_alert">El sistema Android solo nos permite pedir permisos una vez, tendrás que habilitarlos manualmente si los rechazaste.</string>
+
+    <!-- Rate App -->
+    <string name="rate_app_title">Punto de control</string>
+    <string name="rate_app_content">¡Hemos notado que has estado usando la aplicación regularmente, subiendo de nivel y progresando!\n\nTe invitamos a dejarnos una reseña si la aplicación te ayudó o crear un ticket si tuviste algún problema.\n\nEsto nos ayuda a mejorar para que más personas también puedan disfrutarla.</string>
+    <string name="rate_app_success">¡Gracias por tus comentarios!</string>
+    <string name="rate_app_error">Hubo un error al enviar la reseña.</string>
 
     <!-- Arrays -->
     <string-array name="ticket_types">

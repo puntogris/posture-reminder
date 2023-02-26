@@ -7,6 +7,9 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.puntogris.posture.BuildConfig
+import com.puntogris.posture.utils.constants.Constants.EXPERIENCE_TO_DISABLE_CHECKPOINT
+import com.puntogris.posture.utils.constants.Constants.EXPERIENCE_TO_ENABLE_CHECKPOINT
+import com.puntogris.posture.utils.constants.Constants.EXPERIENCE_TO_RETRY_CHECKPOINT
 import com.puntogris.posture.utils.constants.Keys
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.first
@@ -80,5 +83,19 @@ class DataStoreHelper @Inject constructor(@ApplicationContext private val contex
 
     suspend fun setShowTutorial(value: Boolean) = context.dataStore.edit {
         it[booleanPreferencesKey(Keys.SHOW_MANAGE_TUTORIAL_KEY)] = value
+    }
+
+    fun expNeededToShowCheckpoint() = context.dataStore.data.map {
+        it[intPreferencesKey(Keys.SHOW_APP_CHECKPOINT_KEY)] ?: EXPERIENCE_TO_ENABLE_CHECKPOINT
+    }
+
+    suspend fun setExpToRetryCheckpoint() = context.dataStore.edit {
+        val currentExp = it[intPreferencesKey(Keys.SHOW_APP_CHECKPOINT_KEY)] ?: EXPERIENCE_TO_ENABLE_CHECKPOINT
+        val expToRetry = currentExp + EXPERIENCE_TO_RETRY_CHECKPOINT
+        it[intPreferencesKey(Keys.SHOW_APP_CHECKPOINT_KEY)] = expToRetry
+    }
+
+    suspend fun disableCheckpoint() = context.dataStore.edit {
+        it[intPreferencesKey(Keys.SHOW_APP_CHECKPOINT_KEY)] = EXPERIENCE_TO_DISABLE_CHECKPOINT
     }
 }

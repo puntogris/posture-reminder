@@ -51,13 +51,11 @@ class UserRepositoryImpl(
     override fun sendTicket(message: String): Flow<Result<Unit>> = flow {
         try {
             emit(Result.Loading())
-
             val ticket = Ticket(
-                uid = requireNotNull(firebaseClients.currentUid),
+                uid = firebaseClients.currentUid.orEmpty(),
                 message = message
             )
             userServerApi.sendTicket(ticket)
-
             emit(Result.Success(Unit))
         } catch (e: Exception) {
             emit(Result.Error())
