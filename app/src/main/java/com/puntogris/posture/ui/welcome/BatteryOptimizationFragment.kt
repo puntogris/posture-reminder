@@ -7,8 +7,11 @@ import android.view.View
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentBatteryOptimizationBinding
+import com.puntogris.posture.utils.constants.Constants.SETTINGS_FLOW
+import com.puntogris.posture.utils.constants.Constants.WELCOME_FLOW
 import com.puntogris.posture.utils.extensions.isDarkThemeOn
 import com.puntogris.posture.utils.extensions.isIgnoringBatteryOptimizations
 import com.puntogris.posture.utils.viewBinding
@@ -16,6 +19,7 @@ import com.puntogris.posture.utils.viewBinding
 class BatteryOptimizationFragment : Fragment(R.layout.fragment_battery_optimization) {
 
     private val binding by viewBinding(FragmentBatteryOptimizationBinding::bind)
+    private val args: BatteryOptimizationFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,13 +29,28 @@ class BatteryOptimizationFragment : Fragment(R.layout.fragment_battery_optimizat
 
     private fun setupListeners() {
         binding.buttonSkip.setOnClickListener {
-            findNavController().navigate(R.id.action_batteryOptimization_to_home)
+            navigateAccordingToFlow()
         }
         binding.buttonContinue.setOnClickListener {
             if (requireContext().isIgnoringBatteryOptimizations()) {
-                findNavController().navigate(R.id.action_batteryOptimization_to_home)
+                navigateAccordingToFlow()
             } else {
                 startActivity(Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS))
+            }
+        }
+    }
+
+    private fun navigateAccordingToFlow() {
+        when(args.flow) {
+            WELCOME_FLOW -> {
+                val action = BatteryOptimizationFragmentDirections.actionGlobalPermissionsFragment(args.flow)
+                findNavController().navigate(action)
+            }
+            SETTINGS_FLOW -> {
+                findNavController().navigateUp()
+            }
+            else -> {
+                findNavController().navigate(R.id.homeFragment)
             }
         }
     }
@@ -50,11 +69,5 @@ class BatteryOptimizationFragment : Fragment(R.layout.fragment_battery_optimizat
         getString(htmlRes),
         HtmlCompat.FROM_HTML_MODE_LEGACY
     )
-
-    override fun onResume() {
-        if (requireContext().isIgnoringBatteryOptimizations()) {
-            findNavController().navigate(R.id.action_batteryOptimization_to_home)
-        }
-        super.onResume()
-    }
 }
+

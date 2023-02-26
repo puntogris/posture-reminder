@@ -31,11 +31,7 @@
     </dialog>
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.puntogris.posture.ui.welcome.WelcomeFragment">
-        <action
-            android:id="@+id/action_welcome_to_batteryOptimization"
-            app:destination="@id/batteryOptimizationFragment" />
-    </fragment>
+        android:name="com.puntogris.posture.ui.welcome.WelcomeFragment"/>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.puntogris.posture.ui.settings.SettingsFragment" />
@@ -59,9 +55,11 @@
     <fragment
         android:id="@+id/batteryOptimizationFragment"
         android:name="com.puntogris.posture.ui.welcome.BatteryOptimizationFragment">
-        <action
-            android:id="@+id/action_batteryOptimization_to_home"
-            app:destination="@id/homeFragment" />
+        <argument
+            android:name="flow"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <dialog
         android:id="@+id/vibrationSelectorDialog"
@@ -161,7 +159,12 @@
         android:name="com.puntogris.posture.ui.tickets.TicketFragment" />
     <fragment
         android:id="@+id/permissionsFragment"
-        android:name="com.puntogris.posture.ui.permissions.PermissionsFragment" />
+        android:name="com.puntogris.posture.ui.permissions.PermissionsFragment" >
+        <argument
+            android:name="flow"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
     <fragment
         android:id="@+id/accountPreferencesFragment"
         android:name="com.puntogris.posture.ui.settings.AccountPreferencesFragment"
@@ -182,4 +185,10 @@
         android:id="@+id/appPreferencesFragment"
         android:name="com.puntogris.posture.ui.settings.AppPreferencesFragment"
         android:label="AppPreferencesFragment" />
+    <action
+        android:id="@+id/action_global_batteryOptimizationFragment"
+        app:destination="@id/batteryOptimizationFragment" />
+    <action
+        android:id="@+id/action_global_permissionsFragment"
+        app:destination="@id/permissionsFragment" />
 </navigation>

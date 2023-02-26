@@ -32,7 +32,6 @@ object Constants {
     const val VIBRATION_PICKER_KEY = "vibration_picker_key"
     const val SOUND_PICKER_KEY = "sound_picker_key"
     const val EDIT_NAME_KEY = "edit_name_key"
-    const val PERMISSION_KEY = "permission_key"
 
     //Work manager
     const val SYNC_ACCOUNT_WORKER = "sync_account_worker"
@@ -53,4 +52,8 @@ object Constants {
     //Exercise
     const val EXERCISE_KEY = "exercise"
     const val DEFAULT_EXERCISE_TIMER_SECS = 50
+
+    //Flow for navigating battery optimization and permissions screen
+    const val WELCOME_FLOW = "welcome_flow"
+    const val SETTINGS_FLOW = "settings_flow"
 }

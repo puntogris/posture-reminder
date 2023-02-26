@@ -11,17 +11,13 @@ import android.provider.Settings
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.FragmentPermissionsBinding
 import com.puntogris.posture.utils.PermissionsManager.needsAlarmPermission
 import com.puntogris.posture.utils.PermissionsManager.needsNotificationPermission
 import com.puntogris.posture.utils.constants.Constants
-import com.puntogris.posture.utils.constants.Constants.DATA_KEY
-import com.puntogris.posture.utils.constants.Constants.PERMISSION_KEY
 import com.puntogris.posture.utils.extensions.showSnackBar
 import com.puntogris.posture.utils.viewBinding
 
@@ -49,7 +45,7 @@ class PermissionsFragment : Fragment(R.layout.fragment_permissions) {
 
     private fun setupListeners() {
         binding.buttonSkip.setOnClickListener {
-            setResultAndNavigateUp(false)
+            findNavController().navigate(R.id.homeFragment)
         }
         binding.buttonContinue.setOnClickListener {
             continuePermissionsFlow()
@@ -64,16 +60,11 @@ class PermissionsFragment : Fragment(R.layout.fragment_permissions) {
         }
     }
 
-    private fun setResultAndNavigateUp(isGranted: Boolean) {
-        setFragmentResult(PERMISSION_KEY, bundleOf(DATA_KEY to isGranted))
-        findNavController().navigateUp()
-    }
-
     private fun continuePermissionsFlow() {
         when {
             needsAlarmPermission(requireContext()) -> showAlarmsSettings()
             needsNotificationPermission(requireContext()) -> onNeedsNotificationPermission()
-            else -> setResultAndNavigateUp(true)
+            else -> findNavController().navigate(R.id.homeFragment)
         }
     }
 

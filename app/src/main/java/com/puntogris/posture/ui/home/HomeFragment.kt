@@ -8,7 +8,6 @@ import android.view.View
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
@@ -19,8 +18,6 @@ import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.framework.alarm.AlarmStatus
 import com.puntogris.posture.utils.PermissionsManager
 import com.puntogris.posture.utils.Utils
-import com.puntogris.posture.utils.constants.Constants
-import com.puntogris.posture.utils.constants.Constants.PERMISSION_KEY
 import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.extensions.setPageFadeTransformer
@@ -89,14 +86,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
         }
         binding.buttonManageReminders.setOnClickListener {
             findNavController().navigate(R.id.manageRemindersFragment)
-        }
-        setFragmentResultListener(PERMISSION_KEY) { _, bundle ->
-            val permissionsGranted = bundle.getBoolean(Constants.DATA_KEY)
-            if (permissionsGranted) {
-                viewModel.toggleAlarm()
-            } else {
-                UiInterface.showSnackBar(getString(R.string.snack_action_require_permission))
-            }
         }
     }
 
