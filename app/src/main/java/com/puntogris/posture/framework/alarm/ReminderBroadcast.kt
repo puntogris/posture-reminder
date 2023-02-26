@@ -12,9 +12,11 @@ import com.puntogris.posture.utils.constants.Constants.DAILY_ALARM_TRIGGERED
 import com.puntogris.posture.utils.constants.Constants.REPEATING_ALARM_TRIGGERED
 import com.puntogris.posture.utils.extensions.goAsync
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.DelicateCoroutinesApi
 import javax.inject.Inject
 
 @AndroidEntryPoint
+@OptIn(DelicateCoroutinesApi::class)
 class ReminderBroadcast : HiltBroadcastReceiver() {
 
     @Inject

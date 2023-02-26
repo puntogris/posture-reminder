@@ -35,12 +35,11 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun createNotificationChannel(reminder: Reminder) {
-        NotificationChannel(
+        val channel = NotificationChannel(
             reminder.reminderId,
             context.getString(R.string.alarm_channel_name),
             NotificationManager.IMPORTANCE_DEFAULT
         ).apply {
-
             enableVibration(true)
             enableLights(true)
             description = reminder.name
@@ -50,11 +49,10 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
                 setSound(Uri.parse(reminder.soundUri), getNotificationAudioAttributes())
             }
             if (reminder.vibrationPattern != 0) {
-                vibrationPattern =
-                    LocalDataSource.vibrationPatterns[reminder.vibrationPattern].pattern
+                vibrationPattern = LocalDataSource.vibrationPatterns[reminder.vibrationPattern].pattern
             }
-            notificationManager.createNotificationChannel(this)
         }
+        notificationManager.createNotificationChannel(channel)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -129,8 +127,12 @@ class Notifications @Inject constructor(@ApplicationContext private val context:
     private fun buildNotificationForFcm(fcmNotification: FcmNotification): Notification {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse(fcmNotification.uriString)
-        val pendingIntent =
-            PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+        val pendingIntent = PendingIntent.getActivity(
+            context,
+            0,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE
+        )
 
         return NotificationCompat.Builder(context, FMC_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_app_logo)

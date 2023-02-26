@@ -1,6 +1,7 @@
 package com.puntogris.posture.utils.extensions
 
 import android.widget.EditText
+import android.widget.TextView
 import androidx.annotation.RawRes
 import androidx.viewpager2.widget.ViewPager2
 import com.airbnb.lottie.LottieAnimationView
@@ -23,4 +24,8 @@ fun LottieAnimationView.playAnimationOnce(@RawRes animation: Int) {
     setAnimation(animation)
     repeatCount = 0
     playAnimation()
+}
+
+fun TextView.setText(stringRes: Int, vararg args: Any?) {
+    text = context.getString(stringRes, *args)
 }

@@ -14,6 +14,9 @@ import com.puntogris.posture.utils.constants.Constants.REPEATING_ALARM_TRIGGERED
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
+private const val DAILY_ALARM_REQUEST_CODE = 100
+private const val REPEATING_ALARM_REQUEST_CODE = 200
+
 class Alarm @Inject constructor(
     @ApplicationContext context: Context,
     private val dataStoreHelper: DataStoreHelper
@@ -31,14 +34,14 @@ class Alarm @Inject constructor(
 
     private val pendingIntentDailyAlarm = PendingIntent.getBroadcast(
         context,
-        100,
+        DAILY_ALARM_REQUEST_CODE,
         dailyAlarmIntent,
         PendingIntent.FLAG_IMMUTABLE
     )
 
     private val pendingIntentRepeatingAlarm = PendingIntent.getBroadcast(
         context,
-        200,
+        REPEATING_ALARM_REQUEST_CODE,
         repeatingAlarmIntent,
         PendingIntent.FLAG_IMMUTABLE
     )

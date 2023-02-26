@@ -29,7 +29,11 @@ class PermissionsFragment : Fragment(R.layout.fragment_permissions) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupPermissionLaunchers()
+        setupListeners()
+    }
 
+    private fun setupPermissionLaunchers() {
         stringPermissionLauncher = registerForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) {
@@ -40,7 +44,6 @@ class PermissionsFragment : Fragment(R.layout.fragment_permissions) {
         ) {
             onPermissionResult(it.resultCode == Activity.RESULT_OK)
         }
-        setupListeners()
     }
 
     private fun setupListeners() {
@@ -90,7 +93,7 @@ class PermissionsFragment : Fragment(R.layout.fragment_permissions) {
     }
 
     @SuppressLint("InlinedApi")
-    //No need to check the API level as we validate that when checking if the permission is granted
+    // No need to check the API level as we validate that when checking if the permission is granted
     private fun showAlarmsSettings() {
         val intent = Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM).apply {
             data = Uri.parse(Constants.PACKAGE_URI_NAME)

@@ -1,6 +1,13 @@
 package com.puntogris.posture.framework.workers
 
-import androidx.work.*
+import androidx.work.Constraints
+import androidx.work.Data
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.await
 import com.puntogris.posture.utils.constants.Constants
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject

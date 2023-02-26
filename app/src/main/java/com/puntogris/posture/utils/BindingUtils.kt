@@ -20,12 +20,9 @@ import com.puntogris.posture.utils.extensions.expForCompleteLevel
 import com.puntogris.posture.utils.extensions.expForNextLevel
 import com.puntogris.posture.utils.extensions.getDayName
 import com.puntogris.posture.utils.extensions.getLevel
+import com.puntogris.posture.utils.extensions.setText
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
-
-fun TextView.setText(stringRes: Int, vararg args: Any?) {
-    text = context.getString(stringRes, *args)
-}
 
 fun setExerciseDuration(textView: TextView, duration: Int) {
     textView.setText(R.string.exercise_duration_seconds, duration)

@@ -24,19 +24,26 @@ class WelcomeFragment : Fragment(R.layout.fragment_welcome) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupViews()
+    }
 
+    private fun setupViews() {
         with(binding) {
             viewPager.adapter = WelcomePagerAdapter(isDarkThemeOn())
             dotsIndicator.setViewPager2(viewPager)
             buttonContinue.setOnClickListener {
-                lifecycleScope.launch {
-                    dataStoreHelper.setShowWelcomePref(false)
-                    val action = WelcomeFragmentDirections.actionGlobalBatteryOptimizationFragment(
-                        WELCOME_FLOW
-                    )
-                    findNavController().navigate(action)
-                }
+                onContinueButtonClicked()
             }
+        }
+    }
+
+    private fun onContinueButtonClicked() {
+        lifecycleScope.launch {
+            dataStoreHelper.setShowWelcomePref(false)
+            val action = WelcomeFragmentDirections.actionGlobalBatteryOptimizationFragment(
+                WELCOME_FLOW
+            )
+            findNavController().navigate(action)
         }
     }
 

@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.DayLogHomePagerItemBinding
 import com.puntogris.posture.domain.model.DayLog
+import com.puntogris.posture.utils.extensions.setText
 import com.puntogris.posture.utils.setDayMonth
 import com.puntogris.posture.utils.setPagerDay
-import com.puntogris.posture.utils.setText
 
 class DayLogHomeViewHolder(private val binding: DayLogHomePagerItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
