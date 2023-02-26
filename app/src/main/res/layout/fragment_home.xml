@@ -58,6 +58,7 @@
         android:layout_marginTop="@dimen/spacing_6"
         android:text="@string/no_reminders_found_alert"
         android:textAlignment="center"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_selected_reminder_title" />
@@ -68,7 +69,7 @@
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/spacing_6"
         android:text="@string/see_all_reminders"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_manage_reminders_message" />

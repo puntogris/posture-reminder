@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.posture.R
@@ -29,6 +30,10 @@ import com.puntogris.posture.utils.setToggleButton
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.singleOrNull
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
@@ -78,10 +83,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
                 onToggleAlarmClicked()
             }
             imageViewEditReminder.setOnClickListener {
-                val action = HomeFragmentDirections.actionHomeToNewReminder(
-                    viewModel.activeReminder.value
-                )
-                findNavController().navigate(action)
+                lifecycleScope.launch {
+                    viewModel.activeReminder.firstOrNull()?.let {
+                        val action = HomeFragmentDirections.actionHomeToNewReminder(it)
+                        findNavController().navigate(action)
+                    }
+                }
             }
         }
         binding.buttonManageReminders.setOnClickListener {
@@ -90,19 +97,18 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
     }
 
     private fun onActiveReminderUpdated(reminder: Reminder?) {
+        if (reminder != null) {
+            with(binding.layoutActiveReminder) {
+                textViewReminderTitleValue.text = reminder.name
+                textViewReminderIntervalValue.text = reminder.timeIntervalSummary()
+                setMinutesToHourlyTime(textViewReminderStartValue, reminder.startTime)
+                setMinutesToHourlyTime(textViewReminderEndValue, reminder.endTime)
+                setDaysSummary(textViewReminderDaysValue, reminder)
+                viewReminderColor.setBackgroundColorTintView(reminder.color)
+            }
+        }
         binding.layoutActiveReminder.root.isVisible = reminder != null
         binding.groupReminderNotFound.isVisible = reminder == null
-        if (reminder == null) {
-            return
-        }
-        with(binding.layoutActiveReminder) {
-            textViewReminderTitleValue.text = reminder.name
-            textViewReminderIntervalValue.text = reminder.timeIntervalSummary()
-            setMinutesToHourlyTime(textViewReminderStartValue, reminder.startTime)
-            setMinutesToHourlyTime(textViewReminderEndValue, reminder.endTime)
-            setDaysSummary(textViewReminderDaysValue, reminder)
-            viewReminderColor.setBackgroundColorTintView(reminder.color)
-        }
     }
 
     private fun setupPagerAndTabLayout() {

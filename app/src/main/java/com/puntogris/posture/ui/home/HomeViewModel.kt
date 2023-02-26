@@ -27,9 +27,7 @@ class HomeViewModel @Inject constructor(
         .isAlarmActiveFlow()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), false)
 
-    val activeReminder = reminderRepository
-        .getActiveReminderStream()
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
+    val activeReminder = reminderRepository.getActiveReminderStream()
 
     private val _alarmStatus = MutableSharedFlow<AlarmStatus>()
     val alarmStatus = _alarmStatus.asSharedFlow()
