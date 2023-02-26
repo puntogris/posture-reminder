@@ -5,4 +5,3 @@ sealed class LoginResult {
     class Success(val userPrivateData: UserPrivateData) : LoginResult()
     object Error : LoginResult()
 }
-

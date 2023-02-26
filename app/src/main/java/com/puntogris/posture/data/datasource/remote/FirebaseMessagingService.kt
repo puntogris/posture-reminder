@@ -5,6 +5,7 @@ import com.google.firebase.messaging.RemoteMessage
 import com.puntogris.posture.data.datasource.toFcmNotification
 import com.puntogris.posture.framework.alarm.Notifications
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -17,7 +18,7 @@ class FirebaseMessagingService : FirebaseMessagingService() {
         try {
             notifications.sendFcmNotification(remoteMessage.toFcmNotification())
         } catch (e: Exception) {
-            //handle error
+            Timber.d(e.localizedMessage)
         }
     }
 

@@ -140,9 +140,7 @@ class AppModule {
         appDatabase: AppDatabase,
         dispatchers: DispatcherProvider
     ): DayLogsRepository {
-        return DayLogsRepositoryImpl(
-            appDatabase, dispatchers
-        )
+        return DayLogsRepositoryImpl(appDatabase, dispatchers)
     }
 
     @Provides
@@ -167,5 +165,4 @@ class AppModule {
     fun provideUserServerApi(firebaseClients: FirebaseClients): UserServerApi {
         return FirebaseUserApi(firebaseClients)
     }
-
 }

@@ -18,6 +18,9 @@ import com.puntogris.posture.databinding.FragmentPermissionsBinding
 import com.puntogris.posture.utils.PermissionsManager.needsAlarmPermission
 import com.puntogris.posture.utils.PermissionsManager.needsNotificationPermission
 import com.puntogris.posture.utils.constants.Constants
+import com.puntogris.posture.utils.constants.Constants.APP_NOTIFICATION_SETTINGS
+import com.puntogris.posture.utils.constants.Constants.APP_PACKAGE_EXTRA
+import com.puntogris.posture.utils.constants.Constants.APP_UID_EXTRA
 import com.puntogris.posture.utils.extensions.isDarkThemeOn
 import com.puntogris.posture.utils.extensions.showSnackBar
 import com.puntogris.posture.utils.viewBinding
@@ -85,7 +88,7 @@ class PermissionsFragment : Fragment(R.layout.fragment_permissions) {
 
     private fun onNeedsNotificationPermission() {
         val canAskNotificationPermission = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-                shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)
+            shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)
         if (canAskNotificationPermission) {
             stringPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -96,9 +99,9 @@ class PermissionsFragment : Fragment(R.layout.fragment_permissions) {
             intentPermissionLauncher.launch(intent)
         } else {
             val intent = Intent().apply {
-                action = "android.settings.APP_NOTIFICATION_SETTINGS"
-                putExtra("app_package", requireContext().packageName)
-                putExtra("app_uid", requireContext().applicationInfo.uid)
+                action = APP_NOTIFICATION_SETTINGS
+                putExtra(APP_PACKAGE_EXTRA, requireContext().packageName)
+                putExtra(APP_UID_EXTRA, requireContext().applicationInfo.uid)
             }
             intentPermissionLauncher.launch(intent)
         }

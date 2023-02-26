@@ -13,7 +13,9 @@ import com.puntogris.posture.utils.constants.Converters
         Reminder::class,
         UserPrivateData::class,
         DayLog::class
-    ], version = 1, exportSchema = false
+    ],
+    version = 1,
+    exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {

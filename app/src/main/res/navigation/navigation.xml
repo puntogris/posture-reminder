@@ -51,7 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/batteryOptimizationFragment"
-        android:name="com.puntogris.posture.ui.welcome.BatteryOptimizationFragment">
+        android:name="com.puntogris.posture.ui.permissions.BatteryOptimizationFragment">
         <argument
             android:name="flow"
             app:argType="string"

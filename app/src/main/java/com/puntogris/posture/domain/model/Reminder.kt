@@ -73,10 +73,10 @@ data class Reminder(
 
     fun requiredInfoValid(): Boolean {
         return name.isNotBlank() &&
-                timeInterval != 0 &&
-                startTimeValid &&
-                endTimeValid &&
-                alarmDays.isNotEmpty()
+            timeInterval != 0 &&
+            startTimeValid &&
+            endTimeValid &&
+            alarmDays.isNotEmpty()
     }
 
     fun triggerTimeAtMillis(): Long {

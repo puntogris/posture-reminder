@@ -1,7 +1,11 @@
 package com.puntogris.posture.domain.model
 
 import android.os.Parcelable
-import androidx.annotation.*
+import androidx.annotation.ArrayRes
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.Keep
+import androidx.annotation.StringRes
 import com.puntogris.posture.R
 import kotlinx.parcelize.Parcelize
 

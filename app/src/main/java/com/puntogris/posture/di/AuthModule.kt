@@ -29,12 +29,11 @@ class AuthModule {
     @Provides
     @Singleton
     fun provideGoogleSignInClient(@ApplicationContext context: Context): GoogleSignInClient {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .requestIdToken(BuildConfig.GOOGLE_WEB_CLIENT_ID)
             .build()
-
-        return GoogleSignIn.getClient(context, gso)
+        return GoogleSignIn.getClient(context, options)
     }
 
     @Provides

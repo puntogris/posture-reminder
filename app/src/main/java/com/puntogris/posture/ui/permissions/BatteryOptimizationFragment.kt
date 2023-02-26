@@ -1,4 +1,4 @@
-package com.puntogris.posture.ui.welcome
+package com.puntogris.posture.ui.permissions
 
 import android.content.Intent
 import android.os.Bundle
@@ -66,7 +66,9 @@ class BatteryOptimizationFragment : Fragment(R.layout.fragment_battery_optimizat
     private fun navigateAccordingToFlow() {
         when(args.flow) {
             WELCOME_FLOW -> {
-                val action = BatteryOptimizationFragmentDirections.actionGlobalPermissionsFragment(args.flow)
+                val action = BatteryOptimizationFragmentDirections.actionGlobalPermissionsFragment(
+                    args.flow
+                )
                 findNavController().navigate(action)
             }
             SETTINGS_FLOW -> {

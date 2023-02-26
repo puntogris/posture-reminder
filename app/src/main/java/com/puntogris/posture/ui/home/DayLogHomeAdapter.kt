@@ -21,10 +21,11 @@ class DayLogHomeAdapter : RecyclerView.Adapter<DayLogHomeViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateList(list: List<DayLog>) {
-        if (list.isNotEmpty()) {
-            if (list.size == 1) items = listOf(list.first(), DayLog())
-            else if (list.size == 2) items = list
-            notifyDataSetChanged()
+        if (list.size == 1) {
+            items = listOf(list.first(), DayLog())
+        } else if (list.size == 2) {
+            items = list
         }
+        notifyDataSetChanged()
     }
 }
