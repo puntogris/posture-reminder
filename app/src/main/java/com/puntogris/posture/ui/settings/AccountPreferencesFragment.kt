@@ -48,7 +48,11 @@ class AccountPreferencesFragment : PreferenceFragmentCompat() {
                 }
             )
             onClick {
-                findNavController().navigate(R.id.batteryOptimizationFragment)
+                if (requireContext().isIgnoringBatteryOptimizations()) {
+                    showSnackBar(R.string.optimization_correct)
+                } else {
+                    findNavController().navigate(R.id.batteryOptimizationFragment)
+                }
             }
         }
 
