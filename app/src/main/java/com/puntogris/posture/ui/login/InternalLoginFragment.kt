@@ -50,7 +50,7 @@ class InternalLoginFragment : Fragment(R.layout.fragment_internal_login) {
                 binding.progressBar.isVisible = true
             }
             is LoginResult.Success -> {
-                val action = NavigationDirections.actionGlobalSynAccountFragment(
+                val action = NavigationDirections.actionGlobalSyncAccountFragment(
                     result.userPrivateData
                 )
                 findNavController().navigate(action)

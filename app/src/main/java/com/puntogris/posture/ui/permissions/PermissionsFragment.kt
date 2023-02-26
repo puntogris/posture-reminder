@@ -18,6 +18,7 @@ import com.puntogris.posture.databinding.FragmentPermissionsBinding
 import com.puntogris.posture.utils.PermissionsManager.needsAlarmPermission
 import com.puntogris.posture.utils.PermissionsManager.needsNotificationPermission
 import com.puntogris.posture.utils.constants.Constants
+import com.puntogris.posture.utils.extensions.isDarkThemeOn
 import com.puntogris.posture.utils.extensions.showSnackBar
 import com.puntogris.posture.utils.viewBinding
 
@@ -31,6 +32,17 @@ class PermissionsFragment : Fragment(R.layout.fragment_permissions) {
         super.onViewCreated(view, savedInstanceState)
         setupPermissionLaunchers()
         setupListeners()
+        setupViews()
+    }
+
+    private fun setupViews() {
+        binding.imageViewPermissionIllustration.setImageResource(
+            if (requireContext().isDarkThemeOn()) {
+                R.drawable.ic_girl_swing_dark
+            } else {
+                R.drawable.ic_girl_swing
+            }
+        )
     }
 
     private fun setupPermissionLaunchers() {

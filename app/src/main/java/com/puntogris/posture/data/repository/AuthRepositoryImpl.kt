@@ -27,7 +27,7 @@ class AuthRepositoryImpl(
 
     override suspend fun getShowLoginPref() = dataStoreHelper.showLoginPref()
 
-    override suspend fun getShowWelcomePref() = dataStoreHelper.showWelcomePref()
+    override suspend fun getShowWelcomeFlowPref() = dataStoreHelper.showWelcomeFlowPref()
 
     override fun authWithGoogle(result: ActivityResult): Flow<LoginResult> = flow {
         try {

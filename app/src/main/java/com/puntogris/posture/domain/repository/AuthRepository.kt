@@ -12,5 +12,5 @@ interface AuthRepository {
 
     suspend fun getShowLoginPref(): Boolean
 
-    suspend fun getShowWelcomePref(): Boolean
+    suspend fun getShowWelcomeFlowPref(): Boolean
 }

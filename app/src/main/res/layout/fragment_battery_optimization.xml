@@ -56,6 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView_step_one" />
 
     <ImageView
+        android:id="@+id/imageView_battery_illustration"
         android:layout_width="@dimen/spacing_0"
         android:layout_height="@dimen/spacing_0"
         android:layout_marginHorizontal="@dimen/spacing_8"
@@ -65,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_step_two"
-        app:srcCompat="@drawable/ic_girl_swing" />
+        tools:srcCompat="@drawable/ic_men_standing" />
 
     <TextView
         android:id="@+id/textView_permission_alert"

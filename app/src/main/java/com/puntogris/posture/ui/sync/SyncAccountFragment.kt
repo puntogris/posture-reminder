@@ -8,8 +8,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.puntogris.posture.R
-import com.puntogris.posture.databinding.FragmentSynAccountBinding
+import com.puntogris.posture.databinding.FragmentSyncAccountBinding
 import com.puntogris.posture.utils.SimpleResult
+import com.puntogris.posture.utils.constants.Constants.WELCOME_FLOW
 import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.extensions.playAnimationOnce
@@ -18,10 +19,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SynAccountFragment : Fragment(R.layout.fragment_syn_account) {
+class SyncAccountFragment : Fragment(R.layout.fragment_sync_account) {
 
     private val viewModel: SyncAccountViewModel by viewModels()
-    private val binding by viewBinding(FragmentSynAccountBinding::bind)
+    private val binding by viewBinding(FragmentSyncAccountBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,13 +30,14 @@ class SynAccountFragment : Fragment(R.layout.fragment_syn_account) {
 
         binding.buttonContinue.setOnClickListener {
             lifecycleScope.launch {
-                findNavController().navigate(
-                    if (viewModel.showWelcome()) {
-                        R.id.action_synAccountFragment_to_welcomeFragment
-                    } else {
-                        R.id.action_synAccount_to_home
-                    }
-                )
+                if (viewModel.showWelcome()) {
+                    val action = SyncAccountFragmentDirections.actionGlobalBatteryOptimizationFragment(
+                        WELCOME_FLOW
+                    )
+                    findNavController().navigate(action)
+                } else {
+                    findNavController().navigate(R.id.action_syncAccount_to_home)
+                }
             }
         }
     }

@@ -41,7 +41,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             loginLauncher.launch(viewModel.getGoogleSignInIntent())
         }
         binding.buttonContinueAnonymously.setOnClickListener {
-            findNavController().navigate(R.id.synAccountFragment)
+            findNavController().navigate(R.id.syncAccountFragment)
         }
         binding.buttonLoginProblems.setOnClickListener {
             launchWebBrowserIntent(AUTH_HELP_URL)
@@ -58,7 +58,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 binding.progressBar.isVisible = true
             }
             is LoginResult.Success -> {
-                val action = NavigationDirections.actionGlobalSynAccountFragment(
+                val action = NavigationDirections.actionGlobalSyncAccountFragment(
                     result.userPrivateData
                 )
                 findNavController().navigate(action)

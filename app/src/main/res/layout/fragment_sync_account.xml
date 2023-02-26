@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.sync.SynAccountFragment">
+    tools:context=".ui.sync.SyncAccountFragment">
 
     <TextView
         android:id="@+id/textView_sync_title"

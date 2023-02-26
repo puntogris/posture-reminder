@@ -100,9 +100,6 @@ dependencies {
     //Date
     implementation(libs.date)
 
-    //Tab layout dots indicators
-    implementation(libs.dotsIndicator)
-
     //Charts
     implementation(libs.charts)
 

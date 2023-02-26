@@ -26,5 +26,5 @@ class SyncAccountViewModel @Inject constructor(
         authRepository.signOutUser()
     }
 
-    suspend fun showWelcome() = authRepository.getShowWelcomePref()
+    suspend fun showWelcome() = authRepository.getShowWelcomeFlowPref()
 }

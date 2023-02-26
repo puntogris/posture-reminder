@@ -20,7 +20,6 @@ class SelectThemeDialog : DialogFragment() {
     lateinit var dataStoreHelper: DataStoreHelper
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val themeValuesArray = resources.getIntArray(R.array.theme_values)
 
         val currentPosition = runBlocking {
             val currentTheme = dataStoreHelper.appTheme()
@@ -30,14 +29,18 @@ class SelectThemeDialog : DialogFragment() {
         return MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.theme)
             .setSingleChoiceItems(R.array.theme_names, currentPosition) { _, position ->
-                themeValuesArray[position].let {
-                    lifecycleScope.launch {
-                        dataStoreHelper.setAppTheme(it)
-                        AppCompatDelegate.setDefaultNightMode(it)
-                        dismiss()
-                    }
-                }
+               setThemePreference(position)
             }
             .create()
+    }
+    private fun setThemePreference(position: Int) {
+        val themeValuesArray = resources.getIntArray(R.array.theme_values)
+        themeValuesArray[position].let {
+            lifecycleScope.launch {
+                dataStoreHelper.setAppTheme(it)
+                AppCompatDelegate.setDefaultNightMode(it)
+                dismiss()
+            }
+        }
     }
 }

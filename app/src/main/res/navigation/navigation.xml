@@ -30,9 +30,6 @@
             app:destination="@id/soundSelectorDialog" />
     </dialog>
     <fragment
-        android:id="@+id/welcomeFragment"
-        android:name="com.puntogris.posture.ui.welcome.WelcomeFragment"/>
-    <fragment
         android:id="@+id/settingsFragment"
         android:name="com.puntogris.posture.ui.settings.SettingsFragment" />
     <dialog
@@ -97,20 +94,15 @@
         android:id="@+id/rankingsFragment"
         android:name="com.puntogris.posture.ui.rankings.RankingsFragment" />
     <fragment
-        android:id="@+id/synAccountFragment"
-        android:name="com.puntogris.posture.ui.sync.SynAccountFragment">
+        android:id="@+id/syncAccountFragment"
+        android:name="com.puntogris.posture.ui.sync.SyncAccountFragment">
         <argument
             android:name="userPrivateData"
             android:defaultValue="@null"
             app:argType="com.puntogris.posture.domain.model.UserPrivateData"
             app:nullable="true" />
         <action
-            android:id="@+id/action_synAccountFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment"
-            app:popUpTo="@id/navigation"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_synAccount_to_home"
+            android:id="@+id/action_syncAccount_to_home"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/navigation"
             app:popUpToInclusive="true" />
@@ -143,8 +135,8 @@
         android:id="@+id/internalLoginFragment"
         android:name="com.puntogris.posture.ui.login.InternalLoginFragment" />
     <action
-        android:id="@+id/action_global_synAccountFragment"
-        app:destination="@id/synAccountFragment" />
+        android:id="@+id/action_global_syncAccountFragment"
+        app:destination="@id/syncAccountFragment" />
     <fragment
         android:id="@+id/deleteAccountFragment"
         android:name="com.puntogris.posture.ui.account.DeleteAccountFragment" />
