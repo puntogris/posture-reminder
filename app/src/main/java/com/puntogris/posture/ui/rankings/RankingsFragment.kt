@@ -6,6 +6,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.core.view.MenuProvider
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -38,10 +39,16 @@ class RankingsFragment : Fragment(R.layout.fragment_rankings), MenuProvider {
             viewModel.rankings.collect {
                 when (it) {
                     is Result.Error -> {
+                        binding.progressBar.isVisible = false
                         UiInterface.showSnackBar(getString(R.string.snack_connection_error))
                     }
-                    is Result.Success -> adapter.submitList(it.value)
-                    is Result.Loading -> Unit
+                    is Result.Success -> {
+                        adapter.submitList(it.value)
+                        binding.progressBar.isVisible = false
+                    }
+                    is Result.Loading -> {
+                        binding.progressBar.isVisible = true
+                    }
                 }
             }
         }

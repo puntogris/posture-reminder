@@ -18,6 +18,7 @@ class RankingsRepositoryImpl(
 
     override fun getRankingsWithLimit(limit: Long) = flow<Result<List<UserPublicProfile>>> {
         try {
+            emit(Result.Loading())
             val result = firebase.firestore
                 .collectionGroup(Constants.PUBLIC_PROFILE_COL_GROUP)
                 .orderBy(Constants.EXPERIENCE_FIELD, Query.Direction.DESCENDING)
