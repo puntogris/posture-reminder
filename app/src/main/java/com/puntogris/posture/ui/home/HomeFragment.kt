@@ -21,6 +21,7 @@ import com.puntogris.posture.utils.PermissionsManager
 import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
+import com.puntogris.posture.utils.extensions.navigateSafely
 import com.puntogris.posture.utils.extensions.setPageFadeTransformer
 import com.puntogris.posture.utils.extensions.showItem
 import com.puntogris.posture.utils.setBackgroundColorTintView
@@ -30,9 +31,7 @@ import com.puntogris.posture.utils.setToggleButton
 import com.puntogris.posture.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.flow.singleOrNull
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -85,8 +84,9 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
             imageViewEditReminder.setOnClickListener {
                 lifecycleScope.launch {
                     viewModel.activeReminder.firstOrNull()?.let {
-                        val action = HomeFragmentDirections.actionHomeToNewReminder(it)
-                        findNavController().navigate(action)
+                        findNavController().navigateSafely(
+                            HomeFragmentDirections.actionHomeToNewReminder(it)
+                        )
                     }
                 }
             }
