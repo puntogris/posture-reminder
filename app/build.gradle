@@ -112,9 +112,6 @@ dependencies {
     //Google sign in
     implementation(libs.googleSignIn)
 
-    //Shimmer fb effect
-    implementation(libs.shimmer)
-
     //Work manager Kotlin + coroutines
     implementation(libs.workManager)
 

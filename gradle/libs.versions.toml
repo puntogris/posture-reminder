@@ -17,7 +17,6 @@ room = "2.5.0"
 workManager = "2.8.0"
 kluent = "1.68"
 preferences = "1.2.0"
-shimmer = "0.5.0"
 licenses = "17.0.0"
 timber = "5.0.1"
 kronos= "0.0.1-alpha11"
@@ -131,9 +130,6 @@ dataStore = { module = "androidx.datastore:datastore-preferences", version.ref =
 
 #Google sign in
 googleSignIn = { module = "com.google.android.gms:play-services-auth", version.ref = "googleSignIn" }
-
-#Shimmer fb effect
-shimmer = { module = "com.facebook.shimmer:shimmer", version.ref = "shimmer" }
 
 #Work manager Kotlin + coroutines
 workManager = { module = "androidx.work:work-runtime-ktx", version.ref = "workManager" }
