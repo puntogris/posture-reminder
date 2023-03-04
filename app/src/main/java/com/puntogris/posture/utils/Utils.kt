@@ -1,6 +1,5 @@
 package com.puntogris.posture.utils
 
-import com.maxkeppeler.sheets.options.Option
 import com.puntogris.posture.utils.extensions.getHours
 import com.puntogris.posture.utils.extensions.getMinutes
 import com.puntogris.posture.utils.extensions.millisToMinutes
@@ -25,14 +24,6 @@ object Utils {
 
     fun getTriggerTime(interval: Int) =
         Calendar.getInstance().timeInMillis + interval.minutesToMillis()
-
-    fun getSavedOptions(savedList: List<Int>?, daysList: Array<String>): MutableList<Option> {
-        return daysList.mapIndexed { index, _ ->
-            Option(daysList[index]).apply {
-                if (!savedList.isNullOrEmpty() && index in savedList) select()
-            }
-        }.toMutableList()
-    }
 
     fun dayOfTheWeek(): Int {
         return when (Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) {

@@ -104,7 +104,6 @@ lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 
 #BottomSheet
 bottomSheet-core = { module = "com.maxkeppeler.sheets:core", version.ref = "bottomSheet" }
-bottomSheet-options = { module = "com.maxkeppeler.sheets:options", version.ref = "bottomSheet" }
 bottomSheet-color = { module = "com.maxkeppeler.sheets:color", version.ref = "bottomSheet" }
 
 #Coroutines
@@ -153,7 +152,7 @@ inAppReview = { module = "com.google.android.play:review-ktx", version.ref = "in
 
 [bundles]
 
-bottomSheet = ["bottomSheet-core", "bottomSheet-options", "bottomSheet-color"]
+bottomSheet = ["bottomSheet-core", "bottomSheet-color"]
 
 lifecycle = ["lifecycleCommon", "lifecycleProcess", "lifecycleRuntime", "lifecycleLiveData"]
 

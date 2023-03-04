@@ -16,16 +16,13 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_CLOCK
 import com.google.android.material.timepicker.TimeFormat
 import com.maxkeppeler.sheets.color.ColorSheet
-import com.maxkeppeler.sheets.core.SheetStyle
-import com.maxkeppeler.sheets.options.OptionsSheet
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetNewReminderBinding
 import com.puntogris.posture.utils.ReminderUi
 import com.puntogris.posture.utils.Result
-import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
 import com.puntogris.posture.utils.constants.Constants.EDIT_REMINDER_FLOW
-import com.puntogris.posture.utils.constants.Constants.MINUTES_IN_AN_HOR
+import com.puntogris.posture.utils.constants.Constants.MINUTES_IN_AN_HOUR
 import com.puntogris.posture.utils.constants.Constants.SOUND_PICKER_KEY
 import com.puntogris.posture.utils.constants.Constants.VIBRATION_PICKER_KEY
 import com.puntogris.posture.utils.extensions.UiInterface
@@ -106,9 +103,9 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
                 is Result.Success -> {
                     UiInterface.showSnackBar(getString(R.string.snack_create_reminder_success))
                     if (args.flow == EDIT_REMINDER_FLOW) {
-                        findNavController().navigate(R.id.manageRemindersFragment)
-                    } else {
                         dismiss()
+                    } else {
+                        findNavController().navigate(R.id.manageRemindersFragment)
                     }
                 }
                 else -> Unit
@@ -122,8 +119,8 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
             is ReminderUi.Item.Interval -> openIntervalPicker()
             is ReminderUi.Item.Name -> openNamePicker()
             is ReminderUi.Item.Days -> openDaysPicker()
-            is ReminderUi.Item.End -> openTimePicker(reminderUi)
-            is ReminderUi.Item.Start -> openTimePicker(reminderUi)
+            is ReminderUi.Item.End -> openEndTimePicker()
+            is ReminderUi.Item.Start -> openStartTimePicker()
             is ReminderUi.Item.Sound -> onSoundPicker()
             is ReminderUi.Item.Vibration -> onVibrationPicker()
         }
@@ -154,60 +151,57 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
             title(R.string.color_picker_title)
             disableSwitchColorView()
             onNegative(R.string.action_cancel)
-            onPositive { color -> viewModel.saveReminderColor(color) }
+            onPositive(viewModel::saveReminderColor)
         }
     }
 
     private fun openIntervalPicker() {
-        IntervalPickerDialog(viewModel.reminder.value.timeInterval) {
-            if (it != null) viewModel.saveTimeInterval(it)
-        }.show(parentFragmentManager, "TIME_INTERVAL_DIALOG")
+        IntervalPickerDialog(
+            interval = viewModel.reminder.value.timeInterval,
+            result = viewModel::saveTimeInterval
+        ).show(parentFragmentManager, "TIME_INTERVAL_DIALOG")
     }
 
     private fun openDaysPicker() {
-        val alarmDaysString = resources.getStringArray(R.array.alarmDays)
-        val savedList = viewModel.reminder.value.alarmDays
-        val options = Utils.getSavedOptions(savedList, alarmDaysString)
-
-        OptionsSheet().show(requireParentFragment().requireContext()) {
-            style(SheetStyle.DIALOG)
-            title(R.string.alarm_days_title)
-            multipleChoices(true)
-            with(options)
-            onNegative(R.string.action_cancel)
-            onPositiveMultiple(R.string.action_save) { indices, _ ->
-                viewModel.saveReminderDays(indices.sorted())
-            }
-        }
+        DaysPickerDialog(
+            initialDays = viewModel.reminder.value.alarmDays,
+            onSaveAction = viewModel::saveReminderDays
+        ).show(parentFragmentManager, "DAYS_PICKER_DIALOG")
     }
 
-    private fun openTimePicker(code: ReminderUi.Item) {
-        val title = if (code is ReminderUi.Item.Start) {
-            R.string.start_time_title
-        } else {
-            R.string.end_time_title
-        }
-        val defaultTime = viewModel.getDefaultClockTimeInMillis(code)
+    private fun openStartTimePicker() {
+        openTimePicker(
+            title = R.string.start_time_title,
+            defaultTime = viewModel.reminder.value.startTime,
+            onSaveAction = viewModel::saveStartTime
+        )
+    }
+
+    private fun openEndTimePicker() {
+        openTimePicker(
+            title = R.string.end_time_title,
+            defaultTime = viewModel.reminder.value.endTime,
+            onSaveAction = viewModel::saveEndTime
+        )
+    }
+
+    private fun openTimePicker(title: Int, defaultTime: Int, onSaveAction: (Int) -> Unit) {
         MaterialTimePicker.Builder()
             .setTimeFormat(TimeFormat.CLOCK_24H)
             .setInputMode(INPUT_MODE_CLOCK)
             .setTitleText(title)
             .setPositiveButtonText(R.string.action_done)
             .setNegativeButtonText(R.string.action_cancel)
-            .build()
             .apply {
                 if (defaultTime != -1) {
-                    hour = defaultTime.getHours()
-                    minute = defaultTime.getMinutes()
+                    setHour(defaultTime.getHours())
+                    setMinute(defaultTime.getMinutes())
                 }
+            }.build()
+            .apply {
                 addOnPositiveButtonClickListener {
-                    val time = (hour * MINUTES_IN_AN_HOR) + minute
-                    if (code is ReminderUi.Item.Start) {
-                        viewModel.saveStartTime(time)
-                    } else {
-                        viewModel.saveEndTime(time)
-                    }
+                    onSaveAction((hour * MINUTES_IN_AN_HOUR) + minute)
                 }
-            }.show(parentFragmentManager, "TIMEPICKER_DIALOG")
+            }.show(parentFragmentManager, "TIME_PICKER_DIALOG")
     }
 }

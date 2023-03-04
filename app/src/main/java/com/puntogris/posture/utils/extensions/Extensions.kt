@@ -14,9 +14,7 @@ import kotlinx.coroutines.launch
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
 import timber.log.Timber
-import java.util.Date
 import java.util.Locale
-import java.util.TimeZone
 
 fun Int.getHours() = this / 60
 

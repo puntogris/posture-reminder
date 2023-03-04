@@ -6,7 +6,6 @@ import com.puntogris.posture.R
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.domain.model.ReminderId
 import com.puntogris.posture.domain.repository.ReminderRepository
-import com.puntogris.posture.utils.ReminderUi
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.ToneItem
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -69,11 +68,5 @@ class NewReminderViewModel @Inject constructor(
                 soundName = it.title
             )
         }
-    }
-
-    fun getDefaultClockTimeInMillis(code: ReminderUi.Item): Int = when (code) {
-        is ReminderUi.Item.Start -> reminder.value.startTime
-        is ReminderUi.Item.End -> reminder.value.endTime
-        else -> -1
     }
 }

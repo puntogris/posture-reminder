@@ -15,7 +15,7 @@ import com.puntogris.posture.utils.viewBinding
 
 class IntervalPickerDialog(
     private val interval: Int,
-    private val result: (Int?) -> Unit
+    private val result: (Int) -> Unit
 ) : DialogFragment() {
 
     private val binding by viewBinding(DialogIntervalPickerBinding::inflate)
