@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity(),
                 navController.navigate(it.itemId)
                 true
             }
-            //trick to disable reloading the same destination if we are there already
+            // Trick to disable reloading the same destination if we are there already
             setOnItemReselectedListener {}
         }
     }

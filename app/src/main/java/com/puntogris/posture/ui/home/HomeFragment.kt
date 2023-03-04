@@ -19,6 +19,7 @@ import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.framework.alarm.AlarmStatus
 import com.puntogris.posture.utils.PermissionsManager
 import com.puntogris.posture.utils.Utils
+import com.puntogris.posture.utils.constants.Constants.EDIT_REMINDER_FLOW
 import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.extensions.navigateSafely
@@ -85,7 +86,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), MenuProvider {
                 lifecycleScope.launch {
                     viewModel.activeReminder.firstOrNull()?.let {
                         findNavController().navigateSafely(
-                            HomeFragmentDirections.actionHomeToNewReminder(it)
+                            HomeFragmentDirections.actionHomeToNewReminder(
+                                reminder = it,
+                                flow = EDIT_REMINDER_FLOW
+                            )
                         )
                     }
                 }

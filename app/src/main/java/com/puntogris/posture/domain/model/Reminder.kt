@@ -74,8 +74,8 @@ data class Reminder(
     fun requiredInfoValid(): Boolean {
         return name.isNotBlank() &&
             timeInterval != 0 &&
-            startTimeValid &&
-            endTimeValid &&
+            startTime != -1 &&
+            endTime != -1 &&
             alarmDays.isNotEmpty()
     }
 
@@ -86,10 +86,4 @@ data class Reminder(
             set(Calendar.MINUTE, startTime.getMinutes())
         }.timeInMillis
     }
-
-    val startTimeValid: Boolean
-        get() = startTime != -1
-
-    val endTimeValid: Boolean
-        get() = endTime != -1
 }

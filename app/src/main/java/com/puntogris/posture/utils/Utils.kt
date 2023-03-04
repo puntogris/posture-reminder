@@ -6,7 +6,6 @@ import com.puntogris.posture.utils.extensions.getMinutes
 import com.puntogris.posture.utils.extensions.millisToMinutes
 import com.puntogris.posture.utils.extensions.minutesToMillis
 import java.util.Calendar
-import java.util.Date
 
 object Utils {
 
@@ -22,15 +21,6 @@ object Utils {
             set(Calendar.MILLISECOND, 0)
         }
         return (now.timeInMillis - midnight.timeInMillis).millisToMinutes()
-    }
-
-    fun getDateFromMinutesSinceMidnight(minutesSinceMidnight: Int): Date {
-        return Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, minutesSinceMidnight.getHours())
-            set(Calendar.MINUTE, minutesSinceMidnight.getMinutes())
-            set(Calendar.SECOND, 0)
-            set(Calendar.MILLISECOND, 0)
-        }.time
     }
 
     fun getTriggerTime(interval: Int) =

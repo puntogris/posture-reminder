@@ -9,21 +9,28 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_CLOCK
+import com.google.android.material.timepicker.TimeFormat
 import com.maxkeppeler.sheets.color.ColorSheet
 import com.maxkeppeler.sheets.core.SheetStyle
 import com.maxkeppeler.sheets.options.OptionsSheet
-import com.maxkeppeler.sheets.time_clock.ClockTimeSheet
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetNewReminderBinding
 import com.puntogris.posture.utils.ReminderUi
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.Utils
 import com.puntogris.posture.utils.constants.Constants.DATA_KEY
+import com.puntogris.posture.utils.constants.Constants.EDIT_REMINDER_FLOW
+import com.puntogris.posture.utils.constants.Constants.MINUTES_IN_AN_HOR
 import com.puntogris.posture.utils.constants.Constants.SOUND_PICKER_KEY
 import com.puntogris.posture.utils.constants.Constants.VIBRATION_PICKER_KEY
 import com.puntogris.posture.utils.extensions.UiInterface
+import com.puntogris.posture.utils.extensions.getHours
+import com.puntogris.posture.utils.extensions.getMinutes
 import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
 import com.puntogris.posture.utils.extensions.setupAsFullScreen
 import com.puntogris.posture.utils.extensions.showSnackBar
@@ -36,6 +43,7 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
 
     private val viewModel: NewReminderViewModel by viewModels()
     private val binding by viewBinding(BottomSheetNewReminderBinding::bind)
+    private val args: NewReminderBottomSheetArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -96,8 +104,12 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
                     showSnackBar(result.error, anchorView = binding.buttonSaveReminder)
                 }
                 is Result.Success -> {
-                    dismiss()
-                    requireParentFragment().UiInterface.showSnackBar(getString(R.string.snack_create_reminder_success))
+                    UiInterface.showSnackBar(getString(R.string.snack_create_reminder_success))
+                    if (args.flow == EDIT_REMINDER_FLOW) {
+                        findNavController().navigate(R.id.manageRemindersFragment)
+                    } else {
+                        dismiss()
+                    }
                 }
                 else -> Unit
             }
@@ -175,18 +187,27 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
         } else {
             R.string.end_time_title
         }
-        ClockTimeSheet().show(requireParentFragment().requireContext()) {
-            style(SheetStyle.DIALOG)
-            currentTime(viewModel.getDefaultClockTimeInMillis(code))
-            title(title)
-            onNegative(R.string.action_cancel)
-            onPositive { milliseconds, _, _ ->
-                if (code is ReminderUi.Item.Start) {
-                    viewModel.saveStartTime(milliseconds)
-                } else {
-                    viewModel.saveEndTime(milliseconds)
+        val defaultTime = viewModel.getDefaultClockTimeInMillis(code)
+        MaterialTimePicker.Builder()
+            .setTimeFormat(TimeFormat.CLOCK_24H)
+            .setInputMode(INPUT_MODE_CLOCK)
+            .setTitleText(title)
+            .setPositiveButtonText(R.string.action_done)
+            .setNegativeButtonText(R.string.action_cancel)
+            .build()
+            .apply {
+                if (defaultTime != -1) {
+                    hour = defaultTime.getHours()
+                    minute = defaultTime.getMinutes()
                 }
-            }
-        }
+                addOnPositiveButtonClickListener {
+                    val time = (hour * MINUTES_IN_AN_HOR) + minute
+                    if (code is ReminderUi.Item.Start) {
+                        viewModel.saveStartTime(time)
+                    } else {
+                        viewModel.saveEndTime(time)
+                    }
+                }
+            }.show(parentFragmentManager, "TIMEPICKER_DIALOG")
     }
 }

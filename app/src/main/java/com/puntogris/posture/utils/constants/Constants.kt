@@ -19,6 +19,7 @@ object Constants {
     const val PROGRESS_BAR_SMOOTH_OFFSET = 20
     const val PACKAGE_URI_NAME = "package:com.puntogris.posture"
     const val ONE_SECOND_IN_MILLIS = 1000
+    const val MINUTES_IN_AN_HOR = 60
 
     // Notifications
     const val DAILY_ALARM_TRIGGERED = "DAILY_ALARM_TRIGGERED"
@@ -56,9 +57,10 @@ object Constants {
     const val EXERCISE_KEY = "exercise"
     const val DEFAULT_EXERCISE_TIMER_SECS = 50
 
-    // Flow for navigating battery optimization and permissions screen
+    // App flows
     const val WELCOME_FLOW = "welcome_flow"
     const val SETTINGS_FLOW = "settings_flow"
+    const val EDIT_REMINDER_FLOW = "edit_reminder_flow"
 
     // Permissions
     const val APP_NOTIFICATION_SETTINGS = "android.settings.APP_NOTIFICATION_SETTINGS"

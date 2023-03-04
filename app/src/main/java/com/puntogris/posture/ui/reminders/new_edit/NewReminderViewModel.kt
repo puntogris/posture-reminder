@@ -9,11 +9,7 @@ import com.puntogris.posture.domain.repository.ReminderRepository
 import com.puntogris.posture.utils.ReminderUi
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.ToneItem
-import com.puntogris.posture.utils.Utils.getDateFromMinutesSinceMidnight
-import com.puntogris.posture.utils.extensions.millisToMinutes
-import com.puntogris.posture.utils.extensions.timeWithZoneOffset
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.util.*
 import javax.inject.Inject
 
 private const val REMINDER_KEY = "reminder"
@@ -42,12 +38,12 @@ class NewReminderViewModel @Inject constructor(
         savedStateHandle[REMINDER_KEY] = reminder.value.copy(name = text)
     }
 
-    fun saveStartTime(time: Long) {
-        savedStateHandle[REMINDER_KEY] = reminder.value.copy(startTime = time.millisToMinutes())
+    fun saveStartTime(time: Int) {
+        savedStateHandle[REMINDER_KEY] = reminder.value.copy(startTime = time)
     }
 
-    fun saveEndTime(time: Long) {
-        savedStateHandle[REMINDER_KEY] = reminder.value.copy(endTime = time.millisToMinutes())
+    fun saveEndTime(time: Int) {
+        savedStateHandle[REMINDER_KEY] = reminder.value.copy(endTime = time)
     }
 
     fun saveTimeInterval(time: Int) {
@@ -75,16 +71,9 @@ class NewReminderViewModel @Inject constructor(
         }
     }
 
-    fun getDefaultClockTimeInMillis(code: ReminderUi.Item): Long {
-        val date = when {
-            code is ReminderUi.Item.Start && reminder.value.startTimeValid -> {
-                getDateFromMinutesSinceMidnight(reminder.value.startTime)
-            }
-            code is ReminderUi.Item.End && reminder.value.endTimeValid -> {
-                getDateFromMinutesSinceMidnight(reminder.value.endTime)
-            }
-            else -> Date()
-        }
-        return date.timeWithZoneOffset
+    fun getDefaultClockTimeInMillis(code: ReminderUi.Item): Int = when (code) {
+        is ReminderUi.Item.Start -> reminder.value.startTime
+        is ReminderUi.Item.End -> reminder.value.endTime
+        else -> -1
     }
 }
