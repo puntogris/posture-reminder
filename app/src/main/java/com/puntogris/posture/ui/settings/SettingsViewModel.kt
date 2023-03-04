@@ -38,4 +38,8 @@ class SettingsViewModel @Inject constructor(
     suspend fun logOut() = authRepository.signOutUser()
 
     fun sendTicket(message: String) = userRepository.sendTicket(message)
+
+    suspend fun updateTheme(value: Int) = dataStoreHelper.setAppTheme(value)
+
+    suspend fun getAppTheme() = dataStoreHelper.appTheme()
 }

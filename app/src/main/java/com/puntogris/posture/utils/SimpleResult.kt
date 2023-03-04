@@ -14,5 +14,3 @@ sealed class SimpleResult {
             }
     }
 }
-
-fun SimpleResult.isSuccess() = this == SimpleResult.Success

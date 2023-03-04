@@ -31,10 +31,6 @@ object Constants {
     const val NAVIGATION_DATA = "navigation_data"
     const val NOTIFICATION_ID = "notification_id"
 
-    // Keys
-    const val DATA_KEY = "data_key"
-    const val EDIT_NAME_KEY = "edit_name_key"
-
     // Work manager
     const val SYNC_ACCOUNT_WORKER = "sync_account_worker"
     const val REMINDER_ID_WORKER_DATA = "upload_reminder_worker"
