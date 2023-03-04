@@ -16,23 +16,17 @@
         android:name="com.puntogris.posture.ui.account.AccountFragment" />
     <dialog
         android:id="@+id/newReminderBottomSheet"
-        android:name="com.puntogris.posture.ui.reminders.new_edit.NewReminderBottomSheet">
+        android:name="com.puntogris.posture.ui.reminders.configuration.NewReminderBottomSheet">
         <argument
             android:name="reminder"
             android:defaultValue="@null"
             app:argType="com.puntogris.posture.domain.model.Reminder"
             app:nullable="true" />
-        <action
-            android:id="@+id/action_newReminder_to_vibrationSelector"
-            app:destination="@id/vibrationSelectorDialog" />
-        <action
-            android:id="@+id/action_newReminder_to_soundSelector"
-            app:destination="@id/soundSelectorDialog" />
         <argument
             android:name="flow"
+            android:defaultValue="@null"
             app:argType="string"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
     </dialog>
     <fragment
         android:id="@+id/settingsFragment"
@@ -59,26 +53,10 @@
         android:name="com.puntogris.posture.ui.permissions.BatteryOptimizationFragment">
         <argument
             android:name="flow"
+            android:defaultValue="@null"
             app:argType="string"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
     </fragment>
-    <dialog
-        android:id="@+id/vibrationSelectorDialog"
-        android:name="com.puntogris.posture.ui.reminders.new_edit.VibrationSelectorDialog">
-        <argument
-            android:name="savedPosition"
-            android:defaultValue="0"
-            app:argType="integer" />
-    </dialog>
-    <dialog
-        android:id="@+id/soundSelectorDialog"
-        android:name="com.puntogris.posture.ui.reminders.new_edit.SoundSelectorDialog">
-        <argument
-            android:name="savedSound"
-            android:defaultValue=" "
-            app:argType="string" />
-    </dialog>
     <dialog
         android:id="@+id/whatsNewDialog"
         android:name="com.puntogris.posture.ui.main.WhatsNewDialog" />
@@ -147,7 +125,7 @@
         android:name="com.puntogris.posture.ui.account.DeleteAccountFragment" />
     <dialog
         android:id="@+id/intervalPickerDialog"
-        android:name="com.puntogris.posture.ui.reminders.new_edit.IntervalPickerDialog" />
+        android:name="com.puntogris.posture.ui.reminders.configuration.IntervalPickerDialog" />
     <dialog
         android:id="@+id/manageReminderTutorialDialog"
         android:name="com.puntogris.posture.ui.reminders.tutorial.ManageReminderTutorialDialog" />
@@ -156,7 +134,7 @@
         android:name="com.puntogris.posture.ui.tickets.TicketFragment" />
     <fragment
         android:id="@+id/permissionsFragment"
-        android:name="com.puntogris.posture.ui.permissions.PermissionsFragment" >
+        android:name="com.puntogris.posture.ui.permissions.PermissionsFragment">
         <argument
             android:name="flow"
             app:argType="string"

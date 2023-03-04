@@ -1,4 +1,4 @@
-package com.puntogris.posture.ui.reminders.new_edit
+package com.puntogris.posture.ui.reminders.configuration
 
 import android.app.Dialog
 import android.os.Bundle
@@ -14,16 +14,16 @@ import com.puntogris.posture.utils.extensions.onPositive
 import com.puntogris.posture.utils.viewBinding
 
 class IntervalPickerDialog(
-    private val interval: Int,
-    private val result: (Int) -> Unit
+    private val currentInterval: Int,
+    private val onPickedAction: (Int) -> Unit
 ) : DialogFragment() {
 
     private val binding by viewBinding(DialogIntervalPickerBinding::inflate)
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        if (interval != 0) {
-            binding.editTextIntervalHours.setText(interval.getHours().toString())
-            binding.editTextIntervalMinutes.setText(interval.getMinutes().toString())
+        if (currentInterval != 0) {
+            binding.editTextIntervalHours.setText(currentInterval.getHours().toString())
+            binding.editTextIntervalMinutes.setText(currentInterval.getMinutes().toString())
         }
         return MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.time_interval_title)
@@ -42,7 +42,7 @@ class IntervalPickerDialog(
         if (interval == 0) {
             binding.textViewIntervalAlert.isVisible = true
         } else {
-            result(interval)
+            onPickedAction(interval)
             dismiss()
         }
     }

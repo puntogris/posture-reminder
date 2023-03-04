@@ -1,11 +1,10 @@
-package com.puntogris.posture.ui.reminders.new_edit
+package com.puntogris.posture.ui.reminders.configuration
 
 import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -20,11 +19,8 @@ import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetNewReminderBinding
 import com.puntogris.posture.utils.ReminderUi
 import com.puntogris.posture.utils.Result
-import com.puntogris.posture.utils.constants.Constants.DATA_KEY
 import com.puntogris.posture.utils.constants.Constants.EDIT_REMINDER_FLOW
 import com.puntogris.posture.utils.constants.Constants.MINUTES_IN_AN_HOUR
-import com.puntogris.posture.utils.constants.Constants.SOUND_PICKER_KEY
-import com.puntogris.posture.utils.constants.Constants.VIBRATION_PICKER_KEY
 import com.puntogris.posture.utils.extensions.UiInterface
 import com.puntogris.posture.utils.extensions.getHours
 import com.puntogris.posture.utils.extensions.getMinutes
@@ -54,7 +50,6 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         setupListeners()
         setupReminderRvAdapter()
-        setFragmentResultListeners()
     }
 
     private fun setupListeners() {
@@ -82,15 +77,6 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
     private fun subscribeUi(adapter: ReminderItemAdapter) {
         launchAndRepeatWithViewLifecycle {
             viewModel.reminder.collect(adapter::updateConfigData)
-        }
-    }
-
-    private fun setFragmentResultListeners() {
-        setFragmentResultListener(VIBRATION_PICKER_KEY) { _, bundle ->
-            viewModel.saveReminderVibrationPattern(bundle.getInt(DATA_KEY))
-        }
-        setFragmentResultListener(SOUND_PICKER_KEY) { _, bundle ->
-            viewModel.saveReminderSoundPattern(bundle.getParcelable(DATA_KEY))
         }
     }
 
@@ -127,23 +113,24 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun openNamePicker() {
-        ReminderNamePickerDialog(viewModel.reminder.value.name) {
-            viewModel.saveReminderName(it)
-        }.show(parentFragmentManager, "REMINDER_NAME_DIALOG")
+        ReminderNamePickerDialog(
+            currentName = viewModel.reminder.value.name,
+            onPickedAction = viewModel::saveReminderName
+        ).show(parentFragmentManager, "NAME_PICKER_DIALOG")
     }
 
     private fun onSoundPicker() {
-        val action = NewReminderBottomSheetDirections.actionNewReminderToSoundSelector(
-            viewModel.reminder.value.soundUri
-        )
-        findNavController().navigate(action)
+        SoundPickerDialog(
+            currentSound = viewModel.reminder.value.soundUri,
+            onPickedAction = viewModel::saveReminderSoundPattern
+        ).show(parentFragmentManager, "SOUND_PICKER_DIALOG")
     }
 
     private fun onVibrationPicker() {
-        val action = NewReminderBottomSheetDirections.actionNewReminderToVibrationSelector(
-            viewModel.reminder.value.vibrationPattern
-        )
-        findNavController().navigate(action)
+        VibrationPickerDialog(
+            currentPosition = viewModel.reminder.value.vibrationPattern,
+            onPickedAction = viewModel::saveReminderVibrationPattern
+        ).show(parentFragmentManager, "VIBRATION_PICKER_DIALOG")
     }
 
     private fun openColorPicker() {
@@ -157,22 +144,22 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
 
     private fun openIntervalPicker() {
         IntervalPickerDialog(
-            interval = viewModel.reminder.value.timeInterval,
-            result = viewModel::saveTimeInterval
+            currentInterval = viewModel.reminder.value.timeInterval,
+            onPickedAction = viewModel::saveTimeInterval
         ).show(parentFragmentManager, "TIME_INTERVAL_DIALOG")
     }
 
     private fun openDaysPicker() {
         DaysPickerDialog(
-            initialDays = viewModel.reminder.value.alarmDays,
-            onSaveAction = viewModel::saveReminderDays
+            currentDays = viewModel.reminder.value.alarmDays,
+            onPickedAction = viewModel::saveReminderDays
         ).show(parentFragmentManager, "DAYS_PICKER_DIALOG")
     }
 
     private fun openStartTimePicker() {
         openTimePicker(
             title = R.string.start_time_title,
-            defaultTime = viewModel.reminder.value.startTime,
+            currentTime = viewModel.reminder.value.startTime,
             onSaveAction = viewModel::saveStartTime
         )
     }
@@ -180,12 +167,12 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
     private fun openEndTimePicker() {
         openTimePicker(
             title = R.string.end_time_title,
-            defaultTime = viewModel.reminder.value.endTime,
+            currentTime = viewModel.reminder.value.endTime,
             onSaveAction = viewModel::saveEndTime
         )
     }
 
-    private fun openTimePicker(title: Int, defaultTime: Int, onSaveAction: (Int) -> Unit) {
+    private fun openTimePicker(title: Int, currentTime: Int, onSaveAction: (Int) -> Unit) {
         MaterialTimePicker.Builder()
             .setTimeFormat(TimeFormat.CLOCK_24H)
             .setInputMode(INPUT_MODE_CLOCK)
@@ -193,9 +180,9 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
             .setPositiveButtonText(R.string.action_done)
             .setNegativeButtonText(R.string.action_cancel)
             .apply {
-                if (defaultTime != -1) {
-                    setHour(defaultTime.getHours())
-                    setMinute(defaultTime.getMinutes())
+                if (currentTime != -1) {
+                    setHour(currentTime.getHours())
+                    setMinute(currentTime.getMinutes())
                 }
             }.build()
             .apply {

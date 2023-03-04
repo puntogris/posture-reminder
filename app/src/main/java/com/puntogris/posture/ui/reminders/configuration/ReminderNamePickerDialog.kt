@@ -1,4 +1,4 @@
-package com.puntogris.posture.ui.reminders.new_edit
+package com.puntogris.posture.ui.reminders.configuration
 
 import android.app.Dialog
 import android.os.Bundle
@@ -12,7 +12,7 @@ import com.puntogris.posture.utils.viewBinding
 
 class ReminderNamePickerDialog(
     private val currentName: String,
-    private val result: (String) -> Unit
+    private val onPickedAction: (String) -> Unit
 ) : DialogFragment() {
 
     private val binding by viewBinding(DialogReminderNamePickerBinding::inflate)
@@ -31,7 +31,7 @@ class ReminderNamePickerDialog(
     }
 
     private fun onPositiveButtonClicked() {
-        result(binding.editTextReminderNameInput.data)
+        onPickedAction(binding.editTextReminderNameInput.data)
         dismiss()
     }
 }

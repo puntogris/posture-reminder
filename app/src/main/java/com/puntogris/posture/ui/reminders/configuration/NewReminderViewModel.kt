@@ -1,4 +1,4 @@
-package com.puntogris.posture.ui.reminders.new_edit
+package com.puntogris.posture.ui.reminders.configuration
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
