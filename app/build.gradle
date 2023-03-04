@@ -88,9 +88,6 @@ dependencies {
     implementation platform(libs.firebase.bom)
     implementation(libs.bundles.firebase)
 
-    //BottomSheet
-    implementation(libs.bundles.bottomSheet)
-
     //Coroutines
     implementation(libs.bundles.coroutines)
 

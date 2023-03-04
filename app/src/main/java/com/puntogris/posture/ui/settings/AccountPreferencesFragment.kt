@@ -18,7 +18,6 @@ import com.puntogris.posture.utils.extensions.preference
 import com.puntogris.posture.utils.extensions.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint

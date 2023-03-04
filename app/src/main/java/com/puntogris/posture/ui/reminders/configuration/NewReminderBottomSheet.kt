@@ -14,9 +14,14 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_CLOCK
 import com.google.android.material.timepicker.TimeFormat
-import com.maxkeppeler.sheets.color.ColorSheet
 import com.puntogris.posture.R
 import com.puntogris.posture.databinding.BottomSheetNewReminderBinding
+import com.puntogris.posture.ui.reminders.configuration.pickers.ColorPickerDialog
+import com.puntogris.posture.ui.reminders.configuration.pickers.DaysPickerDialog
+import com.puntogris.posture.ui.reminders.configuration.pickers.IntervalPickerDialog
+import com.puntogris.posture.ui.reminders.configuration.pickers.ReminderNamePickerDialog
+import com.puntogris.posture.ui.reminders.configuration.pickers.SoundPickerDialog
+import com.puntogris.posture.ui.reminders.configuration.pickers.VibrationPickerDialog
 import com.puntogris.posture.utils.ReminderUi
 import com.puntogris.posture.utils.Result
 import com.puntogris.posture.utils.constants.Constants.EDIT_REMINDER_FLOW
@@ -134,12 +139,9 @@ class NewReminderBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun openColorPicker() {
-        ColorSheet().show(requireParentFragment().requireContext()) {
-            title(R.string.color_picker_title)
-            disableSwitchColorView()
-            onNegative(R.string.action_cancel)
-            onPositive(viewModel::saveReminderColor)
-        }
+        ColorPickerDialog(
+            viewModel::saveReminderColor
+        ).show(parentFragmentManager, "COLOR_PICKER_DIALOG")
     }
 
     private fun openIntervalPicker() {

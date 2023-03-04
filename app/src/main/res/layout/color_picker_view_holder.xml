@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View android:id="@+id/view_color"
+    android:layout_width="@dimen/spacing_10"
+    android:layout_gravity="center"
+    android:background="@drawable/circle_background"
+    android:layout_height="@dimen/spacing_10"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

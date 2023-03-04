@@ -118,7 +118,7 @@
         android:name="com.puntogris.posture.ui.account.DeleteAccountFragment" />
     <dialog
         android:id="@+id/intervalPickerDialog"
-        android:name="com.puntogris.posture.ui.reminders.configuration.IntervalPickerDialog" />
+        android:name="com.puntogris.posture.ui.reminders.configuration.pickers.IntervalPickerDialog" />
     <dialog
         android:id="@+id/manageReminderTutorialDialog"
         android:name="com.puntogris.posture.ui.reminders.tutorial.ManageReminderTutorialDialog" />

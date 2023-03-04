@@ -15,10 +15,6 @@
         <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
         <item name="android:colorBackground">@color/dayBackground</item>
-        <item name="sheetsButtonTextFont">@font/roboto_bold</item>
-        <item name="sheetsTitleFont">@font/roboto_bold</item>
-        <item name="sheetsTitleColor">?colorControlNormal</item>
-        <item name="sheetsBackgroundColor">#ffffff</item>
         <item name="materialCardViewStyle">?attr/materialCardViewFilledStyle</item>
         <item name="materialAlertDialogTheme">@style/MaterialAlertDialog_rounded</item>
     </style>

@@ -1,4 +1,4 @@
-package com.puntogris.posture.ui.reminders.configuration
+package com.puntogris.posture.ui.reminders.configuration.pickers
 
 import android.app.Dialog
 import android.content.Context
