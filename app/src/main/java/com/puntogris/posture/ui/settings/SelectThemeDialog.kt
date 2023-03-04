@@ -16,6 +16,7 @@ class SelectThemeDialog(
         return MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.theme)
             .setSingleChoiceItems(R.array.theme_names, currentPosition) { _, position ->
+                dismiss()
                 onPositiveAction(position)
             }
             .create()

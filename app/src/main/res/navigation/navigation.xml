@@ -31,9 +31,6 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.puntogris.posture.ui.settings.SettingsFragment" />
-    <dialog
-        android:id="@+id/selectThemeDialog"
-        android:name="com.puntogris.posture.ui.settings.SelectThemeDialog" />
     <fragment
         android:id="@+id/manageRemindersFragment"
         android:name="com.puntogris.posture.ui.reminders.manage.ManageRemindersFragment">

@@ -79,12 +79,11 @@ class AccountPreferencesFragment : PreferenceFragmentCompat() {
                 }
             }
             onClick {
-                findNavController().navigate(R.id.selectThemeDialog)
                 lifecycleScope.launch {
                     SelectThemeDialog(
                         currentTheme = viewModel.getAppTheme(),
                         onPositiveAction = ::updateTheme
-                    )
+                    ).show(parentFragmentManager, "SELECT_THEME_DIALOG")
                 }
             }
         }
@@ -108,7 +107,6 @@ class AccountPreferencesFragment : PreferenceFragmentCompat() {
             }
         }
     }
-
 
     private fun setupUserNamePref() {
         preference(Keys.USERNAME_PREF_KEY) {

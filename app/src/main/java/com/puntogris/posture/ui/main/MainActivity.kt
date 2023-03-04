@@ -35,7 +35,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(),
+class MainActivity :
+    AppCompatActivity(),
     NavController.OnDestinationChangedListener,
     UiInterfaceListener {
 
