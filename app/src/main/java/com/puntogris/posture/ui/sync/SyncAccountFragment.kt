@@ -31,9 +31,10 @@ class SyncAccountFragment : Fragment(R.layout.fragment_sync_account) {
         binding.buttonContinue.setOnClickListener {
             lifecycleScope.launch {
                 if (viewModel.showWelcome()) {
-                    val action = SyncAccountFragmentDirections.actionGlobalBatteryOptimizationFragment(
-                        WELCOME_FLOW
-                    )
+                    val action =
+                        SyncAccountFragmentDirections.actionGlobalBatteryOptimizationFragment(
+                            WELCOME_FLOW
+                        )
                     findNavController().navigate(action)
                 } else {
                     findNavController().navigate(R.id.action_syncAccount_to_home)
@@ -54,7 +55,7 @@ class SyncAccountFragment : Fragment(R.layout.fragment_sync_account) {
     }
 
     private fun onSyncAccountFailure() {
-        binding.apply {
+        with(binding) {
             animationSync.playAnimationOnce(R.raw.error)
             textViewSyncTitle.setText(R.string.account_sync_error)
 
@@ -73,7 +74,7 @@ class SyncAccountFragment : Fragment(R.layout.fragment_sync_account) {
     }
 
     private fun onSyncAccountSuccess() {
-        binding.apply {
+        with(binding) {
             animationSync.playAnimationOnce(R.raw.success)
             textViewSyncTitle.setText(R.string.account_sync_success)
             buttonContinue.isEnabled = true

@@ -34,7 +34,8 @@ fun setMinutesToHourlyTime(textView: TextView, minutes: Int) {
 
 fun setDaysSummary(textView: TextView, reminder: Reminder?) {
     reminder?.let {
-        textView.text = reminder.alarmDaysSummary(textView.resources.getStringArray(R.array.alarmDays))
+        textView.text =
+            reminder.alarmDaysSummary(textView.resources.getStringArray(R.array.alarmDays))
     }
 }
 
@@ -116,17 +117,16 @@ fun setProfileRankingNumber(textView: TextView, position: Int) {
 }
 
 fun setProfileRankingMedal(imageView: ImageView, position: Int) {
-    when (position) {
+    val icon = when (position) {
         0 -> R.drawable.ic_gold_medal
         1 -> R.drawable.ic_silver_medal
         2 -> R.drawable.ic_bronze_medal
         else -> null
-    }.let {
-        imageView.isVisible = it != null
-        if (it != null) {
-            imageView.setImageDrawable(ContextCompat.getDrawable(imageView.context, it))
-        }
     }
+    if (icon != null) {
+        imageView.setImageDrawable(ContextCompat.getDrawable(imageView.context, icon))
+    }
+    imageView.isVisible = icon != null
 }
 
 fun View.setBackgroundColorTintView(color: Int) {
@@ -142,12 +142,11 @@ fun setProgressBarSmoothMax(progressBar: ProgressBar, duration: Int) {
 }
 
 fun setToggleButton(button: Button, isReminderActive: Boolean) {
-    val (color, text) =
-        if (isReminderActive) {
-            R.color.turn_off to R.string.action_off
-        } else {
-            R.color.turn_on to R.string.action_on
-        }
+    val (color, text) = if (isReminderActive) {
+        R.color.turn_off to R.string.action_off
+    } else {
+        R.color.turn_on to R.string.action_on
+    }
     button.setBackgroundColor(getColor(button.context, color))
     button.setText(text)
 }

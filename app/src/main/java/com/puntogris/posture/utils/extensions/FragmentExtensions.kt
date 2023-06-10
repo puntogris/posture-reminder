@@ -34,17 +34,22 @@ fun Fragment.isDarkThemeOn() = requireContext().isDarkThemeOn()
 
 fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null) {
     try {
-        Intent(Intent.ACTION_VIEW).let {
-            it.data = Uri.parse(uri)
-            if (packageName != null) it.setPackage(packageName)
-            startActivity(it)
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            data = Uri.parse(uri)
+            if (packageName != null) {
+                setPackage(packageName)
+            }
         }
-
+        startActivity(intent)
     } catch (e: Exception) {
-        if (this is BottomSheetDialogFragment) showSnackBar(R.string.snack_general_error)
-        else UiInterface.showSnackBar(getString(R.string.snack_general_error))
+        if (this is BottomSheetDialogFragment) {
+            showSnackBar(R.string.snack_general_error)
+        } else {
+            UiInterface.showSnackBar(getString(R.string.snack_general_error))
+        }
     }
 }
+
 fun Fragment.launchWebBrowserIntent(uri: Int, packageName: String? = null) {
     launchWebBrowserIntent(getString(uri), packageName)
 }

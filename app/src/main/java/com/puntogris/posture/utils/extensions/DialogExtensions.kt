@@ -53,9 +53,14 @@ fun BottomSheetDialogFragment.showSnackBar(
     actionText: Int = R.string.action_undo,
     actionListener: View.OnClickListener? = null
 ) {
-    Snackbar.make(dialog!!.window!!.decorView, message, duration).let {
-        if (anchorView != null) it.anchorView = anchorView
-        if (actionListener != null) it.setAction(actionText, actionListener)
-        it.show()
+    requireDialog().window?.decorView?.let {
+        Snackbar.make(it, message, duration).apply {
+            if (anchorView != null) {
+                this.anchorView = anchorView
+            }
+            if (actionListener != null) {
+                this.setAction(actionText, actionListener)
+            }
+        }.show()
     }
 }

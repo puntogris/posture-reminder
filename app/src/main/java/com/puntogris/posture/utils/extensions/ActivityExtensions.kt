@@ -15,10 +15,9 @@ fun AppCompatActivity.getNavController() = getNavHostFragment().navController
 
 fun Activity.launchWebBrowserIntent(uri: String) {
     try {
-        Intent(Intent.ACTION_VIEW).let {
-            it.data = Uri.parse(uri)
-            startActivity(it)
-        }
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(uri)
+        startActivity(intent)
     } catch (e: Exception) {
         (this as MainActivity).showSnackBar(getString(R.string.snack_general_error))
     }

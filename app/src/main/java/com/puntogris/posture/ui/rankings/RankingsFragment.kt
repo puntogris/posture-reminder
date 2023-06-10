@@ -27,7 +27,7 @@ class RankingsFragment : Fragment(R.layout.fragment_rankings), MenuProvider {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        RankingsAdapter().let {
+        RankingsAdapter().also {
             binding.recyclerViewRankings.adapter = it
             subscribeUi(it)
         }
