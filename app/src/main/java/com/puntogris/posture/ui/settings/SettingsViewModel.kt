@@ -25,6 +25,22 @@ class SettingsViewModel @Inject constructor(
 
     val appTheme = dataStoreHelper.appThemeFlow()
 
+    val isExpSoundEnabled = dataStoreHelper.isExpSoundEnabled()
+
+    val isExerciseSoundEnabled = dataStoreHelper.isExerciseSoundEnabled()
+
+    fun setExpSoundPref(value: Boolean) {
+        viewModelScope.launch {
+            dataStoreHelper.setExpSoundPref(value)
+        }
+    }
+
+    fun setExerciseSoundPref(value: Boolean) {
+        viewModelScope.launch {
+            dataStoreHelper.setExerciseSoundPref(value)
+        }
+    }
+
     fun setPandaAnimationPref(value: Boolean) {
         viewModelScope.launch {
             dataStoreHelper.setPandaAnimation(value)

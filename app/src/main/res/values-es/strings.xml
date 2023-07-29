@@ -153,7 +153,10 @@
     <string name="version">Versión</string>
     <string name="version_name">Versión %1$s</string>
     <string name="rate_us">Calificanos</string>
-    <string name="battery_optimization_abbreviation">Optimiz. bateria</string>
+    <string name="battery_optimization_abbreviation">Modo de la batería</string>
+    <string name="enable_sound_action">Habilita el sonido para esta acción</string>
+    <string name="enable_exp_sound_title">Sonido exp reclamada</string>
+    <string name="enable_exercise_sound_title">Sonido ejercicio completado</string>
     <string name="ticket_feedback">Ticket /Feedback</string>
     <string name="human">Terricola</string>
     <string name="create_ticket">Crea un ticket</string>

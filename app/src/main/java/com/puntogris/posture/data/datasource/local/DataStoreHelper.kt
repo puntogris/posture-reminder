@@ -98,4 +98,20 @@ class DataStoreHelper @Inject constructor(@ApplicationContext private val contex
     suspend fun disableCheckpoint() = context.dataStore.edit {
         it[intPreferencesKey(Keys.SHOW_APP_CHECKPOINT_KEY)] = EXPERIENCE_TO_DISABLE_CHECKPOINT
     }
+
+    fun isExpSoundEnabled() = context.dataStore.data.map {
+        it[booleanPreferencesKey(Keys.ENABLE_EXP_SOUND_KEY)] ?: true
+    }
+
+    suspend fun setExpSoundPref(value: Boolean) = context.dataStore.edit {
+        it[booleanPreferencesKey(Keys.ENABLE_EXP_SOUND_KEY)] = value
+    }
+
+    fun isExerciseSoundEnabled() = context.dataStore.data.map {
+        it[booleanPreferencesKey(Keys.ENABLE_EXERCISE_SOUND_KEY)] ?: true
+    }
+
+    suspend fun setExerciseSoundPref(value: Boolean) = context.dataStore.edit {
+        it[booleanPreferencesKey(Keys.ENABLE_EXERCISE_SOUND_KEY)] = value
+    }
 }

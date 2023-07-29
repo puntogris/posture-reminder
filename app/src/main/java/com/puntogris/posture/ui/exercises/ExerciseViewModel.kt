@@ -4,6 +4,7 @@ import android.os.CountDownTimer
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import com.puntogris.posture.domain.model.DayLog
 import com.puntogris.posture.domain.model.Exercise
 import com.puntogris.posture.domain.repository.DayLogsRepository
@@ -23,7 +24,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ExerciseViewModel @Inject constructor(
     private val repository: DayLogsRepository,
-    handle: SavedStateHandle
+    handle: SavedStateHandle,
+    dataStoreHelper: DataStoreHelper
 ) : ViewModel() {
 
     private val _exerciseDurationTimer = MutableStateFlow(0)
@@ -33,6 +35,8 @@ class ExerciseViewModel @Inject constructor(
         val log = DayLog(expGained = EXPERIENCE_PER_EXERCISE, exercises = 1)
         emit(repository.updateDayLogAndUser(log))
     }
+
+    val playExerciseSound = dataStoreHelper.isExerciseSoundEnabled()
 
     private val durationTimer: CountDownTimer by lazy {
         val duration = handle.get<Exercise>(EXERCISE_KEY)?.duration ?: DEFAULT_EXERCISE_TIMER_SECS

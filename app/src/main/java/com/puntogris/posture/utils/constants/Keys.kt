@@ -28,4 +28,6 @@ object Keys {
     const val HELP_PREFERENCES_KEY = "help_preferences_key"
     const val CONTACT_PREFERENCES_KEY = "contact_preferences_key"
     const val APP_PREFERENCES_KEY = "app_preferences_key"
+    const val ENABLE_EXP_SOUND_KEY = "enable_exp_sound_key"
+    const val ENABLE_EXERCISE_SOUND_KEY = "enable_exercise_sound_key"
 }
