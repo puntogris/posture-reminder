@@ -13,11 +13,14 @@ import com.puntogris.posture.utils.SimpleResult
 import com.puntogris.posture.utils.constants.Keys
 import com.puntogris.posture.utils.extensions.isIgnoringBatteryOptimizations
 import com.puntogris.posture.utils.extensions.launchAndRepeatWithViewLifecycle
+import com.puntogris.posture.utils.extensions.onChange
 import com.puntogris.posture.utils.extensions.onClick
 import com.puntogris.posture.utils.extensions.preference
 import com.puntogris.posture.utils.extensions.showSnackBar
+import com.puntogris.posture.utils.extensions.switchPreference
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -36,6 +39,22 @@ class AccountPreferencesFragment : PreferenceFragmentCompat() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupUserNamePref()
+        setupSoundPrefs()
+    }
+
+    private fun setupSoundPrefs() {
+        switchPreference(Keys.ENABLE_EXP_SOUND_KEY) {
+            launchAndRepeatWithViewLifecycle {
+                isChecked = viewModel.isExpSoundEnabled.first()
+            }
+            onChange(viewModel::setExpSoundPref)
+        }
+        switchPreference(Keys.ENABLE_EXERCISE_SOUND_KEY) {
+            launchAndRepeatWithViewLifecycle {
+                isChecked = viewModel.isExerciseSoundEnabled.first()
+            }
+            onChange(viewModel::setExerciseSoundPref)
+        }
     }
 
     private fun setupDeletionPref() {

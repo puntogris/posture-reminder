@@ -154,7 +154,10 @@
     <string name="version">Версия</string>
     <string name="version_name">Версия %1$s</string>
     <string name="rate_us">Оцените нас</string>
-    <string name="battery_optimization_abbreviation">Экономия бат.</string>
+    <string name="battery_optimization_abbreviation">Pежим батареи</string>
+    <string name="enable_sound_action">Включает звук для этого действия</string>
+    <string name="enable_exp_sound_title">Испытайте заявленный звук</string>
+    <string name="enable_exercise_sound_title">Упражнение законченный звук</string>
     <string name="ticket_feedback">Сообщить о проблеме/Оставить отзыв</string>
     <string name="human">Человек</string>
     <string name="create_ticket">Сообщить о проблеме</string>

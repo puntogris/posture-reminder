@@ -26,8 +26,6 @@ class ExerciseCompletedDialog : DialogFragment() {
     private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.claim_sound)
-        mediaPlayer?.start()
         subscribeUi()
         return MaterialAlertDialogBuilder(requireContext())
             .setView(binding.root)
@@ -44,6 +42,14 @@ class ExerciseCompletedDialog : DialogFragment() {
                     RewardExp.Error -> onExpRewardError()
                     RewardExp.ExpLimit -> onExpRewardLimit()
                     RewardExp.Success -> onExpRewardSuccess()
+                }
+            }
+        }
+        lifecycleScope.launch {
+            viewModel.playExerciseSound.collectLatest { playSound ->
+                if (playSound) {
+                    mediaPlayer = MediaPlayer.create(requireContext(), R.raw.claim_sound)
+                    mediaPlayer?.start()
                 }
             }
         }

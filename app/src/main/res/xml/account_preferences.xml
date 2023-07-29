@@ -13,6 +13,18 @@
             android:key="theme_preference_key"
             app:iconSpaceReserved="false"
             app:title="@string/theme" />
+        <SwitchPreference
+            android:key="enable_exp_sound_key"
+            android:persistent="false"
+            android:summary="@string/enable_sound_action"
+            app:iconSpaceReserved="false"
+            app:title="@string/enable_exp_sound_title" />
+        <SwitchPreference
+            android:key="enable_exercise_sound_key"
+            android:persistent="false"
+            android:summary="@string/enable_sound_action"
+            app:iconSpaceReserved="false"
+            app:title="@string/enable_exercise_sound_title" />
         <Preference
             android:key="battery_preference_key"
             app:iconSpaceReserved="false"
