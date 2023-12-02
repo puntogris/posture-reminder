@@ -178,14 +178,14 @@
     <string name="app_pref_summary">Version, credits, policies</string>
 
     <!-- Preferences -->
-    <string name="pref_faq_url" translatable="false">https://postureapp.puntogris.com/help/</string>
+    <string name="pref_faq_url" translatable="false">https://posture-reminder-web.vercel.app/help.html</string>
     <string name="pref_github_url" translatable="false">https://github.com/puntogris/posture-reminder</string>
-    <string name="pref_app_website_url" translatable="false">https://postureapp.puntogris.com</string>
+    <string name="pref_app_website_url" translatable="false">https://posture-reminder-web.vercel.app</string>
     <string name="pref_play_store_uri" translatable="false">market://details?id=com.puntogris.posture</string>
     <string name="pref_play_store_web_url" translatable="false">https://play.google.com/store/apps/details?id=com.puntogris.posture</string>
-    <string name="pref_privacy_policy_url" translatable="false">https://postureapp.puntogris.com/information/privacy-policy.html</string>
-    <string name="pref_terms_and_conditions_url" translatable="false">https://postureapp.puntogris.com/information/terms-and-conditions.html</string>
-    <string name="pref_credits_url" translatable="false">https://postureapp.puntogris.com/information/credits.html</string>
+    <string name="pref_privacy_policy_url" translatable="false">https://posture-reminder-web.vercel.app/privacy-policy.html</string>
+    <string name="pref_terms_and_conditions_url" translatable="false">https://posture-reminder-web.vercel.app/terms-and-conditions.html</string>
+    <string name="pref_credits_url" translatable="false">https://posture-reminder-web.vercel.app/credits.html</string>
 
     <!-- Delete account -->
     <string name="snack_account_email_not_matching">The email doesn\'t match the one in your account.</string>
