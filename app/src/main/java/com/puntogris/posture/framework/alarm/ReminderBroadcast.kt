@@ -3,6 +3,7 @@ package com.puntogris.posture.framework.alarm
 import android.app.AlarmManager.ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED
 import android.content.Context
 import android.content.Intent
+import android.content.Intent.ACTION_BOOT_COMPLETED
 import android.os.Build
 import com.puntogris.posture.domain.model.Reminder
 import com.puntogris.posture.domain.repository.ReminderRepository
@@ -34,6 +35,7 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
             DAILY_ALARM_TRIGGERED -> onDailyAlarmTriggered()
             REPEATING_ALARM_TRIGGERED -> onRepeatingAlarmTriggered()
             ACTION_SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED -> onExactAlarmPermissionStateChanged()
+            ACTION_BOOT_COMPLETED -> refreshAlarms()
         }
     }
 
@@ -72,5 +74,13 @@ class ReminderBroadcast : HiltBroadcastReceiver() {
     private fun deliverNotificationAndSetNewAlarm(reminder: Reminder) {
         notifications.buildAndShowNotificationWithReminder(reminder)
         alarm.startRepeatingAlarm(reminder.timeInterval)
+    }
+
+    private fun refreshAlarms() {
+        goAsync {
+            repository.getActiveReminder()?.let {
+                alarm.refreshAlarms(it)
+            }
+        }
     }
 }

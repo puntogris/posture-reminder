@@ -66,7 +66,7 @@ class Alarm @Inject constructor(
     }
 
     fun startRepeatingAlarm(intervalInMinutes: Int) {
-        alarmManager.setExact(
+        alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,
             getTriggerTime(intervalInMinutes),
             pendingIntentRepeatingAlarm
