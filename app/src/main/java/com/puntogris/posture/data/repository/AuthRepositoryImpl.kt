@@ -8,10 +8,10 @@ import com.puntogris.posture.domain.model.LoginResult
 import com.puntogris.posture.domain.repository.AuthRepository
 import com.puntogris.posture.domain.repository.AuthServerApi
 import com.puntogris.posture.framework.alarm.Alarm
+import com.puntogris.posture.framework.workers.SyncAccountWorker.Companion.SYNC_WORKER_NAME
 import com.puntogris.posture.framework.workers.WorkersManager
 import com.puntogris.posture.utils.DispatcherProvider
 import com.puntogris.posture.utils.SimpleResult
-import com.puntogris.posture.utils.constants.Constants.SYNC_ACCOUNT_WORKER
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -47,6 +47,6 @@ class AuthRepositoryImpl(
         authServerApi.signOut()
         googleSingInApi.signOut()
         dataStoreHelper.setShowLoginPref(true)
-        workersManager.cancelWorker(SYNC_ACCOUNT_WORKER)
+        workersManager.cancelWorker(SYNC_WORKER_NAME)
     }
 }

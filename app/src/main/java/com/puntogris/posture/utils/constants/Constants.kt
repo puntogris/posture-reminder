@@ -32,7 +32,6 @@ object Constants {
     const val NOTIFICATION_ID = "notification_id"
 
     // Work manager
-    const val SYNC_ACCOUNT_WORKER = "sync_account_worker"
     const val REMINDER_ID_WORKER_DATA = "upload_reminder_worker"
 
     // Firestore

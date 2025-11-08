@@ -21,8 +21,13 @@ class SyncAccountWorker @AssistedInject constructor(
         try {
             syncRepository.syncAccountExperience()
             Result.success()
-        } catch (e: Exception) {
+        } catch (ignored: Exception) {
             Result.failure()
         }
+    }
+
+    companion object {
+        const val SYNC_WORKER_NAME = "sync_experience_worker"
+        const val SYNC_WORKER_NAME_DEPRECATED = "sync_account_worker"
     }
 }
