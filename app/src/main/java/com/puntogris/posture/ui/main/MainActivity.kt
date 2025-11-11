@@ -93,7 +93,7 @@ class MainActivity :
 
     private fun setupInitialDestination() {
         val startDestination = runBlocking {
-            if (false) R.id.loginFragment else R.id.homeFragment
+            if (viewModel.showLogin()) R.id.loginFragment else R.id.homeFragment
         }
         navController.graph = navController.navInflater.inflate(R.navigation.navigation).apply {
             setStartDestination(startDestination)

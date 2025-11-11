@@ -22,3 +22,7 @@
 -keep public class com.google.firebase.** {*;}
 -keep class com.google.android.gms.internal.** {*;}
 -keepclasseswithmembers class com.google.firebase.FirebaseException
+
+-keep class com.google.gson.reflect.TypeToken
+-keep class * extends com.google.gson.reflect.TypeToken
+-keep public class * implements java.lang.reflect.Type
