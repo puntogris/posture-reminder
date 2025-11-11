@@ -8,7 +8,10 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -52,6 +55,23 @@ class MainActivity :
         setupNavigation()
         checkAppCurrentVersion()
         checkIntentForNavigation(intent)
+        setEdgeToEdgeInsets()
+    }
+
+    private fun setEdgeToEdgeInsets() {
+        ViewCompat.setOnApplyWindowInsetsListener(binding.rootLayout) { v, insets ->
+            val bars = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars()
+                        or WindowInsetsCompat.Type.displayCutout()
+            )
+            v.updatePadding(
+                left = bars.left,
+                top = bars.top,
+                right = bars.right,
+                bottom = bars.bottom,
+            )
+            WindowInsetsCompat.CONSUMED
+        }
     }
 
     private fun checkAppCurrentVersion() {
@@ -73,7 +93,7 @@ class MainActivity :
 
     private fun setupInitialDestination() {
         val startDestination = runBlocking {
-            if (viewModel.showLogin()) R.id.loginFragment else R.id.homeFragment
+            if (false) R.id.loginFragment else R.id.homeFragment
         }
         navController.graph = navController.navInflater.inflate(R.navigation.navigation).apply {
             setStartDestination(startDestination)
