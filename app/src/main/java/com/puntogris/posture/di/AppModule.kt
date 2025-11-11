@@ -138,9 +138,10 @@ class AppModule {
     @Provides
     fun provideDayLogsRepository(
         appDatabase: AppDatabase,
-        dispatchers: DispatcherProvider
+        dispatchers: DispatcherProvider,
+        workersManager: WorkersManager
     ): DayLogsRepository {
-        return DayLogsRepositoryImpl(appDatabase, dispatchers)
+        return DayLogsRepositoryImpl(appDatabase, dispatchers, workersManager)
     }
 
     @Provides

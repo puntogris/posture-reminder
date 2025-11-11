@@ -42,6 +42,7 @@ object Constants {
     const val PUBLIC_PROFILE_DOC = "profile"
     const val USER_NAME_FIELD = "username"
     const val TICKET_COLLECTION = "tickets"
+    const val CLIENT_APP_VERSION_FIELD = "clientAppVersion"
 
     // Url
     const val AUTH_HELP_URL = "https://postureapp.puntogris.com/help/"

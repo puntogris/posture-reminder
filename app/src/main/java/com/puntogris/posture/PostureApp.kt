@@ -65,5 +65,4 @@ class PostureApp : Application(), Configuration.Provider {
 
     override fun getWorkManagerConfiguration() =
         Configuration.Builder().setWorkerFactory(workerFactory).build()
-
 }

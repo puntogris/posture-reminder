@@ -139,7 +139,7 @@ class AccountPreferencesFragment : PreferenceFragmentCompat() {
                     EditUserNameDialog(
                         currentName = viewModel.user.value.username,
                         onPositiveAction = ::updateUserName
-                    )
+                    ).show(parentFragmentManager, "EDIT_USER_NAME_DIALOG")
                 } else {
                     showSnackBar(
                         message = R.string.snack_action_requires_login,

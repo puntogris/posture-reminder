@@ -42,16 +42,24 @@ class FirebaseUserApi @Inject constructor(
     }
 
     override suspend fun updateUsername(username: String) {
+        val updateData = mapOf(
+            Constants.USER_NAME_FIELD to username,
+            Constants.CLIENT_APP_VERSION_FIELD to ALLOWED_VERSION_TO_UPDATE
+        )
         firebase.firestore.runBatch {
-            it.update(privateProfileRef(), Constants.USER_NAME_FIELD, username)
-            it.update(publicProfileRef(), Constants.USER_NAME_FIELD, username)
+            it.update(privateProfileRef(), updateData)
+            it.update(publicProfileRef(), updateData)
         }.await()
     }
 
     override suspend fun updateExperience(experience: Int) {
+        val updateData = mapOf(
+            Constants.EXPERIENCE_FIELD to experience,
+            Constants.CLIENT_APP_VERSION_FIELD to ALLOWED_VERSION_TO_UPDATE
+        )
         firebase.firestore.runBatch {
-            it.update(privateProfileRef(), Constants.EXPERIENCE_FIELD, experience)
-            it.update(publicProfileRef(), Constants.EXPERIENCE_FIELD, experience)
+            it.update(privateProfileRef(), updateData)
+            it.update(publicProfileRef(), updateData)
         }.await()
     }
 
@@ -61,5 +69,11 @@ class FirebaseUserApi @Inject constructor(
             .document(ticket.id)
             .set(ticket)
             .await()
+    }
+
+    companion object {
+        // As a temporary fix we are not allowing updates without this version code
+        // This will completely disable the periodic updates for all app installed
+        private const val ALLOWED_VERSION_TO_UPDATE = 2
     }
 }

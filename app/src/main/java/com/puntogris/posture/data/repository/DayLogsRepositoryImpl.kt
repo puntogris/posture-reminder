@@ -5,13 +5,15 @@ import com.puntogris.posture.data.datasource.local.db.AppDatabase
 import com.puntogris.posture.domain.model.DayLog
 import com.puntogris.posture.domain.model.RewardExp
 import com.puntogris.posture.domain.repository.DayLogsRepository
+import com.puntogris.posture.framework.workers.WorkersManager
 import com.puntogris.posture.utils.DispatcherProvider
 import com.puntogris.posture.utils.constants.Constants.MAX_EXPERIENCE_PER_DAY
 import kotlinx.coroutines.withContext
 
 class DayLogsRepositoryImpl(
     private val appDatabase: AppDatabase,
-    private val dispatchers: DispatcherProvider
+    private val dispatchers: DispatcherProvider,
+    private val workersManager: WorkersManager
 ) : DayLogsRepository {
 
     override fun getLastTwoDaysLogsStream() = appDatabase.dayLogsDao.getLastTwoEntries()
@@ -24,6 +26,7 @@ class DayLogsRepositoryImpl(
             when {
                 todayLog == null -> {
                     insertNewDayLog(dayLog)
+                    workersManager.launchSyncAccountWorker()
                     RewardExp.Success
                 }
                 todayLog.expGained + dayLog.expGained <= MAX_EXPERIENCE_PER_DAY -> {
@@ -38,6 +41,7 @@ class DayLogsRepositoryImpl(
                             userDao.updateUserExperience(dayLog.expGained)
                         }
                     }
+                    workersManager.launchSyncAccountWorker()
                     RewardExp.Success
                 }
                 else -> RewardExp.ExpLimit

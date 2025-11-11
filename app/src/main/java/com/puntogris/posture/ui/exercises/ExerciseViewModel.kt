@@ -7,9 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.puntogris.posture.data.datasource.local.DataStoreHelper
 import com.puntogris.posture.domain.model.DayLog
 import com.puntogris.posture.domain.model.Exercise
-import com.puntogris.posture.domain.model.RewardExp
 import com.puntogris.posture.domain.repository.DayLogsRepository
-import com.puntogris.posture.domain.repository.SyncRepository
 import com.puntogris.posture.utils.constants.Constants.DEFAULT_EXERCISE_TIMER_SECS
 import com.puntogris.posture.utils.constants.Constants.EXERCISE_KEY
 import com.puntogris.posture.utils.constants.Constants.EXPERIENCE_PER_EXERCISE
@@ -20,14 +18,12 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ExerciseViewModel @Inject constructor(
     private val repository: DayLogsRepository,
-    private val syncRepository: SyncRepository,
     handle: SavedStateHandle,
     dataStoreHelper: DataStoreHelper
 ) : ViewModel() {
@@ -38,10 +34,6 @@ class ExerciseViewModel @Inject constructor(
     val expRewardStatus = flow {
         val log = DayLog(expGained = EXPERIENCE_PER_EXERCISE, exercises = 1)
         emit(repository.updateDayLogAndUser(log))
-    }.onEach {
-        if (it is RewardExp.Success) {
-            syncRepository.syncAccountExperience()
-        }
     }
 
     val playExerciseSound = dataStoreHelper.isExerciseSoundEnabled()
