@@ -7,6 +7,9 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.work.Configuration
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.crashlytics.ktx.crashlytics
+import com.google.firebase.ktx.Firebase
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.lyft.kronos.KronosClock
 import com.puntogris.posture.data.datasource.local.DataStoreHelper
@@ -61,8 +64,22 @@ class PostureApp : Application(), Configuration.Provider {
         ProcessLifecycleOwner.get().lifecycleScope.launch {
             workersManager.cancelWorker(SYNC_WORKER_NAME_DEPRECATED)
         }
+
+        setupCrashlytics()
+    }
+
+    private fun setupCrashlytics() {
+        Firebase.auth.addAuthStateListener { auth ->
+            val currentUser = auth.currentUser ?: return@addAuthStateListener
+            Firebase.crashlytics.setUserId(currentUser.uid)
+            Firebase.crashlytics.setCustomKey(EMAIL_FIELD, currentUser.email.orEmpty())
+        }
     }
 
     override fun getWorkManagerConfiguration() =
         Configuration.Builder().setWorkerFactory(workerFactory).build()
+
+    companion object {
+        private const val EMAIL_FIELD = "email"
+    }
 }
