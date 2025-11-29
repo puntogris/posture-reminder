@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import com.google.firebase.crashlytics.ktx.crashlytics
+import com.google.firebase.ktx.Firebase
 import com.puntogris.posture.domain.repository.SyncRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
@@ -21,7 +23,9 @@ class SyncAccountWorker @AssistedInject constructor(
         try {
             syncRepository.syncAccountExperience()
             Result.success()
-        } catch (ignored: Exception) {
+        } catch (t: Throwable) {
+            Firebase.crashlytics.log("SyncAccountWorker")
+            Firebase.crashlytics.recordException(t)
             Result.failure()
         }
     }

@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import com.google.firebase.crashlytics.ktx.crashlytics
+import com.google.firebase.ktx.Firebase
 import com.puntogris.posture.domain.repository.ReminderRepository
 import com.puntogris.posture.utils.constants.Constants.REMINDER_ID_WORKER_DATA
 import dagger.assisted.Assisted
@@ -25,7 +27,9 @@ class UploadReminderWorker @AssistedInject constructor(
                 reminderRepository.syncReminder(reminderId)
             }
             Result.success()
-        } catch (e: Exception) {
+        } catch (t: Throwable) {
+            Firebase.crashlytics.log("UploadReminderWorker")
+            Firebase.crashlytics.recordException(t)
             Result.failure()
         }
     }
